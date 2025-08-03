@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOMPLEX - ប្រព័ន្ធរៀន STEM សម្រាប់សិស្សខ្មែរ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva,
+          Verdana, sans-serif;
+        background: #f8fafc;
+        color: #1a1a1a;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      /* Header */
+      .top-header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 8px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 2000;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .header-content {
+        max-width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo{
+        text-decoration: none;
+      }
+
+      .logo span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #4b5563;
+      }
+
+      .logo span p:nth-child(1) {
+        color: #6366f1;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      .logo span p:nth-child(2) {
+        color: black;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+      }
+
+      .nav-item {
+        color: #4b5563;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .nav-item:hover {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.9);
+      }
+
+      .nav-item.active {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.95);
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+      }
+
+      .ai-assistant-btn {
+        background: #6366f1;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .ai-assistant-btn:hover {
+        background: #5855eb;
+      }
+
+      /* Hero Section */
+      .hero {
+        margin-top: 60px;
+        padding: 80px 20px;
+        background: #6366f1;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 20px;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-btn {
+        padding: 16px 32px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .hero-btn.primary {
+        background: white;
+        color: #6366f1;
+      }
+
+      .hero-btn.primary:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-2px);
+      }
+
+      .hero-btn.secondary {
+        background: transparent;
+        color: white;
+        border-color: white;
+      }
+
+      .hero-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 80px 20px;
+        background: white;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-header h2 {
+        font-size: 36px;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 16px;
+      }
+
+      .section-header p {
+        font-size: 18px;
+        color: #6b7280;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: #6366f1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 32px;
+        color: white;
+      }
+
+      .feature-card h3 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 12px;
+      }
+
+      .feature-card p {
+        color: #6b7280;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* Goals Section */
+      .goals {
+        padding: 80px 20px;
+        background: #f8fafc;
+      }
+
+      .goals-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .goals-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .goals-header h2 {
+        font-size: 36px;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 16px;
+      }
+
+      .goals-header p {
+        font-size: 18px;
+        color: #6b7280;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .goals-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .goals-card {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .goals-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 40px rgba(99, 102, 241, 0.15);
+      }
+
+      .goals-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: #6366f1;
+      }
+
+      .goals-card h3 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .goals-card-icon {
+        width: 50px;
+        height: 50px;
+        background: #6366f1;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+      }
+
+      .goals-card p {
+        color: #6b7280;
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 25px;
+      }
+
+      .goals-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .goals-list li {
+        position: relative;
+        padding: 12px 0 12px 40px;
+        color: #6b7280;
+        font-size: 16px;
+        line-height: 1.6;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .goals-list li:last-child {
+        border-bottom: none;
+      }
+
+      .goals-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 12px;
+        width: 24px;
+        height: 24px;
+        background: #6366f1;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .goals-visual-section {
+        background: #6366f1;
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .goals-visual-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .goals-visual-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .goals-visual-section h3 {
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 20px;
+      }
+
+      .goals-visual-section p {
+        font-size: 18px;
+        opacity: 0.9;
+        line-height: 1.7;
+        max-width: 600px;
+        margin: 0 auto 30px;
+      }
+
+      .goals-cta {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 16px 32px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        display: inline-block;
+      }
+
+      .goals-cta:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* Founders Section */
+      .founders {
+        padding: 80px 20px;
+        background: white;
+      }
+
+      .founders-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .founders-header h2 {
+        font-size: 36px;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 16px;
+      }
+
+      .founders-header p {
+        font-size: 18px;
+        color: #6b7280;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .founders-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .founder-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .founder-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+      }
+
+      .founder-avatar {
+        width: 120px;
+        height: 120px;
+        background: #6366f1;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        color: white;
+        font-weight: bold;
+      }
+
+      .founder-card h3 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 8px;
+      }
+
+      .founder-card .founder-role {
+        color: #6366f1;
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      .founder-card p {
+        color: #6b7280;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* Footer */
+      .footer {
+        background: #111827;
+        color: white;
+        padding: 60px 20px 30px;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+      }
+
+      .footer-section h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #6366f1;
+      }
+
+      .footer-section p,
+      .footer-section a {
+        color: #9ca3af;
+        text-decoration: none;
+        line-height: 1.6;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .footer-section a:hover {
+        color: #6366f1;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        margin-top: 40px;
+        border-top: 1px solid #374151;
+        color: #9ca3af;
+      }
+
+      /* Mobile Menu Button */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #6366f1;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .top-header {
+          padding: 6px 0;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .nav-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: white;
+          flex-direction: column;
+          padding: 15px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          border-top: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-menu.show {
+          display: flex;
+        }
+
+        .nav-item {
+          width: 100%;
+          text-align: center;
+          margin: 3px 0;
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+
+        .hero {
+          padding: 60px 20px;
+        }
+
+        .hero h1 {
+          font-size: 32px;
+        }
+
+        .hero p {
+          font-size: 16px;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .hero-btn {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .features {
+          padding: 60px 20px;
+        }
+
+        .section-header h2 {
+          font-size: 28px;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .goals {
+          padding: 60px 20px;
+        }
+
+        .goals-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .goals-header {
+          margin-bottom: 40px;
+        }
+
+        .goals-header h2 {
+          font-size: 28px;
+        }
+
+        .goals-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .goals-card {
+          padding: 30px;
+        }
+
+        .goals-card h3 {
+          font-size: 20px;
+          gap: 8px;
+        }
+
+        .goals-card-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 20px;
+        }
+
+        .goals-card p {
+          font-size: 14px;
+          margin-bottom: 20px;
+        }
+
+        .goals-list li {
+          font-size: 14px;
+          padding: 10px 0 10px 35px;
+        }
+
+        .goals-list li::before {
+          width: 20px;
+          height: 20px;
+          font-size: 10px;
+          top: 10px;
+        }
+
+        .goals-visual-section {
+          padding: 40px 20px;
+        }
+
+        .goals-visual-section h3 {
+          font-size: 24px;
+        }
+
+        .goals-visual-section p {
+          font-size: 16px;
+          margin: 0 auto 20px;
+        }
+
+        .goals-cta {
+          padding: 12px 24px;
+          font-size: 14px;
+        }
+
+        .founders {
+          padding: 60px 20px;
+        }
+
+        .founders-header h2 {
+          font-size: 28px;
+        }
+
+        .founders-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .founder-card {
+          padding: 25px;
+        }
+
+        .founder-avatar {
+          width: 100px;
+          height: 100px;
+          font-size: 40px;
+        }
+
+        .founder-card h3 {
+          font-size: 20px;
+        }
+
+        .founder-card .founder-role {
+          font-size: 14px;
+        }
+
+        .founder-card p {
+          font-size: 14px;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr 1fr;
+          gap: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="top-header">
+      <div class="header-content">      
+        <a class="logo" href="./home.html">
+          <span
+            ><p>KOM</p>
+            <p>PLEX</p></span
+          >
+        </div>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+
+        <div class="nav-menu" id="navMenu">
+            <a href="./index.html" class="nav-item">ឯកសារ</a>
+          <a href="./forum.html" class="nav-item">វេទិកា</a>
+          <a href="./blog.html" class="nav-item">ប្លុក</a>
+          <a href="#" class="ai-assistant-btn">🤖 អ្នកជំនាញ AI</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>ប្រព័ន្ធរៀន STEM សម្រាប់សិស្សខ្មែរ</h1>
+        <p>
+          រៀនគណិតវិទ្យា និងវិទ្យាសាស្ត្រដោយឥតគិតថ្លៃ ជាមួយនឹងមេរៀនអន្តរកម្ម
+          និងអ្នកជំនាញ AI
+        </p>
+        <div class="hero-buttons">
+          <a href="#features" class="hero-btn primary">ចាប់ផ្តើមរៀន</a>
+          <a href="#goals" class="hero-btn secondary">ស្វែងយល់បន្ថែម</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>មុខងារសំខាន់ៗ</h2>
+          <p>ប្រព័ន្ធរៀនដែលមានមុខងារល្អជាមួយនឹងបទពិសោធន៍រៀនដ៏អស្ចារ្យ</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>មេរៀនអន្តរកម្ម</h3>
+            <p>
+              រៀនគណិតវិទ្យា និងវិទ្យាសាស្ត្រជាមួយនឹងមេរៀនដែលមានការអន្តរកម្ម
+              និងរូបភាពច្បាស់លាស់
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>អ្នកជំនាញ AI</h3>
+            <p>
+              អ្នកជំនាញ AI ដែលអាចជួយដោះស្រាយបញ្ហាគណិតវិទ្យា
+              និងផ្តល់ការណែនាំជាក់លាក់
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>វេទិកាពិភាក្សា</h3>
+            <p>ចែករំលែកចំណេះដឹង និងសួរសំណួរជាមួយសិស្សដទៃទៀត</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3>ប្លុកបទពិសោធន៍</h3>
+            <p>អានបទពិសោធន៍ និងគន្លឹះរៀនពីសិស្សដទៃទៀត</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎥</div>
+            <h3>វីដេអូឥតគិតថ្លៃ</h3>
+            <p>មើលវីដេអូរៀនឥតគិតថ្លៃ ដែលពន្យល់អំពីគោលគំនិតសំខាន់ៗ</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🔓</div>
+            <h3>ប្រភពបើកចំហ</h3>
+            <p>ប្រព័ន្ធបើកចំហ ដែលអាចរួមចំណែក និងពង្រីកមេរៀនបាន</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="goals" id="goals">
+      <div class="container">
+        <div class="goals-header">
+          <h2>គោលដៅរបស់យើង</h2>
+          <p>យើងចង់ជួយដោះស្រាយបញ្ហានៅក្នុងប្រព័ន្ធអប់រំខ្មែរ</p>
+        </div>
+
+        <div class="goals-grid">
+          <div class="goals-card">
+            <h3><span class="goals-card-icon">🎯</span>ធ្វើឱ្យការរៀន STEM កាន់តែងាយស្រួល</h3>
+            <p>
+              កម្ពុជាមានបញ្ហាជាច្រើនក្នុងប្រព័ន្ធអប់រំ
+              ដែលសិស្សជាច្រើនពឹងផ្អែកលើការបង្រៀនឯកជន
+              និងសៀវភៅសង្ខេបដែលត្រូវបង់ប្រាក់ដើម្បីយល់គោលគំនិតមូលដ្ឋាន។
+            </p>
+            <ul class="goals-list">
+              <li>ផ្តល់ជាមេរៀនឥតគិតថ្លៃ និងអាចរៀនដោយខ្លួនឯក</li>
+              <li>ជួយឱ្យយល់ជ្រៅជាងការចងចាំដោយគ្មានការយល់</li>
+              <li>ផ្តល់ជាមេរៀនអន្តរកម្ម និងរូបភាពច្បាស់លាស់</li>
+              <li>បង្កើតសហគមន៍រៀនជាមួយគ្នា</li>
+              <li>បើកចំហសម្រាប់ការរួមចំណែក និងពង្រីកមេរៀន</li>
+            </ul>
+          </div>
+
+          <div class="goals-card">
+            <h3><span class="goals-card-icon">🚀</span>គោលដៅរបស់យើង</h3>
+            <p>
+              បង្កើតប្រព័ន្ធរៀន STEM ដែលឥតគិតថ្លៃ
+              និងមានប្រសិទ្ធភាពសម្រាប់សិស្សខ្មែរ
+              ដើម្បីជួយដោះស្រាយបញ្ហានៅក្នុងប្រព័ន្ធអប់រំ
+              និងផ្តល់ជាជម្រើសឥតគិតថ្លៃជាមួយនឹងការរៀនដោយខ្លួនឯកដែលគាំទ្រការយល់ជ្រៅជាងការចងចាំដោយគ្មានការយល់។
+            </p>
+          </div>
+        </div>
+
+        <div class="goals-visual-section">
+          <div class="goals-visual-content">
+            <h3>ចូលរួមជាមួយយើង</h3>
+            <p>
+              បង្កើតប្រព័ន្ធរៀន STEM ដែលឥតគិតថ្លៃ និងមានប្រសិទ្ធភាពសម្រាប់សិស្សខ្មែរ ដើម្បីជួយដោះស្រាយបញ្ហានៅក្នុងប្រព័ន្ធអប់រំ និងផ្តល់ជាជម្រើសឥតគិតថ្លៃជាមួយនឹងការរៀនដោយខ្លួនឯកដែលគាំទ្រការយល់ជ្រៅជាងការចងចាំដោយគ្មានការយល់។
+            </p>
+            <a href="#" class="goals-cta">ចាប់ផ្តើមរៀនឥឡូវនេះ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section class="founders" id="founders">
+      <div class="container">
+        <div class="founders-header">
+          <h2>អ្នកបង្កើត</h2>
+          <p>ស្គាល់អ្នកដែលបង្កើតប្រព័ន្ធរៀន STEM សម្រាប់សិស្សខ្មែរ</p>
+        </div>
+
+        <div class="founders-grid">
+          <div class="founder-card">
+            <div class="founder-avatar">A</div>
+            <h3>អាឡិចសាន់ដឺ សម្ពូល</h3>
+            <div class="founder-role">ប្រធានគ្រឹះស្ថាន</div>
+            <p>អ្នកជំនាញវិទ្យាសាស្ត្រកុំព្យូទ័រ និងអ្នកអប់រំដែលមានបទពិសោធន៍ជាង ១០ ឆ្នាំក្នុងការបង្រៀន STEM</p>
+          </div>
+
+          <div class="founder-card">
+            <div class="founder-avatar">B</div>
+            <h3>សុភាព វណ្ណា</h3>
+            <div class="founder-role">អ្នកគ្រប់គ្រងផលិតកម្ម</div>
+            <p>អ្នកអភិវឌ្ឍន៍វេបសាយ និងអ្នករចនាប្រព័ន្ធដែលមានចំណាប់អារម្មណ៍ខ្លាំងក្នុងការអប់រំ</p>
+          </div>
+
+          <div class="founder-card">
+            <div class="founder-avatar">C</div>
+            <h3>វណ្ណា សុភាព</h3>
+            <div class="founder-role">អ្នកគ្រប់គ្រងគម្រោង</div>
+            <p>អ្នកជំនាញគណិតវិទ្យា និងអ្នកបង្រៀនដែលមានបទពិសោធន៍ក្នុងការបង្កើតមេរៀនអន្តរកម្ម</p>
+          </div>
+
+          <div class="founder-card">
+            <div class="founder-avatar">D</div>
+            <h3>រតនា សុវណ្ណា</h3>
+            <div class="founder-role">អ្នកគ្រប់គ្រងអ្នកប្រើប្រាស់</div>
+            <p>អ្នកជំនាញវិទ្យាសាស្ត្រអប់រំ និងអ្នកអភិវឌ្ឍន៍មេរៀនដែលមានចំណាប់អារម្មណ៍ខ្លាំងក្នុងការធ្វើឱ្យការរៀនកាន់តែងាយស្រួល</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>KOMPLEX</h3>
+          <p>
+            ប្រព័ន្ធរៀន STEM សម្រាប់សិស្សខ្មែរ ដែលផ្តល់ជាមេរៀនឥតគិតថ្លៃ
+            និងមានប្រសិទ្ធភាព។
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h3>មុខងារ</h3>
+          <a href="#features">មេរៀនអន្តរកម្ម</a>
+          <a href="./forum.html">វេទិកាពិភាក្សា</a>
+          <a href="./blog.html">ប្លុកបទពិសោធន៍</a>
+          <a href="#">អ្នកជំនាញ AI</a>
+        </div>
+
+        <div class="footer-section">
+          <h3>អំពីយើង</h3>
+          <a href="#goals">គោលដៅ</a>
+          <a href="#founders">អ្នកបង្កើត</a>
+          <a href="#">រួមចំណែក</a>
+          <a href="#">ទាក់ទង</a>
+        </div>
+
+        <div class="footer-section">
+          <h3>Open Source</h3>
+          <p>
+            KOMPLEX គឺជាប្រភពបើកចំហ ដែលអាចរួមចំណែក និងពង្រីកមេរៀនបាន។
+            យើងជឿថាការអប់រំគួរតែឥតគិតថ្លៃ និងអាចចូលដំណើរការបានសម្រាប់គ្រប់គ្នា។
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 KOMPLEX. បង្កើតឡើងសម្រាប់សិស្សខ្មែរ។</p>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMobileMenu() {
+        const navMenu = document.getElementById("navMenu");
+        navMenu.classList.toggle("show");
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const navMenu = document.getElementById("navMenu");
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+
+        if (
+          !navMenu.contains(event.target) &&
+          !mobileMenuBtn.contains(event.target)
+        ) {
+          navMenu.classList.remove("show");
+        }
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

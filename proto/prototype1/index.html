@@ -26,28 +26,101 @@
         min-height: 100vh;
       }
 
-      /* Header */
+      /* Desktop Header - Level 1 */
       .top-header {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
-        padding: 15px 0;
-
+        padding: 8px 20px;
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         z-index: 2000;
         width: 100%;
+        display: flex;
+        justify-content: space-between;
         border-bottom: 1px solid rgba(99, 102, 241, 0.1);
       }
 
       .header-content {
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 0  20px;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
+      }
+
+      /* Desktop Header - Level 2 */
+      .desktop-subject-header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 8px 0;
+        position: fixed;
+        top: 65px;
+        left: 0;
+        right: 0;
+        z-index: 1500;
+        width: 100%;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .desktop-subject-content {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .desktop-subjects-nav {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .desktop-subject-tab {
+        color: #6b7280;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        cursor: pointer;
+        position: relative;
+      }
+
+      .desktop-subject-tab:hover,
+      .desktop-subject-tab.active {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.9);
+        border-color: #6366f1;
+      }
+
+      .desktop-grade-dropdown {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 12px;
+        padding: 8px 12px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        min-width: 100px;
+      }
+
+      .desktop-grade-dropdown:hover {
+        border-color: #6366f1;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
+      }
+
+      .logo {
+        text-decoration: none;
       }
 
       .logo span {
@@ -61,18 +134,18 @@
         color: #4b5563;
       }
 
-      .logo span p:nth-child(1){
+      .logo span p:nth-child(1) {
         color: #6366f1;
         font-size: 28px;
         font-weight: 800;
         letter-spacing: -0.5px;
       }
 
-      .logo span p:nth-child(2){
+      .logo span p:nth-child(2) {
         color: black;
         font-size: 28px;
         font-weight: 800;
-        letter-spacing: -0.5px; 
+        letter-spacing: -0.5px;
       }
 
       .nav-menu {
@@ -123,89 +196,156 @@
         background: #5855eb;
       }
 
-      /* Secondary Header */
-      .secondary-header {
-        background: rgba(255, 255, 255, 0.9);
+      /* Mobile Header Sections */
+      .mobile-subject-nav {
+        display: none;
+        background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
-        padding: 12px 0;
-        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.1);
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
         position: fixed;
-        top: 85px;
+        top: 55px;
         left: 0;
         right: 0;
         z-index: 1500;
         width: 100%;
-        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
       }
 
-      .secondary-content {
+      .mobile-subject-content {
         max-width: 100%;
         margin: 0 auto;
         padding: 0 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 15px;
       }
 
-      .subjects-nav {
+      .mobile-subjects-nav {
         display: flex;
-        gap: 20px;
+        gap: 10px;
         align-items: center;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
 
-      .subject-tab {
+      .mobile-subjects-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .mobile-subject-tab {
         color: #6b7280;
         text-decoration: none;
         font-weight: 500;
-        font-size: 14px;
-        padding: 8px 16px;
-        border-radius: 20px;
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 16px;
         transition: all 0.3s ease;
         background: rgba(255, 255, 255, 0.8);
         border: 1px solid rgba(99, 102, 241, 0.1);
-        cursor: pointer;
-        position: relative;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
 
-      .subject-tab:hover {
+      .mobile-subject-tab:hover,
+      .mobile-subject-tab.active {
         color: #6366f1;
         background: rgba(238, 242, 255, 0.9);
+        border-color: #6366f1;
       }
 
-      .subject-tab.active {
-        color: #6366f1;
-        background: rgba(238, 242, 255, 0.95);
-        border: 1px solid #6366f1;
-      }
-
-      .grade-selector {
-        position: relative;
-        display: inline-block;
-      }
-
-      .grade-dropdown {
+      .mobile-grade-dropdown {
         background: rgba(255, 255, 255, 0.95);
         border: 1px solid rgba(99, 102, 241, 0.2);
         border-radius: 12px;
-        padding: 10px 16px;
+        padding: 6px 10px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        min-width: 80px;
+      }
+
+      /* Mobile Content Navigation */
+      .mobile-content-nav {
+        display: none;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        position: fixed;
+        top: 100px;
+        left: 0;
+        right: 0;
+        z-index: 1400;
+        width: 100%;
+      }
+
+      .mobile-content-nav-content {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .mobile-topic-dropdown {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 12px;
+        padding: 8px 12px;
         font-size: 14px;
         font-weight: 500;
         color: #374151;
         cursor: pointer;
         transition: all 0.3s ease;
         backdrop-filter: blur(5px);
-        min-width: 120px;
+        min-width: 100px;
       }
 
-      .grade-dropdown:hover {
+      .mobile-sub-nav {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding: 0 10px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .mobile-sub-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .mobile-sub-item {
+        color: #6b7280;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .mobile-sub-item:hover,
+      .mobile-sub-item.active {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.9);
         border-color: #6366f1;
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
       }
 
       .container {
         display: flex;
         min-height: 100vh;
-        margin-top: 130px;
+        margin-top: 120px;
       }
 
       /* Sidebar */
@@ -216,11 +356,10 @@
         border-right: 1px solid rgba(99, 102, 241, 0.1);
         overflow-y: auto;
         position: fixed;
-        height: calc(100vh - 130px);
+        height: calc(100vh - 120px);
         z-index: 1000;
-        top: 130px;
+        top: 120px;
         box-shadow: 8px 0 32px rgba(99, 102, 241, 0.1);
-        border-radius: 0 20px 20px 0;
       }
 
       /* Hide scrollbar for sidebar */
@@ -249,10 +388,6 @@
         font-size: 14px;
       }
 
-      .nav-section {
-        padding: 25px 0;
-      }
-
       .nav-title {
         padding: 0 25px 15px;
         font-weight: 700;
@@ -264,21 +399,21 @@
         margin-bottom: 20px;
       }
 
-      .nav-item {
+      .sidebar-nav-item {
         padding: 15px 25px;
         cursor: pointer;
         transition: all 0.3s ease;
         margin: 3px 0;
       }
 
-      .nav-item.active {
+      .sidebar-nav-item.active {
         border-left: 4px solid #6366f1;
         background: rgba(238, 242, 255, 0.95);
         color: #6366f1;
         box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
       }
 
-      .nav-item .subject {
+      .sidebar-nav-item .subject {
         font-weight: 600;
         margin-bottom: 6px;
         font-size: 15px;
@@ -324,7 +459,7 @@
       .lesson-content {
         background: white;
         border-radius: 24px;
-        padding: 50px;
+        padding: 30px;
         box-shadow: 0 20px 60px rgba(99, 102, 241, 0.1);
         border: 1px solid rgba(99, 102, 241, 0.1);
         position: relative;
@@ -685,6 +820,14 @@
 
       /* Responsive */
       @media (max-width: 768px) {
+        .top-header {
+          padding: 6px 0;
+        }
+
+        .desktop-subject-header {
+          display: none;
+        }
+
         .mobile-menu-btn {
           display: block;
         }
@@ -697,7 +840,7 @@
           right: 0;
           background: white;
           flex-direction: column;
-          padding: 20px;
+          padding: 15px;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
           border-top: 1px solid rgba(99, 102, 241, 0.1);
         }
@@ -709,7 +852,17 @@
         .nav-item {
           width: 100%;
           text-align: center;
-          margin: 5px 0;
+          margin: 3px 0;
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+
+        .mobile-subject-nav {
+          display: block;
+        }
+
+        .mobile-content-nav {
+          display: block;
         }
 
         .sidebar {
@@ -719,6 +872,7 @@
           top: 0;
           border-radius: 0;
           display: none;
+          margin-top: 40px;
         }
 
         .sidebar.show {
@@ -727,80 +881,154 @@
 
         .main-content {
           margin-left: 0;
-          padding: 20px;
+          padding: 15px;
           max-width: 100%;
         }
 
         .container {
           flex-direction: column;
+          margin-top: 160px;
         }
 
-        .header-content,
-        .secondary-content {
-          padding: 0;
+        .header-content {
+          padding: 0 15px;
         }
 
         .lesson-content {
-          padding: 30px;
-          border-radius: 20px;
+          padding: 15px;
+          border-radius: 16px;
+        }
+
+        .lesson-header {
+          margin-bottom: 20px;
+          padding-bottom: 15px;
         }
 
         .lesson-header h1 {
-          font-size: 32px;
+          font-size: 24px;
         }
 
-        .subjects-nav {
-          flex-wrap: wrap;
-          gap: 10px;
+        .lesson-header p {
+          font-size: 14px;
         }
 
-        .subject-tab {
-          font-size: 12px;
-          padding: 6px 12px;
+        .section {
+          margin-bottom: 25px;
+          padding-bottom: 15px;
+        }
+
+        .section h2 {
+          font-size: 20px;
+          margin-bottom: 15px;
+        }
+
+        .theory-box,
+        .example-box,
+        .note-box {
+          padding: 15px;
+          margin: 15px 0;
+        }
+
+        .example-box .code {
+          padding: 12px;
+          font-size: 13px;
+        }
+
+        .example-box .result {
+          padding: 12px;
+        }
+
+        .formula {
+          padding: 12px;
+          font-size: 16px;
+        }
+
+        .navigation-buttons {
+          margin-top: 20px;
+          padding-top: 15px;
+        }
+
+        .nav-btn {
+          padding: 10px 16px;
+          font-size: 13px;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Top Header -->
+    <!-- Desktop Header - Level 1 -->
     <div class="top-header">
       <div class="header-content">
-        <div class="logo">
+        <a class="logo" href="./home.html">
           <span
             ><p>KOM</p>
             <p>PLEX</p></span
           >
-        </div>
+        </a>
 
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
 
         <div class="nav-menu" id="navMenu">
-          <a href="#" class="nav-item">ឯកសារ</a>
-          <!-- <a href="#" class="nav-item">ស្កេនគណិតវិទ្យា</a> -->
-          <a href="#" class="nav-item">វេទិកា</a>
-          <a href="#" class="nav-item">ប្លុក</a>
-          <!-- <a href="#" class="nav-item">បន្ថែម</a> -->
+          <a href="#" class="nav-item active">ឯកសារ</a>
+          <a href="./forum.html" class="nav-item">វេទិកា</a>
+          <a href="./blog.html" class="nav-item">ប្លុក</a>
           <a href="#" class="ai-assistant-btn">🤖 អ្នកជំនាញ AI</a>
         </div>
       </div>
     </div>
 
-    <!-- Secondary Header -->
-    <div class="secondary-header">
-      <div class="secondary-content">
-        <div class="subjects-nav">
-          <a href="#" class="subject-tab active">គណិតវិទ្យា</a>
-          <a href="#" class="subject-tab">រូបវិទ្យា</a>
-          <a href="#" class="subject-tab">គីមីវិទ្យា</a>
-          <a href="#" class="subject-tab">ជីវវិទ្យា</a>
+    <!-- Desktop Header - Level 2 -->
+    <div class="desktop-subject-header">
+      <div class="desktop-subject-content">
+        <div class="desktop-subjects-nav">
+          <a href="#" class="desktop-subject-tab active">គណិតវិទ្យា</a>
+          <a href="#" class="desktop-subject-tab">រូបវិទ្យា</a>
+          <a href="#" class="desktop-subject-tab">គីមីវិទ្យា</a>
+          <a href="#" class="desktop-subject-tab">ជីវវិទ្យា</a>
         </div>
-        <div class="grade-selector">
-          <select class="grade-dropdown">
-            <option value="grade9">ថ្នាក់ទី៩</option>
-            <option value="grade10">ថ្នាក់ទី១០</option>
-            <option value="grade11">ថ្នាក់ទី១១</option>
-            <option value="grade12" selected>ថ្នាក់ទី១២</option>
-          </select>
+        <select class="desktop-grade-dropdown">
+          <option value="grade9">ថ្នាក់ទី៩</option>
+          <option value="grade10">ថ្នាក់ទី១០</option>
+          <option value="grade11">ថ្នាក់ទី១១</option>
+          <option value="grade12" selected>ថ្នាក់ទី១២</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Mobile Subject Navigation -->
+    <div class="mobile-subject-nav">
+      <div class="mobile-subject-content">
+        <div class="mobile-subjects-nav">
+          <a href="#" class="mobile-subject-tab active">គណិតវិទ្យា</a>
+          <a href="#" class="mobile-subject-tab">រូបវិទ្យា</a>
+          <a href="#" class="mobile-subject-tab">គីមីវិទ្យា</a>
+          <a href="#" class="mobile-subject-tab">ជីវវិទ្យា</a>
+        </div>
+        <select class="mobile-grade-dropdown">
+          <option value="grade9">ថ្នាក់ទី៩</option>
+          <option value="grade10">ថ្នាក់ទី១០</option>
+          <option value="grade11">ថ្នាក់ទី១១</option>
+          <option value="grade12" selected>ថ្នាក់ទី១២</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Mobile Content Navigation -->
+    <div class="mobile-content-nav">
+      <div class="mobile-content-nav-content">
+        <select class="mobile-topic-dropdown">
+          <option value="limits">លីមីត</option>
+          <option value="derivatives">ដេរីវេ</option>
+          <option value="integration">អាំងតេក្រាល</option>
+          <option value="vectors">វ៉ិចទ័រ</option>
+        </select>
+        <div class="mobile-sub-nav">
+          <a href="#" class="mobile-sub-item active">និយមន័យលីមីត</a>
+          <a href="#" class="mobile-sub-item">លីមីតសាមញ្ញ</a>
+          <a href="#" class="mobile-sub-item">លីមីត 0/0</a>
+          <a href="#" class="mobile-sub-item">លីមីតនៅអនន្ត</a>
+          <a href="#" class="mobile-sub-item">លីមីតម្ខាង</a>
+          <a href="#" class="mobile-sub-item">ច្បាប់លីមីត</a>
         </div>
       </div>
     </div>
@@ -808,13 +1036,8 @@
     <div class="container">
       <!-- Sidebar -->
       <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-          <h2>អក្សរសិក្សា</h2>
-          <p>អក្សរសិក្សា STEM ជាតិកម្ពុជា</p>
-        </div>
-
         <div class="nav-section">
-          <div class="nav-item active">
+          <div class="sidebar-nav-item active">
             <div class="subject">លីមីត</div>
             <div class="sub-nav">
               <div class="sub-nav-item active">និយមន័យលីមីត</div>
@@ -825,7 +1048,7 @@
               <div class="sub-nav-item">ច្បាប់លីមីត</div>
             </div>
           </div>
-          <div class="nav-item">
+          <div class="sidebar-nav-item">
             <div class="subject">ដេរីវេ</div>
             <div class="sub-nav">
               <div class="sub-nav-item">និយមន័យដេរីវេ</div>
@@ -834,7 +1057,7 @@
               <div class="sub-nav-item">ដេរីវេអ៊ីមភ្លិច</div>
             </div>
           </div>
-          <div class="nav-item">
+          <div class="sidebar-nav-item">
             <div class="subject">អាំងតេក្រាល</div>
             <div class="sub-nav">
               <div class="sub-nav-item">និយមន័យអាំងតេក្រាល</div>
@@ -843,7 +1066,7 @@
               <div class="sub-nav-item">វិធីសាស្ត្រអាំងតេក្រាល</div>
             </div>
           </div>
-          <div class="nav-item">
+          <div class="sidebar-nav-item">
             <div class="subject">វ៉ិចទ័រ</div>
             <div class="sub-nav">
               <div class="sub-nav-item">និយមន័យវ៉ិចទ័រ</div>

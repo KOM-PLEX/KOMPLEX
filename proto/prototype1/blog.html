@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ប្លុក - KOMPLEX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva,
+          Verdana, sans-serif;
+        background: #f8fafc;
+        color: #1a1a1a;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      /* Header */
+      .top-header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 8px 20px ;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 2000;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .header-content {
+        max-width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo{
+        text-decoration: none;
+      }
+
+      .logo span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #4b5563;
+      }
+
+      .logo span p:nth-child(1) {
+        color: #6366f1;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      .logo span p:nth-child(2) {
+        color: black;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+      }
+
+      .nav-item {
+        color: #4b5563;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .nav-item:hover {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.9);
+      }
+
+      .nav-item.active {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.95);
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+      }
+
+      .ai-assistant-btn {
+        background: #6366f1;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .ai-assistant-btn:hover {
+        background: #5855eb;
+      }
+
+      .container {
+        margin-top: 60px;
+        padding: 20px;
+        display: flex;
+        gap: 30px;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 280px;
+        background: white;
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        height: fit-content;
+        position: sticky;
+        top: 80px;
+      }
+
+      .sidebar-header {
+        margin-bottom: 25px;
+      }
+
+      .sidebar-header h1 {
+        color: #111827;
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        color: #6366f1;
+      }
+
+      .sidebar-header p {
+        color: #6b7280;
+        font-size: 14px;
+      }
+
+      .new-post-btn {
+        background: #6366f1;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .new-post-btn:hover {
+        background: #5855eb;
+      }
+
+      .search-box {
+        margin-bottom: 25px;
+      }
+
+      .search-label {
+        display: block;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 12px;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.8);
+        transition: all 0.3s ease;
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+      }
+
+      .filter-section {
+        margin-bottom: 25px;
+      }
+
+      .filter-title {
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 12px;
+        font-size: 14px;
+      }
+
+      .filter-options {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .filter-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 13px;
+        color: #6b7280;
+      }
+
+      .filter-option:hover {
+        background: rgba(238, 242, 255, 0.6);
+        color: #6366f1;
+      }
+
+      .filter-option.active {
+        background: rgba(238, 242, 255, 0.8);
+        color: #6366f1;
+        font-weight: 500;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+      }
+
+      .blog-posts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+      }
+
+      /* Featured Blog Post with Background Image */
+      .blog-post-featured {
+        grid-column: 1 / -1;
+        position: relative;
+        height: 400px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        background: #6366f1;
+      }
+
+      .blog-post-featured:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+      }
+
+      .blog-post-featured-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 30px;
+        color: white;
+      }
+
+      .blog-post-featured-meta {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 12px;
+        opacity: 0.9;
+      }
+
+      .blog-post-featured-author {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .author-avatar-featured {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 12px;
+      }
+
+      .blog-post-featured-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+
+      .blog-post-featured-excerpt {
+        font-size: 16px;
+        line-height: 1.5;
+        opacity: 0.9;
+        margin-bottom: 20px;
+      }
+
+      .blog-post-featured-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .action-btn-featured {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        padding: 6px 12px;
+        border-radius: 8px;
+        border: none;
+        background: none;
+      }
+
+      .action-btn-featured:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .action-btn-featured.liked {
+        color: #ff6b6b;
+      }
+
+      /* Regular Blog Posts */
+      .blog-post {
+        position: relative;
+        height: 300px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        background: #6366f1;
+      }
+
+      .blog-post:hover {
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+        transform: translateY(-4px);
+      }
+
+      .blog-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        color: white;
+      }
+
+      .blog-meta {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 12px;
+        font-size: 11px;
+        opacity: 0.9;
+      }
+
+      .blog-author {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .author-avatar {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 9px;
+      }
+
+      .blog-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+
+      .blog-excerpt {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+      }
+
+      .blog-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .action-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 11px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        padding: 4px 8px;
+        border-radius: 6px;
+        border: none;
+        background: none;
+      }
+
+      .action-btn:hover {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .action-btn.liked {
+        color: #ff6b6b;
+      }
+
+      .read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        font-size: 12px;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: all 0.2s ease;
+      }
+
+      .read-more:hover {
+        color: white;
+        transform: translateX(3px);
+      }
+
+      /* Mobile Menu Button */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #6366f1;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      /* Mobile Filter Button */
+      .mobile-filter-btn {
+        display: none;
+        background: #6366f1;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-filter-btn:hover {
+        background: #5855eb;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .top-header {
+          padding: 6px 0;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .nav-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: white;
+          flex-direction: column;
+          padding: 15px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          border-top: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-menu.show {
+          display: flex;
+        }
+
+        .nav-item {
+          width: 100%;
+          text-align: center;
+          margin: 3px 0;
+          padding: 8px 12px;
+          font-size: 13px;
+        }
+
+        .container {
+          margin-top: 60px;
+          padding: 10px;
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+          position: relative;
+          top: 0;
+          margin-bottom: 15px;
+          padding: 15px;
+        }
+
+        .sidebar-header {
+          display: none;
+        }
+
+        .new-post-btn {
+          display: none;
+        }
+
+        .search-box {
+          margin-bottom: 15px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .search-label {
+          display: none;
+        }
+
+        .search-input {
+          flex: 1;
+          padding: 10px 14px;
+          font-size: 13px;
+        }
+
+        .mobile-filter-btn {
+          display: block;
+        }
+
+        .filter-section {
+          display: none;
+        }
+
+        .main-content {
+          width: 100%;
+        }
+
+        .blog-posts {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .blog-post-featured {
+          height: 300px;
+        }
+
+        .blog-post-featured-content {
+          padding: 25px;
+        }
+
+        .blog-post-featured-title {
+          font-size: 22px;
+        }
+
+        .blog-post-featured-excerpt {
+          font-size: 14px;
+        }
+
+        .blog-content {
+          padding: 20px;
+        }
+
+        .blog-title {
+          font-size: 18px;
+        }
+
+        .blog-excerpt {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="top-header">
+      <div class="header-content">
+        <a class="logo" href="./home.html">
+          <span
+            ><p>KOM</p>
+            <p>PLEX</p></span
+          >
+        </div>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+
+        <div class="nav-menu" id="navMenu">
+          <a href="./index.html" class="nav-item">ឯកសារ</a>
+          <a href="./forum.html" class="nav-item">វេទិកា</a>
+          <a href="#" class="nav-item active">ប្លុក</a>
+          <a href="#" class="ai-assistant-btn">🤖 អ្នកជំនាញ AI</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <h1>ប្លុក</h1>
+          <p>រឿងរ៉ាវ និងបទពិសោធន៍របស់សិស្ស</p>
+        </div>
+
+        <button class="new-post-btn">✏️ សរសេរប្លុកថ្មី</button>
+
+        <div class="search-box">
+          <label for="search-input" class="search-label">ស្វែងរក</label>
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="ស្វែងរកប្លុក..."
+          />
+          <button class="mobile-filter-btn" onclick="toggleMobileFilters()">
+            🔍
+          </button>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">ប្រភេទប្លុក</div>
+          <div class="filter-options">
+            <div class="filter-option active">ទាំងអស់</div>
+            <div class="filter-option">បទពិសោធន៍</div>
+            <div class="filter-option">វិធីសាស្ត្ររៀន</div>
+            <div class="filter-option">រឿងរ៉ាវ</div>
+            <div class="filter-option">គន្លឹះ</div>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-title">ប្រធានបទ</div>
+          <div class="filter-options">
+            <div class="filter-option">គណិតវិទ្យា</div>
+            <div class="filter-option">រូបវិទ្យា</div>
+            <div class="filter-option">គីមីវិទ្យា</div>
+            <div class="filter-option">ជីវវិទ្យា</div>
+            <div class="filter-option">អូឡាំពិច</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="blog-posts">
+          <!-- Featured Blog Post -->
+          <div class="blog-post-featured">
+            <div class="blog-post-featured-content">
+              <div class="blog-post-featured-meta">
+                <div class="blog-post-featured-author">
+                  <div class="author-avatar-featured">ស</div>
+                  សុខវណ្ណា អ៊ុំ
+                </div>
+                <span>មុន ៣ ថ្ងៃ</span>
+              </div>
+              <div class="blog-post-featured-title">
+                បទពិសោធន៍របស់ខ្ញុំពីសិស្សដែលបរាជ័យទៅជាសិស្ស A
+              </div>
+             
+              <div class="blog-post-featured-actions">
+                <button class="action-btn-featured">
+                  <span>Like</span>
+                  <span>123</span>
+                </button>
+                <button class="action-btn-featured">
+                  <span>Comment</span>
+                  <span>45</span>
+                </button>
+                <button class="action-btn-featured">
+                  <span>Share</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blog Post 1 -->
+          <div class="blog-post">
+            <div class="blog-content">
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <div class="author-avatar">វ</div>
+                  វណ្ណា សុខ
+                </div>
+                <span>មុន ១ សប្តាហ៍</span>
+              </div>
+              <div class="blog-title">
+                តើធ្វើដូចម្តេចដើម្បីរៀនគណិតវិទ្យាឱ្យបានល្អក្នុងពេលដែលមានពេលវេលាតិច?
+              </div>
+              
+              <div class="blog-actions">
+                <button class="action-btn">
+                  <span>Like</span>
+                  <span>56</span>
+                </button>
+                <button class="action-btn">
+                  <span>Comment</span>
+                  <span>23</span>
+                </button>
+                <button class="action-btn">
+                  <span>Share</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blog Post 2 -->
+          <div class="blog-post">
+            <div class="blog-content">
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <div class="author-avatar">គ</div>
+                  គីមី សិស្ស
+                </div>
+                <span>មុន ២ សប្តាហ៍</span>
+              </div>
+              <div class="blog-title">
+                រឿងរ៉ាវរបស់ខ្ញុំពីការចូលរួមការប្រកួតអូឡាំពិចគណិតវិទ្យា
+              </div>
+             
+              <div class="blog-actions">
+                <button class="action-btn">
+                  <span>Like</span>
+                  <span>89</span>
+                </button>
+                <button class="action-btn">
+                  <span>Comment</span>
+                  <span>34</span>
+                </button>
+                <button class="action-btn">
+                  <span>Share</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blog Post 3 -->
+          <div class="blog-post">
+            <div class="blog-content">
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <div class="author-avatar">ដ</div>
+                  ដេរីវេ ម៉ាស្ទើរ
+                </div>
+                <span>មុន ៣ សប្តាហ៍</span>
+              </div>
+              <div class="blog-title">
+                វិធីសាស្ត្ររៀនគណិតវិទ្យាដែលជួយខ្ញុំបានជាប់ថ្នាក់ទី១
+              </div>
+              
+              <div class="blog-actions">
+                <button class="action-btn">
+                  <span>Like</span>
+                  <span>78</span>
+                </button>
+                <button class="action-btn">
+                  <span>Comment</span>
+                  <span>21</span>
+                </button>
+                <button class="action-btn">
+                  <span>Share</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blog Post 4 -->
+          <div class="blog-post">
+            <div class="blog-content">
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <div class="author-avatar">អ</div>
+                  អាំងតេក្រាល សិស្ស
+                </div>
+                <span>មុន ១ ខែ</span>
+              </div>
+              <div class="blog-title">
+                តើធ្វើដូចម្តេចដើម្បីដោះស្រាយបញ្ហាអាំងតេក្រាលឱ្យបានល្អ?
+              </div>
+              
+              <div class="blog-actions">
+                <button class="action-btn">
+                  <span>Like</span>
+                  <span>67</span>
+                </button>
+                <button class="action-btn">
+                  <span>Comment</span>
+                  <span>18</span>
+                </button>
+                <button class="action-btn">
+                  <span>Share</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blog Post 5 -->
+          <div class="blog-post">
+            <div class="blog-content">
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <div class="author-avatar">វ</div>
+                  វ៉ិចទ័រ អ្នករៀន
+                </div>
+                <span>មុន ២ ខែ</span>
+              </div>
+              <div class="blog-title">
+                គន្លឹះដើម្បីចងចាំច្បាប់វ៉ិចទ័រឱ្យបានល្អ
+              </div>
+              
+              <div class="blog-actions">
+                <button class="action-btn">
+                  <span>Like</span>
+                  <span>54</span>
+                </button>
+                <button class="action-btn">
+                  <span>Comment</span>
+                  <span>15</span>
+                </button>
+                <button class="action-btn">
+                  <span>Share</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Filter functionality
+      document.querySelectorAll(".filter-option").forEach((option) => {
+        option.addEventListener("click", function () {
+          // Remove active class from all options in the same section
+          const parent = this.parentElement;
+          parent.querySelectorAll(".filter-option").forEach((opt) => {
+            opt.classList.remove("active");
+          });
+          // Add active class to clicked option
+          this.classList.add("active");
+        });
+      });
+
+      // Search functionality
+      const searchInput = document.querySelector(".search-input");
+      const blogPosts = document.querySelectorAll(
+        ".blog-post, .blog-post-featured"
+      );
+
+      searchInput.addEventListener("input", function () {
+        const searchTerm = this.value.toLowerCase();
+
+        blogPosts.forEach((post) => {
+          const title = post
+            .querySelector(".blog-title, .blog-post-featured-title")
+            .textContent.toLowerCase();
+          const content = post
+            .querySelector(".blog-excerpt, .blog-post-featured-excerpt")
+            .textContent.toLowerCase();
+
+          if (title.includes(searchTerm) || content.includes(searchTerm)) {
+            post.style.display = "block";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      });
+
+      // Like functionality
+      function toggleLike(button) {
+        button.classList.toggle("liked");
+        const countElement = button.querySelector("span:last-child");
+        let count = parseInt(countElement.textContent);
+
+        if (button.classList.contains("liked")) {
+          count++;
+        } else {
+          count--;
+        }
+
+        countElement.textContent = count;
+      }
+
+      // Add click event listeners to all like buttons
+      document
+        .querySelectorAll(".action-btn, .action-btn-featured")
+        .forEach((button) => {
+          if (button.textContent.includes("Like")) {
+            button.addEventListener("click", function () {
+              toggleLike(this);
+            });
+          }
+        });
+
+      function toggleMobileMenu() {
+        const navMenu = document.getElementById("navMenu");
+        navMenu.classList.toggle("show");
+      }
+
+      function toggleMobileFilters() {
+        const filterSections = document.querySelectorAll(".filter-section");
+        filterSections.forEach((section) => {
+          section.style.display =
+            section.style.display === "block" ? "none" : "block";
+        });
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const navMenu = document.getElementById("navMenu");
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+
+        if (
+          !navMenu.contains(event.target) &&
+          !mobileMenuBtn.contains(event.target)
+        ) {
+          navMenu.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+</html>
