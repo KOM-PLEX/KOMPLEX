@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOMPLEX - វេទិការៀន STEM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva,
+          Verdana, sans-serif;
+        background: #f8fafc;
+        color: #1a1a1a;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      /* Header */
+      .top-header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 15px 0;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 2000;
+        width: 100%;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .header-content {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0  20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #4b5563;
+      }
+
+      .logo span p:nth-child(1){
+        color: #6366f1;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      .logo span p:nth-child(2){
+        color: black;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.5px; 
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+      }
+
+      .nav-item {
+        color: #4b5563;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .nav-item:hover {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.9);
+      }
+
+      .nav-item.active {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.95);
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+      }
+
+      .ai-assistant-btn {
+        background: #6366f1;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .ai-assistant-btn:hover {
+        background: #5855eb;
+      }
+
+      /* Secondary Header */
+      .secondary-header {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 12px 0;
+        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.1);
+        position: fixed;
+        top: 85px;
+        left: 0;
+        right: 0;
+        z-index: 1500;
+        width: 100%;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .secondary-content {
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .subjects-nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .subject-tab {
+        color: #6b7280;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 8px 16px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        cursor: pointer;
+        position: relative;
+      }
+
+      .subject-tab:hover {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.9);
+      }
+
+      .subject-tab.active {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.95);
+        border: 1px solid #6366f1;
+      }
+
+      .grade-selector {
+        position: relative;
+        display: inline-block;
+      }
+
+      .grade-dropdown {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 12px;
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        min-width: 120px;
+      }
+
+      .grade-dropdown:hover {
+        border-color: #6366f1;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
+      }
+
+      .container {
+        display: flex;
+        min-height: 100vh;
+        margin-top: 130px;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 280px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-right: 1px solid rgba(99, 102, 241, 0.1);
+        overflow-y: auto;
+        position: fixed;
+        height: calc(100vh - 130px);
+        z-index: 1000;
+        top: 130px;
+        box-shadow: 8px 0 32px rgba(99, 102, 241, 0.1);
+        border-radius: 0 20px 20px 0;
+      }
+
+      /* Hide scrollbar for sidebar */
+      .sidebar::-webkit-scrollbar {
+        display: none;
+      }
+      .sidebar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .sidebar-header {
+        padding: 30px 25px 25px;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .sidebar-header h2 {
+        color: #1f2937;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .sidebar-header p {
+        color: #6b7280;
+        font-size: 14px;
+      }
+
+      .nav-section {
+        padding: 25px 0;
+      }
+
+      .nav-title {
+        padding: 0 25px 15px;
+        font-weight: 700;
+        color: #374151;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .nav-item {
+        padding: 15px 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 3px 0;
+      }
+
+      .nav-item.active {
+        border-left: 4px solid #6366f1;
+        background: rgba(238, 242, 255, 0.95);
+        color: #6366f1;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
+      }
+
+      .nav-item .subject {
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      .sub-nav {
+        padding-left: 25px;
+        margin-top: 10px;
+      }
+
+      .sub-nav-item {
+        padding: 8px 0;
+        font-size: 14px;
+        color: #6b7280;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-weight: 500;
+        border-radius: 8px;
+        padding-left: 12px;
+        margin: 2px 0;
+      }
+
+      .sub-nav-item:hover {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.6);
+        transform: translateX(3px);
+      }
+
+      .sub-nav-item.active {
+        color: #6366f1;
+        background: rgba(238, 242, 255, 0.8);
+        font-weight: 600;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        margin-left: 280px;
+        padding: 40px 20px;
+        max-width: calc(100vw - 280px);
+      }
+
+      .lesson-content {
+        background: white;
+        border-radius: 24px;
+        padding: 50px;
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .lesson-header {
+        margin-bottom: 50px;
+        border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+        padding-bottom: 30px;
+      }
+
+      .lesson-header h1 {
+        color: #111827;
+        font-size: 42px;
+        font-weight: 800;
+        margin-bottom: 15px;
+        letter-spacing: -0.5px;
+        color: #6366f1;
+      }
+
+      .lesson-header p {
+        color: #6b7280;
+        font-size: 18px;
+        line-height: 1.7;
+      }
+
+      .section {
+        margin-bottom: 60px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .section h2 {
+        color: #111827;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .section h3 {
+        color: #374151;
+        font-size: 22px;
+        font-weight: 600;
+        margin: 35px 0 20px 0;
+      }
+
+      .theory-box {
+        background: rgba(238, 242, 255, 0.8);
+        border-left: 6px solid #6366f1;
+        padding: 25px;
+        margin: 25px 0;
+        border-radius: 0 16px 16px 0;
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.1);
+        backdrop-filter: blur(5px);
+      }
+
+      .theory-box h4 {
+        color: #6366f1;
+        font-weight: 600;
+        margin-bottom: 12px;
+        font-size: 18px;
+      }
+
+      .theory-box p {
+        color: #374151;
+        line-height: 1.7;
+        margin-bottom: 12px;
+        font-size: 16px;
+      }
+
+      .example-box {
+        background: rgba(254, 243, 199, 0.8);
+        border: 2px solid #f59e0b;
+        border-radius: 16px;
+        padding: 25px;
+        margin: 25px 0;
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.15);
+        backdrop-filter: blur(5px);
+      }
+
+      .example-box h4 {
+        color: #92400e;
+        font-weight: 600;
+        margin-bottom: 18px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .example-box .code {
+        background: #1f2937;
+        color: #f9fafb;
+        padding: 20px;
+        border-radius: 12px;
+        font-family: "Consolas", "Monaco", monospace;
+        font-size: 15px;
+        line-height: 1.5;
+        margin: 15px 0;
+        overflow-x: auto;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .example-box .result {
+        background: rgba(236, 253, 245, 0.9);
+        border: 2px solid #10b981;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 15px 0;
+        color: #065f46;
+        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+      }
+
+      .formula {
+        background: rgba(243, 244, 246, 0.9);
+        border-radius: 16px;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: center;
+        font-family: "Times New Roman", serif;
+        font-size: 20px;
+        color: #374151;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .note-box {
+        background: rgba(239, 246, 255, 0.9);
+        border: 2px solid #3b82f6;
+        border-radius: 16px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        backdrop-filter: blur(5px);
+      }
+
+      .note-box h4 {
+        color: #1d4ed8;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .note-box p {
+        color: #1e40af;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      /* Practice Button */
+      .practice-btn {
+        background: #6366f1;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .practice-btn:hover {
+        background: #5855eb;
+      }
+
+      /* Quiz Box */
+      .quiz-box {
+        background: rgba(238, 242, 255, 0.95);
+        border: 2px solid #6366f1;
+        border-radius: 16px;
+        padding: 25px;
+        margin: 25px 0;
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+        backdrop-filter: blur(5px);
+        display: none;
+      }
+
+      .quiz-box.show {
+        display: block;
+      }
+
+      .quiz-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+      }
+
+      .quiz-title {
+        color: #6366f1;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      .quiz-progress {
+        color: #6b7280;
+        font-size: 14px;
+      }
+
+      .quiz-question {
+        margin-bottom: 20px;
+      }
+
+      .quiz-question h4 {
+        color: #1f2937;
+        font-weight: 600;
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      .quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .quiz-option {
+        padding: 12px 16px;
+        border: 2px solid rgba(99, 102, 241, 0.2);
+        border-radius: 12px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 14px;
+        color: #374151;
+      }
+
+      .quiz-option:hover {
+        border-color: #6366f1;
+        background: rgba(238, 242, 255, 0.5);
+        transform: translateX(5px);
+      }
+
+      .quiz-option.selected {
+        border-color: #6366f1;
+        background: rgba(238, 242, 255, 0.8);
+        color: #6366f1;
+        font-weight: 600;
+      }
+
+      .quiz-option.correct {
+        border-color: #10b981;
+        background: rgba(236, 253, 245, 0.8);
+        color: #065f46;
+      }
+
+      .quiz-option.incorrect {
+        border-color: #ef4444;
+        background: rgba(254, 242, 242, 0.8);
+        color: #991b1b;
+      }
+
+      .quiz-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(99, 102, 241, 0.2);
+      }
+
+      .quiz-result {
+        color: #6366f1;
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .quiz-next {
+        background: #6366f1;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .quiz-next:hover {
+        background: #5855eb;
+      }
+
+      .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .nav-btn {
+        padding: 15px 30px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+      }
+
+      .nav-btn.prev {
+        background: rgba(243, 244, 246, 0.9);
+        color: #374151;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.1);
+      }
+
+      .nav-btn.prev:hover {
+        background: rgba(229, 231, 235, 0.95);
+      }
+
+      .nav-btn.next {
+        background: #6366f1;
+        color: white;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      }
+
+      .nav-btn.next:hover {
+        background: #5855eb;
+      }
+
+      /* Mobile Menu Button */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #6366f1;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .nav-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: white;
+          flex-direction: column;
+          padding: 20px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          border-top: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-menu.show {
+          display: flex;
+        }
+
+        .nav-item {
+          width: 100%;
+          text-align: center;
+          margin: 5px 0;
+        }
+
+        .sidebar {
+          width: 100%;
+          position: relative;
+          height: auto;
+          top: 0;
+          border-radius: 0;
+          display: none;
+        }
+
+        .sidebar.show {
+          display: block;
+        }
+
+        .main-content {
+          margin-left: 0;
+          padding: 20px;
+          max-width: 100%;
+        }
+
+        .container {
+          flex-direction: column;
+        }
+
+        .header-content,
+        .secondary-content {
+          padding: 0;
+        }
+
+        .lesson-content {
+          padding: 30px;
+          border-radius: 20px;
+        }
+
+        .lesson-header h1 {
+          font-size: 32px;
+        }
+
+        .subjects-nav {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .subject-tab {
+          font-size: 12px;
+          padding: 6px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Header -->
+    <div class="top-header">
+      <div class="header-content">
+        <div class="logo">
+          <span
+            ><p>KOM</p>
+            <p>PLEX</p></span
+          >
+        </div>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+
+        <div class="nav-menu" id="navMenu">
+          <a href="#" class="nav-item">ឯកសារ</a>
+          <!-- <a href="#" class="nav-item">ស្កេនគណិតវិទ្យា</a> -->
+          <a href="#" class="nav-item">វេទិកា</a>
+          <a href="#" class="nav-item">ប្លុក</a>
+          <!-- <a href="#" class="nav-item">បន្ថែម</a> -->
+          <a href="#" class="ai-assistant-btn">🤖 អ្នកជំនាញ AI</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary Header -->
+    <div class="secondary-header">
+      <div class="secondary-content">
+        <div class="subjects-nav">
+          <a href="#" class="subject-tab active">គណិតវិទ្យា</a>
+          <a href="#" class="subject-tab">រូបវិទ្យា</a>
+          <a href="#" class="subject-tab">គីមីវិទ្យា</a>
+          <a href="#" class="subject-tab">ជីវវិទ្យា</a>
+        </div>
+        <div class="grade-selector">
+          <select class="grade-dropdown">
+            <option value="grade9">ថ្នាក់ទី៩</option>
+            <option value="grade10">ថ្នាក់ទី១០</option>
+            <option value="grade11">ថ្នាក់ទី១១</option>
+            <option value="grade12" selected>ថ្នាក់ទី១២</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <h2>អក្សរសិក្សា</h2>
+          <p>អក្សរសិក្សា STEM ជាតិកម្ពុជា</p>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-item active">
+            <div class="subject">លីមីត</div>
+            <div class="sub-nav">
+              <div class="sub-nav-item active">និយមន័យលីមីត</div>
+              <div class="sub-nav-item">លីមីតសាមញ្ញ</div>
+              <div class="sub-nav-item">លីមីត 0/0</div>
+              <div class="sub-nav-item">លីមីតនៅអនន្ត</div>
+              <div class="sub-nav-item">លីមីតម្ខាង</div>
+              <div class="sub-nav-item">ច្បាប់លីមីត</div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <div class="subject">ដេរីវេ</div>
+            <div class="sub-nav">
+              <div class="sub-nav-item">និយមន័យដេរីវេ</div>
+              <div class="sub-nav-item">ច្បាប់ដេរីវេ</div>
+              <div class="sub-nav-item">ដេរីវេអនុគមន៍</div>
+              <div class="sub-nav-item">ដេរីវេអ៊ីមភ្លិច</div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <div class="subject">អាំងតេក្រាល</div>
+            <div class="sub-nav">
+              <div class="sub-nav-item">និយមន័យអាំងតេក្រាល</div>
+              <div class="sub-nav-item">អាំងតេក្រាលមិនកំណត់</div>
+              <div class="sub-nav-item">អាំងតេក្រាលកំណត់</div>
+              <div class="sub-nav-item">វិធីសាស្ត្រអាំងតេក្រាល</div>
+            </div>
+          </div>
+          <div class="nav-item">
+            <div class="subject">វ៉ិចទ័រ</div>
+            <div class="sub-nav">
+              <div class="sub-nav-item">និយមន័យវ៉ិចទ័រ</div>
+              <div class="sub-nav-item">ប្រតិកម្មវ៉ិចទ័រ</div>
+              <div class="sub-nav-item">ផលគុណវ៉ិចទ័រ</div>
+              <div class="sub-nav-item">អ័ក្សកូអរដែន</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="lesson-content">
+          <div class="lesson-header">
+            <h1>លីមីត 0/0</h1>
+            <p>
+              រៀនអំពីរបៀបដោះស្រាយលីមីតដែលមានទម្រង់ 0/0 ដែលជាទម្រង់ដែលមិនកំណត់។
+            </p>
+          </div>
+
+          <div class="section">
+            <h2>📚 តើលីមីត 0/0 ជាអ្វី?</h2>
+            <p>
+              លីមីត 0/0 កើតឡើងនៅពេលដែលទាំងលេខភាគ និងភាគបែងខិតទៅជិត 0
+              ក្នុងពេលតែមួយ។
+              នេះជាទម្រង់ដែលមិនកំណត់ដែលត្រូវការបច្ចេកទេសពិសេសដើម្បីវាយតម្លៃ។
+            </p>
+
+            <div class="theory-box">
+              <h4>ទម្រង់ដែលមិនកំណត់</h4>
+              <p>
+                ទម្រង់ 0/0
+                ត្រូវបានហៅថាមិនកំណត់ព្រោះវាមិនប្រាប់យើងពីតម្លៃលីមីតពិតប្រាកដ។
+                យើងត្រូវប្រើបច្ចេកទេសដូចជា កត្តា ឬការប្រើច្បាប់ L'Hôpital។
+              </p>
+            </div>
+
+            <div class="example-box">
+              <h4>🔍 ឧទាហរណ៍: លីមីត 0/0</h4>
+              <p>រកលីមីត: lim<sub>x→2</sub> (x² - 4)/(x - 2)</p>
+              <div class="code">
+                ជំហានទី១: កត្តាលេខភាគ <br />
+                x² - 4 = (x + 2)(x - 2) <br />
+                ជំហានទី២:ធ្វើឱ្យសាមញ្ញ <br />
+                (x² - 4)/(x - 2) = (x + 2)(x - 2)/(x - 2) = x + 2 <br />
+                ជំហានទី៣: វាយតម្លៃលីមីត <br />
+                lim<sub>x→2</sub> (x + 2) = 2 + 2 = 4
+              </div>
+              <div class="result"><strong>ចម្លើយ:</strong> លីមីតគឺ 4</div>
+            </div>
+
+            <button class="practice-btn" onclick="toggleQuiz()">
+              🎯 អនុវត្តន៍
+            </button>
+
+            <div class="quiz-box" id="quizBox">
+              <div class="quiz-header">
+                <div class="quiz-title">លីមីត 0/0</div>
+                <div class="quiz-progress">សំណួរ 1/3</div>
+              </div>
+              <div class="quiz-question">
+                <h4>រកលីមីត: lim<sub>x→3</sub> (x² - 9)/(x - 3)</h4>
+                <div class="quiz-options">
+                  <div class="quiz-option" onclick="selectOption(this, 'a')">
+                    ក) 3
+                  </div>
+                  <div class="quiz-option" onclick="selectOption(this, 'b')">
+                    ខ) 6
+                  </div>
+                  <div class="quiz-option" onclick="selectOption(this, 'c')">
+                    គ) 9
+                  </div>
+                  <div class="quiz-option" onclick="selectOption(this, 'd')">
+                    ឃ) មិនកំណត់
+                  </div>
+                </div>
+              </div>
+              <div class="quiz-actions">
+                <div class="quiz-result" id="quizResult"></div>
+                <button class="quiz-next" onclick="checkAnswer()">
+                  ពិនិត្យចម្លើយ
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2>💡 កំណត់សំគាល់សំខាន់</h2>
+            <div class="note-box">
+              <h4>💡 កំណត់សំគាល់សំខាន់</h4>
+              <p>
+                តែងតែពិនិត្យមើលថាអ្នកអាចកត្តា ឬធ្វើឱ្យសាមញ្ញបានមុនពេលប្រើច្បាប់
+                L'Hôpital។ ការកត្តាជាញឹកញាប់សាមញ្ញ និងងាយយល់ជាង។
+              </p>
+            </div>
+          </div>
+
+          <div class="navigation-buttons">
+            <a href="#" class="nav-btn prev">← លីមីតសាមញ្ញ</a>
+            <a href="#" class="nav-btn next">លីមីតនៅអនន្ត →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleQuiz() {
+        const quizBox = document.getElementById("quizBox");
+        quizBox.classList.toggle("show");
+      }
+
+      function selectOption(element, option) {
+        // Remove selected class from all options
+        document.querySelectorAll(".quiz-option").forEach((opt) => {
+          opt.classList.remove("selected");
+        });
+        // Add selected class to clicked option
+        element.classList.add("selected");
+      }
+
+      function checkAnswer() {
+        const selectedOption = document.querySelector(".quiz-option.selected");
+        const resultDiv = document.getElementById("quizResult");
+
+        if (!selectedOption) {
+          resultDiv.textContent = "សូមជ្រើសរើសចម្លើយ";
+          return;
+        }
+
+        const selectedAnswer = selectedOption.textContent;
+
+        // Correct answer is B (6)
+        if (selectedAnswer.includes("ខ) 6")) {
+          selectedOption.classList.add("correct");
+          resultDiv.textContent = "✅ ត្រឹមត្រូវ! ចម្លើយគឺ 6";
+        } else {
+          selectedOption.classList.add("incorrect");
+          resultDiv.textContent = "❌ មិនត្រឹមត្រូវ។ ចម្លើយគឺ 6";
+        }
+      }
+
+      function toggleMobileMenu() {
+        const navMenu = document.getElementById("navMenu");
+        navMenu.classList.toggle("show");
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", function (event) {
+        const navMenu = document.getElementById("navMenu");
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+
+        if (
+          !navMenu.contains(event.target) &&
+          !mobileMenuBtn.contains(event.target)
+        ) {
+          navMenu.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+</html>
