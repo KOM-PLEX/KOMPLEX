@@ -1,11 +1,7 @@
+import { Step } from '@/types/topic';
 import { Search } from 'lucide-react';
 
-interface Step {
-    title: string;
-    content: string;
-}
-
-interface ExampleBoxProps {
+export interface ExampleBoxProps {
     question: string;
     steps: Step[];
     answer: string;
@@ -28,7 +24,7 @@ export default function ExampleBox({ question, steps, answer }: ExampleBoxProps)
             <div className="flex items-center gap-3 mb-4">
                 <Search size={20} className="text-amber-600" />
                 <h4 className="text-amber-800 font-semibold text-lg">
-                    ឧទាហរណ៍ 
+                    ឧទាហរណ៍
                 </h4>
             </div>
 

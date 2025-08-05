@@ -1,6 +1,6 @@
 import { Lightbulb } from 'lucide-react';
 
-interface TipBoxProps {
+export interface TipBoxProps {
     title?: string;
     icon?: React.ComponentType<{ size?: number; className?: string }>;
     content: string;

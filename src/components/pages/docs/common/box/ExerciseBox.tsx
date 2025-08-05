@@ -2,14 +2,13 @@
 
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookAIcon } from 'lucide-react';
-import { Question } from '@/types/docs';
+import { Question } from '@/types/topic';
 
-
-interface ExerciseBoxProps {
+export interface ExerciseBoxProps {
     questions: Question[];
 }
 
-export default function ExerciseBox({ questions}: ExerciseBoxProps) {
+export default function ExerciseBox({ questions }: ExerciseBoxProps) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [showResult, setShowResult] = useState(false);

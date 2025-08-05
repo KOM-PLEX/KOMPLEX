@@ -1,6 +1,6 @@
-import { Content } from "@/types/docs";
+import { Content } from "@/types/curriculum";
 import { FlaskConical } from "lucide-react";
-import LimitZeroOverZero from "@/components/docs/Limit-Zero-Over-Zero";
+import LimitZeroOverZero from "@/components/pages/docs/grade-12/limit/Limit-Zero-Over-Zero";
 
 export const chemistry: Content = {
   subject: "chemistry",

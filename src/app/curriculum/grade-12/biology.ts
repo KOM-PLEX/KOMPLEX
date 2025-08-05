@@ -1,5 +1,5 @@
-import { Content } from "@/types/docs";
-import LimitZeroOverZero from "@/components/docs/Limit-Zero-Over-Zero";
+import { Content } from "@/types/curriculum";
+import LimitZeroOverZero from "@/components/pages/docs/grade-12/limit/Limit-Zero-Over-Zero";
 import { Leaf } from "lucide-react";
 
 export const biology: Content = {
