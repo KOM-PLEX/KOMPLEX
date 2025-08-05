@@ -1,9 +1,10 @@
+import BulletList from '@/components/helper/BulletList';
 import { Image } from 'lucide-react';
 
 export interface ImageBoxProps {
     imageSrc: string;
     imageAlt: string;
-    explanation: string;
+    explanation: string | string[];
 }
 
 export const ImageBox = ({ imageSrc, imageAlt, explanation }: ImageBoxProps) => {
@@ -24,9 +25,17 @@ export const ImageBox = ({ imageSrc, imageAlt, explanation }: ImageBoxProps) => 
                         <Image size={20} className='text-indigo-600' />
                         <h3 className="text-xl font-bold text-gray-900">ការពន្យល់</h3>
                     </div>
-                    <p className="text-gray-700 text-base">
-                        {explanation}
-                    </p>
+                    {typeof explanation === 'string' ? (
+                        <p className="text-gray-700 text-base">
+                            {explanation}
+                        </p>
+                    ) : (
+                        <ul className="text-gray-700 text-base list-disc list-inside space-y-1">
+                            {explanation.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </div>
             <div className="hidden lg:flex  bg-indigo-50/80 border border-indigo-600 p-6  rounded-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm">
@@ -37,9 +46,13 @@ export const ImageBox = ({ imageSrc, imageAlt, explanation }: ImageBoxProps) => 
                             <Image size={20} className='text-indigo-600' />
                             <h3 className="text-xl font-bold text-gray-900">ការពន្យល់</h3>
                         </div>
-                        <p className="text-gray-700 leading-relaxed text-base">
-                            {explanation}
-                        </p>
+                        {typeof explanation === 'string' ? (
+                            <p className="text-gray-700 leading-relaxed text-base">
+                                {explanation}
+                            </p>
+                        ) : (
+                            <BulletList content={explanation} />
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,9 +1,10 @@
+import BulletList from '@/components/helper/BulletList';
 import { Lightbulb } from 'lucide-react';
 
 export interface TipBoxProps {
     title?: string;
     icon?: React.ComponentType<{ size?: number; className?: string }>;
-    content: string;
+    content: string | string[];
 }
 
 export default function TipBox({
@@ -21,9 +22,13 @@ export default function TipBox({
                     </h4>
                 </div>
             )}
-            <div className="text-gray-700 leading-relaxed text-base">
-                {content}
-            </div>
+            {typeof content === 'string' ? (
+                <div className="text-gray-700 leading-relaxed text-base">
+                    {content}
+                </div>
+            ) : (
+                <BulletList content={content} />
+            )}
         </div>
     );
 }

@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookAIcon } from 'lucide-react';
-import { Question } from '@/types/topic';
+import { ExerciseQuestion } from '@/types/topic';
 
 export interface ExerciseBoxProps {
-    questions: Question[];
+    questions: ExerciseQuestion[];
 }
 
 export default function ExerciseBox({ questions }: ExerciseBoxProps) {

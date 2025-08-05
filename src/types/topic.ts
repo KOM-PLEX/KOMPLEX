@@ -5,7 +5,7 @@
 // Basic content types used across different topic sections
 export interface Step {
   title?: string;
-  content?: string;
+  content?: string | string[];
 }
 
 export interface ExerciseQuestion {
@@ -53,14 +53,4 @@ export interface TopicContent {
 
   // Image section - visual content with explanations
   image?: ImageBoxProps;
-}
-
-// ===== EXERCISE TYPES =====
-// Types for interactive exercises and questions
-
-export interface Question {
-  id: string;
-  question: string;
-  options: string[];
-  correctAnswer: number;
 }

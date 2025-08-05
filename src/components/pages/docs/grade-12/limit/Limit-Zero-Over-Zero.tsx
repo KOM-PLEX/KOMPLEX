@@ -4,35 +4,41 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
+import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
 
 // ===== TOPIC CONTENT DATA =====
 
 const TOPIC_CONTENT: TopicContent = {
     definition: {
-        title: "តើលីមីត ០/០ គឺជាអ្វី?",
-        content: "លីមីត ០/០ គឺជាលីមីតដែលភាគយក និងភាគបែងមានតម្លៃស្មើសូន្យ។"
+        title: "លីមីត ០/០ - តើវាជាអ្វី?",
+        content: "លីមីត ០/០ គឺជាលីមីតដែលភាគយក និងភាគបែងទាំងពីរខិតទៅរកសូន្យ។ នេះជាប្រភេទលីមីតដែលមិនអាចវាយតម្លៃបានដោយផ្ទាល់ ដោយសារវាផ្តល់ឱ្យយើងនូវទម្រង់មិនកំណត់។ យើងត្រូវប្រើបច្ចេកទេសផ្សេងទៀតដូចជា កត្តាលេខភាគ ឬ ច្បាប់ L'Hôpital។"
     },
 
     tip: {
-        title: "តើលីមីត ០/០ គឺជាអ្វី?",
-        content: "លីមីត ០/០ គឺជាលីមីតដែលភាគយក និងភាគបែងមានតម្លៃស្មើសូន្យ។"
+        title: "ច្បាប់សំខាន់ៗសម្រាប់លីមីត ០/០",
+        content: [
+            "តែងតែព្យាយាមកត្តាលេខភាគជាមុនសិន។",
+            "ប្រសិនបើកត្តាលេខភាគមិនដំណើរការ ប្រើច្បាប់ L'Hôpital។",
+            "ពិនិត្យមើលថាតើអនុគមន៍អាចធ្វើឱ្យសាមញ្ញបានឬទេ។",
+            "ប្រើក្រាបឬតារាងតម្លៃដើម្បីយល់ដឹងពីឥរិយាបថអនុគមន៍។",
+        ]
     },
 
     example: {
         question: "រកលីមីតៈ limx→2 (x² - 4)/(x - 2)",
         steps: [
             {
-                title: "កត្តាលេខភាគ",
-                content: "x² - 4 = (x + 2)(x - 2)"
+                title: "ពិនិត្យមើលទម្រង់",
+                content: "នៅ x = 2៖ ភាគយក = 2² - 4 = 0, ភាគបែង = 2 - 2 = 0។ ដូច្នេះយើងមានទម្រង់ ០/០។"
             },
             {
-                title: "ធ្វើឱ្យសាមញ្ញ",
-                content: "(x² - 4)/(x - 2) = (x + 2)(x - 2)/(x - 2) = x + 2"
+                title: "កត្តាលេខភាគ",
+                content: "x² - 4 = (x + 2)(x - 2)។ ដូច្នេះ (x² - 4)/(x - 2) = (x + 2)(x - 2)/(x - 2) = x + 2។"
             },
             {
                 title: "វាយតម្លៃលីមីត",
-                content: "limx→2 (x + 2) = 2 + 2 = 4"
+                content: "limx→2 (x + 2) = 2 + 2 = 4។ ដូច្នេះ limx→2 (x² - 4)/(x - 2) = 4។"
             }
         ],
         answer: "លីមីតគឺ 4"
@@ -42,25 +48,43 @@ const TOPIC_CONTENT: TopicContent = {
         questions: [
             {
                 id: "q1",
-                question: "រកលីមីតៈ limx→3 (x²-9)/(x - 3)",
+                question: "រកលីមីតៈ limx→3 (x² - 9)/(x - 3)",
                 options: ["៣", "៦", "៩", "មិនកំណត់"],
                 correctAnswer: 1
             },
             {
                 id: "q2",
-                question: "រកលីមីតៈ limx→1 (x²-1)/(x - 1)",
+                question: "រកលីមីតៈ limx→1 (x² - 1)/(x - 1)",
                 options: ["០", "១", "២", "មិនកំណត់"],
                 correctAnswer: 2
+            },
+            {
+                id: "q3",
+                question: "រកលីមីតៈ limx→0 (x³ - x)/(x² - x)",
+                options: ["០", "១", "មិនកំណត់", "មិនមាន"],
+                correctAnswer: 1
+            },
+            {
+                id: "q4",
+                question: "តើ limx→4 (x² - 16)/(x - 4) ស្មើប៉ុណ្ណា?",
+                options: ["៤", "៨", "១២", "១៦"],
+                correctAnswer: 1
             }
         ]
     },
 
     hint: {
-        content: "លីមីត ០/០ គឺជាលីមីតដែលភាគយក និងភាគបែងមានតម្លៃស្មើសូន្យ។"
+        content: "ពេលជួបប្រទះលីមីត ០/០ តែងតែចាំថា៖ ១) ព្យាយាមកត្តាលេខភាគជាមុន ២) ស្វែងរកកត្តារួមរវាងភាគយកនិងភាគបែង ៣) ប្រើអត្តសញ្ញាណិកដើម្បីធ្វើឱ្យសាមញ្ញ ៤) ប្រសិនបើអស់វិធី ប្រើច្បាប់ L'Hôpital។"
     },
 
     warning: {
-        content: "លីមីត ០/០ គឺជាលីមីតដែលភាគយក និងភាគបែងមានតម្លៃស្មើសូន្យ។"
+        content: "កុំច្រឡំរវាងលីមីត ០/០ ជាមួយនឹងការចែកដោយសូន្យ។ លីមីត ០/០ គឺជាទម្រង់មិនកំណត់ដែលអាចដោះស្រាយបាន ខណៈពេលដែលការចែកដោយសូន្យគឺជាប្រតិបត្តិការដែលមិនកំណត់។ កុំព្យាយាមជំនួសតម្លៃដោយផ្ទាល់ក្នុងលីមីត ០/០។"
+    },
+
+    image: {
+        imageSrc: "/zero-over-zero.png",
+        imageAlt: "ក្រាបលីមីត ០/០",
+        explanation: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ f(x) = (x² - 4)/(x - 2) មានរន្ធ (hole) នៅ x = 2។ ទោះបីអនុគមន៍មិនកំណត់នៅ x = 2 ក៏ដោយ លីមីតរបស់វាមានតម្លៃ 4។"
     }
 };
 
@@ -91,6 +115,10 @@ export default function LimitZeroOverZero() {
 
             {TOPIC_CONTENT.warning && (
                 <WarningBox content={TOPIC_CONTENT.warning.content} />
+            )}
+
+            {TOPIC_CONTENT.image && (
+                <ImageBox imageSrc={TOPIC_CONTENT.image.imageSrc} imageAlt={TOPIC_CONTENT.image.imageAlt} explanation={TOPIC_CONTENT.image.explanation} />
             )}
         </>
     );

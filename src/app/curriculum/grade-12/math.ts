@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import LimitZeroOverZero from "@/components/pages/docs/grade-12/limit/Limit-Zero-Over-Zero";
 import Footer from "@/components/common/Footer";
-import { LimitDefinition } from "@/components/pages/docs/grade-12/limit/LimitDefinition";
+import LimitDefinition  from "@/components/pages/docs/grade-12/limit/LimitDefinition";
 
 export const math: Content = {
   subject: "math",
