@@ -1,29 +1,44 @@
-'use client'
-
-import { curriculum2 } from "@/app/data/curriculum";
-import SubjectHeader from "@/components/docs/DocHeader";
+import { curriculum } from "@/app/data/curriculum";
+import DocHeader from "@/components/docs/DocHeader";
 import Sidebar from "@/components/docs/Sidebar";
+import { notFound } from "next/navigation";
 
 type Params = { grade: string; subject: string; lesson: string; topic: string };
 
 const getTopicComponent = ({ params }: { params: Params }) => {
-    const grade = curriculum2.find(g => g.grade === params.grade);
+    const grade = curriculum.find(g => g.grade === params.grade);
     const subject = grade?.content.find(s => s.subject === params.subject);
     const lesson = subject?.lessons.find(l => l.lesson === params.lesson);
-    const topic = lesson?.topics.find(t => t.title === params.topic);
+    const topic = lesson?.topics.find(t => t.englishTitle === params.topic);
 
     return topic?.component;
 }
 
-export default function ConceptPage({ params }: { params: Params }) {
+export default async function Page({ params }: { params: Params }) {
     const TopicComponent = getTopicComponent({ params });
+
+    if (!TopicComponent) {
+        return notFound();
+    }
+
+    const Component = await TopicComponent();
 
     return (
         <div className="flex bg-gray-50 min-h-screen">
-            <Sidebar />
-            <SubjectHeader />
+            <Sidebar
+                currentGrade={params.grade}
+                currentSubject={params.subject}
+                currentLesson={params.lesson}
+                currentTopic={params.topic}
+            />
+            <DocHeader
+                currentGrade={params.grade}
+                currentSubject={params.subject}
+                currentLesson={params.lesson}
+                currentTopic={params.topic}
+            />
             <div className="w-full lg:ml-70 lg:mt-30 mt-40 p-5 lg:p-6">
-                {TopicComponent && <TopicComponent />}
+                {Component}
             </div>
         </div>
     );

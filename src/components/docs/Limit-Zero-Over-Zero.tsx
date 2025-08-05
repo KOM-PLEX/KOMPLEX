@@ -30,7 +30,6 @@ export default function LimitZeroOverZero() {
                 answer="លីមីតគឺ 4"
             />
             <ExerciseBox
-                title="លីមីត ០/០"
                 questions={[
                     {
                         id: "q1",

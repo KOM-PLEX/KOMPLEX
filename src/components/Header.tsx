@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, FileText, MessageSquare, BookOpen, Bot } from 'lucide-react';
-import { curriculum2 } from '@/app/data/curriculum';
+import { curriculum } from '@/app/data/curriculum';
 
 const navLinks = [
     {
         label: 'ឯកសារ',
-        href: `/docs/${curriculum2[0].grade}/${curriculum2[0].content[0].subject}/${curriculum2[0].content[0].lessons[0].lesson}/${curriculum2[0].content[0].lessons[0].topics[0].title}`,
+        href: `/docs/${curriculum[0].grade}/${curriculum[0].content[0].subject}/${curriculum[0].content[0].lessons[0].lesson}/${curriculum[0].content[0].lessons[0].topics[0].title}`,
         icon: FileText,
         style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
     },

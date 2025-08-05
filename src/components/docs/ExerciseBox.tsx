@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight, CheckCircle, XCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookAIcon } from 'lucide-react';
 
 interface Question {
     id: string;
@@ -12,10 +12,9 @@ interface Question {
 
 interface ExerciseBoxProps {
     questions: Question[];
-    title?: string;
 }
 
-export default function ExerciseBox({ questions, title = "លីមីត 0/0" }: ExerciseBoxProps) {
+export default function ExerciseBox({ questions}: ExerciseBoxProps) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [showResult, setShowResult] = useState(false);
@@ -53,8 +52,9 @@ export default function ExerciseBox({ questions, title = "លីមីត 0/0" }
         <div className="bg-white/95 backdrop-blur-sm border-2 border-indigo-500/20 rounded-2xl p-6 my-6 shadow-lg shadow-indigo-500/15">
             {/* Header */}
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-indigo-500/20">
-                <div className="text-indigo-600 font-semibold text-lg">
-                    {title}
+                <div className="text-indigo-600 font-semibold text-lg flex gap-2 items-center">
+                    <BookAIcon className="text-indigo-600" />
+                    លំហាត់អនុវត្តន៍
                 </div>
                 <div className="text-gray-600 text-sm">
                     សំណួរ {currentQuestionIndex + 1}/{questions.length}
