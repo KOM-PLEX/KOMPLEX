@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { curriculum } from '@/app/data/curriculum';
+import { curriculum } from '@/app/curriculum/curriculum';
 
 interface DocHeaderProps {
     currentGrade?: string;
@@ -17,11 +17,6 @@ export default function DocHeader({
     currentLesson = 'limits',
     currentTopic = 'zero-over-zero'
 }: DocHeaderProps) {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
 
     // Find the current grade and subject data
     const gradeData = curriculum.find(g => g.grade === currentGrade);

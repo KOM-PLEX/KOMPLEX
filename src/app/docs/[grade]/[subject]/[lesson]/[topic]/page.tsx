@@ -1,4 +1,4 @@
-import { curriculum } from "@/app/data/curriculum";
+import { curriculum } from "@/app/curriculum/curriculum";
 import DocHeader from "@/components/docs/DocHeader";
 import Sidebar from "@/components/docs/Sidebar";
 import { notFound } from "next/navigation";
@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: Params }) {
         return notFound();
     }
 
-    const Component = await TopicComponent();
+    const Component = TopicComponent;
 
     return (
         <div className="flex bg-gray-50 min-h-screen">
@@ -38,7 +38,7 @@ export default async function Page({ params }: { params: Params }) {
                 currentTopic={params.topic}
             />
             <div className="w-full lg:ml-70 lg:mt-30 mt-40 p-5 lg:p-6">
-                {Component}
+                <Component />
             </div>
         </div>
     );

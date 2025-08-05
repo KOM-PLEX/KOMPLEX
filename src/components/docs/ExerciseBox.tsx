@@ -2,13 +2,8 @@
 
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookAIcon } from 'lucide-react';
+import { Question } from '@/types/docs';
 
-interface Question {
-    id: string;
-    question: string;
-    options: string[];
-    correctAnswer: number; // Index of correct option (0-3)
-}
 
 interface ExerciseBoxProps {
     questions: Question[];
@@ -139,7 +134,7 @@ export default function ExerciseBox({ questions}: ExerciseBoxProps) {
                             onClick={() => goToQuestion(index)}
                             className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentQuestionIndex
                                 ? 'bg-indigo-600'
-                                : 'bg-gray-500 hover:bg-gray-600'
+                                : 'bg-gray-100 hover:bg-gray-200'
                                 }`}
                         />
                     ))}

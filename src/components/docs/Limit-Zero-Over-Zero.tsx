@@ -4,6 +4,7 @@ import TipBox from "./TipBox";
 import TopicWrapper from "./TopicWrapper";
 import ExerciseBox from "./ExerciseBox";
 import HintBox from "./HintBox";
+import WarningBox from "./WarningBox";
 
 
 export default function LimitZeroOverZero() {
@@ -35,17 +36,18 @@ export default function LimitZeroOverZero() {
                         id: "q1",
                         question: "រកលីមីតៈ limx→3 (x²-9)/(x - 3)",
                         options: ["៣", "៦", "៩", "មិនកំណត់"],
-                        correctAnswer: 1 // Option B (6)
+                        correctAnswer: 1 
                     },
                     {
                         id: "q2",
                         question: "រកលីមីតៈ limx→1 (x²-1)/(x - 1)",
                         options: ["០", "១", "២", "មិនកំណត់"],
-                        correctAnswer: 2 // Option C (2)
+                        correctAnswer: 2 
                     }
                 ]}
             />
             <HintBox message="លីមីត ០/០ គឺជាលីមីតដែលភាគយក និងភាគបែងមានតម្លៃស្មើសូន្យ។" />
+            <WarningBox title="ការពិន័យ" content="លីមីត ០/០ គឺជាលីមីតដែលភាគយក និងភាគបែងមានតម្លៃស្មើសូន្យ។" />
         </TopicWrapper>
     )
 }

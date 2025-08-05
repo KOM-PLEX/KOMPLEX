@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, FileText, MessageSquare, BookOpen, Bot } from 'lucide-react';
-import { curriculum } from '@/app/data/curriculum';
+import { curriculum } from '@/app/curriculum/curriculum';
 
 const navLinks = [
     {
@@ -42,7 +42,7 @@ const MobileNavMenu = () => {
                         <Link
                             key={link.href}
                             href={link.href}
-                            className={`flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl text-sm text-gray-600 no-underline font-medium bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 transition-all duration-300`}
+                            className={`flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl text-sm text-gray-600 no-underline font-medium  backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 transition-all duration-300 ${link.style}`}
                         >
                             <Icon size={18} />
                             {link.label}
