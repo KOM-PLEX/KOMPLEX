@@ -15,6 +15,7 @@ export default function Forum() {
             time: 'មុន ២ ម៉ោង',
             title: 'ខ្ញុំជាអ្នកឈ្នះអូឡាំពិចគណិតវិទ្យាជាតិ សួរអ្វីក៍បាន!',
             content: 'ស្វាគមន៍! ខ្ញុំឈ្មោះសុខវណ្ណា ជាអ្នកឈ្នះអូឡាំពិចគណិតវិទ្យាជាតិឆ្នាំ២០២៤។ ខ្ញុំចង់ជួយចែករំលែកចំណេះដឹងជាមួយអ្នកទាំងអស់។ សួរអ្វីក៍បានអំពីគណិតវិទ្យា ឬវិធីសាស្ត្ររៀន!',
+            image: '/angkor.jpg',
             upvotes: 24,
             comments: 12,
             upvoted: true
@@ -100,7 +101,9 @@ export default function Forum() {
                 <div className="flex-1 mt-14 lg:mt-0">
                     <div className="flex flex-col gap-5">
                         {forumPosts.map((post) => (
-                            <ForumCard key={post.id} post={post} />
+                            <Link href={`/forum/${post.id}`} key={post.id}>
+                                <ForumCard post={post} isFromBasePage={true} />
+                            </Link>
                         ))}
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronDown, ChevronRight } from 'lucide-react';
-import { curriculum } from '@/app/curriculum/curriculum';
+import { curriculum } from '@/curriculum/curriculum';
 
 interface SidebarProps {
     currentGrade?: string;

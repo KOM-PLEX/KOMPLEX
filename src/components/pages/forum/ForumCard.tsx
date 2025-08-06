@@ -1,6 +1,7 @@
 'use client';
 
 import { MessageCircle, Share, ThumbsUp } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 interface ForumPost {
@@ -12,17 +13,19 @@ interface ForumPost {
     time: string;
     title: string;
     content: string;
-    image: string;
+    image?: string;
     upvotes: number;
     comments: number;
     upvoted: boolean;
 }
 
 interface ForumCardProps {
+    isFromBasePage: boolean;
     post: ForumPost;
+    onCommentClick?: () => void;
 }
 
-export default function ForumCard({ post }: ForumCardProps) {
+export default function ForumCard({ isFromBasePage, post, onCommentClick }: ForumCardProps) {
     const [upvoted, setUpvoted] = useState(post.upvoted);
     const [upvoteCount, setUpvoteCount] = useState(post.upvotes);
 
@@ -60,7 +63,7 @@ export default function ForumCard({ post }: ForumCardProps) {
             </div>
 
             {post.image && (
-                <div className="w-full  bg-indigo-500/10 rounded-xl mb-4 flex items-center justify-center text-indigo-600 text-2xl border-2 border-dashed border-indigo-500/30">
+                <div className="w-full  bg-indigo-500/10 rounded-xl mb-4 flex items-center justify-center text-indigo-600 text-2xl border-2  border-indigo-500/30">
                     <img src={post.image} alt={post.title} className='w-full h-full object-cover rounded-xl' />
                 </div>
             )}
@@ -72,9 +75,18 @@ export default function ForumCard({ post }: ForumCardProps) {
                 >
                     <ThumbsUp className={`w-4 h-4 ${upvoted ? 'fill-indigo-600' : ''}`} /> <span className="font-semibold text-gray-500">{upvoteCount}</span>
                 </button>
-                <button className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
-                    <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប ({post.comments})</span>
-                </button>
+                {
+                    isFromBasePage ? (
+                        <Link href={`/forum/${post.id}`} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
+                            <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប ({post.comments})</span>
+                        </Link>
+                    ) : (
+                        <button onClick={onCommentClick} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
+                            <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប ({post.comments})</span>
+                        </button>
+                    )
+                }
+
                 <button className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
                     <Share className="w-4 h-4" /> <span className="text-gray-500">ចែករំលែក</span>
                 </button>

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, FileText, MessageSquare, BookOpen, Bot } from 'lucide-react';
-import { curriculum } from '@/app/curriculum/curriculum';
+import { curriculum } from '@/curriculum/curriculum';
 
 const navLinks = [
     {

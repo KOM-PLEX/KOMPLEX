@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import BlogCard from '@/components/pages/blog/BlogCard';
 import Sidebar from '@/components/pages/blog/Sidebar';
+import Link from 'next/link';
 
 const blogPosts = [
     {
@@ -84,7 +84,7 @@ export default function Blog() {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            
+
 
             <div className="mt-15 p-5 flex gap-8 max-w-7xl mx-auto">
                 {/* Sidebar */}

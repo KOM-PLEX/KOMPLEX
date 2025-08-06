@@ -1,6 +1,7 @@
 'use client';
 
 import { Filter, Plus, Search } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Sidebar() {
@@ -10,7 +11,7 @@ export default function Sidebar() {
   const [showFilters, setShowFilters] = useState(false);
 
   const categories = ['ទាំងអស់', 'បទពិសោធន៍', 'វិធីសាស្ត្ររៀន', 'រឿងរ៉ាវ', 'គន្លឹះ'];
-  const subjects = ['ទាំងអស់','គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];
+  const subjects = ['ទាំងអស់', 'គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];
 
   return (
     <>
@@ -30,11 +31,11 @@ export default function Sidebar() {
             onClick={() => setShowFilters(!showFilters)}
             className="bg-indigo-600 text-white py-2 px-4 rounded-lg border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2"
           >
-            <Filter className="w-4 h-4" /> 
+            <Filter className="w-4 h-4" />
           </button>
-          <button className="bg-indigo-600 text-white py-2 px-4 rounded-lg border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
-            <Plus className="w-4 h-4" /> 
-          </button>
+          <Link href={"/createBlog"} className="bg-indigo-600 text-white py-2 px-4 rounded-lg border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
+            <Plus className="w-4 h-4" />
+          </Link>
         </div>
       </div>
 
@@ -88,9 +89,9 @@ export default function Sidebar() {
           <p className="text-gray-500 text-sm">រឿងរ៉ាវ និងបទពិសោធន៍របស់សិស្ស</p>
         </div>
 
-        <button className="bg-indigo-600 text-white py-3 px-5 rounded-xl border-none font-semibold text-sm transition-all duration-300 shadow-lg shadow-indigo-500/30 mb-6 flex items-center justify-center gap-2 w-full hover:bg-indigo-700">
+        <Link href={`/createBlog`} className="bg-indigo-600 text-white py-3 px-5 rounded-xl border-none font-semibold text-sm transition-all duration-300 shadow-lg shadow-indigo-500/30 mb-6 flex items-center justify-center gap-2 w-full hover:bg-indigo-700">
           <Plus className="w-4 h-4" /> សរសេរប្លុកថ្មី
-        </button>
+        </Link>
 
         <div className="mb-6">
           <label htmlFor="search-input" className="block font-semibold text-gray-900 mb-2 text-sm">

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { curriculum } from '@/app/curriculum/curriculum';
+import { curriculum } from '@/curriculum/curriculum';
 
 interface DocHeaderProps {
     currentGrade?: string;

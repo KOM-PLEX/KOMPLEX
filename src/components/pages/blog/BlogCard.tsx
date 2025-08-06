@@ -1,5 +1,7 @@
 'use client';
 
+import Link from "next/link";
+
 interface BlogPost {
   id: number;
   featured: boolean;
@@ -20,7 +22,8 @@ interface BlogCardProps {
 export default function BlogCard({ post }: BlogCardProps) {
   if (post.featured) {
     return (
-      <div className="col-span-full relative h-96 rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/15">
+
+      <Link href={`/blog/${post.id}`} key={post.id} className="col-span-full relative h-[450px] rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/15">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -53,12 +56,12 @@ export default function BlogCard({ post }: BlogCardProps) {
             </div>
           )}
         </div>
-      </div>
+      </Link>
     );
   }
 
   return (
-    <div className="relative h-72 rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">
+    <Link href={`/blog/${post.id}`} key={post.id} className="relative h-72 rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -91,6 +94,6 @@ export default function BlogCard({ post }: BlogCardProps) {
           </div>
         )}
       </div>
-    </div>
+    </Link>
   );
 }

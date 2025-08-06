@@ -1,4 +1,4 @@
-import { curriculum } from "@/app/curriculum/curriculum";
+import { curriculum } from "@/curriculum/curriculum";
 import DocHeader from "@/components/pages/docs/common/DocHeader";
 import Sidebar from "@/components/pages/docs/common/Sidebar";
 import TopicWrapper from "@/components/pages/docs/common/TopicWrapper";

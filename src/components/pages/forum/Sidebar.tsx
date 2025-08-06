@@ -2,6 +2,7 @@
 
 import { Book, BookHeart, Bookmark, Filter, Search } from 'lucide-react';
 import { Plus } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Sidebar() {
@@ -33,9 +34,9 @@ export default function Sidebar() {
                     >
                         <Filter className="w-4 h-4" />
                     </button>
-                    <button className="bg-indigo-600 text-white py-2 px-4 rounded-lg border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
+                    <Link href={"/createForum"} className="bg-indigo-600 text-white py-2 px-4 rounded-lg border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
                         <Plus className="w-4 h-4" />
-                    </button>
+                    </Link>
                 </div>
             </div>
 
@@ -95,10 +96,10 @@ export default function Sidebar() {
                     <p className="text-gray-500 text-sm">ចែករំលែកចំណេះដឹង និងសួរសំណួររបស់អ្នក</p>
                 </div>
 
-                <button className="bg-indigo-600 text-white py-3 px-5 rounded-xl border-none font-semibold text-sm transition-all duration-300 shadow-lg shadow-indigo-500/30 mb-6 flex items-center justify-center gap-2 w-full hover:bg-indigo-700">
+                <Link href={"/createForum"} className="bg-indigo-600 text-white py-3 px-5 rounded-xl border-none font-semibold text-sm transition-all duration-300 shadow-lg shadow-indigo-500/30 mb-6 flex items-center justify-center gap-2 w-full hover:bg-indigo-700">
                     <Plus className='w-4 h-4'></Plus>
                     បង្កើតប្រកាសថ្មី
-                </button>
+                </Link>
 
                 <div className="mb-6">
                     <label htmlFor="search-input" className="block font-semibold text-gray-900 mb-2 text-sm flex items-center gap-2">
