@@ -1,4 +1,4 @@
-export default function DerivativeDefinition() {
+export default function InegralPrimitive() {
     return (
         <>
            
