@@ -1,6 +1,6 @@
 'use client';
 
-import { Book, BookHeart, Bookmark, Filter, Search } from 'lucide-react';
+import { Book, Bookmark, Filter, Search } from 'lucide-react';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';

@@ -10,7 +10,6 @@ import { TopicContent } from "@/types/topic";
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from 'react-katex';
 import Graph from "../../common/box/Graph";
-import GraphBox from "../../common/box/GraphBox";
 
 // ===== TOPIC CONTENT DATA =====
 

@@ -2,7 +2,6 @@
 
 import BlogCard from '@/components/pages/blog/BlogCard';
 import Sidebar from '@/components/pages/blog/Sidebar';
-import Link from 'next/link';
 
 const blogPosts = [
     {

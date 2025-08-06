@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, MessageCircle, Text, Trash, Upload, X } from 'lucide-react';
+import { ArrowLeft, MessageCircle, Trash, Upload } from 'lucide-react';
 
 export default function CreateForum() {
     const [title, setTitle] = useState('');

@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Book, Text, Trash, Upload, X } from 'lucide-react';
+import { ArrowLeft, Book, Trash, Upload } from 'lucide-react';
 
 export default function CreateBlog() {
     const [title, setTitle] = useState('');

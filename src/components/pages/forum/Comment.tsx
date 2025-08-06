@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ThumbsUp, Send } from 'lucide-react';
+import { ThumbsUp } from 'lucide-react';
 
 interface Comment {
     id: number;

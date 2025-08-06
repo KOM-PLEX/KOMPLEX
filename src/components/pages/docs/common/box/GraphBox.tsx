@@ -1,5 +1,5 @@
 import { FunctionSquare } from "lucide-react";
-import Graph, { DesmosGraphProps, Expression } from "./Graph";
+import Graph, { Expression } from "./Graph";
 import { CalculatorOptions } from "desmos";
 
 export default function GraphBox({ expressions, options }: { expressions: Expression[], options?: Partial<CalculatorOptions> }) {
