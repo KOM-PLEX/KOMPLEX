@@ -5,6 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import ForumCard from '@/components/pages/forum/ForumCard';
 import Comment from '@/components/pages/forum/Comment';
 import { useState } from 'react';
+import { useParams } from 'next/navigation';
 
 interface Comment {
     id: number;
@@ -16,10 +17,13 @@ interface Comment {
     replies?: Comment[];
 }
 
-export default function ForumDiscussion({ params }: { params: { id: string } }) {
+export default function ForumDiscussion() {
+    const params = useParams();
+    const id = params.id as string;
     const [isCommentInputActive, setIsCommentInputActive] = useState(false);
+
     const forumPost = {
-        id: parseInt(params.id),
+        id: parseInt(id),
         author: { name: 'សុខវណ្ណា អ៊ុំ', avatar: 'ស' },
         time: 'មុន ២ ម៉ោង',
         title: 'ខ្ញុំជាអ្នកឈ្នះអូឡាំពិចគណិតវិទ្យាជាតិ សួរអ្វីក៍បាន!',
@@ -62,7 +66,7 @@ export default function ForumDiscussion({ params }: { params: { id: string } }) 
 
                 {/* Main Post */}
                 <div className="mb-6">
-                    <ForumCard post={forumPost} isFromBasePage={false} onCommentClick={() => setIsCommentInputActive(!isCommentInputActive)}/>
+                    <ForumCard post={forumPost} isFromBasePage={false} onCommentClick={() => setIsCommentInputActive(!isCommentInputActive)} />
                 </div>
 
                 {/* Comments Section */}

@@ -1,12 +1,15 @@
+'use client';
+
 import { curriculum } from "@/curriculum/curriculum";
 import DocHeader from "@/components/pages/docs/common/DocHeader";
 import Sidebar from "@/components/pages/docs/common/Sidebar";
 import TopicWrapper from "@/components/pages/docs/common/TopicWrapper";
 import { notFound } from "next/navigation";
+import { useParams } from "next/navigation";
 
 type Params = { grade: string; subject: string; lesson: string; topic: string };
 
-const getTopicComponent = ({ params }: { params: Params }) => {
+const getTopicComponent = (params: Params) => {
     const grade = curriculum.find(g => g.grade === params.grade);
     const subject = grade?.content.find(s => s.subject === params.subject);
     const lesson = subject?.lessons.find(l => l.lesson === params.lesson);
@@ -16,7 +19,7 @@ const getTopicComponent = ({ params }: { params: Params }) => {
 }
 
 const getNavigationTopics = (params: Params) => {
-    const { topic, lesson, subject, grade } = getTopicComponent({ params });
+    const { topic, lesson, subject, grade } = getTopicComponent(params);
 
     if (!topic || !lesson || !subject || !grade) return { prev: null, next: null };
 
@@ -35,8 +38,9 @@ const getNavigationTopics = (params: Params) => {
     return { prev, next };
 }
 
-export default async function Page({ params }: { params: Params }) {
-    const { topic } = getTopicComponent({ params });
+export default function Page() {
+    const params = useParams() as Params;
+    const { topic } = getTopicComponent(params);
     const navigation = getNavigationTopics(params);
 
     if (!topic?.component) {

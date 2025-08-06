@@ -1,5 +1,6 @@
 'use client';
 
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
@@ -15,10 +16,13 @@ interface BlogPost {
     content: string;
 }
 
-export default function BlogPost({ params }: { params: { id: string } }) {
+export default function BlogPost() {
+    const params = useParams();
+    const id = params.id as string;
+
     // Mock blog post data - in a real app, this would come from an API or database
     const blogPost: BlogPost = {
-        id: parseInt(params.id),
+        id: parseInt(id),
         author: {
             name: 'សុខវណ្ណា អ៊ុំ',
             avatar: 'ស'
