@@ -4,8 +4,8 @@
 
 // Basic content types used across different topic sections
 export interface Step {
-  title?: string;
-  content?: string | string[];
+  title?: string | React.ReactNode;
+  content?: string | string[] | React.ReactNode;
 }
 
 export interface ExerciseQuestion {

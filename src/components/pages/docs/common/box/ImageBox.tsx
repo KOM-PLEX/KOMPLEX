@@ -2,22 +2,26 @@ import BulletList from '@/components/helper/BulletList';
 import { Image } from 'lucide-react';
 
 export interface ImageBoxProps {
-    imageSrc: string;
+    src?: string | React.ReactNode;
     imageAlt: string;
-    explanation: string | string[];
+    explanation: string | string[] | React.ReactNode;
 }
 
-export const ImageBox = ({ imageSrc, imageAlt, explanation }: ImageBoxProps) => {
+export const ImageBox = ({ src, imageAlt, explanation }: ImageBoxProps) => {
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-6 gap-2'>
             <div className="bg-indigo-50/80 border border-indigo-600 p-6  rounded-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm">
                 <div className="grid grid-cols-1  gap-6">
                     <div className="w-full">
-                        <img
-                            src={imageSrc}
-                            alt={imageAlt}
-                            className="rounded-lg shadow-md h-auto w-full"
-                        />
+                        {
+                            typeof src === 'string' ? (
+                                <img
+                                    src={src}
+                                    alt={imageAlt}
+                                    className="rounded-lg shadow-md h-auto w-full"
+                                />
+                            ) : src
+                        }
                     </div>
                 </div>
                 <div className="lg:hidden flex flex-col my-6 w-full">
@@ -29,12 +33,12 @@ export const ImageBox = ({ imageSrc, imageAlt, explanation }: ImageBoxProps) => 
                         <p className="text-gray-700 text-base">
                             {explanation}
                         </p>
+                    ) : Array.isArray(explanation) ? (
+                        <BulletList content={explanation} />
                     ) : (
-                        <ul className="text-gray-700 text-base list-disc list-inside space-y-1">
-                            {explanation.map((item, index) => (
-                                <li key={index}>{item}</li>
-                            ))}
-                        </ul>
+                        <div className="text-gray-700 text-base">
+                            {explanation}
+                        </div>
                     )}
                 </div>
             </div>
@@ -50,8 +54,12 @@ export const ImageBox = ({ imageSrc, imageAlt, explanation }: ImageBoxProps) => 
                             <p className="text-gray-700 leading-relaxed text-base">
                                 {explanation}
                             </p>
-                        ) : (
+                        ) : Array.isArray(explanation) ? (
                             <BulletList content={explanation} />
+                        ) : (
+                            <div className="text-gray-700 leading-relaxed text-base">
+                                {explanation}
+                            </div>
                         )}
                     </div>
                 </div>

@@ -7,6 +7,11 @@ import WarningBox from "../../common/box/WarningBox";
 import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
 
+import 'katex/dist/katex.min.css';
+import { BlockMath, InlineMath } from 'react-katex';
+import Graph from "../../common/box/Graph";
+import GraphBox from "../../common/box/GraphBox";
+
 // ===== TOPIC CONTENT DATA =====
 
 const TOPIC_CONTENT: TopicContent = {
@@ -26,19 +31,34 @@ const TOPIC_CONTENT: TopicContent = {
     },
 
     example: {
-        question: "រកលីមីតៈ limx→2 (x² - 4)/(x - 2)",
+        question:
+            <div className="flex items-center gap-4">
+                <p>រកលីមីតៈ</p>
+                <BlockMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2}" />
+            </div>,
         steps: [
             {
                 title: "ពិនិត្យមើលទម្រង់",
-                content: "នៅ x = 2៖ ភាគយក = 2² - 4 = 0, ភាគបែង = 2 - 2 = 0។ ដូច្នេះយើងមានទម្រង់ ០/០។"
+                content: <div>
+                    នៅ <InlineMath math="x = 2" /><br />
+                    ភាគយក = <InlineMath math="2^2 - 4 = 0" /><br />
+                    ភាគបែង = <InlineMath math="2 - 2 = 0" /><br />
+                    ដូច្នេះយើងមានទម្រង់ <InlineMath math="0/0" />
+                </div>
             },
             {
                 title: "កត្តាលេខភាគ",
-                content: "x² - 4 = (x + 2)(x - 2)។ ដូច្នេះ (x² - 4)/(x - 2) = (x + 2)(x - 2)/(x - 2) = x + 2។"
+                content: <div>
+                    <InlineMath math="x^2 - 4 = (x + 2)(x - 2)" /><br /><br />
+                    ដូច្នេះ <InlineMath math="\frac{x^2 - 4}{x - 2} = \frac{(x + 2)(x - 2)}{x - 2} = x + 2" />
+                </div>
             },
             {
                 title: "វាយតម្លៃលីមីត",
-                content: "limx→2 (x + 2) = 2 + 2 = 4។ ដូច្នេះ limx→2 (x² - 4)/(x - 2) = 4។"
+                content: <div>
+                    <InlineMath math="\lim_{x \to 2} (x + 2) = 2 + 2 = 4" /><br /><br />
+                    ដូច្នេះ <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = 4" />
+                </div>
             }
         ],
         answer: "លីមីតគឺ 4"
@@ -82,13 +102,19 @@ const TOPIC_CONTENT: TopicContent = {
     },
 
     image: {
-        imageSrc: "/zero-over-zero.png",
+        src: <Graph
+            expressions={[
+                { id: '1', latex: 'f(x)=\\frac{x^2 - 4}{x - 2}', color: '#c00' },
+            ]}
+        />,
         imageAlt: "ក្រាបលីមីត ០/០",
         explanation: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ f(x) = (x² - 4)/(x - 2) មានរន្ធ (hole) នៅ x = 2។ ទោះបីអនុគមន៍មិនកំណត់នៅ x = 2 ក៏ដោយ លីមីតរបស់វាមានតម្លៃ 4។"
     }
 };
 
 // ===== MAIN COMPONENT =====
+
+
 
 export default function LimitZeroOverZero() {
     return (
@@ -118,7 +144,7 @@ export default function LimitZeroOverZero() {
             )}
 
             {TOPIC_CONTENT.image && (
-                <ImageBox imageSrc={TOPIC_CONTENT.image.imageSrc} imageAlt={TOPIC_CONTENT.image.imageAlt} explanation={TOPIC_CONTENT.image.explanation} />
+                <ImageBox src={TOPIC_CONTENT.image.src} imageAlt={TOPIC_CONTENT.image.imageAlt} explanation={TOPIC_CONTENT.image.explanation} />
             )}
         </>
     );

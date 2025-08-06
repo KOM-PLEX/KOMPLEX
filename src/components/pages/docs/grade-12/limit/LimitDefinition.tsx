@@ -6,6 +6,8 @@ import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
 import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
+import Graph from "../../common/box/Graph";
+import { BlockMath } from "react-katex";
 
 // ===== TOPIC CONTENT DATA =====
 
@@ -21,7 +23,7 @@ const TOPIC_CONTENT: TopicContent = {
     },
 
     example: {
-        question: "រកលីមីតៈ limx→2 (x² + 3x - 2)",
+        question: <BlockMath math="\lim_{x \to 2} (x^2 + 3x - 2)" />,
         steps: [
             {
                 title: "ជំនួសតម្លៃ x = 2",
@@ -71,7 +73,7 @@ const TOPIC_CONTENT: TopicContent = {
     },
 
     image: {
-        imageSrc: "/zero-over-zero.png",
+        src: <Graph expressions={[{ id: '1', latex: 'f(x)=\\frac{x^2 - 4}{x - 2}', color: '#c00' }]} />,
         imageAlt: "ក្រាបលីមីត",
         explanation: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ខិតទៅរកតម្លៃជាក់លាក់មួយ នៅពេលអថេរ x ខិតទៅរកចំណុច a។ លីមីតគឺជាតម្លៃ L ដែលអនុគមន៍ខិតទៅរក។"
     }
@@ -107,7 +109,7 @@ export default function LimitDefinition() {
             )}
 
             {TOPIC_CONTENT.image && (
-                <ImageBox imageSrc={TOPIC_CONTENT.image.imageSrc} imageAlt={TOPIC_CONTENT.image.imageAlt} explanation={TOPIC_CONTENT.image.explanation} />
+                <ImageBox src={TOPIC_CONTENT.image.src} imageAlt={TOPIC_CONTENT.image.imageAlt} explanation={TOPIC_CONTENT.image.explanation} />
             )}
         </>
     );

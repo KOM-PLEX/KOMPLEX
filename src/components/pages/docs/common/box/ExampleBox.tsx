@@ -2,12 +2,13 @@ import { Step } from '@/types/topic';
 import { Search } from 'lucide-react';
 
 export interface ExampleBoxProps {
-    question: string;
+    question: string | React.ReactNode;
+    content?: string | string[] | React.ReactNode;
     steps: Step[];
-    answer: string;
+    answer?: string | React.ReactNode;
 }
 
-function AnswerBox({ answer }: { answer: string }) {
+function AnswerBox({ answer }: { answer: string | React.ReactNode }) {
     return (
         <div className="bg-green-50/90 border-2 border-green-500 rounded-xl p-5 my-4 shadow-lg shadow-green-500/15">
             <div className="text-green-800 font-semibold">
@@ -17,7 +18,7 @@ function AnswerBox({ answer }: { answer: string }) {
     );
 }
 
-export default function ExampleBox({ question, steps, answer }: ExampleBoxProps) {
+export default function ExampleBox({ question, content, steps, answer }: ExampleBoxProps) {
     return (
         <div className="bg-amber-50/90 border-2 border-amber-500 rounded-2xl p-6 my-6 shadow-lg shadow-amber-500/15">
             {/* Header */}
@@ -33,6 +34,11 @@ export default function ExampleBox({ question, steps, answer }: ExampleBoxProps)
                 {question}
             </div>
 
+            {/* Content */}
+            <div className="text-gray-800 mb-4 font-medium">
+                {content}
+            </div>
+
             {/* Solution Steps */}
             <div className="bg-white text-white rounded-xl p-5 mb-4 shadow-lg">
                 <div className="space-y-4">
@@ -41,7 +47,7 @@ export default function ExampleBox({ question, steps, answer }: ExampleBoxProps)
                             <div className="font-semibold text-black">
                                 ជំហានទី{index + 1}៖ {step.title}
                             </div>
-                            <div className="font-mono text-sm  p-3 rounded-lg border-2 border-gray-200 text-black">
+                            <div className="font-mono text-sm p-3 rounded-lg border-2 border-gray-200 text-black">
                                 {step.content}
                             </div>
                         </div>
@@ -50,7 +56,7 @@ export default function ExampleBox({ question, steps, answer }: ExampleBoxProps)
             </div>
 
             {/* Answer */}
-            <AnswerBox answer={answer} />
+            {answer && <AnswerBox answer={answer} />}
         </div>
     );
 }

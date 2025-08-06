@@ -3,7 +3,7 @@ import { AlertTriangle } from 'lucide-react';
 
 export interface WarningBoxProps {
     icon?: React.ComponentType<{ size?: number; className?: string }>;
-    content: string | string[];
+    content: string | string[] | React.ReactNode;
 }
 
 export default function WarningBox({
@@ -22,8 +22,12 @@ export default function WarningBox({
                 <div className="text-gray-700 leading-relaxed text-base">
                     {content}
                 </div>
-            ) : (
+            ) : Array.isArray(content) ? (
                 <BulletList content={content} />
+            ) : (
+                <div className="text-gray-700 leading-relaxed text-base">
+                    {content}
+                </div>
             )}
         </div>
     );

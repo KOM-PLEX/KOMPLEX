@@ -2,7 +2,7 @@ import BulletList from '@/components/helper/BulletList';
 import { Lightbulb } from 'lucide-react';
 
 export interface HintBoxProps {
-    content: string | string[];
+    content: string | string[] | React.ReactNode;
 }
 
 export default function HintBox({ content }: HintBoxProps) {
@@ -20,8 +20,12 @@ export default function HintBox({ content }: HintBoxProps) {
                     className="text-gray-700 leading-relaxed text-base"
                     dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, "<br />") }}
                 />
-            ) : (
+            ) : Array.isArray(content) ? (
                 <BulletList content={content} />
+            ) : (
+                <div className="text-gray-700 leading-relaxed text-base">
+                    {content}
+                </div>
             )}
         </div>
     );
