@@ -28,7 +28,7 @@ export const math: Content = {
           component: LimitDefinition,
         },
         {
-          title: "លីមីតសាមញ្ញ",
+          title: "លីមីតកំណត់",
           englishTitle: "simple",
           component: Footer,
         },

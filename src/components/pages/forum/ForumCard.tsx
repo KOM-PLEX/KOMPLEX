@@ -1,0 +1,84 @@
+'use client';
+
+import { MessageCircle, Share, ThumbsUp } from 'lucide-react';
+import { useState } from 'react';
+
+interface ForumPost {
+    id: number;
+    author: {
+        name: string;
+        avatar: string;
+    };
+    time: string;
+    title: string;
+    content: string;
+    image: string;
+    upvotes: number;
+    comments: number;
+    upvoted: boolean;
+}
+
+interface ForumCardProps {
+    post: ForumPost;
+}
+
+export default function ForumCard({ post }: ForumCardProps) {
+    const [upvoted, setUpvoted] = useState(post.upvoted);
+    const [upvoteCount, setUpvoteCount] = useState(post.upvotes);
+
+    const handleUpvote = () => {
+        if (upvoted) {
+            setUpvoteCount(upvoteCount - 1);
+        } else {
+            setUpvoteCount(upvoteCount + 1);
+        }
+        setUpvoted(!upvoted);
+    };
+
+    return (
+        <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-0.5 cursor-pointer">
+            <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-base">
+                    {post.author.avatar}
+                </div>
+                <div className="flex-1">
+                    <div className="font-semibold text-gray-900 text-sm mb-0.5">
+                        {post.author.name}
+                    </div>
+                    <div className="text-gray-500 text-xs">
+                        {post.time}
+                    </div>
+                </div>
+            </div>
+
+            <div className="text-lg font-bold text-gray-900 mb-2.5 leading-relaxed">
+                {post.title}
+            </div>
+
+            <div className="text-gray-700 text-sm leading-relaxed mb-4">
+                {post.content}
+            </div>
+
+            {post.image && (
+                <div className="w-full  bg-indigo-500/10 rounded-xl mb-4 flex items-center justify-center text-indigo-600 text-2xl border-2 border-dashed border-indigo-500/30">
+                    <img src={post.image} alt={post.title} className='w-full h-full object-cover rounded-xl' />
+                </div>
+            )}
+
+            <div className="flex items-center gap-5 pt-4 border-t border-indigo-500/10">
+                <button
+                    onClick={handleUpvote}
+                    className={`flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60 ${upvoted ? 'text-indigo-600 bg-indigo-50/80' : ''}`}
+                >
+                    <ThumbsUp className={`w-4 h-4 ${upvoted ? 'fill-indigo-600' : ''}`} /> <span className="font-semibold text-gray-500">{upvoteCount}</span>
+                </button>
+                <button className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
+                    <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប ({post.comments})</span>
+                </button>
+                <button className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
+                    <Share className="w-4 h-4" /> <span className="text-gray-500">ចែករំលែក</span>
+                </button>
+            </div>
+        </div>
+    );
+}
