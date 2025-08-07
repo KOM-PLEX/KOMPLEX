@@ -27,6 +27,7 @@ import { HintBoxProps } from "@/components/pages/docs/common/box/HintBox";
 import { WarningBoxProps } from "@/components/pages/docs/common/box/WarningBox";
 import { ImageBoxProps } from "@/components/pages/docs/common/box/ImageBox";
 import { ThreeDBoxProps } from "@/components/pages/docs/common/box/3DBox";
+import { GraphBoxProps } from "@/components/pages/docs/common/box/GraphBox";
 
 // ===== MAIN TOPIC CONTENT INTERFACE =====
 // This interface defines the complete structure for a topic's content
@@ -57,4 +58,7 @@ export interface TopicContent {
 
   // 3D section - 3D model
   threeD?: ThreeDBoxProps;
+
+  // Graph section - mathematical graph
+  graph?: GraphBoxProps;
 }
