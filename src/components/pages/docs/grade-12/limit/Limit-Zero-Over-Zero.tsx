@@ -113,8 +113,6 @@ const TOPIC_CONTENT: TopicContent = {
 
 // ===== MAIN COMPONENT =====
 
-
-
 export default function LimitZeroOverZero() {
     return (
         <>

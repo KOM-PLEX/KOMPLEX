@@ -26,7 +26,7 @@ const navLinks = [
     },
     {
         label: 'អ្នកជំនាញ AI',
-        href: '#',
+        href: '/ai',
         icon: Bot,
         style: "bg-indigo-600 text-white no-underline font-semibold shadow-lg shadow-indigo-500/30 border border-white/20 hover:bg-indigo-500"
     }
