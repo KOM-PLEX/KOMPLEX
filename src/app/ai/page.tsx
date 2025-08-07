@@ -215,7 +215,7 @@ export default function AIChat() {
                                     <h2 className="text-2xl font-semibold text-gray-900 mb-4">ស្វាគមន៍!</h2>
                                     <p className="text-gray-600 mb-8">ខ្ញុំជា AI ជំនួយការរៀន។ តើអ្នកចង់សួរអ្វីអំពីអ្វីដែរ?</p>
 
-                                   
+
 
                                     {/* Input Section (same as normal chat) */}
                                     <div className="flex items-center gap-3 w-full  mx-auto">
@@ -253,8 +253,8 @@ export default function AIChat() {
                                             <Send className="w-4 h-4" />
                                         </button>
                                     </div>
-                                     {/* Suggested Prompts */}
-                                     <div className="my-6 flex flex-wrap gap-2 justify-center">
+                                    {/* Suggested Prompts */}
+                                    <div className="my-6 flex flex-wrap gap-2 justify-center">
                                         {suggestedPrompts.map((prompt, index) => (
                                             <button
                                                 key={index}

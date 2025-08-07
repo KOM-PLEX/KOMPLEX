@@ -44,9 +44,9 @@ export default function Footer() {
                     <div>
                         <h3 className="text-xl font-bold mb-5 text-indigo-600">អំពីយើង</h3>
                         <div className="space-y-2">
-                            {ABOUT_LINKS.map((link) => (
+                            {ABOUT_LINKS.map((link, index) => (
                                 <Link
-                                    key={link.href}
+                                    key={index}
                                     href={link.href}
                                     className="block text-gray-900 hover:text-indigo-600 transition-colors"
                                 >

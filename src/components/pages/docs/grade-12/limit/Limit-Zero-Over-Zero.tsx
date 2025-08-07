@@ -10,6 +10,7 @@ import { TopicContent } from "@/types/topic";
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from 'react-katex';
 import Graph from "../../common/box/Graph";
+import ThreeDBox from "../../common/box/3DBox";
 
 // ===== TOPIC CONTENT DATA =====
 
@@ -108,6 +109,15 @@ const TOPIC_CONTENT: TopicContent = {
         />,
         imageAlt: "ក្រាបលីមីត ០/០",
         explanation: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ f(x) = (x² - 4)/(x - 2) មានរន្ធ (hole) នៅ x = 2។ ទោះបីអនុគមន៍មិនកំណត់នៅ x = 2 ក៏ដោយ លីមីតរបស់វាមានតម្លៃ 4។"
+    },
+
+    threeD: {
+        modelUrl: "/test.glb",
+        scale: 1,
+        position: [0, 0, 0],
+        rotation: [0, 0, 0],
+        title: "រូបភាព 3D",
+        content: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ f(x) = (x² - 4)/(x - 2) មានរន្ធ (hole) នៅ x = 2។ ទោះបីអនុគមន៍មិនកំណត់នៅ x = 2 ក៏ដោយ លីមីតរបស់វាមានតម្លៃ 4។"
     }
 };
 
@@ -142,6 +152,10 @@ export default function LimitZeroOverZero() {
 
             {TOPIC_CONTENT.image && (
                 <ImageBox src={TOPIC_CONTENT.image.src} imageAlt={TOPIC_CONTENT.image.imageAlt} explanation={TOPIC_CONTENT.image.explanation} />
+            )}
+
+            {TOPIC_CONTENT.threeD && (
+                <ThreeDBox modelUrl={TOPIC_CONTENT.threeD.modelUrl} title={TOPIC_CONTENT.threeD.title} content={TOPIC_CONTENT.threeD.content} style={{ height: '500px', width: '100%' }} />
             )}
         </>
     );
