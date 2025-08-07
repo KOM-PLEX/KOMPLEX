@@ -33,18 +33,39 @@ import IndefiniteIntegral from "@/components/pages/docs/grade-12/integral/Indefi
 import DefiniteIntegral from "@/components/pages/docs/grade-12/integral/Definite-Integral";
 import IntegralPractice from "@/components/pages/docs/grade-12/integral/Integral-Practice";
 import VectorDefinition from "@/components/pages/docs/grade-12/vector/Vector-Definition";
-import DotProduct from "@/components/pages/docs/grade-12/vector/2D Vector Coordinates/Dot-Product";
-import TriangleArea from "@/components/pages/docs/grade-12/vector/Shape Area/Triangle-Area";
-import PrismVolume from "@/components/pages/docs/grade-12/vector/Volume/Prism-Volume";
-import ParametricEquation from "@/components/pages/docs/grade-12/vector/Equations/Parametric-Equation";
 import differentialdefinition from "@/components/pages/docs/grade-12/differential equation/Differential-Definition";
 import DifferentialPractice from "@/components/pages/docs/grade-12/differential equation/Differential-Practice";
-import LDE1Homogeneous from "@/components/pages/docs/grade-12/differential equation/LDE1/LDE1-Homogeneous";
-import LDE2Homogeneous from "@/components/pages/docs/grade-12/differential equation/LDE2/LDE2-Homogeneous";
-import LDEnHomogeneous from "@/components/pages/docs/grade-12/differential equation/LDE-n/LDE-n-Homogeneous";
-import LDEnNonHomogeneous from "@/components/pages/docs/grade-12/differential equation/LDE-n/LDE-n-Non-Homogeneous";
-import Separable from "@/components/pages/docs/grade-12/differential equation/Various DE Forms/Separable ";
 import VectorPractice from "@/components/pages/docs/grade-12/vector/Vector-Practice";
+import TwoDVectorCoordinates from "@/components/pages/docs/grade-12/vector/2D-Vector-Coordinates";
+import ShapeArea from "@/components/pages/docs/grade-12/vector/Shape-Area";
+import Volume from "@/components/pages/docs/grade-12/vector/Volume";
+import Equations from "@/components/pages/docs/grade-12/vector/Equations";
+import LDE1 from "@/components/pages/docs/grade-12/differential equation/LDE1";
+import LDE2 from "@/components/pages/docs/grade-12/differential equation/LDE2";
+import LDEGeneral from "@/components/pages/docs/grade-12/differential equation/LDE-General";
+import VariousForms from "@/components/pages/docs/grade-12/differential equation/Various-Forms";
+import Parabola from "@/components/pages/docs/grade-12/conic/Parabola";
+import Ellipse from "@/components/pages/docs/grade-12/conic/Ellipse";
+import Hyperbola from "@/components/pages/docs/grade-12/conic/Hyperbola";
+import ConicPractice from "@/components/pages/docs/grade-12/conic/Conic-Practice";
+import FunctionDefinition from "@/components/pages/docs/grade-12/Function/Function-Definition";
+import PolynomialFunction from "@/components/pages/docs/grade-12/Function/Polynomial-Function";
+import ExponentialFunction from "@/components/pages/docs/grade-12/Function/Exponential-Function";
+import LogarithmicFunction from "@/components/pages/docs/grade-12/Function/Logarithmic-Function";
+import EquationFunction from "@/components/pages/docs/grade-12/Function/Equation-Function";
+import FunctionAnalysisPlan from "@/components/pages/docs/grade-12/Function/Function-Analysis-Plan";
+import FunctionPractice from "@/components/pages/docs/grade-12/Function/Function-Practice";
+import ProbabilityDefinition from "@/components/pages/docs/grade-12/Probability/Probability-Definition";
+import ProbabilityCombination from "@/components/pages/docs/grade-12/Probability/Probab-Combination";
+import ProbabilityPermutation from "@/components/pages/docs/grade-12/Probability/Probab-Permutation";
+import ProbabilityPractice from "@/components/pages/docs/grade-12/Probability/Probab-Practice";
+import ComplexDefinition from "@/components/pages/docs/grade-12/Complex/Complex-Definition";
+import ComplexFormulars from "@/components/pages/docs/grade-12/Complex/Complex-Formulars";
+import ComplexOperations from "@/components/pages/docs/grade-12/Complex/Complex-Operations";
+import ComplexModulus from "@/components/pages/docs/grade-12/Complex/Complex-Modulus";
+import QuadraticEquation from "@/components/pages/docs/grade-12/Complex/Quadratic-Equation";
+import TrigonometricForm from "@/components/pages/docs/grade-12/Complex/Trigonometric-Form";
+import ComplexPractice from "@/components/pages/docs/grade-12/Complex/Complex-Practice";
 
 export const math: Content = {
   subject: "math",
@@ -52,6 +73,49 @@ export const math: Content = {
   englishTitle: "Mathematics",
   icon: Calculator,
   lessons: [
+    {
+      lesson: "Complex",
+      title: "កំុផ្លិច",
+      englishTitle: "Complex",
+      icon: Target,
+      topics: [
+        {
+          title: "និយមន័យកំុផ្លិច",
+          englishTitle: "Complex-Definition",
+          component: ComplexDefinition
+        },
+        {
+          title: "រូបមន្តកំុផ្លិច",
+          englishTitle: "Complex-Formulas",
+          component: ComplexFormulars
+        },
+        {
+          title: "ប្រមាណវិធីលើចំនួនកំុផ្លិច",
+          englishTitle: "Complex-Operations",
+          component: ComplexOperations
+        },
+        {
+          title: "ម៉ូឌុលនៃកុំផ្លិច",
+          englishTitle: "Complex-Modulus",
+          component: ComplexModulus
+        },
+        {
+          title: "សមីការដឺក្រេទី ២",
+          englishTitle: "Quadratic-Equation",
+          component: QuadraticEquation
+        },
+        {
+          title: "ទម្រង់ត្រីកោណមាត្រ",
+          englishTitle: "Trigonometric-Form",
+          component: TrigonometricForm
+        },
+        {
+          title: "លំហាត់អនុវត្ត",
+          englishTitle: "Complex-Practice",
+          component: ComplexPractice
+        },  
+      ]
+    },
     {
       lesson: "limits",
       title: "លីមីត",
@@ -188,78 +252,16 @@ export const math: Content = {
           title: "អាំងតេក្រាលមិនកំណត់",
           englishTitle: "indefinite",
           component: IndefiniteIntegral,
-          // still fix 
-          subtopics: [
-
-          ]
         },
         {
           title: "អាំងតេក្រាលកំណត់",
           englishTitle: "definite",
           component: DefiniteIntegral,
-          // still fix 
-          subtopics: [
-
-          ]
         },
         {
           title: "លំហាត់អនុវត្ត",
           englishTitle: "Integral-practice",
           component: IntegralPractice,
-        },
-      ],
-    },
-    {
-      lesson: "vectors",
-      title: "វ៉ិចទ័រ",
-      englishTitle: "Vectors",
-      icon: Box,
-      topics: [
-        {
-          title: "និយមន័យវ៉ិចទ័រ",
-          englishTitle: "Vector-definition",
-          component: VectorDefinition,
-        },
-        {
-          title: "កូអរដោនេនៃវ៉ិចទ័រក្នុងលំហ",
-          englishTitle: "Dimensional-coordinates",
-          component: DotProduct,
-          // still fix 
-          subtopics: [
-
-          ]
-        },
-        {
-          title: "ផ្ទៃក្រាឡា",
-          englishTitle: "Triangle-area",
-          component: TriangleArea,
-          // still fix 
-          subtopics: [
-
-          ]
-        },
-        {
-          title: "មាឌ",
-          englishTitle: "Prism-volume",
-          component: PrismVolume,
-          // still fix 
-          subtopics: [
-
-          ]
-        },
-        {
-          title: "សមីការ",
-          englishTitle: "Parametric-equation",
-          component: ParametricEquation,
-          // still fix 
-          subtopics: [
-
-          ]
-        },
-        {
-          title: "លំហាត់អនុវត្ត",
-          englishTitle: "Vector-practice",
-          component: VectorPractice,
         },
       ],
     },
@@ -277,26 +279,22 @@ export const math: Content = {
         {
           title: "សមីការឌីផែរ៉ង់ស្សែលលីនែអ៌ែរលំដាប់១មានមេគុណថេរ",
           englishTitle: "Linear-differential-equation-homogeneous-order-1",
-          component: LDE1Homogeneous,
-          // still fix 
+          component: LDE1,
         },
         {
           title: "សមីការឌីផែរ៉ង់ស្សែលលីនែអ៌ែរលំដាប់២មានមេគុណថេរ",
           englishTitle: "Linear-differential-equation-homogeneous-order-2",
-          component: LDE2Homogeneous,
-          // still fix 
+          component: LDE2,
         },
         {
           title: "សមីការឌីផែរ៉ង់ស្សែលលីនែអ៌ែរលំដាប់ទូទៅមានមេគុណថេរ",
           englishTitle: "General-linear-differential-equation-homogeneous",
-          component: LDEnHomogeneous,
-          // still fix 
+          component: LDEGeneral,
         },
         {
           title: "សមីការឌីផែរ៉ង់ស្សែលទម្រង់ផ្សេងៗ",
-          englishTitle: "Separable-differential-equation",
-          component: Separable,
-          // still fix 
+          englishTitle: "differential-equation",
+          component: VariousForms,
         },
         {
           title: "លំហាត់អនុវត្ត",
@@ -304,6 +302,144 @@ export const math: Content = {
           component: DifferentialPractice,
         },
       ]
-    }
+    },
+    {
+      lesson: "Probability",
+      title: "ប្រូបាប",
+      englishTitle: "Probability",
+      icon: Box,
+      topics: [
+        {
+          title: "និយមន័យប្រូបាប",
+          englishTitle: "Probability-Definition",
+          component: ProbabilityDefinition,
+        },
+        {
+          title: "ប្រូបាបចម្លាស់",
+          englishTitle: "Probability-Permutation",
+          component: ProbabilityPermutation,
+        },
+        {
+          title: "ប្រូបាបបន្សំ",
+          englishTitle: "Probability-Combination",
+          component: ProbabilityCombination,
+        },
+        {
+          title: "លំហាត់អនុវត្ត",
+          englishTitle: "Probability-Practice",
+          component: ProbabilityPractice,
+        }, 
+      ]
+    },
+    {
+      lesson: "vectors",
+      title: "វ៉ិចទ័រ",
+      englishTitle: "Vectors",
+      icon: Box,
+      topics: [
+        {
+          title: "និយមន័យវ៉ិចទ័រ",
+          englishTitle: "Vector-definition",
+          component: VectorDefinition,
+        },
+        {
+          title: "កូអរដោនេនៃវ៉ិចទ័រក្នុងលំហ",
+          englishTitle: "2D-Vector-coordinates",
+          component: TwoDVectorCoordinates,
+          
+        },
+        {
+          title: "ផ្ទៃក្រឡា",
+          englishTitle: "Shape-area",
+          component: ShapeArea,
+        },
+        {
+          title: "មាឌ",
+          englishTitle: "Volume",
+          component: Volume,
+        },
+        {
+          title: "សមីការ",
+          englishTitle: "Vector-Equations",
+          component: Equations,
+        },
+        {
+          title: "លំហាត់អនុវត្ត",
+          englishTitle: "Vector-practice",
+          component: VectorPractice,
+        },
+      ],
+    },
+    {
+      lesson: "Conics",
+      title: "កោនិក",
+      englishTitle: "Conics",
+      icon: Box,
+      topics: [
+        {
+          title: "ប៉ារ៉ាបូល",
+          englishTitle: "Parabola",
+          component: Parabola,
+        },
+        {
+          title: "អេលីប",
+          englishTitle: "Ellipse",
+          component: Ellipse,
+        },
+        {
+          title: "អុីពែបូល",
+          englishTitle: "Hyperbola",
+          component: Hyperbola,
+        },
+        {
+          title: "លំហាត់អនុវត្ត",
+          englishTitle: "Conic-Practice",
+          component: ConicPractice,
+        },
+      ]
+    },
+    {
+      lesson: "Functions",
+      title: "អនុគមន៍",
+      englishTitle: "Functions",
+      icon: Box,
+      topics: [
+        {
+          title: "និយមន័យអនុគមន៍",
+          englishTitle: "Function-Definition",
+          component: FunctionDefinition,
+        },
+        {
+          title: "អនុគមន៍សនិទាន",
+          englishTitle: "Polynomial-Function",
+          component: PolynomialFunction,
+        },
+        {
+          title: "អនុគមន៍អិចស្បូណង់ស្យែល ",
+          englishTitle: "Exponential-Function",
+          component: ExponentialFunction,
+        },
+        {
+          title: "អនុគមន៍ឡូការីត",
+          englishTitle: "Logarithmic-Function",
+          component: LogarithmicFunction,
+        },
+        {
+          title: "សមីការ",
+          englishTitle: "Equation-Function",
+          component: EquationFunction,
+        },
+        {
+          title: "ប្លង់សិក្សាអនុគមន៍",
+          englishTitle: "Function-Analysis-Plan",
+          component: FunctionAnalysisPlan,
+        },
+        {
+          title: "លំហាត់អនុវត្ត",
+          englishTitle: "Function-Practice",
+          component: FunctionPractice,
+        },
+      ]
+    },
   ],
 };
