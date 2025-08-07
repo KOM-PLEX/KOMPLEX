@@ -34,4 +34,5 @@ export interface Topic {
   title: string; // Khmer topic name (e.g., "លីមីត ០/០")
   englishTitle: string; // English topic identifier (e.g., "zero-over-zero")
   component: React.ComponentType<{ size?: number; className?: string }>; // Topic component
+  subtopics?: Topic[]; // Optional subtopics within this topic
 }
