@@ -1,3 +1,4 @@
+import { ThreeDBoxProps } from '@/components/pages/docs/common/box/3DBox';
 // ===== TOPIC CONTENT TYPES =====
 // These types define the structure for educational topic content
 // Each type corresponds to a specific box component used in topic pages
@@ -10,9 +11,9 @@ export interface Step {
 
 export interface ExerciseQuestion {
   id: string;
-  question: string;
-  options: string[];
-  correctAnswer: number;
+  question: string | React.ReactNode;
+  options: string[] | React.ReactNode[];
+  correctAnswer: number | React.ReactNode;
 }
 
 // ===== BOX COMPONENT PROP INTERFACES =====
@@ -26,7 +27,6 @@ import { ExerciseBoxProps } from "@/components/pages/docs/common/box/ExerciseBox
 import { HintBoxProps } from "@/components/pages/docs/common/box/HintBox";
 import { WarningBoxProps } from "@/components/pages/docs/common/box/WarningBox";
 import { ImageBoxProps } from "@/components/pages/docs/common/box/ImageBox";
-import { ThreeDBoxProps } from "@/components/pages/docs/common/box/3DBox";
 import { GraphBoxProps } from "@/components/pages/docs/common/box/GraphBox";
 
 // ===== MAIN TOPIC CONTENT INTERFACE =====
