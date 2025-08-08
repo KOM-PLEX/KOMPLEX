@@ -378,16 +378,15 @@ export default function Home() {
             </div>
             <div className="lg:order-1">
               <ThreeDBox
-                modelUrl="/test.glb"
-                scale={0.1}
-                target={[6, 0, 0]}
+                modelUrl="/test4.glb"
+                scale={0.7}
+                target={[0, 0, 0]}
                 canvasBackgroundColor="black"
-                title="រូបភាព 3D គណិតវិទ្យា"
+                title="រូបភាព 3D"
                 height={500}
                 canvasBackground={<Stars radius={100} depth={50} count={5000} factor={4} fade />}
                 threeDText={[
-                  { content: "រូបភាព 3D", position: [0, 3, -5], fontSize: 0.8, color: "white" },
-                  { content: "បង្វិលដើម្បីមើល", position: [0, 1, -5], fontSize: 0.4, color: "white" }
+                  { content: "រូបភាព 3D", position: [0, 1, -1], fontSize: 0.8, color: "white" },
                 ]}
               />
             </div>
