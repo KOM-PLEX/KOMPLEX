@@ -7,7 +7,7 @@ import WarningBox from "../../common/box/WarningBox";
 import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
 import Graph from "../../common/box/Graph";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 
 const TOPIC_CONTENT: TopicContent = {
 	definition: {
@@ -33,7 +33,7 @@ const TOPIC_CONTENT: TopicContent = {
 	},
 
 	example: {
-		question: <BlockMath math="f(x) = x^2 - 4x + 3" />,
+		question: <InlineMath math="f(x) = x^2 - 4x + 3" />,
 		steps: [
 			{
 				title: "រកដែនកំណត់ និងជួរតម្លៃ",
@@ -73,7 +73,7 @@ const TOPIC_CONTENT: TopicContent = {
 		questions: [
 			{
 				id: "q1",
-				question: <BlockMath math="f(x) = x^2 - 2x + 1" />,
+				question: <>គណនាអនុគមន៍: <InlineMath math="f(x) = x^2 - 2x + 1" /></>,
 				options: [
 					"ដែនកំណត់គឺ (-∞, ∞)",
 					"ជួរតម្លៃគឺ (0, ∞)",

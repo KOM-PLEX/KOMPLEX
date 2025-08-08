@@ -49,7 +49,7 @@ import Ellipse from "@/components/pages/docs/grade-12/conic/Ellipse";
 import Hyperbola from "@/components/pages/docs/grade-12/conic/Hyperbola";
 import ConicPractice from "@/components/pages/docs/grade-12/conic/Conic-Practice";
 import FunctionDefinition from "@/components/pages/docs/grade-12/Function/Function-Definition";
-import AnukomSanitean from "@/components/pages/docs/grade-12/Function/AnukomSanitean";
+import PolynomialFunction from "@/components/pages/docs/grade-12/Function/Polynomial-Function";
 import ExponentialFunction from "@/components/pages/docs/grade-12/Function/Exponential-Function";
 import LogarithmicFunction from "@/components/pages/docs/grade-12/Function/Logarithmic-Function";
 import EquationFunction from "@/components/pages/docs/grade-12/Function/Equation-Function";
@@ -412,7 +412,7 @@ export const math: Content = {
         {
           title: "អនុគមន៍សនិទាន",
           englishTitle: "Polynomial-Function",
-          component: AnukomSanitean,
+          component: PolynomialFunction,
         },
         {
           title: "អនុគមន៍អិចស្បូណង់ស្យែល ",

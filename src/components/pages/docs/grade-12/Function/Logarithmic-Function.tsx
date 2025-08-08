@@ -7,7 +7,7 @@ import WarningBox from "../../common/box/WarningBox";
 import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
 import Graph from "../../common/box/Graph";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 
 const TOPIC_CONTENT: TopicContent = {
 	definition: {
@@ -15,7 +15,7 @@ const TOPIC_CONTENT: TopicContent = {
 		content: (
 			<>
 				អនុគមន៍ឡូហ្សារីធមិគឺជាអនុគមន៍ដែលជាការវិលត្រឡប់នៃអនុគមន៍អិចស្ប៉ូណង់ស្យែល។
-				តម្លៃអនុគមន៍ត្រូវបានកំណត់ដោយសមីការ <BlockMath math="f(x) = \log_a x" /> ដែល <InlineMath math="a" />{" "}
+				តម្លៃអនុគមន៍ត្រូវបានកំណត់ដោយសមីការ <InlineMath math="f(x) = \log_a x" /> ដែល <InlineMath math="a" />{" "}
 				ជាចំនួនវិជ្ជមាន និង a ≠ 1។
 				<br />
 				វានិយមប្រើសម្រាប់រកសមីការនៃចំនួនដែលត្រូវបានកើន ឬថយក្រោមមូលដ្ឋាន<a> a </a>។
@@ -37,7 +37,7 @@ const TOPIC_CONTENT: TopicContent = {
 	},
 
 	example: {
-		question: <BlockMath math="f(x) = \log_2 x" />,
+		question: <InlineMath math="f(x) = \log_2 x" />,
 		steps: [
 			{
 				title: "ជ្រើសតម្លៃ x",
@@ -51,21 +51,54 @@ const TOPIC_CONTENT: TopicContent = {
 				title: "គណនាតម្លៃ f(x)",
 				content: (
 					<>
-						<BlockMath math="f(1) = \log_2 1 = 0" />
-						<BlockMath math="f(2) = \log_2 2 = 1" />
-						<BlockMath math="f(4) = \log_2 4 = 2" />
-						<BlockMath math="f(8) = \log_2 8 = 3" />
+						<ul className="list-disc list-inside space-y-3 text-small">
+							<li>
+								<InlineMath math="f(1) = \log_2 1 = 0" />
+							</li>
+							<li>
+								<InlineMath math="f(2) = \log_2 2 = 1" />
+							</li>
+							<li>
+								<InlineMath math="f(4) = \log_2 4 = 2" />
+							</li>
+							<li>
+								<InlineMath math="f(8) = \log_2 8 = 3" />
+							</li>
+						</ul>
 					</>
 				),
 			},
 			{
 				title: "តារាងតម្លៃ",
 				content: (
-					<>
-						<InlineMath math="x: 1 \quad 2 \quad 4 \quad 8" />
-						<br />
-						<InlineMath math="f(x): 0 \quad 1 \quad 2 \quad 3" />
-					</>
+          <table className="table-auto border-collapse border border-gray-300 text-left my-4">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 px-4 py-2 text-left font-bold">x</th>
+                <th className="border border-gray-300 px-4 py-2 text-left font-normal">1</th>
+                <th className="border border-gray-300 px-4 py-2 text-left font-normal">2</th>
+                <th className="border border-gray-300 px-4 py-2 text-left font-normal">4</th>
+                <th className="border border-gray-300 px-4 py-2 text-left font-normal">8</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th className="border border-gray-300 px-4 py-2 text-left font-bold">f(x)</th>
+                <td className="border border-gray-300 px-4 py-2 text-left">
+                  <InlineMath math="0" />
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-left">
+                  <InlineMath math="1" />
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-left">
+                  <InlineMath math="2" />
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-left">
+                  <InlineMath math="3" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
 				),
 			},
 		],
@@ -76,13 +109,13 @@ const TOPIC_CONTENT: TopicContent = {
 		questions: [
 			{
 				id: "q1",
-				question: <BlockMath math="f(x) = \log_3 9, \quad f(x) = \;?" />,
+				question: <>រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = \log_3 9, \quad f(x) = \;?" /></>,
 				options: ["1", "2", "3", "0"],
 				correctAnswer: 1,
 			},
 			{
 				id: "q2",
-				question: <BlockMath math="f(x) = \log_5 25, \quad f(x) = \;?" />,
+				question: <>រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = \log_5 25, \quad f(x) = \;?" /></>,
 				options: ["5", "2", "3", "4"],
 				correctAnswer: 1,
 			},

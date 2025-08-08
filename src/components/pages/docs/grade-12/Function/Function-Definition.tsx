@@ -7,7 +7,7 @@ import WarningBox from "../../common/box/WarningBox";
 import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
 import Graph from "../../common/box/Graph";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 
 // ===== TOPIC CONTENT DATA =====
 
@@ -16,11 +16,10 @@ const TOPIC_CONTENT: TopicContent = {
 		title: "អនុគមន៍សនិទាន",
 		content: (
 			<>
-				អនុគមន៍សនិទាន គឺជាអនុគមន៍ដែលមានតម្លៃ <InlineMath math="f(x)" /> ដូចគ្នា
-				សម្រាប់គ្រប់តម្លៃ <InlineMath math="x" /> ទាំងអស់។
+				អនុគមន៍សនិទាន គឺជាអនុគមន៍ដែលមានតម្លៃ <InlineMath math="f(x)" /> ដូចគ្នា សម្រាប់គ្រប់តម្លៃ{" "}
+				<InlineMath math="x" /> ទាំងអស់។
 				<br />
-				ក្នុងទម្រង់គណិតវិទ្យា អាចសរសេរ៖ <BlockMath math="f(x) = c" /> ដែល{" "}
-				<InlineMath math="c" /> ជាចំនួនថេរ។
+				ក្នុងទម្រង់គណិតវិទ្យា អាចសរសេរ៖ <InlineMath math="f(x) = c" /> ដែល <InlineMath math="c" /> ជាចំនួនថេរ។
 			</>
 		),
 	},
@@ -30,15 +29,14 @@ const TOPIC_CONTENT: TopicContent = {
 		content: (
 			<>
 				• ក្រាបជាបន្ទាត់ផ្តេកកាត់អ័ក្ស y នៅ <InlineMath math="y = c" /> <br />
-				• ចំនួនថេរ <InlineMath math="c" /> គឺជាកម្ពស់នៃបន្ទាត់<br />
-				• មិនសូវមានការប្រែប្រួលតម្លៃទេ ព្រោះគ្រប់{" "}
-				<InlineMath math="x" /> ផ្តល់តម្លៃដូចគ្នា
+				• ចំនួនថេរ <InlineMath math="c" /> គឺជាកម្ពស់នៃបន្ទាត់
+				<br />• មិនសូវមានការប្រែប្រួលតម្លៃទេ ព្រោះគ្រប់ <InlineMath math="x" /> ផ្តល់តម្លៃដូចគ្នា
 			</>
 		),
 	},
 
 	example: {
-		question: <BlockMath math="f(x) = 5" />,
+		question: <InlineMath math="f(x) = 5" />,
 		steps: [
 			{
 				title: "ជ្រើសតម្លៃ x",
@@ -51,21 +49,51 @@ const TOPIC_CONTENT: TopicContent = {
 			{
 				title: "គណនាតម្លៃ f(x)",
 				content: (
-					<>
-						<BlockMath math="f(-1) = 5" />
-						<BlockMath math="f(0) = 5" />
-						<BlockMath math="f(2) = 5" />
-					</>
+          <>
+            <ul className="list-disc list-inside space-y-3 text-small">
+              <li>
+                <InlineMath math="f(1) = \log_2 1 = 0" />
+              </li>
+              <li>
+                <InlineMath math="f(2) = \log_2 2 = 1" />
+              </li>
+              <li>
+                <InlineMath math="f(4) = \log_2 4 = 2" />
+              </li>
+              <li>
+                <InlineMath math="f(8) = \log_2 8 = 3" />
+              </li>
+            </ul>
+          </>
 				),
 			},
 			{
 				title: "តារាងតម្លៃ",
 				content: (
-					<>
-						<InlineMath math="x: -1 \quad 0 \quad 2" />
-						<br />
-						<InlineMath math="f(x): 5 \quad 5 \quad 5" />
-					</>
+					<table className="table-auto border-collapse border border-gray-300 text-left my-4">
+						<thead>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">x</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">-1</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">0</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">2</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">f(x)</th>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="5" />
+								</td>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="5" />
+								</td>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="5" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				),
 			},
 		],
@@ -76,25 +104,28 @@ const TOPIC_CONTENT: TopicContent = {
 		questions: [
 			{
 				id: "q1",
-				question: <BlockMath math="f(x) = -3, \quad f(7) = \;?" />,
+				question: (
+					<>
+						រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = -3, \quad f(7) = \;?" />
+					</>
+				),
 				options: ["7", "-3", "0", "3"],
 				correctAnswer: 1,
 			},
 			{
 				id: "q2",
-				question: <BlockMath math="f(x) = 10, \quad f(-5) = \;?" />,
+				question: (
+					<>
+						រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = 10, \quad f(-5) = \;?" />
+					</>
+				),
 				options: ["10", "-5", "5", "0"],
 				correctAnswer: 0,
 			},
 			{
 				id: "q3",
 				question: "ក្រាបរបស់អនុគមន៍សនិទានមានរូបរាងដូចម្តេច?",
-				options: [
-					"បន្ទាត់ផ្តេក",
-					"បន្ទាត់ទ្រេត",
-					"បន្ទាត់កោង",
-					"បន្ទាត់បញ្ឈរ",
-				],
+				options: ["បន្ទាត់ផ្តេក", "បន្ទាត់ទ្រេត", "បន្ទាត់កោង", "បន្ទាត់បញ្ឈរ"],
 				correctAnswer: 0,
 			},
 		],
@@ -103,9 +134,8 @@ const TOPIC_CONTENT: TopicContent = {
 	hint: {
 		content: (
 			<>
-				សូមចងចាំថា អនុគមន៍សនិទាន{" "}
-				<InlineMath math="f(x) = c" /> មានតម្លៃថេរ មិនថា{" "}
-				<InlineMath math="x" /> ផ្លាស់ប្ដូរយ៉ាងណាក៏ដោយ។
+				សូមចងចាំថា អនុគមន៍សនិទាន <InlineMath math="f(x) = c" /> មានតម្លៃថេរ មិនថា <InlineMath math="x" />{" "}
+				ផ្លាស់ប្ដូរយ៉ាងណាក៏ដោយ។
 			</>
 		),
 	},
@@ -113,27 +143,19 @@ const TOPIC_CONTENT: TopicContent = {
 	warning: {
 		content: (
 			<>
-				កុំច្រឡំអនុគមន៍សនិទានជាមួយអនុគមន៍បន្ទាត់ទ្រេត{" "}
-				<InlineMath math="f(x) = mx + b" /> ព្រោះអនុគមន៍សនិទានមាន{" "}
+				កុំច្រឡំអនុគមន៍សនិទានជាមួយអនុគមន៍បន្ទាត់ទ្រេត <InlineMath math="f(x) = mx + b" /> ព្រោះអនុគមន៍សនិទានមាន{" "}
 				<InlineMath math="m = 0" /> ប៉ុណ្ណោះ។
 			</>
 		),
 	},
 
 	image: {
-		src: (
-			<Graph
-				expressions={[
-					{ id: "1", latex: "f(x)=5", color: "#FF4136" },
-				]}
-			/>
-		),
+		src: <Graph expressions={[{ id: "1", latex: "f(x)=5", color: "#FF4136" }]} />,
 		imageAlt: "ក្រាបអនុគមន៍សនិទាន",
 		explanation: (
 			<>
-				ក្រាបបង្ហាញអនុគមន៍{" "}
-				<InlineMath math="f(x) = 5" /> ជាបន្ទាត់ផ្តេកកាត់អ័ក្ស y
-				នៅចំណុច <InlineMath math="y = 5" />។
+				ក្រាបបង្ហាញអនុគមន៍ <InlineMath math="f(x) = 5" /> ជាបន្ទាត់ផ្តេកកាត់អ័ក្ស y នៅចំណុច{" "}
+				<InlineMath math="y = 5" />។
 			</>
 		),
 	},
@@ -145,18 +167,10 @@ export default function AnukomSanitean() {
 	return (
 		<>
 			{TOPIC_CONTENT.definition && (
-				<DefinitionBox
-					title={TOPIC_CONTENT.definition.title}
-					content={TOPIC_CONTENT.definition.content}
-				/>
+				<DefinitionBox title={TOPIC_CONTENT.definition.title} content={TOPIC_CONTENT.definition.content} />
 			)}
 
-			{TOPIC_CONTENT.tip && (
-				<TipBox
-					title={TOPIC_CONTENT.tip.title}
-					content={TOPIC_CONTENT.tip.content}
-				/>
-			)}
+			{TOPIC_CONTENT.tip && <TipBox title={TOPIC_CONTENT.tip.title} content={TOPIC_CONTENT.tip.content} />}
 
 			{TOPIC_CONTENT.example && (
 				<ExampleBox
@@ -166,17 +180,11 @@ export default function AnukomSanitean() {
 				/>
 			)}
 
-			{TOPIC_CONTENT.exercise && (
-				<ExerciseBox questions={TOPIC_CONTENT.exercise.questions} />
-			)}
+			{TOPIC_CONTENT.exercise && <ExerciseBox questions={TOPIC_CONTENT.exercise.questions} />}
 
-			{TOPIC_CONTENT.hint && (
-				<HintBox content={TOPIC_CONTENT.hint.content} />
-			)}
+			{TOPIC_CONTENT.hint && <HintBox content={TOPIC_CONTENT.hint.content} />}
 
-			{TOPIC_CONTENT.warning && (
-				<WarningBox content={TOPIC_CONTENT.warning.content} />
-			)}
+			{TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
 
 			{TOPIC_CONTENT.image && (
 				<ImageBox

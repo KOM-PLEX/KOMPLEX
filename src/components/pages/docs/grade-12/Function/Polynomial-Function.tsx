@@ -7,7 +7,7 @@ import WarningBox from "../../common/box/WarningBox";
 import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
 import Graph from "../../common/box/Graph";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 
 // ===== TOPIC CONTENT DATA =====
 
@@ -19,7 +19,7 @@ const TOPIC_CONTENT: TopicContent = {
 				អនុគមន៍សនិទាន គឺជាអនុគមន៍ដែលមានតម្លៃ <InlineMath math="f(x)" /> ដូចគ្នា សម្រាប់គ្រប់តម្លៃ{" "}
 				<InlineMath math="x" /> ទាំងអស់។
 				<br />
-				ក្នុងទម្រង់គណិតវិទ្យា អាចសរសេរ៖ <BlockMath math="f(x) = c" /> ដែល <InlineMath math="c" /> ជាចំនួនថេរ។
+				ក្នុងទម្រង់គណិតវិទ្យា អាចសរសេរ៖ <InlineMath math="f(x) = c" /> ដែល <InlineMath math="c" /> ជាចំនួនថេរ។
 			</>
 		),
 	},
@@ -36,7 +36,7 @@ const TOPIC_CONTENT: TopicContent = {
 	},
 
 	example: {
-		question: <BlockMath math="f(x) = 5" />,
+		question: <InlineMath math="f(x) = 5" />,
 		steps: [
 			{
 				title: "ជ្រើសតម្លៃ x",
@@ -50,20 +50,47 @@ const TOPIC_CONTENT: TopicContent = {
 				title: "គណនាតម្លៃ f(x)",
 				content: (
 					<>
-						<BlockMath math="f(-1) = 5" />
-						<BlockMath math="f(0) = 5" />
-						<BlockMath math="f(2) = 5" />
+						<ul className="list-disc list-inside space-y-3 text-small">
+							<li>
+								<InlineMath math="f(-1) = 5" />
+							</li>
+							<li>
+								<InlineMath math="f(0) = 5" />
+							</li>
+							<li>
+								<InlineMath math="f(2) = 5" />
+							</li>
+						</ul>
 					</>
 				),
 			},
 			{
 				title: "តារាងតម្លៃ",
 				content: (
-					<>
-						<InlineMath math="x: -1 \quad 0 \quad 2" />
-						<br />
-						<InlineMath math="f(x): 5 \quad 5 \quad 5" />
-					</>
+					<table className="table-auto border-collapse border border-gray-300 text-left my-4">
+						<thead>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">x</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">-1</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">0</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">2</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">f(x)</th>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="5" />
+								</td>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="5" />
+								</td>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="5" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				),
 			},
 		],
@@ -74,13 +101,13 @@ const TOPIC_CONTENT: TopicContent = {
 		questions: [
 			{
 				id: "q1",
-				question: <BlockMath math="f(x) = -3, \quad f(7) = \;?" />,
+				question: <>រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = -3, \quad f(7) = \;?" /></>,
 				options: ["7", "-3", "0", "3"],
 				correctAnswer: 1,
 			},
 			{
 				id: "q2",
-				question: <BlockMath math="f(x) = 10, \quad f(-5) = \;?" />,
+				question: <>រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = 10, \quad f(-5) = \;?" /></>,
 				options: ["10", "-5", "5", "0"],
 				correctAnswer: 0,
 			},
@@ -125,7 +152,7 @@ const TOPIC_CONTENT: TopicContent = {
 
 // ===== MAIN COMPONENT =====
 
-export default function AnukomSanitean() {
+export default function PolynomialFunction() {
 	return (
 		<>
 			{TOPIC_CONTENT.definition && (

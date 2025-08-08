@@ -7,7 +7,7 @@ import WarningBox from "../../common/box/WarningBox";
 import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
 import Graph from "../../common/box/Graph";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 
 const TOPIC_CONTENT: TopicContent = {
 	definition: {
@@ -34,7 +34,7 @@ const TOPIC_CONTENT: TopicContent = {
 	},
 
 	example: {
-		question: <BlockMath math="f(x) = 2x + 3" />,
+		question: <InlineMath math="f(x) = 2x + 3" />,
 		steps: [
 			{
 				title: "ជ្រើសតម្លៃ x",
@@ -47,21 +47,48 @@ const TOPIC_CONTENT: TopicContent = {
 			{
 				title: "គណនាតម្លៃ f(x)",
 				content: (
-					<>
-						<BlockMath math="f(0) = 2(0) + 3 = 3" />
-						<BlockMath math="f(1) = 2(1) + 3 = 5" />
-						<BlockMath math="f(2) = 2(2) + 3 = 7" />
-					</>
+          <>
+            <ul className="list-disc list-inside space-y-3 text-small">
+              <li>
+                <InlineMath math="f(0) = 2(0) + 3 = 3" />
+              </li>
+              <li>
+                <InlineMath math="f(1) = 2(1) + 3 = 5" />
+              </li>
+              <li>
+                <InlineMath math="f(2) = 2(2) + 3 = 7" />
+              </li>
+            </ul>
+          </>
 				),
 			},
 			{
 				title: "តារាងតម្លៃ",
 				content: (
-					<>
-						<InlineMath math="x: 0 \quad 1 \quad 2" />
-						<br />
-						<InlineMath math="f(x): 3 \quad 5 \quad 7" />
-					</>
+          <table className="table-auto border-collapse border border-gray-300 text-left my-4">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 px-4 py-2 text-left font-bold">x</th>
+                <th className="border border-gray-300 px-4 py-2 text-left font-normal">0</th>
+                <th className="border border-gray-300 px-4 py-2 text-left font-normal">1</th>
+                <th className="border border-gray-300 px-4 py-2 text-left font-normal">2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th className="border border-gray-300 px-4 py-2 text-left font-bold">f(x)</th>
+                <td className="border border-gray-300 px-4 py-2 text-left">
+                  <InlineMath math="3" />
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-left">
+                  <InlineMath math="5" />
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-left">
+                  <InlineMath math="7" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
 				),
 			},
 		],
@@ -72,13 +99,13 @@ const TOPIC_CONTENT: TopicContent = {
 		questions: [
 			{
 				id: "q1",
-				question: <BlockMath math="f(x) = 3x - 1, \quad f(2) = \;?" />,
+				question: <>រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = 3x - 1, \quad f(2) = \;?" /></>,
 				options: ["5", "6", "7", "8"],
 				correctAnswer: 0,
 			},
 			{
 				id: "q2",
-				question: <BlockMath math="f(x) = x^2 + 1, \quad f(3) = \;?" />,
+				question: <>រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = x^2 + 1, \quad f(3) = \;?" /></>,
 				options: ["9", "10", "11", "12"],
 				correctAnswer: 1,
 			},
