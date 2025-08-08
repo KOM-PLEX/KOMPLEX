@@ -1,94 +1,67 @@
-// ModelViewer.tsx (TSX because you're using types)
-import React, { Suspense, useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
+import React, { Suspense, useEffect, useRef } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { useGLTF, OrbitControls, Stars, Text, Html } from '@react-three/drei'
 import { Box } from 'lucide-react'
-import { Object3D, PerspectiveCamera } from 'three'
+import { Object3D, Mesh, ColorRepresentation } from 'three'
+import BulletList from '../../../../helper/BulletList'
 
-interface ModelProps {
-    url: string
-    scale?: number
+interface ThreeDTextItem {
+    content: string
     position?: [number, number, number]
+    fontSize?: number
+    color?: string
     rotation?: [number, number, number]
+}
+
+interface TwoDTextItem {
+    content: string
+    style?: React.CSSProperties
 }
 
 export interface ThreeDBoxProps {
-    modelUrl: string
+    modelUrl?: string
     scale?: number
-    position?: [number, number, number]
-    rotation?: [number, number, number]
-    style?: React.CSSProperties
-    title?: React.ReactNode
+    target?: [number, number, number]
+    title?: string
     content?: string | string[] | React.ReactNode
+    canvasBackground?: React.ReactNode
+    canvasBackgroundColor?: ColorRepresentation
+    threeDText?: ThreeDTextItem | ThreeDTextItem[]
+    twoDText?: TwoDTextItem | TwoDTextItem[]
+    height?: number
 }
 
-const Model = ({ url, scale = 1, position = [0, 0, 0], rotation = [0, 0, 0] }: ModelProps) => {
-    const { scene } = useGLTF(url)
-    return (
-        <primitive
-            object={scene}
-            scale={scale}
-            position={[0, 0, 0]}
-            rotation={rotation}
-        />
-    )
-}
+const Model = ({ modelUrl = '/test.glb', scale = 0.1 }: { modelUrl: string; scale: number }) => {
+    const { scene } = useGLTF(modelUrl)
 
-function CameraController({ theta, phi, radius }: { theta: number; phi: number; radius: number }) {
-    const cameraRef = useRef<PerspectiveCamera>(null)
-    useFrame(({ camera }) => {
-        // Spherical to Cartesian
-        const x = radius * Math.sin(phi) * Math.cos(theta)
-        const y = radius * Math.cos(phi)
-        const z = radius * Math.sin(phi) * Math.sin(theta)
-        camera.position.set(x, y, z)
-        camera.lookAt(0, 0, 0)
-    })
-    return null
+    useEffect(() => {
+        const findMesh = (obj: Object3D): Mesh | null => {
+            if (obj.type === 'Mesh') return obj as Mesh
+            for (const child of obj.children) {
+                const found = findMesh(child)
+                if (found) return found
+            }
+            return null
+        }
+        const mesh = findMesh(scene)
+        if (mesh) mesh.position.set(0, 0, 0)
+    }, [scene])
+
+    return <primitive object={scene} scale={scale} position={[0, 0, 0]} />
 }
 
 export default function ThreeDBox({
-    modelUrl,
-    scale,
-    position,
-    rotation,
-    style = { height: '1000px', width: '100%' },
+    modelUrl = '/test.glb',
+    scale = 0.1,
+    target = [0, 0, 0],
     title = 'រូបភាព 3D',
     content,
+    canvasBackground,
+    canvasBackgroundColor,
+    threeDText,
+    twoDText,
+    height = 500
 }: ThreeDBoxProps) {
-    // Camera spherical coordinates
-    const [theta, setTheta] = useState(Math.PI / 2) // azimuthal
-    const [phi, setPhi] = useState(Math.PI / 2) // polar
-    const radius = 5
-    const [isDragging, setIsDragging] = useState(false)
-    const [lastPos, setLastPos] = useState<[number, number] | null>(null)
-
-    const handlePointerDown = (e: React.PointerEvent) => {
-        setIsDragging(true)
-        setLastPos([e.clientX, e.clientY])
-    }
-
-    const handlePointerMove = (e: React.PointerEvent) => {
-        if (isDragging && lastPos) {
-            const deltaX = e.clientX - lastPos[0]
-            const deltaY = e.clientY - lastPos[1]
-            // Sensitivity factors
-            setTheta((prev) => prev - deltaX * 0.01)
-            setPhi((prev) => {
-                let next = prev - deltaY * 0.01
-                // Clamp phi to avoid flipping
-                next = Math.max(0.1, Math.min(Math.PI - 0.1, next))
-                return next
-            })
-            setLastPos([e.clientX, e.clientY])
-        }
-    }
-
-    const handlePointerUp = () => {
-        setIsDragging(false)
-        setLastPos(null)
-    }
-
     return (
         <div className="bg-indigo-500/10 border my-6 border-indigo-600 rounded-xl p-4 shadow-lg">
             {/* Title */}
@@ -98,41 +71,100 @@ export default function ThreeDBox({
             </div>
 
             {/* 3D Canvas */}
-            <div
-                className="w-full h-[500px] rounded-xl overflow-hidden mb-4 border border-indigo-200 bg-white cursor-grab active:cursor-grabbing"
-                onPointerDown={handlePointerDown}
-                onPointerMove={handlePointerMove}
-                onPointerUp={handlePointerUp}
-                onPointerLeave={handlePointerUp}
-            >
-                <Canvas style={style} camera={{ position: [0, 0, radius], fov: 50 }}>
+            <div className="w-full rounded-xl overflow-hidden mb-4 border border-indigo-200" style={{ height: `${height}px` }}>
+                <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+                    <color attach="background" args={[canvasBackgroundColor || 'white']} />
+
+                    <OrbitControls
+                        enablePan
+                        enableZoom
+                        enableRotate
+                        minDistance={1}
+                        maxDistance={20}
+                        target={target}
+                    />
+
+                    <Suspense fallback={null}>
+                        <Model modelUrl={modelUrl} scale={scale} />
+                    </Suspense>
+
+                    {/* Procedural or custom background */}
+                    {canvasBackground}
+
+                    {/* 3D Text */}
+                    {threeDText && (
+                        Array.isArray(threeDText) ? (
+                            threeDText.map((item, index) => (
+                                <Text
+                                    key={index}
+                                    position={item.position || [0, 2, -5]}
+                                    fontSize={item.fontSize || 0.5}
+                                    color={item.color || "white"}
+                                    anchorX="center"
+                                    anchorY="middle"
+                                    rotation={item.rotation || [0, 0, 0]}
+                                >
+                                    {item.content}
+                                </Text>
+                            ))
+                        ) : (
+                            <Text
+                                position={threeDText.position || [0, 2, -5]}
+                                fontSize={threeDText.fontSize || 0.5}
+                                color={threeDText.color || "white"}
+                                anchorX="center"
+                                anchorY="middle"
+                                rotation={threeDText.rotation || [0, 0, 0]}
+                            >
+                                {threeDText.content}
+                            </Text>
+                        )
+                    )}
+
+                    {/* 2D Text */}
+                    {twoDText && (
+                        <Html fullscreen>
+                            {Array.isArray(twoDText) ? (
+                                twoDText.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        style={{
+                                            color: 'white',
+                                            fontSize: '1.2rem',
+                                            textAlign: 'center',
+                                            ...item.style
+                                        }}
+                                    >
+                                        {item.content}
+                                    </div>
+                                ))
+                            ) : (
+                                <div
+                                    style={{
+                                        color: 'white',
+                                        fontSize: '1.2rem',
+                                        textAlign: 'center',
+                                        ...twoDText.style
+                                    }}
+                                >
+                                    {twoDText.content}
+                                </div>
+                            )}
+                        </Html>
+                    )}
+
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[3, 5, 2]} intensity={1} />
-                    <Suspense fallback={null}>
-                        <Model
-                            url={modelUrl}
-                            scale={scale}
-                            position={[0, 0, 0]}
-                            rotation={rotation}
-                        />
-                    </Suspense>
-                    <CameraController theta={theta} phi={phi} radius={radius} />
                 </Canvas>
             </div>
 
-            {/* Content */}
-            {content && (
-                typeof content === 'string' ? (
-                    <p className="leading-relaxed text-base" dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br />') }} />
-                ) : Array.isArray(content) ? (
-                    <ul className="list-disc pl-6 text-base">
-                        {content.map((item, idx) => (
-                            <li key={idx}>{item}</li>
-                        ))}
-                    </ul>
-                ) : (
-                    <div className="leading-relaxed text-base">{content}</div>
-                )
+            {/* Content Section */}
+            {typeof content === 'string' ? (
+                <div className="leading-relaxed text-base">{content}</div>
+            ) : Array.isArray(content) ? (
+                <BulletList content={content} />
+            ) : (
+                <div className="leading-relaxed text-base">{content}</div>
             )}
         </div>
     )

@@ -12,6 +12,7 @@ import { BlockMath, InlineMath } from 'react-katex';
 import Graph from "../../common/box/Graph";
 import ThreeDBox from "../../common/box/3DBox";
 import GraphBox from "../../common/box/GraphBox";
+import { Stars } from "@react-three/drei";
 
 // ===== TOPIC CONTENT DATA =====
 
@@ -115,9 +116,8 @@ const TOPIC_CONTENT: TopicContent = {
     threeD: {
         modelUrl: "/test.glb",
         scale: 1,
-        position: [0, 0, 0],
-        rotation: [0, 0, 0],
         title: "រូបភាព 3D",
+        target: [6, 0, 0],
         content: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ f(x) = (x² - 4)/(x - 2) មានរន្ធ (hole) នៅ x = 2។ ទោះបីអនុគមន៍មិនកំណត់នៅ x = 2 ក៏ដោយ លីមីតរបស់វាមានតម្លៃ 4។"
     },
 
@@ -162,12 +162,25 @@ export default function LimitZeroOverZero() {
             )}
 
             {TOPIC_CONTENT.threeD && (
-                <ThreeDBox modelUrl={TOPIC_CONTENT.threeD.modelUrl} title={TOPIC_CONTENT.threeD.title} content={TOPIC_CONTENT.threeD.content} style={{ height: '500px', width: '100%' }} />
+                <ThreeDBox modelUrl={TOPIC_CONTENT.threeD.modelUrl} title={TOPIC_CONTENT.threeD.title} content={TOPIC_CONTENT.threeD.content} target={TOPIC_CONTENT.threeD.target} canvasBackground={<Stars radius={100} depth={50} count={5000} factor={4} fade />} canvasBackgroundColor="black" />
             )}
 
             {TOPIC_CONTENT.graph && (
                 <GraphBox expressions={TOPIC_CONTENT.graph.expressions} />
             )}
+
+            <ThreeDBox
+                modelUrl="/test.glb"
+                scale={0.1}
+                canvasBackground={<Stars radius={100} depth={50} count={5000} factor={4} fade />}
+                canvasBackgroundColor="black"
+                threeDText={[
+                    { content: "driver", position: [13.3, 3, 3], rotation: [0, 0, 0] },
+                    { content: "passenger", position: [10.3, 3, 3], rotation: [0, 0, 0] },
+                ]}
+                // twoDText={[{ content: "ខួរក្បាល", style: { fontSize: '20rem', fontWeight: 'bold' } }]}
+                target={[6, 0, 1.5]}
+            />
         </>
     );
 }
