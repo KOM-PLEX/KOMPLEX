@@ -17,8 +17,8 @@ const ABOUT_LINKS = [
 export default function Footer() {
     return (
         <footer className="bg-gray-50 py-15 px-5">
-            <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-2  lg:grid-cols-4 gap-10">
                     <div>
                         <h3 className="text-xl font-bold mb-5 text-indigo-600">KOMPLEX</h3>
                         <p className="text-gray-900 leading-relaxed">
