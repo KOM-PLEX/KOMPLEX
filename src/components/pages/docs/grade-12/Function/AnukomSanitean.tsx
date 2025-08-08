@@ -16,11 +16,10 @@ const TOPIC_CONTENT: TopicContent = {
 		title: "អនុគមន៍សនិទាន",
 		content: (
 			<>
-				អនុគមន៍សនិទាន គឺជាអនុគមន៍ដែលមានតម្លៃ <InlineMath math="f(x)" /> ដូចគ្នា
-				សម្រាប់គ្រប់តម្លៃ <InlineMath math="x" /> ទាំងអស់។
+				អនុគមន៍សនិទាន គឺជាអនុគមន៍ដែលមានតម្លៃ <InlineMath math="f(x)" /> ដូចគ្នា សម្រាប់គ្រប់តម្លៃ{" "}
+				<InlineMath math="x" /> ទាំងអស់។
 				<br />
-				ក្នុងទម្រង់គណិតវិទ្យា អាចសរសេរ៖ <BlockMath math="f(x) = c" /> ដែល{" "}
-				<InlineMath math="c" /> ជាចំនួនថេរ។
+				ក្នុងទម្រង់គណិតវិទ្យា អាចសរសេរ៖ <BlockMath math="f(x) = c" /> ដែល <InlineMath math="c" /> ជាចំនួនថេរ។
 			</>
 		),
 	},
@@ -30,9 +29,8 @@ const TOPIC_CONTENT: TopicContent = {
 		content: (
 			<>
 				• ក្រាបជាបន្ទាត់ផ្តេកកាត់អ័ក្ស y នៅ <InlineMath math="y = c" /> <br />
-				• ចំនួនថេរ <InlineMath math="c" /> គឺជាកម្ពស់នៃបន្ទាត់<br />
-				• មិនសូវមានការប្រែប្រួលតម្លៃទេ ព្រោះគ្រប់{" "}
-				<InlineMath math="x" /> ផ្តល់តម្លៃដូចគ្នា
+				• ចំនួនថេរ <InlineMath math="c" /> គឺជាកម្ពស់នៃបន្ទាត់
+				<br />• មិនសូវមានការប្រែប្រួលតម្លៃទេ ព្រោះគ្រប់ <InlineMath math="x" /> ផ្តល់តម្លៃដូចគ្នា
 			</>
 		),
 	},
@@ -89,12 +87,7 @@ const TOPIC_CONTENT: TopicContent = {
 			{
 				id: "q3",
 				question: "ក្រាបរបស់អនុគមន៍សនិទានមានរូបរាងដូចម្តេច?",
-				options: [
-					"បន្ទាត់ផ្តេក",
-					"បន្ទាត់ទ្រេត",
-					"បន្ទាត់កោង",
-					"បន្ទាត់បញ្ឈរ",
-				],
+				options: ["បន្ទាត់ផ្តេក", "បន្ទាត់ទ្រេត", "បន្ទាត់កោង", "បន្ទាត់បញ្ឈរ"],
 				correctAnswer: 0,
 			},
 		],
@@ -103,9 +96,8 @@ const TOPIC_CONTENT: TopicContent = {
 	hint: {
 		content: (
 			<>
-				សូមចងចាំថា អនុគមន៍សនិទាន{" "}
-				<InlineMath math="f(x) = c" /> មានតម្លៃថេរ មិនថា{" "}
-				<InlineMath math="x" /> ផ្លាស់ប្ដូរយ៉ាងណាក៏ដោយ។
+				សូមចងចាំថា អនុគមន៍សនិទាន <InlineMath math="f(x) = c" /> មានតម្លៃថេរ មិនថា <InlineMath math="x" />{" "}
+				ផ្លាស់ប្ដូរយ៉ាងណាក៏ដោយ។
 			</>
 		),
 	},
@@ -113,27 +105,19 @@ const TOPIC_CONTENT: TopicContent = {
 	warning: {
 		content: (
 			<>
-				កុំច្រឡំអនុគមន៍សនិទានជាមួយអនុគមន៍បន្ទាត់ទ្រេត{" "}
-				<InlineMath math="f(x) = mx + b" /> ព្រោះអនុគមន៍សនិទានមាន{" "}
+				កុំច្រឡំអនុគមន៍សនិទានជាមួយអនុគមន៍បន្ទាត់ទ្រេត <InlineMath math="f(x) = mx + b" /> ព្រោះអនុគមន៍សនិទានមាន{" "}
 				<InlineMath math="m = 0" /> ប៉ុណ្ណោះ។
 			</>
 		),
 	},
 
 	image: {
-		src: (
-			<Graph
-				expressions={[
-					{ id: "1", latex: "f(x)=5", color: "#FF4136" },
-				]}
-			/>
-		),
+		src: <Graph expressions={[{ id: "1", latex: "f(x)=5", color: "#FF4136" }]} />,
 		imageAlt: "ក្រាបអនុគមន៍សនិទាន",
 		explanation: (
 			<>
-				ក្រាបបង្ហាញអនុគមន៍{" "}
-				<InlineMath math="f(x) = 5" /> ជាបន្ទាត់ផ្តេកកាត់អ័ក្ស y
-				នៅចំណុច <InlineMath math="y = 5" />។
+				ក្រាបបង្ហាញអនុគមន៍ <InlineMath math="f(x) = 5" /> ជាបន្ទាត់ផ្តេកកាត់អ័ក្ស y នៅចំណុច{" "}
+				<InlineMath math="y = 5" />។
 			</>
 		),
 	},
@@ -145,18 +129,10 @@ export default function AnukomSanitean() {
 	return (
 		<>
 			{TOPIC_CONTENT.definition && (
-				<DefinitionBox
-					title={TOPIC_CONTENT.definition.title}
-					content={TOPIC_CONTENT.definition.content}
-				/>
+				<DefinitionBox title={TOPIC_CONTENT.definition.title} content={TOPIC_CONTENT.definition.content} />
 			)}
 
-			{TOPIC_CONTENT.tip && (
-				<TipBox
-					title={TOPIC_CONTENT.tip.title}
-					content={TOPIC_CONTENT.tip.content}
-				/>
-			)}
+			{TOPIC_CONTENT.tip && <TipBox title={TOPIC_CONTENT.tip.title} content={TOPIC_CONTENT.tip.content} />}
 
 			{TOPIC_CONTENT.example && (
 				<ExampleBox
@@ -166,17 +142,11 @@ export default function AnukomSanitean() {
 				/>
 			)}
 
-			{TOPIC_CONTENT.exercise && (
-				<ExerciseBox questions={TOPIC_CONTENT.exercise.questions} />
-			)}
+			{TOPIC_CONTENT.exercise && <ExerciseBox questions={TOPIC_CONTENT.exercise.questions} />}
 
-			{TOPIC_CONTENT.hint && (
-				<HintBox content={TOPIC_CONTENT.hint.content} />
-			)}
+			{TOPIC_CONTENT.hint && <HintBox content={TOPIC_CONTENT.hint.content} />}
 
-			{TOPIC_CONTENT.warning && (
-				<WarningBox content={TOPIC_CONTENT.warning.content} />
-			)}
+			{TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
 
 			{TOPIC_CONTENT.image && (
 				<ImageBox
