@@ -10,9 +10,9 @@ export interface Step {
 
 export interface ExerciseQuestion {
   id: string;
-  question: string;
-  options: string[];
-  correctAnswer: number;
+  question: string | React.ReactNode;
+  options: string[] | React.ReactNode[];
+  correctAnswer: number | React.ReactNode;
 }
 
 // ===== BOX COMPONENT PROP INTERFACES =====

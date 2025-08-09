@@ -60,10 +60,10 @@ import ProbabilityCombination from "@/components/pages/docs/grade-12/probability
 import ProbabilityPermutation from "@/components/pages/docs/grade-12/probability/Probab-Permutation";
 import ProbabilityPractice from "@/components/pages/docs/grade-12/probability/Probab-Practice";
 import ComplexDefinition from "@/components/pages/docs/grade-12/complex/Complex-Definition";
-import ComplexFormulars from "@/components/pages/docs/grade-12/complex/Complex-Formulars";
+import QuadraticEquation from "@/components/pages/docs/grade-12/Complex/Quadratic-Equation";
 import ComplexOperations from "@/components/pages/docs/grade-12/complex/Complex-Operations";
 import ComplexModulus from "@/components/pages/docs/grade-12/complex/Complex-Modulus";
-import QuadraticEquation from "@/components/pages/docs/grade-12/complex/Quadratic-Equation";
+import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/Complex/Complex-Multiplication-Devision";
 import TrigonometricForm from "@/components/pages/docs/grade-12/complex/Trigonometric-Form";
 import ComplexPractice from "@/components/pages/docs/grade-12/complex/Complex-Practice";
 
@@ -84,15 +84,16 @@ export const math: Content = {
           englishTitle: "Complex-Definition",
           component: ComplexDefinition
         },
+    
         {
-          title: "រូបមន្តកំុផ្លិច",
-          englishTitle: "Complex-Formulas",
-          component: ComplexFormulars
-        },
-        {
-          title: "ប្រមាណវិធីលើចំនួនកំុផ្លិច",
+          title: "ប្រមាណវិធីបូក ដកចំនួនកំុផ្លិច",
           englishTitle: "Complex-Operations",
           component: ComplexOperations
+        },
+        {
+          title: "ប្រមាណវិធីគុណ និងចែកចំនួនកំុផ្លិច",
+          englishTitle: "Complex-Multiplication-Division",
+          component: ComplexMultiplicationDivision
         },
         {
           title: "ម៉ូឌុលនៃកុំផ្លិច",

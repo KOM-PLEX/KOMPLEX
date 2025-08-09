@@ -1,9 +1,137 @@
 import React from 'react'
+import { TopicContent } from '@/types/topic'
+import DefinitionBox from '../../common/box/DefinitionBox'
+import TipBox from '../../common/box/TipBox'
+import { BlockMath, InlineMath } from 'react-katex';
+import HintBox from '../../common/box/HintBox';
+import WarningBox from '../../common/box/WarningBox';
+import ExampleBox from '../../common/box/ExampleBox';
+import ExerciseBox from '../../common/box/ExerciseBox';
+
+
+const TOPIC_CONTENT: TopicContent = {
+  definition: {
+    title: "តើកុំផ្លិចជាអ្វី?",
+    content: "ចំនួនកុំផ្លិច គឺជាចំនួនដែលមានរាង a + bi ដែល a និង b ជាចំនួនពិត "
+  },
+  tip: {
+    title: "ចំណាំ !",
+    content: <div>
+        i ហៅថាតម្លៃនិមិត្ត ដែល <InlineMath math="i^2 = -1" /> និង <InlineMath math="i = \sqrt{-1}" />
+        <br />
+        សំណុំចំនួនកុំផ្លិចតាងដោយ​​ C
+        <br />
+        a ហៅថាផ្នែកពិតដែលគេកំណត់តាងដោយ​ <InlineMath math="Re(z) = a" />
+        <br />
+        b ហៅថាផ្នែកនិមិត្តដែលគេកំណត់តាងដោយ​ <InlineMath math="Im(z) = b" />
+        </div>
+},
+ hint:{
+  content:<div>
+    កុំផ្លិចឆ្លាស់​ : <InlineMath math="\bar{z} = a - bi" />
+    <br />
+    ឧទាហរណ៍​ : <InlineMath math=" z = 3 - 4i" /><br/>
+    នោះ​ <InlineMath math="\bar{z} = 3 + 4i" />
+  </div>
+ },
+ warning:{
+  content : "កុំផ្លិចឆ្លាស់គឺឆ្លាស់សញ្ញាតែផ្នែកនិមិត្តតែប៉ុណ្ណោះ"
+ }
+}
+const TOPIC_CONTENT_COMPLEX:TopicContent = {
+  definition:{
+    title:"កុំផ្លិចពីរស្មើគ្នា",
+    content:"កាលណាកុំផ្លិចពីរស្មើគ្នាគេបានផ្នែកពិតនៃកុំផ្លិចទាំងពីរស្មើគ្នា និងផ្នែកនិមិត្តនៃកុំផ្លិចទាំងពីរស្មើគ្នា"
+  },
+  tip:{
+    title:"ជាទូទៅ",
+    content:<div className='flex justify-start gap-2'>
+      <BlockMath math={`
+      A + i.B = a + i.b \\Leftrightarrow \\begin{cases}
+      A = a \\\\
+      B = b
+      \\end{cases} \\text{បើសិន } a, b, A, B \\in \\mathbb{R}
+      `} />
+      </div>
+  },
+  example:{
+    question:<div className='flex justify-start gap-2'>
+     គេមានកុំផ្លិច <InlineMath math="z = (3a + 1) + i(2b - 5)" /> និង <InlineMath math="w = 7 + 3i" />
+  
+  ដែល <InlineMath math="a" /> និង <InlineMath math="b" /> ជាចំនួនពិត​​ ។​ កំណត់តម្លៃ <InlineMath math="a" /> និង <InlineMath math="b" /> ដើម្បីឲ្យ <InlineMath math="z = w" />
+  
+     </div>,
+    steps:[
+      {
+        title:"កំណត់ផ្នែកពិត និងផ្នែកនិមិត្ត",
+        content:<div>
+         ចំពោះ​ <InlineMath math="z = (3a + 1) + i(2b - 5)" /><br/>
+         ផ្នែកពិតគឺ <InlineMath math="3a + 1" /><br/>
+         ផ្នែកនិមិត្តគឺ <InlineMath math="2b - 5" /><br/><br/>
+         ចំពោះ​ <InlineMath math="w = 7 + 3i" /><br/>
+         ផ្នែកពិតគឺ <InlineMath math="7" /><br/>
+         ផ្នែកនិមិត្តគឺ <InlineMath math="3" /><br/><br/>
+        </div>
+      },
+      {
+        title:"អោយកុំផ្លិចពីរស្មើគ្នា",
+        content:<div className='flex justify-start gap-2'>
+          <BlockMath math={`
+          \\text{ ដោយ } z = w \\text{ គេបាន}
+                  \\begin{cases}
+                  3a + 1 = 7 \\\\
+                  2b - 5 = 3 \\\\
+                  \\end{cases}
+                      `} />
+        </div>
+      },
+      {
+        title:"ទាញរកតម្លៃនៃ a និង b",
+        content:<div className='flex justify-start gap-2'>
+          <BlockMath math={`
+                  \\begin{cases}
+                  3a + 1 = 7 \\\\
+                  2b - 5 = 3 \\\\
+                  \\end{cases}
+                  \\text{សមមូល}
+                  \\begin{cases}
+                  3a = 6 \\Leftrightarrow a = 2 \\\\
+                  2b = 8 \\Leftrightarrow b = 4
+                  \\end{cases}
+                      `} />
+        </div>
+      }
+    ],
+ answer:<div>ដូច្នេះ <InlineMath math="a = 2" /> និង <InlineMath math="b = 4" /></div>
+ },
+}
+
 
 const ComplexDefinition = () => {
   return (
     <>
-      
+       {TOPIC_CONTENT.definition && (
+                <DefinitionBox title={TOPIC_CONTENT.definition.title} content={TOPIC_CONTENT.definition.content} />
+            )}
+
+            {TOPIC_CONTENT.tip && (
+                <TipBox title={TOPIC_CONTENT.tip.title} content={TOPIC_CONTENT.tip.content} />
+            )}
+            {TOPIC_CONTENT.hint && (
+                <HintBox content={TOPIC_CONTENT.hint.content} />
+            )}
+            {TOPIC_CONTENT.warning && (
+                <WarningBox content={TOPIC_CONTENT.warning.content} />
+            )}
+            {TOPIC_CONTENT_COMPLEX.definition && (
+                <DefinitionBox title={TOPIC_CONTENT_COMPLEX.definition.title} content={TOPIC_CONTENT_COMPLEX.definition.content} />
+            )}
+            {TOPIC_CONTENT_COMPLEX.tip && (
+                <TipBox title={TOPIC_CONTENT_COMPLEX.tip.title} content={TOPIC_CONTENT_COMPLEX.tip.content} />
+            )}
+            {TOPIC_CONTENT_COMPLEX.example && (
+                <ExampleBox question={TOPIC_CONTENT_COMPLEX.example.question} steps={TOPIC_CONTENT_COMPLEX.example.steps} />
+            )}
     </>
   )
 }

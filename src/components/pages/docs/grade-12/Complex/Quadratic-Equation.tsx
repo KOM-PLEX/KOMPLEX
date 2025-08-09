@@ -1,6 +1,6 @@
 import React from 'react'
-
-const QuadraticEquation = () => {
+	
+const  QuadraticEquation = () => {
   return (
     <div>
       
