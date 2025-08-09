@@ -517,33 +517,24 @@ export default function BoxesDocumentation() {
                     <div className="mt-6 bg-white p-6 rounded-lg border">
                         <h4 className="text-lg font-semibold text-gray-700 mb-4">📚 Curriculum Hierarchy</h4>
                         <p className="text-gray-600 mb-4">The system follows a hierarchical structure: <strong>Grade → Subject → Lesson → Topic</strong></p>
-                        <code className="bg-gray-100 p-4 rounded block text-sm overflow-x-auto">
-                            {`interface Grade {
-  grade: string; // "grade-12"
-  gradeKhmer: string; // "ថ្នាក់ទី១២"
-  content: Content[]; // Subjects
-}
-
-interface Content {
-  subject: string; // "math"
-  title: string; // "គណិតវិទ្យា"
-  lessons: Lesson[]; // Lessons
-}
-
-interface Lesson {
-  lesson: string; // "limits"
-  title: string; // "លីមីត"
-  topics: Topic[]; // Topics
-}
-
-interface Topic {
-  title: string; // "លីមីត ០/០"
-  component: React.Component; // The actual topic component!
-}`}
-                        </code>
+                        <p >interface Grade </p >
+                        <p className="ml-4 bg-gray-100">grade: string; // &quot;grade-12&quot;</p>
+                        <p className="ml-4 bg-gray-100">gradeKhmer: string; // &quot;ថ្នាក់ទី១២&quot;</p>
+                        <p className="ml-4 bg-gray-100">content: Content[]; // Subjects</p>
+                        <p>interface Content </p>
+                        <p className="ml-4 bg-gray-100">subject: string; // &quot;math&quot;</p>
+                        <p className="ml-4 bg-gray-100">title: string; // &quot;គណិតវិទ្យា&quot;</p>
+                        <p className="ml-4 bg-gray-100">lessons: Lesson[]; // Lessons</p>
+                        <p>interface Lesson </p>
+                        <p className="ml-4 bg-gray-100">lesson: string; // &quot;limits&quot;</p>
+                        <p className="ml-4 bg-gray-100">title: string; // &quot;លីមីត&quot;</p>
+                        <p className="ml-4 bg-gray-100">topics: Topic[]; // Topics</p>
+                        <p>interface Topic </p>
+                        <p className="ml-4 bg-gray-100">title: string; // &quot;លីមីត ០/០&quot;</p>
+                        <p className="ml-4 bg-gray-100">component: React.Component; // The actual topic component!</p>
                     </div>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 }
