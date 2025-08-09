@@ -1,6 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
+import { Listbox, Transition } from '@headlessui/react';
+import { ChevronDown, Check } from 'lucide-react';
 import { curriculum } from '@/curriculum/curriculum';
 
 interface DocHeaderProps {
@@ -22,7 +25,12 @@ export default function DocHeader({
     if (!gradeData) return null;
 
     const subjects = gradeData.content;
-    const grades = curriculum.map(g => g.gradeKhmer);
+    const grades = curriculum.map(g => ({ value: g.grade, label: g.gradeKhmer }));
+
+    // Get current selections
+    const currentGradeData = grades.find(g => g.value === currentGrade);
+    const currentSubjectData = subjects.find(s => s.subject === currentSubject);
+    const currentLessonData = currentSubjectData?.lessons.find(l => l.lesson === currentLesson);
 
     return (
         <>
@@ -49,13 +57,48 @@ export default function DocHeader({
                                 );
                             })}
                         </div>
-                        <select className="bg-white/95 border border-indigo-500/20 rounded-xl px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20">
-                            {grades.map(grade => (
-                                <option key={grade} value={grade}>
-                                    {grade}
-                                </option>
-                            ))}
-                        </select>
+
+                        {/* Grade Dropdown */}
+                        <Listbox value={currentGradeData} onChange={(grade) => {
+                            if (grade) {
+                                window.location.href = `/docs/${grade.value}/${subjects[0].subject}/${subjects[0].lessons[0].lesson}/${subjects[0].lessons[0].topics[0].englishTitle}`;
+                            }
+                        }}>
+                            <div className="relative">
+                                <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-xl px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 flex items-center justify-between  min-w-[120px]">
+                                    <span>{currentGradeData?.label}</span>
+                                    <ChevronDown size={16} className="text-gray-500" />
+                                </Listbox.Button>
+                                <Transition
+                                    enter="transition duration-100 ease-out"
+                                    enterFrom="transform scale-95 opacity-0"
+                                    enterTo="transform scale-100 opacity-100"
+                                    leave="transition duration-75 ease-out"
+                                    leaveFrom="transform scale-100 opacity-100"
+                                    leaveTo="transform scale-95 opacity-0"
+                                >
+                                    <Listbox.Options className="absolute right-0 mt-2 w-48 bg-white rounded-xl border border-indigo-500/20 shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-auto">
+                                        {grades.map((grade) => (
+                                            <Listbox.Option
+                                                key={grade.value}
+                                                value={grade}
+                                                className={({ active }) =>
+                                                    `relative cursor-pointer select-none py-3 px-4 text-sm ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
+                                                    }`
+                                                }
+                                            >
+                                                {({ selected }) => (
+                                                    <div className="flex items-center justify-between">
+                                                        <span>{grade.label}</span>
+                                                        {selected && <Check size={16} className="text-indigo-600" />}
+                                                    </div>
+                                                )}
+                                            </Listbox.Option>
+                                        ))}
+                                    </Listbox.Options>
+                                </Transition>
+                            </div>
+                        </Listbox>
                     </div>
                 </div>
             </div>
@@ -71,7 +114,7 @@ export default function DocHeader({
                                 return (
                                     <Link
                                         key={subject.subject}
-                                        href={`/docs/${currentGrade}/${subject.subject}`}
+                                        href={`/docs/${currentGrade}/${subject.subject}/${subject.lessons[0].lesson}/${subject.lessons[0].topics[0].englishTitle}`}
                                         className={`flex items-center gap-2 px-3 py-2 rounded-2xl transition-all duration-300 font-medium text-xs whitespace-nowrap flex-shrink-0 ${isActive
                                             ? 'text-indigo-600 bg-indigo-50/90 border border-indigo-500/20 shadow-sm'
                                             : 'text-gray-600 bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90'
@@ -83,28 +126,99 @@ export default function DocHeader({
                                 );
                             })}
                         </div>
-                        <select className="bg-white/95 border border-indigo-500/20 rounded-xl px-2 py-2 text-xs font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20">
-                            {grades.map(grade => (
-                                <option key={grade} value={grade}>
-                                    {grade}
-                                </option>
-                            ))}
-                        </select>
+
+                        {/* Mobile Grade Dropdown */}
+                        <Listbox value={currentGradeData} onChange={(grade) => {
+                            if (grade) {
+                                window.location.href = `/docs/${grade.value}/${subjects[0].subject}/${subjects[0].lessons[0].lesson}/${subjects[0].lessons[0].topics[0].englishTitle}`;
+                            }
+                        }}>
+                            <div className="relative">
+                                <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-xl px-2 py-2 text-xs font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 flex items-center justify-between  max-w-[80px] min-w-[60px]">
+                                    <span className="truncate">{currentGradeData?.label}</span>
+                                    <ChevronDown size={14} className="text-gray-500 flex-shrink-0" />
+                                </Listbox.Button>
+                                <Transition
+                                    enter="transition duration-100 ease-out"
+                                    enterFrom="transform scale-95 opacity-0"
+                                    enterTo="transform scale-100 opacity-100"
+                                    leave="transition duration-75 ease-out"
+                                    leaveFrom="transform scale-100 opacity-100"
+                                    leaveTo="transform scale-95 opacity-0"
+                                >
+                                    <Listbox.Options className="absolute right-0 mt-2 w-40 bg-white rounded-xl border border-indigo-500/20 shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-auto scrollbar-hide p-1.5">
+                                        {grades.map((grade) => (
+                                            <Listbox.Option
+                                                key={grade.value}
+                                                value={grade}
+                                                className={({ active }) =>
+                                                    `relative cursor-pointer select-none py-2 px-2 text-xs rounded-xl ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
+                                                    }`
+                                                }
+                                            >
+                                                {({ selected }) => (
+                                                    <div className="flex items-center justify-between">
+                                                        <span>{grade.label}</span>
+                                                        {selected && <Check size={14} className="text-indigo-600" />}
+                                                    </div>
+                                                )}
+                                            </Listbox.Option>
+                                        ))}
+                                    </Listbox.Options>
+                                </Transition>
+                            </div>
+                        </Listbox>
                     </div>
                 </div>
             </div>
 
             {/* Mobile Content Navigation */}
-            <div className="md:hidden fixed w-full top-26 z-30 bg-white/95 backdrop-blur-md border-b border-indigo-500/10">
+            <div className="md:hidden fixed w-full top-25.5 z-30 bg-white/95 backdrop-blur-md border-b border-indigo-500/10">
                 <div className="max-w-full mx-auto px-5 py-2">
-                    <div className="flex items-center justify-between gap-3">
-                        <select className="bg-white/95 border border-indigo-500/20 rounded-xl px-2 py-2 text-xs font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20">
-                            {subjects.find(s => s.subject === currentSubject)?.lessons.map(lesson => (
-                                <option key={lesson.lesson} value={lesson.lesson}>
-                                    {lesson.title}
-                                </option>
-                            ))}
-                        </select>
+                    <div className="flex items-center justify-start gap-3">
+                        {/* Mobile Lesson Dropdown */}
+                        <Listbox value={currentLessonData} onChange={(lesson) => {
+                            if (lesson) {
+                                window.location.href = `/docs/${currentGrade}/${currentSubject}/${lesson.lesson}/${lesson.topics[0].englishTitle}`;
+                            }
+                        }}>
+                            <div className="relative">
+                                <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-xl px-2 py-2 text-xs font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 flex items-center justify-between  max-w-[80px] min-w-[60px]">
+                                    <span className="truncate">{currentLessonData?.title}</span>
+                                    <ChevronDown size={14} className="text-gray-500 flex-shrink-0" />
+                                </Listbox.Button>
+                                <Transition
+                                    enter="transition duration-100 ease-out"
+                                    enterFrom="transform scale-95 opacity-0"
+                                    enterTo="transform scale-100 opacity-100"
+                                    leave="transition duration-75 ease-out"
+                                    leaveFrom="transform scale-100 opacity-100"
+                                    leaveTo="transform scale-95 opacity-0"
+                                >
+                                    <Listbox.Options className="absolute left-0 mt-2 w-48 bg-white rounded-xl border border-indigo-500/20 shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-auto scrollbar-hide p-1.5">
+                                        {subjects.find(s => s.subject === currentSubject)?.lessons.map(lesson => (
+                                            <Listbox.Option
+                                                key={lesson.lesson}
+                                                value={lesson}
+                                                className={({ active }) =>
+                                                    `relative cursor-pointer select-none py-2 px-2 text-xs rounded-xl ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
+                                                    }`
+                                                }
+                                            >
+                                                {({ selected }) => (
+                                                    <div className="flex items-center justify-between">
+                                                        <span>{lesson.title}</span>
+                                                        {selected && <Check size={14} className="text-indigo-600" />}
+                                                    </div>
+                                                )}
+                                            </Listbox.Option>
+                                        ))}
+                                    </Listbox.Options>
+                                </Transition>
+                            </div>
+                        </Listbox>
+
+                        {/* Mobile Topics */}
                         <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
                             {subjects.find(s => s.subject === currentSubject)?.lessons.find(l => l.lesson === currentLesson)?.topics.map((topic) => {
                                 const isActive = currentTopic === topic.englishTitle;

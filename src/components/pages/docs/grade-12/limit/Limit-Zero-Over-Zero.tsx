@@ -161,9 +161,9 @@ export default function LimitZeroOverZero() {
                 <ImageBox src={TOPIC_CONTENT.image.src} imageAlt={TOPIC_CONTENT.image.imageAlt} explanation={TOPIC_CONTENT.image.explanation} />
             )}
 
-            {TOPIC_CONTENT.threeD && (
+            {/* {TOPIC_CONTENT.threeD && (
                 <ThreeDBox modelUrl={TOPIC_CONTENT.threeD.modelUrl} title={TOPIC_CONTENT.threeD.title} content={TOPIC_CONTENT.threeD.content} target={TOPIC_CONTENT.threeD.target} canvasBackground={<Stars radius={100} depth={50} count={5000} factor={4} fade />} canvasBackgroundColor="black" />
-            )}
+            )} */}
 
             {TOPIC_CONTENT.graph && (
                 <GraphBox expressions={TOPIC_CONTENT.graph.expressions} />
