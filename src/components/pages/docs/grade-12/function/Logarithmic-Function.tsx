@@ -4,10 +4,11 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
+import { ImageBox } from "../../common/box/explanation-box/ImageExplanationBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
+import Graph from "../../../../helper/Graph";
 import { InlineMath } from "react-katex";
+import { GraphExplanationBox } from "../../common/box/explanation-box/GraphExplanationBox";
 
 const TOPIC_CONTENT: TopicContent = {
 	definition: {
@@ -71,34 +72,34 @@ const TOPIC_CONTENT: TopicContent = {
 			{
 				title: "តារាងតម្លៃ",
 				content: (
-          <table className="table-auto border-collapse border border-gray-300 text-left my-4">
-            <thead>
-              <tr>
-                <th className="border border-gray-300 px-4 py-2 text-left font-bold">x</th>
-                <th className="border border-gray-300 px-4 py-2 text-left font-normal">1</th>
-                <th className="border border-gray-300 px-4 py-2 text-left font-normal">2</th>
-                <th className="border border-gray-300 px-4 py-2 text-left font-normal">4</th>
-                <th className="border border-gray-300 px-4 py-2 text-left font-normal">8</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th className="border border-gray-300 px-4 py-2 text-left font-bold">f(x)</th>
-                <td className="border border-gray-300 px-4 py-2 text-left">
-                  <InlineMath math="0" />
-                </td>
-                <td className="border border-gray-300 px-4 py-2 text-left">
-                  <InlineMath math="1" />
-                </td>
-                <td className="border border-gray-300 px-4 py-2 text-left">
-                  <InlineMath math="2" />
-                </td>
-                <td className="border border-gray-300 px-4 py-2 text-left">
-                  <InlineMath math="3" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+					<table className="table-auto border-collapse border border-gray-300 text-left my-4">
+						<thead>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">x</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">1</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">2</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">4</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">8</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">f(x)</th>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="0" />
+								</td>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="1" />
+								</td>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="2" />
+								</td>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="3" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				),
 			},
 		],
@@ -141,16 +142,8 @@ const TOPIC_CONTENT: TopicContent = {
 		content: <>កុំច្រឡំរវាងអនុគមន៍ឡូហ្សារីធមិ និងអនុគមន៍អិចស្ប៉ូណង់ស្យែល ព្រោះពួកវាជាអនុគមន៍វិលត្រឡប់គ្នា។</>,
 	},
 
-	image: {
-		src: (
-			<Graph
-				expressions={[
-					{ id: "1", latex: "f(x)=\\log_2 x", color: "#FF4136" },
-					{ id: "2", latex: "2^x", color: "#0074D9" },
-				]}
-			/>
-		),
-		imageAlt: "ក្រាបអនុគមន៍ឡូហ្សារីធមិ និង អិចស្ប៉ូណង់ស្យែល",
+	graphExplanation: {
+		expressions: [{ id: "1", latex: "f(x)=\\log_2 x", color: "#FF4136" }, { id: "2", latex: "2^x", color: "#0074D9" }],
 		explanation: (
 			<>
 				ក្រាបក្រហមបង្ហាញអនុគមន៍ឡូហ្សារីធមិ <InlineMath math="\\log_2 x" /> និងក្រាបខៀវបង្ហាញ
@@ -183,11 +176,10 @@ export default function LogarithmicFunction() {
 
 			{TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
 
-			{TOPIC_CONTENT.image && (
-				<ImageBox
-					src={TOPIC_CONTENT.image.src}
-					imageAlt={TOPIC_CONTENT.image.imageAlt}
-					explanation={TOPIC_CONTENT.image.explanation}
+			{TOPIC_CONTENT.graphExplanation && (
+				<GraphExplanationBox
+					expressions={TOPIC_CONTENT.graphExplanation.expressions}
+					explanation={TOPIC_CONTENT.graphExplanation.explanation}
 				/>
 			)}
 		</>
