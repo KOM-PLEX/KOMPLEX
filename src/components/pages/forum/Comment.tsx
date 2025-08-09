@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ThumbsUp } from 'lucide-react';
 
 interface Comment {
@@ -15,12 +15,18 @@ interface Comment {
 
 interface CommentProps {
     comments: Comment[];
-    focusInput: boolean;
+    focusInput?: boolean;
+    onClose?: () => void;
 }
 
-export default function Comment({ comments, focusInput }: CommentProps) {
+export default function Comment({ comments, focusInput = false, onClose }: CommentProps) {
     const [newComment, setNewComment] = useState('');
     const [isCommentActive, setIsCommentActive] = useState(focusInput);
+
+    // Sync the internal state with the focusInput prop
+    useEffect(() => {
+        setIsCommentActive(focusInput);
+    }, [focusInput]);
 
     const CommentComponent = ({ comment, isReply = false }: { comment: Comment; isReply?: boolean }) => {
         const [commentUpvoted, setCommentUpvoted] = useState(comment.upvoted);
@@ -68,12 +74,18 @@ export default function Comment({ comments, focusInput }: CommentProps) {
             console.log('New comment:', newComment);
             setNewComment('');
             setIsCommentActive(false);
+            if (onClose) onClose();
         }
     };
 
     const handleCancel = () => {
         setNewComment('');
         setIsCommentActive(false);
+        if (onClose) onClose();
+    };
+
+    const handleInputClick = () => {
+        setIsCommentActive(true);
     };
 
     return (
@@ -82,17 +94,14 @@ export default function Comment({ comments, focusInput }: CommentProps) {
 
             {/* Add Comment */}
             <div className="mb-6">
-                <div className='flex items-center gap-2 mb-4'>
-                    <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">អ្នក</div>
-                    <p className='text-gray-900 text-sm'>សុខវណ្ណា អ៊ុំ</p>
-                </div>
+                <h1 className='text-gray-900 font-bold mb-6'>សុខវណ្ណា អ៊ុំ</h1>
 
                 {/* Comment Input Container */}
                 <div className="relative">
-                    {!isCommentActive && !focusInput ? (
+                    {!isCommentActive ? (
                         // Inactive state - clickable placeholder
                         <div
-                            onClick={() => setIsCommentActive(true)}
+                            onClick={handleInputClick}
                             className="w-full p-4 border border-gray-300 rounded-xl cursor-text hover:border-gray-400 transition-colors duration-200"
                         >
                             <div className="flex items-center justify-between">
