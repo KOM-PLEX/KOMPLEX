@@ -4,9 +4,9 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
+import { ImageBox } from "../../common/box/explanation-box/ImageExplanationBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
+import Graph from "../../../../helper/Graph";
 import { InlineMath } from "react-katex";
 
 const TOPIC_CONTENT: TopicContent = {
@@ -136,9 +136,8 @@ const TOPIC_CONTENT: TopicContent = {
 		),
 	},
 
-	image: {
-		src: <Graph expressions={[{ id: "1", latex: "2x + 3", color: "#0074D9" }]} />,
-		imageAlt: "ក្រាបអនុគមន៍សមីការ",
+	graphExplanation: {
+		expressions: [{ id: "1", latex: "2x + 3", color: "#0074D9" }],
 		explanation: (
 			<>
 				ក្រាបបង្ហាញអនុគមន៍ <InlineMath math="f(x) = 2x + 3" /> ដែលជាបន្ទាត់ត្រង់។
@@ -169,11 +168,11 @@ export default function EquationFunction() {
 
 			{TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
 
-			{TOPIC_CONTENT.image && (
+			{TOPIC_CONTENT.imageExplanation && (
 				<ImageBox
-					src={TOPIC_CONTENT.image.src}
-					imageAlt={TOPIC_CONTENT.image.imageAlt}
-					explanation={TOPIC_CONTENT.image.explanation}
+					src={TOPIC_CONTENT.imageExplanation.src}
+					imageAlt={TOPIC_CONTENT.imageExplanation.imageAlt}
+					explanation={TOPIC_CONTENT.imageExplanation.explanation}
 				/>
 			)}
 		</>

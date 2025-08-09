@@ -535,7 +535,7 @@ export default function Home() {
               className="lg:order-1"
             >
               <ThreeDBox
-                modelUrl="/test4.glb"
+                src="/test4.glb"
                 scale={0.7}
                 target={[0, 0, 0]}
                 canvasBackgroundColor="black"

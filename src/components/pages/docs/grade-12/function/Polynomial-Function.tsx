@@ -4,10 +4,9 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
 import { InlineMath } from "react-katex";
+import { GraphExplanationBox } from "../../common/box/explanation-box/GraphExplanationBox";
 
 // ===== TOPIC CONTENT DATA =====
 
@@ -138,9 +137,8 @@ const TOPIC_CONTENT: TopicContent = {
 		),
 	},
 
-	image: {
-		src: <Graph expressions={[{ id: "1", latex: "f(x)=5", color: "#FF4136" }]} />,
-		imageAlt: "ក្រាបអនុគមន៍សនិទាន",
+	graphExplanation: {
+		expressions: [{ id: "1", latex: "f(x)=5", color: "#FF4136" }],
 		explanation: (
 			<>
 				ក្រាបបង្ហាញអនុគមន៍ <InlineMath math="f(x) = 5" /> ជាបន្ទាត់ផ្តេកកាត់អ័ក្ស y នៅចំណុច{" "}
@@ -175,11 +173,10 @@ export default function PolynomialFunction() {
 
 			{TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
 
-			{TOPIC_CONTENT.image && (
-				<ImageBox
-					src={TOPIC_CONTENT.image.src}
-					imageAlt={TOPIC_CONTENT.image.imageAlt}
-					explanation={TOPIC_CONTENT.image.explanation}
+			{TOPIC_CONTENT.graphExplanation && (
+				<GraphExplanationBox
+					expressions={TOPIC_CONTENT.graphExplanation.expressions}
+					explanation={TOPIC_CONTENT.graphExplanation.explanation}
 				/>
 			)}
 		</>

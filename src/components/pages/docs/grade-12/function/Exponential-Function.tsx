@@ -4,11 +4,12 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
+import { ImageBox } from "../../common/box/explanation-box/ImageExplanationBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
+import Graph from "../../../../helper/Graph";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
+import { GraphExplanationBox } from "../../common/box/explanation-box/GraphExplanationBox";
 
 const TOPIC_CONTENT: TopicContent = {
 	definition: {
@@ -142,16 +143,8 @@ const TOPIC_CONTENT: TopicContent = {
 		),
 	},
 
-	image: {
-		src: (
-			<Graph
-				expressions={[
-					{ id: "1", latex: "2^x", color: "#FF4136" },
-					{ id: "2", latex: "(1/2)^x", color: "#0074D9" },
-				]}
-			/>
-		),
-		imageAlt: "ក្រាបអនុគមន៍អិចស្ប៉ូណង់ស្យែល",
+	graphExplanation: {
+		expressions: [{ id: "1", latex: "2^x", color: "#FF4136" }, { id: "2", latex: "(1/2)^x", color: "#0074D9" }],
 		explanation: (
 			<>
 				ក្រាបបង្ហាញអនុគមន៍ <InlineMath math="2^x" /> (ក្រហម) ដែលលូតលាស់ និង <InlineMath math="(1/2)^x" /> (ខៀវ)
@@ -183,11 +176,10 @@ export default function ExponentialFunction() {
 
 			{TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
 
-			{TOPIC_CONTENT.image && (
-				<ImageBox
-					src={TOPIC_CONTENT.image.src}
-					imageAlt={TOPIC_CONTENT.image.imageAlt}
-					explanation={TOPIC_CONTENT.image.explanation}
+			{TOPIC_CONTENT.graphExplanation && (
+				<GraphExplanationBox
+					expressions={TOPIC_CONTENT.graphExplanation.expressions}
+					explanation={TOPIC_CONTENT.graphExplanation.explanation}
 				/>
 			)}
 		</>

@@ -4,10 +4,11 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
+import { ImageBox } from "../../common/box/explanation-box/ImageExplanationBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
+import Graph from "../../../../helper/Graph";
 import { InlineMath } from "react-katex";
+import { GraphExplanationBox } from "../../common/box/explanation-box/GraphExplanationBox";
 
 const TOPIC_CONTENT: TopicContent = {
 	definition: {
@@ -104,9 +105,8 @@ const TOPIC_CONTENT: TopicContent = {
 		content: <>កុំច្រឡំចំណុចកំពូលជាមួយចំណុចឆ្លុះកាំជម្រៅ ឬចំណុចផ្សេងទៀតនៅលើក្រាប។</>,
 	},
 
-	image: {
-		src: <Graph expressions={[{ id: "1", latex: "x^2 - 4x + 3", color: "#FF4136" }]} />,
-		imageAlt: "ក្រាបប្លង់សិក្សាអនុគមន៍",
+	graphExplanation: {
+		expressions: [{ id: "1", latex: "x^2 - 4x + 3", color: "#FF4136" }],
 		explanation: (
 			<>
 				ក្រាបបង្ហាញអនុគមន៍ <InlineMath math="f(x) = x^2 - 4x + 3" /> ជាបន្ទាត់កោង ដែលមានចំណុចកំពូលនៅ{" "}
@@ -138,11 +138,10 @@ export default function FunctionAnalysisPlan() {
 
 			{TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
 
-			{TOPIC_CONTENT.image && (
-				<ImageBox
-					src={TOPIC_CONTENT.image.src}
-					imageAlt={TOPIC_CONTENT.image.imageAlt}
-					explanation={TOPIC_CONTENT.image.explanation}
+			{TOPIC_CONTENT.graphExplanation && (
+				<GraphExplanationBox
+					expressions={TOPIC_CONTENT.graphExplanation.expressions}
+					explanation={TOPIC_CONTENT.graphExplanation.explanation}
 				/>
 			)}
 		</>
