@@ -4,15 +4,20 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
+import CustomBox from "../../common/box/CustomBox";
+import { ImageBox } from "../../common/box/explanation-box/ImageExplanationBox";
+import { VideoBox } from "../../common/box/explanation-box/VideoExplanationBox";
+import { GraphExplanationBox } from "../../common/box/explanation-box/GraphExplanationBox";
+import { ThreeDExplanationBox } from "../../common/box/explanation-box/3DExplanationBox";
 import { TopicContent } from "@/types/topic";
 
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from 'react-katex';
-import Graph from "../../common/box/Graph";
+import Graph from "../../../../helper/Graph";
 import ThreeDBox from "../../common/box/3DBox";
 import GraphBox from "../../common/box/GraphBox";
-import { Stars } from "@react-three/drei";
+import { Stars, Box as ThreeBox } from "@react-three/drei";
+import { Box } from "lucide-react";
 
 // ===== TOPIC CONTENT DATA =====
 
@@ -103,28 +108,77 @@ const TOPIC_CONTENT: TopicContent = {
         content: "កុំច្រឡំរវាងលីមីត ០/០ ជាមួយនឹងការចែកដោយសូន្យ។ លីមីត ០/០ គឺជាទម្រង់មិនកំណត់ដែលអាចដោះស្រាយបាន ខណៈពេលដែលការចែកដោយសូន្យគឺជាប្រតិបត្តិការដែលមិនកំណត់។ កុំព្យាយាមជំនួសតម្លៃដោយផ្ទាល់ក្នុងលីមីត ០/០។"
     },
 
-    image: {
-        src: <Graph
-            expressions={[
-                { id: '1', latex: 'f(x)=\\frac{x^2 - 4}{x - 2}', color: '#c00' },
-            ]}
-        />,
-        imageAlt: "ក្រាបលីមីត ០/០",
-        explanation: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ f(x) = (x² - 4)/(x - 2) មានរន្ធ (hole) នៅ x = 2។ ទោះបីអនុគមន៍មិនកំណត់នៅ x = 2 ក៏ដោយ លីមីតរបស់វាមានតម្លៃ 4។"
+    custom: {
+        content: "នេះគឺជាការបង្ហាញនៃ CustomBox ដែលអាចប្រើសម្រាប់អត្ថបទផ្សេងៗ។ អ្នកអាចកំណត់ពណ៌ រូបភាព និងអត្ថបទផ្សេងៗបាន។",
+        title: "ការបង្ហាញ CustomBox",
+        titleIcon: Box,
+        backgroundColor: "bg-purple-50",
+        borderColor: "border-purple-600",
+        titleColor: "text-purple-800",
+        iconColor: "text-purple-600",
+        contentColor: "text-purple-700"
     },
 
     threeD: {
-        modelUrl: "/test.glb",
+        src: "/test.glb",
         scale: 1,
-        title: "រូបភាព 3D",
+        title: "រូបភាព 3D ជាមួយ Model URL",
         target: [6, 0, 0],
-        content: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ f(x) = (x² - 4)/(x - 2) មានរន្ធ (hole) នៅ x = 2។ ទោះបីអនុគមន៍មិនកំណត់នៅ x = 2 ក៏ដោយ លីមីតរបស់វាមានតម្លៃ 4។"
+        content: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ f(x) = (x² - 4)/(x - 2) មានរន្ធ (hole) នៅ x = 2។ ទោះបីអនុគមន៍មិនកំណត់នៅ x = 2 ក៏ដោយ លីមីតរបស់វាមានតម្លៃ 4។",
+        canvasBackground: <Stars radius={100} depth={50} count={5000} factor={4} fade />,
+        canvasBackgroundColor: "black",
+        threeDText: [
+            { content: "driver", position: [13.3, 3, 3], rotation: [0, 0, 0] },
+            { content: "passenger", position: [10.3, 3, 3], rotation: [0, 0, 0] },
+        ]
     },
 
     graph: {
         expressions: [
             { id: '1', latex: 'f(x)=\\frac{x^2 - 4}{x - 2}', color: '#c00' },
         ],
+    },
+
+    // ===== EXPLANATION BOXES =====
+    imageExplanation: {
+        src: "/angkor.jpg",
+        imageAlt: "ក្រាបលីមីត ០/០",
+        explanation: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ f(x) = (x² - 4)/(x - 2) មានរន្ធ (hole) នៅ x = 2។ ទោះបីអនុគមន៍មិនកំណត់នៅ x = 2 ក៏ដោយ លីមីតរបស់វាមានតម្លៃ 4។ រូបភាពនេះជួយឱ្យយើងយល់ពីគោលគំនិតនៃលីមីតដែលមានរន្ធ។"
+    },
+
+    videoExplanation: {
+        src: "/test.mp4",
+        videoTitle: "វីដេអូពន្យល់លីមីត ០/០",
+        explanation: "វីដេអូនេះពន្យល់ពីរបៀបដោះស្រាយលីមីត ០/០ ដោយប្រើកត្តាលេខភាគ និងច្បាប់ L'Hôpital។ វីដេអូបង្ហាញពីវិធីសាស្ត្រជាក់លាក់ និងឧទាហរណ៍ជាច្រើនដើម្បីជួយឱ្យអ្នកយល់គោលគំនិតនេះបានល្អជាង។"
+    },
+
+    graphExplanation: {
+        expressions: [
+            { id: '1', latex: 'f(x)=\\frac{x^2 - 4}{x - 2}', color: '#3B82F6' },
+            { id: '2', latex: 'g(x)=x+2', color: '#EF4444' },
+            { id: '3', latex: 'x=2', color: '#10B981' }
+        ],
+        explanation: "ក្រាបនេះបង្ហាញពីអនុគមន៍ f(x) = (x² - 4)/(x - 2) និង g(x) = x + 2។ អ្នកអាចឃើញថាទោះបី f(x) មានរន្ធនៅ x = 2 ក៏ដោយ លីមីតរបស់វាស្មើនឹងតម្លៃនៃ g(x) នៅ x = 2 ដែលគឺ 4។ បន្ទាត់បញ្ឈរ x = 2 បង្ហាញពីចំណុចដែលអនុគមន៍មិនកំណត់។"
+    },
+
+    threeDExplanation: {
+        src: (
+            <>
+                <ThreeBox args={[2, 2, 2]} position={[-2, 0, 0]}>
+                    <meshStandardMaterial color="#3B82F6" />
+                </ThreeBox>
+                <ThreeBox args={[2, 2, 2]} position={[2, 0, 0]}>
+                    <meshStandardMaterial color="#EF4444" />
+                </ThreeBox>
+                <ThreeBox args={[2, 2, 2]} position={[0, 2, 0]}>
+                    <meshStandardMaterial color="#10B981" />
+                </ThreeBox>
+                <ThreeBox args={[2, 2, 2]} position={[0, -2, 0]}>
+                    <meshStandardMaterial color="#F59E0B" />
+                </ThreeBox>
+            </>
+        ),
+        explanation: "រូបភាព 3D នេះបង្ហាញពីគោលគំនិតនៃលីមីត ០/០ តាមរយៈរូបភាពធរណីមាត្រ។ គូបទាំងបួនតំណាងឱ្យចំណុចផ្សេងៗនៅក្នុងលំហ ដែលជួបគ្នានៅចំណុចកណ្តាល។ នេះជួយឱ្យយើងយល់ពីរបៀបដែលអនុគមន៍ខិតទៅរកតម្លៃជាក់លាក់មួយ។"
     }
 };
 
@@ -133,6 +187,7 @@ const TOPIC_CONTENT: TopicContent = {
 export default function LimitZeroOverZero() {
     return (
         <>
+            {/* Basic Boxes */}
             {TOPIC_CONTENT.definition && (
                 <DefinitionBox title={TOPIC_CONTENT.definition.title} content={TOPIC_CONTENT.definition.content} />
             )}
@@ -157,30 +212,66 @@ export default function LimitZeroOverZero() {
                 <WarningBox content={TOPIC_CONTENT.warning.content} />
             )}
 
-            {TOPIC_CONTENT.image && (
-                <ImageBox src={TOPIC_CONTENT.image.src} imageAlt={TOPIC_CONTENT.image.imageAlt} explanation={TOPIC_CONTENT.image.explanation} />
+            {TOPIC_CONTENT.custom && (
+                <CustomBox
+                    title={TOPIC_CONTENT.custom.title}
+                    content={TOPIC_CONTENT.custom.content}
+                    titleIcon={TOPIC_CONTENT.custom.titleIcon}
+                    backgroundColor={TOPIC_CONTENT.custom.backgroundColor}
+                    borderColor={TOPIC_CONTENT.custom.borderColor}
+                    titleColor={TOPIC_CONTENT.custom.titleColor}
+                    iconColor={TOPIC_CONTENT.custom.iconColor}
+                    contentColor={TOPIC_CONTENT.custom.contentColor}
+                />
             )}
 
-            {/* {TOPIC_CONTENT.threeD && (
-                <ThreeDBox modelUrl={TOPIC_CONTENT.threeD.modelUrl} title={TOPIC_CONTENT.threeD.title} content={TOPIC_CONTENT.threeD.content} target={TOPIC_CONTENT.threeD.target} canvasBackground={<Stars radius={100} depth={50} count={5000} factor={4} fade />} canvasBackgroundColor="black" />
-            )} */}
+            {/* Wrapper Boxes */}
+            {TOPIC_CONTENT.threeD && (
+                <ThreeDBox
+                    src={TOPIC_CONTENT.threeD.src}
+                    title={TOPIC_CONTENT.threeD.title}
+                    content={TOPIC_CONTENT.threeD.content}
+                    target={TOPIC_CONTENT.threeD.target}
+                    canvasBackground={TOPIC_CONTENT.threeD.canvasBackground}
+                    canvasBackgroundColor={TOPIC_CONTENT.threeD.canvasBackgroundColor}
+                    threeDText={TOPIC_CONTENT.threeD.threeDText}
+                />
+            )}
 
             {TOPIC_CONTENT.graph && (
                 <GraphBox expressions={TOPIC_CONTENT.graph.expressions} />
             )}
 
-            <ThreeDBox
-                modelUrl="/test.glb"
-                scale={0.1}
-                canvasBackground={<Stars radius={100} depth={50} count={5000} factor={4} fade />}
-                canvasBackgroundColor="black"
-                threeDText={[
-                    { content: "driver", position: [13.3, 3, 3], rotation: [0, 0, 0] },
-                    { content: "passenger", position: [10.3, 3, 3], rotation: [0, 0, 0] },
-                ]}
-                // twoDText={[{ content: "ខួរក្បាល", style: { fontSize: '20rem', fontWeight: 'bold' } }]}
-                target={[6, 0, 1.5]}
-            />
+            {/* Explanation Boxes */}
+            {TOPIC_CONTENT.imageExplanation && (
+                <ImageBox
+                    src={TOPIC_CONTENT.imageExplanation.src}
+                    imageAlt={TOPIC_CONTENT.imageExplanation.imageAlt}
+                    explanation={TOPIC_CONTENT.imageExplanation.explanation}
+                />
+            )}
+
+            {TOPIC_CONTENT.videoExplanation && (
+                <VideoBox
+                    src={TOPIC_CONTENT.videoExplanation.src}
+                    videoTitle={TOPIC_CONTENT.videoExplanation.videoTitle}
+                    explanation={TOPIC_CONTENT.videoExplanation.explanation}
+                />
+            )}
+
+            {TOPIC_CONTENT.graphExplanation && (
+                <GraphExplanationBox
+                    expressions={TOPIC_CONTENT.graphExplanation.expressions}
+                    explanation={TOPIC_CONTENT.graphExplanation.explanation}
+                />
+            )}
+
+            {TOPIC_CONTENT.threeDExplanation && (
+                <ThreeDExplanationBox
+                    src={TOPIC_CONTENT.threeDExplanation.src}
+                    explanation={TOPIC_CONTENT.threeDExplanation.explanation}
+                />
+            )}
         </>
     );
 }
