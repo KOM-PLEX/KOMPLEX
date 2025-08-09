@@ -207,7 +207,7 @@ const FOUNDERS = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-hidden">
       <Header />
 
       {/* Hero Section */}
