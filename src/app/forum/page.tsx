@@ -101,9 +101,7 @@ export default function Forum() {
                 <div className="flex-1 mt-14 lg:mt-0">
                     <div className="flex flex-col gap-5">
                         {forumPosts.map((post) => (
-                            <Link href={`/forum/${post.id}`} key={post.id}>
-                                <ForumCard post={post} isFromBasePage={true} />
-                            </Link>
+                            <ForumCard key={post.id} post={post} isFromBasePage={true} />
                         ))}
                     </div>
                 </div>
