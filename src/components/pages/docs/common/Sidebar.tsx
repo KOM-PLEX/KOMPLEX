@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 import { curriculum } from '@/curriculum/curriculum';
@@ -19,6 +19,8 @@ export default function Sidebar({
     currentTopic = 'zero-over-zero'
 }: SidebarProps) {
     const [expandedLessons, setExpandedLessons] = useState<Record<string, boolean>>({});
+    const sidebarRef = useRef<HTMLDivElement>(null);
+    const topicRefs = useRef<Record<string, HTMLAnchorElement>>({});
 
     // Initialize expanded lessons based on current lesson
     useEffect(() => {
@@ -37,7 +39,38 @@ export default function Sidebar({
         setExpandedLessons(expandedState);
     }, [currentGrade, currentSubject, currentLesson]);
 
-    const toggleLesson = (lessonId: string) => {
+    // Scroll to current topic on mount
+    useEffect(() => {
+        if (sidebarRef.current && currentTopic) {
+            // Small delay to ensure DOM is fully rendered
+            setTimeout(() => {
+                const currentTopicRef = topicRefs.current[currentTopic];
+                if (currentTopicRef && sidebarRef.current) {
+                    const sidebarRect = sidebarRef.current.getBoundingClientRect();
+                    const topicRect = currentTopicRef.getBoundingClientRect();
+                    const sidebarHeight = sidebarRect.height;
+                    const topicHeight = topicRect.height;
+
+                    // Calculate position to center the topic in the sidebar
+                    const scrollTop = sidebarRef.current.scrollTop + (topicRect.top - sidebarRect.top) - (sidebarHeight / 2) + (topicHeight / 2);
+
+                    sidebarRef.current.scrollTo({
+                        top: scrollTop
+                    });
+                }
+            }, 100);
+        }
+    }, [currentTopic, expandedLessons]);
+
+    // Save scroll position before navigation
+    const handleLinkClick = () => {
+        if (sidebarRef.current) {
+            localStorage.setItem('sidebarScrollPosition', sidebarRef.current.scrollTop.toString());
+        }
+    };
+
+    const toggleLesson = (e: React.MouseEvent, lessonId: string) => {
+        e.preventDefault(); // Prevent scroll to top
         setExpandedLessons(prev => ({
             ...prev,
             [lessonId]: !prev[lessonId]
@@ -52,8 +85,11 @@ export default function Sidebar({
     if (!subjectData) return null;
 
     return (
-        <div className="hidden lg:block w-70 bg-white/95 backdrop-blur-md border-r border-indigo-500/10 overflow-y-auto fixed h-[calc(100vh-56px)] top-28 z-40 shadow-lg scrollbar-hide">
-            <div className="">
+        <div
+            ref={sidebarRef}
+            className="hidden lg:block w-70 bg-white/95 backdrop-blur-md border-r border-indigo-500/10 overflow-y-auto fixed h-[calc(100vh-56px)] top-28 z-40 shadow-lg scrollbar-hide"
+        >
+            <div className="pb-12"> {/* Added bottom padding to ensure last lesson is visible */}
                 <div className="p-4">
                     <div className="space-y-4">
                         {subjectData.lessons.map((lessonData) => {
@@ -65,7 +101,7 @@ export default function Sidebar({
                                 <div key={lessonData.lesson} className="space-y-2">
                                     {/* Lesson Header */}
                                     <button
-                                        onClick={() => toggleLesson(lessonData.lesson)}
+                                        onClick={(e) => toggleLesson(e, lessonData.lesson)}
                                         className={`w-full flex items-center justify-between p-4 rounded-xl ${isActive
                                             ? 'bg-indigo-50 text-indigo-600 border-l-4 border-indigo-600 shadow-lg shadow-indigo-500/15'
                                             : 'bg-gray-50 hover:bg-gray-100 text-gray-700'
@@ -92,7 +128,13 @@ export default function Sidebar({
                                                 return (
                                                     <Link
                                                         key={index}
+                                                        ref={(el) => {
+                                                            if (el) {
+                                                                topicRefs.current[topicData.englishTitle] = el;
+                                                            }
+                                                        }}
                                                         href={`/docs/${currentGrade}/${currentSubject}/${lessonData.lesson}/${topicData.englishTitle}`}
+                                                        onClick={handleLinkClick}
                                                         className={`block px-4 py-3 rounded-lg text-sm font-medium ${isTopicActive
                                                             ? 'text-indigo-600 bg-indigo-50/80 font-semibold'
                                                             : 'text-gray-600 hover:text-indigo-600 hover:bg-indigo-50/60'
