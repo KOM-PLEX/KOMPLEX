@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, FileText, MessageSquare, BookOpen, Bot } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { Menu, FileText, MessageSquare, BookOpen, Bot } from 'lucide-react';
 import { Menu as HeadlessMenu, Transition } from '@headlessui/react';
 import { curriculum } from '@/curriculum/curriculum';
 
@@ -34,6 +35,14 @@ const navLinks = [
 ]
 
 export default function Header() {
+    const pathname = usePathname();
+    const isAuthPage = pathname?.startsWith('/auth');
+
+    // Hide header on auth pages
+    if (isAuthPage) {
+        return null;
+    }
+
     return (
         <div className="bg-white/95 backdrop-blur-md border-b border-indigo-500/10 fixed top-0 left-0 right-0 z-50 w-full">
             <div className="max-w-full px-6 py-2 flex justify-between items-center">
@@ -100,6 +109,8 @@ export default function Header() {
                             </Link>
                         );
                     })}
+
+
                 </div>
             </div>
         </div>
