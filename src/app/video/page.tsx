@@ -96,7 +96,67 @@ const mockVideos: Video[] = [
         description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
         subject: 'history',
         difficulty: 'intermediate'
-    }
+    },
+    {
+        id: '6',
+        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
+        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
+        channel: 'ប្រវត្តិវិទ្យាសាលា',
+        views: '13.8K',
+        duration: '28:20',
+        uploaded: '4 ថ្ងៃមុន',
+        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
+        subject: 'history',
+        difficulty: 'intermediate'
+    },
+    {
+        id: '6',
+        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
+        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
+        channel: 'ប្រវត្តិវិទ្យាសាលា',
+        views: '13.8K',
+        duration: '28:20',
+        uploaded: '4 ថ្ងៃមុន',
+        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
+        subject: 'history',
+        difficulty: 'intermediate'
+    },
+    {
+        id: '6',
+        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
+        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
+        channel: 'ប្រវត្តិវិទ្យាសាលា',
+        views: '13.8K',
+        duration: '28:20',
+        uploaded: '4 ថ្ងៃមុន',
+        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
+        subject: 'history',
+        difficulty: 'intermediate'
+    },
+    {
+        id: '6',
+        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
+        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
+        channel: 'ប្រវត្តិវិទ្យាសាលា',
+        views: '13.8K',
+        duration: '28:20',
+        uploaded: '4 ថ្ងៃមុន',
+        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
+        subject: 'history',
+        difficulty: 'intermediate'
+    },
+    {
+        id: '6',
+        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
+        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
+        channel: 'ប្រវត្តិវិទ្យាសាលា',
+        views: '13.8K',
+        duration: '28:20',
+        uploaded: '4 ថ្ងៃមុន',
+        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
+        subject: 'history',
+        difficulty: 'intermediate'
+    },
 ];
 
 export default function VideoPage() {
@@ -133,8 +193,8 @@ export default function VideoPage() {
             {/* Main Content */}
             <div className="flex-1 overflow-y-scroll relative">
                 {/* Header */}
-                <div className="bg-white shadow-sm border-b border-gray-200 lg:p-4 py-2 px-5 sticky top-0 z-10">
-                    <div className="flex items-center gap-2">
+                <div className="bg-white shadow-sm border-b border-gray-200 lg:p-2 py-2 px-5 sticky top-0 z-10">
+                    <div className="flex justify-center items-center gap-2">
                         {/* Mobile Menu Button */}
                         <button
                             onClick={() => setSidebarOpen(true)}
@@ -143,7 +203,7 @@ export default function VideoPage() {
                             <Menu size={20} />
                         </button>
 
-                        <div className="flex-1 relative">
+                        <div className="flex-1 relative max-w-[700px]">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                             <input
                                 type="text"
@@ -153,15 +213,12 @@ export default function VideoPage() {
                                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             />
                         </div>
-                        <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
-                            <Filter size={20} />
-                        </button>
                     </div>
                 </div>
 
                 {/* Video Grid */}
                 <div className="p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         {filteredVideos.map((video) => (
                             <VideoCard
                                 key={video.id}
