@@ -422,7 +422,7 @@ export default function VideoDetailPage() {
                 </div>
 
                 {/* Exercise Section - Below Video Content */}
-                <div className="lg:col-span-3 ">
+                <div className="lg:col-span-3 hidden lg:block ">
                     <ExerciseBox questions={mockExercises} />
                 </div>
 

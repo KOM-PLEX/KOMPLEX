@@ -33,13 +33,6 @@ const subjects = [
     { id: 'history', name: 'ប្រវត្តិវិទ្យា', icon: Globe, color: 'text-amber-600' }
 ];
 
-const difficulties = [
-    { id: 'all', name: 'ទាំងអស់' },
-    { id: 'beginner', name: 'ថ្នាក់ដំបូង' },
-    { id: 'intermediate', name: 'ថ្នាក់កណ្តាល' },
-    { id: 'advanced', name: 'ថ្នាក់ខ្ពស់' }
-];
-
 export default function Sidebar({
     selectedSubject,
     selectedDifficulty,
@@ -59,7 +52,7 @@ export default function Sidebar({
             )}
 
             {/* Sidebar */}
-            <div className={`fixed lg:static top-14 left-0 z-50 w-64 bg-white shadow-lg overflow-y-auto border-r border-gray-200 transform transition-transform duration-300 ease-in-out max-h-[calc(100vh-3.5rem)] ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+            <div className={`fixed lg:static top-14 left-0 z-50 w-64 bg-white shadow-lg overflow-y-auto scrollbar-hide border-r border-gray-200 transform transition-transform duration-300 ease-in-out max-h-[calc(100vh-3.5rem)] ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
                 }`}>
                 {/* Navigation */}
                 <nav className="p-4 space-y-2">
@@ -114,25 +107,6 @@ export default function Sidebar({
                                 </button>
                             );
                         })}
-                    </div>
-                </div>
-
-                {/* Difficulty Filter */}
-                <div className="p-4 border-t border-gray-200">
-                    <h3 className="font-semibold text-gray-900 mb-3">កម្រិត</h3>
-                    <div className="space-y-2">
-                        {difficulties.map((difficulty) => (
-                            <button
-                                key={difficulty.id}
-                                onClick={() => onDifficultyChange(difficulty.id)}
-                                className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${selectedDifficulty === difficulty.id
-                                    ? 'bg-indigo-100 text-indigo-700'
-                                    : 'text-gray-700 hover:bg-gray-100'
-                                    }`}
-                            >
-                                {difficulty.name}
-                            </button>
-                        ))}
                     </div>
                 </div>
             </div>
