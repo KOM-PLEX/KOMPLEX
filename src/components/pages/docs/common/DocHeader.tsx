@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { ChevronDown, Check } from 'lucide-react';
 import { curriculum } from '@/curriculum/curriculum';
@@ -20,8 +20,33 @@ export default function DocHeader({
     currentTopic = 'zero-over-zero'
 }: DocHeaderProps) {
 
+    const topicsScrollRef = useRef<HTMLDivElement>(null);
+
     // Find the current grade and subject data
     const gradeData = curriculum.find(g => g.grade === currentGrade);
+
+    // Scroll to selected topic on mount and when topic changes
+    useEffect(() => {
+        if (topicsScrollRef.current && currentTopic && gradeData) {
+            const container = topicsScrollRef.current;
+            const activeTopic = container.querySelector('[data-is-active="true"]') as HTMLElement;
+
+            if (activeTopic) {
+                // Scroll to position the active topic with some padding from the left
+                const containerWidth = container.clientWidth;
+                const topicWidth = activeTopic.offsetWidth;
+                const topicLeft = activeTopic.offsetLeft;
+
+                // Position the topic with some left padding (not at the very edge)
+                const scrollLeft = Math.max(0, topicLeft - 140);
+
+                container.scrollTo({
+                    left: scrollLeft,
+                });
+            }
+        }
+    }, [currentTopic, currentLesson, currentSubject, currentGrade, gradeData]);
+
     if (!gradeData) return null;
 
     const subjects = gradeData.content;
@@ -219,8 +244,8 @@ export default function DocHeader({
                         </Listbox>
 
                         {/* Mobile Topics */}
-                        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
-                            {subjects.find(s => s.subject === currentSubject)?.lessons.find(l => l.lesson === currentLesson)?.topics.map((topic) => {
+                        <div ref={topicsScrollRef} className="flex items-center gap-2 overflow-x-auto scrollbar-hide" id="topics-scroll-container">
+                            {subjects.find(s => s.subject === currentSubject)?.lessons.find(l => l.lesson === currentLesson)?.topics.map((topic, index) => {
                                 const isActive = currentTopic === topic.englishTitle;
                                 return (
                                     <Link
@@ -230,6 +255,8 @@ export default function DocHeader({
                                             ? 'text-indigo-600 bg-indigo-50/90 border border-indigo-500/20 shadow-sm'
                                             : 'text-gray-600 bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90'
                                             }`}
+                                        data-topic-index={index}
+                                        data-is-active={isActive}
                                     >
                                         {topic.title}
                                     </Link>
