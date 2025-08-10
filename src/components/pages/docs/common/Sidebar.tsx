@@ -39,7 +39,7 @@ export default function Sidebar({
         setExpandedLessons(expandedState);
     }, [currentGrade, currentSubject, currentLesson]);
 
-    // Scroll to current topic on mount
+    // Scroll to current topic on mount only
     useEffect(() => {
         if (sidebarRef.current && currentTopic) {
             // Small delay to ensure DOM is fully rendered
@@ -60,7 +60,7 @@ export default function Sidebar({
                 }
             }, 100);
         }
-    }, [currentTopic, expandedLessons]);
+    }, [currentTopic]); // Removed expandedLessons dependency
 
     // Save scroll position before navigation
     const handleLinkClick = () => {

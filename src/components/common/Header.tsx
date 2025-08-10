@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, FileText, MessageSquare, BookOpen, Bot } from 'lucide-react';
+import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil } from 'lucide-react';
 import { Menu as HeadlessMenu, Transition } from '@headlessui/react';
 import { curriculum } from '@/curriculum/curriculum';
 
@@ -27,7 +27,19 @@ const navLinks = [
         style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
     },
     {
-        label: 'អ្នកជំនាញ AI',
+        label: 'អនុវត្តន៍',
+        href: '/practice',
+        icon: Pencil,
+        style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
+    },
+    {
+        label: 'វីដេអូ',
+        href: '/video',
+        icon: Camera,
+        style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
+    },
+    {
+        label: 'KOMPLEX AI',
         href: '/ai',
         icon: Bot,
         style: "bg-indigo-600 text-white no-underline font-semibold shadow-lg shadow-indigo-500/30 border border-white/20 hover:bg-indigo-500"
@@ -72,13 +84,14 @@ export default function Header() {
                             <div className="space-y-1">
                                 {navLinks.map((link) => {
                                     const Icon = link.icon;
+                                    const isActive = pathname?.includes(link.href);
                                     return (
                                         <HeadlessMenu.Item key={link.href}>
                                             {({ active }) => (
                                                 <Link
                                                     href={link.href}
-                                                    className={`flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl text-sm text-gray-600 no-underline font-medium backdrop-blur-sm border border-indigo-500/10 transition-all duration-300 ${active
-                                                        ? 'text-indigo-600 bg-indigo-50/90 shadow-sm'
+                                                    className={`flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl text-sm text-gray-600 no-underline font-medium backdrop-blur-sm  transition-all duration-300 ${isActive
+                                                        ? 'text-indigo-600 bg-indigo-50/90 shadow-sm border border-indigo-500/10'
                                                         : 'hover:text-indigo-600 hover:bg-indigo-50/90'
                                                         }`}
                                                 >
@@ -95,22 +108,21 @@ export default function Header() {
                 </HeadlessMenu>
 
                 {/* Desktop Navigation Menu */}
-                <div className="hidden md:flex gap-6 items-center">
+                <div className="hidden md:flex gap-2.5 items-center">
                     {navLinks.map((link) => {
                         const Icon = link.icon;
+                        const isActive = pathname?.includes(link.href);
                         return (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`flex items-center gap-2 text-gray-600 no-underline font-medium text-sm px-4 py-2.5 rounded-xl transition-all duration-300 relative ${link.style}`}
+                                className={`flex items-center gap-2 text-gray-600 no-underline font-medium text-sm px-3 py-2.5 rounded-xl transition-all duration-300 relative ${isActive ? 'text-indigo-600 bg-indigo-50/90 shadow-sm border border-indigo-500/10' : link.style}`}
                             >
                                 <Icon size={18} />
                                 {link.label}
                             </Link>
                         );
                     })}
-
-
                 </div>
             </div>
         </div>
