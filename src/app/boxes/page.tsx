@@ -11,7 +11,6 @@ import { ImageBox } from "../../components/pages/docs/common/box/explanation-box
 import { VideoBox } from "../../components/pages/docs/common/box/explanation-box/VideoExplanationBox";
 import { GraphExplanationBox } from "../../components/pages/docs/common/box/explanation-box/GraphExplanationBox";
 import { ThreeDExplanationBox } from "../../components/pages/docs/common/box/explanation-box/3DExplanationBox";
-import { TopicContent } from "@/types/topic";
 
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from 'react-katex';
@@ -19,6 +18,7 @@ import ThreeDBox from "../../components/pages/docs/common/box/3DBox";
 import GraphBox from "../../components/pages/docs/common/box/GraphBox";
 import { Stars, Box as ThreeBox } from "@react-three/drei";
 import { Box, BookOpen, Code, Palette, Image, Video, BarChart3 } from "lucide-react";
+import ExamQuestionBox from "@/components/pages/docs/common/box/ExamQuestionBox";
 
 // ===== COMPONENT DOCUMENTATION =====
 
