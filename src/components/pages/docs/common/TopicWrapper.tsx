@@ -19,8 +19,6 @@ export default function TopicWrapper({ title, children, prev, next }: TopicWrapp
             <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-4">
                     <div className="flex gap-2 items-center">
-                        {/* gonna need to use a custom prop icon */}
-                        <BookAIcon className="text-indigo-500" />
                         <h1 className="text-3xl font-black text-indigo-500">{title}</h1>
                     </div>
                 </div>
