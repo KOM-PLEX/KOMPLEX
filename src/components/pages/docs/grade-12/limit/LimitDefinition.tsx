@@ -4,10 +4,11 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
+import { ImageBox } from "../../common/box/explanation-box/ImageExplanationBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
+import Graph from "../../../../helper/Graph";
 import { BlockMath } from "react-katex";
+import { GraphExplanationBox } from "../../common/box/explanation-box/GraphExplanationBox";
 
 // ===== TOPIC CONTENT DATA =====
 
@@ -72,9 +73,8 @@ const TOPIC_CONTENT: TopicContent = {
         content: "កុំច្រឡំរវាងលីមីតជាមួយនឹងតម្លៃអនុគមន៍។ លីមីតគឺជាតម្លៃដែលអនុគមន៍ខិតទៅរក មិនមែនជាតម្លៃអនុគមន៍នៅចំណុចនោះទេ។ ឧទាហរណ៍៖ អនុគមន៍អាចមិនកំណត់នៅ x = a ប៉ុន្តែលីមីតអាចមាន។"
     },
 
-    image: {
-        src: <Graph expressions={[{ id: '1', latex: 'f(x)=\\frac{x^2 - 4}{x - 2}', color: '#c00' }]} />,
-        imageAlt: "ក្រាបលីមីត",
+    graphExplanation: {
+        expressions: [{ id: '1', latex: 'f(x)=\\frac{x^2 - 4}{x - 2}', color: '#c00' }],
         explanation: "ក្រាបនេះបង្ហាញពីរបៀបដែលអនុគមន៍ខិតទៅរកតម្លៃជាក់លាក់មួយ នៅពេលអថេរ x ខិតទៅរកចំណុច a។ លីមីតគឺជាតម្លៃ L ដែលអនុគមន៍ខិតទៅរក។"
     }
 };
@@ -108,8 +108,8 @@ export default function LimitDefinition() {
                 <WarningBox content={TOPIC_CONTENT.warning.content} />
             )}
 
-            {TOPIC_CONTENT.image && (
-                <ImageBox src={TOPIC_CONTENT.image.src} imageAlt={TOPIC_CONTENT.image.imageAlt} explanation={TOPIC_CONTENT.image.explanation} />
+            {TOPIC_CONTENT.graphExplanation && (
+                <GraphExplanationBox expressions={TOPIC_CONTENT.graphExplanation.expressions} explanation={TOPIC_CONTENT.graphExplanation.explanation} />
             )}
         </>
     );
