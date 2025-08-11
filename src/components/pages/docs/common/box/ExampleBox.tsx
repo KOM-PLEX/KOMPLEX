@@ -4,7 +4,7 @@ import { Search } from 'lucide-react';
 export interface ExampleBoxProps {
     question: string | React.ReactNode;
     content?: string | string[] | React.ReactNode;
-    steps: Step[];
+    steps?: Step[];
     answer?: string | React.ReactNode;
 }
 
@@ -40,9 +40,9 @@ export default function ExampleBox({ question, content, steps, answer }: Example
             </div>
 
             {/* Solution Steps */}
-            <div className="bg-white text-white rounded-xl p-5 mb-4 shadow-lg">
+            {/* <div className="bg-white text-white rounded-xl p-5 mb-4 shadow-lg">
                 <div className="space-y-4">
-                    {steps.map((step, index) => (
+                    {steps?.map((step, index) => (
                         <div key={index} className="space-y-2">
                             <div className="font-semibold text-black">
                                 ជំហានទី{index + 1}៖ {step.title}
@@ -53,7 +53,27 @@ export default function ExampleBox({ question, content, steps, answer }: Example
                         </div>
                     ))}
                 </div>
-            </div>
+            </div> */}
+
+            {steps?.some(step => step.content) && (
+                <div className="bg-white text-white rounded-xl p-5 mb-4 shadow-lg">
+                    <div className="space-y-4">
+                        {steps.map((step, index) =>
+                            step.content && (
+                                <div key={index} className="space-y-2">
+                                    <div className="font-semibold text-black">
+                                        ជំហានទី{index + 1}៖ {step.title}
+                                    </div>
+                                    <div className="font-mono text-sm p-3 rounded-lg border-2 border-gray-200 text-black">
+                                        {step.content}
+                                    </div>
+                                </div>
+                            )
+                        )}
+                    </div>
+                </div>
+            )}          
+
 
             {/* Answer */}
             {answer && <AnswerBox answer={answer} />}
