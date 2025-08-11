@@ -46,7 +46,7 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
                     onMouseEnter={handleCardHover}
                     onMouseLeave={handleCardLeave}
                 >
-                    <div className="relative w-32 h-20 flex-1 overflow-hidden">
+                    <div className="relative w-32 h-36 flex-1 overflow-hidden">
                         <video
                             poster={video.thumbnail}
                             className="w-full h-full object-cover rounded-lg"
@@ -82,13 +82,13 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
         return (
             <div className="block group cursor-pointer" onClick={onClick}>
                 <div
-                    className="bg-indigo-50/80 border border-indigo-600 rounded-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform overflow-hidden cursor-pointer"
+                    className=" rounded-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform overflow-hidden cursor-pointer"
                     onMouseEnter={handleCardHover}
                     onMouseLeave={handleCardLeave}
                 >
                     <div className="relative overflow-hidden">
                         <video
-                            className="w-full h-56 object-cover rounded-t-2xl z-10 group-hover:scale-105 transition-all duration-300"
+                            className="w-full h-64 object-cover rounded-t-2xl z-10 group-hover:scale-105 transition-all duration-300"
                             poster={video.thumbnail}
                             muted
                             preload="metadata"
@@ -132,10 +132,10 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
             onMouseEnter={handleCardHover}
             onMouseLeave={handleCardLeave}
         >
-            <div className="bg-indigo-50/80 border border-indigo-600 rounded-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform overflow-hidden">
+            <div className=" rounded-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform overflow-hidden">
                 <div className="relative overflow-hidden">
                     <video
-                        className="w-full h-48 object-cover rounded-t-2xl z-10 group-hover:scale-105 transition-all duration-300"
+                        className="w-full aspect-video object-cover rounded-t-2xl z-10 group-hover:scale-105 transition-all duration-300"
                         poster={video.thumbnail}
                         muted
                         preload="metadata"
