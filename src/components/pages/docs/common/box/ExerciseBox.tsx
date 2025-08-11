@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookAIcon } from 'luci
 import { ExerciseQuestion } from '@/types/topic';
 
 export interface ExerciseBoxProps {
-    questions: ExerciseQuestion[];
+    questions: ExerciseQuestion[] ;
 }
 
 export default function ExerciseBox({ questions }: ExerciseBoxProps) {
