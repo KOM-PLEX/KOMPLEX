@@ -50,6 +50,8 @@ export interface TopicContent {
   // Example section - shows worked examples with steps
   example?: ExampleBoxProps;
 
+  example2?: ExampleBoxProps;
+
   // Exercise section - interactive practice questions
   exercise?: ExerciseBoxProps;
 
