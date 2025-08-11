@@ -8,7 +8,6 @@ import GraphBox from "../../common/box/GraphBox";
 import { TopicContent } from "@/types/topic";
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from "react-katex";
-import { li } from 'framer-motion/client';
 
 const Parabola = () => {
   const TOPIC_CONTENT: TopicContent = {

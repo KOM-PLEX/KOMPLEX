@@ -5,12 +5,10 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
 import GraphBox from "../../common/box/GraphBox";
 import { TopicContent } from "@/types/topic";
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from "react-katex";
-import { GraphExplanationBox } from '../../common/box/explanation-box/GraphExplanationBox';
 
 const Ellipse = () => {
   const TOPIC_CONTENT: TopicContent = {
