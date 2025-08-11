@@ -3,7 +3,7 @@
 import Footer from "@/components/common/Footer";
 import Link from "next/link";
 import Header from "@/components/common/Header";
-import { Play, ArrowRight, BookOpen, Bot, MessageSquare, FileText, Video, Code, Target, CheckCircle, Rocket, Users, Globe, Heart, Brain, Github } from "lucide-react";
+import { Play, ArrowRight, BookOpen, Bot, MessageSquare, FileText, Video, Code, Target, CheckCircle, Rocket, Users, Globe, Heart, Brain, Github, ChartBar, ImageIcon } from "lucide-react";
 import ThreeDBox from "@/components/pages/docs/common/box/3DBox";
 import GraphBox from "@/components/pages/docs/common/box/GraphBox";
 import ExerciseBox from "@/components/pages/docs/common/box/ExerciseBox";
@@ -406,7 +406,9 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6"
             >
-              <h3 className="text-3xl font-bold text-gray-900">មេរៀនអន្តរកម្ម</h3>
+              <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <BookOpen size={24} className="text-indigo-600 mt-2" />
+                មេរៀនអន្តរកម្ម</h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 រៀនគណិតវិទ្យាតាមរយៈមេរៀនដែលមានការអន្តរកម្ម និងរូបភាពច្បាស់លាស់។
                 អ្នកអាចរុករកមេរៀនតាមថ្នាក់រៀន និងមុខវិជ្ជាបានយ៉ាងងាយស្រួល។
@@ -455,7 +457,6 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
               className="bg-white rounded-2xl p-6 shadow-lg"
             >
               <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
@@ -482,7 +483,10 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:order-2 space-y-6"
             >
-              <h3 className="text-3xl font-bold text-gray-900">មើលរូបភាព 3D</h3>
+              <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <ImageIcon size={24} className="text-indigo-600 mt-2" />
+                មើលរូបភាព 3D
+              </h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 រៀនគណិតវិទ្យាតាមរយៈរូបភាព 3D ដែលអាចធ្វើឱ្យគោលគំនិតស្មុគស្មាញកាន់តែងាយយល់។
                 អ្នកអាចបង្វិល និងពង្រីករូបភាពដើម្បីយល់ជ្រៅជាង។
@@ -531,7 +535,6 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
               className="lg:order-1"
             >
               <ThreeDBox
@@ -564,8 +567,10 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6"
             >
-              <h3 className="text-3xl font-bold text-gray-900">ក្រាបអន្តរកម្ម</h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <ChartBar size={24} className="text-indigo-600 mt-2" />
+                ក្រាបអន្តរកម្ម</h3>
+              <p className="text-lg text-gray-600 leading-relaxed flex items-center gap-2">
                 បង្កើត និងពិសោធន៍ជាមួយក្រាបគណិតវិទ្យាតាមរយៈ Desmos ដែលមានអន្តរកម្ម។
                 អ្នកអាចបង្កើតក្រាប និងមើលពីរបៀបដែលវាផ្លាស់ប្តូរ។
               </p>
@@ -613,7 +618,6 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
             >
               <GraphBox
                 expressions={[
@@ -640,7 +644,9 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:order-2 space-y-6"
             >
-              <h3 className="text-3xl font-bold text-gray-900">ប្រព័ន្ធលំហាត់អនុវត្តន៍</h3>
+              <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <BookOpen size={24} className="text-indigo-600 mt-2" />
+                ប្រព័ន្ធលំហាត់អនុវត្តន៍</h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 ធ្វើលំហាត់អនុវត្តន៍ជាមួយនឹងការណែនាំជាក់លាក់។
                 ប្រព័ន្ធយើងមានលំហាត់គណិតវិទ្យាជាច្រើនដែលជួយអ្នកយល់គោលគំនិត។
@@ -689,7 +695,6 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
               className="lg:order-1"
             >
               <ExerciseBox questions={EXERCISE_QUESTIONS} />
@@ -711,10 +716,12 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6"
             >
-              <h3 className="text-3xl font-bold text-gray-900">ប្លុកបទពិសោធន៍</h3>
+              <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <FileText size={24} className="text-indigo-600 mt-2" />
+                ប្លុកបទពិសោធន៍</h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 អានបទពិសោធន៍ និងគន្លឹះរៀនពីសិស្សដទៃទៀត។
-                ចែករំលែកបទពិសោធន៍រៀនរបស់អ្នកជាមួយសហគមន៍។
+                ចែករំលែកបទពិសោធន៍រៀនរបស់អ្នកជាមួយសហគមន៍។      
               </p>
               <motion.ul
                 initial={{ opacity: 0 }}
@@ -760,7 +767,6 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
               className="bg-white rounded-2xl p-6 shadow-lg"
             >
               <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
@@ -787,7 +793,9 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:order-2 space-y-6"
             >
-              <h3 className="text-3xl font-bold text-gray-900">វេទិកាពិភាក្សា</h3>
+              <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <MessageSquare size={24} className="text-indigo-600 mt-2" />
+                វេទិកាពិភាក្សា</h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 ចូលរួមក្នុងការពិភាក្សាជាមួយសិស្សដទៃទៀត។
                 សួរសំណួរ និងចែករំលែកចំណេះដឹងរបស់អ្នក។
@@ -836,7 +844,6 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
               className="lg:order-1 bg-white rounded-2xl p-6 shadow-lg"
             >
               <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
@@ -863,7 +870,9 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6"
             >
-              <h3 className="text-3xl font-bold text-gray-900">អ្នកជំនាញ AI</h3>
+              <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <Bot size={24} className="text-indigo-600 mt-2" />
+                អ្នកជំនាញ AI</h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 អ្នកជំនាញ AI ដែលអាចជួយដោះស្រាយបញ្ហាគណិតវិទ្យា និងផ្តល់ការណែនាំជាក់លាក់។
                 សួរសំណួរណាមួយដែលអ្នកមាន។
@@ -912,7 +921,6 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
               className="bg-white rounded-2xl p-6 shadow-lg"
             >
               <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
@@ -939,7 +947,9 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:order-2 space-y-6"
             >
-              <h3 className="text-3xl font-bold text-gray-900">វីដេអូរៀនឥតគិតថ្លៃ</h3>
+              <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <Video size={24} className="text-indigo-600 " />
+                វីដេអូរៀនឥតគិតថ្លៃ</h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 មើលវីដេអូរៀនឥតគិតថ្លៃដែលពន្យល់អំពីគោលគំនិតសំខាន់ៗ។
                 វីដេអូយើងត្រូវបានធ្វើឡើងដោយអ្នកជំនាញដើម្បីជួយអ្នកយល់។
@@ -988,7 +998,6 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
               className="lg:order-1 bg-white rounded-2xl p-6 shadow-lg"
             >
               <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
@@ -1015,7 +1024,9 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6"
             >
-              <h3 className="text-3xl font-bold text-gray-900">ប្រភពបើកចំហ</h3>
+              <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <Github size={24} className="text-indigo-600 mt-2" />
+                ប្រភពបើកចំហ</h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 ប្រព័ន្ធបើកចំហ ដែលអាចរួមចំណែក និងពង្រីកមេរៀនបាន។
                 យើងជឿថាការអប់រំគួរតែឥតគិតថ្លៃ និងអាចរកបានដោយគ្រប់គ្នា។
@@ -1064,7 +1075,6 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
               className="bg-white rounded-2xl p-6 shadow-lg"
             >
               <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
