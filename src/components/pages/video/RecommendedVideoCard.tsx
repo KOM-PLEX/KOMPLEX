@@ -40,7 +40,7 @@ export default function RecommendedVideoCard({ video }: RecommendedVideoCardProp
                 onMouseLeave={handleCardLeave}
             >
                 {/* Video Thumbnail */}
-                <div className="relative w-32 h-20 flex-shrink-0 overflow-hidden">
+                <div className="relative w-32 h-24 flex-shrink-0 overflow-hidden">
                     <video
                         poster={video.thumbnail}
                         className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
