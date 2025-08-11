@@ -3,15 +3,10 @@ import TipBox from "../../common/box/TipBox"
 import HintBox from "../../common/box/HintBox"
 import { TopicContent } from "@/types/topic"
 import { BlockMath, InlineMath } from "react-katex"
-import GraphBox from "../../common/box/GraphBox"
-import ThreeDBox from "../../common/box/3DBox"
-import Graph from "../../common/box/Graph"
 import 'katex/dist/katex.min.css'
-import { ImageBox } from "../../common/box/ImageBox"
 import WarningBox from "../../common/box/WarningBox"
 import ExerciseBox from "../../common/box/ExerciseBox"
 import ExampleBox from "../../common/box/ExampleBox"
-import { div } from "three/tsl"
 
 
 
@@ -99,10 +94,10 @@ const FirstTopicContent: TopicContent = {
               </>
           ),
           options: [
-            <InlineMath math={"y = 3Ke^{-x}"} />,
-            <InlineMath math={"y = Ke^{3x}"} />,
-            <InlineMath math={"y = Ke^{-3x}"} />,
-            <InlineMath math={"y = 3Ke^{x}"} />
+            <InlineMath key="q1-o1" math={"y = 3Ke^{-x}"} />,
+            <InlineMath key="q1-o2" math={"y = Ke^{3x}"} />,
+            <InlineMath key="q1-o3" math={"y = Ke^{-3x}"} />,
+            <InlineMath key="q1-o4" math={"y = 3Ke^{x}"} />
           ],
           correctAnswer: 1
         },
@@ -119,10 +114,10 @@ const FirstTopicContent: TopicContent = {
               </>
           ),
           options: [
-            <InlineMath math={"y = Ke^{-5x}"} />,
-            <InlineMath math={"y = Ke^{5x}"} />,
-            <InlineMath math={"y = 5Ke^{x}"} />,
-            <InlineMath math={"y = 5Ke^{-x}"} />
+            <InlineMath key="q2-o1" math={"y = Ke^{-5x}"} />,
+            <InlineMath key="q2-o2" math={"y = Ke^{5x}"} />,
+            <InlineMath key="q2-o3" math={"y = 5Ke^{x}"} />,
+            <InlineMath key="q2-o4" math={"y = 5Ke^{-x}"} />
         ],
           correctAnswer: 2
         },
@@ -139,10 +134,10 @@ const FirstTopicContent: TopicContent = {
               </>
           ),
           options: [
-            <InlineMath math={"y = \\frac{2}{\\sqrt{2}}Ke^{-x}"} />,
-            <InlineMath math={"y = Ke^{-\\frac{2}{\\sqrt{2}}x}"} />,
-            <InlineMath math={"y = Ke^{\\frac{2}{\\sqrt{2}}x}"} />,
-            <InlineMath math={"y = \\frac{2}{\\sqrt{2}}Ke^{x}"} />
+            <InlineMath key="q3-o1" math={"y = \\frac{2}{\\sqrt{2}}Ke^{-x}"} />,
+            <InlineMath key="q3-o2" math={"y = Ke^{-\\frac{2}{\\sqrt{2}}x}"} />,
+            <InlineMath key="q3-o3" math={"y = Ke^{\\frac{2}{\\sqrt{2}}x}"} />,
+            <InlineMath key="q3-o4" math={"y = \\frac{2}{\\sqrt{2}}Ke^{x}"} />
           ],
           correctAnswer: 2
         },
@@ -159,10 +154,10 @@ const FirstTopicContent: TopicContent = {
               </>
           ),
           options: [
-            <InlineMath math={"y = Ke^{-5x}"} />,
-            <InlineMath math={"y = Ke^{5x}"} />,
-            <InlineMath math={"y = 5Ke^{x}"} />,
-            <InlineMath math={"y = 5Ke^{-x}"} />
+            <InlineMath key="q4-o1" math={"y = Ke^{-5x}"} />,
+            <InlineMath key="q4-o2" math={"y = Ke^{5x}"} />,
+            <InlineMath key="q4-o3" math={"y = 5Ke^{x}"} />,
+            <InlineMath key="q4-o4" math={"y = 5Ke^{-x}"} />
           ],
           correctAnswer: 1
         }
@@ -463,10 +458,10 @@ const SecondTopicContent: TopicContent = {
               </>
             ),
             options: [
-              <InlineMath math={"y = Ce^{3x} + 2"} />,
-              <InlineMath math={"y = Ce^{-3x} - 2"} />,
-              <InlineMath math={"y = Ce^{3x} - 2"} />,
-              <InlineMath math={"y = Ce^{-3x} + 2"} />,
+              <InlineMath key="q1-o1" math={"y = Ce^{3x} + 2"} />,
+              <InlineMath key="q1-o2" math={"y = Ce^{-3x} - 2"} />,
+              <InlineMath key="q1-o3" math={"y = Ce^{3x} - 2"} />,
+              <InlineMath key="q1-o4" math={"y = Ce^{-3x} + 2"} />,
             ],
             correctAnswer: 2,
           },
@@ -483,10 +478,10 @@ const SecondTopicContent: TopicContent = {
               </>
             ),
             options: [
-              <InlineMath math={"y = Ce^{-4x} + 2"} />,
-              <InlineMath math={"y = Ce^{4x} - 2"} />,
-              <InlineMath math={"y = Ce^{-4x} - 2"} />,
-              <InlineMath math={"y = Ce^{4x} + 2"} />,
+              <InlineMath key="q2-o1" math={"y = Ce^{-4x} + 2"} />,
+              <InlineMath key="q2-o3" math={"y = Ce^{4x} - 2"} />,
+              <InlineMath key="q2-o4" math={"y = Ce^{-4x} - 2"} />,
+              <InlineMath key="q2-o5" math={"y = Ce^{4x} + 2"} />,
             ],
             correctAnswer: 0,
           },
@@ -503,10 +498,10 @@ const SecondTopicContent: TopicContent = {
               </>
             ),
             options: [
-              <InlineMath math={"y_p = -5"} />,
-              <InlineMath math={"y_p = 5"} />,
-              <InlineMath math={"y_p = 10"} />,
-              <InlineMath math={"y_p = -10"} />,
+              <InlineMath key="q3-o1" math={"y_p = -5"} />,
+              <InlineMath key="q3-o2" math={"y_p = 5"} />,
+              <InlineMath key="q3-o3" math={"y_p = 10"} />,
+              <InlineMath key="q3-o4" math={"y_p = -10"} />,
             ],
             correctAnswer: 1,
           }

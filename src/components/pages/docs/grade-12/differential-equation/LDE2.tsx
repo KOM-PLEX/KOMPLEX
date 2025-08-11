@@ -3,18 +3,10 @@ import TipBox from "../../common/box/TipBox"
 import HintBox from "../../common/box/HintBox"
 import { TopicContent } from "@/types/topic"
 import { BlockMath, InlineMath } from "react-katex"
-import GraphBox from "../../common/box/GraphBox"
-import ThreeDBox from "../../common/box/3DBox"
-import Graph from "../../common/box/Graph"
 import 'katex/dist/katex.min.css'
-import { ImageBox } from "../../common/box/ImageBox"
 import WarningBox from "../../common/box/WarningBox"
 import ExerciseBox from "../../common/box/ExerciseBox"
 import ExampleBox from "../../common/box/ExampleBox"
-import { div } from "three/tsl"
-
-
-
 
 const FirstTopicContent: TopicContent = {
     definition: {
@@ -90,7 +82,7 @@ const FirstTopicContent: TopicContent = {
     },
     example2: {
         question:[
-            <div className="flex flex-col items-start gap-3">
+            <div className="flex flex-col items-start gap-3" key="q1">
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3 flex-wrap">
                    <p>ក. ដោះស្រាយសមីការ</p>
@@ -175,10 +167,10 @@ const FirstTopicContent: TopicContent = {
               </>
             ),
             options: [
-              <InlineMath math={"y = Ae^{2x} + Be^{3x}"} />,
-              <InlineMath math={"y = Ae^{-x} + Be^{-5x}"} />,
-              <InlineMath math={"y = Ae^{-2x} + Be^{-3x}"} />,
-              <InlineMath math={"y = Ae^{x} + Be^{5x}"} />
+              <InlineMath key="q1-o1" math={"y = Ae^{2x} + Be^{3x}"} />,
+              <InlineMath key="q1-o2" math={"y = Ae^{-x} + Be^{-5x}"} />,
+              <InlineMath key="q1-o3" math={"y = Ae^{-2x} + Be^{-3x}"} />,
+              <InlineMath key="q1-o4" math={"y = Ae^{x} + Be^{5x}"} />
             ],
             correctAnswer: 2
           },
@@ -195,10 +187,10 @@ const FirstTopicContent: TopicContent = {
               </>
             ),
             options: [
-              <InlineMath math={"y = Ae^{x} + Be^{-x}"} />,
-              <InlineMath math={"y = (A + Bx)e^{\\frac{1}{2}x}"} />,
-              <InlineMath math={"y = Ae^{\\frac{1}{2}x} + Be^{-\\frac{1}{2}x}"} />,
-              <InlineMath math={"y = (A + Bx)e^{-\\frac{1}{2}x}"} />
+              <InlineMath key="q2-o1" math={"y = Ae^{x} + Be^{-x}"} />,
+              <InlineMath key="q2-o2" math={"y = (A + Bx)e^{\\frac{1}{2}x}"} />,
+              <InlineMath key="q2-o3" math={"y = Ae^{\\frac{1}{2}x} + Be^{-\\frac{1}{2}x}"} />,
+              <InlineMath key="q2-o4" math={"y = (A + Bx)e^{-\\frac{1}{2}x}"} />
             ],
             correctAnswer: 1
           },
@@ -215,10 +207,10 @@ const FirstTopicContent: TopicContent = {
               </>
             ),
             options: [
-              <InlineMath math={"y = Ae^{2x} + Be^{-2x}"} />,
-              <InlineMath math={"y = (A + Bx)e^{2x}"} />,
-              <InlineMath math={"y = A\\cos(2x) + B\\sin(2x)"} />,
-              <InlineMath math={"y = A\\cos(x) + B\\sin(x)"} />
+              <InlineMath key="q3-o1" math={"y = Ae^{2x} + Be^{-2x}"} />,
+              <InlineMath key="q3-o2" math={"y = (A + Bx)e^{2x}"} />,
+              <InlineMath key="q3-o3" math={"y = A\\cos(2x) + B\\sin(2x)"} />,
+              <InlineMath key="q3-o4" math={"y = A\\cos(x) + B\\sin(x)"} />
             ],
             correctAnswer: 2
           },
@@ -310,7 +302,7 @@ const SecondTopic: TopicContent = {
     },
     example: {
         question:[
-          <div className="flex flex-col items-start gap-3">
+          <div className="flex flex-col items-start gap-3" key="q1">  
             <div className="flex flex-col gap-3 w-full">
                 <p>ដោះស្រាយសមីការឌីផែរ៉ង់ស្សែលមិនអូម៉ូសែនលំដាប់ទី២</p>
                 <div className="flex items-center gap-5 flex-wrap  w-full justify-center">
@@ -359,10 +351,10 @@ const SecondTopic: TopicContent = {
               </>
             ),
             options: [
-              <InlineMath math={"y = (A + Bx)e^{x} + e^{x}"} />,
-              <InlineMath math={"y = Ae^{x} + Be^{x} + xe^{x}"} />,
-              <InlineMath math={"y = Ae^{x} + Be^{x} + e^{-x}"} />,
-              <InlineMath math={"y = (A + Bx)e^{x} + xe^{-x}"} />,
+              <InlineMath key="q1-o1" math={"y = (A + Bx)e^{x} + e^{x}"} />,
+              <InlineMath key="q1-o2" math={"y = Ae^{x} + Be^{x} + xe^{x}"} />,
+              <InlineMath key="q1-o3" math={"y = Ae^{x} + Be^{x} + e^{-x}"} />,
+              <InlineMath key="q1-o4" math={"y = (A + Bx)e^{x} + xe^{-x}"} />,
             ],
             correctAnswer: 0
           },
@@ -379,10 +371,10 @@ const SecondTopic: TopicContent = {
               </>
             ),
             options: [
-              <InlineMath math={"y = A\\cos x + B\\sin x + \\frac{1}{2} x \\cos x"} />,
-              <InlineMath math={"y = A\\cos x + B\\sin x + x \\sin x"} />,
-              <InlineMath math={"y = Ae^{x} + Be^{-x} + \\sin x"} />,
-              <InlineMath math={"y = A\\cos x + B\\sin x + \\cos x"} />,
+              <InlineMath key="q2-o1" math={"y = A\\cos x + B\\sin x + \\frac{1}{2} x \\cos x"} />,
+              <InlineMath key="q2-o2" math={"y = A\\cos x + B\\sin x + x \\sin x"} />,
+              <InlineMath key="q2-o3" math={"y = Ae^{x} + Be^{-x} + \\sin x"} />,
+              <InlineMath key="q2-o4" math={"y = A\\cos x + B\\sin x + \\cos x"} />,
             ],
             correctAnswer: 0
           },
@@ -399,10 +391,10 @@ const SecondTopic: TopicContent = {
               </>
             ),
             options: [
-              <InlineMath math={"y = A\\cos 2x + B\\sin 2x + x"} />,
-              <InlineMath math={"y = A\\cos 2x + B\\sin 2x + x^2"} />,
-              <InlineMath math={"y = A\\cos 2x + B\\sin 2x + x^2 + 1"} />,
-              <InlineMath math={"y = A\\cos 2x + B\\sin 2x + x^2 - 1"} />,
+              <InlineMath key="q3-o1" math={"y = A\\cos 2x + B\\sin 2x + x"} />,
+              <InlineMath key="q3-o2" math={"y = A\\cos 2x + B\\sin 2x + x^2"} />,
+              <InlineMath key="q3-o3" math={"y = A\\cos 2x + B\\sin 2x + x^2 + 1"} />,
+              <InlineMath key="q3-o4" math={"y = A\\cos 2x + B\\sin 2x + x^2 - 1"} />,
             ],
             correctAnswer: 1
           },

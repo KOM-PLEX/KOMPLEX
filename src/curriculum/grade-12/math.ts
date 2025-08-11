@@ -15,7 +15,7 @@ import LimitExponential from "@/components/pages/docs/grade-12/limit/Limit-Expon
 import LHopitalRule from "@/components/pages/docs/grade-12/limit/L’Hôpital-Rule";
 import LimitPorformation from "@/components/pages/docs/grade-12/limit/Limit-Portformation";
 import Footer from "@/components/common/Footer";
-import LimitDefinition  from "@/components/pages/docs/grade-12/limit/LimitDefinition";
+import LimitDefinition from "@/components/pages/docs/grade-12/limit/LimitDefinition";
 import LimitInfinityOverInfinity from "@/components/pages/docs/grade-12/limit/Limit-Infinity-Over-Infinity";
 import LimitPractice from "@/components/pages/docs/grade-12/limit/Limit-Practice";
 import LimitLogarithmic from "@/components/pages/docs/grade-12/limit/Limit-Logarithmic";
@@ -82,39 +82,39 @@ export const math: Content = {
         {
           title: "និយមន័យកំុផ្លិច",
           englishTitle: "Complex-Definition",
-          component: ComplexDefinition
+          component: ComplexDefinition,
         },
         {
           title: "រូបមន្តកំុផ្លិច",
           englishTitle: "Complex-Formulas",
-          component: ComplexFormulars
+          component: ComplexFormulars,
         },
         {
           title: "ប្រមាណវិធីលើចំនួនកំុផ្លិច",
           englishTitle: "Complex-Operations",
-          component: ComplexOperations
+          component: ComplexOperations,
         },
         {
           title: "ម៉ូឌុលនៃកុំផ្លិច",
           englishTitle: "Complex-Modulus",
-          component: ComplexModulus
+          component: ComplexModulus,
         },
         {
           title: "សមីការដឺក្រេទី ២",
           englishTitle: "Quadratic-Equation",
-          component: QuadraticEquation
+          component: QuadraticEquation,
         },
         {
           title: "ទម្រង់ត្រីកោណមាត្រ",
           englishTitle: "Trigonometric-Form",
-          component: TrigonometricForm
+          component: TrigonometricForm,
         },
         {
           title: "លំហាត់អនុវត្ត",
           englishTitle: "Complex-Practice",
-          component: ComplexPractice
-        },  
-      ]
+          component: ComplexPractice,
+        },
+      ],
     },
     {
       lesson: "limits",
@@ -301,7 +301,7 @@ export const math: Content = {
           englishTitle: "Differential-practice",
           component: DifferentialPractice,
         },
-      ]
+      ],
     },
     {
       lesson: "Probability",
@@ -328,8 +328,8 @@ export const math: Content = {
           title: "លំហាត់អនុវត្ត",
           englishTitle: "Probability-Practice",
           component: ProbabilityPractice,
-        }, 
-      ]
+        },
+      ],
     },
     {
       lesson: "vectors",
@@ -346,7 +346,6 @@ export const math: Content = {
           title: "កូអរដោនេនៃវ៉ិចទ័រក្នុងលំហ",
           englishTitle: "2D-Vector-coordinates",
           component: TwoDVectorCoordinates,
-          
         },
         {
           title: "ផ្ទៃក្រឡា",
@@ -396,7 +395,7 @@ export const math: Content = {
           englishTitle: "Conic-Practice",
           component: ConicPractice,
         },
-      ]
+      ],
     },
     {
       lesson: "Functions",
@@ -439,7 +438,7 @@ export const math: Content = {
           englishTitle: "Function-Practice",
           component: FunctionPractice,
         },
-      ]
+      ],
     },
   ],
 };

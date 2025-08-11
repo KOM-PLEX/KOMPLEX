@@ -3,6 +3,7 @@
 import { MessageCircle, Share, ThumbsUp } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface ForumPost {
     id: number;
@@ -28,8 +29,9 @@ interface ForumCardProps {
 export default function ForumCard({ isFromBasePage, post, onCommentClick }: ForumCardProps) {
     const [upvoted, setUpvoted] = useState(post.upvoted);
     const [upvoteCount, setUpvoteCount] = useState(post.upvotes);
-
-    const handleUpvote = () => {
+    const router = useRouter();
+    const handleUpvote = (e: React.MouseEvent) => {
+        e.stopPropagation();
         if (upvoted) {
             setUpvoteCount(upvoteCount - 1);
         } else {
@@ -38,8 +40,27 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick }: Foru
         setUpvoted(!upvoted);
     };
 
+    const handleCommentClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (onCommentClick) {
+            onCommentClick();
+        }
+    };
+
+    const handleShareClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        // Add share functionality here
+        console.log('Share clicked');
+    };
+
+    const handleCardClick = () => {
+        if (isFromBasePage) {
+            router.push(`/forum/${post.id}`);
+        }
+    }
+
     return (
-        <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-0.5 cursor-pointer">
+        <div className={`bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-0.5 ${isFromBasePage ? 'cursor-pointer' : ''}`} onClick={handleCardClick}>
             <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-base">
                     {post.author.avatar}
@@ -81,13 +102,16 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick }: Foru
                             <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប ({post.comments})</span>
                         </Link>
                     ) : (
-                        <button onClick={onCommentClick} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
+                        <button onClick={handleCommentClick} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
                             <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប ({post.comments})</span>
                         </button>
                     )
                 }
 
-                <button className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
+                <button
+                    onClick={handleShareClick}
+                    className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60"
+                >
                     <Share className="w-4 h-4" /> <span className="text-gray-500">ចែករំលែក</span>
                 </button>
             </div>
