@@ -60,26 +60,29 @@ export default function CreateBlog() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen transition-colors duration-200" style={{ backgroundColor: 'var(--background)' }} id="test-container">
             <div className="max-w-7xl mx-auto p-5 pt-20">
                 {/* Header */}
                 <div className="mb-6">
-                    <Link href="/blog" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
+                    <Link href="/blog" className="inline-flex items-center gap-2 font-medium transition-colors duration-200" style={{ color: 'var(--text-primary)' }}>
                         <ArrowLeft className="w-4 h-4" />
                         ត្រឡប់ទៅប្លុក
                     </Link>
                 </div>
 
                 {/* Create Post Form */}
-                <div className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 p-6">
+                <div className="rounded-2xl shadow-lg p-6 transition-colors duration-200" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--card-border)' }} id="test-form">
                     {/* Header */}
                     <div className="mb-6">
-                        <h1 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2"><Book className='w-6 h-6 text-indigo-500' />បង្កើតប្លុក</h1>
+                        <h1 className="text-2xl font-bold mb-2 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
+                            <Book className='w-6 h-6' style={{ color: '#6366f1' }} />
+                            បង្កើតប្លុក
+                        </h1>
                     </div>
 
                     {/* Title Input */}
                     <div className="mb-6">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-primary)' }}>
                             ចំណងជើង
                         </label>
                         <input
@@ -87,11 +90,16 @@ export default function CreateBlog() {
                             value={title}
                             onChange={handleTitleChange}
                             placeholder="សរសេរចំណងជើងប្លុករបស់អ្នក..."
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            className="w-full px-4 py-3 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
+                            style={{
+                                backgroundColor: 'var(--input-bg)',
+                                border: '1px solid var(--input-border)',
+                                color: 'var(--text-primary)'
+                            }}
                             maxLength={300}
                         />
                         <div className="flex justify-between items-center mt-2">
-                            <span className="text-xs text-gray-500">
+                            <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>
                                 {titleCharCount}/300
                             </span>
                         </div>
@@ -99,7 +107,7 @@ export default function CreateBlog() {
 
                     {/* Image Upload Area */}
                     <div className="mb-6">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-primary)' }}>
                             រូបគំរូ
                         </label>
                         <input
@@ -112,7 +120,7 @@ export default function CreateBlog() {
 
                         {imagePreview ? (
                             // Image Preview
-                            <div className="relative w-full  border-2 border-gray-300 rounded-lg overflow-hidden">
+                            <div className="relative w-full rounded-lg overflow-hidden" style={{ border: '2px solid var(--input-border)' }}>
                                 <img
                                     src={imagePreview}
                                     alt="Preview"
@@ -129,11 +137,15 @@ export default function CreateBlog() {
                             // Upload Area
                             <div
                                 onClick={handleImageClick}
-                                className="w-full h-64 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
+                                className="w-full h-64 border-2 border-dashed rounded-lg flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
+                                style={{
+                                    borderColor: 'var(--input-border)',
+                                    backgroundColor: 'var(--input-bg)'
+                                }}
                             >
-                                <Upload className="w-8 h-8 text-gray-400 mb-2" />
-                                <p className="text-gray-500 text-sm mb-1">អូសរូបឬ</p>
-                                <button className="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+                                <Upload className="w-8 h-8 mb-2" style={{ color: 'var(--text-secondary)' }} />
+                                <p className="text-sm mb-1" style={{ color: 'var(--text-secondary)' }}>អូសរូបឬ</p>
+                                <button className="text-sm font-medium" style={{ color: '#6366f1' }}>
                                     ជ្រើសរើសរូប
                                 </button>
                             </div>
@@ -142,24 +154,30 @@ export default function CreateBlog() {
 
                     {/* Body Text */}
                     <div className="mb-6">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            មាតិកា 
+                        <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-primary)' }}>
+                            មាតិកា
                         </label>
                         <textarea
                             value={bodyText}
                             onChange={(e) => setBodyText(e.target.value)}
                             placeholder="សរសេរមាតិកាប្លុករបស់អ្នក..."
-                            className="w-full p-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+                            className="w-full p-4 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
+                            style={{
+                                backgroundColor: 'var(--input-bg)',
+                                border: '1px solid var(--input-border)',
+                                color: 'var(--text-primary)'
+                            }}
                             rows={12}
                         />
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                    <div className="flex justify-end gap-3 pt-4" style={{ borderTop: '1px solid var(--card-border)' }}>
                         <button
                             onClick={handleSubmit}
                             disabled={!title.trim() || !bodyText.trim()}
-                            className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                            className="px-6 py-2 text-white rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                            style={{ backgroundColor: '#6366f1' }}
                         >
                             បោះផ្សាយ
                         </button>
