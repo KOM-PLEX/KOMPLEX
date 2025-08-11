@@ -10,8 +10,8 @@ export interface Step {
 
 export interface ExerciseQuestion {
   id: string;
-  question: string;
-  options: string[];
+  question: string | React.ReactNode;
+  options: string[] | React.ReactNode[];
   correctAnswer: number;
 }
 
@@ -43,6 +43,8 @@ export interface TopicContent {
 
   // Example section - shows worked examples with steps
   example?: ExampleBoxProps;
+
+  example2?: ExampleBoxProps;
 
   // Exercise section - interactive practice questions
   exercise?: ExerciseBoxProps;
