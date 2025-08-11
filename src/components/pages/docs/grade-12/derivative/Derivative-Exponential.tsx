@@ -4,10 +4,9 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
 import { BlockMath } from "react-katex";
+import GraphBox from "../../common/box/GraphBox";
 
 // ===== TOPIC CONTENT DATA (Derivative — Exponential Functions) =====
 
@@ -147,22 +146,13 @@ const TOPIC_CONTENT: TopicContent = {
     ),
   },
 
-  image: {
-    src: (
-      <Graph
-        expressions={[
-          { id: "e", latex: "f(x)=exp(x)", color: "#c00" },
-          { id: "eprime", latex: "g(x)=exp(x)", color: "#00c" },
-
-          // Show 2^x and its derivative ~ ln(2)*2^x ≈ 0.69314718056 * 2^x
-          { id: "two", latex: "h(x)=2^x", color: "#0a0" },
-          { id: "twoprime", latex: "k(x)=0.69314718056*2^x", color: "#a0a" },
-        ]}
-      />
-    ),
-    imageAlt: "ក្រាប e^x និង 2^x ជាមួយដេរីវេរបស់ពួកវា",
-    explanation:
-      "e^x មានដេរីវេស្មើខ្លួនវា ហើយ 2^x មានដេរីវេស្មើ (ln 2)·2^x។ នៅក្រាប បន្ទាត់ពណ៌ខៀវគឺដេរីវេ e^x និងពណ៌ស្វាយគឺដេរីវេ 2^x។",
+  graph: {
+    expressions: [
+      { id: "e", latex: "f(x)=exp(x)", color: "#c00" },
+      { id: "eprime", latex: "g(x)=exp(x)", color: "#00c" },
+      { id: "two", latex: "h(x)=2^x", color: "#0a0" },
+      { id: "twoprime", latex: "k(x)=0.69314718056*2^x", color: "#a0a" },
+    ],
   },
 };
 
@@ -196,11 +186,9 @@ export default function DerivativeExponential() {
 
       {TOPIC_CONTENT.hint && <HintBox content={TOPIC_CONTENT.hint.content} />}
       {TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
-      {TOPIC_CONTENT.image && (
-        <ImageBox
-          src={TOPIC_CONTENT.image.src}
-          imageAlt={TOPIC_CONTENT.image.imageAlt}
-          explanation={TOPIC_CONTENT.image.explanation}
+      {TOPIC_CONTENT.graph && (
+        <GraphBox
+          expressions={TOPIC_CONTENT.graph.expressions}
         />
       )}
     </>

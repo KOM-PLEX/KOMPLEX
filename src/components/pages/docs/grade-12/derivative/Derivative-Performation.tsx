@@ -4,9 +4,8 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
+import GraphBox from "../../common/box/GraphBox";
 import { BlockMath } from "react-katex";
 
 // ===== TOPIC CONTENT DATA (Derivative Formulas) =====
@@ -197,19 +196,13 @@ const TOPIC_CONTENT: TopicContent = {
         ),
     },
 
-    image: {
-        src: (
-            <Graph
-                expressions={[
-                    { id: "f", latex: "f(x)=x^2", color: "#c00" },
-                    { id: "fprime", latex: "g(x)=2x", color: "#00c" },
-                ]}
-            />
-        ),
-        imageAlt: "ក្រាបនៃអនុគមន៍ និងដេរីវេ",
-        explanation:
-            "ក្រាបនេះបង្ហាញអនុគមន៍ f(x)=x^2 (ក្រហម) និងដេរីវេ f'(x)=2x (ខៀវ) ដើម្បីបង្ហាញអត្រាប្រែប្រួល។",
+    graph: {
+        expressions: [
+            { id: "f", latex: "f(x)=x^2", color: "#c00" },
+            { id: "fprime", latex: "g(x)=2x", color: "#00c" },
+        ],
     },
+
 };
 
 // ===== MAIN COMPONENT =====

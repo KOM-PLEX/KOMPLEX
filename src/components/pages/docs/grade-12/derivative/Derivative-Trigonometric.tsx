@@ -4,9 +4,8 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
+import GraphBox from "../../common/box/GraphBox";
 import { BlockMath } from "react-katex";
 
 // ===== TOPIC CONTENT DATA (Derivative — Trigonometric Functions) =====
@@ -153,19 +152,12 @@ const TOPIC_CONTENT: TopicContent = {
     )
   },
 
-  image: {
-    src: (
-      <Graph
-        expressions={[
-          { id: "sin", latex: "f(x)=sin(x)", color: "#c00" },
-          { id: "cos", latex: "g(x)=cos(x)", color: "#00c" }
-        ]}
-      />
-    ),
-    imageAlt: "ក្រាប sin និង cos",
-    explanation:
-      "ក្រាបបង្ហាញ f(x)=sin(x) (ក្រហម) និងដេរីវេរបស់វា f'(x)=cos(x) (ខៀវ) ដើម្បីបង្ហាញទំនាក់ទំនងដេរីវេត្រីកោណមាត្រ។"
-  }
+  graph: {
+    expressions: [
+      { id: "sin", latex: "f(x)=sin(x)", color: "#c00" },
+      { id: "cos", latex: "g(x)=cos(x)", color: "#00c" },
+    ],
+  },
 };
 
 // ===== MAIN COMPONENT =====
@@ -198,11 +190,9 @@ export default function DerivativeTrigonometric() {
 
       {TOPIC_CONTENT.hint && <HintBox content={TOPIC_CONTENT.hint.content} />}
       {TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
-      {TOPIC_CONTENT.image && (
-        <ImageBox
-          src={TOPIC_CONTENT.image.src}
-          imageAlt={TOPIC_CONTENT.image.imageAlt}
-          explanation={TOPIC_CONTENT.image.explanation}
+      {TOPIC_CONTENT.graph && (
+        <GraphBox
+          expressions={TOPIC_CONTENT.graph.expressions}
         />
       )}
     </>
