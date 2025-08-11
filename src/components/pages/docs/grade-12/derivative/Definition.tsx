@@ -4,9 +4,7 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
 import { BlockMath } from "react-katex";
 
 const TOPIC_CONTENT: TopicContent = {
@@ -123,13 +121,7 @@ export default function DerivativeDefinition() {
             )}
             {TOPIC_CONTENT.hint && <HintBox content={TOPIC_CONTENT.hint.content} />}
             {TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
-            {TOPIC_CONTENT.image && (
-                <ImageBox
-                    src={TOPIC_CONTENT.image.src}
-                    imageAlt={TOPIC_CONTENT.image.imageAlt}
-                    explanation={TOPIC_CONTENT.image.explanation}
-                />
-            )}
+
         </>
     );
 }

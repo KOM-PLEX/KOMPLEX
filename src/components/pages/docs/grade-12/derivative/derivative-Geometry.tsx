@@ -4,9 +4,8 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../common/box/Graph";
+import GraphBox from "../../common/box/GraphBox";
 import { BlockMath } from "react-katex";
 
 // ===== TOPIC CONTENT DATA (Derivative — Geometric Interpretation) =====
@@ -155,22 +154,14 @@ const TOPIC_CONTENT: TopicContent = {
     ),
   },
 
-  image: {
-    src: (
-      <Graph
-        expressions={[
-          { id: "f", latex: "f(x)=x^2", color: "#c00" },
-          // Tangent at x=1: y = 2(x-1)+1 = 2x - 1
-          { id: "t", latex: "t(x)=2*(x-1)+1", color: "#00c" },
-          // Secant using h=0.5: slope = ((1.5)^2-1)/0.5 = 2.5; through (1,1)
-          { id: "s", latex: "s(x)=2.5*(x-1)+1", color: "#888" },
-        ]}
-      />
-    ),
-    imageAlt: "ក្រាបបង្ហាញបន្ទាត់កាត់ និងបន្ទាត់ប៉ះ",
-    explanation:
-      "បន្ទាត់កាត់ (ពណ៌ប្រផេះ) មានស្លាបប្រហាក់ប្រហែល សម្រាប់ h តូចៗ។ នៅពេល h→0, បន្ទាត់កាត់ខិតទៅជាបន្ទាត់ប៉ះ (ពណ៌ខៀវ) ដែលស្លាបស្មើដេរីវេ។",
+  graph: {
+    expressions: [
+      { id: "f", latex: "f(x)=x^2", color: "#c00" },
+      { id: "t", latex: "t(x)=2*(x-1)+1", color: "#00c" },
+      { id: "s", latex: "s(x)=2.5*(x-1)+1", color: "#888" },
+    ],
   },
+
 };
 
 // ===== MAIN COMPONENT =====
@@ -203,11 +194,9 @@ export default function DerivativeGeometric() {
 
       {TOPIC_CONTENT.hint && <HintBox content={TOPIC_CONTENT.hint.content} />}
       {TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
-      {TOPIC_CONTENT.image && (
-        <ImageBox
-          src={TOPIC_CONTENT.image.src}
-          imageAlt={TOPIC_CONTENT.image.imageAlt}
-          explanation={TOPIC_CONTENT.image.explanation}
+      {TOPIC_CONTENT.graph && (
+        <GraphBox
+          expressions={TOPIC_CONTENT.graph.expressions}
         />
       )}
     </>

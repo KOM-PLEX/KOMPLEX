@@ -72,39 +72,28 @@ export default function BlogPost() {
 
                 {/* Blog Post */}
                 <article className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
-                    {/* Hero Image */}
-                    <div className="w-full h-[500px] relative">
+                    {/* Header */}
+                    <div className="p-6 md:p-8">
+                        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
+                            {blogPost.title}
+                        </h1>
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold">
+                                {blogPost.author.avatar}
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <span className="font-semibold text-gray-900">{blogPost.author.name}</span>
+                                <span>|</span>
+                                <span className="text-gray-500 text-sm">{blogPost.date}</span>
+                            </div>
+                        </div>
+
+                        {/* Image */}
                         <img
                             src={blogPost.image}
                             alt={blogPost.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover rounded-lg"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 md:p-8">
-                        {/* Header */}
-                        <div className="mb-6 space-y-6">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold">
-                                    {blogPost.author.avatar}
-                                </div>
-                                <div className='flex items-center gap-2'>
-                                    <div className="font-semibold text-gray-900">
-                                        {blogPost.author.name}
-                                    </div>
-                                    |
-                                    <div className="text-gray-500 text-sm">
-                                        {blogPost.date}
-                                    </div>
-                                </div>
-                            </div>
-                            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
-                                {blogPost.title}
-                            </h1>
-
-                        </div>
 
                         {/* Article Content */}
                         <div className="prose prose-lg max-w-none">
