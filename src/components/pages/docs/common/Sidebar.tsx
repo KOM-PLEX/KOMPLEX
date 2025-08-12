@@ -51,7 +51,7 @@ export default function Sidebar({
                     const lessonTop = lessonButton.offsetTop;
 
                     sidebarRef.current.scrollTo({
-                        top: lessonTop - 10, // 20px offset from top for better visibility
+                        top: lessonTop - 20, // 20px offset from top for better visibility
                     });
                 }
             }, 100);
