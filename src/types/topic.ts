@@ -34,6 +34,7 @@ import { ImageBoxProps } from "@/components/pages/docs/common/box/explanation-bo
 import { VideoBoxProps } from "@/components/pages/docs/common/box/explanation-box/VideoExplanationBox";
 import { GraphExplanationBoxProps } from "@/components/pages/docs/common/box/explanation-box/GraphExplanationBox";
 import { ThreeDExplanationBoxProps } from "@/components/pages/docs/common/box/explanation-box/3DExplanationBox";
+import { ReactNode } from "react";
 
 // ===== MAIN TOPIC CONTENT INTERFACE =====
 // This interface defines the complete structure for a topic's content
@@ -85,4 +86,20 @@ export interface TopicContent {
 
   // 3D explanation section - 3D content with explanation
   threeDExplanation?: ThreeDExplanationBoxProps;
+}
+
+export interface SummarySection {
+  key?: string;
+  title: string | React.ReactNode;
+  icon?: React.ComponentType<{ size?: number; className?: string }>;
+  content: React.ReactNode; // supports strings, elements, KaTeX, etc.
+}
+
+export interface PracticeExercise {
+  id: string;
+  title: string;
+  description: string;
+  problemType: string;
+  problems: string[] | ReactNode[];
+  answers?: ReactNode[];
 }
