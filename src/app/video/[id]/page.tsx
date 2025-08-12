@@ -160,7 +160,7 @@ const mockComments = [
         upvoted: false
     },
     {
-        id: 3,
+        id: 4,
         author: { name: 'រតនា ម៉េង', avatar: 'រ' },
         time: '30 នាទីមុន',
         content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
@@ -168,7 +168,7 @@ const mockComments = [
         upvoted: false
     },
     {
-        id: 3,
+        id: 5,
         author: { name: 'រតនា ម៉េង', avatar: 'រ' },
         time: '30 នាទីមុន',
         content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
@@ -176,7 +176,7 @@ const mockComments = [
         upvoted: false
     },
     {
-        id: 3,
+        id: 6,
         author: { name: 'រតនា ម៉េង', avatar: 'រ' },
         time: '30 នាទីមុន',
         content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
@@ -184,7 +184,7 @@ const mockComments = [
         upvoted: false
     },
     {
-        id: 3,
+        id: 7,
         author: { name: 'រតនា ម៉េង', avatar: 'រ' },
         time: '30 នាទីមុន',
         content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
@@ -192,7 +192,7 @@ const mockComments = [
         upvoted: false
     },
     {
-        id: 3,
+        id: 8,
         author: { name: 'រតនា ម៉េង', avatar: 'រ' },
         time: '30 នាទីមុន',
         content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
@@ -200,7 +200,7 @@ const mockComments = [
         upvoted: false
     },
     {
-        id: 3,
+        id: 9,
         author: { name: 'រតនា ម៉េង', avatar: 'រ' },
         time: '30 នាទីមុន',
         content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
@@ -208,7 +208,7 @@ const mockComments = [
         upvoted: false
     },
     {
-        id: 3,
+        id: 10,
         author: { name: 'រតនា ម៉េង', avatar: 'រ' },
         time: '30 នាទីមុន',
         content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
@@ -216,7 +216,7 @@ const mockComments = [
         upvoted: false
     },
     {
-        id: 3,
+        id: 11,
         author: { name: 'រតនា ម៉េង', avatar: 'រ' },
         time: '30 នាទីមុន',
         content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
@@ -224,7 +224,79 @@ const mockComments = [
         upvoted: false
     },
     {
-        id: 3,
+        id: 12,
+        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
+        time: '30 នាទីមុន',
+        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
+        upvotes: 5,
+        upvoted: false
+    },
+    {
+        id: 12,
+        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
+        time: '30 នាទីមុន',
+        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
+        upvotes: 5,
+        upvoted: false
+    },
+    {
+        id: 12,
+        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
+        time: '30 នាទីមុន',
+        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
+        upvotes: 5,
+        upvoted: false
+    },
+    {
+        id: 12,
+        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
+        time: '30 នាទីមុន',
+        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
+        upvotes: 5,
+        upvoted: false
+    },
+    {
+        id: 12,
+        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
+        time: '30 នាទីមុន',
+        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
+        upvotes: 5,
+        upvoted: false
+    },
+    {
+        id: 12,
+        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
+        time: '30 នាទីមុន',
+        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
+        upvotes: 5,
+        upvoted: false
+    },
+    {
+        id: 12,
+        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
+        time: '30 នាទីមុន',
+        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
+        upvotes: 5,
+        upvoted: false
+    },
+    {
+        id: 12,
+        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
+        time: '30 នាទីមុន',
+        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
+        upvotes: 5,
+        upvoted: false
+    },
+    {
+        id: 12,
+        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
+        time: '30 នាទីមុន',
+        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
+        upvotes: 5,
+        upvoted: false
+    },
+    {
+        id: 12,
         author: { name: 'រតនា ម៉េង', avatar: 'រ' },
         time: '30 នាទីមុន',
         content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
@@ -278,10 +350,10 @@ export default function VideoDetailPage() {
     );
 
     const renderDesktopTabs = () => (
-        <div className="hidden lg:block h-full">
+        <div className="hidden lg:block">
             {/* Tab Navigation */}
             <div className="bg-white rounded-2xl shadow-sm mb-4">
-                <div className="flex ">
+                <div className="flex">
                     <button
                         onClick={() => setActiveTab('related')}
                         className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'related'
@@ -289,7 +361,7 @@ export default function VideoDetailPage() {
                             : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
-                        <div className="flex items-center gap-2 justify-center ">
+                        <div className="flex items-center gap-2 justify-center">
                             <Play size={16} />
                             វីដេអូដទៃទៀត
                         </div>
@@ -301,7 +373,7 @@ export default function VideoDetailPage() {
                             : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                             }`}
                     >
-                        <div className="flex items-center gap-2 justify-center ">
+                        <div className="flex items-center gap-2 justify-center">
                             <MessageSquare size={16} />
                             មតិតិការ
                         </div>
@@ -309,10 +381,10 @@ export default function VideoDetailPage() {
                 </div>
             </div>
 
-            {/* Tab Content Container - Full Height */}
-            <div className="bg-white rounded-2xl shadow-sm h-[calc(100vh-1.6rem)] overflow-hidden ">
+            {/* Tab Content Container - Simple, no height constraints */}
+            <div className="bg-white rounded-2xl shadow-sm">
                 {activeTab === 'related' && (
-                    <div className="p-6 h-full overflow-y-auto scrollbar-hide">
+                    <div className="p-6">
                         <div className="space-y-4">
                             {mockVideos
                                 .filter(v => v.id !== videoId)
@@ -325,7 +397,7 @@ export default function VideoDetailPage() {
                 )}
 
                 {activeTab === 'comments' && (
-                    <div className="h-full overflow-y-auto scrollbar-hide">
+                    <div>
                         <Comment comments={mockComments} />
                     </div>
                 )}
@@ -408,22 +480,23 @@ export default function VideoDetailPage() {
     return (
         <div className="min-h-screen bg-gray-50 pt-15">
             <div className="w-full mx-auto px-5 py-6">
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-0 lg:gap-6 relative">
-                    {/* Video Player and Info */}
-                    <div className="lg:col-span-3">
+                {/* Main Grid Layout - Desktop */}
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-0 lg:gap-6 items-start">
+                    {/* Left Column - Video Player and Info (Height Driver) */}
+                    <div className="space-y-4">
                         {renderVideoPlayer()}
                         {renderVideoInfo()}
+
+                        {/* Exercise Section - Under Video for Desktop */}
+                        <div className="hidden lg:block">
+                            <ExerciseBox questions={mockExercises} />
+                        </div>
                     </div>
 
-                    {/* Right Sidebar with Tabs */}
-                    <div className="lg:col-span-1 flex flex-col">
+                    {/* Right Column - Sidebar (Height Follower) */}
+                    <div className="self-start h-fit  lg:top-6">
                         {renderDesktopTabs()}
                     </div>
-                </div>
-
-                {/* Exercise Section - Below Video Content */}
-                <div className="lg:col-span-3 hidden lg:block ">
-                    <ExerciseBox questions={mockExercises} />
                 </div>
 
                 {/* Mobile Tab System */}
@@ -431,4 +504,4 @@ export default function VideoDetailPage() {
             </div>
         </div>
     );
-} 
+}
