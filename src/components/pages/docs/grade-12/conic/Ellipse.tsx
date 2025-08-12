@@ -5,7 +5,6 @@ import TipBox from "../../common/box/TipBox";
 import ExerciseBox from "../../common/box/ExerciseBox";
 import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
-import { ImageBox } from "../../common/box/ImageBox";
 import GraphBox from "../../common/box/GraphBox";
 import { TopicContent } from "@/types/topic";
 import 'katex/dist/katex.min.css';
