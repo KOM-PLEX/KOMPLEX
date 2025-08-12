@@ -5,6 +5,7 @@ import {
   FunctionSquare,
   Variable,
   Box,
+  BookOpen,
 } from "lucide-react";
 import LimitZeroOverZero from "@/components/pages/docs/grade-12/limit/Limit-Zero-Over-Zero";
 import LimitAsymptotes from "@/components/pages/docs/grade-12/limit/Limit-Asymptotes";
@@ -14,8 +15,7 @@ import LimitTrigonometric from "@/components/pages/docs/grade-12/limit/Limit-Tri
 import LimitExponential from "@/components/pages/docs/grade-12/limit/Limit-Exponential";
 import LHopitalRule from "@/components/pages/docs/grade-12/limit/L’Hôpital-Rule";
 import LimitPorformation from "@/components/pages/docs/grade-12/limit/Limit-Portformation";
-import Footer from "@/components/common/Footer";
-import LimitDefinition  from "@/components/pages/docs/grade-12/limit/LimitDefinition";
+import LimitDefinition from "@/components/pages/docs/grade-12/limit/LimitDefinition";
 import LimitInfinityOverInfinity from "@/components/pages/docs/grade-12/limit/Limit-Infinity-Over-Infinity";
 import LimitPractice from "@/components/pages/docs/grade-12/limit/Limit-Practice";
 import LimitLogarithmic from "@/components/pages/docs/grade-12/limit/Limit-Logarithmic";
@@ -59,13 +59,53 @@ import ProbabilityDefinition from "@/components/pages/docs/grade-12/probability/
 import ProbabilityCombination from "@/components/pages/docs/grade-12/probability/Probab-Combination";
 import ProbabilityPermutation from "@/components/pages/docs/grade-12/probability/Probab-Permutation";
 import ProbabilityPractice from "@/components/pages/docs/grade-12/probability/Probab-Practice";
-import ComplexDefinition from "@/components/pages/docs/grade-12/Complex/Complex-Definition";
-import QuadraticEquation from "@/components/pages/docs/grade-12/Complex/Quadratic-Equation";
-import ComplexOperations from "@/components/pages/docs/grade-12/Complex/Complex-Operations";
-import ComplexModulus from "@/components/pages/docs/grade-12/Complex/Complex-Modulus";
-import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/Complex/Complex-Multiplication-Devision";
-import TrigonometricForm from "@/components/pages/docs/grade-12/Complex/Trigonometric-Form";
-import ComplexPractice from "@/components/pages/docs/grade-12/Complex/Complex-Practice";
+import ComplexDefinition from "@/components/pages/docs/grade-12/complex/Complex-Definition";
+import ComplexFormulars from "@/components/pages/docs/grade-12/complex/Complex-Formulars";
+import ComplexOperations from "@/components/pages/docs/grade-12/complex/Complex-Operations";
+import ComplexModulus from "@/components/pages/docs/grade-12/complex/Complex-Modulus";
+import QuadraticEquation from "@/components/pages/docs/grade-12/complex/Quadratic-Equation";
+import TrigonometricForm from "@/components/pages/docs/grade-12/complex/Trigonometric-Form";
+import ComplexPractice from "@/components/pages/docs/grade-12/complex/Complex-Practice";
+import BacII2024 from "@/components/pages/docs/grade-12/exam-questions/BacII2024";
+import BacII2023 from "@/components/pages/docs/grade-12/exam-questions/BacII2023";
+import BacII2022 from "@/components/pages/docs/grade-12/exam-questions/BacII2022";
+import BacII2021 from "@/components/pages/docs/grade-12/exam-questions/BacII2021";
+import BacII2020 from "@/components/pages/docs/grade-12/exam-questions/BacII2020";
+import BacII2019 from "@/components/pages/docs/grade-12/exam-questions/BacII2019";
+import BacII2018 from "@/components/pages/docs/grade-12/exam-questions/BacII2018";
+import BacII2017 from "@/components/pages/docs/grade-12/exam-questions/BacII2017";
+import BacII2016 from "@/components/pages/docs/grade-12/exam-questions/BacII2016";
+import BacII2015 from "@/components/pages/docs/grade-12/exam-questions/BacII2015";
+import BacII2014 from "@/components/pages/docs/grade-12/exam-questions/BacII2014";
+import BacII2013 from "@/components/pages/docs/grade-12/exam-questions/BacII2013";
+import BacII2012 from "@/components/pages/docs/grade-12/exam-questions/BacII2012";
+import BacII2011 from "@/components/pages/docs/grade-12/exam-questions/BacII2011";
+import BacII2010 from "@/components/pages/docs/grade-12/exam-questions/BacII2010";
+import BacII2009 from "@/components/pages/docs/grade-12/exam-questions/BacII2009";
+import BacII2008 from "@/components/pages/docs/grade-12/exam-questions/BacII2008";
+import BacII2007 from "@/components/pages/docs/grade-12/exam-questions/BacII2007";
+import BacII2006 from "@/components/pages/docs/grade-12/exam-questions/BacII2006";
+import Prep1 from "@/components/pages/docs/grade-12/exam-questions/Prep1";
+import Prep2 from "@/components/pages/docs/grade-12/exam-questions/Prep2";
+import Prep3 from "@/components/pages/docs/grade-12/exam-questions/Prep3";
+import Prep4 from "@/components/pages/docs/grade-12/exam-questions/Prep4";
+import Prep5 from "@/components/pages/docs/grade-12/exam-questions/Prep5";
+import Prep6 from "@/components/pages/docs/grade-12/exam-questions/Prep6";
+import Prep7 from "@/components/pages/docs/grade-12/exam-questions/Prep7";
+import Prep8 from "@/components/pages/docs/grade-12/exam-questions/Prep8";
+import Prep9 from "@/components/pages/docs/grade-12/exam-questions/Prep9";
+import Prep10 from "@/components/pages/docs/grade-12/exam-questions/Prep10";
+import Prep11 from "@/components/pages/docs/grade-12/exam-questions/Prep11";
+import Prep12 from "@/components/pages/docs/grade-12/exam-questions/Prep12";
+import Prep13 from "@/components/pages/docs/grade-12/exam-questions/Prep13";
+import Prep14 from "@/components/pages/docs/grade-12/exam-questions/Prep14";
+import Prep15 from "@/components/pages/docs/grade-12/exam-questions/Prep15";
+import Prep16 from "@/components/pages/docs/grade-12/exam-questions/Prep16";
+import Prep17 from "@/components/pages/docs/grade-12/exam-questions/Prep17";
+import Prep18 from "@/components/pages/docs/grade-12/exam-questions/Prep18";
+import Prep19 from "@/components/pages/docs/grade-12/exam-questions/Prep19";
+import Prep20 from "@/components/pages/docs/grade-12/exam-questions/Prep20";
+import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/complex/Complex-Multiplication-Devision";
 
 export const math: Content = {
   subject: "math",
@@ -82,13 +122,13 @@ export const math: Content = {
         {
           title: "និយមន័យកំុផ្លិច",
           englishTitle: "Complex-Definition",
-          component: ComplexDefinition
+          component: ComplexDefinition,
         },
     
         {
           title: "ប្រមាណវិធីបូក ដកចំនួនកំុផ្លិច",
           englishTitle: "Complex-Operations",
-          component: ComplexOperations
+          component: ComplexOperations,
         },
         {
           title: "ប្រមាណវិធីគុណ និងចែកចំនួនកំុផ្លិច",
@@ -98,24 +138,24 @@ export const math: Content = {
         {
           title: "ម៉ូឌុលនៃកុំផ្លិច",
           englishTitle: "Complex-Modulus",
-          component: ComplexModulus
+          component: ComplexModulus,
         },
         {
           title: "សមីការដឺក្រេទី ២",
           englishTitle: "Quadratic-Equation",
-          component: QuadraticEquation
+          component: QuadraticEquation,
         },
         {
           title: "ទម្រង់ត្រីកោណមាត្រ",
           englishTitle: "Trigonometric-Form",
-          component: TrigonometricForm
+          component: TrigonometricForm,
         },
         {
           title: "លំហាត់អនុវត្ត",
           englishTitle: "Complex-Practice",
-          component: ComplexPractice
-        },  
-      ]
+          component: ComplexPractice,
+        },
+      ],
     },
     {
       lesson: "limits",
@@ -302,7 +342,7 @@ export const math: Content = {
           englishTitle: "Differential-practice",
           component: DifferentialPractice,
         },
-      ]
+      ],
     },
     {
       lesson: "Probability",
@@ -329,8 +369,8 @@ export const math: Content = {
           title: "លំហាត់អនុវត្ត",
           englishTitle: "Probability-Practice",
           component: ProbabilityPractice,
-        }, 
-      ]
+        },
+      ],
     },
     {
       lesson: "vectors",
@@ -347,7 +387,6 @@ export const math: Content = {
           title: "កូអរដោនេនៃវ៉ិចទ័រក្នុងលំហ",
           englishTitle: "2D-Vector-coordinates",
           component: TwoDVectorCoordinates,
-          
         },
         {
           title: "ផ្ទៃក្រឡា",
@@ -397,7 +436,7 @@ export const math: Content = {
           englishTitle: "Conic-Practice",
           component: ConicPractice,
         },
-      ]
+      ],
     },
     {
       lesson: "Functions",
@@ -440,7 +479,213 @@ export const math: Content = {
           englishTitle: "Function-Practice",
           component: FunctionPractice,
         },
-      ]
+      ],
+    },
+    {
+      lesson: "exam-questions",
+      title: "វិញ្ញាសាប្រឡង",
+      englishTitle: "Exam-Questions",
+      icon: BookOpen,
+      topics: [
+        // BacII Years
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០២៤",
+          englishTitle: "BacII-2024",
+          component: BacII2024,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០២៣",
+          englishTitle: "BacII-2023",
+          component: BacII2023,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០២២",
+          englishTitle: "BacII-2022",
+          component: BacII2022,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០២១",
+          englishTitle: "BacII-2021",
+          component: BacII2021,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០២០",
+          englishTitle: "BacII-2020",
+          component: BacII2020,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១៩",
+          englishTitle: "BacII-2019",
+          component: BacII2019,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១៨",
+          englishTitle: "BacII-2018",
+          component: BacII2018,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១៧",
+          englishTitle: "BacII-2017",
+          component: BacII2017,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១៦",
+          englishTitle: "BacII-2016",
+          component: BacII2016,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១៥",
+          englishTitle: "BacII-2015",
+          component: BacII2015,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១៤",
+          englishTitle: "BacII-2014",
+          component: BacII2014,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១៣",
+          englishTitle: "BacII-2013",
+          component: BacII2013,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១២",
+          englishTitle: "BacII-2012",
+          component: BacII2012,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១១",
+          englishTitle: "BacII-2011",
+          component: BacII2011,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០១០",
+          englishTitle: "BacII-2010",
+          component: BacII2010,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០០៩",
+          englishTitle: "BacII-2009",
+          component: BacII2009,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០០៨",
+          englishTitle: "BacII-2008",
+          component: BacII2008,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០០៧",
+          englishTitle: "BacII-2007",
+          component: BacII2007,
+        },
+        {
+          title: "វិញ្ញាសាបាក់ឌុប ២០០៦",
+          englishTitle: "BacII-2006",
+          component: BacII2006,
+        },
+
+        // Preparation Sets
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១",
+          englishTitle: "Preparation-Set-1",
+          component: Prep1,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ២",
+          englishTitle: "Preparation-Set-2",
+          component: Prep2,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ៣",
+          englishTitle: "Preparation-Set-3",
+          component: Prep3,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ៤",
+          englishTitle: "Preparation-Set-4",
+          component: Prep4,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ៥",
+          englishTitle: "Preparation-Set-5",
+          component: Prep5,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ៦",
+          englishTitle: "Preparation-Set-6",
+          component: Prep6,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ៧",
+          englishTitle: "Preparation-Set-7",
+          component: Prep7,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ៨",
+          englishTitle: "Preparation-Set-8",
+          component: Prep8,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ៩",
+          englishTitle: "Preparation-Set-9",
+          component: Prep9,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១០",
+          englishTitle: "Preparation-Set-10",
+          component: Prep10,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១១",
+          englishTitle: "Preparation-Set-11",
+          component: Prep11,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១២",
+          englishTitle: "Preparation-Set-12",
+          component: Prep12,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១៣",
+          englishTitle: "Preparation-Set-13",
+          component: Prep13,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១៤",
+          englishTitle: "Preparation-Set-14",
+          component: Prep14,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១៥",
+          englishTitle: "Preparation-Set-15",
+          component: Prep15,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១៦",
+          englishTitle: "Preparation-Set-16",
+          component: Prep16,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១៧",
+          englishTitle: "Preparation-Set-17",
+          component: Prep17,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១៨",
+          englishTitle: "Preparation-Set-18",
+          component: Prep18,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ១៩",
+          englishTitle: "Preparation-Set-19",
+          component: Prep19,
+        },
+        {
+          title: "វិញ្ញាសាត្រៀមទី ២០",
+          englishTitle: "Preparation-Set-20",
+          component: Prep20,
+        },
+      ],
     },
   ],
 };

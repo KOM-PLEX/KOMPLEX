@@ -53,6 +53,14 @@ export default function ForumDiscussion() {
         }
     ];
 
+    const handleCommentToggle = () => {
+        setIsCommentInputActive(!isCommentInputActive);
+    };
+
+    const handleCommentClose = () => {
+        setIsCommentInputActive(false);
+    };
+
     return (
         <div className="min-h-screen bg-gray-50">
             <div className="max-w-7xl mx-auto p-5 pt-20">
@@ -66,11 +74,11 @@ export default function ForumDiscussion() {
 
                 {/* Main Post */}
                 <div className="mb-6">
-                    <ForumCard post={forumPost} isFromBasePage={false} onCommentClick={() => setIsCommentInputActive(!isCommentInputActive)} />
+                    <ForumCard post={forumPost} isFromBasePage={false} onCommentClick={handleCommentToggle} />
                 </div>
 
                 {/* Comments Section */}
-                <Comment comments={comments} focusInput={isCommentInputActive} />
+                <Comment comments={comments} focusInput={isCommentInputActive} onClose={handleCommentClose} />
             </div>
         </div>
     );
