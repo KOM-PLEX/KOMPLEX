@@ -11,20 +11,24 @@ import ExampleBox from "../../common/box/ExampleBox"
 
 const FirstTopicContent: TopicContent = {
   definition: {
-    title: "បន្សំនៃ r ធាតុក្នុង n ធាតុ",
+    title: "",
     content:
       <>
-        
+        <div className="flex flex-col items-start">
+          <div className="flex items-center gap-3 flex-wrap w-full">
+
+          </div>
+          <div className="flex items-center gap-3 flex-wrap w-full">
+
+          </div>
+        </div>
       </>
   },
   tip: {
     title: "ជាទូទៅ",
     content: (
       <>
-        <div className="flex  flex-col">
-            <p>បន្សំនៃ r ធាតុក្នុង n ធាតុ គឺជាការយកព្រមគ្នាម្តង r ធាតុពី n ធាតុ ខុសៗគ្នាដោយមិនគិតពីលំដាប់នៃការយកចេញ។</p>
-            <BlockMath math={"C(n,r) = \\frac{n!}{r!(n-r)!}"} />
-        </div>
+        
       </>
     ),
   },
@@ -32,18 +36,8 @@ const FirstTopicContent: TopicContent = {
   example: {
     question: [
       <>
-        <div className="flex flex-col items-start gap-3" key="q3">
-            <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3 flex-wrap">
-                   <p>នៅក្នុងថង់មួយមានសន្លឹកកាតុង៤សន្លឹក ដែលចុះលេខ ១, ២, ៣, ៤។ គេហូតយកកាតុង៣សន្លឹកព្រមគ្នាចេញពីក្នុងថង់ដោយចៃដន្យ។</p>
-                   <p>រកចំនួនករណីដែលអាចកេីតឡេីងទាំងអស់។</p>
-                </div>
-            </div>
-        </div>
+        
       </>
-    ],
-    steps:[
-      
     ]
   },
   exercise: {
@@ -84,19 +78,19 @@ const SecondTopic: TopicContent = {
   
 }
 
-const ProbabilityCombination = () => {
+
+const ProbabCompound = () => {
   return (
     <>
-      <div>
+        <div>
               {FirstTopicContent.definition && (
                   <DefinitionBox title={FirstTopicContent.definition.title} content={FirstTopicContent.definition.content} />
               )}
               {FirstTopicContent.tip && (
                   <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
               )}
-              {FirstTopicContent.example && (
-                  <ExampleBox question={FirstTopicContent.example.question} />
-              )}
+    
+
             </div>
     
             <div>
@@ -112,4 +106,4 @@ const ProbabilityCombination = () => {
   )
 }
 
-export default ProbabilityCombination
+export default ProbabCompound
