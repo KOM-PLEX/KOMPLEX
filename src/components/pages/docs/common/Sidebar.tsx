@@ -20,7 +20,6 @@ export default function Sidebar({
 }: SidebarProps) {
     const [expandedLessons, setExpandedLessons] = useState<Record<string, boolean>>({});
     const sidebarRef = useRef<HTMLDivElement>(null);
-    const topicRefs = useRef<Record<string, HTMLAnchorElement>>({});
 
     // Initialize expanded lessons based on current lesson
     useEffect(() => {
@@ -39,28 +38,25 @@ export default function Sidebar({
         setExpandedLessons(expandedState);
     }, [currentGrade, currentSubject, currentLesson]);
 
-    // Scroll to current topic on mount only
+    // Scroll to current lesson on mount only
     useEffect(() => {
-        if (sidebarRef.current && currentTopic) {
+        if (sidebarRef.current && currentLesson) {
             // Small delay to ensure DOM is fully rendered
             setTimeout(() => {
-                const currentTopicRef = topicRefs.current[currentTopic];
-                if (currentTopicRef && sidebarRef.current) {
-                    const sidebarRect = sidebarRef.current.getBoundingClientRect();
-                    const topicRect = currentTopicRef.getBoundingClientRect();
-                    const sidebarHeight = sidebarRect.height;
-                    const topicHeight = topicRect.height;
+                // Find the lesson button element
+                const lessonButton = sidebarRef.current?.querySelector(`[data-lesson="${currentLesson}"]`) as HTMLElement;
 
-                    // Calculate position to center the topic in the sidebar
-                    const scrollTop = sidebarRef.current.scrollTop + (topicRect.top - sidebarRect.top) - (sidebarHeight / 2) + (topicHeight / 2);
+                if (lessonButton && sidebarRef.current) {
+                    // Scroll the lesson to the top of the sidebar
+                    const lessonTop = lessonButton.offsetTop;
 
                     sidebarRef.current.scrollTo({
-                        top: scrollTop
+                        top: lessonTop - 20, // 20px offset from top for better visibility
                     });
                 }
             }, 100);
         }
-    }, [currentTopic]); // Removed expandedLessons dependency
+    }, [currentLesson]); // Scroll when lesson changes
 
     // Save scroll position before navigation
     const handleLinkClick = () => {
@@ -101,6 +97,7 @@ export default function Sidebar({
                                 <div key={lessonData.lesson} className="space-y-2">
                                     {/* Lesson Header */}
                                     <button
+                                        data-lesson={lessonData.lesson}
                                         onClick={(e) => toggleLesson(e, lessonData.lesson)}
                                         className={`w-full flex items-center justify-between p-4 rounded-xl ${isActive
                                             ? 'bg-indigo-50 text-indigo-600 border-l-4 border-indigo-600 shadow-lg shadow-indigo-500/15'
@@ -128,11 +125,6 @@ export default function Sidebar({
                                                 return (
                                                     <Link
                                                         key={index}
-                                                        ref={(el) => {
-                                                            if (el) {
-                                                                topicRefs.current[topicData.englishTitle] = el;
-                                                            }
-                                                        }}
                                                         href={`/docs/${currentGrade}/${currentSubject}/${lessonData.lesson}/${topicData.englishTitle}`}
                                                         onClick={handleLinkClick}
                                                         className={`block px-4 py-3 rounded-lg text-sm font-medium ${isTopicActive
