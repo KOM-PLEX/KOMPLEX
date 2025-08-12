@@ -105,6 +105,7 @@ import Prep17 from "@/components/pages/docs/grade-12/exam-questions/Prep17";
 import Prep18 from "@/components/pages/docs/grade-12/exam-questions/Prep18";
 import Prep19 from "@/components/pages/docs/grade-12/exam-questions/Prep19";
 import Prep20 from "@/components/pages/docs/grade-12/exam-questions/Prep20";
+import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/complex/Complex-Multiplication-Devision";
 
 export const math: Content = {
   subject: "math",
@@ -123,15 +124,16 @@ export const math: Content = {
           englishTitle: "Complex-Definition",
           component: ComplexDefinition,
         },
+    
         {
-          title: "រូបមន្តកំុផ្លិច",
-          englishTitle: "Complex-Formulas",
-          component: ComplexFormulars,
-        },
-        {
-          title: "ប្រមាណវិធីលើចំនួនកំុផ្លិច",
+          title: "ប្រមាណវិធីបូក ដកចំនួនកំុផ្លិច",
           englishTitle: "Complex-Operations",
           component: ComplexOperations,
+        },
+        {
+          title: "ប្រមាណវិធីគុណ និងចែកចំនួនកំុផ្លិច",
+          englishTitle: "Complex-Multiplication-Division",
+          component: ComplexMultiplicationDivision
         },
         {
           title: "ម៉ូឌុលនៃកុំផ្លិច",
