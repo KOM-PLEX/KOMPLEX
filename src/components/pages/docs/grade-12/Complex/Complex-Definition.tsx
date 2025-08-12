@@ -26,17 +26,35 @@ const TOPIC_CONTENT: TopicContent = {
         b ហៅថាផ្នែកនិមិត្តដែលគេកំណត់តាងដោយ​ <InlineMath math="Im(z) = b" />
         </div>
 },
- hint:{
-  content:<div>
-    កុំផ្លិចឆ្លាស់​ : <InlineMath math="\bar{z} = a - bi" />
-    <br />
-    ឧទាហរណ៍​ : <InlineMath math=" z = 3 - 4i" /><br/>
-    នោះ​ <InlineMath math="\bar{z} = 3 + 4i" />
+
+}
+
+const TOPIC_CONTENT_OPOSITE:TopicContent = {
+  definition:{
+    title:"កុំផ្លិចឆ្លាស់ជាអ្វី?",
+    content:<div>
+    កុំផ្លិចឆ្លាស់​នៃកុំផ្លិចជាចំនួនកុំផ្លិចដែលតាងដោយ  : <InlineMath math="\bar{z} = a - bi" />
   </div>
- },
- warning:{
-  content : "កុំផ្លិចឆ្លាស់គឺឆ្លាស់សញ្ញាតែផ្នែកនិមិត្តតែប៉ុណ្ណោះ"
- }
+  },
+  tip:{
+    title: "ទម្រង់នៃចំនួនកុំផ្លិចឆ្លាស់",
+    content: <div className="text-center">
+      <div className="grid grid-cols-2 gap-4">
+        <div className="flex justify-start">
+          <BlockMath math="\overline{(z_1 + z_2)} = \overline{z_1} + \overline{z_2}" />
+        </div>
+        <div className="flex justify-start">
+          <BlockMath math="\overline{(z_1 - z_2)} = \overline{z_1} - \overline{z_2}" />
+        </div>
+        <div className="flex justify-start">
+          <BlockMath math="\overline{(z_1 \cdot z_2)} = \overline{z_1} \cdot \overline{z_2}" />
+        </div>
+        <div className="flex justify-start">
+          <BlockMath math="\overline{\left(\frac{z_1}{z_2}\right)} = \frac{\overline{z_1}}{\overline{z_2}}" />
+        </div>
+      </div>
+    </div>
+  }
 }
 const TOPIC_CONTENT_COMPLEX:TopicContent = {
   definition:{
@@ -44,13 +62,13 @@ const TOPIC_CONTENT_COMPLEX:TopicContent = {
     content:"កាលណាកុំផ្លិចពីរស្មើគ្នាគេបានផ្នែកពិតនៃកុំផ្លិចទាំងពីរស្មើគ្នា និងផ្នែកនិមិត្តនៃកុំផ្លិចទាំងពីរស្មើគ្នា"
   },
   tip:{
-    title:"ជាទូទៅ",
+    title:"ជាទូទៅបើ",
     content:<div className='flex justify-start gap-2'>
       <BlockMath math={`
       A + i.B = a + i.b \\Leftrightarrow \\begin{cases}
       A = a \\\\
       B = b
-      \\end{cases} \\text{បើសិន } a, b, A, B \\in \\mathbb{R}
+      \\end{cases} \\text{ដែល} a, b, A, B \\in \\mathbb{R}
       `} />
       </div>
   },
@@ -117,12 +135,13 @@ const ComplexDefinition = () => {
             {TOPIC_CONTENT.tip && (
                 <TipBox title={TOPIC_CONTENT.tip.title} content={TOPIC_CONTENT.tip.content} />
             )}
-            {TOPIC_CONTENT.hint && (
-                <HintBox content={TOPIC_CONTENT.hint.content} />
+            {TOPIC_CONTENT_OPOSITE.definition && (
+                <DefinitionBox title={TOPIC_CONTENT_OPOSITE.definition.title} content={TOPIC_CONTENT_OPOSITE.definition.content} />
             )}
-            {TOPIC_CONTENT.warning && (
-                <WarningBox content={TOPIC_CONTENT.warning.content} />
+            {TOPIC_CONTENT_OPOSITE.tip && (
+                <TipBox title={TOPIC_CONTENT_OPOSITE.tip.title} content={TOPIC_CONTENT_OPOSITE.tip.content} />
             )}
+    
             {TOPIC_CONTENT_COMPLEX.definition && (
                 <DefinitionBox title={TOPIC_CONTENT_COMPLEX.definition.title} content={TOPIC_CONTENT_COMPLEX.definition.content} />
             )}
@@ -130,7 +149,7 @@ const ComplexDefinition = () => {
                 <TipBox title={TOPIC_CONTENT_COMPLEX.tip.title} content={TOPIC_CONTENT_COMPLEX.tip.content} />
             )}
             {TOPIC_CONTENT_COMPLEX.example && (
-                <ExampleBox question={TOPIC_CONTENT_COMPLEX.example.question} steps={TOPIC_CONTENT_COMPLEX.example.steps} />
+                <ExampleBox question={TOPIC_CONTENT_COMPLEX.example.question} steps={TOPIC_CONTENT_COMPLEX.example.steps} answer={TOPIC_CONTENT_COMPLEX.example.answer} />
             )}
     </>
   )

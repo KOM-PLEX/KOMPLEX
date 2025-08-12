@@ -59,13 +59,13 @@ import ProbabilityDefinition from "@/components/pages/docs/grade-12/probability/
 import ProbabilityCombination from "@/components/pages/docs/grade-12/probability/Probab-Combination";
 import ProbabilityPermutation from "@/components/pages/docs/grade-12/probability/Probab-Permutation";
 import ProbabilityPractice from "@/components/pages/docs/grade-12/probability/Probab-Practice";
-import ComplexDefinition from "@/components/pages/docs/grade-12/complex/Complex-Definition";
+import ComplexDefinition from "@/components/pages/docs/grade-12/Complex/Complex-Definition";
 import QuadraticEquation from "@/components/pages/docs/grade-12/Complex/Quadratic-Equation";
-import ComplexOperations from "@/components/pages/docs/grade-12/complex/Complex-Operations";
-import ComplexModulus from "@/components/pages/docs/grade-12/complex/Complex-Modulus";
+import ComplexOperations from "@/components/pages/docs/grade-12/Complex/Complex-Operations";
+import ComplexModulus from "@/components/pages/docs/grade-12/Complex/Complex-Modulus";
 import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/Complex/Complex-Multiplication-Devision";
-import TrigonometricForm from "@/components/pages/docs/grade-12/complex/Trigonometric-Form";
-import ComplexPractice from "@/components/pages/docs/grade-12/complex/Complex-Practice";
+import TrigonometricForm from "@/components/pages/docs/grade-12/Complex/Trigonometric-Form";
+import ComplexPractice from "@/components/pages/docs/grade-12/Complex/Complex-Practice";
 
 export const math: Content = {
   subject: "math",

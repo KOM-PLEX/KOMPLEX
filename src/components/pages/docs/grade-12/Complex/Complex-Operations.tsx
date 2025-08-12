@@ -16,10 +16,8 @@ const TOPIC_CONTENT: TopicContent = {
     title:<div> បើ <InlineMath math="z_1 = a + bi" />  និង  <InlineMath math="z_2 = c + di" /> នោះគេបាន</div>,
     content : <div>
       
-<div className='flex justify-start items-center gap-3'>
-<BlockMath math="z_1 + z_2 = (a + c) + (b + d)i" />
-<BlockMath math="z_1 - z_2 = (a - c) + (b - d)i" />
-ដែល a, b, c, d ជាចំនួនពិត
+<div className='flex justify-start items-center  gap-2'>
+<BlockMath math="z_1 + z_2 = (a + c) + (b + d)i" /> និង <BlockMath math="z_1 - z_2 = (a - c) + (b - d)i" /> , ដែល a, b, c, d ជាចំនួនពិត
 </div>
     </div>
   },
