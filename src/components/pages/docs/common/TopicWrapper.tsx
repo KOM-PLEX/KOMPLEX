@@ -15,24 +15,22 @@ interface TopicWrapperProps {
 
 export default function TopicWrapper({ title, children, prev, next }: TopicWrapperProps) {
     return (
-        <div className="bg-white rounded-xl shadow-lg p-5">
+        <div className="lg:bg-white bg-gray-50  rounded-xl lg:shadow-lg lg:p-5 p-0">
             <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-4">
                     <div className="flex gap-2 items-center">
-                        {/* gonna need to use a custom prop icon */}
-                        <BookAIcon className="text-indigo-500" />
                         <h1 className="text-3xl font-black text-indigo-500">{title}</h1>
                     </div>
                 </div>
             </div>
             <div className="w-full h-0.5 bg-gray-50 mt-6"></div>
             {children}
-            <div className="w-full flex justify-between items-center mt-6">
+            <div className="w-full flex justify-between items-center mt-6 gap-6">
                 {prev ? (
-                    <Link href={prev.link}>
+                    <Link href={prev.link} className="max-w-[150px] lg:max-w-none">
                         <button className="bg-indigo-500 text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-indigo-600 transition-colors">
                             <ArrowLeft className="w-4 h-4" />
-                            <span>{prev.title}</span>
+                            <span className="line-clamp-1">{prev.title}</span>
                         </button>
                     </Link>
                 ) : (
@@ -43,9 +41,9 @@ export default function TopicWrapper({ title, children, prev, next }: TopicWrapp
                 )}
 
                 {next ? (
-                    <Link href={next.link}>
+                    <Link href={next.link} className="max-w-[150px] lg:max-w-none">
                         <button className="bg-indigo-500 text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-indigo-600 transition-colors">
-                            <span>{next.title}</span>
+                            <span className="line-clamp-1">{next.title}</span>
                             <ArrowRight className="w-4 h-4" />
                         </button>
                     </Link>
