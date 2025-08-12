@@ -4,7 +4,7 @@ import 'katex/dist/katex.min.css';
 import HintBox from "../../common/box/HintBox";
 import SummaryBox from "../../common/box/SummaryBox";
 import { AlertTriangleIcon, BookAIcon, ChartBarIcon, LightbulbIcon, WrenchIcon } from "lucide-react";
-import { SummarySection } from "../../common/box/SummaryBox";
+import { SummarySection } from "@/types/topic";
 
 const DifferentialPractice = () => {
 
