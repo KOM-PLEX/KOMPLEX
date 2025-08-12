@@ -9,7 +9,6 @@ import GraphBox from "../../common/box/GraphBox";
 import { TopicContent } from "@/types/topic";
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from "react-katex";
-import { GraphExplanationBox } from '../../common/box/explanation-box/GraphExplanationBox';
 
 const Ellipse = () => {
   const TOPIC_CONTENT: TopicContent = {
