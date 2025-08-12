@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ChevronDownIcon, Download, FileText, BookOpen, Bot } from 'lucide-react';
-import { Menu, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { FileText, BookOpen, Bot } from 'lucide-react';
 
 
 export interface ExamQuestionBoxProps {
