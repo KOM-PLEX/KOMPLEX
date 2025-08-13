@@ -48,8 +48,8 @@ const FirstTopicContent: TopicContent = {
             content: <div>
                <p>ការបោះគ្រាប់ឡុកឡាក់មួយគ្រាប់ចំនួន២ដងជាចម្លាស់ច្រំដែលនៃ២ ធាតុយកពី៦ធាតុ។</p>
                <p>នោះចំនួនករណីអាចគឺ</p>
-               <div className="flex items-center gap-2 justify-center">
-                  <BlockMath math={"n(s) = 6^2= 36"} />
+               <div className="flex items-center gap-2 justify-start">
+                  <BlockMath math={"\\Rightarrow n(s) = 6^2= 36"} />
                   <p>ករណី</p>
                </div>
             </div>
@@ -59,11 +59,11 @@ const FirstTopicContent: TopicContent = {
             content: <div className="flex flex-col gap-2">
                 <p>តាង A ជាព្រឹត្តិការណ៍ដែលបោះបានទាំងពីរលេីកមានលេខខុសគ្នា</p>
                 <p>មានន័យថា បានទាំងពីរលេីកមានលេខខុសគ្នា ជាចម្លាស់២ធាតុយកពី៦ធាតុ។</p>
-                <div>
+                <div className="flex flex-col items-start">
                     <p>នោះចំនួនស្រប</p>
                     <BlockMath math={"n(A) = P(6,2) = \\frac{6!}{(6-2)!} = 30"} />
                 </div>
-                <div>
+                <div className="flex flex-col items-start">
                     <p>គេបាន</p>
                     <BlockMath math={"P(A) = \\frac{n(A)}{n(s)} = \\frac{30}{36} = \\frac{5}{6}"} />
                 </div>
@@ -74,11 +74,11 @@ const FirstTopicContent: TopicContent = {
             content: <div className="flex flex-col gap-2">
                 <p>តាង B ជាព្រឹត្តិការណ៍ដែលបោះបានទាំងពីរលេីកមានលេខគូ</p>
                 <p>មានន័យថា ជាចម្លាស់ច្រំដែល២ធាតុយកពី៦ធាតុ។</p>
-                <div>
+                <div className="flex flex-col items-start">
                     <p>នោះចំនួនស្រប</p>
                     <BlockMath math={"n(B)= 3^2= 9"} />
                 </div>
-                <div>
+                <div className="flex flex-col items-start">
                     <p>គេបាន</p>
                     <BlockMath math={"P(B) = \\frac{n(B)}{n(s)} = \\frac{9}{36} = \\frac{1}{4}"} />
                 </div>
@@ -145,7 +145,7 @@ const SecondTopic: TopicContent = {
   },
   example: {
     question: [
-      <div className="flex flex-col items-start gap-3" key="q3">
+      <div className="flex flex-col items-start gap-3" key="q2">
             <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3 flex-wrap">
                    <p>ក្មេងប្រុស៤នាក់និងស្រី៥នាក់ឈរតម្រង់ជួរគ្នាដេីម្បីទិញការ៉េមបេីដឹងថាក្មេងស្រីត្រូវឈរចុងសងខាងនៃការតម្រងជួរនោះ។ តេីគេអាចឈរបានប៉ុន្មានរបៀប?</p>
@@ -163,7 +163,7 @@ const SecondTopic: TopicContent = {
                   <p>នៅសល់មនុស្ស ៧នាក់ចល័តដោយសេរីគេបាន</p>
                </div>
 
-               <div className="flex items-center gap-1 flex-wrap justify-center">
+               <div className="flex items-center gap-1 flex-wrap justify-start">
                   <BlockMath math={"N= P(5,2) * 7! = "} />
                   <BlockMath math={"\\frac{5!}{(5-2)!} * 7! = 100800"} />
 

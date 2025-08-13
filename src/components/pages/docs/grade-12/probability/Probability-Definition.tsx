@@ -53,17 +53,24 @@ const FirstTopicContent: TopicContent = {
     steps: [
         {
             title: "រកចំនួនករណីអាច",
-            content: <div>
-               <p>សិស្សទាំងអស់មាន ៨ នាក់</p>
-               <BlockMath math={"n(s) = 8"} />
+            content: 
+            <div>
+                <div className="flex flex-col items-start">
+                    <p>សិស្សទាំងអស់មាន ៨ នាក់</p>
+                    <BlockMath math={"\\Rightarrow n(s) = 8"} />
+                </div>  
             </div>
         },
         {
             title: "ក. ប្រធានថ្នាក់ជាស្រី",
-            content: <div className="flex flex-col gap-2">
-                <p>សិស្សស្រីមាន ៥ នាក់</p>
-                <BlockMath math={"n(A) = 5"} />
-                <div>
+            content: 
+            <div>
+                <div className="flex items-center flex-wrap gap-2">
+                    <p>សិស្សស្រីមាន ៥ នាក់</p>
+                    <BlockMath math={"\\Rightarrow n(A) = 5"} />
+                </div>
+                
+                <div className="flex items-center gap-2 flex-wrap">
                   <p>គេបាន</p>
                   <BlockMath math={"P(A) = \\frac{n(A)}{n(s)} = \\frac{5}{8}"} />
                 </div>
@@ -71,10 +78,14 @@ const FirstTopicContent: TopicContent = {
         },
         {
             title: "ក. ប្រធានថ្នាក់ជាប្រុស",
-            content: <div className="flex flex-col gap-2">
-                <p>សិស្សប្រុសមាន ៣ នាក់</p>
-                <BlockMath math={"n(A) = 3"} />
-                <div>
+            content: 
+            <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-3 flex-wrap">
+                    <p>សិស្សប្រុសមាន ៣ នាក់</p>
+                    <BlockMath math={"\\Rightarrow n(A) = 3"} />
+                </div>
+                
+                <div className="flex items-center gap-3 flex-wrap">
                   <p>គេបាន</p>
                   <BlockMath math={"P(A) = \\frac{n(A)}{n(s)} = \\frac{3}{8}"} />
                 </div>

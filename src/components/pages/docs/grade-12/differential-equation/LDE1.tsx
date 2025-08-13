@@ -49,22 +49,34 @@ const FirstTopicContent: TopicContent = {
         steps: [
             {
                 title: "ដោះស្រាយសមីការទី១",
-                content: <div>
-                    <BlockMath math="y' - 6y = 0" /><br />
-                    <p>យើងអាចសរសេរឡើងវិញដោយ</p>
-                    <BlockMath math="y' = 6y" /><br />
-                    <p>ដោះស្រាយសមីការនេះយើងទទួលបាន</p>
-                    <BlockMath math="y = Ke^{6x}" />
+                content: 
+                <div className="flex flex-col items-start">
+                    <BlockMath math="y' - 6y = 0" />
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>យើងអាចសរសេរឡើងវិញដោយ</p>
+                        <BlockMath math="y' = 6y" />
+                    </div>      
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>នោះ</p>
+                        <BlockMath math="y = Ke^{6x}" />
+                    </div>
+                    
                 </div>
             },
             {
                 title: "ដោះស្រាយសមីការទី២",
-                content: <div>
-                    <BlockMath math="\sqrt{5}y' - 4y = 0" /><br />
-                    <p>យើងអាចសរសេរឡើងវិញដោយ</p>
-                    <BlockMath math="y' = \frac{4}{\sqrt{5}}y" /><br />
-                    <p>ដោះស្រាយសមីការនេះយើងទទួលបាន</p>
-                    <BlockMath math="y = Ke^{\frac{4}{\sqrt{5}}x}" />
+                content: 
+                <div className="flex flex-col items-start">
+                    <BlockMath math="\sqrt{5}y' - 4y = 0" />
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>យើងអាចសរសេរឡើងវិញដោយ</p>
+                        <BlockMath math="y' = \frac{4}{\sqrt{5}}y" />
+                    </div>
+                    
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>ដោះស្រាយសមីការនេះយើងទទួលបាន</p>
+                        <BlockMath math="y = Ke^{\frac{4}{\sqrt{5}}x}" />
+                    </div>   
                 </div>
             },
         ],
@@ -163,18 +175,6 @@ const FirstTopicContent: TopicContent = {
         }
       ]
     },
-
-    hint: {
-        content: 
-        <>
-          <p>
-            ចូរចំណាំថា សមីការទាំងអស់មានទម្រង់ <InlineMath math={"y' - ay = 0"} /> ហើយអាចសរសេរឡើងវិញជា <InlineMath math={"y' = ay"} /> ដើម្បីដោះស្រាយ។
-          </p>
-          <p>
-            ចម្លើយទូទៅមានទម្រង់ <InlineMath math={"y = Ke^{ax}"} /> ដែល <InlineMath math={"K"} /> ជាចំនួនថេរ។
-          </p>
-        </>,
-    },
     warning: {
         content: 
         <>
@@ -208,15 +208,6 @@ const SecondTopicContent: TopicContent = {
 
             <ul className="list-disc pl-3">
               <h3 className="font-bold flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-green-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
                     របៀបទីមួយ
                 </h3>
               <li>
@@ -232,15 +223,6 @@ const SecondTopicContent: TopicContent = {
 
             <ul className="list-disc pl-3">
               <h3 className="font-bold flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-green-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
                     របៀបទីពីរ: (បម្រែបម្រួលចំនួនថេរ)
                 </h3>
               <li>
@@ -272,16 +254,13 @@ const SecondTopicContent: TopicContent = {
             {
                 title: "រកចម្លើយទូទៅនៃសមីការអូម៉ូសែន y' - 3y = 0",
                 content: 
-                <div>
-                  <div className="flex flex-col">
-                      <BlockMath math="y' - 3y = ០" />
-                      <BlockMath math="\Rightarrow y_c = Ke^{3x}" />
-                  </div>
-                    
-                    <div className="flex items-center gap-3">
-                        <p>គេបាន: ចម្លើយទូទៅនៃសមីការគឺ</p>
+                <div className="flex flex-col items-start gap-2">
+                    <div className="flex flex-col">
+                        <BlockMath math="y' - 3y = ០" />
+                        <BlockMath math="\Rightarrow y_c = Ke^{3x}" />
                     </div>
-                    <div className="flex justify-center items-center gap-3">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <p>គេបាន: ចម្លើយទូទៅនៃសមីការគឺ</p>
                         <BlockMath math="y_c = Ke^{3x}" />
                         <p>, k ជាចំនួនថេរ។</p>
                     </div>
@@ -353,46 +332,38 @@ const SecondTopicContent: TopicContent = {
         steps: [
             {
                 title: "រកចម្លើយទូទៅនៃសមីការអូម៉ូសែន y' - 3y = 0",
-                content: <div>
-                    <BlockMath math="y' - 3y = ០" /><br />
-                    <BlockMath math="\Rightarrow y_c = Ke^{3x}" />
-                    <div className="flex items-start sm:items-center gap-1 sm:gap-5 flex-col sm:flex-row">
-                        <p>គេបាន:</p>
-                        <div className="flex justify-center w-full items-center gap-3">
-                            <BlockMath math="y_c = Ke^{3x}" />
-                            <p>, k ជាចំនួនថេរ។</p>
-                        </div>
-                        
+                content: 
+                <div className="flex flex-col items-start">
+                    <BlockMath math="y' - 3y = 0" />
+                    <BlockMath math="\Rightarrow y_c = Ke^{3x}" />            
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <p>គេបាន:</p>
+                        <BlockMath math="y_c = Ke^{3x}" />
+                        <p>, k ជាចំនួនថេរ។</p>
                     </div>
                 </div>
             },
             {
                 title: "",
-                content: <div>
-                    <div className="flex items-start sm:items-center gap-1 sm:gap-5 flex-col sm:flex-row">
-                      <p>តាង :</p>
-                      <div className="flex items-center gap-2">
-                          <BlockMath math="y = K(x)e^{3x}" />
-                          <p>, K ជាចម្លេីយទូទៅនៃ (E)</p>
-                      </div>
-                      
-                    </div>
-                    <div className="flex items-start sm:items-center gap-1 sm:gap-5 flex-col sm:flex-row">
+                content: 
+                <div className="flex flex-col items-start gap-2">    
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>តាង :</p>
+                        <BlockMath math="y = K(x)e^{3x}" />
+                        <p>, K ជាចម្លេីយទូទៅនៃ (E)</p>
+                    </div>                  
+                    <div className="flex items-center gap-3 flex-wrap">
                       <p>គេបាន</p>
-                      <div className="flex w-full justify-center items-center ">
-                          <BlockMath math=" y' = K'(x)e^{3x} + 3K(x)e^{3x}" />
-                      </div>
-                    </div>
-                    <div className="flex items-start sm:items-center gap-1 sm:gap-5 flex-col sm:flex-row">
-                      <p>យក : </p>
-                      <div className="flex items-center gap-3">
-                          <BlockMath math="y , y'" />
-                          <p>ជំនួសក្នុងសមីការ</p>
-                          <BlockMath math="y' - 3y = 6 " />
-                      </div>                      
+                        <BlockMath math=" y' = K'(x)e^{3x} + 3K(x)e^{3x}" />
+                    </div>   
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>យក : </p>
+                        <BlockMath math="y , y'" />
+                        <p>ជំនួសក្នុងសមីការ</p>
+                        <BlockMath math="y' - 3y = 6 " />
+                    </div>                      
                       <p>គេបាន :</p>
-                    </div>
-                    <div className="flex items-start flex-wrap justify-center ">
+                    <div className="flex items-start flex-wrap justify-center">
                       <BlockMath math="[ K'(x)e^{3x} + 3K(x)e^{3x} ]" />
                       <BlockMath math="- 3K(x)e^{3x} = 6" />
                     </div>
@@ -507,30 +478,6 @@ const SecondTopicContent: TopicContent = {
           }
         ]
     },
-
-    hint: {
-      content: (
-        <>
-          <p>
-            ចូរចងចាំថា សមីការមិនអូម៉ូសែនមានទម្រង់ <InlineMath math={"y' + ay = P(x)"} /> ដែល <InlineMath math={"P(x) \\neq 0"} />។
-          </p>
-          <p>
-            ដើម្បីដោះស្រាយ អ្នកត្រូវរកចម្លើយទូទៅនៃសមីការអូម៉ូសែន <InlineMath math={"y_c"} /> និងចម្លើយពិសេស <InlineMath math={"y_p"} /> រួចបូកគ្នា។
-          </p>
-        </>
-      ),
-    },
-
-    warning: {
-      content: (
-        <>
-          <p>
-            សូមយកចិត្តទុកដាក់ក្នុងការបញ្ចូលចំនួនថេរ <InlineMath math={"C"} /> ឬ <InlineMath math={"K"} /> ក្នុងចម្លើយទូទៅ។
-          </p>
-        </>
-      ),
-    },
-
 }
 
 
@@ -555,9 +502,6 @@ const LDE1 = () => {
           {FirstTopicContent.exercise && (
             <ExerciseBox questions={FirstTopicContent.exercise.questions} />
           )}
-          {FirstTopicContent.hint && (
-              <HintBox content={FirstTopicContent.hint.content} />
-          )}
           {FirstTopicContent.warning && (
               <WarningBox content={FirstTopicContent.warning.content} />
           )}
@@ -579,12 +523,6 @@ const LDE1 = () => {
           )}
           {SecondTopicContent.exercise && (
             <ExerciseBox questions={SecondTopicContent.exercise.questions} />
-          )}
-          {SecondTopicContent.hint && (
-              <HintBox content={SecondTopicContent.hint.content} />
-          )}
-          {SecondTopicContent.warning && (
-              <WarningBox content={SecondTopicContent.warning.content} />
           )}
     </div>
 
