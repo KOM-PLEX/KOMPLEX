@@ -47,33 +47,48 @@ const FirstTopicContent: TopicContent = {
         steps: [
             {
                 title: "ដោះស្រាយសមីការទី១",
-                content: <div>
+                content: 
+                <div  className="flex flex-col items-start">
                     <BlockMath math="2y'' - 3y' + y = 0" />
-                    <p>គេមាន : សមីការសម្គាល់គឺ</p>
-                    <BlockMath math="2\lambda^2 - 3 \lambda + 1 = 0" />
-                    <p>មានឫស</p>
-                    <BlockMath math="\lambda_1 = 1 , \lambda_2 = \frac{1}{2}" />
-                    <p>ចម្លើយទូទៅនៃសមីការគឺ</p>
-                    <BlockMath math="y = Ae^{x} + Be^{\left(\frac{1}{2} x\right)}  \ A,B \in \mathbb{R}" />
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>គេមាន : សមីការសម្គាល់គឺ</p>
+                        <BlockMath math="2\lambda^2 - 3 \lambda + 1 = 0" />
+                    </div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>មានឫស</p>
+                        <BlockMath math="\lambda_1 = 1 , \lambda_2 = \frac{1}{2}" />
+                    </div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>ចម្លើយទូទៅនៃសមីការគឺ</p>
+                        <BlockMath math="y = Ae^{x} + Be^{\left(\frac{1}{2} x\right)}  \ A,B \in \mathbb{R}" />
+                    </div>
+                    
                 </div>
             },
             {
                 title: "ដោះស្រាយសមីការទី២",
-                content: <div>
+                content: 
+                <div className="flex flex-col items-start">
                     <BlockMath math="y'' - 6y' + 9y = 0" />
-                    <p>គេមាន : សមីការសម្គាល់គឺ</p>
-                    <BlockMath math="\lambda^2 - 6 \lambda + 9 = 0" />
-                    <p>មានឫសឌុប</p>
-                    <BlockMath math="\lambda_1 = \lambda_2 = 3" />
-                    <p>ចម្លើយទូទៅនៃសមីការគឺ</p>
-                    <BlockMath math="y = ( A + Bx)e^{3x} \ A,B \in \mathbb{R}" />
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>គេមាន : សមីការសម្គាល់គឺ</p>
+                        <BlockMath math="\lambda^2 - 6 \lambda + 9 = 0" />
+                    </div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>មានឫសឌុប</p>
+                        <BlockMath math="\lambda_1 = \lambda_2 = 3" />
+                    </div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>ចម្លើយទូទៅនៃសមីការគឺ</p>
+                        <BlockMath math="y = ( A + Bx)e^{3x} \ A,B \in \mathbb{R}" />
+                    </div>
+                    
                 </div>
             },
         ],
         answer: (
           <div>
-                <p>ចម្លើយទូទៅនៃសមីការគឺ</p>
-                <div className="justify-center items-center flex flex-col">
+                <div className="justify-center items-start flex flex-col">
                     <BlockMath math="y = Ae^{x} + Be^{\left(\frac{1}{2} x\right)} \ A,B \in \mathbb{R}" />
                     <BlockMath math="y = ( A + Bx)e^{3x} \ A,B \in \mathbb{R}" />
                 </div>
@@ -97,37 +112,51 @@ const FirstTopicContent: TopicContent = {
         steps:[
           {
                 title: "ដោះស្រាយសមីការ y'' - 3y' + 2y = 0",
-                content: <div>
-                    <p>គេមាន : សមីការសម្គាល់គឺ</p>
-                    <BlockMath math="\lambda^2 - 3 \lambda + 2 = 0" />
-                    <p>មានឫស</p>
-                    <BlockMath math="\lambda_1 = 1  ,  \lambda_2 = 2" />
-                    <p>ចម្លើយទូទៅនៃសមីការគឺ</p>
-                    <BlockMath math="y = Ae^x + Be^{2x}" />
-                    <p>A, B ជាចំនួនថេរ។</p>
+                content: 
+                <div className="flex flex-col items-start">
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>គេមាន : សមីការសម្គាល់គឺ</p>
+                        <BlockMath math="\lambda^2 - 3 \lambda + 2 = 0" />
+                    </div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>មានឫស</p>
+                        <BlockMath math="\lambda_1 = 1  ,  \lambda_2 = 2" />
+                    </div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>ចម្លើយទូទៅនៃសមីការគឺ</p>
+                        <BlockMath math="y = Ae^x + Be^{2x}" />
+                        <p>, A, B ជាចំនួនថេរ។</p>
+                    </div> 
                 </div>
           },
           {
                 title: "រកចម្លេីយ f មួយនៃសមីការ",
-                content: <div>
-                    <p>គេមាន : </p>
-                    <BlockMath math="f(x) = Ae^x + Be^{2x}" />
+                content: 
+                <div className="flex flex-col items-start">
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>គេមាន : </p>
+                        <BlockMath math="f(x) = Ae^x + Be^{2x}" />
+                    </div>
+                    
                     <BlockMath math="\Rightarrow f'(x) = Ae^x + 2Be^{2x}" />
                     <p>ម៉្យាងទៀត: ដោយក្រាបនៃអនុគមន៍ចម្លេីយប៉ះនឹងបន្ទាត់ y=x+2 ត្រង់ចំណុច A(0,2)</p>
-                    <p>គេបាន : </p>
-                    <BlockMath math="\begin{cases} 
-                      f(0)  = 2 \\ 
-                      f'(0) = 1 
-                      \end{cases}" 
-                    />
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>គេបាន : </p>
+                        <BlockMath math="\begin{cases} 
+                          f(0)  = 2 \\ 
+                          f'(0) = 1 
+                          \end{cases}" 
+                        />
+                    </div>
 
-                    <p>នាំឲ្យ : </p>
-                    <BlockMath math="\begin{cases} 
-                      Ae^0 + Be^0  = 2 \\ 
-                      Ae^0 + 2Be^0 = 1
-                      \end{cases}" 
-                    />
-
+                    <div className="flex items-center gap-3 flex-wrap">
+                        <p>នាំឲ្យ : </p>
+                        <BlockMath math="\begin{cases} 
+                          Ae^0 + Be^0  = 2 \\ 
+                          Ae^0 + 2Be^0 = 1
+                          \end{cases}" 
+                        />
+                    </div>
                     <BlockMath math="\Rightarrow \begin{cases} 
                       A + B  = 2 \\ 
                       A + 2B = 1
@@ -221,7 +250,7 @@ const FirstTopicContent: TopicContent = {
         content: 
           <>
               <p>
-                💡នៅពេលដោះស្រាយសមីការឌីផែរ៉ង់ស្សែលលំដាប់ទី២ អូម៉ូសែន
+                នៅពេលដោះស្រាយសមីការឌីផែរ៉ង់ស្សែលលំដាប់ទី២ អូម៉ូសែន
                 ត្រូវចាប់ផ្តើមដោយសរសេរសមីការសម្គាល់
                 <InlineMath math={"a\\lambda^2 + b\\lambda + c = 0"} /> 
                 រួចដោះស្រាយរកឫស។
@@ -242,16 +271,6 @@ const FirstTopicContent: TopicContent = {
               </p>
           </>
     },
-    warning: {
-        content: (
-        <>
-            <p>
-              ⚠️ សូមប្រុងប្រយ័ត្ន! កុំភ្លេចបញ្ចូល <InlineMath math={"A"} /> និង{" "}
-                  <InlineMath math={"B"} /> ជាចំនួនថេរ នៅក្នុងចម្លើយទូទៅ។
-            </p>
-        </>
-    ),
-    },
 }
 
 
@@ -267,18 +286,6 @@ const SecondTopic: TopicContent = {
       content: (
           <>
             <ul className="list-disc pl-3">
-              <h3 className="font-bold flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-green-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                    របៀបដោះស្រាយ
-              </h3>
               <li className="gap-2">
                 រកអនុគមន៍ចម្លើយទូទៅនៃសមីការ 
                 <InlineMath math={"ay'' + by' + cy = 0 "} />
@@ -315,19 +322,25 @@ const SecondTopic: TopicContent = {
           {
             title: "រកចម្លេីយទូទៅនៃសមីការអូម៉ូសែន y'' - 3y' + 5y = 0",
             content: (
-              <div>
+              <div className="flex flex-col items-start">
                 <BlockMath math="y'' - 3y' + 5y = 0" />
-                <p>សមីការសម្គាល់គឺ</p>
-                <BlockMath math="\lambda^2 - 3\lambda + 5 = 0" />
-                <p>ដោះស្រាយសមីការសម្គាល់៖</p>
-                <BlockMath math="\lambda = \frac{3 \pm \sqrt{9 - 20}}{2} = \frac{3 \pm \sqrt{-11}}{2}" />
-                <p>ដូចនេះ៖</p>
-                <BlockMath math="\lambda = \frac{3}{2} \pm \frac{\sqrt{11}}{2} i" />
-                <p>កំណត់</p>
-                <BlockMath math="\alpha = \frac{3}{2}, \quad \beta = \frac{\sqrt{11}}{2}" />
-                <p>ចម្លើយទូទៅនៃសមីការជា</p>
+                <div className="flex items-center gap-3 flex-wrap">
+                    <p>សមីការសម្គាល់គឺ</p>
+                    <BlockMath math="\lambda^2 - 3\lambda + 5 = 0" />
+                </div>
+                <BlockMath math="\Rightarrow \lambda = \frac{3 \pm \sqrt{9 - 20}}{2} = \frac{3 \pm \sqrt{-11}}{2}" />
+                <div className="flex items-center gap-3 flex-wrap">
+                    <p>គេបាន</p>
+                    <BlockMath math="\lambda = \frac{3}{2} \pm \frac{\sqrt{11}}{2} i" />
+                </div>
+                <div className="flex items-center gap-3 flex-wrap">
+                    <p>កំណត់</p>
+                    <BlockMath math="\alpha = \frac{3}{2}, \quad \beta = \frac{\sqrt{11}}{2}" />
+                </div>
+                
+                <p>ចម្លើយទូទៅនៃសមីការ</p>
                 <div className="flex items-center flex-wrap">
-                    <BlockMath math={`y = e^{\\frac{3}{2} x} \\left( A \\cos\\left( \\frac{\\sqrt{11}}{2} x \\right) + B \\sin\\left( \\frac{\\sqrt{11}}{2} x \\right) \\right)`} />
+                    <BlockMath math={`y = e^{\\frac{3}{2} x} ( A \\cos( \\frac{\\sqrt{11}}{2} x ) + B \\sin( \\frac{\\sqrt{11}}{2} x ) )`} />
                 </div>
             
                 <p>ដែល A, Bជាចំនួនថេរ។</p>
@@ -405,10 +418,12 @@ const SecondTopic: TopicContent = {
       content: (
         <>
           <p>គេមានសមីការឌីផែរ៉ង់ស្សែល</p>
-            <BlockMath math={`a y'' + b y' + c y = f(x) (1)`} />
-            <BlockMath math={`a y'' + b y' + c y = 0 (2)`} />
-      
-          <ul className="list-disc pl-5">
+            <div className="flex flex-col items-start">
+                <BlockMath math={`a y'' + b y' + c y = f(x) (1)`} />
+                <BlockMath math={`a y'' + b y' + c y = 0 (2)`} />
+            </div>
+            
+          <ul className="list-disc pl-4 flex flex-col gap-3">
             <li>
               បើ <InlineMath math="(f_1)" /> ជាចម្លើយនៃសមីការ (1) ហេីយ <InlineMath math="(f_2)" /> ជាចម្លើយនៃសមីការ (2)​នោះ       
               <InlineMath math="f_1 + f_2" /> ជាចម្លើយនៃសមីការ (1) ។
@@ -419,15 +434,6 @@ const SecondTopic: TopicContent = {
             </li>
           </ul>
 
-        </>
-      )
-    },
-    warning: {
-      content: (
-        <>
-          <p>⚠️ កុំភ្លេចពិនិត្យឱ្យបានច្បាស់ថាចម្លើយពិសេសមិនមែនជាចម្លើយនៃសមីការអូម៉ូសែន។</p>
-          <p>⚠️ ប្រសិនបើចម្លើយពិសេសដូចគ្នានឹងចម្លើយទូទៅនៃសមីការអូម៉ូសែន ត្រូវតែបម្លែងទម្រង់ឱ្យខុសគ្នា។</p>
-          <p>⚠️ កុំភ្លេចបញ្ចូលចំនួនថេរ A និង B ជាផ្នែកមួយនៃចម្លើយទូទៅ តែមិនមែនចម្លើយពិសេស។</p>
         </>
       )
     },
@@ -459,9 +465,6 @@ const LDE2 = () => {
           {FirstTopicContent.hint && (
               <HintBox content={FirstTopicContent.hint.content} />
           )}
-          {FirstTopicContent.warning && (
-              <WarningBox content={FirstTopicContent.warning.content} />
-          )}
         </div>
 
         <div>
@@ -479,9 +482,6 @@ const LDE2 = () => {
           )}
           {SecondTopic.hint && (
               <HintBox content={SecondTopic.hint.content} />
-          )}
-          {SecondTopic.warning && (
-              <WarningBox content={SecondTopic.warning.content} />
           )}
         </div>
     </>

@@ -29,7 +29,6 @@ const TOPIC_CONTENT: TopicContent = {
                 <BlockMath math="y' + y = 3" />,
                 <BlockMath math="y'' - 4y' + 6y = 0" />,
                 <BlockMath math="xy' - 5y = x^2" />,
-                <BlockMath math="y' - 2y = \frac{-2}{1 + e^{2x}}" />,
                 <BlockMath math="\frac{dy}{dx} + 7y = 8x + 2" />,
                 <BlockMath math="\frac{d^2y}{dx^2} + 2 \frac{dy}{dx} - 3y = \cos{x}" />
                 <span>,... សុទ្ធតែជាសមីការឌីផែរ៉ង់ស្សែល។</span>
@@ -41,32 +40,28 @@ const TOPIC_CONTENT: TopicContent = {
         {
             id: "q1",
             question: "y' + y = x  តើសមីការនេះជាសមីការឌីផែរ៉ង់ស្សែលឬទេ?",
-            options: ["បាទ/ចាស", "ទេ"],
+            options: ["ត្រឹមត្រូវ", "មិនត្រឹមត្រូវ"],
             correctAnswer: 0
         },
         {
             id: "q2",
             question: "x² + y² = 25  តើសមីការនេះជាសមីការឌីផែរ៉ង់ស្សែលឬទេ?",
-            options: ["បាទ/ចាស", "ទេ"],
+            options: ["ត្រឹមត្រូវ", "មិនត្រឹមត្រូវ"],
             correctAnswer: 1
         },
         {
             id: "q3",
             question: "dy/dx = 3x²  តើសមីការនេះជាសមីការឌីផែរ៉ង់ស្សែលឬទេ?",
-            options: ["បាទ/ចាស", "ទេ"],
+            options: ["ត្រឹមត្រូវ", "មិនត្រឹមត្រូវ"],
             correctAnswer: 0
         },
         {
             id: "q4",
             question: "y = mx + b  តើសមីការនេះជាសមីការឌីផែរ៉ង់ស្សែលឬទេ?",
-            options: ["បាទ/ចាស", "ទេ"],
+            options: ["ត្រឹមត្រូវ", "មិនត្រឹមត្រូវ"],
             correctAnswer: 1
         }
       ]
-    },
-
-    hint: {
-        content: "លំដាប់នៃសមីការឌីផែរ៉ង់ស្សែលមួយ ជាលំដាប់ខ្ពស់បំផុតនៃដេរីវេដែលមាននៅក្នុងសមីការនោះ។",
     },
     warning: {
         content: "កុំច្រឡំសមីការដែលមានអថេរច្រើនជាសមីការឌីផែរ៉ង់ស្សែល បើសិនវាមិនមានដេរីវេទេ។"

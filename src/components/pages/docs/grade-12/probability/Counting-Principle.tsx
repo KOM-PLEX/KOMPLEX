@@ -63,14 +63,14 @@ const FirstTopicContent: TopicContent = {
         {
             title: "ក. គ្រាប់ឡុកឡាក់ចេញមានផលបូកស្មេីរ ៣ឬ៤",
             content: <div className="flex flex-col gap-2">
-                <div className="flex  gap-5 sm:flex-row flex-col">
+                <div className="flex flex-col items-start gap-3">
                     <p>តាង:</p>
                     <div className="flex flex-col items-center gap-3">
                         <p>A ជាព្រឹត្តិការណ៍ដែលមានផលបូកស្មេីរ ៣</p>
                         <p>B ជាព្រឹត្តិការណ៍ដែលមានផលបូកស្មេីរ ៤</p>
                     </div>
                 </div>
-                <div className="flex  gap-3 sm:flex-row flex-col">
+                <div className="flex  gap-3 flex-col ">
                     <p>គេបាន</p>
                     <div className="flex flex-col  items-start">
                         <div className="flex sm:flex-row flex-col gap-3 items-start">
@@ -83,12 +83,13 @@ const FirstTopicContent: TopicContent = {
                         </div>
                     </div>
                 </div>
-                <div className="flex  gap-3 sm:flex-row flex-col">
+                <div className="flex items-center gap-3 flex-wrap w-full">
                     <p>តាមគោលការណ៍ផលបូក:</p>
                     <div className="flex flex-col items-start">
                         <BlockMath math={"n(A) + n(B) = 2 + 3 = 5"} />
                     </div>
                 </div>
+
                 <div className="flex items-center gap-3 flex-wrap w-full">
                     <p>ដូចនេះ</p>
                     <BlockMath math={"N_1 = 5"} />
@@ -99,46 +100,45 @@ const FirstTopicContent: TopicContent = {
         },
          {
             title: "ខ. គ្រាប់ឡុកឡាក់ចេញមានផលបូកស្មេីរ ធំជាង៩",
-            content: <div className="flex flex-col gap-2">
-                <p>ក្នុងករណីនេះចំនួនដែលធំជាង ៩ គឺ ១០, ១១, ១២</p>
-                <div className="flex  gap-5 sm:flex-row flex-col">
-                    <p>តាង:</p>
-                    <div className="flex flex-col items-center gap-3">
-                        <div className="flex items-center gap-2 flex-wrap">
+            content: <div className="flex flex-col">
+                <div className="flex flex-col items-start">
+                    <p className="mt-3">តាង:</p>
+                    <div className="flex flex-col items-center">
+                        <div className="flex items-center flex-wrap">
                             <BlockMath math={"E_1"} />
                             <p>ជាព្រឹត្តិការណ៍ដែលចេញផលបូក</p>
                             <p>ស្មេីរ ១០</p>
                         </div>
-                        <div className="flex items-center gap-2 flex-wrap">
+                        <div className="flex items-center flex-wrap">
                             <BlockMath math={"E_2"} />
                             <p>ជាព្រឹត្តិការណ៍ដែលចេញផលបូក</p>
                             <p>ស្មេីរ ១១</p>
                         </div>
-                        <div className="flex items-center gap-2 flex-wrap">
+                        <div className="flex items-center flex-wrap">
                             <BlockMath math={"E_3"} />
                             <p>ជាព្រឹត្តិការណ៍ដែលចេញផលបូក</p>
                             <p>ស្មេីរ ១២</p>
                         </div>
                     </div>
                 </div>
-                <div className="flex gap-3 sm:flex-row flex-col">
+                <div className="flex flex-col">
                     <p>គេបាន</p>
                     <div className="flex flex-col items-start">
-                        <div className="flex gap-3 sm:flex-row flex-col items-start">
+                        <div className="flex gap-1 sm:flex-row flex-col items-start">
                             <BlockMath math={"E_1 = {(4,6) , (6,4), (5,5)}"} />
                             <BlockMath math={"\\Rightarrow n(E_1)=3"} />
                         </div>
-                        <div className="flex gap-3 flex-wrap items-center">
+                        <div className="flex gap-1 flex-wrap items-center">
                             <BlockMath math={"E_2 = {(5,6) , (6,5)}"} />
                             <BlockMath math={"\\Rightarrow n(E_2)=2"} />
                         </div>
-                        <div className="flex gap-3 flex-wrap items-center">
+                        <div className="flex gap-1 flex-wrap items-center">
                             <BlockMath math={"E_3 = {(6,6)}"} />
                             <BlockMath math={"\\Rightarrow n(E_3)=1"} />
                         </div>
                     </div>
                 </div>
-                <div className="flex gap-3 sm:flex-row flex-col">
+                <div className="flex gap-2 items-center flex-wrap w-full">
                     <p>តាមគោលការណ៍ផលបូក:</p>
                     <div className="flex items-start flex-wrap">
                         <BlockMath math={"n(E_1) + n(E_2) + n(E_3)="} />
@@ -255,7 +255,7 @@ const SecondTopic: TopicContent = {
             content: <div>
                 <div className="flex flex-col gap-3">
                     <p>ដោយគេប្រេីលេខពី០ដល់៩នោះគេបាន:</p>
-                    <div className="flex flex-col pl-5">
+                    <div className="flex flex-col">
                         <div>
                             <p>ខ្ទង់ទី ១​ មាន ៩ របៀប</p>
                             <p>ខ្ទង់ទី ២​ មាន ៩ របៀប</p>
@@ -263,10 +263,11 @@ const SecondTopic: TopicContent = {
                             <p>ខ្ទង់ទី ៤​ មាន ៧ របៀប</p>
                         </div>
                     </div>
-                    <p>តាមគោលការណ៍ផលគុណគេបាន:</p>
-                    <div>
+                    <div className="flex items-center gap-1 flex-wrap">
+                        <p>តាមគោលការណ៍ផលគុណគេបាន:</p>
                         <BlockMath math={"N = 9 \\times 9 \\times 8 \\times 7 = 4536"} />
                     </div>
+                   
                 </div>
             </div>
         },
@@ -285,7 +286,7 @@ const SecondTopic: TopicContent = {
   exercise: {
     questions: [
         {
-          id: "q3",
+          id: "ex2-q1",
           question: (
             <>
               <div className="flex flex-col gap-3">
@@ -302,7 +303,7 @@ const SecondTopic: TopicContent = {
           correctAnswer: 2,
         },
         {
-            id: "q2",
+            id: "ex2-q2",
             question: (
               <>
                 <div className="flex flex-col gap-3">

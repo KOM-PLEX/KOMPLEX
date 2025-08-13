@@ -107,6 +107,7 @@ import Prep19 from "@/components/pages/docs/grade-12/exam-questions/Prep19";
 import Prep20 from "@/components/pages/docs/grade-12/exam-questions/Prep20";
 import CountingPrinciple from "@/components/pages/docs/grade-12/probability/Counting-Principle";
 import ProbabCompound from "@/components/pages/docs/grade-12/probability/Probab-Compound";
+import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/complex/Complex-Multiplication-Devision";
 
 export const math: Content = {
   subject: "math",
@@ -125,15 +126,16 @@ export const math: Content = {
           englishTitle: "Complex-Definition",
           component: ComplexDefinition,
         },
+    
         {
-          title: "រូបមន្តកំុផ្លិច",
-          englishTitle: "Complex-Formulas",
-          component: ComplexFormulars,
-        },
-        {
-          title: "ប្រមាណវិធីលើចំនួនកំុផ្លិច",
+          title: "ប្រមាណវិធីបូក ដកចំនួនកំុផ្លិច",
           englishTitle: "Complex-Operations",
           component: ComplexOperations,
+        },
+        {
+          title: "ប្រមាណវិធីគុណ និងចែកចំនួនកំុផ្លិច",
+          englishTitle: "Complex-Multiplication-Division",
+          component: ComplexMultiplicationDivision
         },
         {
           title: "ម៉ូឌុលនៃកុំផ្លិច",
@@ -371,7 +373,7 @@ export const math: Content = {
           component: ProbabilityCombination,
         },
         {
-          title: "ប្រូបាបសមាស",
+          title: "ប្រូបាបនៃព្រឹត្តការណ៍សមាស",
           englishTitle: "ProbabCompound",
           component: ProbabCompound,
         },
