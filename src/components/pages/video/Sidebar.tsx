@@ -12,8 +12,10 @@ import {
     Globe,
     Lightbulb,
     Target,
-    BookOpen
+    BookOpen,
+    Plus
 } from 'lucide-react';
+import Link from 'next/link';
 
 interface SidebarProps {
     selectedSubject: string;
@@ -52,30 +54,34 @@ export default function Sidebar({
             )}
 
             {/* Sidebar */}
-            <div className={`fixed lg:static top-14 left-0 z-50 w-64 bg-white shadow-lg overflow-y-auto scrollbar-hide border-r border-gray-200 transform transition-transform duration-300 ease-in-out max-h-[calc(100vh-3.5rem)] ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+            <div className={`fixed lg:static h-full top-14 left-0 z-50 w-64 bg-white shadow-lg overflow-y-auto scrollbar-hide border-r border-gray-200 transform transition-transform duration-300 ease-in-out max-h-[calc(100vh-3.5rem)] ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
                 }`}>
                 {/* Navigation */}
                 <nav className="p-4 space-y-2">
-                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-gray-700 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
+                    <Link href="/video" className="flex items-center gap-3 px-3 py-2 text-gray-700 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
                         <Home size={20} className="text-indigo-600" />
                         <span>ទំព័រដើម</span>
-                    </a>
-                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                    </Link>
+                    <Link href="/short-videos" className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
                         <Play size={20} />
                         <span>វីដេអូខ្លី</span>
-                    </a>
-                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                    </Link>
+                    <Link href="/trending-videos" className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
                         <TrendingUp size={20} />
                         <span>ពេញនិយម</span>
-                    </a>
-                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                    </Link>
+                    <Link href="/new-videos" className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
                         <Clock size={20} />
                         <span>ថ្មីៗ</span>
-                    </a>
-                    <a href="#" className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                    </Link>
+                    <Link href="/video-history" className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
                         <History size={20} />
                         <span>ប្រវត្តិ</span>
-                    </a>
+                    </Link>
+                    <Link href="/create-video" className="flex items-center gap-3 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+                        <Plus size={20} />
+                        <span>បង្កើតវីដេអូ</span>
+                    </Link>
                 </nav>
 
                 {/* Subject Filter */}

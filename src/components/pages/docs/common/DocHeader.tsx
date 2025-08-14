@@ -57,6 +57,17 @@ export default function DocHeader({
     const currentSubjectData = subjects.find(s => s.subject === currentSubject);
     const currentLessonData = currentSubjectData?.lessons.find(l => l.lesson === currentLesson);
 
+    const handleChangeGrade = (grade: string) => {
+        const gradeData = curriculum.find(g => g.grade === grade);
+        if (gradeData) {
+            const subjects = gradeData.content;
+            const firstSubject = subjects[0];
+            const firstLesson = firstSubject.lessons[0];
+            const firstTopic = firstLesson.topics[0];
+            window.location.href = `/docs/${grade}/${firstSubject.subject}/${firstLesson.lesson}/${firstTopic.englishTitle}`;
+        }
+    }
+
     return (
         <>
             {/* Desktop Subject Header */}
@@ -86,7 +97,7 @@ export default function DocHeader({
                         {/* Grade Dropdown */}
                         <Listbox value={currentGradeData} onChange={(grade) => {
                             if (grade) {
-                                window.location.href = `/docs/${grade.value}/${subjects[0].subject}/${subjects[0].lessons[0].lesson}/${subjects[0].lessons[0].topics[0].englishTitle}`;
+                                handleChangeGrade(grade.value);
                             }
                         }}>
                             <div className="relative">

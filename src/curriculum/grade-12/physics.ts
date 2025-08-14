@@ -1,6 +1,5 @@
 import { Content } from "@/types/curriculum";
 import { Atom } from "lucide-react";
-import LimitZeroOverZero from "@/components/pages/docs/grade-12/limit/Limit-Zero-Over-Zero";
 import KineticTheory from "@/components/pages/docs/grade-12/physic/thermodynamic/Kinetic-Theory";
 import FirstLawThermodynamics from "@/components/pages/docs/grade-12/physic/thermodynamic/First-Law-Thermodynamics";
 import Engines from "@/components/pages/docs/grade-12/physic/thermodynamic/Engines";

@@ -7,107 +7,107 @@ import {
   Box,
   BookOpen,
 } from "lucide-react";
-import LimitZeroOverZero from "@/components/pages/docs/grade-12/limit/Limit-Zero-Over-Zero";
-import LimitAsymptotes from "@/components/pages/docs/grade-12/limit/Limit-Asymptotes";
-import LimitContinuity from "@/components/pages/docs/grade-12/limit/Limit-Continuity";
-import LimitInfinityMinusInfinity from "@/components/pages/docs/grade-12/limit/Limit-Infinity-Minus-Infinity";
-import LimitTrigonometric from "@/components/pages/docs/grade-12/limit/Limit-Trigonometric";
-import LimitExponential from "@/components/pages/docs/grade-12/limit/Limit-Exponential";
-import LHopitalRule from "@/components/pages/docs/grade-12/limit/L’Hôpital-Rule";
-import LimitPorformation from "@/components/pages/docs/grade-12/limit/Limit-Portformation";
-import LimitDefinition from "@/components/pages/docs/grade-12/limit/LimitDefinition";
-import LimitInfinityOverInfinity from "@/components/pages/docs/grade-12/limit/Limit-Infinity-Over-Infinity";
-import LimitPractice from "@/components/pages/docs/grade-12/limit/Limit-Practice";
-import LimitLogarithmic from "@/components/pages/docs/grade-12/limit/Limit-Logarithmic";
-import DerivativeDefinition from "@/components/pages/docs/grade-12/derivative/Definition";
-import DerivativePerformation from "@/components/pages/docs/grade-12/derivative/Derivative-Performation";
-import DerivativeLogarithmic from "@/components/pages/docs/grade-12/derivative/Derivative-Logarithmic";
-import DerivativeExponential from "@/components/pages/docs/grade-12/derivative/Derivative-Exponential";
-import DerivativeTrigonometric from "@/components/pages/docs/grade-12/derivative/Derivative-Trigonometric";
-import DerivativeGeometric from "@/components/pages/docs/grade-12/derivative/derivative-Geometry";
-import DerivativePractice from "@/components/pages/docs/grade-12/derivative/Derivative-Practice";
-import DerivativeHighLevel from "@/components/pages/docs/grade-12/derivative/Derivative-high-level";
-import IntergralDefinition from "@/components/pages/docs/grade-12/integral/integral-Definition";
-import Integralformular from "@/components/pages/docs/grade-12/integral/Integral-formular";
-import IndefiniteIntegral from "@/components/pages/docs/grade-12/integral/Indefinite-Integral";
-import DefiniteIntegral from "@/components/pages/docs/grade-12/integral/Definite-Integral";
-import IntegralPractice from "@/components/pages/docs/grade-12/integral/Integral-Practice";
-import VectorDefinition from "@/components/pages/docs/grade-12/vector/Vector-Definition";
-import differentialdefinition from "@/components/pages/docs/grade-12/differential-equation/Differential-Definition";
-import DifferentialPractice from "@/components/pages/docs/grade-12/differential-equation/Differential-Practice";
-import VectorPractice from "@/components/pages/docs/grade-12/vector/Vector-Practice";
-import TwoDVectorCoordinates from "@/components/pages/docs/grade-12/vector/2D-Vector-Coordinates";
-import ShapeArea from "@/components/pages/docs/grade-12/vector/Shape-Area";
-import Volume from "@/components/pages/docs/grade-12/vector/Volume";
-import Equations from "@/components/pages/docs/grade-12/vector/Equations";
-import LDE1 from "@/components/pages/docs/grade-12/differential-equation/LDE1";
-import LDE2 from "@/components/pages/docs/grade-12/differential-equation/LDE2";
-import LDEGeneral from "@/components/pages/docs/grade-12/differential-equation/LDE-General";
-import VariousForms from "@/components/pages/docs/grade-12/differential-equation/Various-Forms";
-import Parabola from "@/components/pages/docs/grade-12/conic/Parabola";
-import Ellipse from "@/components/pages/docs/grade-12/conic/Ellipse";
-import Hyperbola from "@/components/pages/docs/grade-12/conic/Hyperbola";
-import ConicPractice from "@/components/pages/docs/grade-12/conic/Conic-Practice";
-import FunctionDefinition from "@/components/pages/docs/grade-12/function/Function-Definition";
-import PolynomialFunction from "@/components/pages/docs/grade-12/function/Polynomial-Function";
-import ExponentialFunction from "@/components/pages/docs/grade-12/function/Exponential-Function";
-import LogarithmicFunction from "@/components/pages/docs/grade-12/function/Logarithmic-Function";
-import EquationFunction from "@/components/pages/docs/grade-12/function/Equation-Function";
-import FunctionAnalysisPlan from "@/components/pages/docs/grade-12/function/Function-Analysis-Plan";
-import FunctionPractice from "@/components/pages/docs/grade-12/function/Function-Practice";
-import ProbabilityDefinition from "@/components/pages/docs/grade-12/probability/Probability-Definition";
-import ProbabilityCombination from "@/components/pages/docs/grade-12/probability/Probab-Combination";
-import ProbabilityPermutation from "@/components/pages/docs/grade-12/probability/Probab-Permutation";
-import ProbabilityPractice from "@/components/pages/docs/grade-12/probability/Probab-Practice";
-import ComplexDefinition from "@/components/pages/docs/grade-12/complex/Complex-Definition";
-import ComplexFormulars from "@/components/pages/docs/grade-12/complex/Complex-Formulars";
-import ComplexOperations from "@/components/pages/docs/grade-12/complex/Complex-Operations";
-import ComplexModulus from "@/components/pages/docs/grade-12/complex/Complex-Modulus";
-import QuadraticEquation from "@/components/pages/docs/grade-12/complex/Quadratic-Equation";
-import TrigonometricForm from "@/components/pages/docs/grade-12/complex/Trigonometric-Form";
-import ComplexPractice from "@/components/pages/docs/grade-12/complex/Complex-Practice";
-import BacII2024 from "@/components/pages/docs/grade-12/exam-questions/BacII2024";
-import BacII2023 from "@/components/pages/docs/grade-12/exam-questions/BacII2023";
-import BacII2022 from "@/components/pages/docs/grade-12/exam-questions/BacII2022";
-import BacII2021 from "@/components/pages/docs/grade-12/exam-questions/BacII2021";
-import BacII2020 from "@/components/pages/docs/grade-12/exam-questions/BacII2020";
-import BacII2019 from "@/components/pages/docs/grade-12/exam-questions/BacII2019";
-import BacII2018 from "@/components/pages/docs/grade-12/exam-questions/BacII2018";
-import BacII2017 from "@/components/pages/docs/grade-12/exam-questions/BacII2017";
-import BacII2016 from "@/components/pages/docs/grade-12/exam-questions/BacII2016";
-import BacII2015 from "@/components/pages/docs/grade-12/exam-questions/BacII2015";
-import BacII2014 from "@/components/pages/docs/grade-12/exam-questions/BacII2014";
-import BacII2013 from "@/components/pages/docs/grade-12/exam-questions/BacII2013";
-import BacII2012 from "@/components/pages/docs/grade-12/exam-questions/BacII2012";
-import BacII2011 from "@/components/pages/docs/grade-12/exam-questions/BacII2011";
-import BacII2010 from "@/components/pages/docs/grade-12/exam-questions/BacII2010";
-import BacII2009 from "@/components/pages/docs/grade-12/exam-questions/BacII2009";
-import BacII2008 from "@/components/pages/docs/grade-12/exam-questions/BacII2008";
-import BacII2007 from "@/components/pages/docs/grade-12/exam-questions/BacII2007";
-import BacII2006 from "@/components/pages/docs/grade-12/exam-questions/BacII2006";
-import Prep1 from "@/components/pages/docs/grade-12/exam-questions/Prep1";
-import Prep2 from "@/components/pages/docs/grade-12/exam-questions/Prep2";
-import Prep3 from "@/components/pages/docs/grade-12/exam-questions/Prep3";
-import Prep4 from "@/components/pages/docs/grade-12/exam-questions/Prep4";
-import Prep5 from "@/components/pages/docs/grade-12/exam-questions/Prep5";
-import Prep6 from "@/components/pages/docs/grade-12/exam-questions/Prep6";
-import Prep7 from "@/components/pages/docs/grade-12/exam-questions/Prep7";
-import Prep8 from "@/components/pages/docs/grade-12/exam-questions/Prep8";
-import Prep9 from "@/components/pages/docs/grade-12/exam-questions/Prep9";
-import Prep10 from "@/components/pages/docs/grade-12/exam-questions/Prep10";
-import Prep11 from "@/components/pages/docs/grade-12/exam-questions/Prep11";
-import Prep12 from "@/components/pages/docs/grade-12/exam-questions/Prep12";
-import Prep13 from "@/components/pages/docs/grade-12/exam-questions/Prep13";
-import Prep14 from "@/components/pages/docs/grade-12/exam-questions/Prep14";
-import Prep15 from "@/components/pages/docs/grade-12/exam-questions/Prep15";
-import Prep16 from "@/components/pages/docs/grade-12/exam-questions/Prep16";
-import Prep17 from "@/components/pages/docs/grade-12/exam-questions/Prep17";
-import Prep18 from "@/components/pages/docs/grade-12/exam-questions/Prep18";
-import Prep19 from "@/components/pages/docs/grade-12/exam-questions/Prep19";
-import Prep20 from "@/components/pages/docs/grade-12/exam-questions/Prep20";
-import CountingPrinciple from "@/components/pages/docs/grade-12/probability/Counting-Principle";
-import ProbabCompound from "@/components/pages/docs/grade-12/probability/Probab-Compound";
-import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/complex/Complex-Multiplication-Devision";
+import LimitZeroOverZero from "@/components/pages/docs/grade-12/math/limit/Limit-Zero-Over-Zero";
+import LimitAsymptotes from "@/components/pages/docs/grade-12/math/limit/Limit-Asymptotes";
+import LimitContinuity from "@/components/pages/docs/grade-12/math/limit/Limit-Continuity";
+import LimitInfinityMinusInfinity from "@/components/pages/docs/grade-12/math/limit/Limit-Infinity-Minus-Infinity";
+import LimitTrigonometric from "@/components/pages/docs/grade-12/math/limit/Limit-Trigonometric";
+import LimitExponential from "@/components/pages/docs/grade-12/math/limit/Limit-Exponential";
+import LHopitalRule from "@/components/pages/docs/grade-12/math/limit/L’Hôpital-Rule";
+import LimitPorformation from "@/components/pages/docs/grade-12/math/limit/Limit-Portformation";
+import LimitDefinition from "@/components/pages/docs/grade-12/math/limit/LimitDefinition";
+import LimitInfinityOverInfinity from "@/components/pages/docs/grade-12/math/limit/Limit-Infinity-Over-Infinity";
+import LimitPractice from "@/components/pages/docs/grade-12/math/limit/Limit-Practice";
+import LimitLogarithmic from "@/components/pages/docs/grade-12/math/limit/Limit-Logarithmic";
+import DerivativeDefinition from "@/components/pages/docs/grade-12/math/derivative/Definition";
+import DerivativePerformation from "@/components/pages/docs/grade-12/math/derivative/Derivative-Performation";
+import DerivativeLogarithmic from "@/components/pages/docs/grade-12/math/derivative/Derivative-Logarithmic";
+import DerivativeExponential from "@/components/pages/docs/grade-12/math/derivative/Derivative-Exponential";
+import DerivativeTrigonometric from "@/components/pages/docs/grade-12/math/derivative/Derivative-Trigonometric";
+import DerivativeGeometric from "@/components/pages/docs/grade-12/math/derivative/derivative-Geometry";
+import DerivativePractice from "@/components/pages/docs/grade-12/math/derivative/Derivative-Practice";
+import DerivativeHighLevel from "@/components/pages/docs/grade-12/math/derivative/Derivative-high-level";
+import IntergralDefinition from "@/components/pages/docs/grade-12/math/integral/integral-Definition";
+import Integralformular from "@/components/pages/docs/grade-12/math/integral/Integral-formular";
+import IndefiniteIntegral from "@/components/pages/docs/grade-12/math/integral/Indefinite-Integral";
+import DefiniteIntegral from "@/components/pages/docs/grade-12/math/integral/Definite-Integral";
+import IntegralPractice from "@/components/pages/docs/grade-12/math/integral/Integral-Practice";
+import VectorDefinition from "@/components/pages/docs/grade-12/math/vector/Vector-Definition";
+import differentialdefinition from "@/components/pages/docs/grade-12/math/differential-equation/Differential-Definition";
+import DifferentialPractice from "@/components/pages/docs/grade-12/math/differential-equation/Differential-Practice";
+import VectorPractice from "@/components/pages/docs/grade-12/math/vector/Vector-Practice";
+import TwoDVectorCoordinates from "@/components/pages/docs/grade-12/math/vector/2D-Vector-Coordinates";
+import ShapeArea from "@/components/pages/docs/grade-12/math/vector/Shape-Area";
+import Volume from "@/components/pages/docs/grade-12/math/vector/Volume";
+import Equations from "@/components/pages/docs/grade-12/math/vector/Equations";
+import LDE1 from "@/components/pages/docs/grade-12/math/differential-equation/LDE1";
+import LDE2 from "@/components/pages/docs/grade-12/math/differential-equation/LDE2";
+import LDEGeneral from "@/components/pages/docs/grade-12/math/differential-equation/LDE-General";
+import VariousForms from "@/components/pages/docs/grade-12/math/differential-equation/Various-Forms";
+import Parabola from "@/components/pages/docs/grade-12/math/conic/Parabola";
+import Ellipse from "@/components/pages/docs/grade-12/math/conic/Ellipse";
+import Hyperbola from "@/components/pages/docs/grade-12/math/conic/Hyperbola";
+import ConicPractice from "@/components/pages/docs/grade-12/math/conic/Conic-Practice";
+import FunctionDefinition from "@/components/pages/docs/grade-12/math/function/Function-Definition";
+import PolynomialFunction from "@/components/pages/docs/grade-12/math/function/Polynomial-Function";
+import ExponentialFunction from "@/components/pages/docs/grade-12/math/function/Exponential-Function";
+import LogarithmicFunction from "@/components/pages/docs/grade-12/math/function/Logarithmic-Function";
+import EquationFunction from "@/components/pages/docs/grade-12/math/function/Equation-Function";
+import FunctionAnalysisPlan from "@/components/pages/docs/grade-12/math/function/Function-Analysis-Plan";
+import FunctionPractice from "@/components/pages/docs/grade-12/math/function/Function-Practice";
+import ProbabilityDefinition from "@/components/pages/docs/grade-12/math/probability/Probability-Definition";
+import ProbabilityCombination from "@/components/pages/docs/grade-12/math/probability/Probab-Combination";
+import ProbabilityPermutation from "@/components/pages/docs/grade-12/math/probability/Probab-Permutation";
+import ProbabilityPractice from "@/components/pages/docs/grade-12/math/probability/Probab-Practice";
+import ComplexDefinition from "@/components/pages/docs/grade-12/math/complex/Complex-Definition";
+import ComplexFormulars from "@/components/pages/docs/grade-12/math/complex/Complex-Formulars";
+import ComplexOperations from "@/components/pages/docs/grade-12/math/complex/Complex-Operations";
+import ComplexModulus from "@/components/pages/docs/grade-12/math/complex/Complex-Modulus";
+import QuadraticEquation from "@/components/pages/docs/grade-12/math/complex/Quadratic-Equation";
+import TrigonometricForm from "@/components/pages/docs/grade-12/math/complex/Trigonometric-Form";
+import ComplexPractice from "@/components/pages/docs/grade-12/math/complex/Complex-Practice";
+import BacII2024 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2024";
+import BacII2023 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2023";
+import BacII2022 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2022";
+import BacII2021 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2021";
+import BacII2020 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2020";
+import BacII2019 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2019";
+import BacII2018 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2018";
+import BacII2017 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2017";
+import BacII2016 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2016";
+import BacII2015 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2015";
+import BacII2014 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2014";
+import BacII2013 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2013";
+import BacII2012 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2012";
+import BacII2011 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2011";
+import BacII2010 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2010";
+import BacII2009 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2009";
+import BacII2008 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2008";
+import BacII2007 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2007";
+import BacII2006 from "@/components/pages/docs/grade-12/math/exam-questions/BacII2006";
+import Prep1 from "@/components/pages/docs/grade-12/math/exam-questions/Prep1";
+import Prep2 from "@/components/pages/docs/grade-12/math/exam-questions/Prep2";
+import Prep3 from "@/components/pages/docs/grade-12/math/exam-questions/Prep3";
+import Prep4 from "@/components/pages/docs/grade-12/math/exam-questions/Prep4";
+import Prep5 from "@/components/pages/docs/grade-12/math/exam-questions/Prep5";
+import Prep6 from "@/components/pages/docs/grade-12/math/exam-questions/Prep6";
+import Prep7 from "@/components/pages/docs/grade-12/math/exam-questions/Prep7";
+import Prep8 from "@/components/pages/docs/grade-12/math/exam-questions/Prep8";
+import Prep9 from "@/components/pages/docs/grade-12/math/exam-questions/Prep9";
+import Prep10 from "@/components/pages/docs/grade-12/math/exam-questions/Prep10";
+import Prep11 from "@/components/pages/docs/grade-12/math/exam-questions/Prep11";
+import Prep12 from "@/components/pages/docs/grade-12/math/exam-questions/Prep12";
+import Prep13 from "@/components/pages/docs/grade-12/math/exam-questions/Prep13";
+import Prep14 from "@/components/pages/docs/grade-12/math/exam-questions/Prep14";
+import Prep15 from "@/components/pages/docs/grade-12/math/exam-questions/Prep15";
+import Prep16 from "@/components/pages/docs/grade-12/math/exam-questions/Prep16";
+import Prep17 from "@/components/pages/docs/grade-12/math/exam-questions/Prep17";
+import Prep18 from "@/components/pages/docs/grade-12/math/exam-questions/Prep18";
+import Prep19 from "@/components/pages/docs/grade-12/math/exam-questions/Prep19";
+import Prep20 from "@/components/pages/docs/grade-12/math/exam-questions/Prep20";
+import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/math/complex/Complex-Multiplication-Devision";
+import CountingPrinciple from "@/components/pages/docs/grade-12/math/probability/Counting-Principle";
+import ProbabCompound from "@/components/pages/docs/grade-12/math/probability/Probab-Compound";
 
 export const math: Content = {
   subject: "math",
@@ -117,25 +117,25 @@ export const math: Content = {
   lessons: [
     {
       lesson: "Complex",
-      title: "កំុផ្លិច",
+      title: "កុំផ្លិច",
       englishTitle: "Complex",
       icon: Target,
       topics: [
         {
-          title: "និយមន័យកំុផ្លិច",
+          title: "និយមន័យកុំផ្លិច",
           englishTitle: "Complex-Definition",
           component: ComplexDefinition,
         },
-    
+
         {
-          title: "ប្រមាណវិធីបូក ដកចំនួនកំុផ្លិច",
+          title: "ប្រមាណវិធីបូក ដកចំនួនកុំផ្លិច",
           englishTitle: "Complex-Operations",
           component: ComplexOperations,
         },
         {
-          title: "ប្រមាណវិធីគុណ និងចែកចំនួនកំុផ្លិច",
+          title: "ប្រមាណវិធីគុណ និងចែកចំនួនកុំផ្លិច",
           englishTitle: "Complex-Multiplication-Division",
-          component: ComplexMultiplicationDivision
+          component: ComplexMultiplicationDivision,
         },
         {
           title: "ម៉ូឌុលនៃកុំផ្លិច",
