@@ -1,6 +1,7 @@
 import { Content } from "@/types/curriculum";
 import { FlaskConical } from "lucide-react";
-import LimitZeroOverZero from "@/components/pages/docs/grade-12/limit/Limit-Zero-Over-Zero";
+import LimitZeroOverZero from "@/components/pages/docs/grade-12/math/limit/Limit-Zero-Over-Zero";
+import ComingSoon from "@/components/pages/docs/common/ComingSoon";
 
 export const chemistry: Content = {
   subject: "chemistry",
@@ -17,17 +18,17 @@ export const chemistry: Content = {
         {
           title: "រចនាសម្ព័ន្ធអាតូម",
           englishTitle: "atomic-structure",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "ការរៀបចំអេឡិចត្រុង",
           englishTitle: "electron-configuration",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "តារាងខួប",
           englishTitle: "periodic-table",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
       ],
     },
@@ -40,17 +41,17 @@ export const chemistry: Content = {
         {
           title: "ការចងអ៊ីអូនិច",
           englishTitle: "ionic-bonding",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "ការចងគូវែលអ៊ីន",
           englishTitle: "covalent-bonding",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "ការចងលោហៈ",
           englishTitle: "metallic-bonding",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
       ],
     },
@@ -63,17 +64,17 @@ export const chemistry: Content = {
         {
           title: "សមីការគីមី",
           englishTitle: "chemical-equations",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "ប្រភេទប្រតិកម្ម",
           englishTitle: "reaction-types",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "លំនឹង",
           englishTitle: "equilibrium",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
       ],
     },

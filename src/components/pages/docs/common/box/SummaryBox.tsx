@@ -1,12 +1,8 @@
 import TipBox from "./TipBox";
 import React from "react";
+import { SummarySection } from "@/types/topic";
 
-export interface SummarySection {
-    key?: string;
-    title: string | React.ReactNode;
-    icon?: React.ComponentType<{ size?: number; className?: string }>;
-    content: React.ReactNode; // supports strings, elements, KaTeX, etc.
-}
+
 
 export interface SummaryBoxProps {
     title?: string | React.ReactNode;

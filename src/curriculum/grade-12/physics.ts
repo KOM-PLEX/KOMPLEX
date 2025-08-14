@@ -1,6 +1,7 @@
 import { Content } from "@/types/curriculum";
 import { Atom } from "lucide-react";
-import LimitZeroOverZero from "@/components/pages/docs/grade-12/limit/Limit-Zero-Over-Zero";
+import LimitZeroOverZero from "@/components/pages/docs/grade-12/math/limit/Limit-Zero-Over-Zero";
+import ComingSoon from "@/components/pages/docs/common/ComingSoon";
 
 export const physics: Content = {
   subject: "physics",
@@ -17,22 +18,22 @@ export const physics: Content = {
         {
           title: "គីណេម៉ាទិច",
           englishTitle: "kinematics",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "ឌីណាមិច",
           englishTitle: "dynamics",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "ថាមពល",
           englishTitle: "energy",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "អំណាច",
           englishTitle: "momentum",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
       ],
     },
@@ -45,17 +46,17 @@ export const physics: Content = {
         {
           title: "ចលនារលក",
           englishTitle: "wave-motion",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "សំឡេង",
           englishTitle: "sound",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "ពន្លឺ",
           englishTitle: "light",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
       ],
     },
@@ -68,17 +69,17 @@ export const physics: Content = {
         {
           title: "វាលអគ្គិសនី",
           englishTitle: "electric-field",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "សៀគ្វី",
           englishTitle: "circuits",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
         {
           title: "អេឡិចត្រូម៉ាញេទិច",
           englishTitle: "magnetism",
-          component: LimitZeroOverZero,
+          component: ComingSoon,
         },
       ],
     },
