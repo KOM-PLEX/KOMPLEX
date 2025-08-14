@@ -2,6 +2,7 @@
 
 import BlogCard from '@/components/pages/blog/BlogCard';
 import Sidebar from '@/components/pages/blog/Sidebar';
+import { useEffect, useState } from 'react';
 
 const blogPosts = [
     {
@@ -78,8 +79,36 @@ const blogPosts = [
     }
 ];
 
+export interface BlogPost {
+    id: number;
+    username: string;
+    title: string;
+    type: string;
+    topic: string;
+    viewCount: number;
+    likeCount: number;
+    createdAt: string;
+    updatedAt: string;
+    media: {
+        url: string;
+        mediaType: string;
+    }[];
+}
+
 export default function Blog() {
 
+    const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+
+    useEffect(() => {
+        const fetchBlogPosts = async () => {
+            const response = await fetch('http://localhost:6969/blogs');
+            const data = await response.json();
+            setBlogPosts(data);
+        }
+        fetchBlogPosts();
+    }, []);
+
+    if (!blogPosts) return <div>Loading...</div>;
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -89,7 +118,6 @@ export default function Blog() {
                 {/* Sidebar */}
                 <Sidebar />
 
-                {/* Main Content */}
                 <div className="flex-1 mt-14 lg:mt-0">
                     <div className="grid grid-cols-1 lg:grid-cols-2  gap-4">
                         {blogPosts.map((post) => (
