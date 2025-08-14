@@ -1,6 +1,26 @@
 import { Content } from "@/types/curriculum";
 import { FlaskConical } from "lucide-react";
-import LimitZeroOverZero from "@/components/pages/docs/grade-12/limit/Limit-Zero-Over-Zero";
+import RateChemicalReaction from "@/components/pages/docs/grade-12/chemistry/chemica- kinetics/Rate-chemical-reaction";
+import Reaction_rate_factors from "@/components/pages/docs/grade-12/chemistry/chemica- kinetics/Reaction_rate_factors";
+import Aqueous_solution from "@/components/pages/docs/grade-12/chemistry/aqueous_solution_forces/Aqueous_solution";
+import Intermolecular_forces from "@/components/pages/docs/grade-12/chemistry/aqueous_solution_forces/Intermolecular_forces";
+import Acid_base_theory from "@/components/pages/docs/grade-12/chemistry/acid_base/Acid_base_theory";
+import AcidbaseReaction from "@/components/pages/docs/grade-12/chemistry/acid_base/Acid_base_reaction";
+import Aqueous_solution_ph from "@/components/pages/docs/grade-12/chemistry/acid_base/Aqueous_solution_ph";
+import Equilibrium_shift from "@/components/pages/docs/grade-12/chemistry/chemical_equilibrium/Equilibrium_shift";
+import Nature_equilibrium from "@/components/pages/docs/grade-12/chemistry/chemical_equilibrium/Nature_equilibrium";
+import Ester_fat_oil from "@/components/pages/docs/grade-12/chemistry/organic_chemistry/Ester_fat_oil";
+import Aliphatic_acid_derivatives from "@/components/pages/docs/grade-12/chemistry/organic_chemistry/Aliphatic_acid_derivatives";
+import Inorganic_compounds from "@/components/pages/docs/grade-12/chemistry/organic_chemistry/Inorganic_compounds";
+import Chemica_Practice from "@/components/pages/docs/grade-12/chemistry/chemica- kinetics/Kinetics-Practice";
+import AqueousPractice from "@/components/pages/docs/grade-12/chemistry/aqueous_solution_forces/Aqueous-Practice";
+import Acid_base_practice from "@/components/pages/docs/grade-12/chemistry/acid_base/Acid_base_practice";
+import EquilibriumPractice from "@/components/pages/docs/grade-12/chemistry/chemical_equilibrium/Equilibrium-Practice";
+import OrganicPractice from "@/components/pages/docs/grade-12/chemistry/organic_chemistry/Organic-Practice";
+
+
+
+
 
 export const chemistry: Content = {
   subject: "chemistry",
@@ -9,71 +29,127 @@ export const chemistry: Content = {
   icon: FlaskConical,
   lessons: [
     {
-      lesson: "atomic",
-      title: "អាតូម",
-      englishTitle: "Atomic",
+      lesson: "ChemicalKinetics",
+      title: "សុីនេទិចគីមី",
+      englishTitle: "ChemicalKinetics",
       icon: FlaskConical,
       topics: [
         {
-          title: "រចនាសម្ព័ន្ធអាតូម",
-          englishTitle: "atomic-structure",
-          component: LimitZeroOverZero,
+          title: "ល្បឿនប្រតិកម្មគីមី",
+          englishTitle: "RateChemicalReaction",
+          component: RateChemicalReaction,
         },
         {
-          title: "ការរៀបចំអេឡិចត្រុង",
-          englishTitle: "electron-configuration",
-          component: LimitZeroOverZero,
+          title: "កត្តាជិះឥទ្ធិពលលេីល្បឿនប្រតិកម្ម",
+          englishTitle: "FactorsAffectingtheRateofReaction",
+          component: Reaction_rate_factors,
         },
         {
-          title: "តារាងខួប",
-          englishTitle: "periodic-table",
-          component: LimitZeroOverZero,
+          title: "លំហាត់អនុវត្តន៍",
+          englishTitle: "ChemicaPractice",
+          component: Chemica_Practice,
         },
       ],
     },
     {
-      lesson: "bonding",
-      title: "ការចង",
-      englishTitle: "Bonding",
+      lesson: "aqueous_solution_intermolecular",
+      title: "សមាសធាតុសូលូស្យុងក្នុងទឹកនិង កម្លាំងអន្តរម៉ូលេគុល",
+      englishTitle: "AqueousSolutionsandIntermolecularForces",
       icon: FlaskConical,
       topics: [
         {
-          title: "ការចងអ៊ីអូនិច",
-          englishTitle: "ionic-bonding",
-          component: LimitZeroOverZero,
+          title: "សមាសធាតុសូលូស្យុងក្នុងទឹក",
+          englishTitle: "AqueousSolutions",
+          component: Aqueous_solution,
         },
         {
-          title: "ការចងគូវែលអ៊ីន",
-          englishTitle: "covalent-bonding",
-          component: LimitZeroOverZero,
+          title: "កម្លាំងអន្តរម៉ូលេគុល",
+          englishTitle: "intermolecular-forces",
+          component: Intermolecular_forces,
         },
         {
-          title: "ការចងលោហៈ",
-          englishTitle: "metallic-bonding",
-          component: LimitZeroOverZero,
+          title: "លំហាត់អនុវត្តន៍",
+          englishTitle: "AqueousPractice",
+          component: AqueousPractice,
         },
       ],
     },
     {
-      lesson: "reactions",
-      title: "ប្រតិកម្ម",
-      englishTitle: "Reactions",
+      lesson: "acid_base",
+      title: "អាសុីត បាស",
+      englishTitle: "Acid-Base",
       icon: FlaskConical,
       topics: [
         {
-          title: "សមីការគីមី",
-          englishTitle: "chemical-equations",
-          component: LimitZeroOverZero,
+          title: "ទ្រឹស្តីអាសុីតបាស",
+          englishTitle: "acid-base-theory",
+          component: Acid_base_theory,
         },
         {
-          title: "ប្រភេទប្រតិកម្ម",
-          englishTitle: "reaction-types",
-          component: LimitZeroOverZero,
+          title: "ប្រតិកម្មអាសុីតបាស",
+          englishTitle: "acid-base-reactions",
+          component: AcidbaseReaction,
         },
         {
-          title: "លំនឹង",
-          englishTitle: "equilibrium",
-          component: LimitZeroOverZero,
+          title: "សូលុយស្យុងក្នុងទឹកនិង ph",
+          englishTitle: "aqueous-solutions-and-ph",
+          component: Aqueous_solution_ph,
+        },
+        {
+          title: "លំហាត់អនុវត្តន៍",
+          englishTitle: "Acid_base_practice",
+          component: Acid_base_practice,
+        },
+      ],
+    },
+    {
+      lesson: "chemical_equilibrium",
+      title: "លំនឹងគីមី",
+      englishTitle: "ChemicalEquilibrium",
+      icon: FlaskConical,
+      topics: [
+        {
+          title: "ធម្មជាតិនៃលំនឹងគីមី",
+          englishTitle: "nature-of-chemical-equilibrium",
+          component: Nature_equilibrium,
+        },
+        {
+          title: "ការរំកិលលំនឹង",
+          englishTitle: "shift-in-equilibrium",
+          component: Equilibrium_shift,
+        },
+        {
+          title: "លំហាត់អនុវត្តន៍",
+          englishTitle: "EquilibriumPractice",
+          component: EquilibriumPractice,
+        },
+      ],
+    },
+    {
+      lesson: "organic_chemistry",
+      title: "គីមីសរីរាង្គ",
+      englishTitle: "OrganicChemistry",
+      icon: FlaskConical,
+      topics: [
+        {
+          title: "អេស្ទែ ខ្លាញ់និងប្រេង",
+          englishTitle: "Ester_fats_and_oils",
+          component: Ester_fat_oil,
+        },
+        {
+          title: "ស្រលាយអាលីផាទិចអាសូត",
+          englishTitle: "aliphatic_acid_derivatives",
+          component: Aliphatic_acid_derivatives,
+        },
+        {
+          title: "សមាសធាតុប្រហេីរ",
+          englishTitle: "inorganic_compounds",
+          component: Inorganic_compounds,
+        },
+        {
+          title: "លំហាត់អនុវត្តន៍",
+          englishTitle: "OrganicPractice",
+          component: OrganicPractice,
         },
       ],
     },
