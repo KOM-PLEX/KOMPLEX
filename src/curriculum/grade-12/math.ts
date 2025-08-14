@@ -106,6 +106,8 @@ import Prep18 from "@/components/pages/docs/grade-12/math/exam-questions/Prep18"
 import Prep19 from "@/components/pages/docs/grade-12/math/exam-questions/Prep19";
 import Prep20 from "@/components/pages/docs/grade-12/math/exam-questions/Prep20";
 import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/math/complex/Complex-Multiplication-Devision";
+import CountingPrinciple from "@/components/pages/docs/grade-12/math/probability/Counting-Principle";
+import ProbabCompound from "@/components/pages/docs/grade-12/math/probability/Probab-Compound";
 
 export const math: Content = {
   subject: "math",
@@ -273,7 +275,7 @@ export const math: Content = {
         },
       ],
     },
-    {
+    {  
       lesson: "integration",
       title: "អាំងតេក្រាល",
       englishTitle: "Integration",
@@ -351,6 +353,11 @@ export const math: Content = {
       icon: Box,
       topics: [
         {
+          title: "គោលការណ៍របាប់",
+          englishTitle: "CountingPrinciple",
+          component:  CountingPrinciple,
+        },
+        {
           title: "និយមន័យប្រូបាប",
           englishTitle: "Probability-Definition",
           component: ProbabilityDefinition,
@@ -364,6 +371,11 @@ export const math: Content = {
           title: "ប្រូបាបបន្សំ",
           englishTitle: "Probability-Combination",
           component: ProbabilityCombination,
+        },
+        {
+          title: "ប្រូបាបនៃព្រឹត្តការណ៍សមាស",
+          englishTitle: "ProbabCompound",
+          component: ProbabCompound,
         },
         {
           title: "លំហាត់អនុវត្ត",
