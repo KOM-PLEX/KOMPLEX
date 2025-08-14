@@ -1,16 +1,8 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import { ReactNode } from 'react';
-import { toKhmerNumbering } from '@/utils/khmerNumber';
+import { ChevronDown, ChevronUp } from 'lucide-react';  
+import { PracticeExercise } from '@/types/topic';
 
-export interface PracticeExercise {
-    id: string;
-    title: string;
-    description: string;
-    problemType: string;
-    problems: string[] | ReactNode[];
-    answers?: ReactNode[];
-}
+
 
 interface TopicPracticeBoxProps {
     exercises: PracticeExercise[];
@@ -21,7 +13,7 @@ export default function TopicPracticeBox({ exercises }: TopicPracticeBoxProps) {
 
     const toggleQuestion = (questionId: string) => {
         setExpandedQuestions(prev => ({
-            ...prev,
+            ...prev,    
             [questionId]: !prev[questionId]
         }));
     };
