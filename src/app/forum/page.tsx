@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import ForumCard from '@/components/pages/forum/ForumCard';
 import Sidebar from '@/components/pages/forum/Sidebar';
+import { Bot, MessageCircle, Target } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Forum() {
+    const [showOverlay, setShowOverlay] = useState(true);
     const forumPosts = [
         {
             id: 1,
@@ -99,6 +102,70 @@ export default function Forum() {
 
                 {/* Main Content */}
                 <div className="flex-1 mt-14 lg:mt-0">
+                    {showOverlay && (
+                        <div className="fixed inset-0 bg-white/30 backdrop-blur-sm z-20 flex items-center justify-center mt-16">
+                            <div className="flex items-center justify-center  w-full">
+                                <div className="text-center max-w-2xl mx-auto px-6 py-4 rounded-2xl bg-indigo-50 border border-indigo-500">
+                                    <div className="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                                        <MessageCircle className="w-12 h-12 text-indigo-600" />
+                                    </div>
+
+                                    <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                                        មុខងារវេទិកាពេញលេញនឹងមកដល់ឆាប់ៗ
+                                    </h1>
+
+                                    <p className="text-lg text-gray-600 mb-8">
+                                        កំពុងធ្វើការអភិវឌ្ឍមុខងារវេទិកាដ៏អស្ចារ្យសម្រាប់អ្នក។
+                                    </p>
+
+                                    <div className="bg-gray-50 rounded-2xl p-8 mb-8">
+                                        <h2 className="text-xl font-semibold text-gray-900 mb-6">
+                                            មុខងារដែលនឹងមាន៖
+                                        </h2>
+
+                                        <div className="space-y-4 text-left">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការបង្កើតប្រធានបទពិភាក្សា</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការឆ្លើយតបនិងពិភាក្សា</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការបង្កើតក្រុមសិក្សា</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការចែករំលែកឯកសារ</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការស្វែងរកប្រធានបទ</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការតាមដានការចូលរួម</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        onClick={() => setShowOverlay(false)}
+                                        className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium"
+                                    >
+                                        បន្តប្រើ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}  
                     <div className="flex flex-col gap-5">
                         {forumPosts.map((post) => (
                             <ForumCard key={post.id} post={post} isFromBasePage={true} />

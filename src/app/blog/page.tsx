@@ -2,6 +2,8 @@
 
 import BlogCard from '@/components/pages/blog/BlogCard';
 import Sidebar from '@/components/pages/blog/Sidebar';
+import { Bot, Target } from 'lucide-react';
+import { useState } from 'react';
 
 const blogPosts = [
     {
@@ -79,7 +81,7 @@ const blogPosts = [
 ];
 
 export default function Blog() {
-
+    const [showOverlay, setShowOverlay] = useState(true);
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -91,6 +93,70 @@ export default function Blog() {
 
                 {/* Main Content */}
                 <div className="flex-1 mt-14 lg:mt-0">
+                    {showOverlay && (
+                        <div className="fixed inset-0 bg-white/30 backdrop-blur-sm z-20 flex items-center justify-center mt-14">
+                            <div className="flex items-center justify-center  w-full">
+                                <div className="text-center max-w-2xl mx-auto px-6 py-4 rounded-2xl bg-indigo-50 border border-indigo-500">
+                                    <div className="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                                        <Target className="w-12 h-12 text-indigo-600" />
+                                    </div>
+
+                                    <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                                        មុខងាប្លុកពេញលេញនឹងមកដល់ឆាប់ៗ
+                                    </h1>
+
+                                    <p className="text-lg text-gray-600 mb-8">
+                                        កំពុងធ្វើការអភិវឌ្ឍមុខងារវេទិកាដ៏អស្ចារ្យសម្រាប់អ្នក។
+                                    </p>
+
+                                    <div className="bg-gray-50 rounded-2xl p-8 mb-8">
+                                        <h2 className="text-xl font-semibold text-gray-900 mb-6">
+                                            មុខងារដែលនឹងមាន៖
+                                        </h2>
+
+                                        <div className="space-y-4 text-left">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការសរសេរអត្ថបទ</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការចែករំលែកបទពិសោធន៍</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការពិភាក្សាជាមួយអ្នកដទៃ</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការបង្កើតក្រុមសិក្សា</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការស្វែងរកអត្ថបទ</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                                                <span className="text-gray-700">ការតាមដានការរីកចម្រើន</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        onClick={() => setShowOverlay(false)}
+                                        className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium"
+                                    >
+                                        បន្តប្រើ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <div className="grid grid-cols-1 lg:grid-cols-2  gap-4">
                         {blogPosts.map((post) => (
                             <BlogCard key={post.id} post={post} />
