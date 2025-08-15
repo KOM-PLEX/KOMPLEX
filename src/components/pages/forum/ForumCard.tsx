@@ -4,6 +4,7 @@ import { MessageCircle, Share, ThumbsUp } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Carousel from '@/components/common/Carousel';
 
 interface ForumPost {
     id: number;
@@ -14,7 +15,7 @@ interface ForumPost {
     time: string;
     title: string;
     content: string;
-    image?: string;
+    image?: string[];
     upvotes: number;
     comments: number;
     upvoted: boolean;
@@ -84,9 +85,7 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick }: Foru
             </div>
 
             {post.image && (
-                <div className="w-full  bg-indigo-500/10 rounded-xl mb-4 flex items-center justify-center text-indigo-600 text-2xl border-2  border-indigo-500/30">
-                    <img src={post.image} alt={post.title} className='w-full h-full object-cover rounded-xl' />
-                </div>
+                <Carousel images={post.image} />
             )}
 
             <div className="flex items-center gap-5 pt-4 border-t border-indigo-500/10">

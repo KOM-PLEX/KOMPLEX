@@ -4,10 +4,9 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
     Save,
-    Search,
-    Menu
+    Search
 } from 'lucide-react';
-import Sidebar from '@/components/pages/video/Sidebar';
+import Sidebar from '@/components/pages/my-content/Sidebar';
 import ExerciseCreationBox from '@/components/pages/docs/common/box/ExerciseCreationBox';
 import VideoUpload from '@/components/pages/create-video/VideoUpload';
 import Description from '@/components/pages/create-video/Description';
@@ -25,8 +24,6 @@ interface VideoFormData {
     exercises: ExerciseQuestion[];
 }
 
-
-
 export default function CreateVideoPage() {
     const router = useRouter();
     const [isUploading, setIsUploading] = useState(false);
@@ -34,7 +31,6 @@ export default function CreateVideoPage() {
     const [videoFile, setVideoFile] = useState<File | null>(null);
     const [videoPreview, setVideoPreview] = useState<string>('');
 
-    const [sidebarOpen, setSidebarOpen] = useState(false);
     const [formData, setFormData] = useState<VideoFormData>({
         title: '',
         description: '',
@@ -82,7 +78,6 @@ export default function CreateVideoPage() {
 
     // Handle MCQ exercises
     const handleExercisesChange = (newExercises: ExerciseQuestion[]) => {
-        console.log("excercise changed", newExercises);
         setFormData(prev => ({
             ...prev,
             exercises: newExercises
@@ -102,8 +97,8 @@ export default function CreateVideoPage() {
                 if (prev >= 100) {
                     clearInterval(interval);
                     setIsUploading(false);
-                    // Redirect to video page after successful upload
-                    setTimeout(() => router.push('/video'), 1000);
+                    // Redirect to videos page after successful upload
+                    setTimeout(() => router.push('/my-content/videos'), 1000);
                     return 100;
                 }
                 return prev + 10;
@@ -132,29 +127,15 @@ export default function CreateVideoPage() {
     };
 
     return (
-        <div className="flex h-screen bg-gray-50 pt-15">
-            <Sidebar
-                selectedSubject={formData.subjects[0] || 'all'}
-                selectedDifficulty="all"
-                onSubjectChange={(subject) => handleInputChange('subjects', [subject])}
-                onDifficultyChange={() => { }}
-                sidebarOpen={sidebarOpen}
-                onSidebarToggle={() => setSidebarOpen(!sidebarOpen)}
-            />
+        <div className="flex min-h-screen bg-gray-50">
+            {/* Sidebar */}
+            <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-scroll relative">
+            <div className="flex-1 ml-64 pt-20">
                 {/* Header */}
-                <div className="bg-white shadow-sm border-b border-gray-200 lg:p-2 py-2 px-5 sticky top-0 z-10">
+                <div className="bg-white shadow-sm border-b border-gray-200 py-2 px-5 sticky top-0 z-10">
                     <div className="flex justify-center items-center gap-2">
-                        {/* Mobile Menu Button */}
-                        <button
-                            onClick={() => setSidebarOpen(true)}
-                            className="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                        >
-                            <Menu size={20} />
-                        </button>
-
                         <div className="flex-1 relative max-w-[700px]">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                             <input
@@ -193,8 +174,6 @@ export default function CreateVideoPage() {
 
                         {/* Right Column: Settings + Description Stacked */}
                         <div className="space-y-6">
-
-
                             {/* Tags Component */}
                             <Tags
                                 subjects={formData.subjects}
@@ -208,7 +187,6 @@ export default function CreateVideoPage() {
                                 onShowLikesChange={(show) => handleInputChange('showLikes', show)}
                                 onShowCommentsChange={(show) => handleInputChange('showComments', show)}
                             />
-
                         </div>
                     </div>
 

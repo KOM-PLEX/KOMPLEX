@@ -74,8 +74,11 @@ export default function Carousel({
                             <img
                                 src={image}
                                 alt={`Slide ${index + 1}`}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover aspect-video"
                                 draggable={false}
+                                onError={(e) => {
+                                    e.currentTarget.src = "/image-error.png";
+                                }}
                             />
                         </div>
                     ))}
@@ -87,25 +90,29 @@ export default function Carousel({
                 <>
                     <button
                         onClick={goToPrevious}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10  flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
                         aria-label="Previous slide"
                     >
-                        <ChevronLeft className="w-5 h-5 text-gray-700" />
+                        <ChevronLeft className="w-5 h-5 text-white" />
                     </button>
                     <button
                         onClick={goToNext}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10  flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
                         aria-label="Next slide"
                     >
-                        <ChevronRight className="w-5 h-5 text-gray-700" />
+                        <ChevronRight className="w-5 h-5 text-white" />
                     </button>
                 </>
             )}
 
             {/* Top Indicator */}
-            <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm z-10">
-                {currentIndex + 1} / {images.length}
-            </div>
+            {
+                images.length > 1 && (
+                    <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm z-10">
+                        {currentIndex + 1} / {images.length}
+                    </div>
+                )
+            }
         </div>
     );
 }
