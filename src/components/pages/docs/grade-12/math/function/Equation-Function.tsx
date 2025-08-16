@@ -8,6 +8,8 @@ import { ImageBox } from "../../../common/box/explanation-box/ImageExplanationBo
 import { TopicContent } from "@/types/topic";
 import Graph from "../../../../../helper/Graph";
 import { InlineMath } from "react-katex";
+import { ThreeDExplanationBox } from "../../../common/box/explanation-box/3DExplanationBox";
+import { GraphExplanationBox } from "../../../common/box/explanation-box/GraphExplanationBox";
 
 const TOPIC_CONTENT: TopicContent = {
 	definition: {
@@ -168,11 +170,10 @@ export default function EquationFunction() {
 
 			{TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
 
-			{TOPIC_CONTENT.imageExplanation && (
-				<ImageBox
-					src={TOPIC_CONTENT.imageExplanation.src}
-					imageAlt={TOPIC_CONTENT.imageExplanation.imageAlt}
-					explanation={TOPIC_CONTENT.imageExplanation.explanation}
+			{TOPIC_CONTENT.graphExplanation && (
+				<GraphExplanationBox
+					expressions={TOPIC_CONTENT.graphExplanation.expressions}
+					explanation={TOPIC_CONTENT.graphExplanation.explanation}
 				/>
 			)}
 		</>
