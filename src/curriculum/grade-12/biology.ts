@@ -35,7 +35,7 @@ export const biology: Content = {
         {
           title: "ប្រភេទនៃស៊ីមណូស្ពែម",
           englishTitle: "gymnosperms-types",
-          component: ComingSoon,
+          component: GymnospermTypes,
         },
         {
           title: "សរីរាង្គលូតលាស់",
