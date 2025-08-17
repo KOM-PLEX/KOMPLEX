@@ -87,6 +87,9 @@ export default function BlogPost() {
     const [bodyText, setBodyText] = useState('');
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+    const [existingImages, setExistingImages] = useState<{ url: string; mediaType: string }[]>([]);
+    const [removedImages, setRemovedImages] = useState<string[]>([]);
+    const [previewSources, setPreviewSources] = useState<('existing' | 'new')[]>([]);
     const [titleCharCount, setTitleCharCount] = useState(0);
     const [blogTypes, setBlogTypes] = useState<string[]>([]);
     const [topics, setSelectedTopics] = useState<string[]>([]);
@@ -101,7 +104,7 @@ export default function BlogPost() {
         const fetchBlog = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`http://localhost:6969/blogs/${id}`);
+                const response = await axios.get(`http://localhost:6969/user-content/blogs/${id}`);
                 const blog = response.data;
 
                 setBlogPost(blog);
@@ -113,9 +116,18 @@ export default function BlogPost() {
                 setBlogTypes(blog.type ? [blog.type] : []);
                 setSelectedTopics(blog.topic ? [blog.topic] : []);
 
-                // Set existing images as previews
+                // Set existing images as previews and track them separately
                 if (blog.media && blog.media.length > 0) {
-                    setImagePreviews(blog.media.map((media: { url: string; mediaType: string }) => media.url));
+                    setExistingImages(blog.media);
+                    const urls = blog.media.map((media: { url: string; mediaType: string }) => media.url);
+                    setImagePreviews(urls);
+                    setPreviewSources(new Array(urls.length).fill('existing'));
+                    console.log('Initialized with existing images:', urls);
+                    console.log('Initialized previewSources:', new Array(urls.length).fill('existing'));
+                } else {
+                    setExistingImages([]);
+                    setImagePreviews([]);
+                    setPreviewSources([]);
                 }
             } catch (error) {
                 console.error('Error fetching blog:', error);
@@ -130,6 +142,14 @@ export default function BlogPost() {
         }
     }, [id]);
 
+    // Debug useEffect to monitor state changes
+    useEffect(() => {
+        console.log('State changed - imagePreviews:', imagePreviews);
+        console.log('State changed - previewSources:', previewSources);
+        console.log('State changed - existingImages:', existingImages);
+        console.log('State changed - removedImages:', removedImages);
+    }, [imagePreviews, previewSources, existingImages, removedImages]);
+
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setTitle(value);
@@ -138,7 +158,7 @@ export default function BlogPost() {
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || []);
-        const remainingSlots = 4 - selectedImages.length;
+        const remainingSlots = 4 - imagePreviews.length;
         const filesToAdd = files.slice(0, remainingSlots);
 
         if (filesToAdd.length > 0) {
@@ -150,6 +170,7 @@ export default function BlogPost() {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     setImagePreviews(prev => [...prev, e.target?.result as string]);
+                    setPreviewSources(prev => [...prev, 'new']);
                 };
                 reader.readAsDataURL(file);
             });
@@ -163,8 +184,32 @@ export default function BlogPost() {
     };
 
     const removeImage = (index: number) => {
-        setSelectedImages(prev => prev.filter((_, i) => i !== index));
+        const removedPreview = imagePreviews[index];
+        const source = previewSources[index];
+
+        console.log('Removing image at index:', index, 'Source:', source, 'Preview:', removedPreview);
+        console.log('Current previewSources:', previewSources);
+        console.log('Current imagePreviews:', imagePreviews);
+        console.log('Current existingImages:', existingImages);
+
+        if (source === 'existing') {
+            // This is an existing image, add it to removedImages
+            setRemovedImages(prev => {
+                const newRemoved = [...prev, removedPreview];
+                console.log('Updated removedImages:', newRemoved);
+                return newRemoved;
+            });
+        } else {
+            // This is a newly selected image, remove it from selectedImages
+            // Count how many 'new' images come before this index
+            const newImagesBeforeThis = previewSources.slice(0, index).filter(s => s === 'new').length;
+            setSelectedImages(prev => prev.filter((_, i) => i !== newImagesBeforeThis));
+        }
+
+        // Remove from previews and sources
         setImagePreviews(prev => prev.filter((_, i) => i !== index));
+        setPreviewSources(prev => prev.filter((_, i) => i !== index));
+
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
         }
@@ -206,12 +251,31 @@ export default function BlogPost() {
             formData.append('type', blogTypes[0] || '');
             formData.append('topic', topics[0] || '');
 
-            await axios.patch(`http://localhost:6969/blogs/${id}`, formData);
+            const requestBody = {
+                title,
+                description: bodyText,
+                type: blogTypes[0] || '',
+                topic: topics[0] || '',
+                photosToRemove: removedImages.length > 0 ? removedImages.map(url => ({ url })) : undefined
+            }
+
+            // // Add photosToRemove if there are removed images
+            // if (removedImages.length > 0) {
+            //     const photosToRemove = removedImages.map(url => ({ url }));
+            //     formData.append('photosToRemove', JSON.stringify(photosToRemove));
+            //     console.log('Removing images:', photosToRemove);
+            // }
+
+            await axios.patch(`http://localhost:6969/blogs/${id}`, requestBody);
 
             // Refresh blog data and switch back to display mode
-            const response = await axios.get(`http://localhost:6969/blogs/${id}`);
+            const response = await axios.get(`http://localhost:6969/user-content/blogs/${id}`);
             setBlogPost(response.data);
             setIsEditMode(false);
+
+            // Reset edit form states
+            setSelectedImages([]);
+            setRemovedImages([]);
         } catch (error) {
             console.error('Error updating blog:', error);
             alert('មានបញ្ហាកើតឡើងពេលរក្សាទុកប្លុក សូមព្យាយាមម្តងទៀត');
@@ -227,6 +291,28 @@ export default function BlogPost() {
         } catch (error) {
             console.error('Error deleting blog:', error);
             alert('មានបញ្ហាកើតឡើងពេលលុបប្លុក សូមព្យាយាមម្តងទៀត');
+        }
+    };
+
+    const resetEditForm = () => {
+        if (blogPost) {
+            setTitle(blogPost.title);
+            setTitleCharCount(blogPost.title.length);
+            setBodyText(blogPost.description);
+            setBlogTypes(blogPost.type ? [blogPost.type] : []);
+            setSelectedTopics(blogPost.topic ? [blogPost.topic] : []);
+            setSelectedImages([]);
+            setRemovedImages([]);
+
+            if (blogPost.media && blogPost.media.length > 0) {
+                setExistingImages(blogPost.media);
+                setImagePreviews(blogPost.media.map(media => media.url));
+                setPreviewSources(new Array(blogPost.media.length).fill('existing'));
+            } else {
+                setExistingImages([]);
+                setImagePreviews([]);
+                setPreviewSources([]);
+            }
         }
     };
 
@@ -343,7 +429,10 @@ export default function BlogPost() {
                             ត្រឡប់ទៅប្លុករបស់ខ្ញុំ
                         </Link>
                         <button
-                            onClick={() => setIsEditMode(false)}
+                            onClick={() => {
+                                resetEditForm();
+                                setIsEditMode(false);
+                            }}
                             className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
                         >
                             <Eye className="w-4 h-4" />
@@ -608,7 +697,10 @@ export default function BlogPost() {
                         {/* Action Buttons */}
                         <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
                             <button
-                                onClick={() => setIsEditMode(false)}
+                                onClick={() => {
+                                    resetEditForm();
+                                    setIsEditMode(false);
+                                }}
                                 className="px-6 py-2 bg-gray-500 text-white rounded-lg transition-colors duration-200 hover:bg-gray-600 font-medium"
                             >
                                 បោះបង់

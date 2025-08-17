@@ -94,7 +94,7 @@ export default function BlogPost() {
                 // Add a minimum loading time to prevent flash
                 const startTime = Date.now();
 
-                const response = await axios.get(`http://localhost:6969/blogs/${id}`);
+                const response = await axios.get(`http://localhost:6969/user-content/blogs/${id}`);
                 const data = response.data;
                 console.log('API response data:', data);
 

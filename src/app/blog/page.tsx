@@ -109,7 +109,7 @@ export default function Blog() {
         const fetchBlogPosts = async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch('http://localhost:6969/blogs');
+                const response = await fetch('http://localhost:6969/user-content/blogs');
                 const data = await response.json();
                 setBlogPosts(data);
             } catch (error) {
