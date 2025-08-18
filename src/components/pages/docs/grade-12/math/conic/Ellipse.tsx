@@ -117,7 +117,7 @@ const Ellipse = () => {
                   ▶ អ័ក្សធំឈរ
                 </h4>
                 <ul className="space-y-2 text-sm">
-                  <li>• សមីការ៖ <InlineMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1" /></li>
+                  <li>• សមីការ៖ <InlineMath math="\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1" /></li>
                   <li>• ចំណុចកណ្តាល៖ <InlineMath math="(h, k)" /></li>
                   <li>• កំពូល៖ <InlineMath math="(h, k \pm b)" /></li>
                   <li>• កំពូលតូច៖ <InlineMath math="(h \pm a, k)" /></li>

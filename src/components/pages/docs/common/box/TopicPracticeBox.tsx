@@ -52,7 +52,7 @@ export default function TopicPracticeBox({ exercises }: TopicPracticeBoxProps) {
                                                 <span className="text-indigo-600 text-sm font-medium bg-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0">
                                                     {index + 1}
                                                 </span>
-                                                <div className="text-gray-800 font-medium flex w-full" >
+                                                <div className="text-gray-800 font-medium flex w-full justify-start" >
                                                     {problem}
                                                 </div>
                                                 <div className="text-indigo-600">
