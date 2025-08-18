@@ -108,6 +108,7 @@ import Prep20 from "@/components/pages/docs/grade-12/math/exam-questions/Prep20"
 import ComplexMultiplicationDivision from "@/components/pages/docs/grade-12/math/complex/Complex-Multiplication-Devision";
 import CountingPrinciple from "@/components/pages/docs/grade-12/math/probability/Counting-Principle";
 import ProbabCompound from "@/components/pages/docs/grade-12/math/probability/Probab-Compound";
+import ConicDefinition from "@/components/pages/docs/grade-12/math/conic/Conic-Definition";
 
 export const math: Content = {
   subject: "math",
@@ -428,6 +429,11 @@ export const math: Content = {
       englishTitle: "Conics",
       icon: Box,
       topics: [
+        {
+          title: "និយមន័យកោនិក",
+          englishTitle: "Conic-definition",
+          component: ConicDefinition,
+        },
         {
           title: "ប៉ារ៉ាបូល",
           englishTitle: "Parabola",
