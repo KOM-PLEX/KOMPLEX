@@ -13,22 +13,33 @@ const TOPIC_CONTENT: TopicContent = {
             "​ការបូក​ ដក ចំនួនកុំផ្លិចគឺត្រូវធ្វើប្រមាណវិធី​តាមផ្នែកពិតជាមួយផ្នែកពិត​ ផ្នែកនិមិត្តជាមួយផ្នែកនិមិត្ត "
     },
     tip: {
-        title: <div> បើ <InlineMath math="z_1 = a + bi" />  និង  <InlineMath math="z_2 = c + di" /> នោះគេបាន</div>,
+        title:<div>
+            <div className='text-sm'>
+                បើ <InlineMath math="z_1 = a + bi" /> និង <InlineMath math="z_2 = c + di" />  នោះគេបាន
+            </div>
+            </div>,
         content: <div>
-
-            <div className='flex justify-start items-center  gap-2'>
-                <BlockMath math="z_1 + z_2 = (a + c) + (b + d)i" /> និង <BlockMath math="z_1 - z_2 = (a - c) + (b - d)i" /> , ដែល a, b, c, d ជាចំនួនពិត
+            <div className='flex flex-col'>
+                <div><InlineMath math="z_1 + z_2 = (a + c) + (b + d)i" /></div>
+                <div className='flex flex-row items-center gap-x-2.5'>
+                    <div><InlineMath math="z_1 - z_2 = (a - c) + (b - d)i" />​</div>
+                    <div className='text-xs text-gray-500'>ដែល a, b, c, d ជាចំនួនពិត</div>
+                </div>
             </div>
         </div>
     },
     example: {
         question:
-            <div className="flex items-center gap-4">
-                <p>គេមាន</p>
-                <BlockMath math="z_1 = 3 + 4i" /> និង <BlockMath math="z_2 = 2 - 3i" />
-                <p>គណនា</p>
-                <BlockMath math="z_1 + z_2 ," />
-                <BlockMath math="z_1 - z_2" />
+            <div className="flex flex-col ">
+                <div className='flex flex-row justify-start items-center gap-2'>
+                    <div>គេមាន</div>
+                    <div><InlineMath math="z_1 = 3 + 4i" /> </div>និង <div> <InlineMath math="z_2 = 2 - 3i" /></div> 
+                </div>
+
+                <div className='flex flex-row justify-start items-center gap-2'>
+                    <div>គណនា</div>
+                    <InlineMath math="z_1 + z_2 ," /> , <InlineMath math="z_1 - z_2" /> 
+                </div>
             </div>,
 
         steps: [
@@ -46,7 +57,7 @@ const TOPIC_CONTENT: TopicContent = {
             {
                 title: "រៀបផ្នែកពិតជាមួយផ្នែកពិត និងផ្នែកនិមិត្តជាមួយផ្នែកនិមិត្ត",
                 content: <div>
-                    <InlineMath math="z_1 + z_2 = (3 + 2) + (4 - 3)i" /><br /><br />
+                    <InlineMath math="z_1 + z_2 = (3 + 2) + (4 - 3)i" /><br />
                     <InlineMath math="z_1 - z_2 = (3 - 2) + [4 -(-3)]i " /><br />
                     <InlineMath math="        = (3 - 2) + (4 +3)i " /><br />
                 </div>
@@ -54,12 +65,14 @@ const TOPIC_CONTENT: TopicContent = {
             {
                 title: "គណនាផ្នែកពិតជាមួយផ្នែកពិត ហើយផ្នែកនិមិត្តជាមួយផ្នែកនិមិត្ត",
                 content: <div>
-                    <InlineMath math="z_1 + z_2 = (3 + 2) + (4 - 3)i = 5 + i" /><br /><br />
-                    <InlineMath math="z_1 - z_2 = (3 - 2) + (4 + 3)i = 1 + 7i" /><br /><br />
+                    <InlineMath math="z_1 + z_2 = (3 + 2) + (4 - 3)i " /><br />
+                    <div>= 5 + i</div>
+                    <InlineMath math="z_1 - z_2 = (3 - 2) + (4 + 3)i" /><br />
+                    <div>= 1 + 7i</div>
                 </div>
             }
         ],
-        answer: <div>ដូច្នេះ <InlineMath math="z_1 + z_2 = 5 + i" /> និង <InlineMath math="z_1 - z_2 = 1 + 7i" /></div>
+        answer: <div className='flex flex-col'>ដូច្នេះ <div><InlineMath math="z_1 + z_2 = 5 + i" /> , <InlineMath math="z_1 - z_2 = 1 + 7i" /></div></div>
     },
     exercise: {
         questions: [
@@ -78,24 +91,33 @@ const TOPIC_CONTENT: TopicContent = {
             {
                 id: "q3",
                 question:
-                    <div className='flex items-center gap-4'>
-                        <p>គេមាន</p>
-                        <BlockMath math="z_1 = 9 -7i" /> និង <BlockMath math="z_2 = - 3 + 2i" />
-                        <p>គណនា</p>
-                        <BlockMath math="z_1 + z_2" />
-                        <BlockMath math="z_1 - z_2" />
-                    </div>,
+                <div className="flex flex-col ">
+                <div className='flex flex-row justify-start items-center gap-2 '>
+                    <div>គេមាន</div>
+                    <div><InlineMath math="z_1 = 9 -7i" /> </div>និង <div> <InlineMath math="z_2 = -3 +2i" /></div> 
+                </div>
+
+                <div className='flex flex-row justify-start items-center gap-2'>
+                    <div>គណនា</div>
+                    <InlineMath math="z_1 + z_2 ," /> , <InlineMath math="z_1 - z_2" /> 
+                </div>
+            </div>,
                 options: ["(6+5i),(12-9i)", "(6-5i),(12+9i)", "(6+5i),(12+9i)", "(6-5i),(12-9i)"],
                 correctAnswer: 2
             },
             {
                 id: "q4",
-                question: <div className='flex items-center gap-4'>
-                    <p>គេមាន</p>
-                    <BlockMath math="z_1 = 4 + 2i" /> និង <BlockMath math="z_2 = 3 - 2i" />
-                    <p>គណនា</p>
-                    <BlockMath math="z_1 + z_2" />
-                    <BlockMath math="z_1 - z_2" />
+                question: 
+                <div className='flex flex-col '>
+                    <div className='flex flex-row justify-start items-center gap-2 '>
+                        <div>គេមាន</div>
+                        <div><InlineMath math="z_1 = 4 + 2i" /> </div>និង <div> <InlineMath math="z_2 = 3 - 2i" /></div> 
+                    </div>
+
+                    <div className='flex flex-row justify-start items-center gap-2'>
+                        <div>គណនា</div>
+                        <InlineMath math="z_1 + z_2" /> , <InlineMath math="z_1 - z_2" /> 
+                    </div>
                 </div>,
                 options: ["(7+0i),(1+4i)", "(7+0i),(1-4i)", "(7),(1-4i)", "មិនមាន"],
                 correctAnswer: 0
