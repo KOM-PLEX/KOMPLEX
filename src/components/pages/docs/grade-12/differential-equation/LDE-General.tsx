@@ -11,7 +11,7 @@ import ExampleBox from "../../common/box/ExampleBox"
 
 const FirstTopicContent: TopicContent = {
   definition: {
-    title: "សមីការអូម៉ូសែន",
+    title: "សមីការឌីផេរ៉ងស្យែលអូម៉ូសែន",
     content:
       <>
         <div className="flex flex-col items-start">
@@ -31,7 +31,7 @@ const FirstTopicContent: TopicContent = {
     title: "ជាទូទៅ",
     content: (
       <>
-        <p>សមីការឌីផែរ៉ង់ស្សែលលំដាប់ n មានទម្រង់៖</p>
+        <p>សមីការឌីផែរ៉ង់ស្យែលលំដាប់ n មានទម្រង់៖</p>
         <BlockMath math="a_n y^{(n)} + \cdots + a_1 y' + a_0 y = 0" />
 
         <p>សមីការសម្គាល់៖</p>
@@ -78,7 +78,7 @@ const FirstTopicContent: TopicContent = {
         question: (
           <>
             <div className="flex flex-col gap-3">
-              <p>ដោះស្រាយសមីការឌីផែរ៉ង់ស្សែលអូម៉ូសែន៖</p>
+              <p>ដោះស្រាយសមីការឌីផែរ៉ង់ស្យែលអូម៉ូសែន៖</p>
               <div className="flex items-center justify-center gap-3 flex-wrap">
                 <InlineMath math={"y^{(3)} - 6 y'' + 11 y' - 6 y = 0"} />
               </div>
@@ -98,7 +98,7 @@ const FirstTopicContent: TopicContent = {
         question: (
           <>
             <div className="flex flex-col gap-3">
-              <p>ដោះស្រាយសមីការឌីផែរ៉ង់ស្សែលអូម៉ូសែន៖</p>
+              <p>ដោះស្រាយសមីការឌីផែរ៉ង់ស្យែលអូម៉ូសែន៖</p>
               <div className="flex items-center justify-center gap-3 flex-wrap">
                 <InlineMath math={"y^{(4)} - 5 y^{(3)} + 8 y'' - 4 y' = 0"} />
               </div>
@@ -118,7 +118,7 @@ const FirstTopicContent: TopicContent = {
         question: (
           <>
             <div className="flex flex-col gap-3">
-              <p>ដោះស្រាយសមីការឌីផែរ៉ង់ស្សែលអូម៉ូសែន៖</p>
+              <p>ដោះស្រាយសមីការឌីផែរ៉ង់ស្យែលអូម៉ូសែន៖</p>
               <div className="flex items-center justify-center gap-3 flex-wrap">
                 <InlineMath math={"y^{(3)} + 3 y'' + 3 y' + y = 0"} />
               </div>
@@ -138,7 +138,7 @@ const FirstTopicContent: TopicContent = {
   hint: {
     content: (
       <>
-        <p>💡 ដើម្បីដោះស្រាយសមីការឌីផែរ៉ង់ស្សែលអូម៉ូសែនលំដាប់ 3 ឬលើស, ត្រូវកំណត់សមីការសម្គាល់ដោយដាក់សមីការដើមជាសមីការត្រីកោណមាត្រ។</p>
+        <p>💡 ដើម្បីដោះស្រាយសមីការឌីផែរ៉ង់ស្យែលអូម៉ូសែនលំដាប់ 3 ឬលើស, ត្រូវកំណត់សមីការសម្គាល់ដោយដាក់សមីការដើមជាសមីការត្រីកោណមាត្រ។</p>
         <p>💡 រកឫសនៃសមីការសម្គាល់ ហើយបញ្ចូលទៅក្នុងទម្រង់ចម្លើយទូទៅជាមួយចំនួនថេរ A, B, C, ...។</p>
         <p>💡 ប្រសិនបើឫសមានកម្រិតច្រើនជាង 2 និងមានឫសមេគុណដុប ត្រូវបង្កើតពហុវិធីក្នុងចម្លើយទូទៅ ។</p>
       </>
