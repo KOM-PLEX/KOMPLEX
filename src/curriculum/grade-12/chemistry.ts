@@ -17,6 +17,7 @@ import AqueousPractice from "@/components/pages/docs/grade-12/chemistry/aqueous_
 import Acid_base_practice from "@/components/pages/docs/grade-12/chemistry/acid_base/Acid_base_practice";
 import EquilibriumPractice from "@/components/pages/docs/grade-12/chemistry/chemical_equilibrium/Equilibrium-Practice";
 import OrganicPractice from "@/components/pages/docs/grade-12/chemistry/organic_chemistry/Organic-Practice";
+import ChemisTables from "@/components/pages/docs/grade-12/chemistry/aqueous_solution_forces/Table";
 
 
 
@@ -66,6 +67,11 @@ export const chemistry: Content = {
           title: "កម្លាំងអន្តរម៉ូលេគុល",
           englishTitle: "intermolecular-forces",
           component: Intermolecular_forces,
+        },
+        {
+          title: "តារាងសមាសធាតុ",
+          englishTitle: "ChemisTables",
+          component: ChemisTables,
         },
         {
           title: "លំហាត់អនុវត្តន៍",
