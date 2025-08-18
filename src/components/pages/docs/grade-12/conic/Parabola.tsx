@@ -16,10 +16,10 @@ const Parabola = () => {
     content: (
       <>
         ប៉ារ៉ាបូល គឺជាសំណុំចំណុចនៅក្នុងប្លង់ដែលមានចម្ងាយស្មើពីចំណុចនឹង F មួយនិងបន្ទាត់នឹង ∆ មួយនៅក្នុងប្លង់នោះ។ <br />
-        • ចំណុច <InlineMath math="F" /> ហៅថា <strong>កំណុំ (Focus)</strong> <br />
-        • បន្ទាត់ <InlineMath math="\Delta" /> ហៅថា <strong>បន្ទាត់ប្រាប់ទិស (Directrix)</strong> <br />
-        • ចំណុច <InlineMath math="V(h,k)" /> ហៅថា <strong>កំពូលប៉ារ៉ាបូល (Vertex)</strong> <br />
-        • បន្ទាត់ <InlineMath math="x = h" /> ហៅថា <strong>អ័ក្សសមស្មើ (Axis of Symmetry)</strong> <br />
+        • ចំណុច <InlineMath math="F" /> ហៅថា <strong>កំណុំ​</strong> <br />
+        • បន្ទាត់ <InlineMath math="\Delta" /> ហៅថា <strong>បន្ទាត់ប្រាប់ទិស​</strong> <br />
+        • ចំណុច <InlineMath math="V(h,k)" /> ហៅថា <strong>កំពូលប៉ារ៉ាបូល​</strong> <br />
+        • បន្ទាត់ <InlineMath math="x = h" /> ហៅថា <strong>អ័ក្សសមស្មើ​</strong> <br />
       </>
     )
   },
