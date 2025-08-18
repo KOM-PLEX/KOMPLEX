@@ -29,9 +29,12 @@ const TOPIC_CONTENT_OPERATION: TopicContent = {
   tip: {
     title: <div className='text-base flex flex-row gap-x-2'>
       <div>បើ</div>
-      <div className='flex flex-row text-[14px] gap-x-1'>
-        <div><InlineMath math="z_1 = r_1(\cos\theta_1 + i\sin\theta_1)" /></div> &
-        <div><InlineMath math="z_2 = r_2(\cos\theta_2 + i\sin\theta_2)" /></div> 
+      <div className='flex flex-row text-[15px] gap-x-1'>
+        <div>
+           <div><InlineMath math="z_1 = r_1(\cos\theta_1 + i\sin\theta_1)" /></div> 
+      
+           <div><InlineMath math="z_2 = r_2(\cos\theta_2 + i\sin\theta_2)" /></div> 
+          </div>
       </div>
     </div>,
     content: <div className='flex flex-col text-lg gap-y-1.5'>
@@ -137,7 +140,7 @@ const SPECIAL_FORM_2: TopicContent = {
         <InlineMath math="\sin\theta = \cos(\frac{\pi}{2} - \theta)" /> <br />
         <InlineMath math="\cos\theta = \sin(\frac{\pi}{2} - \theta)" /> <br />
         <div>
-          <InlineMath math='\Rightarrow'/><InlineMath math=" z = (\sin\theta + i\ cos\theta)" /> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos(\frac{\pi}{2} - \theta) + i\sin(\frac{\pi}{2} - \theta))" /> <br /></div>
+          <InlineMath math='\Rightarrow'/><InlineMath math=" z = (\sin\theta + i\ cos\theta)" /><br/> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos(\frac{\pi}{2} - \theta) + i\sin(\frac{\pi}{2} - \theta))" /> <br /></div>
       </div>
     }
   }
@@ -160,7 +163,7 @@ const NEGATIVE_SIN_COS : TopicContent = {
         </div>
 
         <div>
-          គេបាន​ <InlineMath math=" z = (-\cos\frac{\pi}{3} + i\sin\frac{\pi}{3})" /> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos\frac{2\pi}{3} + i\sin\frac{2\pi}{3})" />
+          គេបាន​ <InlineMath math=" z = (-\cos\frac{\pi}{3} + i\sin\frac{\pi}{3})" /><br/> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos\frac{2\pi}{3} + i\sin\frac{2\pi}{3})" />
         </div>
 
         <div>
@@ -168,7 +171,7 @@ const NEGATIVE_SIN_COS : TopicContent = {
         </div>
 
         <div>
-          គេបាន​ <InlineMath math=" z = (-\cos\frac{\pi}{3} - i\sin\frac{\pi}{3})" /> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos\frac{4\pi}{3} + i\sin\frac{4\pi}{3})" />
+          គេបាន​ <InlineMath math=" z = (-\cos\frac{\pi}{3} - i\sin\frac{\pi}{3})" /><br/> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos\frac{4\pi}{3} + i\sin\frac{4\pi}{3})" />
         </div>
       </div>
     </div>

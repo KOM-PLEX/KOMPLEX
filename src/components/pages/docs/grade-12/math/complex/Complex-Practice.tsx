@@ -183,7 +183,7 @@ const ComplexPractice = () => {
       description: "ប្រមាណវិធីបូក ដក និងកុំផ្លិចឆ្លាស់៖",
       problemType: "Basic Operations and Conjugates",
       problems: [
-        <div key="p1" className="flex flex-col text-lg items-start gap-2">
+        <div key="p1" className="flex flex-col text-base items-start gap-2">
           <div className="flex flex-row gap-2">
             <span>គេមាន</span>
             <InlineMath math="z_1 = 3 + 4i" />
@@ -204,7 +204,7 @@ const ComplexPractice = () => {
           <span>បើ</span>
           <InlineMath math="z = 5 - 7i" />
         </div>,
-          <div key="p3" className="flex flex-row text-lg items-start gap-2">
+          <div key="p3" className="flex flex-col text-lg items-start gap-2">
             <div className="flex flex-row gap-2">
               <span>គេមាន</span>
               <InlineMath math="z = 2 + 3i" />
@@ -216,7 +216,7 @@ const ComplexPractice = () => {
               <InlineMath math="z \cdot \bar{z}" />
             </div>
           </div>,
-        <div key="p4" className="flex items-center gap-4">
+        <div key="p4" className="flex flex-row text-base items-start gap-2">
           <span>ដោះស្រាយ</span>
           <InlineMath math="(1 + 2i) + (3 - i) - (2 + 4i)" />
         </div>,
@@ -225,15 +225,22 @@ const ComplexPractice = () => {
         <div key="a1" className="space-y-2">
           <div className="flex items-center gap-2">
             <p>យើងមានកុំផ្លិចពីរ៖</p>
-            <InlineMath math="z_1 = 3 + 4i \text{ និង } z_2 = 2 - 3i" />
+            <div><InlineMath math="z_1 = 3 + 4i" /></div>
+            <div><InlineMath math="z_2 = 2 - 3i" /></div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex  gap-2">
             <p>ការបូក៖</p>
-            <InlineMath math="z_1 + z_2 = (3 + 2) + (4 + (-3))i = 5 + i" />
+            <div>
+               <div className="text-sm"><InlineMath math="z_1 + z_2 = (3 + 2) + (4 + (-3))i " /></div>
+               <div className="text-sm ml-13.5"><InlineMath math="= 5 + i" /></div>
+               </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex  gap-2">
             <p>ការដក៖</p>
-            <InlineMath math="z_1 - z_2 = (3 - 2) + (4 - (-3))i = 1 + 7i" />
+            <div>
+               <div className="text-sm"><InlineMath math="z_1 - z_2 = (3 - 2) + (4 - (-3))i " /></div>
+               <div className="text-sm ml-13.5"><InlineMath math="= 1 + 7i" /></div>
+               </div>
           </div>
           <p><strong>ចម្លើយ៖</strong> z₁ + z₂ = 5 + i និង z₁ - z₂ = 1 + 7i</p>
         </div>,
@@ -257,20 +264,26 @@ const ComplexPractice = () => {
             <p>ការបូក៖</p>
             <InlineMath math="z + \bar{z} = (2 + 3i) + (2 - 3i) = 4" />
           </div>
-          <div className="flex items-center gap-2">
-            <p>ការគុណ៖</p>
-            <InlineMath math="z \cdot \bar{z} = (2 + 3i)(2 - 3i) = 4 - 9i^2 = 4 + 9 = 13" />
+          <div className="flex justify-start gap-2">
+            <p>គុណ៖</p>
+            <div>
+              <div className="text-sm"><InlineMath math="z \cdot \bar{z} = (2 + 3i)(2 - 3i) = 4 - 9i^2 " /></div>
+              <div className="text-sm ml-9"><InlineMath math="= 4 + 9 = 13" /></div>
+            </div>
           </div>
           <p><strong>ចម្លើយ៖</strong> z + z̄ = 4 និង z · z̄ = 13</p>
         </div>,
         <div key="a4" className="space-y-2">
           <p>យើងដោះស្រាយជាលំដាប់៖</p>
-          <div className="flex items-center gap-2">
-            <InlineMath math="(1 + 2i) + (3 - i) - (2 + 4i)" />
+          <div className="flex flex-col items-start gap-2">
+            <div><InlineMath math="(1 + 2i) + (3 - i) - (2 + 4i)" /></div>
           </div>
-          <div className="flex justify-start align-cen gap-2">
+          <div className="flex flex-col  gap-2">
             <p>រៀបផ្នែកពិតជាមួយផ្នែកពិត និងផ្នែកនិមិត្តជាមួយផ្នែកនិមិត្ត៖</p>
-            <InlineMath math="= (1 + 3 - 2) + (2 - 1 - 4)i = 2 - 3i" />
+            <div className='flex flex-rowb gap-2'>
+              <div className="text-sm"><InlineMath math="= (1 + 3 - 2) + (2 - 1 - 4)i " /></div>
+              <div className="text-sm"><InlineMath math="= 2 - 3i" /></div>
+            </div>
           </div>
           <p><strong>ចម្លើយ៖</strong> 2 - 3i</p>
         </div>
@@ -406,10 +419,10 @@ const ComplexPractice = () => {
       description: "ទម្រង់ត្រីកោណមាត្រ និងរូបមន្តដឺម័រ៖",
       problemType: "Trigonometric Form and De Moivre's Formula",
       problems: [
-        <div key="p1" className="flex items-center gap-4">
+        <div key="p1" className="flex flex-row items-center gap-2">
           <span>សរសេរ</span>
-          <InlineMath math="z = 1 + i" />
-          <span>ជាទម្រង់ត្រីកោណមាត្រ</span>
+          <div><InlineMath math="z = 1 + i" /></div>
+          <div><span>ជាទម្រង់ត្រីកោណមាត្រ</span></div> 
         </div>,
         <div key="p2" className="flex items-center gap-4">
           <span>គណនា</span>
