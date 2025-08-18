@@ -67,7 +67,7 @@ const ThirdTopic: TopicContent = {
   },
   example: {
     question: [
-        <div>
+        <div key="q1">
               {/* <ChemicalSlowReactionDiagram/> */}
         </div>
     ],
