@@ -33,21 +33,21 @@ const TOPIC_CONTENT_OPOSITE:TopicContent = {
     កុំផ្លិចឆ្លាស់​នៃកុំផ្លិចជាចំនួនកុំផ្លិចដែលតាងដោយ  : <InlineMath math="\bar{z} = a - bi" />
   </div>
   },
-  tip:{
+  tip:{ 
     title: "ទម្រង់នៃចំនួនកុំផ្លិចឆ្លាស់",
     content: <div className="text-center">
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-x-2 gap-y-2">
         <div className="flex justify-start">
-          <BlockMath math="\overline{(z_1 + z_2)} = \overline{z_1} + \overline{z_2}" />
+          <InlineMath math="\overline{(z_1 + z_2)} = \overline{z_1} + \overline{z_2}" />
         </div>
         <div className="flex justify-start">
-          <BlockMath math="\overline{(z_1 - z_2)} = \overline{z_1} - \overline{z_2}" />
+          <InlineMath math="\overline{(z_1 - z_2)} = \overline{z_1} - \overline{z_2}" />
         </div>
         <div className="flex justify-start">
-          <BlockMath math="\overline{(z_1 \cdot z_2)} = \overline{z_1} \cdot \overline{z_2}" />
+          <InlineMath math="\overline{(z_1 \cdot z_2)} = \overline{z_1} \cdot \overline{z_2}" />
         </div>
         <div className="flex justify-start">
-          <BlockMath math="\overline{\left(\frac{z_1}{z_2}\right)} = \frac{\overline{z_1}}{\overline{z_2}}" />
+          <InlineMath math="\overline{\left(\frac{z_1}{z_2}\right)} = \frac{\overline{z_1}}{\overline{z_2}}" />
         </div>
       </div>
     </div>
@@ -60,60 +60,58 @@ const TOPIC_CONTENT_COMPLEX:TopicContent = {
   },
   tip:{
     title:"ជាទូទៅបើ",
-    content:<div className='flex justify-start gap-2'>
-      <BlockMath math={`
-      A + i.B = a + i.b \\Leftrightarrow \\begin{cases}
-      A = a \\\\
-      B = b
-      \\end{cases} \\text{ដែល} a, b, A, B \\in \\mathbb{R}
-      `} />
-      </div>
+    content:<div className='flex justify-start items-center gap-2 text-xs '>
+      <InlineMath math="A + i.B = a + i.b" /> <InlineMath math="\Leftrightarrow \begin{cases} A = a \\ B = b \end{cases} \text{ ដែល } a, b, A, B \in \mathbb{R}" />
+    </div>
   },
   example:{
-    question:<div className='flex justify-start gap-2'>
-     គេមានកុំផ្លិច <InlineMath math="z = (3a + 1) + i(2b - 5)" /> និង <InlineMath math="w = 7 + 3i" />
-  
-  ដែល <InlineMath math="a" /> និង <InlineMath math="b" /> ជាចំនួនពិត​​ ។​ កំណត់តម្លៃ <InlineMath math="a" /> និង <InlineMath math="b" /> ដើម្បីឲ្យ <InlineMath math="z = w" />
-  
-     </div>,
+    question:<div className='space-y-2'>
+      <p>គេមានកុំផ្លិច <InlineMath math="z = (3a + 1) + i(2b - 5)" /> <br/>និង <InlineMath math="w = 7 + 3i" /></p>
+      <p>ដែល a និង b ជាចំនួនពិត ។ កំណត់តម្លៃ a និង b ដើម្បីឲ្យ <InlineMath math="z = w" /></p>
+    </div>,
     steps:[
       {
         title:"កំណត់ផ្នែកពិត និងផ្នែកនិមិត្ត",
-        content:<div>
-         ចំពោះ​ <InlineMath math="z = (3a + 1) + i(2b - 5)" /><br/>
-         ផ្នែកពិតគឺ <InlineMath math="3a + 1" /><br/>
-         ផ្នែកនិមិត្តគឺ <InlineMath math="2b - 5" /><br/><br/>
-         ចំពោះ​ <InlineMath math="w = 7 + 3i" /><br/>
-         ផ្នែកពិតគឺ <InlineMath math="7" /><br/>
-         ផ្នែកនិមិត្តគឺ <InlineMath math="3" /><br/><br/>
+        content:<div className='space-y-4'>
+          <div className='space-y-1'>
+            <p>ចំពោះ <InlineMath math="z = (3a + 1) + i(2b - 5)" />:</p>
+            <p className='ml-4'>ផ្នែកពិតគឺ <InlineMath math="3a + 1" /></p>
+            <p className='ml-4'>ផ្នែកនិមិត្តគឺ <InlineMath math="2b - 5" /></p>
+          </div>
+          <div className='space-y-1'>
+            <p>ចំពោះ <InlineMath math="w = 7 + 3i" />:</p>
+            <p className='ml-4'>ផ្នែកពិតគឺ <InlineMath math="7" /></p>
+            <p className='ml-4'>ផ្នែកនិមិត្តគឺ <InlineMath math="3" /></p>
+          </div>
         </div>
       },
       {
         title:"អោយកុំផ្លិចពីរស្មើគ្នា",
-        content:<div className='flex justify-start gap-2'>
-          <BlockMath math={`
-          \\text{ ដោយ } z = w \\text{ គេបាន}
-                  \\begin{cases}
-                  3a + 1 = 7 \\\\
-                  2b - 5 = 3 \\\\
-                  \\end{cases}
-                      `} />
+        content:<div className='flex justify-start items-center gap-2 '>
+
+          ដោយ z = w <InlineMath math="\Rightarrow" />
+          <BlockMath math={`\\begin{cases} 3a + 1 = 7 \\\\2b - 5 = 3 \\end{cases}`} />
         </div>
       },
       {
         title:"ទាញរកតម្លៃនៃ a និង b",
-        content:<div className='flex justify-start gap-2'>
-          <BlockMath math={`
-                  \\begin{cases}
-                  3a + 1 = 7 \\\\
-                  2b - 5 = 3 \\\\
-                  \\end{cases}
-                  \\text{សមមូល}
-                  \\begin{cases}
-                  3a = 6 \\Leftrightarrow a = 2 \\\\
-                  2b = 8 \\Leftrightarrow b = 4
-                  \\end{cases}
-                      `} />
+        content:<div className='space-y-2'>
+          <div className='flex justify-start items-center gap-1 text-xs '>
+            <BlockMath math={`
+              \\begin{cases}
+              3a + 1 = 7 \\\\
+              2b - 5 = 3 \\\\
+              \\end{cases}
+            `} />
+            <InlineMath math="\Leftrightarrow" />
+            <BlockMath math={`
+              \\begin{cases}
+              3a = 6 \\Rightarrow a = \\frac{6}{3} = 2 \\\\
+              2b = 8 \\Rightarrow b = \\frac{8}{2} = 4 \\\\
+              \\end{cases}
+            `} />
+          </div>
+      
         </div>
       }
     ],

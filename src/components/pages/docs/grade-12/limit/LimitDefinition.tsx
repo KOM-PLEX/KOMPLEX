@@ -6,8 +6,7 @@ import HintBox from "../../common/box/HintBox";
 import WarningBox from "../../common/box/WarningBox";
 import { ImageBox } from "../../common/box/explanation-box/ImageExplanationBox";
 import { TopicContent } from "@/types/topic";
-import Graph from "../../../../helper/Graph";
-import { BlockMath } from "react-katex";
+import { BlockMath ,InlineMath} from "react-katex";
 import { GraphExplanationBox } from "../../common/box/explanation-box/GraphExplanationBox";
 
 // ===== TOPIC CONTENT DATA =====
@@ -15,7 +14,9 @@ import { GraphExplanationBox } from "../../common/box/explanation-box/GraphExpla
 const TOPIC_CONTENT: TopicContent = {
     definition: {
         title: "តើលីមីតគឺជាអ្វី?",
-        content: "លីមីតគឺជាតម្លៃដែលអនុគមន៍ខិតទៅរក នៅពេលអថេរឯករាជ្យខិតទៅរកតម្លៃជាក់លាក់មួយ។ នៅក្នុងការសរសេរគណិតវិទ្យា យើងសរសេរ limx→a f(x) = L ដែលមានន័យថា នៅពេល x ខិតទៅរក a អនុគមន៍ f(x) ខិតទៅរកតម្លៃ L។"
+        content: <div className="text-sm">
+          អនុ. f(x) មានលីមីត​ L កាលណា x ខិតជិត c​ បើគ្រប់ចំនួន <InlineMath math="\epsilon > 0" /> <br/>គេអាចសរសេរ <InlineMath math="\delta > 0" /> ដែល <InlineMath math="0<|x - c| < \delta" /> នោះគ្រប់តម្លៃ <InlineMath math="|f(x) - L| < \epsilon" /><br/> យើងសរសេរ limx→c f(x) = L ដែលមានន័យថា នៅពេល x ខិតទៅរក c អនុគមន៍ f(x) ខិតទៅរកតម្លៃ L។
+        </div>
     },
 
     tip: {
@@ -24,7 +25,9 @@ const TOPIC_CONTENT: TopicContent = {
     },
 
     example: {
-        question: <BlockMath math="\lim_{x \to 2} (x^2 + 3x - 2)" />,
+        question: <div className="flex flex-row gap-2 ml-2.5">
+            រក <InlineMath math="\lim_{x \to 2} (x^2 + 3x - 2)" />
+        </div>,
         steps: [
             {
                 title: "ជំនួសតម្លៃ x = 2",
