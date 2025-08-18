@@ -23,7 +23,7 @@ const TOPIC_CONTENT: TopicContent = {
                 <div><InlineMath math="z_1 + z_2 = (a + c) + (b + d)i" /></div>
                 <div className='flex flex-row items-center gap-x-2.5'>
                     <div><InlineMath math="z_1 - z_2 = (a - c) + (b - d)i" />​</div>
-                    <div className='text-xs text-gray-500'>ដែល a, b, c, d ជាចំនួនពិត</div>
+                    <div className='text-xs text-gray-500'> a, b, c, d ជាចំនួនពិត</div>
                 </div>
             </div>
         </div>

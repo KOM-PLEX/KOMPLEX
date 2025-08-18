@@ -15,30 +15,34 @@ const TOPIC_CONTENT_MULTIPLICATION: TopicContent = {
   tip :{
     title:<div className='flex flex-col'> 
             <div>
-              បើ <InlineMath math="z_1 = a + bi" />  និង  <InlineMath math="z_2 = c + di" /> នោះ
+              បើ <InlineMath math="z_1 = a + bi" /> , <InlineMath math="z_2 = c + di" /> នោះ
             </div>
           </div>,
     content : <div className='flex flex-row gap-x-2.5'>
-        <div>
-          <InlineMath math="z_1 \times z_2 = (ac - bd) + (ad + bc)i" />
-
+        <div className='flex flex-col'>
+          <div><InlineMath math="z_1 \times z_2 = (ac - bd) + (ad + bc)i" /></div>
+          <div className='text-sm text-gray-500'>ដែល a, b, c, d ជាចំនួនពិត</div>
         </div>
-        <div className='text-sm text-gray-500'>ដែល a, b, c, d ជាចំនួនពិត</div>
+        
         </div>
   },
   example: {
     question:
-            <div className="flex items-center gap-4">
-                <p>គេមាន</p>
-                <BlockMath math="z_1 = 3 + 4i" /> និង <BlockMath math="z_2 = 2 - 3i" /> 
-                <p>គណនា</p>
-                <BlockMath math="z_1 \times z_2" />
+            <div className="flex flex-col items-start ml-4 text-lg">
+              <div className='flex flex-row items-start gap-x-2'>
+                <div>គេមាន</div>
+                <div><InlineMath math="z_1 = 3 + 4i" /> និង <InlineMath math="z_2 = 2 - 3i" /></div> 
+              </div>
+              <div className='flex flex-row items-start gap-x-2'>
+                <div>គណនា</div>
+                <div><InlineMath math="z_1 \times z_2" /></div>
+              </div>
             </div>,
   
   steps: [
     {
         title: "ពិនិត្យមើលទម្រង់",
-        content: <div>
+        content: <div className='text-base'>
           ចំពោះ <InlineMath math="z_1 = 3 + 4i" /><br />
           ផ្នែក​ a : គឺ​  3<br />
           ផ្នែក b​ :គឺ 4<br /><br />
@@ -50,7 +54,7 @@ const TOPIC_CONTENT_MULTIPLICATION: TopicContent = {
     {
         title: "ពន្លាតកន្សោមទាំងពីរ",
         content: <div>
-            <InlineMath math="z_1 \times z_2 = (a \cdot c) + (a \cdot di) + (c \cdot bi) + (b \cdot d )\cdot i^2" /><br />
+            <InlineMath math="z_1 \times z_2 = (a \cdot c) + (a \cdot di) + (c \cdot bi) + (b \cdot d )i^2" /><br />
             តែ <InlineMath math="i^2 = -1" /><br />
             គេបាន <InlineMath math="z_1 \times z_2 = (a \cdot c) + (a \cdot di) + (c \cdot bi) - (b \cdot d)" /><br />
         </div>
@@ -86,23 +90,30 @@ const TOPIC_CONTENT_DIVISION: TopicContent = {
   },
   tip :{
     title:
-    <div> 
+    <div className='flex gap-y-2'> 
+     <div className='text-lg'>
       បើ <InlineMath math="z_1 = a + bi" />  និង  <InlineMath math="z_2 = c + di" /> នោះ
+     </div> 
     </div>,
-    content : <div className='-mt-3'>
-<div className='flex flex-col items-start gap-x-2'>
-  <BlockMath math="\frac{z_1}{z_2} = \frac{a + bi}{c + di} = \frac{(a + bi)(c - di)}{(c + di)(c - di)} = \frac{(ac + bd) + (bc - ad)i}{c^2 + d^2}" />
+    content : <div className='mt-3'>
+<div className='flex flex-col items-start gap-x-2  gap-y-2 text-xl'>
+  <div><InlineMath math="\frac{z_1}{z_2} = \frac{a + bi}{c + di} = \frac{(a + bi)(c - di)}{(c + di)(c - di)}" /></div>
+  <div><InlineMath math="= \frac{(ac + bd) + (bc - ad)i}{c^2 + d^2}" /></div>
  <div>ដែល a, b, c, d ជាចំនួនពិត</div> 
 </div>
     </div>
   },
   example: {
     question:
-            <div className="flex items-center gap-4">
-                <p>គេមាន</p>
-                <BlockMath math="z_1 = 3 + 4i" /> និង <BlockMath math="z_2 = 2 - 3i" /> 
-                <p>គណនា</p>
-                <BlockMath math="\frac{z_1}{z_2}" />
+            <div className="flex flex-col items-start ml-4 text-lg">
+              <div className='flex flex-row items-start gap-x-2'>
+                <div>គេមាន</div>
+                <div><InlineMath math="z_1 = 3 + 4i" /> និង <InlineMath math="z_2 = 2 - 3i" /></div> 
+              </div>
+              <div className='flex flex-row items-start gap-x-2'>
+                <div>គណនា</div>
+                <div><InlineMath math="\frac{z_1}{z_2}" /></div>
+              </div>
             </div>,
   
   steps: [
@@ -145,11 +156,15 @@ answer: <div>ដូច្នេះ  <InlineMath math="\frac{z_1}{z_2} = \frac{-6
         {
           id: "q1",
           question:
-          <div className='flex items-center gap-4'>
-          <p>គេមាន</p>
-          <BlockMath math="z= 8 -i" /> និង <BlockMath math="w= 2 + 3i" /> 
-          <p>គណនា</p>
-          <BlockMath math="z \times w" />
+          <div className='flex flex-col items-start ml-4 text-lg'>
+          <div className='flex flex-row items-start gap-x-2'>
+            <div>គេមាន</div>
+            <div><InlineMath math="z= 8 -i" /> និង <InlineMath math="w= 2 + 3i" /></div> 
+          </div>
+          <div className='flex flex-row items-start gap-x-2'>
+            <div>គណនា</div>
+            <div><InlineMath math="z \times w" /></div>
+          </div>
         </div>,
         options: ["-19+22i", "-19-22i", "19+22i", "19-22i"],
         correctAnswer: 2
@@ -157,11 +172,15 @@ answer: <div>ដូច្នេះ  <InlineMath math="\frac{z_1}{z_2} = \frac{-6
         {
           id: "q2",
           question:
-          <div className='flex items-center gap-4'>
-          <p>គេមាន</p>
-          <BlockMath math="z= 8 -i" /> និង <BlockMath math="w= 2 + 3i" /> 
-          <p>គណនា</p>
-          <BlockMath math="z \div w" />
+          <div className='flex flex-col items-start ml-4 text-lg'>
+          <div className='flex flex-row items-start gap-x-2'>
+            <div>គេមាន</div>
+            <div><InlineMath math="z= 8 -i" /> និង <InlineMath math="w= 2 + 3i" /></div> 
+          </div>
+          <div className='flex flex-row items-start gap-x-2'>
+            <div>គណនា</div>
+            <div><InlineMath math="z \div w" /></div>
+          </div>
         </div>,
         options: ["1+2i", "-1-2i", "-1+2i", "1-2i"],
         correctAnswer: 3
@@ -169,8 +188,8 @@ answer: <div>ដូច្នេះ  <InlineMath math="\frac{z_1}{z_2} = \frac{-6
         {
             id: "q3",
             question:
-            <div className='flex flex-row items-start text-base gap-x-2 ml-2'>
-                <div className='flex flex-row items-center gap-x-2.5'>
+            <div className='flex flex-row items-start text-sm gap-x-2 ml-2'>
+                <div className='flex flex-row items-center gap-x-2 text-sm'>
                  <p>គេមាន</p>
                     <div><InlineMath math="a = 2(3-2i)" /></div>
                     <div><InlineMath math="b= 3i(1+i)" /></div>
@@ -193,7 +212,7 @@ answer: <div>ដូច្នេះ  <InlineMath math="\frac{z_1}{z_2} = \frac{-6
         {
           id: "q4",
           question:
-            <div className='flex flex-row items-start text-base gap-x-2 ml-2'>
+            <div className='flex flex-row items-start text-sm gap-x-2 ml-2'>
             <div className='flex flex-row items-center gap-x-2.5'>
                  <p>គេមាន</p>
                  <div><InlineMath math="a = 5 -4i" /></div>
@@ -215,8 +234,8 @@ answer: <div>ដូច្នេះ  <InlineMath math="\frac{z_1}{z_2} = \frac{-6
       },
         {
           id: "q5",
-              question:  <div className='flex flex-row items-start text-base gap-x-2 ml-2'>
-              <div className='flex flex-row items-center gap-x-2.5'>
+              question:  <div className='flex flex-row items-start text-sm gap-x-2 ml-2'>
+              <div className='flex flex-row items-center gap-x-2.5 text-sm'>
                  <p>គេមាន</p>
                  <div><InlineMath math="z_1 = 4 + 2i" /></div>
                  <div><InlineMath math="z_2 = 3 - 2i" /></div>

@@ -35,7 +35,10 @@ const TOPIC_CONTENT : TopicContent ={
         ករណី <InlineMath math="\Delta > 0" />
         </div>,
         content:<div className='text-base'>
-          សមីការមានឬស 2 គឺ <InlineMath math="z_1 = \frac{-b + \sqrt{\Delta}}{2a}" /> និង <InlineMath math="z_2 = \frac{-b - \sqrt{\Delta}}{2a}" /> <br/>
+          សមីការមានឬស 2 គឺ <div className='flex flex-row items-center gap-x-2'>
+            <div><InlineMath math="z_1 = \frac{-b + \sqrt{\Delta}}{2a}" /></div>
+            <div><InlineMath math="z_2 = \frac{-b - \sqrt{\Delta}}{2a}" /></div>
+          </div>
         </div>
       },
       {
@@ -43,8 +46,11 @@ const TOPIC_CONTENT : TopicContent ={
         ករណី <InlineMath math="\Delta < 0" />
         </div>,
         content:<div className='text-base'>
-          សមីការមានឬស 2 គឺ <InlineMath math="z_1 = \frac{-b + i\sqrt{|\Delta|}}{2a}" /> , <InlineMath math="z_2 = \frac{-b - i\sqrt{|\Delta|}}{2a}" /> <br/>
-          <p><InlineMath math="z_1" /> និង <InlineMath math="z_2" /> ជាកុំផ្លិចឆ្លាស់</p>
+          សមីការមានឬស 2 គឺ <div className='flex flex-row items-center gap-x-2'>
+            <div><InlineMath math="z_1 = \frac{-b + i\sqrt{|\Delta|}}{2a}" /></div>
+            <div><InlineMath math="z_2 = \frac{-b - i\sqrt{|\Delta|}}{2a}" /></div>
+          </div>
+          <div className='text-sm -500'>ដែល <InlineMath math="z_1" /> និង <InlineMath math="z_2" /> ជាកុំផ្លិចឆ្លាស់</div>
         </div>
       },
       {
@@ -87,7 +93,10 @@ example:{
       </div>
     }
   ],
-  answer: <div>ឬសនៃសមីការគឺ <InlineMath math="z_1 = -2 + 2i\sqrt{3}" /> និង <InlineMath math="z_2 = -2 - 2i\sqrt{3}" /></div>
+  answer: <div className='flex flex-row items-center gap-x-2'>
+    <div><InlineMath math="z_1 = -2 + 2i\sqrt{3}" /></div>
+    <div><InlineMath math="z_2 = -2 - 2i\sqrt{3}" /></div>
+  </div>
 },
 warning:{
   content:"គប្បីសិក្សាឡើងវិញនូវវិធីដោះស្រាយសមីការដឺក្រេទី2 ក្នុងករណីសិស្សមិនទាន់ចេះឬមិនទាន់យល់ច្បាស់"
