@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil } from 'lucide-react';
+import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil, User, Settings, LogOut, BookMarked, UserCircle } from 'lucide-react';
 import { Menu as HeadlessMenu, Transition } from '@headlessui/react';
 import { curriculum } from '@/curriculum/curriculum';
 
@@ -50,10 +50,13 @@ export default function Header() {
     const pathname = usePathname();
     const isAuthPage = pathname?.startsWith('/auth');
 
-    // Hide header on auth pages
-    if (isAuthPage) {
-        return null;
-    }
+    // Mock user data - replace with actual user data later
+    const user = {
+        name: 'សុខវណ្ណា អ៊ុំ',
+        email: 'sokvanna.oum@example.com',
+        avatar: 'ស'
+    };
+
 
     return (
         <div className="bg-white/95 backdrop-blur-md border-b border-indigo-500/10 fixed top-0 left-0 right-0 z-50 w-full">
@@ -123,6 +126,78 @@ export default function Header() {
                             </Link>
                         );
                     })}
+
+                    {/* User Menu */}
+                    <HeadlessMenu as="div" className="relative ml-2">
+                        <HeadlessMenu.Button className="flex items-center gap-2 rounded-xl transition-colors duration-200 cursor-pointer">
+                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
+                                {user.avatar}
+                            </div>
+                        </HeadlessMenu.Button>
+
+                        <Transition
+                            enter="transition duration-100 ease-out"
+                            enterFrom="transform scale-95 opacity-0"
+                            enterTo="transform scale-100 opacity-100"
+                            leave="transition duration-75 ease-out"
+                            leaveFrom="transform scale-100 opacity-100"
+                            leaveTo="transform scale-95 opacity-0"
+                        >
+                            <HeadlessMenu.Items className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 backdrop-blur-sm z-50 p-4">
+                                {/* User Info Section */}
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-lg">
+                                        {user.avatar}
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-gray-900 text-sm">{user.name}</h3>
+                                        <p className="text-gray-500 text-xs">{user.email}</p>
+                                    </div>
+                                </div>
+
+                                <div className='h-0.5 bg-gray-200 my-2'></div>
+
+                                {/* Menu Items */}
+                                <div className="space-y-1">
+                                    <HeadlessMenu.Item>
+                                        {({ active }) => (
+                                            <Link
+                                                href="/my-content"
+                                                className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
+                                            >
+                                                <BookMarked className="w-4 h-4" />
+                                                មាតិការបស់ខ្ញុំ
+                                            </Link>
+                                        )}
+                                    </HeadlessMenu.Item>
+
+                                    <HeadlessMenu.Item>
+                                        {({ active }) => (
+                                            <Link
+                                                href="/settings"
+                                                className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
+                                            >
+                                                <Settings className="w-4 h-4" />
+                                                ការកំណត់
+                                            </Link>
+                                        )}
+                                    </HeadlessMenu.Item>
+
+                                    <HeadlessMenu.Item>
+                                        {({ active }) => (
+                                            <Link
+                                                href="/auth"
+                                                className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-red-600' : 'hover:bg-gray-50 hover:text-red-600'}`}
+                                            >
+                                                <LogOut className="w-4 h-4" />
+                                                ចាកចេញ
+                                            </Link>
+                                        )}
+                                    </HeadlessMenu.Item>
+                                </div>
+                            </HeadlessMenu.Items>
+                        </Transition>
+                    </HeadlessMenu>
                 </div>
             </div>
         </div>

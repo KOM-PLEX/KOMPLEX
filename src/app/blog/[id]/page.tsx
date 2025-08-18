@@ -2,62 +2,154 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Loader2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Carousel from '@/components/common/Carousel';
 
-interface BlogPost {
+interface BlogPostDetailed {
     id: number;
-    author: {
-        name: string;
-        avatar: string;
-    };
-    date: string;
+    username: string;
     title: string;
-    image: string;
-    content: string;
+    type: string;
+    topic: string;
+    description: string;
+    viewCount: number;
+    likeCount: number;
+    createdAt: string;
+    updatedAt: string;
+    media: {
+        url: string;
+        mediaType: string;
+    }[];
+}
+
+// Skeleton Loading Component
+function BlogPostSkeleton() {
+    return (
+        <div className="min-h-screen bg-gray-50">
+            <div className="max-w-7xl mx-auto p-5 pt-20">
+                {/* Back Button Skeleton */}
+                <div className="mb-6">
+                    <div className="w-32 h-6 bg-gray-200 rounded animate-pulse"></div>
+                </div>
+
+                {/* Blog Post Skeleton */}
+                <article className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
+                    <div className="p-6 md:p-8">
+                        {/* Title Skeleton */}
+                        <div className="mb-2">
+                            <div className="w-3/4 h-8 bg-gray-200 rounded animate-pulse"></div>
+                        </div>
+
+                        {/* User Info Skeleton */}
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 rounded-full bg-gray-200 animate-pulse"></div>
+                            <div className="flex items-center gap-2">
+                                <div className="w-24 h-4 bg-gray-200 rounded animate-pulse"></div>
+                                <div className="w-2 h-4 bg-gray-200 rounded animate-pulse"></div>
+                                <div className="w-32 h-4 bg-gray-200 rounded animate-pulse"></div>
+                            </div>
+                        </div>
+
+                        {/* Image/Carousel Skeleton */}
+                        <div className="w-full h-64 bg-gray-200 rounded-lg animate-pulse mb-6"></div>
+
+                        {/* Content Skeleton */}
+                        <div className="space-y-3">
+                            <div className="w-full h-4 bg-gray-200 rounded animate-pulse"></div>
+                            <div className="w-5/6 h-4 bg-gray-200 rounded animate-pulse"></div>
+                            <div className="w-4/5 h-4 bg-gray-200 rounded animate-pulse"></div>
+                            <div className="w-full h-4 bg-gray-200 rounded animate-pulse"></div>
+                            <div className="w-3/4 h-4 bg-gray-200 rounded animate-pulse"></div>
+                            <div className="w-5/6 h-4 bg-gray-200 rounded animate-pulse"></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    );
 }
 
 export default function BlogPost() {
     const params = useParams();
     const id = params.id as string;
 
-    // Mock blog post data - in a real app, this would come from an API or database
-    const blogPost: BlogPost = {
-        id: parseInt(id),
-        author: {
-            name: 'សុខវណ្ណា អ៊ុំ',
-            avatar: 'ស'
-        },
-        date: 'មុន ៣ ថ្ងៃ',
-        title: 'បទពិសោធន៍របស់ខ្ញុំពីសិស្សដែលបរាជ័យទៅជាសិស្ស A',
-        image: '/angkor.jpg',
-        content: `
-            ស្វាគមន៍! ខ្ញុំឈ្មោះសុខវណ្ណា ជាអ្នកឈ្នះអូឡាំពិចគណិតវិទ្យាជាតិឆ្នាំ២០២៤។ នៅក្នុងអត្ថបទនេះ ខ្ញុំចង់ចែករំលែកបទពិសោធន៍របស់ខ្ញុំពីរបៀបដែលខ្ញុំបានផ្លាស់ប្តូរពីសិស្សដែលបរាជ័យទៅជាសិស្ស A ក្នុងគណិតវិទ្យា។
+    const [blogPost, setBlogPost] = useState<BlogPostDetailed>();
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-            ការចាប់ផ្តើមដំណើរការ ខ្ញុំជាសិស្សដែលតែងតែបានពិន្ទុទាបក្នុងគណិតវិទ្យា។ ខ្ញុំមិនចូលចិត្តគណិតវិទ្យាទេ និងគិតថាវាពិបាកណាស់។ ប៉ុន្តែនៅពេលដែលខ្ញុំបានជួបគ្រូដែលមានវិធីសាស្ត្របង្រៀនល្អ ខ្ញុំបានចាប់ផ្តើមយល់ថាគណិតវិទ្យាមិនមែនជាអ្វីដែលពិបាកដូចដែលខ្ញុំគិតទេ។
+    console.log('Component rendered with id:', id);
+    console.log('Current state - isLoading:', isLoading, 'blogPost:', blogPost, 'error:', error);
 
-            វិធីសាស្ត្រដែលជួយខ្ញុំបានផ្លាស់ប្តូរ៖
+    useEffect(() => {
+        console.log('useEffect triggered with id:', id);
 
-            ១. ការយកចិត្តទុកដាក់លើមូលដ្ឋានគ្រឹះ
-            ខ្ញុំបានចាប់ផ្តើមពីការយល់ច្បាប់មូលដ្ឋានគ្រឹះឱ្យបានល្អ ដូចជាការបូក ដក គុណ ចែក និងច្បាប់អិចស្បូណង់ស្យែល។
+        const fetchBlogPost = async () => {
+            try {
+                console.log('Starting to fetch blog post...');
+                setIsLoading(true);
+                setError(null);
 
-            ២. ការអនុវត្តជាប្រចាំ
-            ខ្ញុំបានធ្វើលំហាត់គណិតវិទ្យាជាប្រចាំ យ៉ាងហោចណាស់ ៣០ នាទីក្នុងមួយថ្ងៃ។ ការអនុវត្តជាប្រចាំជួយឱ្យខ្ញុំចងចាំរូបមន្ត និងវិធីដោះស្រាយបញ្ហាបានល្អ។
+                // Add a minimum loading time to prevent flash
+                const startTime = Date.now();
 
-            ៣. ការស្វែងរកជំនួយ
-            ខ្ញុំមិនខ្មាសអៀនក្នុងការសួរសំណួរនៅពេលដែលខ្ញុំមិនយល់។ ខ្ញុំបានស្វែងរកជំនួយពីគ្រូ មិត្តភក្តិ និងអ៊ីនធឺណិត។
+                const response = await axios.get(`http://localhost:6969/user-content/blogs/${id}`);
+                const data = response.data;
+                console.log('API response data:', data);
 
-            ៤. ការប្រើប្រាស់ឧបករណ៍ជំនួយ
-            ខ្ញុំបានប្រើប្រាស់ឧបករណ៍ជំនួយផ្សេងៗ ដូចជាកាលគណនា ក្រាហ្វិក និងកម្មវិធីគណិតវិទ្យាដើម្បីជួយយល់គំនិតដែលពិបាក។
+                // Ensure minimum loading time of 800ms for better UX
+                const elapsedTime = Date.now() - startTime;
+                const minLoadingTime = 800;
 
-            លទ្ធផលដែលបាន៖
-            បន្ទាប់ពីព្យាយាមជាប្រចាំអស់រយៈពេល ៦ ខែ ខ្ញុំបានផ្លាស់ប្តូរពីពិន្ទុ C ទៅជាពិន្ទុ A ក្នុងគណិតវិទ្យា។ ខ្ញុំក៏បានចូលរួមការប្រកួតអូឡាំពិចគណិតវិទ្យាជាតិ និងបានជាប់ជាអ្នកឈ្នះ។
+                if (elapsedTime < minLoadingTime) {
+                    console.log('Waiting for minimum loading time...');
+                    await new Promise(resolve => setTimeout(resolve, minLoadingTime - elapsedTime));
+                }
 
-            សេចក្តីសន្និដ្ឋាន៖
-            គណិតវិទ្យាមិនមែនជាអ្វីដែលអ្នកត្រូវមានអំណោយភាពពិសេសទេ។ វាគ្រាន់តែត្រូវការការព្យាយាម ការយកចិត្តទុកដាក់ និងវិធីសាស្ត្រត្រឹមត្រូវ។ ប្រសិនបើអ្នកចង់ធ្វើឱ្យគណិតវិទ្យាកាន់តែល្អ សូមចាប់ផ្តើមពីថ្ងៃនេះ និងអនុវត្តជាប្រចាំ។
+                console.log('Setting blog post data...');
+                setBlogPost(data);
+                console.log('Blog post data set successfully');
+            } catch (err) {
+                console.error('Error fetching blog post:', err);
+                setError('Failed to load blog post. Please try again.');
+            } finally {
+                console.log('Setting loading to false...');
+                setIsLoading(false);
+            }
+        };
 
-            សូមចែករំលែកបទពិសោធន៍របស់អ្នកជាមួយខ្ញុំផង! តើអ្នកមានវិធីសាស្ត្រអ្វីខ្លះដើម្បីរៀនគណិតវិទ្យាឱ្យបានល្អ?
-        `
-    };
+        if (id) {
+            console.log('ID exists, calling fetchBlogPost...');
+            fetchBlogPost();
+        } else {
+            console.log('No ID available yet');
+        }
+    }, [id]);
+
+    if (isLoading) {
+        return <BlogPostSkeleton />;
+    }
+
+    if (error || !blogPost) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
+                        <span className="text-red-600 text-2xl">!</span>
+                    </div>
+                    <h2 className="text-xl font-semibold text-gray-900 mb-2">មានបញ្ហាកើតឡើង</h2>
+                    <p className="text-gray-600 mb-4">{error}</p>
+                    <button
+                        onClick={() => window.location.reload()}
+                        className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                    >
+                        ព្យាយាមម្តងទៀត
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -79,26 +171,32 @@ export default function BlogPost() {
                         </h1>
                         <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold">
-                                {blogPost.author.avatar}
+                                {blogPost.username.split(" ")[0].charAt(0)}
                             </div>
                             <div className='flex items-center gap-2'>
-                                <span className="font-semibold text-gray-900">{blogPost.author.name}</span>
+                                <span className="font-semibold text-gray-900">{blogPost.username}</span>
                                 <span>|</span>
-                                <span className="text-gray-500 text-sm">{blogPost.date}</span>
+                                <span className="text-gray-500 text-sm">{new Date(blogPost.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                             </div>
                         </div>
 
-                        {/* Image */}
+                        {/* Image
                         <img
-                            src={blogPost.image}
+                            src={blogPost.media[0].url}
                             alt={blogPost.title}
                             className="w-full h-full object-cover rounded-lg"
                         />
 
                         {/* Article Content */}
-                        <div className="prose prose-lg max-w-none">
+                        {
+                            blogPost.media.length > 0 && (
+                                <Carousel images={blogPost.media.map(media => media.url)} />
+                            )
+                        }
+
+                        <div className="prose prose-lg max-w-none mt-6">
                             <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                                {blogPost.content}
+                                {blogPost.description}
                             </div>
                         </div>
                     </div>
