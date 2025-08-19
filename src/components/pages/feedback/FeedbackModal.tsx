@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
-import { X, ImagePlus, Loader2, ChevronDown, Check, MessageCircle } from 'lucide-react';
+import { X, Loader2, ChevronDown, Check, MessageCircle } from 'lucide-react';
 import { Listbox, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
-import Image from 'next/image';
 
 type FeedbackTypeOption =
     | 'bug'
@@ -24,12 +23,7 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
     const [feedbackType, setFeedbackType] = useState<FeedbackTypeOption>('bug');
     const [customType, setCustomType] = useState<string>('');
     const [content, setContent] = useState<string>('');
-    const [selectedImages, setSelectedImages] = useState<File[]>([]);
-    const [imagePreviews, setImagePreviews] = useState<string[]>([]);
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-    const fileInputRef = useRef<HTMLInputElement>(null);
-
-    const maxImages = 2;
 
     const options: { value: FeedbackTypeOption; label: string }[] = useMemo(
         () => [
@@ -47,40 +41,10 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
         setFeedbackType('bug');
         setCustomType('');
         setContent('');
-        setSelectedImages([]);
-        setImagePreviews([]);
         setIsSubmitting(false);
     }, [isOpen]);
 
-    const handleOpenFilePicker = () => {
-        fileInputRef.current?.click();
-    };
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const files = Array.from(e.target.files || []);
-        const remainingSlots = maxImages - imagePreviews.length;
-        if (remainingSlots <= 0) return;
-        const filesToAdd = files.slice(0, remainingSlots);
-
-        if (filesToAdd.length > 0) {
-            const newImages = [...selectedImages, ...filesToAdd];
-            setSelectedImages(newImages);
-
-            filesToAdd.forEach((file) => {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    setImagePreviews((prev) => [...prev, (ev.target?.result as string) || '']);
-                };
-                reader.readAsDataURL(file);
-            });
-        }
-    };
-
-    const removeImage = (index: number) => {
-        setSelectedImages((prev) => prev.filter((_, i) => i !== index));
-        setImagePreviews((prev) => prev.filter((_, i) => i !== index));
-        if (fileInputRef.current) fileInputRef.current.value = '';
-    };
 
 
 
@@ -95,18 +59,10 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
         try {
             setIsSubmitting(true);
 
-            //! use json for now, form data later when backend supports images
             const body = {
-                type: feedbackType,
+                type: feedbackType === 'other' ? customType.trim() : feedbackType,
                 content: content,
-                // files: selectedImages
             }
-            // const formData = new FormData();
-            // const finalType = feedbackType === 'other' ? customType.trim() : feedbackType;
-
-            // formData.append('type', finalType);
-            // formData.append('content', content);
-            // selectedImages.forEach((file) => formData.append('files', file));
 
             await axios.post("http://localhost:6969/feedback", body);
 
@@ -196,48 +152,6 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
                                 className="mt-3 w-full px-4 py-3 bg-white rounded-lg text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                             />
                         )}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-3">រូបភាព (អតិបរមា {maxImages})</label>
-                        <input
-                            ref={fileInputRef}
-                            type="file"
-                            accept="image/*"
-                            multiple
-                            onChange={handleImageUpload}
-                            className="hidden"
-                        />
-                        <div className="grid grid-cols-2 gap-4">
-                            {imagePreviews.map((preview, index) => (
-                                <div key={index} className="relative aspect-video rounded-xl overflow-hidden border-2 border-gray-200 bg-gray-50">
-                                    <Image
-                                        src={preview}
-                                        alt={`មើលជាមុន ${index + 1}`}
-                                        fill
-                                        className="object-cover"
-                                        unoptimized
-                                    />
-                                    <button
-                                        onClick={() => removeImage(index)}
-                                        className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors"
-                                        aria-label={`លុបរូប ${index + 1}`}
-                                    >
-                                        <X className="w-4 h-4" />
-                                    </button>
-                                </div>
-                            ))}
-                            {imagePreviews.length < maxImages && (
-                                <button
-                                    type="button"
-                                    onClick={handleOpenFilePicker}
-                                    className="aspect-video border-2 border-dashed border-indigo-300 rounded-xl flex flex-col items-center justify-center hover:border-indigo-500 hover:bg-indigo-50 transition-all text-indigo-600"
-                                >
-                                    <ImagePlus className="w-8 h-8 mb-2" />
-                                    <span className="text-sm font-medium">បន្ថែមរូប</span>
-                                </button>
-                            )}
-                        </div>
                     </div>
 
                     <div>
