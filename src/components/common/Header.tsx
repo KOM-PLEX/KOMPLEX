@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil } from 'lucide-react';
