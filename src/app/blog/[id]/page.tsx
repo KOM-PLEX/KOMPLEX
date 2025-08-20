@@ -20,7 +20,7 @@ interface BlogPostDetailed {
     updatedAt: string;
     media: {
         url: string;
-        mediaType: string;
+        type: string;
     }[];
 }
 
@@ -180,17 +180,11 @@ export default function BlogPost() {
                             </div>
                         </div>
 
-                        {/* Image
-                        <img
-                            src={blogPost.media[0].url}
-                            alt={blogPost.title}
-                            className="w-full h-full object-cover rounded-lg"
-                        />
 
                         {/* Article Content */}
                         {
                             blogPost.media.length > 0 && (
-                                <Carousel images={blogPost.media.map(media => media.url)} />
+                                <Carousel media={blogPost.media.map(media => ({ url: media.url, type: media.type as "video" | "image" }))} />
                             )
                         }
 

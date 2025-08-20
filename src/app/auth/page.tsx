@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Eye, EyeOff, Mail, Lock, User, Calculator, Atom, Brain, Microscope, Rocket, Lightbulb, Target, CheckCircle, Users, Globe, Heart } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Calculator, Atom, Brain, Microscope, Rocket, Lightbulb, Users, Heart } from 'lucide-react';
 
 export default function AuthPage() {
     const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');

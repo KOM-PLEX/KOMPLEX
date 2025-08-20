@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import ForumCard from '@/components/pages/forum/ForumCard';
 import Comment from '@/components/pages/forum/Comment';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import axios from 'axios';
+import { ForumPost, TransformedForumPost } from '@/types/forums';
 
 interface Comment {
     id: number;
@@ -21,37 +23,69 @@ export default function ForumDiscussion() {
     const params = useParams();
     const id = params.id as string;
     const [isCommentInputActive, setIsCommentInputActive] = useState(false);
+    const [post, setPost] = useState<TransformedForumPost | null>(null);
 
-    const forumPost = {
-        id: parseInt(id),
-        author: { name: 'សុខវណ្ណា អ៊ុំ', avatar: 'ស' },
-        time: 'មុន ២ ម៉ោង',
-        title: 'ខ្ញុំជាអ្នកឈ្នះអូឡាំពិចគណិតវិទ្យាជាតិ សួរអ្វីក៍បាន!',
-        content: 'ស្វាគមន៍! ខ្ញុំឈ្មោះសុខវណ្ណា ជាអ្នកឈ្នះអូឡាំពិចគណិតវិទ្យាជាតិឆ្នាំ២០២៤។ ខ្ញុំចង់ជួយចែករំលែកចំណេះដឹងជាមួយអ្នកទាំងអស់។ សួរអ្វីក៍បានអំពីគណិតវិទ្យា ឬវិធីសាស្ត្ររៀន!',
-        image: ['/angkor.jpg'],
-        upvotes: 24,
-        comments: 12,
-        upvoted: false
+    // Transform backend data to match component expectations
+    const transformForumPost = (post: ForumPost): TransformedForumPost => {
+        const getTopicKhmer = (topic: string): string => {
+            const topicMap: { [key: string]: string } = {
+                'math': 'គណិតវិទ្យា',
+                'physics': 'រូបវិទ្យា',
+                'chemistry': 'គីមីវិទ្យា',
+                'biology': 'ជីវវិទ្យា',
+                'general': 'ទូទៅ'
+            };
+            return topicMap[topic] || topic;
+        };
+
+        const getTimeAgo = (dateString: string): string => {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now.getTime() - date.getTime();
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffDays = Math.floor(diffHours / 24);
+
+            if (diffDays > 0) {
+                return `មុន ${diffDays} ថ្ងៃ`;
+            } else if (diffHours > 0) {
+                return `មុន ${diffHours} ម៉ោង`;
+            } else {
+                return 'ថ្មីៗនេះ';
+            }
+        };
+
+        const getAvatar = (username: string): string => {
+            return username.charAt(0);
+        };
+
+        return {
+            id: post.id,
+            author: {
+                name: post.username,
+                avatar: getAvatar(post.username)
+            },
+            time: getTimeAgo(post.createdAt),
+            title: post.title,
+            content: post.description,
+            image: post.media.filter(m => m.type === 'image').map(m => m.url),
+            upvotes: Math.floor(Math.random() * 50), // Since backend doesn't provide upvotes, use random for now
+            comments: Math.floor(Math.random() * 20), // Since backend doesn't provide comments, use random for now
+            upvoted: post.isLike,
+            category: getTopicKhmer(post.topic)
+        };
     };
+    useEffect(() => {
+        const fetchForumPost = async () => {
+            const response = await axios.get(`http://localhost:6969/forums/${id}`);
+            const data = response.data;
+            setPost(transformForumPost(data));
+        };
+        fetchForumPost();
+    }, []);
 
-    const comments: Comment[] = [
-        {
-            id: 1,
-            author: { name: 'វណ្ណា សុខ', avatar: 'វ' },
-            time: 'មុន ១ ម៉ោង',
-            content: 'ស្វាគមន៍! ខ្ញុំចង់សួរអំពីវិធីរៀនគណិតវិទ្យាឱ្យបានល្អ។ តើអ្នកមានគន្លឹះអ្វីខ្លះ?',
-            upvotes: 8,
-            upvoted: false
-        },
-        {
-            id: 2,
-            author: { name: 'ដេរីវេ ម៉ាស្ទើរ', avatar: 'ដ' },
-            time: 'មុន ៤៥ នាទី',
-            content: 'អ្នកឈ្នះអូឡាំពិច! ខ្ញុំចង់សួរអំពីវិធីដោះស្រាយបញ្ហាលីមីត។ តើអ្នកប្រើវិធីសាស្ត្រអ្វី?',
-            upvotes: 12,
-            upvoted: false
-        }
-    ];
+    if (!post) {
+        return <div>Loading...</div>;
+    }
 
     const handleCommentToggle = () => {
         setIsCommentInputActive(!isCommentInputActive);
@@ -74,11 +108,11 @@ export default function ForumDiscussion() {
 
                 {/* Main Post */}
                 <div className="mb-6">
-                    <ForumCard post={forumPost} isFromBasePage={false} onCommentClick={handleCommentToggle} />
+                    <ForumCard post={post} isFromBasePage={false} onCommentClick={handleCommentToggle} />
                 </div>
 
-                {/* Comments Section */}
-                <Comment comments={comments} focusInput={isCommentInputActive} onClose={handleCommentClose} />
+                {/* Comments Section
+                <Comment comments={comments} focusInput={isCommentInputActive} onClose={handleCommentClose} /> */}
             </div>
         </div>
     );

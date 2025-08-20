@@ -2,104 +2,88 @@
 
 import Link from 'next/link';
 import ForumCard from '@/components/pages/forum/ForumCard';
-import { Search, Filter, MessageSquare, Plus, Eye, MessageCircle, Heart } from 'lucide-react';
-import { useState } from 'react';
+import { Search, Filter, MessageSquare, Plus } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
+import axios from 'axios';
+import { ForumPost, TransformedForumPost } from '@/types/forums';
 
 export default function Forum() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [forumPosts, setForumPosts] = useState<TransformedForumPost[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const forumPosts = [
-        {
-            id: 1,
+    // Transform backend data to match component expectations
+    const transformForumPost = (post: ForumPost): TransformedForumPost => {
+        const getTopicKhmer = (topic: string): string => {
+            const topicMap: { [key: string]: string } = {
+                'math': 'គណិតវិទ្យា',
+                'physics': 'រូបវិទ្យា',
+                'chemistry': 'គីមីវិទ្យា',
+                'biology': 'ជីវវិទ្យា',
+                'general': 'ទូទៅ'
+            };
+            return topicMap[topic] || topic;
+        };
+
+        const getTimeAgo = (dateString: string): string => {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now.getTime() - date.getTime();
+            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+            const diffDays = Math.floor(diffHours / 24);
+
+            if (diffDays > 0) {
+                return `មុន ${diffDays} ថ្ងៃ`;
+            } else if (diffHours > 0) {
+                return `មុន ${diffHours} ម៉ោង`;
+            } else {
+                return 'ថ្មីៗនេះ';
+            }
+        };
+
+        const getAvatar = (username: string): string => {
+            return username.charAt(0);
+        };
+
+        return {
+            id: post.id,
             author: {
-                name: 'សុខវណ្ណា អ៊ុំ',
-                avatar: 'ស'
+                name: post.username,
+                avatar: getAvatar(post.username)
             },
-            time: 'មុន ២ ម៉ោង',
-            title: 'ខ្ញុំជាអ្នកឈ្នះអូឡាំពិចគណិតវិទ្យាជាតិ សួរអ្វីក៍បាន!',
-            content: 'ស្វាគមន៍! ខ្ញុំឈ្មោះសុខវណ្ណា ជាអ្នកឈ្នះអូឡាំពិចគណិតវិទ្យាជាមឆ្នាំ២០២៤។ ខ្ញុំចង់ជួយចែករំលែកចំណេះដឹងជាមួយអ្នកទាំងអស់។ សួរអ្វីក៍បានអំពីគណិតវិទ្យា ឬវិធីសាស្ត្ររៀន!',
-            image: ['/angkor.jpg'],
-            upvotes: 24,
-            comments: 12,
-            upvoted: true,
-            category: 'គណិតវិទ្យា'
-        },
-        {
-            id: 2,
-            author: {
-                name: 'វណ្ណា សុខ',
-                avatar: 'វ'
-            },
-            time: 'មុន ៥ ម៉ោង',
-            title: 'មិនដឹងដោះស្រាយលីមីតនេះយ៉ាងណា ជួយខ្ញុំផង!',
-            content: 'ខ្ញុំជាប់នៅលីមីតនេះយូរហើយ៖ lim(x→0) (sin x)/x។ អ្នកណាដឹងវិធីដោះស្រាយដែរឬទេ? ខ្ញុំព្យាយាមប្រើច្បាប់ L\'Hôpital ប៉ុន្តែមិនបានលទ្ធផល។',
-            upvotes: 8,
-            comments: 6,
-            upvoted: false,
-            category: 'គណិតវិទ្យា'
-        },
-        {
-            id: 3,
-            author: {
-                name: 'គីមី សិស្ស',
-                avatar: 'គ'
-            },
-            time: 'មុន ១ ថ្ងៃ',
-            title: 'តើធ្វើដូចម្តេចដើម្បីរៀនគណិតវិទ្យាឱ្យបានល្អ?',
-            content: 'ខ្ញុំជាសិស្សថ្នាក់ទី១១ និងចង់ធ្វើឱ្យគណិតវិទ្យាកាន់តែល្អ។ តើអ្នកណាមានគន្លឹះល្អៗដើម្បីរៀនគណិតវិទ្យាឱ្យបានល្អ? ខ្ញុំចង់ដឹងវិធីរៀន និងវិធីដោះស្រាយបញ្ហាឱ្យបានល្អ។',
-            image: ['/angkor.jpg'],
-            upvotes: 15,
-            comments: 9,
-            upvoted: false,
-            category: 'គណិតវិទ្យា'
-        },
-        {
-            id: 4,
-            author: {
-                name: 'ដេរីវេ ម៉ាស្ទើរ',
-                avatar: 'ដ'
-            },
-            time: 'មុន ២ ថ្ងៃ',
-            title: 'វិធីងាយស្រួលដើម្បីចងចាំច្បាប់ដេរីវេ',
-            content: 'ខ្ញុំរកឃើញវិធីងាយស្រួលដើម្បីចងចាំច្បាប់ដេរីវេ។ ប្រសិនបើអ្នកចងចាំច្បាប់ដេរីវេដូចជា d/dx(x^n) = nx^(n-1) និង d/dx(sin x) = cos x នោះអ្នកអាចដោះស្រាយបញ្ហាភាគច្រើនបាន។ តើអ្នកណាចង់ដឹងវិធីចងចាំច្បាប់ដេរីវេដទៃទៀត?',
-            upvotes: 32,
-            comments: 18,
-            upvoted: true,
-            category: 'គណិតវិទ្យា'
-        },
-        {
-            id: 5,
-            author: {
-                name: 'អាំងតេក្រាល សិស្ស',
-                avatar: 'អ'
-            },
-            time: 'មុន ៣ ថ្ងៃ',
-            title: 'តើអាំងតេក្រាលដែលមិនកំណត់ខុសពីអាំងតេក្រាលកំណត់យ៉ាងណា?',
-            content: 'ខ្ញុំច្រឡំអំពីភាពខុសគ្នារវាងអាំងតេក្រាលដែលមិនកំណត់ និងអាំងតេក្រាលកំណត់។ អ្នកណាអាចពន្យល់ឱ្យខ្ញុំយល់បានដែរឬទេ? ខ្ញុំចង់ដឹងពេលណាប្រើអាំងតេក្រាលដែលមិនកំណត់ និងពេលណាប្រើអាំងតេក្រាលកំណត់។',
-            image: ['/angkor.jpg'],
-            upvotes: 12,
-            comments: 7,
-            upvoted: false,
-            category: 'គណិតវិទ្យា'
-        },
-        {
-            id: 6,
-            author: {
-                name: 'វ៉ិចទ័រ អ្នករៀន',
-                avatar: 'វ'
-            },
-            time: 'មុន ៤ ថ្ងៃ',
-            title: 'តើធ្វើដូចម្តេចដើម្បីគណនាផលគុណវ៉ិចទ័រ?',
-            content: 'ខ្ញុំជាប់នៅការគណនាផលគុណវ៉ិចទ័រ។ តើអ្នកណាអាចពន្យល់ឱ្យខ្ញុំយល់បានដែរឬទេ? ខ្ញុំចង់ដឹងវិធីគណនាផលគុណវ៉ិចទ័រ និងពេលណាប្រើវា។ សូមជួយខ្ញុំផង!',
-            image: ['/angkor.jpg'],
-            upvotes: 6,
-            comments: 4,
-            upvoted: false,
-            category: 'គណិតវិទ្យា'
-        }
-    ];
+            time: getTimeAgo(post.createdAt),
+            title: post.title,
+            content: post.description,
+            image: post.media.filter(m => m.type === 'image').map(m => m.url),
+            upvotes: Math.floor(Math.random() * 50), // Since backend doesn't provide upvotes, use random for now
+            comments: Math.floor(Math.random() * 20), // Since backend doesn't provide comments, use random for now
+            upvoted: post.isLike,
+            category: getTopicKhmer(post.topic)
+        };
+    };
+
+    // Fetch forum posts from backend
+    useEffect(() => {
+        const fetchForumPosts = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get<ForumPost[]>('http://localhost:6969/forums');
+                const transformedPosts = response.data.map(transformForumPost);
+                setForumPosts(transformedPosts);
+                setError(null);
+            } catch (err) {
+                console.error('Error fetching forum posts:', err);
+                setError('មានបញ្ហាក្នុងការទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchForumPosts();
+    }, []);
 
     const categories = ['គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];
 
@@ -221,7 +205,46 @@ export default function Forum() {
             <div className="pt-36 p-5 max-w-7xl mx-auto">
                 {/* Forum Posts List */}
                 <div className="flex flex-col gap-5">
-                    {filteredPosts.length > 0 ? (
+                    {loading ? (
+                        // Loading skeleton
+                        <div className="space-y-5">
+                            {[...Array(6)].map((_, index) => (
+                                <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 animate-pulse">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+                                        <div className="flex-1">
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <div className="h-4 bg-gray-300 rounded w-24"></div>
+                                                <div className="h-3 bg-gray-200 rounded w-16"></div>
+                                            </div>
+                                            <div className="h-6 bg-gray-300 rounded w-3/4 mb-3"></div>
+                                            <div className="space-y-2">
+                                                <div className="h-4 bg-gray-200 rounded w-full"></div>
+                                                <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                                            </div>
+                                            <div className="flex items-center gap-4 mt-4">
+                                                <div className="h-4 bg-gray-200 rounded w-16"></div>
+                                                <div className="h-4 bg-gray-200 rounded w-16"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : error ? (
+                        // Error state
+                        <div className="text-center py-12">
+                            <MessageSquare className="w-16 h-16 text-red-400 mx-auto mb-4" />
+                            <h3 className="text-lg font-medium text-gray-900 mb-2">មានបញ្ហាក្នុងការទាញយកទិន្នន័យ</h3>
+                            <p className="text-gray-500 mb-4">{error}</p>
+                            <button
+                                onClick={() => window.location.reload()}
+                                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                            >
+                                ព្យាយាមម្តងទៀត
+                            </button>
+                        </div>
+                    ) : filteredPosts.length > 0 ? (
                         filteredPosts.map((post) => (
                             <ForumCard key={post.id} post={post} isFromBasePage={true} />
                         ))

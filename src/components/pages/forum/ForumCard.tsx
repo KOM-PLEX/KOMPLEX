@@ -5,25 +5,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Carousel from '@/components/common/Carousel';
-
-interface ForumPost {
-    id: number;
-    author: {
-        name: string;
-        avatar: string;
-    };
-    time: string;
-    title: string;
-    content: string;
-    image?: string[];
-    upvotes: number;
-    comments: number;
-    upvoted: boolean;
-}
+import { TransformedForumPost } from '@/types/forums';
 
 interface ForumCardProps {
     isFromBasePage: boolean;
-    post: ForumPost;
+    post: TransformedForumPost;
     onCommentClick?: () => void;
 }
 
@@ -64,7 +50,7 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick }: Foru
         <div className={`bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-0.5 ${isFromBasePage ? 'cursor-pointer' : ''}`} onClick={handleCardClick}>
             <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-base">
-                    {post.author.avatar}
+                    {post.author.name.split(" ")[0].charAt(0)}
                 </div>
                 <div className="flex-1">
                     <div className="font-semibold text-gray-900 text-sm mb-0.5">
@@ -85,7 +71,7 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick }: Foru
             </div>
 
             {post.image && (
-                <Carousel images={post.image} />
+                <Carousel media={post.image.map(image => ({ url: image, type: 'image' }))} />
             )}
 
             <div className="flex items-center gap-5 pt-4 border-t border-indigo-500/10">
