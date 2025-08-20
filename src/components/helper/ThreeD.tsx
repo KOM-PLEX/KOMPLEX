@@ -97,6 +97,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
                                     anchorX="center"
                                     anchorY="middle"
                                     rotation={item.rotation || [0, 0, 0]}
+                                    font={"/fonts/Battambang-Regular.ttf"}
                                 >
                                     {item.content}
                                 </Text>

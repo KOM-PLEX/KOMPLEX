@@ -21,6 +21,10 @@
     --foreground: black;
   }
 }
+html{
+  scroll-behavior: smooth;
+}
+
 
 body {
   background: var(--background);
@@ -28,6 +32,7 @@ body {
   font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 500;
   line-height: 1.6;
+  
 }
 
 /* English text styling - use Inter for better English rendering */
