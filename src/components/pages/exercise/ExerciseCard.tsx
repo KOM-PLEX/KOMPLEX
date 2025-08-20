@@ -5,12 +5,10 @@ import { Target, Clock } from 'lucide-react';
 interface Topic {
     id: string;
     name: string;
-    nameKh: string;
-    difficulty: 'beginner' | 'intermediate' | 'advanced';
     questionCount: number;
     estimatedTime: string;
-    userProgress?: number;
-    attempts?: number;
+    userProgress: number;
+    attempts: number;
 }
 
 interface PracticeCardProps {
@@ -25,12 +23,12 @@ interface PracticeCardProps {
 export default function PracticeCard({ topic, subjectId, subjectColors }: PracticeCardProps) {
     return (
         <Link
-            href={`/practice/${subjectId}/${topic.id}`}
+            href={`/exercise/${topic.id}`}
             className={`${subjectColors.bg} border-2 ${subjectColors.border} rounded-xl lg:p-6 p-4 hover:shadow-md transition-all hover:scale-101 group`}
         >
             <div className="mb-4">
                 <h4 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors mb-2">
-                    {topic.nameKh}
+                    {topic.name}
                 </h4>
                 <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
                     <Target size={16} />
@@ -38,7 +36,7 @@ export default function PracticeCard({ topic, subjectId, subjectColors }: Practi
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Clock size={16} />
-                    <span>ប្រហែល {topic.estimatedTime}</span>
+                    <span>{topic.estimatedTime}</span>
                 </div>
             </div>
 

@@ -2,7 +2,7 @@
 
 import BlogCard from '@/components/pages/blog/BlogCard';
 import { useEffect, useState } from 'react';
-import { Search, Filter, Book, Eye, Plus, User, ChevronDown, X } from 'lucide-react';
+import { Search, Filter, Book, Eye, Plus, User, ChevronDown, X, Star, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import Sidebar from '@/components/pages/blog/Sidebar';
 import { Listbox, Transition } from '@headlessui/react';
@@ -125,6 +125,7 @@ export default function Blog() {
         return <BlogSkeleton />;
     }
 
+
     // Filter blog posts based on search and filters
     const filteredPosts = blogPosts.filter(post => {
         const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -136,7 +137,7 @@ export default function Blog() {
     });
 
     // Get featured post (first post) and remaining posts
-    const featuredPost = filteredPosts[0];
+    const featuredPost = blogPosts.sort((a, b) => b.viewCount - a.viewCount)[0];
     const remainingPosts = filteredPosts.slice(1);
 
     const toggleType = (type: string) => {
@@ -159,6 +160,7 @@ export default function Blog() {
         setSelectedTypes([]);
         setSelectedTopics([]);
     };
+
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -274,12 +276,29 @@ export default function Blog() {
             {/* Main Content */}
             <div className="pt-36 p-5 max-w-7xl mx-auto">
                 {/* Featured Post Section */}
+                <p className='text-2xl font-bold text-left mb-8 flex items-center gap-2'>
+                    <Star className='w-6 h-6 text-indigo-500' />
+                    ប្លុកពេញនិយម
+                </p>
+
+                <div className='mb-8 flex justify-center items-center'>
+                    <BlogCard key={featuredPost.id} post={featuredPost} />
+                </div>
+
 
                 {/* Blog Posts Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredPosts.map((post) => (
-                        <BlogCard key={post.id} post={post} />
-                    ))}
+                <div className='bg-white rounded-xl shadow-sm overflow-hidden p-6'>
+                    <p className='text-2xl font-bold text-left mb-8  flex items-center gap-2'>
+                        <BookOpen className='w-6 h-6 text-indigo-500' />
+                        ប្លុកដទៃទៀត
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
+
+                        {remainingPosts.map((post) => (
+                            <BlogCard key={post.id} post={post} />
+                        ))}
+
+                    </div>
                 </div>
 
                 {/* No Results Message */}
@@ -291,6 +310,6 @@ export default function Blog() {
                     </div>
                 )}
             </div>
-        </div>
+        </div >
     );
 }

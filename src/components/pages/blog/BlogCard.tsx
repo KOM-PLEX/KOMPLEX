@@ -10,10 +10,10 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <Link href={`/blog/${post.id}`} key={post.id} className="relative h-72 rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">
+    <Link href={`/blog/${post.id}`} key={post.id} className="relative aspect-[16/8] w-full rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">
       {/* Background Image */}
       <img
-        src={post.media[0]?.url }
+        src={post.media[0]?.url}
         alt={post.title}
         className="absolute inset-0 w-full h-full object-cover"
         onError={(e) => {

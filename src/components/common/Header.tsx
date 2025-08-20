@@ -29,7 +29,7 @@ const navLinks = [
     },
     {
         label: 'អនុវត្តន៍',
-        href: '/practice',
+        href: '/exercise',
         icon: Pencil,
         style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
     },

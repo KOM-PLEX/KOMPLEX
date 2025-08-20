@@ -1,14 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { CheckCircle, AlertCircle, XCircle } from 'lucide-react';
+import { ExerciseSection } from '@/types/exercise';
 
-interface ExamSection {
-    id: string;
-    titleKh: string;
-}
 
 interface PracticeResultProps {
-    examSections: ExamSection[];
+    examSections: ExerciseSection[];
     overallScore: { correct: number; total: number };
     sectionScores: { [sectionId: string]: { correct: number; total: number } };
     onRetakeExam: () => void;
@@ -34,14 +31,14 @@ export default function PracticeResult({ examSections, overallScore, sectionScor
                 លទ្ធផលរបស់អ្នក: {overallScore.correct}/{overallScore.total} ({percentage}%)
             </p>
 
-            <div className="grid grid-cols-2  lg:grid-cols-4 gap-4 mb-8">
+            <div className="flex justify-center items-center gap-4 mb-8">
                 {examSections.map((section) => {
                     const score = sectionScores[section.id];
                     const sectionPercentage = Math.round((score.correct / score.total) * 100);
 
                     return (
-                        <div key={section.id} className="bg-indigo-50 border border-indigo-500 rounded-lg p-4 w-full">
-                            <h4 className="font-semibold text-gray-800 mb-2">{section.titleKh}</h4>
+                        <div key={section.id} className="bg-indigo-50 border border-indigo-500 rounded-lg p-4 min-w-[200px]">
+                            <h4 className="font-semibold text-gray-800 mb-2">{section.title}</h4>
                             <p className="text-sm text-gray-600 mb-2">{score.correct}/{score.total}</p>
                             <div className="w-full max-w-[300px] bg-gray-200 rounded-full h-2 mx-auto">
                                 <div
@@ -58,7 +55,7 @@ export default function PracticeResult({ examSections, overallScore, sectionScor
 
             <div className="flex gap-4 justify-center">
                 <Link
-                    href="/practice"
+                    href="/exercise"
                     className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
                 >
                     ត្រឡប់ទៅកាន់លំហាត់

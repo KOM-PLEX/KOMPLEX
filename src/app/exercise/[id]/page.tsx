@@ -1,0 +1,404 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { ArrowLeft, Clock, Target, Calculator, Brain, Zap, Star, AlertCircle, BookOpen, Flag } from "lucide-react";
+import { useParams } from "next/navigation";
+import ExerciseBox from "@/components/pages/exercise/ExerciseBox";
+import PracticeInfo from "@/components/pages/exercise/ExerciseInfo";
+import PracticeResult from "@/components/pages/exercise/ExerciseResult";
+import axios from "axios";
+import { ExerciseWithQuestions, ExerciseSection, Question } from "@/types/exercise";
+
+
+
+const transformBackendDataToSections = (backendData: ExerciseWithQuestions): ExerciseSection[] => {
+    // Group questions by section
+    const sectionMap = new Map<string, Question[]>();
+
+    backendData.questions.forEach(question => {
+        if (!sectionMap.has(question.section)) {
+            sectionMap.set(question.section, []);
+        }
+        sectionMap.get(question.section)!.push(question);
+    });
+
+    // Convert to ExamSection format
+    const sections: ExerciseSection[] = [];
+    const totalDuration = backendData.duration;
+    const sectionCount = sectionMap.size;
+    const timePerSection = Math.ceil(totalDuration / sectionCount);
+
+    Array.from(sectionMap.entries()).forEach(([sectionName, questions], index) => {
+        const transformedQuestions: Question[] = questions.map(question => {
+            return {
+                id: question.id,
+                title: question.title,
+                imageUrl: question.imageUrl,
+                section: question.section,
+                choices: question.choices
+            };
+        });
+
+        sections.push({
+            id: `section-${index + 1}`,
+            title: sectionName,
+            description: `Questions for ${sectionName}`,
+            timeLimit: timePerSection,
+            questions: transformedQuestions
+        });
+    });
+
+    return sections;
+};
+
+export default function LessonPage() {
+    const params = useParams();
+    const { id } = params;
+
+    const [currentSection, setCurrentSection] = useState(0);
+    const [timeRemaining, setTimeRemaining] = useState(0);
+    const [isExamStarted, setIsExamStarted] = useState(false);
+    const [examCompleted, setExamCompleted] = useState(false);
+    const [answers, setAnswers] = useState<{ [sectionId: string]: { [questionId: string]: number } }>({});
+
+    // New state for backend data
+    const [exerciseData, setExerciseData] = useState<ExerciseWithQuestions | null>(null);
+    const [examSections, setExamSections] = useState<ExerciseSection[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    // Fetch exercise data from backend
+    useEffect(() => {
+        const fetchExerciseData = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                // Use the lesson param as the exercise ID
+                const response = await axios.get<ExerciseWithQuestions>(`http://localhost:6969/exercises/${id}`);
+                const data = response.data;
+                setExerciseData(data);
+
+                // Transform backend data to exam sections
+                const sections = transformBackendDataToSections(data);
+                setExamSections(sections);
+
+                console.log('Fetched exercise data:', data);
+            } catch (err) {
+                setError('Failed to fetch exercise data');
+                console.error('Error fetching exercise:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (id) {
+            fetchExerciseData();
+        }
+    }, [id]);
+
+    const totalTime = examSections.reduce((sum, section) => sum + section.timeLimit, 0);
+    const currentSectionData = examSections[currentSection];
+
+    useEffect(() => {
+        if (isExamStarted && !examCompleted) {
+            const timer = setInterval(() => {
+                setTimeRemaining(prev => {
+                    if (prev <= 1) {
+                        clearInterval(timer);
+                        setExamCompleted(true);
+                        return 0;
+                    }
+                    return prev - 1;
+                });
+            }, 1000);
+
+            return () => clearInterval(timer);
+        }
+    }, [isExamStarted, examCompleted]);
+
+    const startExam = () => {
+        setIsExamStarted(true);
+        setTimeRemaining(totalTime * 60); // Convert to seconds
+    };
+
+    const formatTime = (seconds: number) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+
+        if (hours > 0) {
+            return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+        return `${minutes}:${secs.toString().padStart(2, '0')}`;
+    };
+
+    const handleAnswerSubmit = (questionId: number, choiceId: number) => {
+        setAnswers(prev => ({
+            ...prev,
+            [`section-${currentSection + 1}`]: {
+                ...prev[`section-${currentSection + 1}`],
+                [questionId]: choiceId
+            }
+        }));
+    };
+
+    const calculateSectionScore = (section: ExerciseSection) => {
+        const sectionAnswers = answers[section.id] || {};
+        let correct = 0;
+        const total = section.questions.length;
+
+        section.questions.forEach(question => {
+            if (sectionAnswers[question.id] === question.choices.find(choice => choice.isCorrect)?.id) {
+                correct++;
+            }
+        });
+
+        return { correct, total };
+    };
+
+    const getOverallScore = () => {
+        let totalCorrect = 0;
+        let totalQuestions = 0;
+
+        examSections.forEach(section => {
+            const score = calculateSectionScore(section);
+            totalCorrect += score.correct;
+            totalQuestions += score.total;
+        });
+
+        return { correct: totalCorrect, total: totalQuestions };
+    };
+
+    // Loading state
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex justify-center items-center pt-14">
+                <div className="max-w-7xl w-full mx-auto px-4 py-8">
+                    <div className="bg-white rounded-2xl shadow-lg p-6">
+                        {/* Header Skeleton */}
+                        <div className="flex items-center justify-between mb-8">
+                            <div className="flex items-center gap-4">
+                                <div className="h-8 bg-gray-200 rounded-lg w-64 animate-pulse"></div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <div className="h-6 bg-gray-200 rounded w-24 animate-pulse"></div>
+                                <div className="h-10 bg-gray-200 rounded-lg w-32 animate-pulse"></div>
+                            </div>
+                        </div>
+
+                        {/* Section Navigation Skeleton */}
+                        <div className="flex gap-2 mb-6">
+                            {[1, 2, 3, 4].map((i) => (
+                                <div key={i} className="h-10 bg-gray-200 rounded-lg w-24 animate-pulse"></div>
+                            ))}
+                        </div>
+
+                        {/* Exercise Box Skeleton */}
+                        <div className="bg-white/95 backdrop-blur-sm border-2 border-indigo-500/20 rounded-2xl p-6 my-6 shadow-lg shadow-indigo-500/15">
+                            {/* Question Skeleton */}
+                            <div className="mb-6">
+                                <div className="h-6 bg-gray-200 rounded-lg w-3/4 mb-4 animate-pulse"></div>
+
+                                {/* Choices Skeleton */}
+                                <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
+                                    {[1, 2, 3, 4].map((j) => (
+                                        <div key={j} className="h-16 bg-gray-100 rounded-xl border-2 border-gray-200 animate-pulse"></div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Navigation Skeleton */}
+                            <div className="flex items-center justify-center gap-10 mt-6 pt-4 border-t border-indigo-500/20">
+                                <div className="h-10 bg-gray-200 rounded-xl w-20 animate-pulse"></div>
+                                <div className="h-10 bg-gray-200 rounded-xl w-20 animate-pulse"></div>
+                            </div>
+                        </div>
+
+                        {/* Bottom Navigation Skeleton */}
+                        <div className="flex items-center justify-between mt-6">
+                            <div className="h-12 bg-gray-200 rounded-xl w-32 animate-pulse"></div>
+                            <div className="h-12 bg-gray-200 rounded-xl w-32 animate-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Error state
+    if (error || !exerciseData) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex justify-center items-center pt-14">
+                <div className="text-center max-w-md mx-auto px-6">
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                        <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+                        <h2 className="text-xl font-semibold text-red-800 mb-2">មានបញ្ហា!</h2>
+                        <p className="text-red-600 mb-4">{error || 'រកមិនឃើញលំហាត់នេះទេ'}</p>
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                        >
+                            ព្យាយាមម្តងទៀត
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (!isExamStarted) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex justify-center items-center pt-14 ">
+                <div className="max-w-7xl m-auto px-4 py-8 w-full">
+                    {loading ? (
+                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                            {/* Title Skeleton */}
+                            <div className="text-center mb-8">
+                                <div className="h-10 bg-gray-200 rounded-lg w-96 mx-auto mb-4 animate-pulse"></div>
+                                <div className="h-6 bg-gray-200 rounded w-64 mx-auto animate-pulse"></div>
+                            </div>
+
+                            {/* Sections Skeleton */}
+                            <div className="space-y-6">
+                                {[1, 2, 3].map((i) => (
+                                    <div key={i} className="border border-gray-200 rounded-lg p-4">
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-12 h-12 bg-gray-200 rounded-lg animate-pulse"></div>
+                                            <div className="flex-1">
+                                                <div className="h-6 bg-gray-200 rounded w-48 mb-2 animate-pulse"></div>
+                                                <div className="h-4 bg-gray-200 rounded w-64 animate-pulse"></div>
+                                            </div>
+                                            <div className="h-6 bg-gray-200 rounded w-16 animate-pulse"></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Start Button Skeleton */}
+                            <div className="text-center mt-8">
+                                <div className="h-12 bg-gray-200 rounded-lg w-48 mx-auto animate-pulse"></div>
+                            </div>
+                        </div>
+                    ) : (
+                        <PracticeInfo
+                            examTitle={exerciseData.title}
+                            examSections={examSections}
+                            totalTime={totalTime}
+                            onStartExam={startExam}
+                        />
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    if (examCompleted) {
+        const overallScore = getOverallScore();
+
+        return (
+            <div className="min-h-screen bg-gray-50 flex justify-center items-center pt-14 ">
+                <div className="max-w-7xl m-auto px-4 py-8 w-full">
+                    <PracticeResult
+                        examSections={examSections}
+                        overallScore={overallScore}
+                        sectionScores={Object.fromEntries(
+                            examSections.map(section => [
+                                section.id,
+                                calculateSectionScore(section)
+                            ])
+                        )}
+                        onRetakeExam={() => {
+                            setIsExamStarted(false);
+                            setExamCompleted(false);
+                            setAnswers({});
+                            setCurrentSection(0);
+                        }}
+                    />
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="max-w-7xl w-full mx-auto px-4 py-8  bg-white rounded-2xl shadow-lg">
+                {/* Header with Timer */}
+                <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-4">
+
+                        <div className="text-left">
+                            <h1 className="text-2xl font-bold text-gray-900">
+                                វិញ្ញាសា{exerciseData?.title}
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                        <div className="text-center">
+                            <div className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                                <Clock size={20} className="text-indigo-600" />
+                                <span>{formatTime(timeRemaining)}</span>
+                            </div>
+                            <p className="text-sm text-gray-500">ពេលវេលានៅសល់</p>
+                        </div>
+                        <button onClick={() => setExamCompleted(true)} className="flex items-center gap-2 text-center bg-red-500/20 border border-red-500 text-red-600 px-4 py-2 rounded-lg">
+                            <Flag size={20} />
+                            <span className="text-red-600 hidden lg:flex">បញ្ចប់វិញ្ញាសា</span>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div className="flex gap-2 overflow-x-auto scrollbar-hide ">
+                    {examSections.map((section, index) => (
+                        <button
+                            key={section.id}
+                            onClick={() => setCurrentSection(index)}
+                            className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${index === currentSection
+                                ? 'bg-indigo-600 text-white'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                }`}
+                        >
+                            {section.title}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Current Section */}
+                <ExerciseBox
+                    questions={currentSectionData.questions}
+                    onAnswerSubmit={handleAnswerSubmit}
+                />
+
+                {/* Navigation Buttons */}
+                <div className="flex items-center justify-between">
+                    <button
+                        onClick={() => setCurrentSection(prev => Math.max(0, prev - 1))}
+                        disabled={currentSection === 0}
+                        className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                    >
+                        <ArrowLeft size={20} />
+                        ផ្នែកមុន
+                    </button>
+
+                    {currentSection === examSections.length - 1 ? (
+                        <button
+                            onClick={() => setExamCompleted(true)}
+                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-colors"
+                        >
+                            បញ្ចប់វិញ្ញាសា
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => setCurrentSection(prev => prev + 1)}
+                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                        >
+                            ផ្នែកបន្ទាប់
+                            <ArrowLeft size={20} className="rotate-180" />
+                        </button>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}

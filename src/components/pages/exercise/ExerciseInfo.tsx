@@ -1,19 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Trophy } from 'lucide-react';
-import { ExerciseQuestion } from '@/types/topic';
-
-interface ExamSection {
-    id: string;
-    title: string;
-    titleKh: string;
-    questions: ExerciseQuestion[];
-    timeLimit: number;
-}
+import { ExerciseSection } from '@/types/exercise';
 
 interface PracticeInfoProps {
     examTitle: string;
-    examSections: ExamSection[];
+    examSections: ExerciseSection[];
     totalTime: number;
     onStartExam: () => void;
 }
@@ -65,9 +57,10 @@ export default function PracticeInfo({ examTitle, examSections, totalTime, onSta
                         {examSections.map((section, index) => (
                             <div key={section.id} className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 border border-indigo-500 transition-all">
                                 <div className="flex items-center justify-between">
-                                    <h4 className="font-semibold text-gray-800">
-                                        {section.titleKh}
-                                    </h4>
+
+                                    <span className="text-sm text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+                                        {section.title} 
+                                    </span>
                                     <span className="text-sm text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
                                         {section.questions.length} សំណួរ
                                     </span>
@@ -81,7 +74,7 @@ export default function PracticeInfo({ examTitle, examSections, totalTime, onSta
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <Link
-                    href="/practice"
+                    href="/exercise"
                     className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2"
                 >
                     <ArrowLeft size={20} />
