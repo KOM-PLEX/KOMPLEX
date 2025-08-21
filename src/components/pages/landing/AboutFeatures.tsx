@@ -246,7 +246,7 @@ export default function AboutFeatures() {
                             src="/adult_brain.glb"
                             scale={20}
                             target={[0, 0, 0]}
-                            canvasBackgroundColor="gray"
+                            canvasBackgroundColor="#A3A3C4"
                             title="រូបភាព 3D"
                             height={500}
                             canvasBackground={<Stars radius={100} depth={50} count={5000} factor={4} fade />}
