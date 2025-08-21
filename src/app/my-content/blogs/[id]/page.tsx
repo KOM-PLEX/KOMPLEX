@@ -72,7 +72,7 @@ export default function BlogPost() {
         const fetchBlog = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`http://localhost:6969/blogs/${id}`);
+                const response = await axios.get(`http://localhost:6969/user-content/blogs/${id}`);
                 setBlogPost(response.data);
             } catch (error) {
                 console.error('Error fetching blog:', error);
@@ -138,7 +138,7 @@ export default function BlogPost() {
                 <Sidebar />
 
                 {/* Main Content */}
-                <div className="flex-1 ml-64 pt-20">
+                <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
                     <div className="max-w-7xl mx-auto p-5">
                         {/* Header with Back Button and Edit Button */}
                         <div className="mb-6 flex items-center justify-between">

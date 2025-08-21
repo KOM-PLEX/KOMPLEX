@@ -91,7 +91,7 @@ export default function MyContent() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 ml-64 pt-20">
+            <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
                 <div className="p-6">
                     {/* Header */}
                     <div className="mb-8">

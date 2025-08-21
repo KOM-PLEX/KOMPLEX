@@ -81,7 +81,7 @@ export default function CreateBlog() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 ml-64 pt-20">
+            <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
                 <div className="max-w-7xl mx-auto p-5">
                     {/* Header */}
                     <div className="mb-6">

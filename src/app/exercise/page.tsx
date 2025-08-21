@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Listbox, Transition } from '@headlessui/react';
 import PracticeCard from '@/components/pages/exercise/ExerciseCard';
 import axios from 'axios';
-import { Exercise, Subject, Topic } from '@/types/exercise';
+import { Exercise, Subject, Topic } from '@/types/content/exercise';
 
 
 // Helper functions for data transformation
@@ -36,7 +36,7 @@ const transformBackendDataToSubjects = (backendData: Exercise): Subject[] => {
             id: exercise.id.toString(),
             name: exercise.title,
             questionCount: exercise.numberOfQuestions,
-            estimatedTime: `${exercise.duration} min`,
+            estimatedTime: `${exercise.duration}`,
             userProgress: exercise.highestScore,
             attempts: exercise.numberOfAttempts,
         }));

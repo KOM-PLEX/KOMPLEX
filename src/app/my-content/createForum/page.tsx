@@ -4,8 +4,11 @@ import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, MessageCircle, Trash, Upload } from 'lucide-react';
 import Sidebar from '@/components/pages/my-content/Sidebar';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function CreateForum() {
+    const router = useRouter();
     const [title, setTitle] = useState('');
     const [bodyText, setBodyText] = useState('');
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -43,18 +46,26 @@ export default function CreateForum() {
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (title.trim() && bodyText.trim()) {
-            console.log('Creating forum post:', {
+
+            //! TODO: handle image upload
+
+            const response = await axios.post('http://localhost:6969/user-content/forums', {
                 title,
-                bodyText,
-                image: selectedImage
+                description: bodyText,
             });
+
+            console.log(response);
+
+
             setTitle('');
             setBodyText('');
             setSelectedImage(null);
             setImagePreview('');
             setTitleCharCount(0);
+
+            router.push('/my-content/forums');
         }
     };
 
@@ -64,7 +75,7 @@ export default function CreateForum() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 ml-64 pt-20">
+            <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
                 <div className="max-w-7xl mx-auto p-5">
                     {/* Header */}
                     <div className="mb-6">

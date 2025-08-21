@@ -36,7 +36,7 @@ export default function PracticeCard({ topic, subjectId, subjectColors }: Practi
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                     <Clock size={16} />
-                    <span>{topic.estimatedTime}</span>
+                    <span>{topic.estimatedTime} នាទី</span>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@ export default function PracticeCard({ topic, subjectId, subjectColors }: Practi
                 {topic.userProgress && topic.userProgress > 0 ? (
                     <div className="space-y-2">
                         <div className="flex items-center justify-between text-sm">
-                            <span className="text-gray-600">ពិន្ទុរបស់អ្នក</span>
+                            <span className="text-gray-600">ពិន្ទុខ្ពស់បំផុត</span>
                         </div>
                         <div className="rounded-full h-2 flex items-center justify-between relative w-full gap-4">
                             <div className='relative w-full'>

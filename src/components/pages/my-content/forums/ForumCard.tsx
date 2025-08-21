@@ -4,6 +4,7 @@ import { ForumPost } from '@/types/content/forums';
 import { Media } from '@/types/content/media';
 import Carousel from '@/components/common/Carousel';
 import { useRouter } from 'next/navigation';
+import { Eye, MessageCircle, Heart, ThumbsUp } from 'lucide-react';
 
 interface ForumCardProps {
     post: ForumPost;
@@ -41,7 +42,7 @@ export default function ForumCard({ post }: ForumCardProps) {
     }
 
     return (
-        <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-0.5" onClick={handleCardClick}>
+        <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-0.5 cursor-pointer" onClick={handleCardClick}>
             <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-base">
                     {getAvatar(post.username)}
@@ -67,6 +68,21 @@ export default function ForumCard({ post }: ForumCardProps) {
             {post.media && post.media.length > 0 && (
                 <Carousel media={getImageUrls(post.media).map(url => ({ url, type: 'image' }))} />
             )}
+
+            <div className="flex items-center gap-4 mt-4">
+                <div className="flex items-center gap-1 mt-0.5">
+                    <Eye className="w-4 h-4" />
+                    {post.viewCount}
+                </div>
+                <div className="flex items-center gap-1">
+                    <ThumbsUp className="w-4 h-4" />
+                    {post.likeCount}
+                </div>
+                <div className="flex items-center gap-1">
+                    <MessageCircle className="w-4 h-4" />
+                    {post.commentCount}
+                </div>
+            </div>
         </div>
     );
 }

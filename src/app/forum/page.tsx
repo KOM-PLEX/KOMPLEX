@@ -151,7 +151,7 @@ export default function Forum() {
                         {/* Right Section: Action Buttons */}
                         <div className="flex items-center gap-3">
                             <Link
-                                href="/forums/create"
+                                href="/my-content/createForum"
                                 className="flex items-center gap-2 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors"
                             >
                                 <Plus className="w-4 h-4" />

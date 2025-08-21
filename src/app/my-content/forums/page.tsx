@@ -60,8 +60,9 @@ export default function MyForums() {
 
     const stats = {
         total: forumPosts.length,
-        totalViews: forumPosts.reduce((acc, p) => acc + p.viewCount, 0)
-        // ! Add total replies, comments and total likes
+        totalViews: forumPosts.reduce((acc, p) => acc + p.viewCount, 0),
+        totalComments: forumPosts.reduce((acc, p) => acc + p.commentCount, 0),
+        totalLikes: forumPosts.reduce((acc, p) => acc + p.likeCount, 0),
     };
 
     if (isLoading) {
@@ -91,7 +92,7 @@ export default function MyForums() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 ml-64 pt-20">
+            <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
                 <div className="p-6">
                     {/* Header */}
                     <div className="mb-8">
@@ -125,11 +126,11 @@ export default function MyForums() {
                             </div>
                         </div>
 
-                        {/* <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ចម្លើយសរុប</p>
-                                    <p className="text-2xl font-bold text-green-600">{stats.totalReplies}</p>
+                                    <p className="text-2xl font-bold text-green-600">{stats.totalComments}</p>
                                 </div>
                                 <div className="p-3 bg-green-100 rounded-lg">
                                     <MessageCircle className="w-6 h-6 text-green-600" />
@@ -147,7 +148,7 @@ export default function MyForums() {
                                     <Heart className="w-6 h-6 text-red-600" />
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
                     </div>
 
                     {/* Filters
@@ -176,7 +177,7 @@ export default function MyForums() {
                             <div className="flex items-center justify-between">
                                 <h2 className="text-lg font-semibold text-gray-900">អត្ថបទវេទិកា</h2>
                                 <Link
-                                    href="/forums/create"
+                                    href="/my-content/createForum"
                                     className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
                                 >
                                     <Plus className="w-4 h-4" />
@@ -186,11 +187,11 @@ export default function MyForums() {
                         </div>
                         <div className="p-6">
                             {forumPosts.length > 0 ? (
-                                forumPosts.map((post) => (
-                                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' key={post.id}>
-                                        <ForumCard post={post} />
-                                    </div>
-                                ))
+                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                                    {forumPosts.map((post) => (
+                                        <ForumCard key={post.id} post={post} />
+                                    ))}
+                                </div>
                             ) : (
                                 <div className="text-center py-12">
                                     <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />

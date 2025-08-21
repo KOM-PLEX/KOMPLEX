@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Trophy } from 'lucide-react';
-import { ExerciseSection } from '@/types/exercise';
+import { ExerciseSection } from '@/types/content/exercise';
 
 interface PracticeInfoProps {
     examTitle: string;
@@ -59,7 +59,7 @@ export default function PracticeInfo({ examTitle, examSections, totalTime, onSta
                                 <div className="flex items-center justify-between">
 
                                     <span className="text-sm text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
-                                        {section.title} 
+                                        {section.title}
                                     </span>
                                     <span className="text-sm text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
                                         {section.questions.length} សំណួរ

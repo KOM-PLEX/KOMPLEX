@@ -132,7 +132,7 @@ export default function CreateVideoPage() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 ml-64 pt-20">
+            <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
                 {/* Header */}
                 <div className="bg-white shadow-sm border-b border-gray-200 py-2 px-5 sticky top-0 z-10">
                     <div className="flex justify-center items-center gap-2">

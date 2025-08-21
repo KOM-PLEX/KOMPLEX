@@ -7,7 +7,7 @@ import ExerciseBox from "@/components/pages/exercise/ExerciseBox";
 import PracticeInfo from "@/components/pages/exercise/ExerciseInfo";
 import PracticeResult from "@/components/pages/exercise/ExerciseResult";
 import axios from "axios";
-import { ExerciseWithQuestions, ExerciseSection, Question } from "@/types/exercise";
+import { ExerciseWithQuestions, ExerciseSection, Question } from "@/types/content/exercise";
 
 
 
@@ -66,6 +66,8 @@ export default function LessonPage() {
     const [examSections, setExamSections] = useState<ExerciseSection[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [examStartTime, setExamStartTime] = useState<number>(0);
 
     // Fetch exercise data from backend
     useEffect(() => {
@@ -105,7 +107,7 @@ export default function LessonPage() {
                 setTimeRemaining(prev => {
                     if (prev <= 1) {
                         clearInterval(timer);
-                        setExamCompleted(true);
+                        handleTimeExpiry(); // Submit when time runs out
                         return 0;
                     }
                     return prev - 1;
@@ -114,11 +116,12 @@ export default function LessonPage() {
 
             return () => clearInterval(timer);
         }
-    }, [isExamStarted, examCompleted]);
+    }, [isExamStarted, examCompleted, examSections, answers, exerciseData, examStartTime]);
 
     const startExam = () => {
         setIsExamStarted(true);
         setTimeRemaining(totalTime * 60); // Convert to seconds
+        setExamStartTime(Date.now()); // Track start time
     };
 
     const formatTime = (seconds: number) => {
@@ -167,6 +170,62 @@ export default function LessonPage() {
         });
 
         return { correct: totalCorrect, total: totalQuestions };
+    };
+
+    // Submit exercise results to backend
+    const submitExercise = async () => {
+        if (!exerciseData || isSubmitting) return;
+
+        setIsSubmitting(true);
+        try {
+            const overallScore = getOverallScore();
+            const timeTakenInSeconds = Math.floor((Date.now() - examStartTime) / 1000);
+
+            // Prepare answers array in the format expected by backend
+            const submissionAnswers: { questionId: number; isCorrect: boolean }[] = [];
+
+            examSections.forEach(section => {
+                const sectionAnswers = answers[section.id] || {};
+                section.questions.forEach(question => {
+                    const selectedChoiceId = sectionAnswers[question.id];
+                    const correctChoice = question.choices.find(choice => choice.isCorrect);
+                    const isCorrect = selectedChoiceId === correctChoice?.id;
+
+                    submissionAnswers.push({
+                        questionId: question.id,
+                        isCorrect: isCorrect
+                    });
+                });
+            });
+
+            const submissionData = {
+                score: overallScore.correct * 100 / overallScore.total,
+                timeTaken: timeTakenInSeconds,
+                answers: submissionAnswers
+            };
+
+            console.log('Submitting exercise:', submissionData);
+
+            await axios.post(`http://localhost:6969/exercises/${id}/submit`, submissionData);
+
+            console.log('Exercise submitted successfully');
+        } catch (error) {
+            console.error('Error submitting exercise:', error);
+            alert('មានបញ្ហាកើតឡើងពេលបញ្ជូនលទ្ធផល សូមព្យាយាមម្តងទៀត');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    // Complete exam and submit results
+    const completeExam = async () => {
+        setExamCompleted(true);
+        await submitExercise();
+    };
+
+    // Handle time expiry
+    const handleTimeExpiry = async () => {
+        await completeExam();
     };
 
     // Loading state
@@ -341,9 +400,15 @@ export default function LessonPage() {
                             </div>
                             <p className="text-sm text-gray-500">ពេលវេលានៅសល់</p>
                         </div>
-                        <button onClick={() => setExamCompleted(true)} className="flex items-center gap-2 text-center bg-red-500/20 border border-red-500 text-red-600 px-4 py-2 rounded-lg">
+                        <button
+                            onClick={completeExam}
+                            disabled={isSubmitting}
+                            className="flex items-center gap-2 text-center bg-red-500/20 border border-red-500 text-red-600 px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
                             <Flag size={20} />
-                            <span className="text-red-600 hidden lg:flex">បញ្ចប់វិញ្ញាសា</span>
+                            <span className="text-red-600 hidden lg:flex">
+                                {isSubmitting ? 'កំពុងបញ្ជូន...' : 'បញ្ចប់វិញ្ញាសា'}
+                            </span>
                         </button>
                     </div>
                 </div>
@@ -383,10 +448,11 @@ export default function LessonPage() {
 
                     {currentSection === examSections.length - 1 ? (
                         <button
-                            onClick={() => setExamCompleted(true)}
-                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-colors"
+                            onClick={completeExam}
+                            disabled={isSubmitting}
+                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed text-white px-8 py-3 rounded-xl font-semibold text-lg transition-colors"
                         >
-                            បញ្ចប់វិញ្ញាសា
+                            {isSubmitting ? 'កំពុងបញ្ជូន...' : 'បញ្ចប់វិញ្ញាសា'}
                         </button>
                     ) : (
                         <button
