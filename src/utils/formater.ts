@@ -51,3 +51,19 @@ export const formatToKhmerDate = (dateString: string): string => {
 
   return `ថ្ងៃទី ${khmerDay} ខែ${khmerMonth} ឆ្នាំ ${khmerYear}`;
 };
+
+export const getTimeAgo = (dateString: string): string => {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+  const diffDays = Math.floor(diffHours / 24);
+
+  if (diffDays > 0) {
+    return `មុន ${diffDays} ថ្ងៃ`;
+  } else if (diffHours > 0) {
+    return `មុន ${diffHours} ម៉ោង`;
+  } else {
+    return "ថ្មីៗនេះ";
+  }
+};

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
-import { Media } from '@/types/forums';
+import { Media } from '@/types/content/media';
 
 
 interface CarouselProps {
@@ -32,7 +32,11 @@ export default function Carousel({
         }
     }, [currentIndex, autoPlay, media]);
 
-    const goToNext = useCallback(() => {
+    const goToNext = useCallback((e?: React.MouseEvent<HTMLButtonElement>) => {
+        if (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
         if (currentIndex < media.length - 1) {
             setCurrentIndex((prev) => (prev + 1));
         } else {
@@ -40,7 +44,11 @@ export default function Carousel({
         }
     }, [currentIndex, media.length]);
 
-    const goToPrevious = useCallback(() => {
+    const goToPrevious = useCallback((e?: React.MouseEvent<HTMLButtonElement>) => {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         if (currentIndex > 0) {
             setCurrentIndex((prev) => (prev - 1));
         } else {
@@ -125,7 +133,7 @@ export default function Carousel({
                             className="w-full h-full flex-shrink-0"
                             style={{ width: `${100 / media.length}%`, transform: `translateX(-${currentIndex * 100}%)` }}
                         >
-                            {item.type === 'image' || item.type === 'img' ? (
+                            {item.type === 'image' ? (
                                 <img
                                     src={item.url}
                                     alt={`Slide ${index + 1}`}

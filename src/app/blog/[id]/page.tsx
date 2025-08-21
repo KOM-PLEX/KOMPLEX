@@ -6,23 +6,7 @@ import { ArrowLeft, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Carousel from '@/components/common/Carousel';
-
-interface BlogPostDetailed {
-    id: number;
-    username: string;
-    title: string;
-    type: string;
-    topic: string;
-    description: string;
-    viewCount: number;
-    likeCount: number;
-    createdAt: string;
-    updatedAt: string;
-    media: {
-        url: string;
-        type: string;
-    }[];
-}
+import { Blog } from '@/types/content/blog';
 
 // Skeleton Loading Component
 function BlogPostSkeleton() {
@@ -75,7 +59,7 @@ export default function BlogPost() {
     const params = useParams();
     const id = params.id as string;
 
-    const [blogPost, setBlogPost] = useState<BlogPostDetailed>();
+    const [blogPost, setBlogPost] = useState<Blog>();
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ArrowLeft, Play, Pause, Volume2, VolumeX, Maximize, Settings, Share2, ThumbsUp, ThumbsDown, Bookmark, MoreVertical, User, Eye, Clock, Calendar, MessageSquare, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import Comment from '@/components/pages/forum/Comment';
+import Comment from '@/components/pages/forum/Comments';
 import ExerciseBox from '@/components/pages/docs/common/box/ExerciseBox';
 import VideoCard from '@/components/pages/video/VideoCard';
 import RecommendedVideoCard from '@/components/pages/video/RecommendedVideoCard';

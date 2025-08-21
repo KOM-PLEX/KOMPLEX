@@ -5,22 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, Eye, Plus, Book } from 'lucide-react';
 import axios from 'axios';
 import Sidebar from '@/components/pages/my-content/Sidebar';
-
-export interface BlogPost {
-    id: number;
-    username: string;
-    title: string;
-    type: string;
-    topic: string;
-    viewCount: number;
-    likeCount: number;
-    createdAt: string;
-    updatedAt: string;
-    media: {
-        url: string;
-        mediaType: string;
-    }[];
-}
+import { Blog } from '@/types/content/blog';
 
 // Skeleton Loading Component
 function MyBlogsSkeleton() {
@@ -55,7 +40,7 @@ function MyBlogsSkeleton() {
 }
 
 export default function MyBlogs() {
-    const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+    const [blogPosts, setBlogPosts] = useState<Blog[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

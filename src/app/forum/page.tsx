@@ -6,63 +6,25 @@ import { Search, Filter, MessageSquare, Plus } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import axios from 'axios';
-import { ForumPost, TransformedForumPost } from '@/types/forums';
+import { ForumPost } from '@/types/content/forums';
 
 export default function Forum() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-    const [forumPosts, setForumPosts] = useState<TransformedForumPost[]>([]);
+    const [forumPosts, setForumPosts] = useState<ForumPost[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Transform backend data to match component expectations
-    const transformForumPost = (post: ForumPost): TransformedForumPost => {
-        const getTopicKhmer = (topic: string): string => {
-            const topicMap: { [key: string]: string } = {
-                'math': 'គណិតវិទ្យា',
-                'physics': 'រូបវិទ្យា',
-                'chemistry': 'គីមីវិទ្យា',
-                'biology': 'ជីវវិទ្យា',
-                'general': 'ទូទៅ'
-            };
-            return topicMap[topic] || topic;
+    // Helper function to get Khmer topic name
+    const getTopicKhmer = (topic: string): string => {
+        const topicMap: { [key: string]: string } = {
+            'math': 'គណិតវិទ្យា',
+            'physics': 'រូបវិទ្យា',
+            'chemistry': 'គីមីវិទ្យា',
+            'biology': 'ជីវវិទ្យា',
+            'general': 'ទូទៅ'
         };
-
-        const getTimeAgo = (dateString: string): string => {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffMs = now.getTime() - date.getTime();
-            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-            const diffDays = Math.floor(diffHours / 24);
-
-            if (diffDays > 0) {
-                return `មុន ${diffDays} ថ្ងៃ`;
-            } else if (diffHours > 0) {
-                return `មុន ${diffHours} ម៉ោង`;
-            } else {
-                return 'ថ្មីៗនេះ';
-            }
-        };
-
-        const getAvatar = (username: string): string => {
-            return username.charAt(0);
-        };
-
-        return {
-            id: post.id,
-            author: {
-                name: post.username,
-                avatar: getAvatar(post.username)
-            },
-            time: getTimeAgo(post.createdAt),
-            title: post.title,
-            content: post.description,
-            image: post.media.filter(m => m.type === 'image').map(m => m.url),
-            upvotes: Math.floor(Math.random() * 50), // Since backend doesn't provide upvotes, use random for now
-            comments: Math.floor(Math.random() * 20), // Since backend doesn't provide comments, use random for now
-            upvoted: post.isLike,
-            category: getTopicKhmer(post.topic)
-        };
+        return topicMap[topic] || topic;
     };
 
     // Fetch forum posts from backend
@@ -71,8 +33,7 @@ export default function Forum() {
             try {
                 setLoading(true);
                 const response = await axios.get<ForumPost[]>('http://localhost:6969/forums');
-                const transformedPosts = response.data.map(transformForumPost);
-                setForumPosts(transformedPosts);
+                setForumPosts(response.data);
                 setError(null);
             } catch (err) {
                 console.error('Error fetching forum posts:', err);
@@ -90,9 +51,9 @@ export default function Forum() {
     // Filter forum posts based on search and categories
     const filteredPosts = forumPosts.filter(post => {
         const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.author.name.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(post.category);
+            post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            post.username.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(getTopicKhmer(post.topic));
 
         return matchesSearch && matchesCategory;
     });

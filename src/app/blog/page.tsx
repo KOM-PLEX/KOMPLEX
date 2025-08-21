@@ -6,22 +6,9 @@ import { Search, Filter, Book, Eye, Plus, User, ChevronDown, X, Star, BookOpen }
 import Link from 'next/link';
 import Sidebar from '@/components/pages/blog/Sidebar';
 import { Listbox, Transition } from '@headlessui/react';
+import { Blog } from '@/types/content/blog';
 
-export interface BlogPost {
-    id: number;
-    username: string;
-    title: string;
-    type: string;
-    topic: string;
-    viewCount: number;
-    likeCount: number;
-    createdAt: string;
-    updatedAt: string;
-    media: {
-        url: string;
-        mediaType: string;
-    }[];
-}
+
 
 // Skeleton Loading Component
 function BlogSkeleton() {
@@ -95,8 +82,8 @@ function BlogSkeleton() {
     );
 }
 
-export default function Blog() {
-    const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+export default function BlogPage() {
+    const [blogPosts, setBlogPosts] = useState<Blog[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
     const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
