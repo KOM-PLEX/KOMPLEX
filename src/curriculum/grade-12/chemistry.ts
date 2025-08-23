@@ -20,6 +20,7 @@ import OrganicPractice from "@/components/pages/docs/grade-12/chemistry/organic_
 import ChemisTables from "@/components/pages/docs/grade-12/chemistry/aqueous_solution_forces/Table";
 import Acid_Base_Tables from "@/components/pages/docs/grade-12/chemistry/acid_base/Acid_Base_Table";
 import Acid_base_titration from "@/components/pages/docs/grade-12/chemistry/acid_base/Acid_base_titration";
+import Equilibrium_Acid_Base_Salt from "@/components/pages/docs/grade-12/chemistry/chemical_equilibrium/Equilibrium_Acid_Base_Salt";
 
 
 
@@ -135,6 +136,11 @@ export const chemistry: Content = {
           title: "ការរំកិលលំនឹង",
           englishTitle: "shift-in-equilibrium",
           component: Equilibrium_shift,
+        },
+        {
+          title: "លំនឹងនៃអាសុីត បាស និងអំបិល",
+          englishTitle: "Equilibrium_Acid_Base_Salt",
+          component: Equilibrium_Acid_Base_Salt,
         },
         {
           title: "លំហាត់អនុវត្តន៍",
