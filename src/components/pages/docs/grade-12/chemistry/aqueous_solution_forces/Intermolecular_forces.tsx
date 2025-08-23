@@ -28,9 +28,9 @@ const FirstTopicContent: TopicContent = {
     title: "ជាទូទៅ",
     content: (
       <>
-          <div className='flex items-start  gap-40'>
+          <div className='flex items-start gap-10 flex-col sm:flex-row sm:gap-40'>
               <div className='flex items-start flex-col gap-3'>
-                  <p className='font-bold p'>សមាសធាតុអុីយ៉ុង </p>
+                  <p className='font-bold pl-5'>សមាសធាតុអុីយ៉ុង </p>
                   <ul className='list-disc pl-3'>
                       <li>ភាគច្រេីនជាអង្គធាតុរឹង ឬក្រាម</li>
                       <li>ភាគច្រេីនបង្កពីលោហះ និងអលោហះ</li>
@@ -388,7 +388,8 @@ const SixthTopicContent: TopicContent = {
                       <InlineMath math="Cl_{2}" /> 
                       <p>និង</p>
                       <InlineMath math="CBr_{4}" />
-                    <p>គឺជាម៉ូលេគុលមិនប៉ូលែ។</p>
+                    <p>គឺជាម៉ូលេគុល</p>
+                    <p>មិនប៉ូលែ។</p>
                   </div>
                   <p>ដូចនេះរវាងកម្លាំងម៉ូលេគុលទាំងពីរជាកម្លាំងឡុនដុនតែមួយគត់។</p>
               </div>  

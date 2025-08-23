@@ -18,6 +18,8 @@ import Acid_base_practice from "@/components/pages/docs/grade-12/chemistry/acid_
 import EquilibriumPractice from "@/components/pages/docs/grade-12/chemistry/chemical_equilibrium/Equilibrium-Practice";
 import OrganicPractice from "@/components/pages/docs/grade-12/chemistry/organic_chemistry/Organic-Practice";
 import ChemisTables from "@/components/pages/docs/grade-12/chemistry/aqueous_solution_forces/Table";
+import Acid_Base_Tables from "@/components/pages/docs/grade-12/chemistry/acid_base/Acid_Base_Table";
+import Acid_base_titration from "@/components/pages/docs/grade-12/chemistry/acid_base/Acid_base_titration";
 
 
 
@@ -100,6 +102,16 @@ export const chemistry: Content = {
           title: "សូលុយស្យុងក្នុងទឹកនិង ph",
           englishTitle: "aqueous-solutions-and-ph",
           component: Aqueous_solution_ph,
+        },
+        {
+          title: "អត្រាកម្មអាសុីត-បាស",
+          englishTitle: "Acid_base_titration",
+          component: Acid_base_titration,
+        },
+        {
+          title: "តារាងសមាសធាតុ",
+          englishTitle: "Acid-Base-Table",
+          component: Acid_Base_Tables,
         },
         {
           title: "លំហាត់អនុវត្តន៍",
