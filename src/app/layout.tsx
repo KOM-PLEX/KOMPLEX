@@ -31,9 +31,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="kh" className={poppins.className}>
       <head>
-        <link rel="icon" href="/favicon.png" />
+        <meta charSet="utf-8" />
+        <link rel="icon" href="/logo.png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}

@@ -1,28 +1,20 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Sidebar from '@/components/pages/my-content/Sidebar';
 import {
-    Pencil,
-    Plus,
-    TrendingUp,
-    Clock,
-    CheckCircle,
-    XCircle,
-    Target,
-    Calendar,
-    BarChart3,
     BookOpen,
-    History,
-    FileText
+    CheckCircle,
+    Clock,
+    BarChart3
 } from 'lucide-react';
 import axios from 'axios';
-import { ExerciseDashboard, ExerciseHistory, ExerciseReport } from '@/types/user-content/exercise';
+import { ExerciseDashboard, ExerciseHistory } from '@/types/user-content/exercise';
+import ExerciseHistoryComponent from '@/components/pages/my-content/exercises/ExerciseHistory';
+import ExerciseReportComponent from '@/components/pages/my-content/exercises/ExerciseReport';
 
 export default function MyExercises() {
     const [dashboard, setDashboard] = useState<ExerciseDashboard | null>(null);
-    const [history, setHistory] = useState<ExerciseHistory[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [activeTab, setActiveTab] = useState<'history' | 'report'>('history');
 
@@ -36,10 +28,6 @@ export default function MyExercises() {
                 const dashboardResponse = await axios.get<ExerciseDashboard>('http://localhost:6969/user-content/exercises/dashboard');
                 setDashboard(dashboardResponse.data);
 
-                // Fetch history data
-                const historyResponse = await axios.get<ExerciseHistory[]>('http://localhost:6969/user-content/exercises/history');
-                setHistory(historyResponse.data);
-
             } catch (error) {
                 console.error('Error fetching exercise data:', error);
             } finally {
@@ -48,18 +36,9 @@ export default function MyExercises() {
         };
 
         fetchData();
-    }, []);
+    }, []); // Empty dependency array ensures this only runs once on mount
 
-    const formatTime = (seconds: number) => {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-    };
 
-    const formatDate = (dateString: string | null) => {
-        if (!dateString) return 'មិនដឹង';
-        return new Date(dateString).toLocaleDateString('km-KH');
-    };
 
     if (isLoading) {
         return (
@@ -145,7 +124,9 @@ export default function MyExercises() {
                                     : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                                     }`}
                             >
-                                <History className="w-4 h-4" />
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
                                 ប្រវត្តិ
                             </button>
                             <button
@@ -155,7 +136,9 @@ export default function MyExercises() {
                                     : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                                     }`}
                             >
-                                <FileText className="w-4 h-4" />
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
                                 របាយការណ៍
                             </button>
                         </div>
@@ -163,66 +146,9 @@ export default function MyExercises() {
 
                     {/* Tab Content */}
                     {activeTab === 'history' ? (
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-                            <div className="p-6 border-b border-gray-200">
-                                <div className="flex items-center justify-between">
-                                    <h2 className="text-lg font-semibold text-gray-900">ប្រវត្តិលំហាត់</h2>
-                                    <Link
-                                        href="/practice"
-                                        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
-                                    >
-                                        <Plus className="w-4 h-4" />
-                                        ចាប់ផ្តើមលំហាត់
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className="p-6">
-                                {history.length > 0 ? (
-                                    <div className="space-y-4">
-                                        {history.map((exercise) => (
-                                            <div key={exercise.id} className="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-indigo-200 transition-colors">
-                                                <div className="p-3 rounded-lg bg-blue-100 text-blue-600">
-                                                    <Target className="w-4 h-4" />
-                                                </div>
-
-                                                <div className="flex-1">
-                                                    <h3 className="font-medium text-gray-900 mb-1">{exercise.title}</h3>
-                                                    <div className="flex items-center gap-4 text-sm text-gray-500">
-                                                        <span>ពិន្ទុ: {exercise.score}%</span>
-                                                        <span className="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-600">
-                                                            ពេលវេលា: {formatTime(exercise.timeTaken)}
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                                <div className="text-right text-xs text-gray-500">
-                                                    <div>{formatDate(exercise.createdAt)}</div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <div className="text-center py-12">
-                                        <Target className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                        <h3 className="text-lg font-medium text-gray-900 mb-2">រកមិនឃើញប្រវត្តិលំហាត់</h3>
-                                        <p className="text-gray-500 mb-6">សូមចាប់ផ្តើមលំហាត់ដើម្បីមើលប្រវត្តិ</p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
+                        <ExerciseHistoryComponent history={history} />
                     ) : (
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-                            <div className="p-6 border-b border-gray-200">
-                                <h2 className="text-lg font-semibold text-gray-900">របាយការណ៍លំហាត់</h2>
-                            </div>
-                            <div className="p-6">
-                                <div className="text-center py-12">
-                                    <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                    <h3 className="text-lg font-medium text-gray-900 mb-2">របាយការណ៍នឹងមកដល់ឆាប់ៗ</h3>
-                                    <p className="text-gray-500">API នេះនឹងត្រូវបានអភិវឌ្ឍន៍នៅពេលអនាគត</p>
-                                </div>
-                            </div>
-                        </div>
+                        <ExerciseReportComponent />
                     )}
                 </div>
             </div>

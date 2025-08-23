@@ -7,6 +7,7 @@ import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil, User, Set
 import { Menu as HeadlessMenu, Transition } from '@headlessui/react';
 import { curriculum } from '@/curriculum/curriculum';
 import FeedbackModal from '../pages/feedback/FeedbackModal';
+import Image from 'next/image';
 
 const navLinks = [
     {
@@ -66,10 +67,11 @@ export default function Header() {
             <div className="bg-white/95 backdrop-blur-md border-b border-indigo-500/10 fixed top-0 left-0 right-0 z-50 w-full">
                 <div className="max-w-full px-6 py-2 flex justify-between items-center">
                     {/* Logo */}
-                    <Link href="/" className="text-decoration-none">
+                    <Link href="/" className="text-decoration-none flex items-center gap-2">
+                        <img src="/logo.png" alt="logo" className='w-5 h-5' />
                         <div className="flex items-center justify-center gap-0">
-                            <span className="text-3xl font-extrabold tracking-tight text-indigo-600">KOM</span>
-                            <span className="text-3xl font-extrabold tracking-tight text-black">PLEX</span>
+                            <span className="text-2xl font-extrabold tracking-tight text-indigo-500">KOM</span>
+                            <span className="text-2xl font-extrabold tracking-tight text-black">PLEX</span>
                         </div>
                     </Link>
 

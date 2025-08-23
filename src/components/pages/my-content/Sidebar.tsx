@@ -108,7 +108,7 @@ export default function Sidebar() {
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 min-w-[100px] ${active
+                                    className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 min-w-[70px] ${active
                                         ? 'text-indigo-600 bg-indigo-50 border border-indigo-200'
                                         : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 border border-transparent hover:border-indigo-100'
                                         }`}
