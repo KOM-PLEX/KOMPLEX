@@ -14,26 +14,14 @@ export default function Forum() {
     const [forumPosts, setForumPosts] = useState<ForumPost[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    // Helper function to get Khmer topic name
-    const getTopicKhmer = (topic: string): string => {
-        const topicMap: { [key: string]: string } = {
-            'math': 'គណិតវិទ្យា',
-            'physics': 'រូបវិទ្យា',
-            'chemistry': 'គីមីវិទ្យា',
-            'biology': 'ជីវវិទ្យា',
-            'general': 'ទូទៅ'
-        };
-        return topicMap[topic] || topic;
-    };
-
     // Fetch forum posts from backend
     useEffect(() => {
         const fetchForumPosts = async () => {
             try {
                 setLoading(true);
                 const response = await axios.get<ForumPost[]>('http://localhost:6969/forums');
-                setForumPosts(response.data);
+                const data = await response.data;
+                setForumPosts(data);
                 setError(null);
             } catch (err) {
                 console.error('Error fetching forum posts:', err);
@@ -46,6 +34,16 @@ export default function Forum() {
         fetchForumPosts();
     }, []);
 
+    const handleLikeClick = async (postId: number, isLiked: boolean) => {
+        try {
+            const response = await axios.patch(`http://localhost:6969/user-content/forums/${postId}/${isLiked ? 'unlike' : 'like'}`);
+            console.log(response.data);
+            setForumPosts(prev => prev.map(post => post.id === postId ? { ...post, likeCount: isLiked ? post.likeCount - 1 : post.likeCount + 1, isLiked: !isLiked } : post));
+        } catch (error) {
+            console.error('Error liking post:', error);
+        }
+    }
+
     const categories = ['គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];
 
     // Filter forum posts based on search and categories
@@ -53,7 +51,7 @@ export default function Forum() {
         const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.username.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(getTopicKhmer(post.topic));
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(post.topic);
 
         return matchesSearch && matchesCategory;
     });
@@ -207,7 +205,7 @@ export default function Forum() {
                         </div>
                     ) : filteredPosts.length > 0 ? (
                         filteredPosts.map((post) => (
-                            <ForumCard key={post.id} post={post} isFromBasePage={true} />
+                            <ForumCard key={post.id} post={post} isFromBasePage={true} onLikeClick={() => handleLikeClick(post.id, post.isLiked)} />
                         ))
                     ) : (
                         <div className="text-center py-12">

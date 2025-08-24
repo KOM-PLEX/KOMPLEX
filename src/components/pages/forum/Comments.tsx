@@ -10,9 +10,11 @@ interface CommentProps {
     focusInput?: boolean;
     isReadOnly?: boolean;
     onClose?: () => void;
+    onCommentPost?: (comment: string) => void;
+    setComment?: (comment: string) => void;
 }
 
-export default function Comment({ comments, focusInput = false, isReadOnly = false, onClose }: CommentProps) {
+export default function Comment({ comments, focusInput = false, isReadOnly = false, onClose, onCommentPost, setComment }: CommentProps) {
     const [newComment, setNewComment] = useState('');
     const [isCommentActive, setIsCommentActive] = useState(focusInput);
     const [repliesState, setRepliesState] = useState<{ [commentId: number]: ForumReply[] }>({});
@@ -57,11 +59,17 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
         if (newComment.trim()) {
             // Here you would typically send the comment to your backend
             console.log('New comment:', newComment);
-            setNewComment('');
+            if (onCommentPost) onCommentPost(newComment);
             setIsCommentActive(false);
             if (onClose) onClose();
+            if (setComment) {
+                setComment('');
+                setNewComment('');
+            }
         }
     };
+
+
 
     const handleCancel = () => {
         setNewComment('');
@@ -72,6 +80,56 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
     const handleInputClick = () => {
         setIsCommentActive(true);
     };
+
+    const handleCommentLike = async (commentId: number) => {
+        try {
+            const response = await axios.patch(`http://localhost:6969/forum_comments/${commentId}/like`);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error liking comment:', error);
+        }
+    }
+
+    const handleCommentUnlike = async (commentId: number) => {
+        try {
+            const response = await axios.patch(`http://localhost:6969/forum_comments/${commentId}/unlike`);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error unliking comment:', error);
+        }
+    }
+
+    const handleSubmitReply = async (commentId: number, description: string) => {
+        try {
+            // Send reply to backend
+            await axios.post(`http://localhost:6969/forum_replies/${commentId}`, {
+                description
+            });
+
+            // Refresh replies for this comment
+            await fetchReplies(commentId);
+        } catch (error) {
+            console.error('Error submitting reply:', error);
+        }
+    };
+
+    const handleReplyLike = async (replyId: number) => {
+        try {
+            const response = await axios.patch(`http://localhost:6969/forum_replies/${replyId}/like`);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error liking reply:', error);
+        }
+    }
+
+    const handleReplyUnlike = async (replyId: number) => {
+        try {
+            const response = await axios.patch(`http://localhost:6969/forum_replies/${replyId}/unlike`);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error unliking reply:', error);
+        }
+    }
 
     return (
         <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10">
@@ -131,14 +189,19 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
 
             {/* Comments List */}
             <div className="space-y-4">
-                {comments.map((comment) => (
+                {comments.map((comment, index) => (
                     <CommentComponent
-                        key={comment.id}
+                        key={index}
                         comment={comment}
                         repliesState={repliesState}
                         loadingReplies={loadingReplies}
                         showingReplies={showingReplies}
                         fetchReplies={fetchReplies}
+                        onSubmitReply={handleSubmitReply}
+                        onReplyLike={handleReplyLike}
+                        onReplyUnlike={handleReplyUnlike}
+                        onCommentLike={handleCommentLike}
+                        onCommentUnlike={handleCommentUnlike}
                     />
                 ))}
             </div>

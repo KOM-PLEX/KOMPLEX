@@ -146,7 +146,7 @@ export default function MyExercises() {
 
                     {/* Tab Content */}
                     {activeTab === 'history' ? (
-                        <ExerciseHistoryComponent history={history} />
+                        <ExerciseHistoryComponent />
                     ) : (
                         <ExerciseReportComponent />
                     )}

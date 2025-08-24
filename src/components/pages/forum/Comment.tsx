@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ThumbsUp, MessageCircle } from 'lucide-react';
+import { ThumbsUp, MessageCircle, Send } from 'lucide-react';
 import { ForumComment, ForumReply } from '@/types/content/forums';
 import { getTimeAgo } from '@/utils/formater';
 import ReplyComponent from './Reply';
@@ -12,18 +12,50 @@ interface CommentComponentProps {
     fetchReplies: (commentId: number) => void;
 }
 
+interface CommentComponentProps {
+    comment: ForumComment;
+    repliesState: { [commentId: number]: ForumReply[] };
+    loadingReplies: { [commentId: number]: boolean };
+    showingReplies: { [commentId: number]: boolean };
+    fetchReplies: (commentId: number) => void;
+    onSubmitReply: (commentId: number, description: string) => void;
+    onCommentLike: (commentId: number) => void;
+    onCommentUnlike: (commentId: number) => void;
+    onReplyLike: (replyId: number) => void;
+    onReplyUnlike: (replyId: number) => void;
+}
+
 export default function CommentComponent({
     comment,
     repliesState,
     loadingReplies,
     showingReplies,
-    fetchReplies
+    fetchReplies,
+    onSubmitReply,
+    onReplyLike,
+    onReplyUnlike,
+    onCommentLike,
+    onCommentUnlike,
 }: CommentComponentProps) {
     const [commentUpvoted, setCommentUpvoted] = useState(comment.isLike);
     const [commentUpvotes, setCommentUpvotes] = useState(0);
+    const [isReplying, setIsReplying] = useState(false);
+    const [replyText, setReplyText] = useState('');
     const commentReplies = repliesState[comment.id] || [];
     const isLoadingReplies = loadingReplies[comment.id] || false;
     const isShowingReplies = showingReplies[comment.id] || false;
+
+    const handleSubmitReply = (replyToId: number, description: string) => {
+        onSubmitReply(replyToId, description);
+        setReplyText('');
+        setIsReplying(false);
+    };
+
+    const handleSubmitDirectReply = () => {
+        if (replyText.trim()) {
+            handleSubmitReply(comment.id, replyText.trim());
+        }
+    };
 
     return (
         <div className="mb-4">
@@ -41,9 +73,9 @@ export default function CommentComponent({
                         <button
                             onClick={() => {
                                 if (commentUpvoted) {
-                                    setCommentUpvotes(commentUpvotes - 1);
+                                    onCommentUnlike(comment.id);
                                 } else {
-                                    setCommentUpvotes(commentUpvotes + 1);
+                                    onCommentLike(comment.id);
                                 }
                                 setCommentUpvoted(!commentUpvoted);
                             }}
@@ -52,7 +84,12 @@ export default function CommentComponent({
                             <ThumbsUp className={`w-3 h-3 ${commentUpvoted ? 'fill-indigo-600' : ''}`} />
                             <span>{commentUpvotes}</span>
                         </button>
-                        <button className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200">ឆ្លើយតប</button>
+                        <button
+                            onClick={() => setIsReplying(!isReplying)}
+                            className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200"
+                        >
+                            ឆ្លើយតប
+                        </button>
                         <button
                             onClick={() => fetchReplies(comment.id)}
                             disabled={isLoadingReplies}
@@ -62,8 +99,36 @@ export default function CommentComponent({
                             {isLoadingReplies ? 'កំពុងដំណើរការ...' :
                                 isShowingReplies ? 'លាក់ការឆ្លើយតប' : 'បង្ហាញការឆ្លើយតប'}
                         </button>
-                        <button className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200">ចែករំលែក</button>
                     </div>
+
+                    {/* Reply Input */}
+                    {isReplying && (
+                        <div className="mt-3 flex gap-2">
+                            <div className="flex-1">
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        value={replyText}
+                                        onChange={(e) => setReplyText(e.target.value)}
+                                        placeholder="សរសេរការឆ្លើយតប..."
+                                        className="flex-1 px-3 py-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500"
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                handleSubmitDirectReply();
+                                            }
+                                        }}
+                                    />
+                                    <button
+                                        onClick={handleSubmitDirectReply}
+                                        disabled={!replyText.trim()}
+                                        className="px-3 py-1 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        <Send></Send>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -71,7 +136,14 @@ export default function CommentComponent({
             {isShowingReplies && commentReplies.length > 0 && (
                 <div className="mt-3">
                     {commentReplies.map((reply) => (
-                        <ReplyComponent key={reply.id} reply={reply} />
+                        <ReplyComponent
+                            key={reply.id}
+                            reply={reply}
+                            commentId={comment.id}
+                            onSubmitReply={onSubmitReply}
+                            onReplyLike={onReplyLike}
+                            onReplyUnlike={onReplyUnlike}
+                        />
                     ))}
                 </div>
             )}

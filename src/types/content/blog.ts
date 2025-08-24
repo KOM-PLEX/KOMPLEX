@@ -11,5 +11,6 @@ export interface Blog {
   likeCount: number;
   createdAt: string;
   updatedAt: string;
+  isSaved: boolean;
   media: Media[];
 }

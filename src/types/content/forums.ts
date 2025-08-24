@@ -14,7 +14,7 @@ export interface ForumPost {
   updatedAt: string;
   media: Media[];
   username: string;
-  isLike: boolean;
+  isLiked: boolean;
 }
 
 export interface ForumComment {

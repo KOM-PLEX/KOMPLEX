@@ -18,6 +18,9 @@ export default function ForumDiscussion() {
     const [isCommentInputActive, setIsCommentInputActive] = useState(false);
     const [post, setPost] = useState<ForumPost | null>(null);
     const [comments, setComments] = useState<ForumComment[]>([]);
+    const [refresh, setRefresh] = useState(false);
+
+    const [comment, setComment] = useState<string>('');
 
     useEffect(() => {
         const fetchForumPost = async () => {
@@ -33,7 +36,30 @@ export default function ForumDiscussion() {
             setComments(data);
         };
         fetchComments();
-    }, [id]);
+    }, [id, refresh]);
+
+    const handleCommentPost = async (comment: string) => {
+        try {
+            const response = await axios.post(`http://localhost:6969/forum_comments/${id}`, {
+                description: comment
+            });
+            const data = response.data;
+            setComments([...comments, data]);
+            setRefresh(!refresh);
+        } catch (error) {
+            console.error('Error posting comment:', error);
+        }
+    }
+
+    const handleLikeClick = async (postId: number, isLiked: boolean) => {
+        try {
+            const response = await axios.patch(`http://localhost:6969/user-content/forums/${postId}/${isLiked ? 'unlike' : 'like'}`);
+            console.log(response.data);
+            setPost(prev => prev ? { ...prev, likeCount: isLiked ? prev.likeCount - 1 : prev.likeCount + 1, isLiked: !isLiked } : null);
+        } catch (error) {
+            console.error('Error liking post:', error);
+        }
+    }
 
     if (!post) {
         return <div>Loading...</div>;
@@ -61,10 +87,10 @@ export default function ForumDiscussion() {
 
                 {/* Main Post */}
                 <div className="mb-6">
-                    <ForumCard post={post} isFromBasePage={false} onCommentClick={handleCommentToggle} />
+                    <ForumCard post={post} isFromBasePage={false} onCommentClick={handleCommentToggle} onLikeClick={() => handleLikeClick(post.id, post.isLiked)} />
                 </div>
 
-                <Comment comments={comments} focusInput={isCommentInputActive} onClose={handleCommentClose} />
+                <Comment comments={comments} focusInput={isCommentInputActive} onClose={handleCommentClose} onCommentPost={handleCommentPost} setComment={setComment} />
             </div>
         </div>
     );

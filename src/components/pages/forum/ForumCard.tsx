@@ -13,11 +13,12 @@ interface ForumCardProps {
     isFromBasePage: boolean;
     post: ForumPost;
     onCommentClick?: () => void;
+    onLikeClick?: () => void;
 }
 
-export default function ForumCard({ isFromBasePage, post, onCommentClick }: ForumCardProps) {
-    const [upvoted, setUpvoted] = useState(post.isLike);
-    const [upvoteCount, setUpvoteCount] = useState(Math.floor(Math.random() * 50)); // Temporary until backend provides upvotes
+export default function ForumCard({ isFromBasePage, post, onCommentClick, onLikeClick }: ForumCardProps) {
+    const [upvoted, setUpvoted] = useState(post.isLiked);
+    const [upvoteCount, setUpvoteCount] = useState(post.likeCount);
     const router = useRouter();
 
     // Helper functions to format backend data
@@ -52,6 +53,9 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick }: Foru
             setUpvoteCount(upvoteCount + 1);
         }
         setUpvoted(!upvoted);
+        if (onLikeClick) {
+            onLikeClick();
+        }
     };
 
     const handleCommentClick = (e: React.MouseEvent) => {

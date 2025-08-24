@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Loader2 } from 'lucide-react';
+import { ArrowLeft, Bookmark, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Carousel from '@/components/common/Carousel';
@@ -63,6 +63,8 @@ export default function BlogPost() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const [isSaved, setIsSaved] = useState(false);
+
     console.log('Component rendered with id:', id);
     console.log('Current state - isLoading:', isLoading, 'blogPost:', blogPost, 'error:', error);
 
@@ -80,6 +82,7 @@ export default function BlogPost() {
 
                 const response = await axios.get(`http://localhost:6969/user-content/blogs/${id}`);
                 const data = response.data;
+                setIsSaved(data.isSaved);
                 console.log('API response data:', data);
 
                 // Ensure minimum loading time of 800ms for better UX
@@ -110,6 +113,20 @@ export default function BlogPost() {
             console.log('No ID available yet');
         }
     }, [id]);
+
+    const handleBookmark = async () => {
+        try {
+            if (isSaved) {
+                await axios.patch(`http://localhost:6969/user-content/blogs/${id}/unsave`);
+            } else {
+                await axios.patch(`http://localhost:6969/user-content/blogs/${id}/save`);
+            }
+            setIsSaved(!isSaved);
+        } catch (err) {
+            console.error('Error bookmarking blog post:', err);
+            setError('Failed to bookmark blog post. Please try again.');
+        }
+    }
 
     if (isLoading) {
         return <BlogPostSkeleton />;
@@ -150,9 +167,14 @@ export default function BlogPost() {
                 <article className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
                     {/* Header */}
                     <div className="p-6 md:p-8">
-                        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
-                            {blogPost.title}
-                        </h1>
+                        <div className='flex items-center justify-between gap-2'>
+                            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
+                                {blogPost.title}
+                            </h1>
+                            <button onClick={handleBookmark} className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
+                                {isSaved ? <Bookmark className="fill-indigo-600 w-8 h-8" /> : <Bookmark className="w-8 h-8" />}
+                            </button>
+                        </div>
                         <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold">
                                 {blogPost.username.split(" ")[0].charAt(0)}
