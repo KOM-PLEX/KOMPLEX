@@ -131,7 +131,9 @@ const Hyperbola = () => {
     graph: {
       expressions: [
         { id: "hyperbola1", latex: "y = 0.5\\sqrt{4(x - 2)^2 - 16} + 1", color: "#2563eb" },
-        { id: "hyperbola2", latex: "y = -0.5\\sqrt{4(x - 2)^2 - 16} + 1", color: "#2563eb" },
+        { id: "hyperbola2", latex: "y = -0.5\\sqrt{4(x - 2)^2 - 16} + 1", color: "#2563eb" }, 
+        { id: "asymptote1", latex: "y = 0.5(x - 2) + 1", color: "#7c3aed" },
+        { id: "asymptote2", latex: "y = -0.5(x - 2) + 1", color: "#7c3aed" },
         { id: "vertices", latex: "(0, 1), (4, 1)", color: "#dc2626" },
         { id: "center", latex: "(2, 1)", color: "#059669" },
         { id: "asymptote1", latex: "y = 0.5(x - 2) + 1", color: "#7c3aed" },
@@ -195,17 +197,13 @@ const Hyperbola = () => {
     },
     warning: {
       content: (
-        <div className="space-y-3">
-          <div className="bg-red-50 p-4 rounded-lg">
-            <ul className="space-y-2 text-red-700">
-              <li>• ត្រូវកំណត់ត្រឹមត្រូវថាតើអុីពែបូលដេក ឬ ឈរ</li>
-              <li>• ចាំថា <InlineMath math="c^2 = a^2 + b^2" /> សម្រាប់អុីពែបូល (ផ្ទុយពីអេលីប)</li>
-              <li>• អាស៊ីមតូតឆ្លងកាត់ចំណុចកណ្តាល និងមានបំរៀង <InlineMath math="\pm \frac{b}{a}" /></li>
-              <li>• កំណុំនឹងនៅខាងក្រៅនៃកំពូល</li>
-              <li>• សមីការអុីពែបូលត្រូវមានសញ្ញាដក (-) រវាង x² និង y²</li>
-            </ul>
-          </div>
-        </div>
+        <>
+          <li> ត្រូវកំណត់ត្រឹមត្រូវថាតើអុីពែបូលដេក ឬ ឈរ</li>
+          <li> ចាំថា <InlineMath math="c^2 = a^2 + b^2" /> សម្រាប់អុីពែបូល (ផ្ទុយពីអេលីប)</li>
+          <li> អាស៊ីមតូតឆ្លងកាត់ចំណុចកណ្តាល និងមានបំរៀង <InlineMath math="\pm \frac{b}{a}" /></li>
+          <li> កំណុំនឹងនៅខាងក្រៅនៃកំពូល</li>
+          <li> សមីការអុីពែបូលត្រូវមានសញ្ញាដក (-) រវាង x² និង y²</li>
+        </>
       )
     },
     exercise: {
