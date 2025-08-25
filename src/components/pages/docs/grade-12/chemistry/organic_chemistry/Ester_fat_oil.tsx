@@ -9,7 +9,9 @@ import 'katex/dist/katex.min.css'
 import WarningBox from "../../../common/box/WarningBox"
 import ExerciseBox from "../../../common/box/ExerciseBox"
 import ExampleBox from "../../../common/box/ExampleBox"
+import { ThreeDExplanationBox, ThreeDExplanationBoxProps } from "../../../common/box/explanation-box/3DExplanationBox";
 import { div } from "three/tsl"
+import { ImageBox, ImageBoxProps } from "../../../common/box/explanation-box/ImageExplanationBox";
 
 
 
@@ -63,6 +65,7 @@ const SecondTopicContent: TopicContent = {
       </>
     ),
   },
+
   example: {
     question: [
         <>
@@ -206,12 +209,58 @@ const SixthTopicContent: TopicContent = {
     content: (
       <>
         <div className='flex items-start gap-3 flex-col'>
-            {/* picture need for this  */}
         </div>
       </>
     ),
   },
+  threeDExplanation: [
+        {
+            title: "អាសុីតអាសេទីលសាលីសុីលិច(អាស្ពីរីន)",
+            src: "/chemistry/aspirin.glb",
+            target: [0, 0.5, 0],
+            scale: 2,
+            canvasBackgroundColor: "white",
+            explanation: [
+                <InlineMath math="CH_{3}-COO-C_{6}H_{5} " /> 
+            ],
+        },
+  ],
+  imageExplanation:[
+        {
+            title: "អាសុីតអាសេទីលសាលីសុីលិច(អាស្ពីរីន)",
+            src: "/chemistry/aspirinImg.avif",
+            imageAlt: "អាសុីតអាសេទីលសាលីសុីលិច",
+            explanation: [
+                <InlineMath math="CH_{3}-COO-C_{6}H_{5}" /> 
+            ],
+        },
+        {
+            title: "អាសុីតសាលីសុីលិច",
+            src: "/chemistry/acidSalysilex.png",
+            imageAlt: "អាសុីតសាលីសុីលិច",
+            explanation: [
+                <InlineMath math="C_{6}H_{4}(OH)COOH" /> 
+            ],
+        },
+        {
+            title: "មេទីលបង់សូអាត",
+            src: "/chemistry/methyleBgsoart.png",
+            imageAlt: "មេទីលបង់សូអាត",
+            explanation: [
+                <InlineMath math="C_{6}H_{5}COOCH_{3}" /> 
+            ],
+        },
+        {
+            title: "មេទីលសាលីសុីឡាត",
+            src: "/chemistry/MethylSalicylate.jpg",
+            imageAlt: "មេទីលសាលីសុីឡាត",
+            explanation: [
+                <InlineMath math="C_{6}H_{4}COOCH_{3}" /> 
+            ],
+        },
+  ]
 }
+
 
 const SeventhTopicContent: TopicContent = {
   definition: {
@@ -249,15 +298,238 @@ const EighthTopicContent: TopicContent = {
     title: "ជាទូទៅ",
     content: (
       <>
-        <div className='flex items-start gap-3 flex-col'>
-            <p>ខ្លាញ់ និងប្រងមានទម្រង់ដូចគ្នា គឺជាទ្រីអេស្ទែដែលកេីតពីគ្លីសេរ៉ុល ឬប្រូប៉ាន -1,2,3-ទ្រីអុល​ <InlineMath math="(CH_{2}OH-CHOH-CH_{2}OH)" /> និងអាសុីតខ្លាញ់ ។</p>
-            
+        <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
+            <div className='flex items-start gap-3 flex-col'>
+                <li>ខ្លាញ់ និងប្រងមានទម្រង់ដូចគ្នា គឺជាទ្រីអេស្ទែដែលកេីតពីគ្លីសេរ៉ុល ឬប្រូប៉ាន -1,2,3-ទ្រីអុល​ <InlineMath math="(CH_{2}OH-CHOH-CH_{2}OH)" /> និងអាសុីតខ្លាញ់ ។</li>
+               <InlineMath math="C_{3}H_{8}OH + 3R-COOH \rightarrow C_{3}H_{5}(COOR)_{3} + 3H_2O" />
+               <div className='flex items-center gap-15'>
+                <div className='flex items-center gap-5'>
+                      <p>គ្លីសេរ៉ុល</p>
+                      <p>អាសុីតកាបុកសុីលិច</p>
+                </div>
+                <div className='flex items-center gap-15'>
+                      <p>ខ្លាញ់</p>
+                      <p>ទឹក</p>
+                </div>
+              </div>
+            </div>
+            <div className='flex items-start gap-3 flex-col'>
+                <li>អាសុីតខ្លាញ់ឆ្អែត :</li>
+                <div className='flex items-center gap-3 flex-wrap'>
+                  <p>អាសុីតប៉ាល់មីទិច</p>
+                  <InlineMath math="CH_{3}-(CH_{2})_{14}-COOH" />
+                </div>
+                <div className='flex items-center gap-3 flex-wrap'>
+                  <p>អាសុីតស្តេអារិច</p>
+                  <InlineMath math="CH_{3}-(CH_{2})_{16}-COOH" />
+                </div>
+                <div className='flex items-center gap-3 flex-wrap'>
+                  <p>អាសុីតអារ៉ាសុីឌិច</p>
+                  <InlineMath math="CH_{3}-(CH_{2})_{18}-COOH" />
+                </div>
+            </div>
+            <div className='flex items-start gap-3 flex-col'>
+                <li>អាសុីតខ្លាញ់មិនឆ្អែត :</li>
+                <div className='flex items-center gap-3 flex-wrap'>
+                  <p>អាសុីតអូលេអុិច</p>
+                  <InlineMath math="CH_{3}-(CH_{2})_{7}-CH=CH-(CH_{2})_{7}-COOH" />
+                </div>
+                <div className='flex items-center gap-3 flex-wrap'>
+                  <p>អាសុីតលីណូលេអុិច</p>
+                  <InlineMath math="CH_{3}-(CH_{2})_{4}-CH=CH-CH_{2}-CH=CH-(CH_{2})_{7}-COOH" />
+                </div>
+                <div className='flex items-center gap-3 flex-wrap'>
+                  <p>អាសុីតលីណូលេនិច</p>
+                  <InlineMath math="CH_{3}-CH_{2}-CH=CH-CH_{2}-CH=CH-CH_{2}-CH=CH-(CH_{2})_{7}-COOH" />
+                </div>
+            </div>
+        </ul>
+      </>
+    ),
+  },
+  example: {
+    question: [
+        <>
+            <div className='flex items-start flex-col gap-4'>
+                <InlineMath math="C_{3}H_{8}OH + CH_{3}(C_{15}H_{31}COO) \rightarrow C_{3}H_5(C_{15}H_{31}COO)_{3} + 3H_{2}O" />
+            </div>
+        </>
+    ],
+  },
+}
 
+const NinethTopicContent: TopicContent = {
+  definition: {
+    title: "២.២ លក្ខណះខ្លាញ់ ឬប្រេង",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+        </div>
+      </>
+  },
+  tip: {
+    title: "ជាទូទៅ",
+    content: (
+      <>
+        <div className='flex items-start gap-3 flex-col'>
+            <p>ខ្លាញ់ និងប្រេងស្រាលជាងទឹក មិនរលាយក្នុងទឹក តែរលាយក្នុងឌីក្លរ៉ូអេតាន អេទែបង់សែន ប្រេងសាំង កាបូតេត្រាក្លរួ ឌីក្លរ៉ូអេទីឡែន ។</p>
         </div>
       </>
     ),
   },
 }
+
+const TenthTopicContent: TopicContent = {
+  definition: {
+    title: "ក. អុីដ្រូសែនកម្ម",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+        </div>
+      </>
+  },
+  tip: {
+    title: "ជាទូទៅ",
+    content: (
+      <>
+        <div className='flex items-start gap-3 flex-col'>
+            <p>ប្រេងរុក្ខជាតិរាវជាសមាសធាតុមិនឆ្អែតវាអាចរងអុីដ្រូសែនកម្មជាខ្លាញ់រឹង ។</p>
+            <InlineMath math="C_{3}H_{8}OH + 3H_{2} \rightarrow C_{3}H_5(C_{15}H_{31}COO)_{3}" />
+        </div>
+      </>
+    ),
+  },
+}
+
+const EleventhTopicContent: TopicContent = {
+  definition: {
+    title: "ខ. អុីដ្រូលីសខ្លាញ់ ឬប្រេង",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+        </div>
+      </>
+  },
+  tip: {
+    title: "ជាទូទៅ",
+    content: (
+      <>
+        <div className='flex items-start gap-3 flex-col'>
+            <p>នៅពេលគេដុតកម្តៅទ្រីគ្លីសេរីតជាមួយបាស គេបានគ្លីសេរុលនិងអំបិលនៃអាសុីតខ្លាញ់ ។</p>
+            <InlineMath math="C_{3}H_{8}OH + 3NaOH \rightarrow C_{3}H_{5}OH + 3Na(C_{15}H_{31}COO)" />
+            <p>ប្រតិកម្មនេះហៅថា ប្រតិកម្មសាប៊ូកម្ម ។</p>
+        </div>
+      </>
+    ),
+  },
+}
+
+const TwelfthTopicContent: TopicContent = {
+  definition: {
+    title: "២.៣ បំលែងខ្លាញ់ក្នុងសារពាង្គកាយ",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+        </div>
+      </>
+  },
+  tip: {
+    title: "ជាទូទៅ",
+    content: (
+      <>
+        <div className='flex items-start gap-3 flex-col'>
+            <p>ខ្លាញ់ និងប្រេងជាអាហារផ្តល់ថាមពលកម្តៅច្រេីនជាងប្រូតេអុីននិងកាបូនអុីដ្រាត ។ ក្រោមអំពេីរបស់រសលំពែង និងពោះវៀន ខ្លាញ់ និងប្រេងរងអុីដ្រូលីសក្លាយជាគ្លីសេរ៉ុលនិងអាសុីតខ្លាញ់ដែលអាចស្រូបដោយស្រទាប់ពោះវៀន បន្ទាប់មកសំយោគទៅជាទ្រីគ្លីសេរីតជាថ្មីស្តុកទុក ក្នុងកោសិកាខ្លាញ់ ហេីយបញ្ជូនទៅសរីរាង្គផ្សេងៗដែលវាត្រូវរងអុីដ្រូលីស និងអុកសុីតកម្មទៅជា <InlineMath math="CO_{2} " />និង <InlineMath math="H_{2}O" />។ ប្រតិកម្មនេះបញ្ចេញកម្តៅឲសារពាង្គកាយសម្រាប់ទ្រទ្រង់សកម្មភាពជីវិត ។</p>
+        </div>
+      </>
+    ),
+  },
+}
+
+const ThirdTeenthTopicContent: TopicContent = {
+  definition: {
+    title: "២.៤ សាប៊ូ",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+        </div>
+      </>
+  },
+  tip: {
+    title: "ជាទូទៅ",
+    content: (
+      <>
+        <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
+            <div>
+              <li>សាប៊ូ ជាល្បាយអំបិលសូដ្យូម ឬប៉ូតាស្យូមនៃអាសុីតកាបុកសុីលិចដែលមានខ្សែកាបូនយ៉ាងវែង(មានកាបូនពី ១២ ទៅ​១៨) គ្មានខ្នែង ។ អំបិលប៉ូតាស្យូមបង្កេីតបានសាប៊ូទន់ជាងអំបិលសូដ្យូម ។</li>
+            </div>
+            <div>
+                FORMULAR and Reang
+            </div>
+            <div>
+                <li>អុីដ្រូភីល ឬលីប៉ូផូប គឺជាផ្នែកក្បាលរបស់សាប៊ូ <InlineMath math="(-COO^{\prime})" /> មានលក្ខណះចំណូលទឹក មិនចំណូលខ្លាញ់ និងប្រេងទេ ។</li>
+            </div>
+            <div>
+                <li>អុីដ្រូផូប ឬលីប៉ូភីល គឺជាខ្សែកាបូន ផ្នែកកន្ទុយរបស់សាប៊ូ មានទំនោរចូលចិត្តខ្លាញ់និងប្រេង មិនចំណូលទឹកទេ ។</li>
+            </div>
+            <div>
+                <li>អំពេីរបស់សាប៊ូទៅលេីស្នាមប្រឡាក់: ស្នាមប្រឡាក់លេីសម្លៀកបំពាក់ ឬស្បែកគឺជាប្រង ឬខ្លាញ់ និងធូលីផ្សេងៗ ។ ប្រេង ឬខ្លាញ់វាត្រូវបាដកចេញពីស្នាមប្រឡាក់ដោយការលាងជម្រះ ។ មុខងារសម្អាតរបស់សាប៊ូទាក់ទងទៅនឹងទម្រង់គីមីរបស់វា ។ ពេលសាប៊ូរលាយក្នុងទឹកម៉ូលេគុលរបស់វាបង្កេីតបានជាមីសែល ។ ផ្នែកអុីដ្រូផូបរុំព័ទ្ធខ្លាញ់ (ក្អែល) ចំណែកផ្នែកអុីដ្រូភីលបែរចេញក្រៅ ។</li>
+            </div>
+            <div className='flex items-start gap-3 flex-col'>
+                <li>គេមិនអាចប្រេីសាប៊ូជាមួយទឹករឹងទេ ព្រោះវាបង្កឲមានកករជាមួយអុីយ៉ុង <InlineMath math="Ca^{2+}" /> និង <InlineMath math="Mg^{2+}" /> មិនបានទៅជម្រះក្អែល ឬខ្លាញ់ និងប្រេងទេ ។ ទឹករឹងគឺជាទឹកមានបរិមាណអុីយ៉ុង <InlineMath math="Ca^{2+}" /> និង <InlineMath math="Mg^{2+}" /> ច្រេីន ។</li>
+                <p>សមីការ :</p>
+                 <InlineMath math="2R-COO^{\prime} + Ca^{2+} \rightarrow (R-COO)_{2}Ca" />
+                 <InlineMath math="2R-COO^{\prime} + Mg^{2+} \rightarrow (R-COO)_{2}Mg" />
+            </div>
+        </ul>
+      </>
+    ),
+  },
+}
+
+const FourthTeenTopicContent: TopicContent = {
+  definition: {
+    title: "២.៥ សារធាតុជម្រះក្អែល",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+        </div>
+      </>
+  },
+  tip: {
+    title: "ជាទូទៅ",
+    content: (
+      <>
+        <div className='flex items-start gap-3 flex-col'>
+            <p>មានលក្ខណះដូចសាប៊ូដែរ ប៉ុន្តែវាមានក្បាលជា <InlineMath math="-SO_{3}^{\prime}" /> ។ សារធាតុជម្រះអាចប្រេីក្នុងទឹករឹង ដោយវាមិនបង្កេីតកករជាមួយនឹងអុីយ៉ុងកាល់ស្យូម ឬម៉ាញេស្យូម ឬសង្ក័សីទេ ។</p>
+        </div>
+      </>
+    ),
+  },
+}
+
+const FifthTeenTopicContent: TopicContent = {
+  definition: {
+    title: "២.៦ ថ្នាំលាប",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+        </div>
+      </>
+  },
+  tip: {
+    title: "ជាទូទៅ",
+    content: (
+      <>
+        <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
+              <li>សារធាតុភ្ជាប់ ដែលអាចស្អិតភ្ជាប់ទៅនឹងផ្ទៃដែលត្រូវលាប បង្ខាំងជាតិពណ៌ឲនៅក្នុងកន្លែងរបស់វា និងជារនាំងការពារសំណេីម ។</li>
+              <li>ជាតិពណ៌ ដែលផ្តល់ពណ៌ឲទៅថ្នាំលាប ជាអ្នកស្រោប និងការពារអនុភាពរបស់ថ្នាំ ។</li>
+              <li>ធាតុរំលាយ សម្រាប់ជួយសម្រួលនៅពេលលាបថ្នាំ និងបន្ទាប់មកត្រូវហូតអស់ ។</li>
+        </ul>
+      </>
+    ),
+  },
+}
+
 
 
 const Ester_fat_oil = () => {
@@ -313,6 +585,24 @@ const Ester_fat_oil = () => {
             {SixthTopicContent.tip && (
                 <TipBox title={SixthTopicContent.tip.title} content={SixthTopicContent.tip.content} />
             )}
+            {SixthTopicContent.threeDExplanation &&
+                Array.isArray(SixthTopicContent.threeDExplanation) &&
+                SixthTopicContent.threeDExplanation.map((threeD: ThreeDExplanationBoxProps, index: number) => (
+                    <ThreeDExplanationBox
+                        key={index}
+                        title={threeD.title}
+                        src={threeD.src}
+                        explanation={threeD.explanation}
+                        canvasBackgroundColor="white"
+                        scale={threeD.scale}
+                        target={threeD.target}
+                    />
+                ))}
+            {SixthTopicContent.imageExplanation &&
+                Array.isArray(SixthTopicContent.imageExplanation) &&
+                SixthTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
+                    <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
+            ))}
         </div>
         <div>
             {SeventhTopicContent.definition && (
@@ -328,6 +618,65 @@ const Ester_fat_oil = () => {
             )}
             {EighthTopicContent.tip && (
                 <TipBox title={EighthTopicContent.tip.title} content={EighthTopicContent.tip.content} />
+            )}
+            {EighthTopicContent.example && (
+                 <ExampleBox question={EighthTopicContent.example.question}/>
+             )}
+        </div>
+        <div>
+            {NinethTopicContent.definition && (
+              <DefinitionBox title={NinethTopicContent.definition.title} content={NinethTopicContent.definition.content} />
+            )}
+            {NinethTopicContent.tip && (
+                <TipBox title={NinethTopicContent.tip.title} content={NinethTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {TenthTopicContent.definition && (
+              <DefinitionBox title={TenthTopicContent.definition.title} content={TenthTopicContent.definition.content} />
+            )}
+            {TenthTopicContent.tip && (
+                <TipBox title={TenthTopicContent.tip.title} content={TenthTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {EleventhTopicContent.definition && (
+              <DefinitionBox title={EleventhTopicContent.definition.title} content={EleventhTopicContent.definition.content} />
+            )}
+            {EleventhTopicContent.tip && (
+                <TipBox title={EleventhTopicContent.tip.title} content={EleventhTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {TwelfthTopicContent.definition && (
+              <DefinitionBox title={TwelfthTopicContent.definition.title} content={TwelfthTopicContent.definition.content} />
+            )}
+            {TwelfthTopicContent.tip && (
+                <TipBox title={TwelfthTopicContent.tip.title} content={TwelfthTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {ThirdTeenthTopicContent.definition && (
+              <DefinitionBox title={ThirdTeenthTopicContent.definition.title} content={ThirdTeenthTopicContent.definition.content} />
+            )}
+            {ThirdTeenthTopicContent.tip && (
+                <TipBox title={ThirdTeenthTopicContent.tip.title} content={ThirdTeenthTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {FourthTeenTopicContent.definition && (
+              <DefinitionBox title={FourthTeenTopicContent.definition.title} content={FourthTeenTopicContent.definition.content} />
+            )}
+            {FourthTeenTopicContent.tip && (
+                <TipBox title={FourthTeenTopicContent.tip.title} content={FourthTeenTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {FifthTeenTopicContent.definition && (
+              <DefinitionBox title={FifthTeenTopicContent.definition.title} content={FifthTeenTopicContent.definition.content} />
+            )}
+            {FifthTeenTopicContent.tip && (
+                <TipBox title={FifthTeenTopicContent.tip.title} content={FifthTeenTopicContent.tip.content} />
             )}
         </div>
     </div>

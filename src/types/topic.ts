@@ -76,7 +76,7 @@ export interface TopicContent {
   // They are responsive and follow a specific layout pattern
 
   // Image explanation section - image with explanation
-  imageExplanation?: ImageBoxProps;
+  imageExplanation?: ImageBoxProps | ImageBoxProps[];
 
   // Video explanation section - video with explanation
   videoExplanation?: VideoBoxProps;
@@ -85,7 +85,7 @@ export interface TopicContent {
   graphExplanation?: GraphExplanationBoxProps;
 
   // 3D explanation section - 3D content with explanation
-  threeDExplanation?: ThreeDExplanationBoxProps;
+  threeDExplanation?: ThreeDExplanationBoxProps | ThreeDExplanationBoxProps[];
 }
 
 export interface SummarySection {
