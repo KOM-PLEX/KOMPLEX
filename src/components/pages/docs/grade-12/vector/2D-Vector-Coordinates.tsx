@@ -27,13 +27,18 @@ const TOPIC_CONTENT = {
   },
 
   tip: {
-    title: "ចំណុចសំខាន់ៗ",
+    title: "វ៉ិចទ័រ AB",
     content: (
       <>
-        បើមានចំណុចពីរ <InlineMath math="A(x_1, y_1)" /> និង <InlineMath math="B(x_2, y_2)" /> នៅលើប្លង់ <InlineMath math="xy" />,
-        វ៉ិចទ័រ <InlineMath math="\overrightarrow{AB}" /> ត្រូវបានកំណត់ជា:<br />
-        <BlockMath math="\overrightarrow{AB} = (x_2 - x_1,\ y_2 - y_1)" />
-        <ImageBox src="/images/2d-vector/2d-vector-1.png" imageAlt="2D Vector" explanation="រូបភាពបង្ហាញពីកូអរដោនេនៃវ៉ិចទ័រ 2D" />
+        <ImageBox src="/2Dvector.png" 
+        imageAlt="2D Vector" 
+        explanation={
+          <>
+            បើមានចំណុចពីរ <InlineMath math="A(x_1, y_1)" /> និង <InlineMath math="B(x_2, y_2)" /> នៅលើប្លង់ <InlineMath math="xy" />,
+            វ៉ិចទ័រ <InlineMath math="\overrightarrow{AB}" /> ត្រូវបានកំណត់ជា:<br />
+            <BlockMath math="\overrightarrow{AB} = (x_2 - x_1,\ y_2 - y_1)" />
+          </>
+        } />
       </>
     )
   },
@@ -141,7 +146,8 @@ const TOPIC_CONTENT_VECTOR= {
         <BlockMath math={String.raw`\vec{u}^2 = a^2 + b^2 + c^2`} />
         <BlockMath math={String.raw`|\vec{u}| = \sqrt{a^2 + b^2 + c^2}`} />
         <b> កូសុីនូសនៃមុំរវាងពីរវ៉ិចទ័រ​ </b><br />កូសុីនូសនៃមុំរវាងពីរវ៉ិចទ័រ​ <InlineMath math="\vec{u} = (x, y, z)" /> និង <InlineMath math="\vec{v} = (x', y', z')" />ក្នុងលំហ <br />កំណត់ដោយ៖ <br />
-        <BlockMath math={String.raw`\cos\theta = \frac{\vec{u} \cdot \vec{v}}{|\vec{u}||\vec{v}|} = \frac{xx' + yy' + zz'}{\sqrt{x^2 + y^2 + z^2} \cdot \sqrt{x'^2 + y'^2 + z'^2}}`} />
+        <BlockMath math={String.raw`\cos\theta = \frac{\vec{u} \cdot \vec{v}}{|\vec{u}||\vec{v}|} `} />
+        <BlockMath math={String.raw`= \frac{xx' + yy' + zz'}{\sqrt{x^2 + y^2 + z^2} \cdot \sqrt{x'^2 + y'^2 + z'^2}}`} />
       </>
     )
   },
@@ -175,7 +181,7 @@ const TOPIC_CONTENT_VECTOR= {
               តាមរូបមន្ត៖ <InlineMath math="\vec{u} \cdot \vec{v} = |\vec{u}|\,|\vec{v}|\cos\theta" /><br /><br />
               ដោយ​ <InlineMath math={"\\vec{u} = (2,3,1)"} /> និង <InlineMath math={"\\vec{v} = (4,-1,5)"} />​<br /><br />
               យើង​បាន៖​​ <InlineMath math={"|\\vec{u}| = \\sqrt{2^2 + 3^2 + 1^2} = \\sqrt{14}"} /> <br /><br />
-              ​<InlineMath math={"|\\vec{v}| = \\sqrt{4^2 + (-1)^2 + 5^2} = \\sqrt{42}"} /> <br /><br />
+              <InlineMath math={"|\\vec{v}| = \\sqrt{4^2 + (-1)^2 + 5^2} = \\sqrt{42}"} /> <br /><br />
               ​ដូចនេះ​​ <InlineMath math={"|\\vec{u}| = \\sqrt{14}"} /> ​​និង​ <InlineMath math={"|\\vec{v}| = \\sqrt{42}"} /> <br />
             </>
           )
@@ -237,13 +243,22 @@ const Vector3DContent = () => (
       title="លក្ខណៈផលគុណស្កាលែនៃពីរវ៉ិចទ័"
       content={
         <>
-          <BlockMath math="\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}" /> 
-          <BlockMath math="\vec{u} \cdot \vec{u} = |\vec{u}|^2 = u^2" /> 
-          <BlockMath math="\vec{u} \cdot (k\vec{v}) = k(\vec{u} \cdot \vec{v})" /> 
-          <BlockMath math="\vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}" /> 
-          <BlockMath math="(\vec{u} ± \vec{v})^2 = u^2 ± 2\vec{u}\vec{v} + v^2" /> 
-          <BlockMath math="(\vec{u} + \vec{v}) \cdot (\vec{u} - \vec{v}) = |\vec{u}|^2 - |\vec{v}|^2" /> 
-          (k ជាចំនួនពិត)
+          <ImageBox src="/polkon.png" 
+          imageAlt="2D Vector" 
+          explanation= {
+            <>
+              <BlockMath math="រូបមន្តផលគុណស្កាលែគឺជាផលគុណរវាងវ៉ិចទ័រ ២ គឺ  {\vec{u} \cdot \vec{v} }" />
+              <BlockMath math="\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}" /> 
+              <BlockMath math="\vec{u} \cdot \vec{u} = |\vec{u}|^2 = u^2" /> 
+              <BlockMath math="\vec{u} \cdot (k\vec{v}) = k(\vec{u} \cdot \vec{v})" /> 
+              <BlockMath math="\vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}" /> 
+              <BlockMath math="(\vec{u} ± \vec{v})^2 = u^2 ± 2\vec{u}\vec{v} + v^2" /> 
+              <BlockMath math="(\vec{u} + \vec{v}) \cdot (\vec{u} - \vec{v}) = |\vec{u}|^2 - |\vec{v}|^2" /> 
+              (k ជាចំនួនពិត)
+            </>
+          }
+          />
+          
         </>
       }
     />
@@ -256,8 +271,8 @@ const Vector3DContent = () => (
             <>
               គេមាន  <InlineMath math={"\\vec{u} = (2,3), \\vec{v} = (4,1)"} /> <br/>​ <br/>
               តាមរូបមន្ត៖​ <InlineMath math="\vec{u} \cdot \vec{v} = \vec{v} \cdot \vec{u}" /><br /><br />
-              ​នាំឲ៖ ​ <InlineMath math={"\\vec{u} \\cdot \\vec{v} = (2)(4)+(3)(1)"} /> <br /> <br />
-              ដូច្នេះ  <InlineMath math={"\\vec{v} \\cdot \\vec{u} =11"} /> ឯកតា
+              ​នាំឲ៖ <InlineMath math={"\\vec{u} \\cdot \\vec{v} = (2)(4)+(3)(1)"} /> <br /> <br />
+              ដូច្នេះ <InlineMath math={"\\vec{v} \\cdot \\vec{u} =11"} /> ឯកតា
 
             </>
 
@@ -270,7 +285,7 @@ const Vector3DContent = () => (
               គេមាន <InlineMath math={"\\vec{u} = (3,4)"} /> <br/>​<br />
               តាមរូបមន្ត៖ <InlineMath math="\vec{u} \cdot \vec{u} = |\vec{u}|^2 = u^2" /><br /><br />
               នាំឲ៖ <InlineMath math={"\\vec{u} \\cdot \\vec{u} = (3)(3)+(4)(4)"} /> <br /> <br />
-              ដូចនេះ <InlineMath math={"|\\vec{u}| = \\sqrt{3^2+4^2}=5 , រឺក៏​ |\\vec{u}|^2=25"} /> ឯកតា
+              ដូចនេះ <InlineMath math={"\\vec{u} \\cdot \\vec{u} =25 "} /> ឯកតា
             </>
           )
         },
@@ -280,8 +295,9 @@ const Vector3DContent = () => (
             <>
               គេមាន <InlineMath math={"\\vec{u} = (1,2), \\vec{v} = (3,4), k=5"} /> <br/>​ <br />
               តាមរូបមន្ត៖ <InlineMath math="\vec{u} \cdot (k\vec{v}) = k(\vec{u} \cdot \vec{v})" /><br /><br />
-              ​នាំឲ៖ <InlineMath math={"K(\\vec{u} \\cdot \\vec{v}) = (1)(15)+(2)(20)=15+40=55"} />​ <br /> <br />
-              ដូចនេះ <InlineMath math={"K(\\vec{u} \\cdot \\vec{v}) = 55"} /> ឯកតា
+              ​នាំឲ៖ <InlineMath math={"k(\\vec{u} \\cdot \\vec{v}) = (1)(15)+(2)(20)"} />​ <br /> <br />
+              <InlineMath math={"k(\\vec{u} \\cdot \\vec{v}) = 15+40"} /> <br /><br />
+              ដូចនេះ <InlineMath math={"k(\\vec{u} \\cdot \\vec{v}) = 55"} /> ឯកតា
             </>
           )
         },
@@ -292,7 +308,7 @@ const Vector3DContent = () => (
               គេមាន <InlineMath math={"\\vec{u} = (2,1), \\vec{v} = (1,3), \\vec{w} = (4,2)"} /> <br/>​<br />
               តាមរូបមន្ត៖​ <InlineMath math="\vec{u} \cdot (\vec{v} + \vec{w}) = \vec{u} \cdot \vec{v} + \vec{u} \cdot \vec{w}" /> <br /><br />
               នាំឲ៖ <InlineMath math={"\\vec{u} \\cdot (\\vec{v}+\\vec{w}) = (2,1) \\cdot (5,5) = (2)(5)+(1)(5)=10+5=15"} /> <br /> <br />
-              ដូចនេះ <InlineMath math={"\\vec{u} \\cdot (\\vec{v}+\\vec{w})  = ​15"} /> ឯកតា
+              ដូចនេះ <InlineMath math={"\\vec{u} \\cdot (\\vec{v}+\\vec{w}) = 15"} /> ឯកតា
             </>
           )
         },
@@ -325,12 +341,28 @@ const Vector3DContent = () => (
       title="វ៉ិចទ័រពីរស្របគ្នា និងវ៉ិចទ័រពីរកែងគ្នា"
       content={
         <>
-          • វ៉ិចទ័រពីរស្របគ្នា (AB || CD)<br />
-          វ៉ិចទ័រពីរ AB និង CD ជាវ៉ិចទ័រស្របគ្នា កាលណាមានចំនួនថេរ k មួយ ដែលផ្ទៀងផ្ទាត់ទំនាក់ទំនង
-          <BlockMath math="\overrightarrow{AB} = k\overrightarrow{CD}" />
-          • វ៉ិចទ័រពីរកែងគ្នា (AB ⊥ CD)<br />
-          វ៉ិចទ័រពីរ <InlineMath math="\overrightarrow{AB}= (x, y, z)" /> និង <InlineMath math="\overrightarrow{CD}= (x', y', z')" /> ជាវ៉ិចទ័រកែងគ្នា កាលណាផលគុណស្កាលែស្មើរសូន្យ<br />
-          <BlockMath math="xx' + yy' + zz' = 0" />
+          <ImageBox
+          src="/vector_parallel.png"
+          imageAlt="2D Vector"
+          explanation={
+            <>
+              <b>វ៉ិចទ័រពីរស្របគ្នា (AB || CD)</b><br /><br />
+              <p>វ៉ិចទ័រពីរ AB និង CD ជាវ៉ិចទ័រស្របគ្នា កាលណាមានចំនួនថេរ k មួយ ដែលផ្ទៀងផ្ទាត់ទំនាក់ទំនង</p>
+              <b><BlockMath math="\overrightarrow{AB} = k\overrightarrow{CD}" /></b>
+            </>
+          }
+        />
+          <ImageBox
+          src="/vector_perpendicular.png"
+          imageAlt="2D Vector"
+          explanation={
+            <>
+              <b>វ៉ិចទ័រពីរកែងគ្នា (AB ⊥ CD)</b><br /><br />
+              វ៉ិចទ័រពីរ <InlineMath math="\overrightarrow{AB}= (x, y, z)" /> និង <InlineMath math="\overrightarrow{CD}= (x', y', z')" /> ជាវ៉ិចទ័រកែងគ្នា កាលណាផលគុណស្កាលែស្មើរសូន្យ<br />
+              <b><BlockMath math="xx' + yy' + zz' = 0" /></b>
+            </>
+          }
+        />
         </>
       }
     />
@@ -467,7 +499,7 @@ const TOPIC_CONTENT_PRODUCT_THREE_VECTOR = {
         title: "​គណនា v × w",
         content: (
           <>
-            យើងមាន <InlineMath math={"v = (0,1,4), w = (2,-1,1)"} /> <br />
+            យើងមាន <InlineMath math={"v = (0,1,4), w = (2,-1,1)"} /> <br /><br />
             នាំឲ៖​ <InlineMath math={String.raw`v \times w = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ 0 & 1 & 4 \\ 2 & -1 & 1 \end{vmatrix}`}/><br /><br />
             <InlineMath math={String.raw`= ((1)(1) - (4)(-1))\vec{i} - ((0)(1) - (4)(2))\vec{j} + ((0)(-1) - (1)(2))\vec{k}`}/><br /><br />
             <InlineMath math={String.raw`= (1 + 4)\vec{i} - (0 - 8)\vec{j} + (0 - 2)\vec{k}`}/><br /><br />
