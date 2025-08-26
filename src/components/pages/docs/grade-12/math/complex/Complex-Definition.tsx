@@ -60,7 +60,7 @@ const TOPIC_CONTENT_COMPLEX: TopicContent = {
   },
   tip: {
     title: "ជាទូទៅបើ",
-    content: <div className='flex justify-start gap-2'>
+    content: <div className='flex justify-start text-sm gap-2'>
       <BlockMath math={`
       A + i.B = a + i.b \\Leftrightarrow \\begin{cases}
       A = a \\\\
@@ -70,10 +70,14 @@ const TOPIC_CONTENT_COMPLEX: TopicContent = {
     </div>
   },
   example: {
-    question: <div className='flex justify-start gap-2'>
-      គេមានកុំផ្លិច <InlineMath math="z = (3a + 1) + i(2b - 5)" /> និង <InlineMath math="w = 7 + 3i" />
-
-      ដែល <InlineMath math="a" /> និង <InlineMath math="b" /> ជាចំនួនពិត​​ ។​ កំណត់តម្លៃ <InlineMath math="a" /> និង <InlineMath math="b" /> ដើម្បីឲ្យ <InlineMath math="z = w" />
+    question: <div className='flex flex-col gap-2'>
+      <div className='flex flex-row text-[14px] gap-2'>
+        <div>គេមានកុំផ្លិច <InlineMath math="z = (3a + 1) + i(2b - 5)" /> </div>
+        <div>និង <InlineMath math="w = 7 + 3i" /> </div>
+      </div>
+      <div>ដែល ​a និង b ជាចំនួនពិត​​ ។</div>
+      <div>កំណត់តម្លៃ a និង b ដើម្បីឲ្យ <InlineMath math="z = w" /></div>​ 
+      
 
     </div>,
     steps: [
@@ -102,13 +106,13 @@ const TOPIC_CONTENT_COMPLEX: TopicContent = {
       },
       {
         title: "ទាញរកតម្លៃនៃ a និង b",
-        content: <div className='flex justify-start gap-2'>
+        content: <div className='flex justify-start text-sm gap-1'>
           <BlockMath math={`
                   \\begin{cases}
                   3a + 1 = 7 \\\\
                   2b - 5 = 3 \\\\
                   \\end{cases}
-                  \\text{សមមូល}
+                  \\Leftrightarrow
                   \\begin{cases}
                   3a = 6 \\Leftrightarrow a = 2 \\\\
                   2b = 8 \\Leftrightarrow b = 4

@@ -41,6 +41,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
     // Determine if src is a string (GLB model) or ReactNode (custom content)
     const isModelUrl = typeof src === 'string';
     const customContent = !isModelUrl ? src : null;
+    console.log(customContent);
 
     return (
         <div
