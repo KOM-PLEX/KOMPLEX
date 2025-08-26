@@ -716,13 +716,86 @@ const EighteenthTopicContent: TopicContent = {
                   </div>
               </div>
               <div>
-                  <li>អាស៊ីតក្លរ៉ូអាសេទិចគ្លីស៊ីនគេឲ្យអាល់ដេអ៊ុតមានអំពើជាមួយអ៊ីដ្រូសែនស្សានូ ចំពោះវត្តមានអាម៉ូញាក់ បង្កើតបានជាអាមីណូនីទ្រីល ។ អ៊ីដ្រូលីសអាមីណូនីទ្រីលផ្តល់អាស៊ីតអាមីណេ ។</li>
+                  <li>គេឲ្យអាល់ដេអុីតមានអំពើជាមួយអ៊ីដ្រូសែនស្សានួ ចំពោះវត្តមានអាម៉ូញាក់ បង្កើតបានជាអាមីណូនីទ្រីល ។ អ៊ីដ្រូលីសអាមីណូនីទ្រីលផ្តល់អាស៊ីតអាមីណេ ។</li>
               </div>
           </ul>
       </>
     ),
   },
 }
+
+const NineteenthTopicContent: TopicContent = {
+  definition: {
+    title: "៣.៤ បុិបទីត និងប្រូតេអុីន",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+         
+        </div>
+      </>
+  },
+  tip: {
+    title: "ជាទូទៅ",
+    content: (
+      <>
+          
+      </>
+    ),
+  },
+}
+
+const TwentyTopicContent: TopicContent = {
+  definition: {
+    title: "ក. សម្ព័ន្ធបុិបទីត",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+         
+        </div>
+      </>
+  },
+  tip: {
+    title: "ជាទូទៅ",
+    content: (
+      <>
+          <p>សម្ព័ន្ធប៉ិបទីត (-CO-NH-) កើតឡើងដោយម៉ូលេគុលអាស៊ីតអាមីណេចំនួនពីរភ្ជាប់គ្នាដោយការដកទឹកចេញចំនួន ១ ម៉ូលេគុល។</p>
+          <div className='flex items-start text-[6px] sm:text-xs mt-3'>
+              <InlineMath math="H_{2}N-CH_{2}-" />
+              <div className='flex flex-col'>
+                <InlineMath math="C-OH" />
+                <InlineMath math="||" />
+                <InlineMath math="O" />
+              </div>
+                <InlineMath math="+ H-NH-" />
+              <div className='flex flex-col'>
+                <InlineMath math="CH-COOH \rightarrow" />
+                <InlineMath math="|" />
+                <InlineMath math="CH_{3}" />
+              </div>
+              <InlineMath math="H_{2}N-CH_{2}-" />
+              <div className='flex flex-col'>
+                <InlineMath math="C-NH-" />
+                <InlineMath math="||" />
+                <InlineMath math="O" />
+              </div>
+              <div className='flex flex-col'>
+                <InlineMath math="CH-COOH" />
+                <InlineMath math="|" />
+                <InlineMath math="CH_{3}" />
+              </div>     
+          </div>
+          <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
+              <li>ប៉ិបទីតដែលបង្កដោយអាស៊ីតអាមីណេចំនួន ៣, ៤ ឬ ៥ មានឈ្មោះថា ទ្រីប៉ិបទីតតេត្រាប៉ិបទីត ប៉ង់តាប៉ិបទីត។</li>
+              <li>ប៉ិបទីតដែលបង្កដោយអាស៊ីតអាមីណេតិចជាង 60 ហៅថា ប៉ូលីប៉ិបទីត ។</li>
+              <li>ប៉ិបទីតដែលបង្កដោយអាស៊ីតអាមីណេច្រើនជាង 60 ហៅថា ប្រូតេអ៊ីន ។</li>
+              <li>ប្រូតេអ៊ីនធម្មជាតិផ្តល់អាស៊ីតអាមីណេចំនួន 20 ប្រភេទដែលក្នុងនោះមាន អាស៊ីតអាមីណេចំនួន ៨ ដែលមនុស្សត្រូវផ្តល់ឲ្យសារពាង្គកាយមិនអាចខ្វះបានតាមរយៈអាហារព្រោះសរីរាង្គមនុស្សមិនអាចសំយោគវាបាន។</li>
+              <li>អាស៊ីតអាមីណេចំនួន៨ដែលសំខាន់សម្រាប់សារពាង្គកាយរួមមាន៖ វ៉ាលីន ឡឺស៊ីនអ៊ីសូឡឺស៊ីន ត្រេអូនីន មេត្យូនីន លីស៊ីន ផេនីឡាមីន និង ទ្រីបតូផាន។</li>
+          </ul>
+      </>
+    ),
+  },
+}
+
 
 
 const Aliphatic_acid_derivatives = () => {
@@ -872,9 +945,19 @@ const Aliphatic_acid_derivatives = () => {
                 <TipBox title={EighteenthTopicContent.tip.title} content={EighteenthTopicContent.tip.content} />
             )}
         </div>
-
-
-
+        <div>
+            {NineteenthTopicContent.definition && (
+              <DefinitionBox title={NineteenthTopicContent.definition.title} content={NineteenthTopicContent.definition.content} />
+            )}
+        </div>
+        <div>
+            {TwentyTopicContent.definition && (
+              <DefinitionBox title={TwentyTopicContent.definition.title} content={TwentyTopicContent.definition.content} />
+            )}
+            {TwentyTopicContent.tip && (
+                <TipBox title={TwentyTopicContent.tip.title} content={TwentyTopicContent.tip.content} />
+            )}
+        </div>
     </div>
   )
 }
