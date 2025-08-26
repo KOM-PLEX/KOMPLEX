@@ -22,7 +22,7 @@ const TOPIC_CONTENT: TopicContent = {
         <li>មាន 3 ជ្រុងនិង 3 មុំ</li>
         <li>ផលបូកមុំទាំង 3 គឺ 180 ដឺក្រេ</li>
         <ImageBox
-          src="/images/2d-vector/2d-vector-1.png"
+          src="/triangle.png"
           imageAlt="2D Vector"
           explanation={
             <>
@@ -30,7 +30,7 @@ const TOPIC_CONTENT: TopicContent = {
               <BlockMath math={String.raw`S = \frac{1}{2} |\overrightarrow{AB} \times \overrightarrow{AC}|`} />
               <BlockMath math={String.raw`S = \frac{1}{2} |\overrightarrow{BA} \times \overrightarrow{BC}|`} />
               <BlockMath math={String.raw`S = \frac{1}{2} |\overrightarrow{CA} \times \overrightarrow{CB}|`} />
-              (<InlineMath math="S" /> ជាបរិមាណផ្ទៃ, ខ្នាតគិតជា <InlineMath math="cm^2" />)
+              <InlineMath math="S" /> ជាបរិមាណផ្ទៃ, ខ្នាតគិតជា (ឯកតាផ្ទៃ)
             </>
           }
         />
@@ -74,13 +74,21 @@ const TOPIC_CONTENT: TopicContent = {
         content: (
           <>
             យើង​បាន៖​ <InlineMath math="S = \frac{1}{2} \times 2\sqrt{6}" />​ <br /><br />
-            ​ដូចនេះផ្ទៃក្រឡានៃត្រីកោណ ABC គឺ <InlineMath math="= \sqrt{6} cm^2" />។
+            ​ដូចនេះផ្ទៃក្រឡានៃត្រីកោណ ABC គឺ <InlineMath math="= \sqrt{6} ឯកតាផ្ទៃ" />។
           </>
         )
       }
     ],
-    answer: (<InlineMath math="S = 2\sqrt{6} cm^2" />),
+    answer: (<InlineMath math="S = 2\sqrt{6} ឯកតាផ្ទៃ " />),
   },
+  hint: {
+    content: (
+      <>
+        <p>ដើម្បីរកផ្ទៃក្រឡានៃត្រីកោណ ABC អ្នកអាចប្រើរូបមន្ត <InlineMath math="S = \frac{1}{2} |\overrightarrow{AB} \times \overrightarrow{AC}|" />។</p>
+        <p>ចូរបញ្ចូលតម្លៃនៃ <InlineMath math="\overrightarrow{AB}" /> និង <InlineMath math="\overrightarrow{AC}" /> ដើម្បីគណនាផ្ទៃ។</p>
+      </>
+    )
+  }
 };
 const TOPIC_CONTENT_PARALLELOGRAM: TopicContent = {
   definition: {
@@ -92,7 +100,7 @@ const TOPIC_CONTENT_PARALLELOGRAM: TopicContent = {
         <li>ជ្រុងពីរទល់គ្នាស្របរៀងគ្នា</li>
         <li>​មុំគូទល់គ្នាស្មើគ្នា</li>
         <ImageBox
-          src="/images/2d-vector/2d-vector-1.png"
+          src="/parallelogram.png"
           imageAlt="2D Vector"
           explanation={
             <>
@@ -108,14 +116,114 @@ const TOPIC_CONTENT_PARALLELOGRAM: TopicContent = {
       </>
     ),
   },
+  example: {
+    question: (
+      <>
+      ក្នុងតម្រុយអរតូណរម៉ាល់មានទិសដៅវិជ្ជមាន <InlineMath math={"\\vec{i}, \\vec{j}, \\vec{k}"} /> គមានចំណុ A(2,2,1) , B(4,-2,0) , C(3,1,1) និង D(1,5,2)។<br />
+      បង្ហាញថាចតុកោណ​ ABCD គឺជាក្រឡាប្រលេឡូក្រាម រួចរកផ្ទៃក្រឡាប្រលេឡូក្រាម ABCD ។<br />
+      </>
+    ),
+    steps: [
+      {
+        title: "បង្ហាញថាចតុកោណ ABCD គឺជាក្រឡាប្រលេឡូក្រាម",
+        content: (
+          <>
+            យើងមានចំណុ A(2,2,1) , B(4,-2,0) , C(3,1,1) និង D(1,5,2)។<br /><br />
+            គេបាន: <br /><br />
+             <InlineMath math="\overrightarrow{AB} = (4 -2, -2 - 2, 0 - 1) = (2, -4, -1)" /> <br /><br />
+             <InlineMath math="\overrightarrow{CD} = (1 - 3, 5 - 1, 2 - 1) = (-2, 4, 1)" /> <br /><br />
+             ដោយ <InlineMath math="\overrightarrow{AB} = -\overrightarrow{CD} <=> \overrightarrow{AB} = \overrightarrow{DC}" /> មានន័យថា
+             <InlineMath math="\overrightarrow{AB} \parallel \overrightarrow{CD}" /> និង <InlineMath math="\overrightarrow{AD} = \overrightarrow{BC}" /> <br /><br />
+             ក្នុងចតុកោណ ABCD មានជ្រុងពីរឈមគ្នាស្របរៀងគ្នា និងប្រវែងស្មើគ្នា ដូច្នេះ ABCD គឺជាក្រឡាប្រលេឡូក្រាម។
+          </>
+        )
+      },
+      {
+        title: "រកផ្ទៃក្រឡាប្រលេឡូក្រាម ABCD ",
+        content: (
+          <>
+            តាមរូបមន្ត៖<InlineMath math="S = |\overrightarrow{AB} \times \overrightarrow{AC}| = |\overrightarrow{AB} \times \overrightarrow{AD}|" /> <br /><br />
+            តាមកំពូលទាំងបួនខាងលើគេបាន៖ <br />
+            <InlineMath math="\overrightarrow{AB} = (2, -4, -1)" /> <br />
+            <InlineMath math="\overrightarrow{AD} = (-1, 3, 1)" /> <br />
+            នាំឲ៖ <InlineMath math={String.raw`\vec{AB}\times\vec{AD} = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ 2 & -4 & -1 \\ -1 & 3 & 1 \end{vmatrix}`}/> <br /><br />
+            <InlineMath math=" = \begin{vmatrix} -4 & -1 \\ 3 & 1 \end{vmatrix}\vec{i} - \begin{vmatrix} 2 & -1 \\ -1 & 1 \end{vmatrix}\vec{j} + \begin{vmatrix} 2 & -4 \\ -1 & 3 \end{vmatrix}\vec{k}" /> <br /><br />
+            <InlineMath math={String.raw`= (-4 \times 1 - (-1) \times 3)\vec{i} - (2 \times 1 - (-1) \times (-1))\vec{j} + (2 \times 3 - (-4) \times -1)\vec{k}`}/> <br /><br />
+            <InlineMath math={String.raw`= (-4 + 3)\vec{i} - (2 - 1)\vec{j} + (6 - 4)\vec{k}`}/> <br /><br />
+            <InlineMath math={String.raw`= -1\vec{i} -1\vec{j} + 2\vec{k}`}/><br /><br />
+            យើងបាន៖ <InlineMath math={String.raw`S = |\overrightarrow{AB} \times \overrightarrow{AD}| = \sqrt{(-1)^2 + (-1)^2 + 2^2} = \sqrt{6}`}/> <br /><br />
+          </>
+        )
+      },
+    ],
+    answer: (
+      <>
+        ដូចនេះផ្ទៃក្រឡាប្រលេឡូក្រាម ABCD គឺ <InlineMath math={"= \\sqrt{6}"} /> ឯកតាផ្ទៃ។
+      </>
+    )
+  },
+  hint: {
+    content: (
+      <>
+        <p>ដើម្បីរកផ្ទៃក្រឡាប្រលេឡូក្រាម ABCD អ្នកអាចប្រើរូបមន្ត <InlineMath math="S = |\overrightarrow{AB} \times \overrightarrow{AD}|" />។</p>
+        <p>ចូរបញ្ចូលតម្លៃនៃ <InlineMath math="\overrightarrow{AB}" /> និង <InlineMath math="\overrightarrow{AD}" /> ដើម្បីគណនាផ្ទៃ។</p>
+      </>
+    )
+  },
+  exercise: {
+    questions: [
+      {
+        id: "ex1",
+        question: "រកផ្ទៃក្រឡាប្រលេឡូក្រាម ABCD ដែលមានចំណុ A(2,2,1) , B(4,-2,0) , C(3,1,1) និង D(1,5,2)។",
+        options: [
+          "S = 2 ឯកតាផ្ទៃ",
+          "S = 3 ឯកតាផ្ទៃ",
+          "S = \\sqrt{6} ឯកតាផ្ទៃ",
+          "S = 6 ឯកតាផ្ទៃ"
+        ],
+        correctAnswer: "S = \\sqrt{6} ឯកតាផ្ទៃ"
+      },
+      {
+        id: "ex2",
+        question: "រកផ្ទៃក្រឡាប្រលេឡូក្រាម PQRS ដែលមានចំណុច P(1,0,2), Q(3,1,5), R(2,4,6), និង S(0,3,3)។",
+        options: [
+          "S = 5 ឯកតាផ្ទៃ",
+          "S = 6 ឯកតាផ្ទៃ",
+          "S = 7 ឯកតាផ្ទៃ",
+          "S = 8 ឯកតាផ្ទៃ"
+        ],
+        correctAnswer: "S = 7 ឯកតាផ្ទៃ"
+      },
+      {
+        id: "ex3",
+        question: "រកផ្ទៃក្រឡាប្រលេឡូក្រាម EFGH ដែលមានចំណុច E(0,0,0), F(2,1,3), G(4,2,6), និង H(2,3,3)។",
+        options: [
+          "S = 6 ឯកតាផ្ទៃ",
+          "S = 8 ឯកតាផ្ទៃ",
+          "S = 10 ឯកតាផ្ទៃ",
+          "S = 12 ឯកតាផ្ទៃ"
+        ],
+        correctAnswer: "S = 6 ឯកតាផ្ទៃ"
+      },
+    ]
+  }
 }
+
+
 
 const ShapeArea = () => {
   return (
     <div>
+      
       <DefinitionBox title={TOPIC_CONTENT.definition?.title} content={TOPIC_CONTENT.definition?.content} />
-      <DefinitionBox title={TOPIC_CONTENT_PARALLELOGRAM.definition?.title} content={TOPIC_CONTENT_PARALLELOGRAM.definition?.content} />
       <ExampleBox question={TOPIC_CONTENT.example?.question} steps={TOPIC_CONTENT.example?.steps} answer={TOPIC_CONTENT.example?.answer} />
+      <HintBox content={TOPIC_CONTENT.hint?.content} />
+      <DefinitionBox title={TOPIC_CONTENT_PARALLELOGRAM.definition?.title} content={TOPIC_CONTENT_PARALLELOGRAM.definition?.content} />
+      <HintBox content={TOPIC_CONTENT_PARALLELOGRAM.hint?.content} />
+      <ExampleBox question={TOPIC_CONTENT_PARALLELOGRAM.example?.question} steps={TOPIC_CONTENT_PARALLELOGRAM.example?.steps} answer={TOPIC_CONTENT_PARALLELOGRAM.example?.answer} />
+      {TOPIC_CONTENT_PARALLELOGRAM.exercise && (
+        <ExerciseBox questions={TOPIC_CONTENT_PARALLELOGRAM.exercise.questions} />
+      )}
 
     </div>
   )

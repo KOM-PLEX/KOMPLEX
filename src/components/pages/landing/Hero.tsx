@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
     return (
-        <section className="mt-15 pt-40 pb-40 px-5 bg-indigo-600 text-white text-center relative ">
+        <section className="mt-15 pt-50 pb-50 px-5 bg-indigo-600 text-white text-center relative ">
 
             {/* 3D Image Placeholders */}
             <div className="absolute inset-0 overflow-hidden">
@@ -81,7 +81,7 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-5xl md:text-7xl font-extrabold mb-5 leading-tight"
                 >
-                    ប្រព័ន្ធសិក្សា សម្រាប់សិស្សកម្ពុជា 
+                    ប្រព័ន្ធសិក្សា សម្រាប់សិស្សកម្ពុជា
                 </motion.h1>
                 <motion.h1
                     initial={{ opacity: 0, y: 50 }}
@@ -89,7 +89,7 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-2xl md:text-4xl font-extrabold mb-5 leading-tight"
                 >
-                    បង្កើតដោយសិស្សកម្ពុជា
+                    បង្កើតឡើងដោយសិស្សកម្ពុជា
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}
@@ -97,7 +97,7 @@ export default function Hero() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="text-xl opacity-90 max-w-2xl mx-auto mb-10"
                 >
-                    រៀនគណិតវិទ្យា និងវិទ្យាសាស្ត្រដោយឥតគិតថ្លៃ ជាមួយនឹងមេរៀនងាយយល់ និង AI
+                    រៀន អនុវត្តន៍ និងស្វែងយល់ ជាមួយ <b>KOMPLEX</b> ដោយឥតគិតថ្លៃ
                 </motion.p>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
