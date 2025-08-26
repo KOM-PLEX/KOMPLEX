@@ -47,7 +47,8 @@ const SecondTopicContent: TopicContent = {
 
   example: {
     question: [
-        <div className="flex flex-col items-start gap-3" key="q1">
+      
+        <div className="flex flex-col items-start gap-3 sm:text-[13px] text-[12px]" key="q1">
             <InlineMath math="HCl + NaOH \rightarrow NaCl + H_{2}O" />
         </div>,
     ],
@@ -74,18 +75,9 @@ const ThirdTopicContent: TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
           <div className='flex items-center gap-4 flex-wrap'>
-            <div className='flex items-center gap-2 flex-wrap'>
-                <InlineMath math="HF" />
-                <span>(អាសុីតភ្លុយអរីឌ្រិច)</span>
-            </div>
-            <div className='flex items-center gap-2 flex-wrap'>
-                <InlineMath math="HCl" />
-                <span>(អាសុីតក្លរីឌ្រិច)</span>
-            </div>
-            <div className='flex items-center gap-2 flex-wrap'>
-                <InlineMath math="H_{2}S" />
-                <span>(អាសុីតស៊ុលភីឌ្រិច)</span>
-            </div>
+            <p><InlineMath math="HF" /> (អាសុីតភ្លុយអរីឌ្រិច)</p>
+            <p><InlineMath math="HCl" /> (អាសុីតក្លរីឌ្រិច)</p>
+            <p><InlineMath math="H_{2}S" /> (អាសុីតស៊ុលភីឌ្រិច)</p>
           </div>
         </div>,
     ],
@@ -113,14 +105,8 @@ const FourthTopicContent: TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
           <div className='flex items-center gap-4 flex-wrap'>
-            <div className='flex items-center gap-2 flex-wrap'>
-                <InlineMath math="HNO_{3}" />
-                <span>(អាសុីតនីឌ្រិច)</span>
-            </div>
-            <div className='flex items-center gap-2 flex-wrap'>
-                <InlineMath math="H_{2}SO_{4}" />
-                <span>(អាសុីតស៊ុលផួរិច)</span>
-            </div>
+            <p><InlineMath math="HNO_{3}" /> (អាសុីតនីឌ្រិច)</p>
+            <p><InlineMath math="H_{2}SO_{4}" /> (អាសុីតស៊ុលផួរិច)</p>
           </div>
         </div>,
     ],
@@ -157,8 +143,8 @@ const FifthTopicContent: TopicContent = {
 
   example: {
     question: [
-        <div className="flex flex-col items-start gap-3" key="q1">
-            <div className='flex items-center gap-4 flex-wrap'>
+        <div className="flex flex-col items-start gap-3 sm:text-[13px] text-[12px]" key="q1">
+            <div className='flex items-center gap-4 flex-wrap '>
                 <InlineMath math="HNO_{3} (aq) + H_{2}O \rightarrow H_{3}O^{+} (aq) + NO_{3}^{-} (aq)" />
             </div>
             <div className='flex items-center gap-4 flex-wrap'>
@@ -170,19 +156,9 @@ const FifthTopicContent: TopicContent = {
   example2: {
     question: [
         <div className="flex flex-col items-start gap-3" key="q2">
-          <div className='flex items-center gap-2 flex-wrap'>
-              <p>ក. ចូររកសមីការតាងប្រតិកម្មរវាងអាសុីត</p>
-              <InlineMath math="H_{2}SO_{4}" />
-              <p>និង</p>
-              <InlineMath math="H_{3}PO_{4}" />
-              <p>ជាមួយ</p>
-              <InlineMath math="Ca(OH)_{2}" />
-          </div>
-          <div className='flex items-center gap-2 flex-wrap'>
-              <p>ខ. គេមានសមីការសមាសធាតុអាសុីតបន្តបន្ទាប់នេះ </p>
-              <InlineMath math="H_{3}PO_{4} , HClO_{4} , HBr , HI " />
-              <p>ចូរកំណត់អាសុីតទាំងនេះជាអុីដ្រូអាសុីត និងអុកសុីអាសុីត ព្រមទាំងសរសេរសមីការអាសុីត HBr និង HI បំបែកជាអុីយ៉ុងអុីដ្រូញ៉ូមក្នុងទឹក។</p>
-          </div>
+            <p>ក. ចូររកសមីការតាងប្រតិកម្មរវាងអាសុីត <InlineMath math="H_{2}SO_{4}" />និង <InlineMath math="H_{3}PO_{4}" />ជាមួយ <InlineMath math="Ca(OH)_{2}" /></p>
+            <p>ខ. គេមានសមីការសមាសធាតុអាសុីតបន្តបន្ទាប់នេះ <InlineMath math="H_{3}PO_{4} , HClO_{4} , HBr , HI " /></p>
+            <p>ចូរកំណត់អាសុីតទាំងនេះជាអុីដ្រូអាសុីត និងអុកសុីអាសុីត ព្រមទាំងសរសេរសមីការអាសុីត HBr និង HI បំបែកជាអុីយ៉ុងអុីដ្រូញ៉ូមក្នុងទឹក។</p>
         </div>,
     ],
     steps:[
@@ -193,16 +169,11 @@ const FifthTopicContent: TopicContent = {
             <div className='flex flex-col items-start gap-3'>
                 <div className='flex flex-col items-start gap-4'>
                   <p>ក. សរសេរសមីការតាងប្រតិកម្ម</p>
-                  <div className='flex items-center gap-2 flex-wrap'>
-                      <InlineMath math="H_{2}SO_{4} + Ca(OH)_{2}  \rightarrow" />
-                      <InlineMath math="CaSO_{4}" />
-                      <InlineMath math="+ H_{2}O" />
+                  <div className='flex flex-col gap-2 sm:text-[13px] text-[12px]'>
+                      <InlineMath math="H_{2}SO_{4} + Ca(OH)_{2}  \rightarrow CaSO_{4} + H_{2}O" />
+                      <InlineMath math="2H_{3}PO_{4}  + 3Ca(OH)_{2}  \rightarrow Ca_{3}(PO_{4})_{2} + 3H_{2}O" />
                   </div>
-                  <div className='flex items-center gap-2 flex-wrap'>
-                      <InlineMath math="2H_{3}PO_{4}  + 3Ca(OH)_{2}  \rightarrow" />
-                      <InlineMath math=" Ca_{3}(PO_{4})_{2}  " />
-                      <InlineMath math="+ 3H_{2}O " />
-                  </div>
+                  
                 </div>
             </div>
           </>
@@ -213,14 +184,9 @@ const FifthTopicContent: TopicContent = {
         content: (
           <>
             <div className='flex flex-col items-start gap-3'>
-                <div className='flex items-center gap-2 flex-wrap'>
-                    <p>អុកសុីតអាសុីតមាន​</p>
-                    <InlineMath math="H_{3}PO_{4}" />
-                    <p>និង</p>
-                    <InlineMath math="HClO_{4}" />
-                </div>
-                <div className='flex flex-col items-start gap-4'>
-                  <p>សមីការបំបែកដោយទឹកនៃអាសុីត</p>
+                <p>អុកសុីតអាសុីតមាន​ <InlineMath math="H_{3}PO_{4}" />និង <InlineMath math="HClO_{4}" /></p>
+                <p>សមីការបំបែកដោយទឹកនៃអាសុីត</p>
+                <div className='flex flex-col items-start gap-3 sm:text-[13px] text-[12px]'>
                   <InlineMath math="HBr (g) + H_{2}O (l) \rightarrow Br^{-} (aq) + H_{3}O^{+} (aq)" />
                   <InlineMath math="HI (g) + H_{2}O (l) \rightarrow I^{-} (aq) + H_{3}O^{+} (aq)" />
                 </div>
@@ -259,7 +225,7 @@ const SixthTopicContent: TopicContent = {
 
   example: {
     question: [
-        <div className="flex flex-col items-start gap-3" key="q1">
+        <div className="flex flex-col items-start gap-3 sm:text-[13px] text-[12px]" key="q1">
             <InlineMath math="NaOH(s) \rightarrow Na^{+} (aq) + OH^{-} (aq)" />
             <InlineMath math="NH_{3} (g) + H_{2}O (l) \rightarrow NH_{4}^{+} (aq) + OH^{-} (aq)" />
         </div>,
@@ -268,14 +234,7 @@ const SixthTopicContent: TopicContent = {
   example2: {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
-          <div className='flex items-center gap-4 flex-wrap'>
-            <p>ចូរសរសេរសមីការតាងប្រតិកម្មរវាងអាសុីត</p>
-            <InlineMath math="KOH" />
-            <p>និង</p>
-            <InlineMath math="Ca(OH)_{2}" />
-            <p>ជាមួយ</p>
-            <InlineMath math="H_{2}SO_{4}" />
-          </div>
+            <p>ចូរសរសេរសមីការតាងប្រតិកម្មរវាងអាសុីត <InlineMath math="KOH" />និង <InlineMath math="Ca(OH)_{2}" />ជាមួយ <InlineMath math="H_{2}SO_{4}" /></p>
         </div>,
     ],
     steps:[
@@ -284,7 +243,7 @@ const SixthTopicContent: TopicContent = {
         content: (
           <>
             <div className='flex flex-col items-start gap-3'>
-                <div className='flex flex-col items-start gap-4'>
+                <div className='flex flex-col items-start gap-4 sm:text-[13px] text-[12px]'>
                   <InlineMath math="2KOH (aq) + H_{2}SO_{4} (aq) \rightarrow K_{2}SO_{4} (aq) + 2H_{2}O (l)" />
                   <InlineMath math="Ca(OH)_{2} (aq) + H_{2}SO_{4} (aq) \rightarrow CaSO_{4} (aq) + 2H_{2}O (l)" />
                 </div>
@@ -322,28 +281,33 @@ const SeventhTopicContent: TopicContent = {
                     <li>អាសុីត ជាសមាសធាតុគីមីដែលបង្កេីតអុីយ៉ុងអុីដ្រូសែន ក្នុងសូលុយស្យុងទឹក។</li>
                     <div className='flex items-center gap-2 flex-wrap'>
                         <span>ឧទាហរណ៍</span>
-                        <InlineMath math="HCl (aq) \rightarrow H^{+} (aq) + Cl^{-} (aq)" />
+                        <div className='sm:text-[13px] text-[12px]'>
+                            <InlineMath math="HCl (aq) \rightarrow H^{+} (aq) + Cl^{-} (aq)" />
+                        </div>
                     </div>
                 </div>
                 <div className='flex flex-col items-start gap-3'>
                     <li>បាស ជាសមាសធាតុគីមីដែឡបង្កេីតអុីយ៉ុងអុីដ្រុកសុីត ក្នុងសូលុយស្យុងក្នុងទឹក។</li>
                     <div className='flex items-center gap-2 flex-wrap'>
                         <span>ឧទាហរណ៍</span>
-                        <InlineMath math="NaOH (aq) \rightarrow Na^{+} (aq) + OH^{-} (aq)" />
+                        <div className='sm:text-[13px] text-[12px]'>
+                            <InlineMath math="NaOH (aq) \rightarrow Na^{+} (aq) + OH^{-} (aq)" />
+                        </div>
                     </div>
                 </div>
                 <div className='flex flex-col items-start gap-3'>
                     <li>សូលុយស្យុងអាសុីត​ ជាអេឡិចត្រូលីតដែលមានអុីយ៉ុងអុីដ្រូសែន ច្រេីនជាងអុីយ៉ុងអុីដ្រូស៊ីត។</li>
-                    <div className='flex items-center gap-2 flex-wrap'>
-                        <p>ក្នុងសូលុយស្យុងទឹកអុីយ៉ុងអុីដ្រូសែនចងសម្ព័ន្ធជាមួយម៉ូលេគុលទឹកបង្កេីតបានជាអុីយ៉ុង</p>
-                        <InlineMath math="H_{3}O^{+}" />
-                        <span>។</span>
-                    </div>
-                      <InlineMath math="H^{+} (aq) + H_{2}O (l) \rightarrow H_{3}O^{+} (aq)" />
+                      <p>ក្នុងសូលុយស្យុងទឹកអុីយ៉ុងអុីដ្រូសែនចងសម្ព័ន្ធជាមួយម៉ូលេគុលទឹកបង្កេីតបានជាអុីយ៉ុង <InlineMath math="H_{3}O^{+}" /> ។</p>
+                      <div className='sm:text-[13px] text-[12px]'>
+                          <InlineMath math="H^{+} (aq) + H_{2}O (l) \rightarrow H_{3}O^{+} (aq)" />
+                      </div>
                       <p>ដូច្នេះអុីយ៉ុងកម្មរបស់អាសុីតក្នុងទឹកគេអាចសរសេរ :</p>
                         <span>ឧទាហរណ៍</span>
-                        <InlineMath math="HCl (g) + H_{2}O (l) \rightarrow H_{3}O^{+} (aq) + Cl^{-} (aq)" />
-                        <InlineMath math="HNO_{3} (l) + H_{2}O (l) \rightarrow H_{3}O^{+} (aq) + NO_{3}^{-} (aq)" />
+                        <div className='sm:text-[13px] text-[12px] flex flex-col gap-3'>
+                          <InlineMath math="HCl (g) + H_{2}O (l) \rightarrow H_{3}O^{+} (aq) + Cl^{-} (aq)" />
+                          <InlineMath math="HNO_{3} (l) + H_{2}O (l) \rightarrow H_{3}O^{+} (aq) + NO_{3}^{-} (aq)" />
+                        </div>
+                        
                 </div>
                 <div className='flex flex-col items-start gap-3'>
                   <div className='flex items-center gap-2 flex-wrap'>
@@ -351,8 +315,11 @@ const SeventhTopicContent: TopicContent = {
                       <InlineMath math="H_{3}O^{+}" />
                   </div>
                     <span>ឧទាហរណ៍</span>
-                    <InlineMath math="NaOH (s) \rightarrow Na^{+} (aq) + OH^{-} (aq)" />
-                    <InlineMath math="NH_{3} (g) + H_{2}O (l) \rightarrow NH_{4}^{+} (aq) + OH^{-} (aq)" />
+                    <div className='sm:text-[13px] text-[12px] flex flex-col gap-3'>
+                        <InlineMath math="NaOH (s) \rightarrow Na^{+} (aq) + OH^{-} (aq)" />
+                        <InlineMath math="NH_{3} (g) + H_{2}O (l) \rightarrow NH_{4}^{+} (aq) + OH^{-} (aq)" />
+                    </div>
+                    
                 </div>
             </ul>
         </div>
@@ -378,7 +345,7 @@ const SeventhTopicContent: TopicContent = {
             <div className='flex flex-col items-start gap-3'>
                 <div className='flex items-center gap-2 flex-wrap'>
                     <p>អាសុីតអារ៉េញ៉ូស :</p>
-                    <div className='flex items-center gap-2 flex-wrap'>
+                    <div className='flex items-center gap-2 flex-wrap sm:text-[15px] text-[12px]'>
                         <InlineMath math="HCl ," />
                         <InlineMath math="H_{2}SO_{4} ," />
                         <InlineMath math="HNO_{3}" />
@@ -426,7 +393,9 @@ const EighthTopicContent: TopicContent = {
                   </div>  
                   <div className='flex items-center gap-2 flex-wrap'>
                       <span>ឧទាហរណ៍</span>
-                      <InlineMath math="HCl (g) + NH_{3} (g) \rightarrow NH_{4}^{+} (aq) + Cl^{-} (aq)" />
+                      <div className='sm:text-[13px] text-[12px]'>
+                          <InlineMath math="HCl (g) + NH_{3} (g) \rightarrow NH_{4}^{+} (aq) + Cl^{-} (aq)" />
+                      </div>
                   </div>
                   <div className='flex items-center gap-2 flex-wrap'>
                       <InlineMath math="HCl" />
@@ -441,13 +410,11 @@ const EighthTopicContent: TopicContent = {
                   </div>  
                   <div className='flex items-center gap-2 flex-wrap'>
                       <span>ឧទាហរណ៍</span>
-                      <InlineMath math="NH_{3} (g) + H_{2}O (l) \rightarrow NH_{4}^{+} (aq) + OH^{-} (aq)" />
+                      <div className='sm:text-[13px] text-[12px]'>
+                          <InlineMath math="NH_{3} (g) + H_{2}O (l) \rightarrow NH_{4}^{+} (aq) + OH^{-} (aq)" />
+                      </div>
                   </div>
-                  <div className='flex items-center gap-2 flex-wrap'>
-                      <InlineMath math="NH_{3}" />
-                      <p>ជាបាស ព្រោះវាទទួលប្រូតុងពី </p>
-                      <InlineMath math="H_{2}O" />
-                  </div>
+                  <p><InlineMath math="NH_{3}" /> ជាបាស ព្រោះវាទទួលប្រូតុងពី<InlineMath math="H_{2}O" /></p>
                 </div> 
             </ul>
         </div>
@@ -460,7 +427,7 @@ const EighthTopicContent: TopicContent = {
         <div className="flex flex-col items-start gap-3" key="q1">
           <div className='flex items-center gap-4 flex-wrap'>
             <p>ចូរកំណត់ប្រភេទគីមីទាំងនេះ</p>
-            <div className='flex items-center gap-2 flex-wrap'>
+            <div className='flex items-center gap-2 flex-wrap '>
                 <InlineMath math="NH_{3} , H_{2}SO_{4} , " />
                 <InlineMath math="HNO_{3} , HBr" />
                 <InlineMath math="HCl ," />
