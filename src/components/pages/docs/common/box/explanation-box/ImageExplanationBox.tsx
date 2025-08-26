@@ -17,7 +17,7 @@ export const ImageBox = ({ src, imageAlt, explanation, title }: ImageBoxProps) =
                         <img
                             src={src}
                             alt={imageAlt}
-                            className="rounded-lg shadow-md h-auto w-full aspect-video object-cover"
+                            className="rounded-lg  h-auto w-full aspect-video object-contain"
                         />
                     </div>
                 </div>

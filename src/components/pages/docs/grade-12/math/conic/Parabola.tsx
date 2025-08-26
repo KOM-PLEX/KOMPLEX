@@ -105,9 +105,10 @@ const Parabola = () => {
           <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-200">
             <h4 className="font-medium text-purple-800 mb-2">សេចក្តីសរុប៖</h4>
             <div className="text-sm text-purple-700 space-y-1">
-              <p>• ប៉ារ៉ាបូលឈរ៖ អថេរ <InlineMath math="y" /> ស្ថិតក្នុងការេវរិត</p>
-              <p>• ប៉ារ៉ាបូលដេក៖ អថេរ <InlineMath math="x" /> ស្ថិតក្នុងការេវរិត</p>
+              <p>• ប៉ារ៉ាបូលឈរ៖ អថេរ <InlineMath math="y" /> ស្ថិតក្នុងការេ</p>
+              <p>• ប៉ារ៉ាបូលដេក៖ អថេរ <InlineMath math="x" /> ស្ថិតក្នុងការេ</p>
               <p>• <InlineMath math="4p" /> កំណត់ទិសដៅនិងការបើកប៉ារ៉ាបូល</p>
+              <p>• តម្លៃ p គឺជាចម្ងាយពីកំពូល (V) ទៅកំណុំ (F) និងពីកំពូល (V) ទៅបន្ទាត់ប្រាប់ទិស (Δ)។</p>
             </div>
           </div>
         </div>
