@@ -37,7 +37,7 @@ const SecondTopicContent: TopicContent = {
 
   example: {
     question: [
-        <div className="flex flex-col items-start gap-3" key="q1">
+        <div className="flex flex-col items-start gap-3 text-[13px]" key="q1">
             <InlineMath math="HCOOH + H_{2}O \rightleftharpoons HCOO^{-} + H_{3}O^{+}" />
             <InlineMath math="CH_{3}COOH + H_{2}O \rightleftharpoons CH_{3}COO^{-} + H_{3}O^{+}" />
             <InlineMath math="C_{6}H_{5}COOH + H_{2}O \rightleftharpoons C_{6}H_{5}COO^{-} + H_{3}O^{+}" />

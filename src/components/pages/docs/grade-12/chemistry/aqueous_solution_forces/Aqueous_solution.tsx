@@ -27,7 +27,7 @@ const FirstTopicContent: TopicContent = {
 
   example: {
     question: [
-        <div className="flex flex-col items-start gap-3 sm:text-[13px] text-[12px]" key="q1">
+        <div className="flex flex-col items-start gap-3  text-[13px]" key="q1">
             <InlineMath math="NaCl(s) \rightarrow Na^{+}(aq) + Cl^{-}(aq)"/>
             <InlineMath math="HCl + H_{2}O \rightarrow H_{3}O^{+} + Cl^{-}"/>
             <InlineMath math="Ca(NO_{3})_{2} \rightarrow Ca^{2+} + 2NO_{3}^{-}"/>
@@ -63,80 +63,11 @@ const SecondTopic: TopicContent = {
 
   example: {
     question: [
-        <div className="flex flex-col items-start gap-3 sm:text-[13px] text-[12px]" key="q1">
+        <div className="flex flex-col items-start gap-3 text-[13px]" key="q1">
             <InlineMath math="AgNO_{3} \rightarrow Ag^{+} + NO_{3}^{-}"/>
             <InlineMath math="2NaOH \rightarrow 2Na^{+} + 2OH^{-}"/>
         </div>,
     ],
-  },
-  example2: {
-    question: [
-        <div className="flex flex-col items-start gap-3" key="q1">
-            <p>តេីកករនឹងកេីតមានឡេីងឬទេ កាលណាគេលាយសូលុយស្យុងទឹកនៃស័ង្កសីនីត្រាតនិងអាម៉ូញូមស៊ុលផាតចូលគ្នា?ចូរសរសេរសមីការប្រតិកម្មជំនួសទ្វេដែលអាចមាន។ បន្ទាប់មកសរសេរសមីការគីមី សមីការអុីយ៉ុងសព្វ និងសមីការអុីយ៉ុងសម្រួល។</p>
-        </div>,   
-    ],
-    steps: [
-        {
-            title: "សមីការប្រតិកម្មជំនួសទ្វេ",
-            content: 
-            <div>
-                
-                <div className="flex flex-col items-start">
-                    <div className='flex items-center gap-2 flex-wrap'>
-                        <BlockMath math={"Zn(NO_{3})_{2}(aq) + (NH_{4})_{2}SO_{4}(aq)"} />
-                        <BlockMath math={"\\rightarrow ZnS(?) + 2NH_{4}NO_{3}(?)"} />
-                    </div>
-                </div>  
-            </div>
-        },
-        {
-            title: "សមីការប្រតិកម្មគីមី",
-            content: 
-            <div>
-                <div className="flex flex-col items-start">
-                    <div className='flex items-center gap-1 flex-wrap'>
-                        <p>ដោយ ZnS គឺជាស៊ុលផួមិនរលាយ​ ចំណែក</p>
-                        <BlockMath math={"NH_{4}NO_{3}"} />
-                        <p>ជាសមាសធាតុ</p>
-                        <p>រលាយ</p>
-                        <p>ក្នុងទឹក នោះគេបាន :</p>
-                    </div>
-                    <div className='flex items-center gap-2 flex-wrap'>
-                        <BlockMath math={"Zn(NO_{3})_{2}(aq) + (NH_{4})_{2}SO_{4}(aq)"} />
-                        <BlockMath math={"\\rightarrow ZnS(s) + 2NH_{4}NO_{3}(aq)"} />
-                    </div>
-                </div>  
-            </div>
-        },
-        {
-            title: "សមីការអុីយ៉ុងសព្វ",
-            content: 
-            <div>
-                <div className="flex flex-col items-start">
-                    <div className='flex items-center gap-2 flex-wrap'>
-                        <BlockMath math={"Zn^{2+}(aq) + 2NO_{3}^{-}(aq)"} />
-                        <BlockMath math={"+ 2NH_{4}^{+}(aq)"} />
-                        <BlockMath math={"+ S^{2-}(aq)"} />
-                        <BlockMath math={"\\rightarrow ZnS(s) + 2NH_{4}^{+}(aq) + 2NO_{3}^{-}(aq)"} />
-                    </div>
-
-                </div>  
-            </div>
-        },
-        {
-            title: "សមីការអុីយ៉ុងសម្រួល",
-            content: 
-            <div>
-                <div className="flex flex-col items-start">
-                  <p>អុីយ៉ុងអាម៉ូញូមនិងអុីយ៉ុងនីត្រាតដែលមាននៅអង្គទាំងពីរណៃសមីការគឺជាអុីយ៉ុងទស្សនិក។</p>
-                    <div className='flex items-center gap-2 flex-wrap'>
-                        <BlockMath math={"Zn^{2+}(aq) + S^{2-}(aq) \\rightarrow ZnS(s)"} />
-                    </div>
-
-                </div>  
-            </div>
-        },
-    ],  
   },
     exercise: {
       questions: [
@@ -245,12 +176,16 @@ const FifthTopicContent: TopicContent = {
     content: (
       <div className='flex items-start flex-col'>
           <div className='flex items-center gap-2 flex-wrap'>
-              <p>ទឹកចាប់យកអុីយ៉ុង</p>
-              <InlineMath math="H^{+}" />
+              <p>ទឹកចាប់យកអុីយ៉ុង </p>
+              <div className='text-[12px]'>
+                  <InlineMath math="H^{+}" />
+              </div>
               <p>ពីអាសុីត</p>
               <p>បង្កេីតបានជា</p>
               <p>អុីយ៉ុងអុីដ្រូញ៉ូម</p>
-              <InlineMath math="H_{3}O^{+}" />
+              <div className='text-[12px]'>
+                  <InlineMath math="H_{3}O^{+}" />
+              </div> 
           </div>
       </div>
     ),
@@ -260,15 +195,15 @@ const FifthTopicContent: TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-5" key="q1">
              
-          <div className='flex items-center gap-2 flex-wrap sm:text-[13px] text-[12px]'>
-              <InlineMath math="HCl(g) \rightarrow^{H_{2}O} H^{+}(aq) + Cl^{-}(aq)" />
+          <div className='flex items-center gap-2 flex-wrap text-[13px]'>
+              <InlineMath math="HCl(g) \xrightarrow{H_{2}O} H^{+}(aq) + Cl^{-}(aq)" />
               <span>(1)</span>
           </div>
-          <div className='flex items-center gap-2 flex-wrap sm:text-[13px] text-[12px]'>
+          <div className='flex items-center gap-2 flex-wrap text-[13px]'>
               <InlineMath math="H^{+}(aq) + H_{2}O(l) \rightarrow H_{3}O^{+}(aq)" />
               <span>(2)</span>
           </div>
-          <div className='flex items-center gap-2 flex-wrap sm:text-[13px] text-[12px]'>
+          <div className='flex items-center gap-2 flex-wrap text-[13px] '>
             <span>ជាសរុប</span>
             <InlineMath math="HCl(g) + H_{2}O(l) \rightarrow H_{3}O^{+}(aq) + Cl^{-}(aq)" />
           </div>
@@ -319,10 +254,10 @@ const SeventhTopicContent: TopicContent = {
         <div className="flex flex-col items-start gap-5" key="q1">
             <p>បាសខ្លាំង អាសុីតខ្លាំង អំបិលរលាយសព្វក្នុងទឹក</p>
             
-            <div className='flex flex-col sm:text-[13px] text-[12px] gap-3'>
-                <InlineMath math="Ba(OH)_{2}(s) \rightarrow^{H_{2}O} Ba^{2+}(aq) + 2OH^{-}(aq)" />
+            <div className='flex flex-col text-[13px] gap-3'>
+                <InlineMath math="Ba(OH)_{2}(s) \xrightarrow{H_{2}O} Ba^{2+}(aq) + 2OH^{-}(aq)" />
                 <InlineMath math="HCl(g) + H_{2}O(l) \rightarrow H_{3}O^{+}(aq) + Cl^{-}(aq)" />
-                <InlineMath math="NaCl(s) \rightarrow^{H_{2}O} Na^{+}(aq) + Cl^{-}(aq)" />
+                <InlineMath math="NaCl(s) \xrightarrow{H_{2}O} Na^{+}(aq) + Cl^{-}(aq)" />
             </div>
         </div>,
     ],
@@ -349,7 +284,7 @@ const EighthTopicContent: TopicContent = {
         <div className="flex flex-col items-start gap-5" key="q1">
             <p>បាសខ្សោយ អាសុីតខ្សោយ</p>
             
-            <div className='flex flex-col sm:text-[13px] text-[12px] gap-3'>
+            <div className='flex flex-col text-[13px] gap-3'>
                 <InlineMath math="NH_{3}(aq) + H_{2}O(l) \rightleftharpoons NH_{4}^{+}(aq) + OH^{-}(aq)" />
                 <InlineMath math="CH_{3}COOH(aq) + H_{2}O(l) \rightleftharpoons H_{3}O^{+}(aq) + CH_{3}COO^{-}(aq)" />
             </div>
@@ -379,7 +314,7 @@ const NinethTopicContent: TopicContent = {
             content: 
             <div>
                 <div className="flex flex-col items-start">
-                    <div className='sm:text-[13px] text-[12px]'>
+                    <div className='text-[13px]'>
                         <InlineMath math="Zn(NO_{3})_{2}(aq) + (NH_{4})_{2}SO_{4}(aq) \rightarrow ZnS(?) + 2NH_{4}NO_{3}(?)"/>
                     </div>
                 </div>  
@@ -391,7 +326,7 @@ const NinethTopicContent: TopicContent = {
             <div>
                 <div className="flex flex-col items-start gap-3">
                     <p>ដោយ ZnS គឺជាស៊ុលផួមិនរលាយ​ ចំណេក <InlineMath math="NH_{4}NO_{3}"/> ជាសមាសធាតុរលាយក្នុងទឹក នោះគេបាន :</p>
-                    <div className='sm:text-[13px] text-[12px]'>
+                    <div className='text-[13px]'>
                         <InlineMath math="Zn(NO_{3})_{2}(aq) + (NH_{4})_{2}SO_{4}(aq) \rightarrow ZnS(s) + 2NH_{4}NO_{3}(aq)"/>
                     </div>
                 </div>  
@@ -401,7 +336,7 @@ const NinethTopicContent: TopicContent = {
             title: "សមីការអុីយ៉ុងសព្វ",
             content: 
             <div>
-                <div className="sm:text-[13px] text-[12px]">
+                <div className="text-[13px]">
                     <InlineMath math="Zn^{2+}(aq) + 2NO_{3}^{-}(aq) + 2NH_{4}^{+}(aq) + S^{2-}(aq) \rightarrow ZnS(s) + 2NH_{4}^{+}(aq) + 2NO_{3}^{-}(aq)"/>
                 </div>  
             </div>
@@ -412,7 +347,7 @@ const NinethTopicContent: TopicContent = {
             <div>
                 <div className="flex flex-col items-start gap-3">
                   <p>សមីការអុីយ៉ុងសម្រួលគឺជាសមីការដែលសរសេរតែប្រភេទគីមីទាំងឡាយណាដែលរងនូវបម្រែបម្រួលគីមីក្នុងលំនាំប្រតិកម្ម។</p>
-                  <div className="sm:text-[13px] text-[12px]" >
+                  <div className="text-[13px]" >
                     <InlineMath math="Zn^{2+}(aq) + S^{2-}(aq) \rightarrow ZnS(s)"/>
                   </div>
                 </div>  

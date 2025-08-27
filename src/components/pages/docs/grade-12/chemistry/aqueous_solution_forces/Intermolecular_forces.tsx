@@ -332,21 +332,33 @@ const SixthTopicContent: TopicContent = {
             <div className='flex items-start gap-3 flex-col'>
                 <div className='flex items-center gap-2 flex-wrap'>
                     <p>ក. </p>
-                    <InlineMath math="HBr" /> 
+                    <div className='text-[13px]'>
+                        <InlineMath math="HBr" /> 
+                    </div>
                     <p>និង</p>
-                    <InlineMath math="H_{2}S" />
+                    <div className='text-[13px]'>
+                        <InlineMath math="H_{2}S" />
+                    </div>
                 </div>
                 <div className='flex items-center gap-2 flex-wrap'>
                     <p>ខ. </p>
-                    <InlineMath math="Cl_{2}" /> 
+                    <div className='text-[13px]'>
+                        <InlineMath math="Cl_{2}" />   
+                    </div>
                     <p>និង</p>
-                    <InlineMath math="CBr_{4}" />
+                    <div className='text-[13px]'>
+                        <InlineMath math="CBr_{4}" />                   
+                    </div>
                 </div>
                 <div className='flex items-center gap-2 flex-wrap'>
                     <p>គ. </p>
-                    <InlineMath math="NH_{3}" /> 
+                    <div className='text-[13px]'>
+                        <InlineMath math="NH_{3}" />                              
+                    </div>
                     <p>និង</p>
-                    <InlineMath math="H_{2}O" />
+                    <div className='text-[13px]'>
+                        <InlineMath math="H_{2}O" />                          
+                    </div>
                 </div>
             </div>
         </div>,
@@ -356,17 +368,26 @@ const SixthTopicContent: TopicContent = {
           title: 
                 <div className='flex items-center gap-2 flex-wrap'>
                     <p>ក. </p>
-                    <InlineMath math="HBr" /> 
+                    <div className='text-[13px]'>
+                        <InlineMath math="HBr" /> 
+                    </div>
                     <p>និង</p>
-                    <InlineMath math="H_{2}S" />
+                    <div className='text-[13px]'>
+                       <InlineMath math="H_{2}S" />
+                    </div>
+                    
                 </div>,
           content: 
           <div>
               <div className="flex flex-col items-start gap-3">
                   <div className='flex items-center gap-2 flex-wrap'>
-                    <InlineMath math="HBr" /> 
+                    <div className='text-[13px]'>
+                        <InlineMath math="HBr" /> 
+                    </div>
                     <p>និង</p>
-                    <InlineMath math="H_{2}S" />
+                    <div className='text-[13px]'>
+                       <InlineMath math="H_{2}S" />
+                    </div>
                     <p>គឺជាម៉ូលេគុលប៉ូលែ។</p>
                   </div>
                   <p>ដូចនេះរវាងកម្លាំងម៉ូលេគុលទាំងពីរជាកម្លាំងឌីប៉ូល-ឌីប៉ូល ហេីយវាក៏មានកម្លាំងឡុនដុនផងដែរ។</p>
@@ -377,17 +398,25 @@ const SixthTopicContent: TopicContent = {
           title: 
                 <div className='flex items-center gap-2 flex-wrap'>
                    <p>ខ. </p>
-                    <InlineMath math="Cl_{2}" /> 
+                   <div className='text-[13px]'>
+                      <InlineMath math="Cl_{2}" />                        
+                    </div>
                     <p>និង</p>
-                    <InlineMath math="CBr_{4}" />
+                    <div className='text-[13px]'>
+                        <InlineMath math="CBr_{4}" />                                          
+                    </div>
                 </div>,
           content: 
           <div>
               <div className="flex flex-col items-start gap-3">
-                  <div className='flex items-center gap-2 flex-wrap'>
-                      <InlineMath math="Cl_{2}" /> 
+                  <div className='flex items-center gap-1 flex-wrap'>
+                      <div className='text-[13px]'>
+                          <InlineMath math="Cl_{2}" />                        
+                      </div>
                       <p>និង</p>
-                      <InlineMath math="CBr_{4}" />
+                      <div className='text-[13px]'>
+                        <InlineMath math="CBr_{4}" />                                          
+                      </div>
                     <p>គឺជាម៉ូលេគុល</p>
                     <p>មិនប៉ូលែ។</p>
                   </div>
@@ -399,17 +428,25 @@ const SixthTopicContent: TopicContent = {
           title: 
                 <div className='flex items-center gap-2 flex-wrap'>
                    <p>គ. </p>
-                    <InlineMath math="NH_{3}" /> 
+                    <div className='text-[13px]'>
+                        <InlineMath math="NH_{3}" />                                      
+                    </div>    
                     <p>និង</p>
-                    <InlineMath math="H_{2}O" />
+                    <div className='text-[13px]'>
+                        <InlineMath math="H_{2}O" />                                      
+                    </div>                    
                 </div>,
           content: 
           <div>
               <div className="flex flex-col items-start gap-3">
                   <div className='flex items-center gap-2 flex-wrap'>
-                      <InlineMath math="NH_{3}" /> 
+                      <div className='text-[13px]'>
+                        <InlineMath math="NH_{3}" />                                      
+                     </div>   
                       <p>និង</p>
-                      <InlineMath math="H_{2}O" />
+                      <div className='text-[13px]'>
+                        <InlineMath math="H_{2}O" />                                      
+                      </div>
                     <p>គឺជាម៉ូលេគុលប៉ូលែ។</p>
                   </div>
                   <p>ដូចនេះរវាងកម្លាំងម៉ូលេគុលទាំងពីរជាកម្លាំងឌីប៉ូល-ឌីប៉ូល ហេីយវាក៏មានសម្ព័ន្ធអុីដ្រូសែនផងដែរ។</p>
@@ -443,9 +480,6 @@ const Intermolecular_forces = () => {
             {FirstTopicContent.tip && (
                 <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
             )}
-            {/* {FirstTopicContent.example && (
-                <ExampleBox question={FirstTopicContent.example.question} steps={FirstTopicContent.example.steps} answer={FirstTopicContent.example.answer} />
-            )} */}
         </div>
         <div>
             {SecondTopic.definition && (
