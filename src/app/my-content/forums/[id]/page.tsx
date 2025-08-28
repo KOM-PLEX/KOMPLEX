@@ -85,7 +85,7 @@ export default function MyForumDetail() {
         return (
             <div className="flex min-h-screen transition-colors duration-200 bg-gray-50">
                 <Sidebar />
-                <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
+                <div className="flex-1 ml-0 lg:ml-64 pt-32 lg:pt-20">
                     <div className="max-w-7xl mx-auto p-5">
                         {/* Loading Skeleton */}
                         <div className="mb-6">

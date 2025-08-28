@@ -9,7 +9,7 @@ import {
     BarChart3
 } from 'lucide-react';
 import axios from 'axios';
-import { ExerciseDashboard, ExerciseHistory } from '@/types/user-content/exercise';
+import { ExerciseDashboard } from '@/types/user-content/exercise';
 import ExerciseHistoryComponent from '@/components/pages/my-content/exercises/ExerciseHistory';
 import ExerciseReportComponent from '@/components/pages/my-content/exercises/ExerciseReport';
 

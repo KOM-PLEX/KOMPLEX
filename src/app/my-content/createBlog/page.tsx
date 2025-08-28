@@ -23,13 +23,15 @@ export default function CreateBlog() {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', bodyText);
-        selectedImages.forEach(f => formData.append('files', f));
+        selectedImages.forEach(f => formData.append('images', f));
 
         formData.append('type', 'education');
         formData.append('topic', 'biology');
 
         try {
-            const response = await axios.post('http://localhost:6969/blogs', formData);
+            const response = await axios.post('http://localhost:6969/user-content/blogs', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
             console.log('Blog post created:', response.data);
         } catch (error) {
             console.error('Error creating blog post:', error);

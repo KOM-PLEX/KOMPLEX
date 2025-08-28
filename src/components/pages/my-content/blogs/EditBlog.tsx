@@ -150,15 +150,29 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
         try {
             setIsSaving(true);
 
-            const requestBody = {
-                title,
-                description: bodyText,
-                type: blogTypes[0] || '',
-                topic: topics[0] || '',
-                photosToRemove: removedImages.length > 0 ? removedImages.map(url => ({ url })) : undefined
-            };
+            // Build multipart form data per new controller
+            const formData = new FormData();
+            formData.append('title', title.trim());
+            formData.append('description', bodyText.trim());
+            formData.append('type', blogTypes[0] || '');
+            formData.append('topic', topics[0] || '');
 
-            const response = await axios.patch(`http://localhost:6969/blogs/${blog.id}`, requestBody);
+            // Newly added images (field name must be 'images')
+            if (selectedImages.length > 0) {
+                selectedImages.forEach((file) => {
+                    formData.append('images', file);
+                });
+            }
+
+            // Photos to remove must be a JSON string of objects { url }
+            if (removedImages.length > 0) {
+                const photosPayload = JSON.stringify(removedImages.map((url) => ({ url })));
+                formData.append('photosToRemove', photosPayload);
+            }
+
+            await axios.put(`http://localhost:6969/user-content/blogs/${blog.id}`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
 
             // Fetch updated blog data
             const updatedResponse = await axios.get(`http://localhost:6969/user-content/blogs/${blog.id}`);

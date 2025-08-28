@@ -56,6 +56,7 @@ export default function ForumDiscussion() {
             const response = await axios.patch(`http://localhost:6969/user-content/forums/${postId}/${isLiked ? 'unlike' : 'like'}`);
             console.log(response.data);
             setPost(prev => prev ? { ...prev, likeCount: isLiked ? prev.likeCount - 1 : prev.likeCount + 1, isLiked: !isLiked } : null);
+            setRefresh(!refresh);
         } catch (error) {
             console.error('Error liking post:', error);
         }

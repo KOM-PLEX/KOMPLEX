@@ -98,13 +98,27 @@ export default function EditForum({ forum, onSave, onCancel }: EditForumProps) {
         try {
             setIsSaving(true);
 
-            const requestBody = {
-                title,
-                description,
-                photosToRemove: removedImages.length > 0 ? removedImages.map(url => ({ url })) : undefined
-            };
+            // Build multipart form data per new controller
+            const formData = new FormData();
+            formData.append('title', title.trim());
+            formData.append('description', description.trim());
 
-            await axios.patch(`http://localhost:6969/forums/${forum.id}`, requestBody);
+            // Newly added images (field name must be 'images')
+            if (selectedImages.length > 0) {
+                selectedImages.forEach((file) => {
+                    formData.append('images', file);
+                });
+            }
+
+            // Photos to remove must be a JSON string of objects { url }
+            if (removedImages.length > 0) {
+                const photosPayload = JSON.stringify(removedImages.map((url) => ({ url })));
+                formData.append('photosToRemove', photosPayload);
+            }
+
+            await axios.patch(`http://localhost:6969/forums/${forum.id}`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
 
             // Fetch updated forum data
             const updatedResponse = await axios.get(`http://localhost:6969/user-content/forums/${forum.id}`);

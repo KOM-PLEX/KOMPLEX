@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Carousel from '@/components/common/Carousel';
 import { ForumPost } from '@/types/content/forums';
 import { Media } from '@/types/content/media';
+import axios from 'axios';
 
 
 interface ForumCardProps {

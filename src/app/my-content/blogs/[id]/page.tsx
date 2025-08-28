@@ -89,7 +89,7 @@ export default function BlogPost() {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:6969/blogs/${id}`);
+            await axios.delete(`http://localhost:6969/user-content/blogs/${id}`);
             router.push('/my-content/blogs');
         } catch (error) {
             console.error('Error deleting blog:', error);
