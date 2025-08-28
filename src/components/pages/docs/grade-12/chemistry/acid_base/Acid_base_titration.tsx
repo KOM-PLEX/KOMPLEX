@@ -32,9 +32,9 @@ const FirstTopicContent: TopicContent = {
             <div className='flex items-center gap-3 flex-wrap'>
                 <p className='font-bold'>ប្រតិកម្មបន្សាប </p>
                 <p>ជាប្រតិកម្មរវាងអុីយ៉ុង </p>
-                <InlineMath math="[H_{3}O^{+}]" />
+                <span className='text-[13px]'><InlineMath math="[H_{3}O^{+}]" /></span>
                 <p>របស់អាសុីត និងអុីយ៉ុង </p>
-                <InlineMath math="[OH^{-}]" />
+                <span className='text-[13px]'><InlineMath math="[OH^{-}]" /></span>
                 <p>របស់បាស ។</p>
             </div>
             
@@ -45,7 +45,7 @@ const FirstTopicContent: TopicContent = {
 
   example: {
     question: [
-        <div className="flex flex-col items-start gap-3" key="q1">
+        <div className="flex flex-col items-start gap-3 text-[13px]" key="q1">
             <InlineMath math="NaOH (s) \rightarrow Na^{+} (aq) + OH^{-} (aq)" />
             <InlineMath math="HCl + H_{2}O \rightarrow H_{3}O^{+} + Cl^{-} " />
             <InlineMath math="H_{3}O^{+} (aq) + OH^{-} (aq) \rightarrow 2H_{2}O" />
@@ -76,25 +76,25 @@ const SecondTopicContent: TopicContent = {
         <div className='flex flex-col gap-3 items-start'>
             <div className='flex items-center gap-3 flex-wrap'>
                 <p>ទំនាក់ទំនងបរិមាណនៅចំណុចសមមូលអាសុីតបាស </p>
-                <InlineMath math="C_{a} \cdot V_{a} = C_{b} \cdot V_{b} " />
+                <span className='text-[13px]'><InlineMath math="C_{a} \cdot V_{a} = C_{b} \cdot V_{b} " /></span>
             </div>
             <div className='flex items-start gap-7 flex-wrap'>
                 <div className='flex items-start gap-2 flex-wrap'>
-                   <InlineMath math="C_{a} " />
+                   <span className='text-[13px]'><InlineMath math="C_{a} " /></span>
                    <p>កំហាប់អាសុីត</p>
                 </div>
                 <div className='flex items-start gap-2 flex-wrap'>
-                   <InlineMath math="C_{b} " />
+                   <span className='text-[13px]'><InlineMath math="C_{b} " /></span>
                    <p>កំហាប់បាស</p>
                 </div>
             </div>
             <div className='flex items-start gap-11 flex-wrap'>
                 <div className='flex items-start gap-2 flex-wrap'>
-                   <InlineMath math="V_{a} " />
+                   <span className='text-[13px]'><InlineMath math="V_{a} " /></span>
                    <p>មាឌអាសុីត</p>
                 </div>
                 <div className='flex items-start gap-2 flex-wrap'>
-                   <InlineMath math="V_{b} " />
+                   <span className='text-[13px]'><InlineMath math="V_{b} " /></span>
                    <p>មាឌបាស</p>
                 </div>
             </div>
@@ -156,31 +156,31 @@ const ThirdTopicContent: TopicContent = {
               <div className='flex flex-col items-start gap-3'>
                 <div className='flex items-center gap-2 flex-wrap'>
                     <p>តាមសម្មតិកម្ម : </p>
-                    <InlineMath math="V(H_{3}O^{+}) = 40mL = 0.04L " />
+                    <span className='text-[13px]'><InlineMath math="V(H_{3}O^{+}) = 40mL = 0.04L " /></span>
                 </div>
-                <InlineMath math="V(OH^{-}) = 24.64mL = 0.02464L " />
-                <InlineMath math="C(OH^{-}) = 0.55 M" />
+                <span className='text-[13px]'><InlineMath math="V(OH^{-}) = 24.64mL = 0.02464L " /></span>
+                <span className='text-[13px]'><InlineMath math="C(OH^{-}) = 0.55 M" /></span>
                 <p>តាមរូបមន្តនៅចំណុចសមមូល</p>
                 <div className='flex items-center gap-2 flex-wrap'>
-                    <InlineMath math="C_{A} \cdot V_{A} = C_{B} \cdot V_{B} " />
+                  <span className='text-[13px]'><InlineMath math="C_{A} \cdot V_{A} = C_{B} \cdot V_{B} " /></span>
                     <div className='flex items-center gap-2 flex-wrap'>
-                        <InlineMath math="\Leftrightarrow C_{A} = " />
-                      <div className='text-xl'>
+                      <span className='text-[13px]'><InlineMath math="\Leftrightarrow C_{A} = " /></span>
+                      <div className='text-[16px]'>
                         <InlineMath math="\frac{C_{B}V_{B}}{V_{A}}" />
                       </div>
                     </div>
                 </div>
                 <div className='flex items-center gap-2 flex-wrap'>
-                    <div className='text-lg'>
+                    <div className='text-[16px]'>
                       <InlineMath math="= \frac{0.55 \cdot 0.02464}{0.04}" />
                     </div>
-                      <InlineMath math="= 0.338 M" />
+                    <span className='text-[13px]'><InlineMath math="= 0.338 M" /></span>
+
                 </div>
 
                 <div className='flex items-center gap-2 flex-wrap'>
                     <p>ដូចនេះកំហាប់របស់ HCI គឺ </p>
                     <InlineMath math="= 0.338 M" />
-                    <InlineMath math="= 0.338 mol/L" />
                 </div>
                 
               </div>
@@ -232,7 +232,7 @@ const Acid_base_titration = () => {
             )}
             <div className="w-full overflow-x-auto ">
                 <table className="min-w-max border border-gray-300 rounded-lg text-sm sm:text-base">
-                      <thead className='bg-blue-600 text-white'>
+                      <thead className=' bg-indigo-600 text-white'>
                             <tr>
                                 <th className="border border-gray-300 px-4 py-2 text-left">អង្គធាតុចង្អុលពណ៌</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">តំបន់ប្រែពណ៌</th>

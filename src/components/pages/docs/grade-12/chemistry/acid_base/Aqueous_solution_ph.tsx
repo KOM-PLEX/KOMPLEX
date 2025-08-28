@@ -31,11 +31,11 @@ const FirstTopicContent: TopicContent = {
             <div className='flex flex-col gap-3'>
                 <div className='flex items-center gap-2 flex-wrap'>
                   <li>ម៉ូលេគុលទឹកមួយបោះបង់ប្រូតុងផ្តល់ទៅទឹកមួយទៀត ហៅថាអុីយ៉ុងកម្មនៃទឹក ឬអូតូប្រូតូលីសនៃទឹក។</li>
-                  <InlineMath math="H_{2}O (l) + H_{2}O (l) \rightleftharpoons H_{3}O^{+} (aq) + OH^{-} (aq)" />
+                  <span className='text-[13px]'><InlineMath math="H_{2}O (l) + H_{2}O (l) \rightleftharpoons H_{3}O^{+} (aq) + OH^{-} (aq)" /></span>
               </div>
               <div className='flex items-center gap-2 flex-wrap'>
                   <p>នៅសីតុណ្ហភាព (25 °C) ទឹកសុទ្ធមាន pH = 7 និងមានកំហាប់</p>
-                  <InlineMath math="[H_{3}O^{+}] = [OH^{-}] =  10^{-7} mol.L^{-1}" />
+                  <span className='text-[13px]'><InlineMath math="[H_{3}O^{+}] = [OH^{-}] =  10^{-7} mol.L^{-1}" /></span>
               </div>
             </div>
 
@@ -43,15 +43,15 @@ const FirstTopicContent: TopicContent = {
                 <div className='flex items-center gap-2 flex-wrap'>
                   <div className='flex items-center flex-wrap gap-2'>
                       <li>ផលគុណរវាងកំហាប់អុីយ៉ុង </li>
-                      <InlineMath math="H_{3}O^{+} " />
+                      <span className='text-[13px]'> <InlineMath math="H_{3}O^{+} " /></span>
                       <span>និង</span>
-                      <InlineMath math="OH^{-}" />
+                      <span className='text-[13px]'><InlineMath math="OH^{-}" /></span>
                       <p>ហៅថាផលគុណអុីយ៉ុងនៃទឹក (ke ឬ kw) ។</p>
                       
                   </div>   
                 </div>
               <div className='flex items-center gap-2 flex-wrap'>
-                  <InlineMath math="[H_{3}O^{+}] * [OH^{-}] =  Ke" />
+                  <span className='text-[13px]'><InlineMath math="[H_{3}O^{+}] * [OH^{-}] =  Ke" /></span>
                   <p>ផលគុណនេះមានតម្លៃថេរជានិច្ច (ជាទំហំគ្មានខ្នាត ប្រែប្រួលតាមសីតុណ្ហភាព) ។</p>
               </div>
             </div>
@@ -59,20 +59,20 @@ const FirstTopicContent: TopicContent = {
             <div className='flex flex-col gap-3'>
                 <li>មជ្ឈដ្ធានសូលុយស្យុងមានបីគឺ :</li>
                 <div className='flex items-center gap-3 flex-wrap'>
-                   <InlineMath math="[H_{3}O^{+}] = [OH^{-}] " />
+                   <span className='text-[13px]'>_ <InlineMath math="[H_{3}O^{+}] = [OH^{-}] " /></span>
                    <p>ជាសូលុយស្យុងណឺត</p>
-                   <InlineMath math="(pH = 7 )" />
+                   <span className='text-[13px]'><InlineMath math="(pH = 7 )" /></span>
                 </div>
                 <div className='flex items-center gap-3 flex-wrap'>
-                   <InlineMath math="[H_{3}O^{+}] > [OH^{-}] " />
+                   <span className='text-[13px]'>_ <InlineMath math="[H_{3}O^{+}] > [OH^{-}] " /></span>
                    <p>ជាសូលុយស្យុងណឺត </p>
-                   <InlineMath math="(pH < 7 )" />
+                   <span className='text-[13px]'><InlineMath math="(pH < 7 )" /></span>
 
                 </div>
                 <div className='flex items-center gap-3 flex-wrap'>
-                   <InlineMath math="[H_{3}O^{+}] < [OH^{-}] " />
+                   <span className='text-[13px]'>_ <InlineMath math="[H_{3}O^{+}] < [OH^{-}] " /></span>
                    <p>ជាសូលុយស្យុងណឺត</p>
-                   <InlineMath math="(pH > 7 )" />
+                   <span className='text-[13px]'><InlineMath math="(pH > 7 )" /></span>
                 </div>
             </div>
               
@@ -102,10 +102,10 @@ const SecondTopicContent: TopicContent = {
             <div className='flex flex-col gap-3'>
                 <div className='flex items-center gap-2 flex-wrap'>
                   <li>pH នៃសូលុយស្យុងរាវ ជាទំហំផ្ទុយនឹងឡូការីតគោលដប់នៃកំហាប់អុីយ៉ុងអុីដ្រូញ៉ូម</li>
-                  <InlineMath math="[H_{3}O^{+}]" />
+                  <span className='text-[13px]'><InlineMath math="[H_{3}O^{+}]" /></span>
                   <p>របស់សូលុយស្យុងនោះ។</p>
               </div>
-              <div className='flex items-center gap-2 flex-wrap'>
+              <div className='flex items-center gap-2 flex-wrap text-[13px]'>
                   <InlineMath math="pH = -log[H_{3}O^{+}]" />
                   <InlineMath math="\Leftrightarrow [H_{3}O^{+}] = 10^{-pH}" />
               </div>
@@ -114,10 +114,10 @@ const SecondTopicContent: TopicContent = {
             <div className='flex flex-col gap-3'>
                 <div className='flex items-center gap-2 flex-wrap'>
                   <li>pOH នៃសូលុយស្យុងរាវ ជាទំហំផ្ទុយនឹងឡូការីតគោលដប់នៃកំហាប់អុីយ៉ុងអុីដ្រុកសុីត</li>
-                  <InlineMath math="[OH^{-}]" />
+                  <span className='text-[13px]'><InlineMath math="[OH^{-}]" /></span>
                   <p>របស់សូលុយស្យុងនោះ។</p>
               </div>
-              <div className='flex items-center gap-2 flex-wrap'>
+              <div className='flex items-center gap-2 flex-wrap text-[13px]'>
                   <InlineMath math="pOH = -log[OH^{-}]" />
                   <InlineMath math="\Leftrightarrow [OH^{-}] = 10^{-pOH}" />
               </div>
@@ -125,14 +125,17 @@ const SecondTopicContent: TopicContent = {
             <div className='flex flex-col gap-3'>
                 <div className='flex items-center gap-2 flex-wrap'>
                   <li>នៅសីតុណ្ហភាព 25°C ទឹកសុទ្ធមាន</li>
-                  <InlineMath math="K_{w}= 10^{-14}" />
-                  <InlineMath math="\Leftrightarrow pK_{w} = -log 10^{-14} = 14" />
+                  <div className='text-[13px]'>
+                      <InlineMath math="K_{w}= 10^{-14}" />
+                      <InlineMath math="\Leftrightarrow pK_{w} = -log 10^{-14} = 14" />
+                  </div>
+                  
               </div>
             </div>
             <div className='flex flex-col gap-3'>
                 <div className='flex items-center gap-2 flex-wrap'>
                   <li>សូលុយស្យុងណឺតនៅគ្រប់សីតុណ្ហភាពមាន</li>
-                  <InlineMath math="[H_{3}O^{+}] = [OH^{-}]" />
+                  <span className='text-[13px]'><InlineMath math="[H_{3}O^{+}] = [OH^{-}]" /></span>
               </div>
             </div> 
             <div className='flex flex-col gap-3'>
@@ -164,22 +167,22 @@ const SecondTopicContent: TopicContent = {
                   <div className='flex flex-col items-start gap-3'>
                       <div className='flex items-center gap-3 flex-wrap'>
                           <p>យេីងមាន </p>
-                          <InlineMath math="K_{e} = [H_{3}O^{+}] \cdot [OH^{-}]" />
+                          <span className='text-[13px]'><InlineMath math="K_{e} = [H_{3}O^{+}] \cdot [OH^{-}]" /></span>
                       </div>
                       <div className='flex items-center gap-3 flex-wrap'>
                           <p>ដោយនៅសីតុណ្ហភាព 30°C របស់ទឹកគឺ</p> 
-                          <InlineMath math="1.471  \cdot 10^{-14} " />
+                          <span className='text-[13px]'><InlineMath math="1.471  \cdot 10^{-14} " /></span>
                       </div>
-                      <InlineMath math="\Rightarrow K_{e} = 1.471  \cdot 10^{-14}" />
+                      <span className='text-[13px]'><InlineMath math="\Rightarrow K_{e} = 1.471  \cdot 10^{-14}" /></span>
                        <div className='flex items-center gap-3 flex-wrap'>
                           <p>ដោយវាជាអូតូប្រូលីសរបស់ទឹកយេីងបាន </p> 
-                          <InlineMath math="[H_{3}O^{+}] = [OH^{-}]" />
+                          <span className='text-[13px]'><InlineMath math="[H_{3}O^{+}] = [OH^{-}]" /></span>
                       </div>
-                      <div className='flex items-center gap-3 flex-wrap'>
+                      <div className='flex items-center gap-3 flex-wrap text-[13px]'>
                           <InlineMath math="[H_{3}O^{+}]^{2} = 1.471  \cdot 10^{-14}" />
                           <InlineMath math="\Rightarrow [H_{3}O^{+}] = 1.213 \cdot 10^{-7}" />
                       </div>
-                      <div className='flex items-center gap-3 flex-wrap'>
+                      <div className='flex items-center gap-3 flex-wrap text-[13px]'>
                           <InlineMath math="pH = -log[H_{3}O^{+}]" />
                           <InlineMath math="= log[1.213 \cdot 10^{-7} ]" />
                           <InlineMath math="= -(log 1.213 + log 10^{-7} )" />
@@ -195,7 +198,7 @@ const SecondTopicContent: TopicContent = {
               <>
                   <div className='flex items-center gap-2 flex-wrap'>
                       <p>២-ក. រកកំហាប់អុីយ៉ុង​ </p>
-                          <InlineMath math="[H_{3}O^{+}]" />
+                      <span className='text-[13px]'><InlineMath math="[H_{3}O^{+}]" /></span>
                   </div>
               </>,
               content: (
@@ -203,14 +206,17 @@ const SecondTopicContent: TopicContent = {
                   <div className='flex flex-col items-start gap-3'>
                       <div className='flex items-center gap-3 flex-wrap'>
                           <p>តាមសមីការ </p>
-                          <InlineMath math="pH= -[H_{3}O^{+}]" />
-                          <InlineMath math="\Rightarrow [H_{3}O^{+}] = 10^{-pH}" />
+                          <div className='text-[13px]'>
+                            <InlineMath math="pH= -[H_{3}O^{+}]" />
+                            <InlineMath math="\Rightarrow [H_{3}O^{+}] = 10^{-pH}" />
+                          </div>
+                         
                       </div>
-                      <InlineMath math="= 10^{-7.52} = 10^{-8} \cdot 10^{0.48}" />
-                      <InlineMath math="= 3.0 \cdot 10^{-8} M" />
+                      <span className='text-[13px]'><InlineMath math="= 10^{-7.52} = 10^{-8} \cdot 10^{0.48}" /></span>
+                      <span className='text-[13px]'><InlineMath math="= 3.0 \cdot 10^{-8} M" /></span>
                       <div className='flex items-center gap-3 flex-wrap'>
                           <p>ដូចនេះ </p>
-                          <InlineMath math="[H_{3}O^{+}] = 3.0 \cdot 10^{-8} M" />
+                          <span className='text-[13px]'><InlineMath math="[H_{3}O^{+}] = 3.0 \cdot 10^{-8} M" /></span>
                       </div>
                   </div>
                 </>
@@ -221,7 +227,7 @@ const SecondTopicContent: TopicContent = {
               <>
                   <div className='flex items-center gap-2 flex-wrap'>
                       <p>២-ខ. រកកំហាប់អុីយ៉ុង​ </p>
-                          <InlineMath math="[OH^{-}]" />
+                      <span className='text-[13px]'><InlineMath math="[OH^{-}]" /></span>
                   </div>
               </>,
               content: (
@@ -229,24 +235,24 @@ const SecondTopicContent: TopicContent = {
                   <div className='flex flex-col items-start gap-3'>
                       <div className='flex items-center gap-3 flex-wrap'>
                           <p>តាមសមីការ </p>
-                          <InlineMath math="k_{w} = [H_{3}O^{+}][OH^{-}]" />
+                          <span className='text-[13px]'><InlineMath math="k_{w} = [H_{3}O^{+}][OH^{-}]" /></span>
                           <div className='flex items-center gap-2 flex-wrap'>
-                              <InlineMath math="\Rightarrow [OH^{-}] = " />
-                              <div className='text-xl'>
+                              <span className='text-[13px]'><InlineMath math="\Rightarrow [OH^{-}] = " /></span>
+                              <div className='text-[18px]'>
                                   <InlineMath math="\frac{K_{w}}{[H_{3}O^{+}]}" />
                               </div>
                           </div>
                       </div>
                       <div className='flex items-center gap-2 flex-wrap'>
-                        <div className='text-xl'>
+                        <div className='text-[18px]'>
                           <InlineMath math="= \frac{1.0 . 10^{-14}}{3.0 . 10^{-8}}" />
                         </div>
-                          <InlineMath math="= 3.3 \cdot 10^{-7} M" />
+                        <span className='text-[13px]'><InlineMath math="= 3.3 \cdot 10^{-7} M" /></span>
                       </div>
                       
                       <div className='flex items-center gap-3 flex-wrap'>
                           <p>ដូចនេះ </p>
-                          <InlineMath math="[OH^{-}] = 3.3 \cdot 10^{-7} M" />
+                          <span className='text-[13px]'><InlineMath math="[OH^{-}] = 3.3 \cdot 10^{-7} M" /></span>
                       </div>
                   </div>
                 </>

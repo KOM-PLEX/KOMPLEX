@@ -56,7 +56,7 @@ const SecondTopicContent: TopicContent = {
             <div className='flex flex-col items-start gap-3'>
                 <li>ពេលគេបង្កេីនសម្ពាធទៅលេីប្រព័ន្ធគីមី លំនឹងរំកិលពីផ្នែកដែលមាន ចំនួនម៉ូលសរុបច្រេីនជាង ទៅរកផ្នែកដែលមានចំនួនម៉ូលតិចជាង (ផ្នែក គឺសំដៅដល់ អង្គធាតុប្រតិករ ឬអង្គធាតុកកេីត) ។</li>
                 <p>ឧទាហរណ៍ :</p>
-                <div className='flex items-center gap-3 flex-wrap'>
+                <div className='flex items-center gap-3 flex-wrap text-[15px]'>
                     <InlineMath math="N_{2} + 3H_{2} \xrightleftharpoons[(2)]{(1)} 2NH_{3} (g)" />
                 </div>
                 <div className='flex items-center gap-5 flex-wrap'>
@@ -89,7 +89,8 @@ const ThirdTopicContent: TopicContent = {
         <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
             <div className='flex flex-col items-start gap-3'>
                 <li>ការបង្កេីនកំហាប់ប្រតិករ ក៏បង្កេីនភាពតានតឹងដែរ ។ ប្រព័ន្ធលំនឹងគីមីមួយតាងដោយសមីការតុល្យការ :</li>
-                <InlineMath math="A + B \xrightleftharpoons[(2)]{(1)} C + D" />
+                <span className='text-[13px]'><InlineMath math="A + B \xrightleftharpoons[(2)]{(1)} C + D" /></span>
+                
             </div>
             <div >                
                 <li>កាលណាបន្ថែមអង្គធាតុ A ឬ​ B នាំឲលំនឹងរំកិលតាមទិសដៅ (1) ។ ការប្រែប្រួលកំហាប់ពុំមានប៉ះពាល់ដល់តម្លៃថេរលំនឹង K ទេរ ។</li>
@@ -104,15 +105,16 @@ const ThirdTopicContent: TopicContent = {
   example: {
       question: [
           <div className="flex flex-col items-start gap-5" key="q1">
-              <div className='flex items-center gap-3 flex-wrap'>
+              <div className='flex items-start flex-col gap-3 flex-wrap text-[13px]'>
                 <InlineMath math="CaCO_{3} \xrightleftharpoons[(2)]{(1)} CaO + CO_{2} " />
                 <InlineMath math="\Rightarrow K= [CO_{2}]" />
               </div>
-              <div className='flex items-center gap-3 flex-wrap'>
+              <div className='flex items-start flex-col gap-3 flex-wrap text-[13px]'>
                 <InlineMath math="CH_{3}COOH + H_{2}O \xrightleftharpoons[(2)]{(1)} CH_{3}COO^{-} + H_{3}O^{+} " />
-                <InlineMath math="\Rightarrow K= \frac{[CH_{3}COO^{-}] \cdot [H_{3}O^{+}]}{[CH_{3}COOH]}" />
+                <span className='text-[14px]'><InlineMath math="\Rightarrow K= \frac{[CH_{3}COO^{-}] \cdot [H_{3}O^{+}]}{[CH_{3}COOH]}" /></span>
+                
               </div>
-              <div className='flex items-center gap-3 flex-wrap'>
+              <div className='flex items-start flex-col gap-3 flex-wrap text-[13px]'>
                 <InlineMath math="H_{2}O + H_{2}O \xrightleftharpoons[(2)]{(1)} H_{3}O^{+} + OH^{-} " />
                 <InlineMath math="\Rightarrow K= [H_{3}O^{+}] \cdot [OH^{-}] = K_{e}" />
               </div>
@@ -140,7 +142,7 @@ const FourthTopicContent: TopicContent = {
                 <div className='flex items-center gap-3 flex-wrap'>
                     <p>ឧទាហរណ៍. </p>
                     <div className='flex items-center gap-3 flex-wrap'>
-                        <InlineMath math="N_{2} (g) + 3H_{2} \xrightleftharpoons[(2)]{(1)} 2NH_{3} (g) + 92KJ" />  
+                        <span className='text-[13px]'><InlineMath math="N_{2} (g) + 3H_{2} \xrightleftharpoons[(2)]{(1)} 2NH_{3} (g) + 92KJ" />  </span>
                         <span>ជាប្រតិកម្មស្រូបកម្តៅ ។</span>
                     </div>
                 </div>
@@ -151,7 +153,7 @@ const FourthTopicContent: TopicContent = {
                 <div className='flex items-center gap-3 flex-wrap'>
                     <p>ឧទាហរណ៍. ការផលិតឌីអាសូតតេត្រាអុកសុីត</p>
                     <div className='flex items-center gap-3 flex-wrap'>
-                        <InlineMath math="2NO_{2} (g) \xrightleftharpoons[(2)]{(1)} N_{2}O_{4} + កម្តៅ" />  
+                        <span className='text-[13px]'><InlineMath math="2NO_{2} (g) \xrightleftharpoons[(2)]{(1)} N_{2}O_{4} + កម្តៅ" />  </span>
                         <span>ជាប្រតិកម្មបញ្ចេញកម្តៅ ។</span>
                     </div>
                 </div>
@@ -168,13 +170,13 @@ const FourthTopicContent: TopicContent = {
       question: [
           <div className="flex flex-col items-start gap-3" key="q2">
              <p>ប្រតិកម្មខាងក្រោមស្ថិតក្នុងភាពលំនឹង :</p>
-              <InlineMath math="2CO (g) + O_{2} (g) \xrightleftharpoons[(2)]{(1)} 2CO_{2} (g) + កម្តៅ" /> 
+              <span className='text-[13px]'><InlineMath math="2CO (g) + O_{2} (g) \xrightleftharpoons[(2)]{(1)} 2CO_{2} (g) + កម្តៅ" />  </span>
               <p>ចូរពន្យល់ពីការរំកិលលំនឹង ពេល :</p> 
               <p>ក. សីតុណ្ហភាពនៃប្រព័ន្ធកេីនឡេីង</p>
               <p>ខ. បង្រួមមាឌកែវប្រតិកម្ម</p>
               <div className='flex items-center gap-1 flex-wrap'>
                   <p>គ. បន្ថែមឧស្ម័ន </p>
-                  <InlineMath math="CO_{2}" /> 
+                  <span className='text-[13px]'><InlineMath math="CO_{2}" />  </span>
                   <p>ចូលក្នុងប្រព័ន្ធប្រតិកម្មនៅសម្ពាធថេរ </p>
               </div>
               <p>ឃ. បន្ថែមឧស្ម័ន He ចូលក្នុងប្រព័ន្ធប្រតិកម្មនៅមាឌថេរ</p>
@@ -208,13 +210,13 @@ const FourthTopicContent: TopicContent = {
                 <div className='flex flex-col items-start gap-3' key={"step3"}>
                   <div className='flex items-center gap-1 flex-wrap'>
                     <p>ការបន្ថែមឧស្ម័ន </p>
-                    <InlineMath math="CO_{2}" /> 
+                    <span className='text-[13px]'><InlineMath math="CO_{2}" />  </span>
                     <p>ចូលក្នុង</p>
                     <p>ប្រព័ន្ធប្រតិកម្ម</p>
                     <p>មានន័យថា បង្កេីនកំហាប់ </p>
-                    <InlineMath math="CO_{2} ។" /> 
+                    <span className='text-[13px]'><InlineMath math="CO_{2} ។" /> </span>
                     <p>នៅពេលកំហាប់ </p>
-                    <InlineMath math="CO_{2}" /> 
+                    <span className='text-[13px]'><InlineMath math="CO_{2}" /> </span>
                     <p>កេីន នោះលំនឹងរំកិលតាមទិសដៅ​ (2) </p>
                   </div>
                 </div>
@@ -273,15 +275,23 @@ const SixthTopicContent: TopicContent = {
       <>
         <div className='flex flex-col items-start gap-3'>
             <p>អុីយ៉ិងខ្លះ ចូលរួមប្រតិកម្មជាមួយគ្នា ឲផលជាសារធាតុមិនស៊ប់ (មិនមានស្ថិរភាព ) ហេីយវាបំបែកជាឧស្ម័នភ្លាម ។</p>
-            <p>ឧទាហរណ៍</p>
-            <InlineMath math="2H_{3}O^{+} (aq) + CO_{3}^{2-} (aq) \xrightleftharpoons[(2)]{(1)} H_{2}CO_{3} (aq) + 2H_{2}O (l)" /> 
-            <InlineMath math="H_{2}CO_{3} (aq) \xrightleftharpoons[(2)]{(1)} 2H_{2}O (l) + CO_{2} (g)" /> 
-            <div className='flex items-center gap-2 flex-wrap'>
-              <p>ប្រតិកម្មនេះ ជាប្រតិកម្មឈានទៅរកសព្វ ព្រោះផលិតផលកកេីតជាឧស្ម័ន <InlineMath math="CO_{2}" /> </p>
-            </div>
         </div>
       </>
     ),
+  },
+  example: {
+    question: [
+        <div className="flex flex-col items-start gap-3" key="q1">
+            <div className='text-[13px]'>
+                <InlineMath math="2H_{3}O^{+} (aq) + CO_{3}^{2-} (aq) \xrightleftharpoons[(2)]{(1)} H_{2}CO_{3} (aq) + 2H_{2}O (l)" /> 
+                <InlineMath math="H_{2}CO_{3} (aq) \xrightleftharpoons[(2)]{(1)} 2H_{2}O (l) + CO_{2} (g)" />   
+            </div>
+            
+            <div className='flex items-center gap-2 flex-wrap'>
+              <p>ប្រតិកម្មនេះ ជាប្រតិកម្មឈានទៅរកសព្វ ព្រោះផលិតផលកកេីតជាឧស្ម័ន <span className='text-[13px]'><InlineMath math="CO_{2}" /></span> </p>
+            </div>
+        </div>,
+    ],
   },
 }
 
@@ -302,18 +312,28 @@ const SeventhTopicContent: TopicContent = {
         <div className='flex flex-col items-start gap-3'>
             <div className='flex items-center gap-1 flex-wrap'>
                 <p>បេីគេលាយសូលុយស្យុង </p>
-                <InlineMath math="AgNO_{3}" /> 
+                <span className='text-[13px]'><InlineMath math="AgNO_{3}" /> </span>
                 <p>និង </p>
-                <InlineMath math="NaCl" />
+                <span className='text-[13px]'><InlineMath math="NaCl" /></span>
                 <p>គេទទួលបានកករ </p>
-                <InlineMath math="AgCl ។" />
+                <span className='text-[13px]'><InlineMath math="AgCl" /> ។</span>
             </div>
-            <InlineMath math="AgNO_{3} (aq) + NaCl (aq) \xrightleftharpoons[(2)]{(1)} AgCl (s) + NaCl (aq)" /> 
-            <InlineMath math="Ag^{+} (aq) + Cl^{-} (aq) \xrightleftharpoons[(2)]{(1)} AgCl (s) " /> 
-            <p>ប្រតិកម្មនេះ ជាប្រតិកម្មឈានទៅរកសព្វ ព្រោះផលិតផលកកេីតជាកករ AgCl ។</p>
+            
         </div>
       </>
     ),
+  },
+  example: {
+    question: [
+        <div className="flex flex-col items-start gap-3" key="q1">
+            <div className='text-[13px]'>
+                <InlineMath math="AgNO_{3} (aq) + NaCl (aq) \xrightleftharpoons[(2)]{(1)} AgCl (s) + NaCl (aq)" /> 
+                <InlineMath math="Ag^{+} (aq) + Cl^{-} (aq) \xrightleftharpoons[(2)]{(1)} AgCl (s) " /> 
+            </div>
+            
+            <p>ប្រតិកម្មនេះ ជាប្រតិកម្មឈានទៅរកសព្វ ព្រោះផលិតផលកកេីតជាកករ AgCl ។</p>
+        </div>,
+    ],
   },
 }
 
@@ -334,17 +354,27 @@ const EighthTopicContent: TopicContent = {
         <div className='flex flex-col items-start gap-3'>
             <div className='flex items-center gap-1 flex-wrap'>
                 <p>បេីគេលាយសូលុយស្យុង </p>
-                <InlineMath math="HCl" /> 
+                <span className='text-[13px]'><InlineMath math="HCl" /></span>
                 <p>និង </p>
-                <InlineMath math="NaOH" />
+                <span className='text-[13px]'><InlineMath math="NaOH" /></span>
                 <p>គេទទួលបានទឹក ។</p>
             </div>
-            <InlineMath math="HCl (aq) + NaOH (aq) \xrightleftharpoons[(2)]{(1)} NaCl (aq) + H_{2}O (l)" /> 
-            <InlineMath math="H_{3}O^{+} (aq) + OH^{-} (aq) \xrightleftharpoons[(2)]{(1)} 2H_{2}O (l) " /> 
-            <p>ប្រតិកម្មនេះ ជាប្រតិកម្មឈានទៅរកសព្វ ព្រោះផលិតផលកកេីតជាសារធាតុបំបែកជាអុីយ៉ុងបានតិច ។</p>
+            
         </div>
       </>
     ),
+  },
+  example: {
+    question: [
+        <div className="flex flex-col items-start gap-3" key="q1">
+            <div className='text-[13px]'>
+                <InlineMath math="HCl (aq) + NaOH (aq) \xrightleftharpoons[(2)]{(1)} NaCl (aq) + H_{2}O (l)" /> 
+                <InlineMath math="H_{3}O^{+} (aq) + OH^{-} (aq) \xrightleftharpoons[(2)]{(1)} 2H_{2}O (l) " /> 
+            </div>
+            
+            <p>ប្រតិកម្មនេះ ជាប្រតិកម្មឈានទៅរកសព្វ ព្រោះផលិតផលកកេីតជាសារធាតុបំបែកជាអុីយ៉ុងបានតិច ។</p>
+        </div>,
+    ],
   },
 }
 
@@ -386,14 +416,14 @@ const TenthTopicContent: TopicContent = {
       <>
         <div className='flex flex-col items-start gap-3'>
             <p>គេអាចរំកិលលំនឹងនៃប្រតិកម្មនៃប្រតិកម្មណាមួយទៅតាមទិសដៅដែលចង់បានតាមគោលការណ៍ឡឺសាតឺលីយេ ។ គេមានសូលុយស្យុងសូដ្យូមក្លរួឆ្អែត ដែលមានសមីការលំនឹង :</p>
-            <InlineMath math="NaCl (s) \xrightleftharpoons[(2)]{(1)} Na^{+} (aq) + Cl^{-} (aq)" /> 
+            <span className='text-[13px]'><InlineMath math="NaCl (s) \xrightleftharpoons[(2)]{(1)} Na^{+} (aq) + Cl^{-} (aq)" /> </span>
             <div className='flex items-center gap-1 flex-wrap'>
                 <p>បេីគេបន្ថែមអុីដ្រូសែនក្លរួ </p>
-                <InlineMath math="HCl" />
+                <span className='text-[13px]'><InlineMath math="HCl" /></span>
                 <p> ទៅក្នុងសូលុយស្យុងខាងលេី នាំឲអុីយ៉ុងក្លរួ </p>
-                <InlineMath math="Cl^{-}" />
+                <span className='text-[13px]'><InlineMath math="Cl^{-}" /></span>
                 <p>មានអំពេីជាមួយអុីយ៉ុងសូដ្យូម </p>
-                <InlineMath math="Na^{+}" />
+                <span className='text-[13px]'><InlineMath math="Na^{+}" /></span>
                 <p>ឲផលជាកករសូដ្យូមក្លរួ (NaCl) វិញ ។</p>
             </div>
         </div>
@@ -419,25 +449,28 @@ const EleventhTopicContent: TopicContent = {
         <div className='flex flex-col items-start gap-3'>
           <div className='flex items-center gap-1 flex-wrap'>
               <p>អាសុីតអាសេទិចជាអាសុីតខ្សោយ </p>
-              <InlineMath math="CH_{3}COOH" />
+              <span className='text-[13px]'><InlineMath math="CH_{3}COOH" /></span>
+
               <p>នៅកំហាប់ 0.1 M វាអាចបំបែកជាអុីយ៉ុង </p>
-              <InlineMath math="H_{3}O^{+}" />
+              <span className='text-[13px]'><InlineMath math="H_{3}O^{+}" /></span>
               <p>បានតែ 1.3% ប៉ុណ្ណោះ ។ </p>
           </div>
+          <span className='text-[13px]'>
           <InlineMath math="CH_{3}COOH (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} CH_{3}COO^{-} (aq) + H_{3}O^{+}" /> 
+          </span>
           <div className='flex items-center gap-1 flex-wrap'>
               <p>បេីគេបន្ថែម </p>
-              <InlineMath math="CH_{3}COOH" />
+              <span className='text-[13px]'><InlineMath math="CH_{3}COOH" /></span>
               <p>បន្តិចទៅក្នុងសូលុយស្យុងខាងលេី នាំឲអុីយ៉ុង </p>
-              <InlineMath math="CH_{3}COO^{-}" />
+              <span className='text-[13px]'><InlineMath math="CH_{3}COO^{-}" /></span>
               <p>បានពី </p>
-              <InlineMath math="CH_{3}COONa" />
+              <span className='text-[13px]'><InlineMath math="CH_{3}COONa" /></span>
               <p>មានអំពេីជាមួយអុីយ៉ុង </p>
-              <InlineMath math="H_{3}O^{+}" />
+              <span className='text-[13px]'><InlineMath math="H_{3}O^{+}" /></span>
               <p>ក្នុងសូលុយស្យុង  </p>
-              <InlineMath math="CH_{3}COOH" />
+              <span className='text-[13px]'><InlineMath math="CH_{3}COOH" /></span>
               <p>បង្កេីតជា  </p>
-              <InlineMath math="CH_{3}COOH" />
+              <span className='text-[13px]'><InlineMath math="CH_{3}COOH" /></span>
               <p>វិញ ។  </p>
           </div>
         </div>
@@ -448,7 +481,9 @@ const EleventhTopicContent: TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
             <p>ប្រតិកម្មខាងក្រោមនេះប្រព្រឹត្តទៅនៅសីតុណ្ហភាព 400 °C :</p>
+            <span className='text-[13px]'>
             <InlineMath math="H_{2} (g) + I_{2} (g) \rightleftharpoons 2HI (g)  , K= 50" />  
+            </span>
             <p>គេយក 0.08 mol នៃអុីដ្រូសែន និង 0.08 mol នៃអុីយ៉ូត ទៅដាក់ក្នុងកែវចំណុះ 1L ហេីយបិទជិត និងទុកឲប្រព័ន្ធមានលំនឹង ។ ចូររកកំហាប់អុីយ៉ូតនៅពេលលំនឹង ។</p>
         </div>,
     ],
@@ -458,8 +493,10 @@ const EleventhTopicContent: TopicContent = {
             content: (
               <>
                 <div className='flex flex-col items-start gap-3'>
+                  <span className='text-[13px]'>
                    <InlineMath math="H_{2} (g) + I_{2} (g) \rightleftharpoons 2HI (g)" />  
-                    <div className='flex items-center gap-4'>
+                   </span>
+                    <div className='flex items-center gap-4 text-[13px]'>
                         <InlineMath math="0.08 M" />
                         <InlineMath math="0.08 M" />
                         <InlineMath math="0" />
@@ -476,26 +513,26 @@ const EleventhTopicContent: TopicContent = {
                     </div>
                     <div className='flex items-center gap-2 flex-wrap'>
                           <InlineMath math="K = " />  
-                          <div className='text-xl'>
+                          <div className='text-[15px]'>
                                 <InlineMath math="\frac{[HI^{2}]}{[H_{2}] \cdot [I_{2}]}" />   
                           </div> 
                           <div className='flex items-center gap-2'>
                               <span>=</span>
-                              <div className='text-xl'>
+                              <div className='text-[15px]'>
                                 <InlineMath math="\frac{(2x)^{2}}{(0.08 - x)^{2}} " />   
                               </div>
                                 <InlineMath math="= 50 " />   
                           </div>
                     </div>
                     <div className='flex items-center gap-2 flex-wrap'>
-                        <div className='text-xl'>
+                        <div className='text-[15px]'>
                           <InlineMath math="\frac{2x}{0.08 - x} " />   
                         </div>
                           <InlineMath math="= \sqrt 50 = 7.07" />   
                     </div>
                     <InlineMath math="2x = 0.5656 - 7.07x" />   
                     <InlineMath math="\Rightarrow  x = 0.06 M" /> 
-                    <div className='flex items-center gap-2 flex-wrap'>
+                    <div className='flex items-center gap-2 flex-wrap text-[13px]'>
                         <p>ដូចនេះ </p>
                         <InlineMath math="[I_{2}] = 0.08-0.06 = 0.02 M" /> 
                     </div>  

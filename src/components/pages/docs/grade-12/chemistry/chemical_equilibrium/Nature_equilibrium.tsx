@@ -31,16 +31,17 @@ const FirstTopicContent: TopicContent = {
         <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
             <div className='flex flex-col gap-3'>
                 <li>ប្រតិកម្មចំហេះម៉ាញេស្យូមក្នុងខ្យល់បង្កេីតបានម៉ាញេស្យូមអុកសុីត​ ។</li>
-                <InlineMath math="2Mg(s) + O_{2} (g) \rightarrow 2MgO (s)" />
+                <span className='text-[15px]'><InlineMath math="2Mg(s) + O_{2} (g) \rightarrow 2MgO (s)" /></span>    
                 <p>ក្នុងប្រតិកម្មនេះ ម៉ាញេស្យូមអុកសុីតមិនអាចប្រតិកម្មជាមួយគ្នាបង្កេីតជា ម៉ាញេស្យូមនិង អុកសុីសែនវិញទេ ។</p>
             </div>
             <div className='flex flex-col gap-3'>
                 <li>នៅពេលដុតកម្តៅ បារត (II) អុកសុីត បំបែកជា បារត និងឧស្ម័នអុកសុីសែន ។</li>
-                <InlineMath math="2HgO (s) \rightarrow 2Hg (l) + O_{2} (g) (1)" />
+                <span className='text-[15px]'><InlineMath math="2HgO (s) \rightarrow 2Hg (l) + O_{2} (g) (1)" /></span>
                 <p>ក្នុងពេលប្រតិកម្មបំបែកកំពុងប្រព្រឹត្តទៅ បារតមានអំពេីជាមួយ អុកសុីសែន​ឲផលជាបារត (II) អុកសុីតវិញ</p>
-                <InlineMath math="2Hg (l) + O_{2} \rightarrow 2HgO (s)" />
+                <span className='text-[15px]'><InlineMath math="2Hg (l) + O_{2} \rightarrow 2HgO (s)" /></span>
                 <p>ប្រតិកម្មបែបនេះ ហៅថាប្រតិកម្មទៅមកដែលអាចសរសេរជា</p>
-                <InlineMath math="2HgO (s) \xrightleftharpoons[(2)]{(1)} 2Hg (l) + O_{2} (g)" />
+                <span className='text-[15px]'><InlineMath math="2HgO (s) \xrightleftharpoons[(2)]{(1)} 2Hg (l) + O_{2} (g)" /></span>
+                
             </div>
         </ul>
       </>
@@ -90,14 +91,14 @@ const SecondTopicContent : TopicContent = {
                 <li>ករណីខ្លះ ប្រតិកម្មតាមទិសបណ្តោយប្រព្រឹត្តទៅស្ទេីរទាំងស្រុង ទេីបមានប្រតិកម្មតាមទិសច្រាសកេីតឡេីង ។ ដូចនេះនៅពេលមានលំនឹងគីមី កំហាប់អង្គធាតុកកេីតធំជាង អង្គធាតុប្រតិករ ។ គេថាលំនឹងទោរទៅខាងស្តាំ ជាប្រតិកម្មនាំមុខ ។</li>
                 <div className='flex items-center gap-2 flex-wrap'>
                     <p>ឧទាហរណ៍. </p>
-                    <InlineMath math="2SO_{2} (g) + O_{2} (g) \rightleftharpoons 2SO_{3} (g)" />
+                    <span className='text-[14px]'><InlineMath math="2SO_{2} (g) + O_{2} (g) \rightleftharpoons 2SO_{3} (g)" /></span>
                 </div>
             </div>
             <div className='flex flex-col gap-3'>
                 <li>ករណីខ្លះ ប្រតិកម្មតាមទិសបណ្តោយប្រព្រឹត្តទៅដោយលំបាក និងប្រតិកម្មតាមទិសច្រាសប្រព្រឹត្តទៅងាយស្រួល ។ ដូចនេះនៅពេលមានលំនឹងគីមី កំហាប់អង្គធាតុប្រតិករធំជាងអង្គធាតុកកេីត ។ គេថា លំនឹងទោរទៅខាងឆ្វេង ជាប្រតិកម្មនាំមុខ ។</li>
                 <div className='flex items-center gap-2 flex-wrap'>
                     <p>ឧទាហរណ៍. </p>
-                    <InlineMath math="H_{2}CO_{3} (aq) + H_{2}O (l) \rightleftharpoons H_{3}O^{+} (aq) + HCO_{3}^{-} (aq)" />
+                    <span className='text-[14px]'><InlineMath math="H_{2}CO_{3} (aq) + H_{2}O (l) \rightleftharpoons H_{3}O^{+} (aq) + HCO_{3}^{-} (aq)" /></span>
                 </div>
             </div>
         </ul>
@@ -150,7 +151,7 @@ const ThirdTopicContent : TopicContent = {
                   <p>គេបានកន្សោមថេរលំនឹង</p>
                   <div className='flex items-center gap-2'>
                         <InlineMath math="K = " />  
-                        <div className='text-xl'>
+                        <div className='text-[17px]'>
                               <InlineMath math="\frac{[C]^{c} \cdot [D]^{d}}{[A]^{a} \cdot [B]^{b}} " />   
                         </div> 
                   </div>
@@ -168,7 +169,8 @@ const ThirdTopicContent : TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
             <p>គេមានប្រតិកម្មមួយស្ថិតក្នុងភាពលំនឹង :</p>
-            <InlineMath math="2SO_{2} (g) + O_{2} (g) \rightleftharpoons 2SO_{3} (g)" />  
+            <span className='text-[13px]'><InlineMath math="2SO_{2} (g) + O_{2} (g) \rightleftharpoons 2SO_{3} (g)" />  </span>
+            
             <p>ចូរសរសេរកន្សោមថេរលំនឹងនៃប្រតិកម្មខាងលេី ។</p>
         </div>,
     ],
@@ -180,12 +182,12 @@ const ThirdTopicContent : TopicContent = {
                 <div className='flex flex-col items-start gap-3'>
                     <div className='flex items-center gap-2 flex-wrap'>
                         <p>កន្សោមថេរលំនឹងនៃប្រតិកម្ម</p>
-                        <InlineMath math="2SO_{2} (g) + O_{2} (g) \rightleftharpoons 2SO_{3} (g)" />  
+                        <span className='text-[13px]'><InlineMath math="2SO_{2} (g) + O_{2} (g) \rightleftharpoons 2SO_{3} (g)" />  </span>
                         <p>គឺ :</p>
                     </div>
                     <div className='flex items-center gap-2'>
                         <InlineMath math="K = " />  
-                        <div className='text-xl'>
+                        <div className='text-[17px]'>
                               <InlineMath math="\frac{[SO_{3}^{2}]}{[SO_{2}^{2} \cdot [O_{2}]]} " />   
                         </div> 
                   </div>
@@ -200,17 +202,17 @@ const ThirdTopicContent : TopicContent = {
         <div className="flex flex-col items-start gap-3" key="q2">
             <div className='flex items-center gap-2 flex-wrap'>
                 <p>ល្បាយនៃ </p>
-                <InlineMath math="H_{2} 0.5 mol" /> 
+                <span className='text-[13px]'><InlineMath math="H_{2} 0.5 mol" /></span>
                 <p>និង </p>
-                <InlineMath math="I_{2} 0.5 mol" /> 
+                <span className='text-[13px]'><InlineMath math="I_{2} 0.5 mol" /></span>
                 <p>ត្រូវបានដាក់ក្នុងកែវដែកថែបដែល គ្មានច្រេះចំនុះ 1L នៅសីតុណ្ហភាព 430 °C ។ ថេរលំនឹងសម្រាប់ប្រតិកម្មគឺ 54.3</p>
             </div>
             <InlineMath math="H_{2} (g) + I_{2} (g) \rightleftharpoons 2HI" /> 
             <div className='flex items-center gap-2 flex-wrap'>
                   <p>ចូរគណនាកំហាប់នៃ </p>
-                  <InlineMath math="H_{2} , I_{2}" /> 
+                  <span className='text-[13px]'><InlineMath math="H_{2} , I_{2}" /></span>
                   <p>និង </p>
-                  <InlineMath math="HI" /> 
+                  <span className='text-[13px]'><InlineMath math="HI" /></span>
                   <p>នៅពេលលំនឹង ។ </p>
             </div>
         </div>,
@@ -223,7 +225,7 @@ const ThirdTopicContent : TopicContent = {
                 <div className='flex flex-col items-start gap-3' key={"q1"}>
                     <div className='flex items-center gap-10 sm:gap-15 '>
                         <p>សមីការ</p>
-                        <InlineMath math="H_{2} + I_{2} \rightleftharpoons 2HI" /> 
+                        <span className='text-[13px]'><InlineMath math="H_{2} + I_{2} \rightleftharpoons 2HI" /></span>
                     </div>
                     <div className='flex items-center gap-6 sm:gap-10 '>
                         <p>កំហាប់ដេីម</p>
@@ -262,7 +264,7 @@ const ThirdTopicContent : TopicContent = {
                         <p>កន្សោមថេរលំនឹងគឺ :</p>
                         <div className='flex items-center gap-2'>
                             <InlineMath math="K = " />  
-                            <div className='text-xl'>
+                            <div className='text-[14px]'>
                               <InlineMath math="\frac{[SO_{3}^{2}]}{[SO_{2}^{2} \cdot [O_{2}]]} " />   
                             </div> 
                         </div>
@@ -270,17 +272,17 @@ const ThirdTopicContent : TopicContent = {
                     <p>ដោយជំនួសកំហាប់ចូលយេីងបាន </p>
                     <div className='flex items-center flex-wrap gap-2'>
                         <InlineMath math="54.3 = " />  
-                        <div className='text-xl'>
+                        <div className='text-[15px]'>
                             <InlineMath math="\frac{(2x)^{2}}{(0.5-x)(0.5-x)} " />   
                         </div>
-                        <div className='text-xl'>
+                        <div className='text-[15px]'>
                             <InlineMath math="= \frac{(2x)^{2}}{(0.5-x)^{2}} " />   
                         </div> 
                     </div>
                     <p>បំពាក់រឺសការ៉េលេីអង្គទាំងសងខាងយេីងបាន </p>
                     <div className='flex items-center gap-2 flex-wrap'>
                         <InlineMath math="7.37 " />  
-                        <div className='text-xl'>
+                        <div className='text-[17px]'>
                             <InlineMath math="= \frac{2x}{0.5-x} " />   
                         </div>  
                           <InlineMath math="\Leftrightarrow x = 0.393 M" />   
@@ -295,15 +297,15 @@ const ThirdTopicContent : TopicContent = {
               <>
                 <div className='flex flex-col items-start gap-3' key={"q3"}>
                     <p>នៅលំនឹង កំហាប់របស់ប្រភេទគីមីគឺ </p>
-                   <div className='flex items-center gap-2 flex-wrap'>
+                   <div className='flex items-center gap-2 flex-wrap text-[13px]'>
                         <InlineMath math="[H_{2}] = ( 0.5 - 0.393) " />  
                         <InlineMath math="= 0.107 M " />   
                    </div>
-                   <div className='flex items-center gap-2 flex-wrap'>
+                   <div className='flex items-center gap-2 flex-wrap text-[13px]'>
                         <InlineMath math="[I_{2}] = ( 0.5 - 0.393) " />  
                         <InlineMath math="= 0.107 M " />   
                    </div>
-                   <div className='flex items-center gap-2 flex-wrap'>
+                   <div className='flex items-center gap-2 flex-wrap text-[13px]'>
                         <InlineMath math="[H_{2}] = ( 2 \cdot 0.393 ) " />  
                         <InlineMath math="= 0.786 M " />   
                    </div>
@@ -315,7 +317,7 @@ const ThirdTopicContent : TopicContent = {
     answer:[
       <div className='flex flex-col items-start gap-4'>
           <p>កំហាប់នៅពេលមានលំនឹងនៃ </p>
-          <div className='flex flex-col items-start sm:items-center sm:justify-center justify-start w-full'>
+          <div className='flex flex-col items-start sm:items-center sm:justify-center justify-start w-full text-[13px]'>
               <InlineMath math="[H_{2}] = 0.107 M" />   
               <InlineMath math="[I_{2}] = 0.107 M " />  
               <InlineMath math="[H_{2}] = 0.786 M " /> 

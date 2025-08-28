@@ -29,16 +29,16 @@ const FirstTopicContent: TopicContent = {
       <>
         <div className='flex flex-col items-start gap-3'>
             <p>អាសុីតអាសេទិច ជាអាសុីតខ្សោយ វាបំបែកក្នុងទឹកតាមសមីការតុល្យការ :</p>
-            <InlineMath math="CH_{3}COOH (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} CH_{3}COO^{-} + H_{3}O^{+} (aq)" />
+            <span className='text-[13px]'><InlineMath math="CH_{3}COOH (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} CH_{3}COO^{-} + H_{3}O^{+} (aq)" /></span>
+            <p>កន្សោមថេរលំនឹងសរសេរ </p>
             <div className='flex items-center gap-2 flex-wrap'>
-                <p>កន្សោមថេរលំនឹងសរសេរ </p>
-                <InlineMath math="K_{a} = " />  
-                <div className='text-xl'>
+                <span className='text-[13px]'><InlineMath math="K_{a} = " /></span>
+                <div className='text-[16px]'>
                     <InlineMath math="\frac{[CH_{3}COO^{-}] \cdot [H_{3}O^{+}]}{[CH_{3}COOH]}" />   
                 </div> 
             </div>  
             <div className='flex items-center gap-1 flex-wrap'>
-                <InlineMath math="K_{a} " /> 
+                <span className='text-[13px]'><InlineMath math="K_{a} = " /></span>
                 <p>ហៅថាអុីយ៉ុងកម្មអាសុីត​ ឬថេរអាសុីត ។</p> 
             </div>
         </div>
@@ -51,7 +51,7 @@ const FirstTopicContent: TopicContent = {
               <p>សូលុយស្យុងអាសុីត HA មួយនៅកំហាប់ 0.1 M មាន pH = 2.2 ។</p>
               <div className='flex items-center gap-2 flex-wrap'>
                     <p>ចូរកំណត់ថេរអុីយ៉ុងកម្មអាសុីតនេះ ។ គេឲ :</p>
-                    <InlineMath math="10^{0.8} = 6.3" /> 
+                    <span className='text-[13px]'> <InlineMath math="10^{0.8} = 6.3" /> </span>
               </div>
           </div>,
       ],
@@ -63,10 +63,10 @@ const FirstTopicContent: TopicContent = {
                     <div className='flex flex-col items-start gap-8'>
                         <div className='flex items-center gap-2 flex-wrap'>
                             <p>កំហាប់ </p>
-                            <InlineMath math="H_{3}O^{+}" /> 
+                            <span className='text-[13px]'><InlineMath math="H_{3}O^{+}" /></span>
                             <p>ពេលលំនឹង </p>
                         </div>
-                        <div className='flex items-center gap-2 flex-wrap'>
+                        <div className='flex items-center gap-2 flex-wrap text-[13px]'>
                             <InlineMath math="H_{3}O^{+} = 10^{-pH}" /> 
                             <InlineMath math="10^{-2.2} = 10^{0.8} \cdot 10^{-3}" /> 
                             <InlineMath math="= 6.3 \cdot 10^{-3} M" /> 
@@ -75,7 +75,7 @@ const FirstTopicContent: TopicContent = {
                         <div className='flex items-start gap-1 sm:gap-5 flex-wrap'>
                             <div className='flex items-center'>
                                 <div className='flex flex-col gap-2'>
-                                    <div className='text-[10px] sm:text-[15px]'>
+                                    <div className='text-[11px] sm:text-[15px]'>
                                         <InlineMath math="HA" />
                                     </div>
                                     <span className='text-[9px] sm:text-[15px]'>0.1</span>
@@ -89,7 +89,7 @@ const FirstTopicContent: TopicContent = {
                             <span>+</span>
                             <div className='flex items-start'>
                                 <div className='flex flex-col'>
-                                    <div className='text-[10px] sm:text-[15px]'>
+                                    <div className='text-[11px] sm:text-[15px]'>
                                         <InlineMath math="H_{2}O" />     
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@ const FirstTopicContent: TopicContent = {
                             <InlineMath math="\xrightleftharpoons[(2)]{(1)}" />
                             <div className='flex items-start  gap-5'>
                                 <div className='flex flex-col gap-3'>
-                                    <div className='text-[10px] sm:text-[15px]'>
+                                    <div className='text-[11px] sm:text-[15px]'>
                                         <InlineMath math="A^{-}" />  
                                     </div>
                                     <span className='text-[9px] sm:text-[15px]'>0</span>
@@ -109,7 +109,7 @@ const FirstTopicContent: TopicContent = {
                             <span>+</span>
                             <div className='flex items-start  gap-5'>
                                 <div className='flex flex-col gap-3'>
-                                    <div className='text-[10px] sm:text-[15px]'>
+                                    <div className='text-[11px] sm:text-[15px]'>
                                         <InlineMath math="H_{3}O^{+}" />     
                                     </div>
                                     <span className='text-[9px] sm:text-[15px]'>0</span>
@@ -119,18 +119,18 @@ const FirstTopicContent: TopicContent = {
                             </div>
                             
                         </div>
-                        
-                        <div className='flex items-center gap-2 flex-wrap'>
+
+                        <div className='flex items-center gap-2 flex-wrap text-[13px]'>
                             <InlineMath math="K_{a} = " />  
-                            <div className='text-xl'>
+                            <div className='text-[14px]'>
                                 <InlineMath math="\frac{[A^{-}] \cdot [H_{3}O^{+}]}{[HA]}" />   
                             </div>
                             <span>=</span>
-                            <div className='text-xl'>
-                                <InlineMath math="\frac{0.0063] \cdot [0.0063}{0.1 - 0.0063}" />   
+                            <div className='text-[14px]'>
+                                <InlineMath math="\frac{0.0063 \cdot 0.0063}{0.1 - 0.0063}" />   
                             </div> 
                             <span>=</span>
-                            <div className='text-xl'>
+                            <div className='text-[14px]'>
                                 <InlineMath math="\frac{(0.0063)^2}{0.0937}" />   
                             </div> 
                             <InlineMath math="= 4.23 \cdot 10^{-4}" />   
@@ -160,11 +160,13 @@ const SecondTopicContent: TopicContent = {
       <>
         <div className='flex flex-col items-start gap-3'>
             <p>ទឹកមានអំពេីជាមួយគ្នាតាមសមីការតុល្យការ :</p>
-            <InlineMath math="H_{2}O (l) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} H_{3}O^{+} (aq) + OH^{-} (aq)" />
+            <span className='text-[13px]'><InlineMath math="H_{2}O (l) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} H_{3}O^{+} (aq) + OH^{-} (aq)" /></span>
+            
             <p>ប្រតិកម្មនេះហៅថា ប្រតិកម្មស្វ័យអុីយ៉ុងកម្មអូតូប្រូលីសនៃទឹក ។ </p>
             <p>កន្សោមថេរអុីយ៉ុងកម្មនៃទឹកសរសេរ :</p>
             <div className='flex items-center gap-2 flex-wrap'>
-                <InlineMath math="K_{e} = [H_{3}O^{+}] \cdot [OH^{-}] = K_{w} = 10^{-14}" />
+              <span className='text-[13px]'><InlineMath math="K_{e} = [H_{3}O^{+}] \cdot [OH^{-}] = K_{w} = 10^{-14}" /></span>
+                
                 <p>នៅសីតុណ្ហភាព 25 °C</p>
             </div>
         </div>
@@ -190,7 +192,7 @@ const ThirdTopicContent: TopicContent = {
         <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
             <div className='flex items-center gap-1 flex-wrap'>
                 <li>អំបិលជាផលិតផលនៃប្រតិកម្មបន្សាបរវាងអាសុីត និងបាស ។ ពេលអំបិលរលាយក្នុងទឹកវាបំបែកជា អុីយ៉ុង (កាចុង និងអាញ៉ុង) ។ អំបិលខ្លះរលាយក្នុងទឹក ឲផលជាសូលុយស្យុងណឺតមាន pH=7 ។ </li>
-                <p>អំបិល <InlineMath math="Na_{2}CO_{3} " /> រលាយក្នុងទឹកឲផលជាសូលុយស្យុងបាសមាន pH ធំជាង 7 ។ អំបិល <InlineMath math="NH_{4}Cl" />រលាយក្នុងទឹកឲផលជាសូលុយស្យុងបាសមាន pH តូចជាង 7 ។ </p>
+                <p>អំបិល <span className='text-[13px]'><InlineMath math="Na_{2}CO_{3} " /></span>  រលាយក្នុងទឹកឲផលជាសូលុយស្យុងបាសមាន pH ធំជាង 7 ។ អំបិល <span className='text-[13px]'><InlineMath math="NH_{4}Cl" />រ</span>លាយក្នុងទឹកឲផលជាសូលុយស្យុងបាសមាន pH តូចជាង 7 ។ </p>
             </div>
             <div className='flex items-center gap-1 flex-wrap'>
                 <li>អុីយ៉ុងដែលបានពីអាសុីតខ្សោយ ឬបាសខ្សោយមានអំពេីជាមួយទឹកឲផលជាសូលុយស្យុងមាន pH ធំជាង ឬតូចជាង 7 ។</li>                
@@ -217,18 +219,19 @@ const FourthTopicContent: TopicContent = {
       <>
         <div className='flex items-start flex-col gap-3'>
             <div className='flex items-center gap-1 flex-wrap'>
-                <p>តាង HA ជាអាសុីតខ្សោយដែលមានអំពេីជាមួយទឹក ឲផលជាអាញ៉ុង <InlineMath math="A^{-}" />និងអុីយ៉ុង <InlineMath math="OH^{-} ។" />តាមសមីការលំនឹង :</p>
+                <p>តាង HA ជាអាសុីតខ្សោយដែលមានអំពេីជាមួយទឹក ឲផលជាអាញ៉ុង <span className='text-[13px]'><InlineMath math="A^{-}" /></span>និងអុីយ៉ុង <span className='text-[13px]'><InlineMath math="OH^{-} ។" /></span>តាមសមីការលំនឹង :</p>
             </div>
-            <InlineMath math="HA (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} A^{-} (aq) + H_{3}O^{+}" />
+            <span className='text-[13px]'><InlineMath math="HA (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} A^{-} (aq) + H_{3}O^{+}" /></span>
+            
             <div className='flex items-center gap-1 flex-wrap'>
-                <p>អាញ៉ុង <InlineMath math="A^{-}" /> ជាបាសឆ្លាស់នៃអាសុីតខ្សោយ វាទទួលបានប្រូតុងពីទឹក ឲផលជាអាសុីត និងអុីយ៉ុង <InlineMath math="OH^{-} ។" />តាមសមីការលំនឹង :</p>
+                <p>អាញ៉ុង <span className='text-[13px]'><InlineMath math="A^{-}" /></span> ជាបាសឆ្លាស់នៃអាសុីតខ្សោយ វាទទួលបានប្រូតុងពីទឹក ឲផលជាអាសុីត និងអុីយ៉ុង <span className='text-[13px]'><InlineMath math="OH^{-} ។" /></span> តាមសមីការលំនឹង :</p>
             </div>
-
-            <InlineMath math="A^{-} (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} HA (aq) + OH^{-} (aq)" />
+            <span className='text-[13px]'><InlineMath math="A^{-} (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} HA (aq) + OH^{-} (aq)" /></span>
+            
             <div className='flex items-center gap-1 flex-wrap'>
-                <p>អុីដ្រូលីសនៃអាញ៉ុង <InlineMath math="A^{-}" />ធ្វេីឲកំហាប់ <InlineMath math="OH^{-} ។" /> កេីនឡេីងនៅក្នុងសូលុយស្យុងហេតុនេះហេីយបានជាសូលុយស្យុងទទួលបានជាសូលុយស្យុងបាស ។</p>
+                <p>អុីដ្រូលីសនៃអាញ៉ុង <span className='text-[13px]'><InlineMath math="A^{-}" /></span> ធ្វេីឲកំហាប់ <span className='text-[13px]'><InlineMath math="OH^{-} ។" /></span>  កេីនឡេីងនៅក្នុងសូលុយស្យុងហេតុនេះហេីយបានជាសូលុយស្យុងទទួលបានជាសូលុយស្យុងបាស ។</p>
             </div>
-            <p>ដូច្ន អាសុីត HA កាន់តែខ្សោយ បាសឆ្លាស់ <InlineMath math="A^{-}" /> កាន់តែខ្លាំង ។</p>
+            <p>ដូច្ន អាសុីត HA កាន់តែខ្សោយ បាសឆ្លាស់ <span className='text-[13px]'><InlineMath math="A^{-}" /></span> កាន់តែខ្លាំង ។</p>
         </div>
       </>
     ),
@@ -237,10 +240,13 @@ const FourthTopicContent: TopicContent = {
       question: [
           <div className="flex flex-col items-start gap-4" key="q1">
               <p>សូដ្យូមកាបូណាត <InlineMath math="Na_{2}CO_{3}" /> ជាបាស</p>
-            <InlineMath math="Na_{2}CO_{3} (s) \rightarrow 2Na^{+} (aq) + CO_{3}^{2-} (aq)" />
-            <InlineMath math="Na^{+} (aq) + H_{2}O \rightarrow គ្មាន" />
-            <InlineMath math="CO_{3}^{2-} (aq) \rightarrow HCO_{3}^{-} (g) + OH^{-} (aq)" />
-            <p>អុីដ្រូលីស <InlineMath math="CO_{3}^{2-} " />ដែលបានមកពី <InlineMath math="Na_{2}CO_{3}" />បង្កេីតបាន <InlineMath math="OH^{-}" /> ក្នុងសូលុយស្យុង ។ ដូចនេះសូលុយស្យុង <InlineMath math="Na_{2}CO_{3}" />ជាបាស ។</p>
+              <div className='text-[13px] flex flex-col gap-2'>
+                    <InlineMath math="Na_{2}CO_{3} (s) \rightarrow 2Na^{+} (aq) + CO_{3}^{2-} (aq)" />
+                    <InlineMath math="Na^{+} (aq) + H_{2}O \rightarrow គ្មាន" />
+                    <InlineMath math="CO_{3}^{2-} (aq) \rightarrow HCO_{3}^{-} (g) + OH^{-} (aq)" />
+              </div>
+
+            <p>អុីដ្រូលីស <span className='text-[13px]'><InlineMath math="CO_{3}^{2-} " /></span> ដែលបានមកពី <span className='text-[13px]'><InlineMath math="Na_{2}CO_{3}" /></span> បង្កេីតបាន <span className='text-[13px]'><InlineMath math="OH^{-}" /></span>  ក្នុងសូលុយស្យុង ។ ដូចនេះសូលុយស្យុង <span className='text-[13px]'><InlineMath math="Na_{2}CO_{3}" /></span> ជាបាស ។</p>
           </div>,
       ],
     },
@@ -264,16 +270,16 @@ const FifthTopicContent: TopicContent = {
             <div className='flex items-center gap-1 flex-wrap'>
                 <p>តាង B ជាបាសខ្សោយដែលមានអំពេីជាមួយទឹក ឲផលជាអាញ៉ុង <InlineMath math="BH^{+}" />និងអុីយ៉ុង <InlineMath math="OH^{-} ។" />តាមសមីការលំនឹង :</p>
             </div>
-            <InlineMath math="B (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} BH^{+} (aq) + OH^{-} (aq)" />
+            <span className='text-[13px]'><InlineMath math="B (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} BH^{+} (aq) + OH^{-} (aq)" /></span>
+            
             <div className='flex items-center gap-1 flex-wrap'>
-                <p>កាចុង <InlineMath math="BH^{+}" /> ជាអាសុីតឆ្លាស់នៃបាសខ្សោយ វាបោះបង់ប្រូតុងឲទឹក ឲផលជា B និងអុីយ៉ុង <InlineMath math="H_{3}O^{+} ។" />តាមសមីការលំនឹង :</p>
+                <p>កាចុង <span className='text-[13px]'><InlineMath math="BH^{+}" /></span> ជាអាសុីតឆ្លាស់នៃបាសខ្សោយ វាបោះបង់ប្រូតុងឲទឹក ឲផលជា B និងអុីយ៉ុង <span className='text-[13px]'><InlineMath math="H_{3}O^{+} " /></span>តាមសមីការលំនឹង :</p>
             </div>
-
-            <InlineMath math="BH^{+} (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} B (aq) + H_{3}O^{+}" />
+            <span className='text-[13px]'><InlineMath math="BH^{+} (aq) + H_{2}O (l) \xrightleftharpoons[(2)]{(1)} B (aq) + H_{3}O^{+}" /></span>
             <div className='flex items-center gap-1 flex-wrap'>
-                <p>អុីដ្រូលីសនៃកាចុង <InlineMath math="BH^{+}" /> បង្កេីតបាន <InlineMath math="H_{3}O^{+} " /> ក្នុងសូលុយស្យុង ហេតុនេះហេីយបានជា សូលុយស្យុងទទួលបានជាសូឡុយស្យុងអាសុីត ។</p>
+                <p>អុីដ្រូលីសនៃកាចុង <span className='text-[13px]'><InlineMath math="BH^{+}" /></span>  បង្កេីតបាន <span className='text-[13px]'><InlineMath math="H_{3}O^{+} " /></span> ក្នុងសូលុយស្យុង ហេតុនេះហេីយបានជា សូលុយស្យុងទទួលបានជាសូឡុយស្យុងអាសុីត ។</p>
             </div>
-            <p>បាស B កាន់តែខ្សោយ អាសុីតឆ្លាស់ <InlineMath math="BH^{+}" /> កាន់តែខ្លាំង</p>
+            <p>បាស B កាន់តែខ្សោយ អាសុីតឆ្លាស់ <span className='text-[13px]'><InlineMath math="BH^{+}" /></span> កាន់តែខ្លាំង</p>
         </div>
       </>
     ),
@@ -281,11 +287,14 @@ const FifthTopicContent: TopicContent = {
   example: {
       question: [
           <div className="flex flex-col items-start gap-4" key="q1">
-              <p>អាម៉ូញូមក្លរួ <InlineMath math="NH_{4}Cl" /> ជាអាសុីត</p>
-            <InlineMath math="NH_{4}Cl (s) \rightarrow NH_{4}^{+} (aq) + Cl^{-} (aq)" />
-            <InlineMath math="Cl^{-} (aq) + H_{2}O \rightarrow គ្មាន" />
-            <InlineMath math="NH_{4}^{+} (aq) + H_{2}O (l) \rightarrow NH_{3} (g) + H_{3}O^{+}" />
-            <p>ដូចនេះសូលុយស្យុង <InlineMath math="NH_{4}Cl" /> ជាអាសុីតព្រោះវាបានបង្កេីតបាន <InlineMath math="H_{3}O^{+}" /> ក្នុងសូលុយស្យុង ។</p>
+              <p>អាម៉ូញូមក្លរួ <span className='text-[13px]'><InlineMath math="NH_{4}Cl" /></span> ជាអាសុីត</p>
+              <div className='flex flex-col gap-2 text-[13px]'>
+                 <InlineMath math="NH_{4}Cl (s) \rightarrow NH_{4}^{+} (aq) + Cl^{-} (aq)" />
+                  <InlineMath math="Cl^{-} (aq) + H_{2}O \rightarrow គ្មាន" />
+                  <InlineMath math="NH_{4}^{+} (aq) + H_{2}O (l) \rightarrow NH_{3} (g) + H_{3}O^{+}" />
+              </div>
+           
+            <p>ដូចនេះសូលុយស្យុង <span className='text-[13px]'><InlineMath math="NH_{4}Cl" /></span> ជាអាសុីតព្រោះវាបានបង្កេីតបាន <span className='text-[13px]'><InlineMath math="H_{3}O^{+}" /></span> ក្នុងសូលុយស្យុង ។</p>
           </div>,
       ],
     },
@@ -318,7 +327,7 @@ const SixthTopicContent: TopicContent = {
   example: {
       question: [
           <>
-            <p>សូលុយស្យុងមាន 0.1mol នៃ <InlineMath math="CH_{3}COOH " />និង​ <InlineMath math="CH_{3}COONa" /> ជាសូលុយស្យុងតំប៉ុង ព្រោះក្នុងសូលុយស្យុងនេះមាន <InlineMath math="CH_{3}COOH " /> និង <InlineMath math="CH_{3}COO^{-} " /> មានបរិមាណ 0.1mol ដូចគ្នា ។</p>
+            <p>សូលុយស្យុងមាន 0.1mol នៃ <span className='text-[13px]'><InlineMath math="CH_{3}COOH " /></span>និង​ <span className='text-[13px]'><InlineMath math="CH_{3}COONa" /></span> ជាសូលុយស្យុងតំប៉ុង ព្រោះក្នុងសូលុយស្យុងនេះមាន <span className='text-[13px]'><InlineMath math="CH_{3}COOH " /></span> និង <span className='text-[13px]'><InlineMath math="CH_{3}COO^{-} " /></span> មានបរិមាណ 0.1mol ដូចគ្នា ។</p>
           </>
       ],
     },

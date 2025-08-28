@@ -52,16 +52,16 @@ const SecondTopicContent: TopicContent = {
       <div className="flex flex-col items-start gap-3">
         <div className='flex items-start gap-4 flex-wrap'>
           <div className='flex items-start gap-1'>
-            <div>
+            <div className='text-[13px]'>
                 <InlineMath math="H-" />
             </div>
-            <div className='flex flex-col items-start'>
+            <div className='flex flex-col items-start text-[13px]'>
                 <InlineMath math="N-H" />
                 <InlineMath math="|" />
                 <InlineMath math="H" />
             </div>
-            <InlineMath math=" \rightarrow R-" />
-            <div className='flex flex-col items-start'>
+            <span className='text-[13px]'> <InlineMath math=" \rightarrow R-" /></span>         
+            <div className='flex flex-col items-start text-[13px]'>
                 <InlineMath math="N-H" />
                 <InlineMath math="|" />
                 <InlineMath math="H" />
@@ -70,14 +70,14 @@ const SecondTopicContent: TopicContent = {
 
           <div className='flex items-center gap-1'>
               <span>ឬ</span>
-              <InlineMath math="NH_{3} \rightarrow R-NH_{2}" />
+              <span className='text-[13px]'><InlineMath math="NH_{3} \rightarrow R-NH_{2}" /></span>
           </div>
         </div>
         <div className='flex items-center gap-5 flex-wrap'>
               <p><InlineMath math="R-NH_{2}" /> ជាអាមីន</p>
               <p><InlineMath math="NH_{3}" /> ជាអាម៉ូញ៉ាក</p>
         </div> 
-        <p>R ជារ៉ាឌីកាល់អុីដ្រូកាបួខ្សែបេីក ។ បេី R ជារ៉ាឌីកាល់អុីដ្រូកាបួឆ្អែតគេបានរូបមន្តទូទៅ <InlineMath math="C_{n}H_{2n+1^{-}}NH_{2}" />   ឬ <InlineMath math="C_{n}H_{2n+3}N" /></p>
+        <p>R ជារ៉ាឌីកាល់អុីដ្រូកាបួខ្សែបេីក ។ បេី R ជារ៉ាឌីកាល់អុីដ្រូកាបួឆ្អែតគេបានរូបមន្តទូទៅ <span className='text-[13px]'><InlineMath math="C_{n}H_{2n+1^{-}}NH_{2}" /></span>   ឬ <span className='text-[13px]'><InlineMath math="C_{n}H_{2n+3}N" /></span></p>
 
       </div>
       </>
@@ -102,7 +102,7 @@ const ThirdTopicContent: TopicContent = {
         <div className='flex items-start gap-3 flex-col'>
               <p>គេចែកអាមីនជាបីថ្នាក់ទៅតាមចំនួនអាតូមអុីដ្រូសែនរបស់អាម៉ូញ៉ាកដែលត្រូវជំនួសដោយរ៉ាឌីកាល់ R ។</p>
               <div className='flex items-start gap-3 flex-wrap'>
-                <div className='flex items-start gap-3'>
+                <div className='flex items-start gap-3 text-[13px]'>
                   <InlineMath math="R_{1}-" />
                   <div className='flex items-start flex-col'>
                       <InlineMath math="N-H" />
@@ -113,9 +113,9 @@ const ThirdTopicContent: TopicContent = {
                 <p>អាមីនថ្នាក់ទីI</p>
               </div>
               <div className='flex items-start gap-3 flex-wrap'>
-                <div className='flex items-start gap-3'>
+                <div className='flex items-start gap-3 text-[13px]'>
                   <InlineMath math="R_{1}-" />
-                  <div className='flex items-start flex-col'>
+                  <div className='flex items-start flex-col text-[13px]'>
                       <InlineMath math="N-R_{2}" />
                       <InlineMath math="|" />
                       <InlineMath math="H" />
@@ -126,7 +126,7 @@ const ThirdTopicContent: TopicContent = {
               <div className='flex items-start gap-3 flex-wrap'>
                 <div className='flex items-start gap-3'>
                   <InlineMath math="R_{1}-" />
-                  <div className='flex items-start flex-col'>
+                  <div className='flex items-start flex-col text-[13px]'>
                       <InlineMath math="N-R_{2}" />
                       <InlineMath math="|" />
                       <InlineMath math="R_{3}" />
@@ -171,22 +171,22 @@ const FourthTopicContent: TopicContent = {
       question: [
           <>
               <div className='flex items-start gap-3 flex-col'>
-                  <div className='flex items-start gap-3'>
-                      <InlineMath math="CH_{3}-NH_{2}" />
+                  <div className='flex items-start gap-3 '>
+                    <span className='text-[13px]'><InlineMath math="CH_{3}-NH_{2}" /></span>
                       <p>មេទីលឡាមីន</p>
                   </div>
                   <div className='flex items-start gap-3'>
-                      <InlineMath math="CH_{3}-CH_{2}-NH_{2}" />
+                      <span className='text-[13px]'><InlineMath math="CH_{3}-CH_{2}-NH_{2}" /></span>
                       <p>អេទីលឡាមីន</p>
                   </div>
                   <div className='flex items-start gap-3'>
-                      <InlineMath math="C_{2}H_{5}-NH-CH_{3}" />
+                      <span className='text-[13px]'><InlineMath math="C_{2}H_{5}-NH-CH_{3}" /></span>
                       <p>N-មេទីល អេទីលឡាមីន</p>
                   </div>
                   <div className='flex items-start gap-3 flex-wrap'>
-                      <div className='flex items-start gap-3'>
+                      <div className='flex items-start gap-3 text-[13px]'>
                         <InlineMath math="CH_{3}-CH_{2}-" />
-                        <div className='flex items-start flex-col'>
+                        <div className='flex items-start flex-col text-[13px]'>
                             <InlineMath math="CH-CH_{2}-NH_{2}" />
                             <InlineMath math="|" />
                             <InlineMath math="CH_{3}" />
@@ -196,9 +196,9 @@ const FourthTopicContent: TopicContent = {
                   </div>
                   
                   <div className='flex items-start gap-3 flex-wrap'>
-                      <div className='flex items-start gap-3'>
+                      <div className='flex items-start gap-3 text-[13px]'>
                         <InlineMath math="C_{2}H_{5}-" />
-                        <div className='flex items-start flex-col'>
+                        <div className='flex items-start flex-col text-[13px]'>
                             <InlineMath math="N-CH_{3}" />
                             <InlineMath math="|" />
                             <InlineMath math="CH_{3}" />
@@ -207,9 +207,9 @@ const FourthTopicContent: TopicContent = {
                       <p>N,N-ឌីមេទីល អេទីលឡាមីន</p>
                   </div>
                   <div className='flex items-start gap-3 flex-wrap'>
-                      <div className='flex items-start gap-3'>
+                      <div className='flex items-start gap-3 text-[13px]'>
                         <InlineMath math="C_{6}H_{5}-" />
-                        <div className='flex items-start flex-col'>
+                        <div className='flex items-start flex-col text-[13px]'>
                             <InlineMath math="N-C_{2}H_{5}" />
                             <InlineMath math="|" />
                             <InlineMath math="CH_{3}" />
@@ -265,14 +265,16 @@ const SixthTopicContent: TopicContent = {
         <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
             <div className='flex items-start flex-col'>
                 <li>លក្ខណៈជាបាសនៃអាម៉ូញ៉ាក់</li>
-                <p><InlineMath math="NH_{3}" /> មានលក្ខណៈជាបាស ហេីយអាសុីតឆ្លាស់របស់វាគឺ <InlineMath math="NH_{4}^{+}" /> ។ វាបង្កេីតបានជាគូអាសុីត-បាស <InlineMath math="NH_{4}^{+}/NH_{3}" /> ។</p>
-                <InlineMath math="NH_{3} + H_{2}O \rightleftharpoons NH_{4}^{+} + OH^{-}" />
+                <p> <span className='text-[13px]'><InlineMath math="NH_{3}" /></span> មានលក្ខណៈជាបាស ហេីយអាសុីតឆ្លាស់របស់វាគឺ  <span className='text-[13px]'><InlineMath math="NH_{4}^{+}" /></span> ។ វាបង្កេីតបានជាគូអាសុីត-បាស <span className='text-[13px]'><InlineMath math="NH_{4}^{+}/NH_{3}" /></span> ។</p>
+                <span className='text-[13px]'><InlineMath math="NH_{3} + H_{2}O \rightleftharpoons NH_{4}^{+} + OH^{-}" /></span>
+                
             </div>
             <div className='flex items-start flex-col'>
                 <li>លក្ខណៈជាបាសនៃអាមីន</li>
-                <p>អេទីលឡាមីន <InlineMath math="C_{2}H_{5}-NH_{2}" /> រលាយក្នុងទឹក បង្កេីតជាសូលុយស្យុងបាស ។ កំហាប់ 0.1M មាន​ pH= 11.9 នៅ 25°C ។ ដូចនេះ អេទីលឡាមីនជាបាសខ្សោយ ។</p>
-                <InlineMath math="C_{2}H_{5}-NH_{2} + H^{+} \rightleftharpoons C_{2}H_{5}-NH_{3}^{+}" />
-                <InlineMath math="C_{2}H_{5}-NH_{2} + H_{2}O \rightleftharpoons C_{2}H_{5}-NH_{3}^{+} + OH^{-}" />
+                <p>អេទីលឡាមីន <span className='text-[13px]'><InlineMath math="C_{2}H_{5}-NH_{2}" /></span> រលាយក្នុងទឹក បង្កេីតជាសូលុយស្យុងបាស ។ កំហាប់ 0.1M មាន​ pH= 11.9 នៅ 25°C ។ ដូចនេះ អេទីលឡាមីនជាបាសខ្សោយ ។</p>
+                <span className='text-[13px]'><InlineMath math="C_{2}H_{5}-NH_{2} + H^{+} \rightleftharpoons C_{2}H_{5}-NH_{3}^{+}" /></span>
+
+                <span className='text-[13px]'><InlineMath math="C_{2}H_{5}-NH_{2} + H_{2}O \rightleftharpoons C_{2}H_{5}-NH_{3}^{+} + OH^{-}" /></span>
                 <p>ជាទូទៅ អាមីនទាំងអស់ជាបាសខ្សោយ ប៉ុន្តែខ្លាំងជាងអាម៉ូញ៉ាក់ ។</p>
             </div>
             <div className='flex items-start flex-col'>
@@ -280,11 +282,11 @@ const SixthTopicContent: TopicContent = {
             </div>
             <div className='flex items-start flex-col'>
                 <li>ប្រតិកម្មអាមីនថ្នាក់ទី I ជាមួយអាសុីលក្លរួ (R-CO-Cl)</li>
-                <InlineMath math="R-CO-Cl + R_{1}-NH_{2} \rightarrow R-CO-NH-R_{1} + HCl" />
+                <span className='text-[13px]'><InlineMath math="R-CO-Cl + R_{1}-NH_{2} \rightarrow R-CO-NH-R_{1} + HCl" /></span>
             </div>
             <div>
                 <li>ប្រតិកម្មបង្កេីតអំបិល</li>
-                <InlineMath math="R-NH_{2} + HCl \rightleftharpoons R-NH_{3}^{+} + Cl^{-}" />
+                <span className='text-[13px]'><InlineMath math="R-NH_{2} + HCl \rightleftharpoons R-NH_{3}^{+} + Cl^{-}" /></span>
             </div>
         </ul>
       </>
@@ -309,17 +311,18 @@ const SeventhTopicContent: TopicContent = {
         <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
             <div className='flex flex-col items-start gap-2'>
                 <li>អាម៉ូញ៉ាក់មានអំពេីជាមួយអាល់គីលអាឡូសែនូ ឲជាអាមីនថ្នាក់ទី I</li>
-                <InlineMath math="R-X + NH_{3} \rightarrow R-NH_{2} + HX" />
-                <InlineMath math="C_{2}H_{5}-Cl + NH_{3} \rightarrow C_{2}H_{5}-NH_{2} + HCl" />
+                <span className='text-[13px]'> <InlineMath math="R-X + NH_{3} \rightarrow R-NH_{2} + HX" /></span>
+
+                <span className='text-[13px]'><InlineMath math="C_{2}H_{5}-Cl + NH_{3} \rightarrow C_{2}H_{5}-NH_{2} + HCl" /></span>
                 <p>អាមីនថ្នាក់ទី I កកេីតធ្វេីប្រតិកម្មជាមួយ R-X បង្កេីតអាមីនថ្នាក់ទី II , អាមីនថ្នាក់ទី II ក៏ធ្វេីប្រតិកម្មជាមួយ R-X បង្កេីតអាមីនថ្នាក់ទី III ។ អាមីនថ្នាក់ទី III ក៏ធ្វេីប្រតិកម្មបន្តបង្កេីតជាអំបិលអាម៉ូញ៉ូម ។</p>
-                <p><InlineMath math="R-X + NH_{3} \rightarrow R-NH_{2} + HX" /> (អាមីនថ្នាក់ទី I)</p>
-                <p><InlineMath math="R-NH_{2} + R-X \rightarrow R-NH-R + HX" /> (អាមីនថ្នាក់ទី II)</p>
-                <p><InlineMath math="R-NH-R + R-X \rightarrow R_{3}N + HX" /> (អាមីនថ្នាក់ទី III)</p>
-                <p><InlineMath math="R_{3}N + R-X \rightarrow R_{4}NX" /> (អំបិលអាម៉ូញ៉ូម)</p>
+                <p> <span className='text-[13px]'><InlineMath math="R-X + NH_{3} \rightarrow R-NH_{2} + HX" /></span> (អាមីនថ្នាក់ទី I)</p>
+                <p><span className='text-[13px]'><InlineMath math="R-NH_{2} + R-X \rightarrow R-NH-R + HX" /></span> (អាមីនថ្នាក់ទី II)</p>
+                <p><span className='text-[13px]'><InlineMath math="R-NH-R + R-X \rightarrow R_{3}N + HX" /></span> (អាមីនថ្នាក់ទី III)</p>
+                <p><span className='text-[13px]'><InlineMath math="R_{3}N + R-X \rightarrow R_{4}NX" /></span> (អំបិលអាម៉ូញ៉ូម)</p>
             </div>
             <div className='flex flex-col items-start gap-2'>
                 <li>ប្រតិកម្មរេដុកម្មនៃក្រុមនីទ្រីល ផ្តល់បានអាមីនថ្នាក់ទី I</li>
-                <InlineMath math="R-C\equiv + 4 H \xrightarrow{\text{Ni, 200 atm}} R-CH_2-NH_2" />
+                <span className='text-[13px]'><InlineMath math="R-C\equiv + 4 H \xrightarrow{\text{Ni, 200 atm}} R-CH_2-NH_2" /></span>
             </div>
         </ul>
       </>
@@ -328,7 +331,7 @@ const SeventhTopicContent: TopicContent = {
     example: {
       question: [
           <>
-            <div className='flex items-start gap-3 flex-col'>
+            <div className='flex items-start gap-3 flex-col text-[13px]'>
               <InlineMath math="CH_{3}-Cl + NH_{3} \rightarrow CH_{3}-NH_{2} + HCl" />
               <InlineMath math="CH_{3}-NH_{2} + CH_{3}-Cl \rightarrow CH_{3}-NH-CH_{3} + HCl" />
               <InlineMath math="CH_{3}-NH-CH_{3} + CH_{3}-Cl \rightarrow (CH_{3})_{3}N + HCl" />
@@ -346,7 +349,7 @@ const EighthTopicContent: TopicContent = {
     content:
       <>
         <div className="flex flex-col items-start">
-            <p>អាមីត គឺជាស្រឡាយនៃអាសុីតកាបុកសុីលិច (R-COOH) ដែលក្នុងនោះបង្គុំ (-OH) របស់អាសុីតត្រូវបានជំនួសដោយបង្គុំអាមីន<InlineMath math="(-NH_{2})" /></p>
+            <p>អាមីត គឺជាស្រឡាយនៃអាសុីតកាបុកសុីលិច (R-COOH) ដែលក្នុងនោះបង្គុំ (-OH) របស់អាសុីតត្រូវបានជំនួសដោយបង្គុំអាមីន <span className='text-[13px]'><InlineMath math="(-NH_{2})" /></span></p>
         </div>
       </>
   },
@@ -377,19 +380,19 @@ const NinethTopicContent: TopicContent = {
         <div className='flex flex-col items-start gap-3'>
             <div className='flex items-center gap-2 '>
                 <p>រូបមន្តទូទៅអាមីត :</p>
-                <InlineMath math="R-CO-NH_{2}" />
+                <span className='text-[13px]'><InlineMath math="R-CO-NH_{2}" /></span>
             </div>
-            <p>អាតូមអុីដ្រូសែនរបស់បង្គុំ <InlineMath math="(-NH_{2})" /> ត្រូវបានជំនួសដោយរ៉ាឌីកាល់អុីដ្រូកាបួ បង្កេីតជាថ្នាក់អាមីត ។</p>
+            <p>អាតូមអុីដ្រូសែនរបស់បង្គុំ <span className='text-[13px]'><InlineMath math="(-NH_{2})" /></span> ត្រូវបានជំនួសដោយរ៉ាឌីកាល់អុីដ្រូកាបួ បង្កេីតជាថ្នាក់អាមីត ។</p>
             <div className='flex items-center gap-2 '>
-                <InlineMath math="R-CO-NH_{2}" />
+                <span className='text-[13px]'><InlineMath math="R-CO-NH_{2}" /></span>
                 <p>អាមីតថ្នាក់ទី I</p>
             </div>
             <div className='flex items-center gap-2 '>
-                <InlineMath math="R-CO-NH-R_{1}" />
+                <span className='text-[13px]'><InlineMath math="R-CO-NH-R_{1}" /></span>
                 <p>អាមីតថ្នាក់ទី II</p>
             </div>
             <div className='flex items-start gap-2 '>
-                <div className='flex items-start'>
+                <div className='flex items-start text-[13px]'>
                   <InlineMath math="R-CO-" />
                   <div className='flex flex-col'>
                     <InlineMath math="N-R_{1}" />
@@ -423,23 +426,23 @@ const TenthTopicContent: TopicContent = {
         <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
             <div className='flex items-start gap-3 flex-col'>
                 <li>ឈ្មោះរបស់អាមីតបានមកពីឈ្មោះអាសុីតដោយប្តូរបច្ឆឹមបទ អូអុីចរបស់អាសុីតទៅជាអាមីត ។</li>
-                <p><InlineMath math="H-CO-NH_{2}" /> មេតាណាមីត</p>
-                <p><InlineMath math="CH_{3}-CO-NH_{2}" /> អេតាណាមីត</p>
+                <p> <span className='text-[13px]'><InlineMath math="H-CO-NH_{2}" /></span> មេតាណាមីត</p>
+                <p><span className='text-[13px]'><InlineMath math="CH_{3}-CO-NH_{2}" /></span> អេតាណាមីត</p>
             </div>
             <div className='flex items-start gap-3 flex-col'>
                 <li>ដេីម្បីហៅឈ្មោះអាមីតថ្នាក់ទី II និង III គេត្រូវហៅរ៉ាឌីកាល់កាបួដោយបញ្ជាក់ទីតាំង</li>
-                <p><InlineMath math="CH_{3}-CO-NH-CH_{3}" /> N-មេទីល អេតាណាមីត</p>
+                <p><span className='text-[13px]'><InlineMath math="CH_{3}-CO-NH-CH_{3}" /></span> N-មេទីល អេតាណាមីត</p>
                 <div className='flex items-start gap-2 '>
-                <div className='flex items-start'>
-                  <InlineMath math="CH_{3}-CO-" />
-                  <div className='flex flex-col'>
+                <div className='flex items-start flex-wrap'>
+                  <span className='text-[13px]'><InlineMath math="CH_{3}-CO-" /></span>
+                  <div className='flex flex-col text-[13px]'>
                     <InlineMath math="N-CH_{3}" />
                     <InlineMath math="|" />
                     <InlineMath math="CH_{3}" />
                   </div>
                 </div>
-                <p>N,N-ឌីមេទីល អេតាណាមីត</p>
             </div>
+            <p>N,N-ឌីមេទីល អេតាណាមីត</p>
             </div>
         </ul>
       </>
@@ -467,8 +470,7 @@ const EleventhTopicContent: TopicContent = {
             និងអាម៉ូញាក់។
             កាលណាម៉ូលេគុលទាំងពីរមានចំនួនអាតូមកាបួនស្មើគ្នា។
             អាមីតរងអីដ្រូលីសយឺតៗបង្កើតបានជាអាស៊ីតកាបុកស៊ីលិចនិងអាម៉ូញាក់ ។</p>
-        <InlineMath math="CH_{3}-CO-NH_{2} + H-OH \rightarrow CH_{3}-COOH + NH_{3}" />
-
+            <span className='text-[13px]'><InlineMath math="CH_{3}-CO-NH_{2} + H-OH \rightarrow CH_{3}-COOH + NH_{3}" /></span>
       </>
     ),
   },
@@ -491,19 +493,27 @@ const TwelfthTopicContent: TopicContent = {
         <ul className='list-disc pl-5 flex flex-col items-start gap-4'>
             <div>
                 <li>ប្រតិកម្មរវាងអេស្ទែ និងអាម៉ូញាក់</li>
+                <span className='text-[13px]'>
                 <InlineMath math="CH_{3}-COO-C_{2}H_{5} + NH_{3} \rightarrow CH_{3}-CO-NH_{2} + C_{2}H_{5}-OH" />
+                </span>
             </div>
             <div>
                 <li>ប្រតិកម្មរវាងអាសុីលក្លរួ និងអាម៉ូញាក់</li>
+                <span className='text-[13px]'>
                 <InlineMath math="CH_{3}-CO-Cl + 2NH_{3} \rightarrow CH_{3}-CO-NH_{2} + NH_{4}Cl" />
+                </span>
             </div>
             <div>
                 <li>ប្រតិកម្មរវាងអានីឌ្រីតអាសុីត និងអាម៉ូញាក់</li>
+                <span className='text-[13px]'>
                 <InlineMath math="CH_{3}-CO-O-CO-CH_{3} + NH_{3} \rightarrow CH_{3}-CO-NH_{2} + CH_{3}-COOH" />
+                </span>
             </div>
             <div>
                 <li>ប្រតិកម្មរវាងអាសុីតកាបុកសុីលិច និងអាម៉ូញាក់</li>
+                <span className='text-[13px]'>
                 <InlineMath math="CH_{3}-COOH + NH_{3} \rightarrow CH_{3}-CO-NH_{2} + H_{2}O" />
+                </span>
             </div>
         </ul>
       </>
@@ -525,9 +535,9 @@ const ThirdTeenthTopicContent: TopicContent = {
     content: (
       <>
         <div className='flex flex-col items-start gap-3'>
-            <p><InlineMath math="H_{2}CO_{3}" /> អាសុីតកាបូនិច</p>
-            <p><InlineMath math="H_{2}N-CO-NH_{2}" /> អ៊ុយរ៉េ</p>
-            <p>ទង្វេី <InlineMath math="CO_{2} + 2NH_{3} \rightarrow H_{2}N-CO-NH_{2} + H_{2}O" /></p>
+            <p><span className='text-[13px]'><InlineMath math="H_{2}CO_{3}" /></span> អាសុីតកាបូនិច</p>
+            <p><span className='text-[13px]'><InlineMath math="H_{2}N-CO-NH_{2}" /></span> អ៊ុយរ៉េ</p>
+            <p>ទង្វេី <span className='text-[13px]'><InlineMath math="CO_{2} + 2NH_{3} \rightarrow H_{2}N-CO-NH_{2} + H_{2}O" /></span></p>
         </div>
       </>
     ),
@@ -540,7 +550,7 @@ const FourthTeenTopicContent: TopicContent = {
     content:
       <>
         <div className="flex flex-col items-start">
-            <p>អាសុីតអាមីណេ គឺជាសមាសធាតុសរីរាង្គដែលមានបង្គំកាបុកសុីល <InlineMath math="(-COOH)" /> មួយនិងបង្គុំអាមីន <InlineMath math="(-NH_{2})" /> មួយ។ កាលណាបង្គុំទាំងពីរភ្ជាប់នឹងកាបូនតែមួយ គេបានអាសុីត <InlineMath math="\alpha" /> -អាមីណេ ។</p>
+            <p>អាសុីតអាមីណេ គឺជាសមាសធាតុសរីរាង្គដែលមានបង្គំកាបុកសុីល <span className='text-[13px]'><InlineMath math="(-COOH)" /></span> មួយនិងបង្គុំអាមីន <span className='text-[13px]'><InlineMath math="(-NH_{2})" /></span> មួយ។ កាលណាបង្គុំទាំងពីរភ្ជាប់នឹងកាបូនតែមួយ គេបានអាសុីត <span className='text-[13px]'><InlineMath math="\alpha" /></span> -អាមីណេ ។</p>
         </div>
       </>
   },
@@ -566,9 +576,9 @@ const FifthTeenTopicContent: TopicContent = {
     title: "ជាទូទៅ",
     content: (
       <>
-        <div className='flex items-start gap-3'>
+        <div className='flex items-start gap-3 flex-wrap'>
           <p>រូបមន្តទូទៅនៃអាសុីត​<InlineMath math="\alpha" /> -អាមីណេ </p>
-          <div className='flex items-start'>
+          <div className='flex items-start text-[13px]'>
               <InlineMath math="R-" />
               <div className='flex flex-col'>
                 <InlineMath math="CH-COOH" />
@@ -599,7 +609,7 @@ const SixteenthTopicContent: TopicContent = {
         <div className='flex items-start gap-3 flex-col'>
             <p>គេហៅអាសុីតអាមីណេតាមឈ្មោះធ្លាប់ប្រេី ។ កាលណាបង្គុំអាមីនជាប់នឹងអាតូមកាបូនក្នុងទីតាំង​<InlineMath math="\beta" /> ឈ្មោះអាសុីតអាមីណេត្រូវបន្ថែមបុព្វបទ​<InlineMath math="\beta" />-អាមីណូ ទៅលេីឈ្មោះអាសុីតកាបុកសុីលិច ។</p>
             <div className='flex items-start gap-3 flex-wrap'>
-                <div className='flex items-start'>
+                <div className='flex items-start text-[13px]'>
                   <InlineMath math="H-" />
                   <div className='flex flex-col'>
                     <InlineMath math="CH-COOH" />
@@ -607,11 +617,11 @@ const SixteenthTopicContent: TopicContent = {
                     <InlineMath math="NH_{2}" />
                   </div>
                 </div>
-                <p>អាសុីត <InlineMath math="\alpha" />-អាមីណូអាសេទិច</p>
+                <p>អាសុីត <span className='text-[13px]'><InlineMath math="\alpha" /></span> -អាមីណូអាសេទិច</p>
             </div>
             <div className='flex items-start gap-3 flex-wrap'>
-                <InlineMath math="H_{2}N-CH_{2}-COOH" />
-                <p>អាសុីត <InlineMath math="\beta" />-អាមីណូប្រ៉ូប្យូទិច</p>
+              <span className='text-[13px]'><InlineMath math="H_{2}N-CH_{2}-COOH" /></span>
+                <p>អាសុីត <span className='text-[13px]'><InlineMath math="\beta" /></span> -អាមីណូប្រ៉ូប្យូទិច</p>
             </div>
         </div>
       </>
@@ -642,8 +652,8 @@ const SeventeenthTopicContent: TopicContent = {
               <div className='flex flex-col gap-3'>
                   <li>ក្នុងម៉ូលេគុលអាស៊ីតអាមីណេ បង្គុំកាបុកស៊ីលមានលក្ខណៈជាអាស៊ីត ឯបង្គំអាមីនមានលក្ខណៈជាបាស ។</li>
                   <p>នៅក្នុងភាពជាសូលុយស្យុងទឹក អាស៊ីតអាមីណេមានទម្រង់បីបែប ៖</p>
-                  <div className='flex items-start gap-3'>
-                    <div className='flex items-start'>
+                  <div className='flex items-start gap-3 flex-wrap'>
+                    <div className='flex items-start text-[13px]'>
                         <InlineMath math="R-" />
                         <div className='flex flex-col'>
                           <InlineMath math="CH-COO^{-}" />
@@ -653,8 +663,8 @@ const SeventeenthTopicContent: TopicContent = {
                     </div>
                     <p>ក្នុងសូលុយស្យុងណឺត</p>
                   </div>
-                  <div className='flex items-start gap-3'>
-                    <div className='flex items-start'>
+                  <div className='flex items-start gap-3 flex-wrap'>
+                    <div className='flex items-start text-[13px]'>
                         <InlineMath math="R-" />
                         <div className='flex flex-col'>
                           <InlineMath math="CH-COOH" />
@@ -664,8 +674,8 @@ const SeventeenthTopicContent: TopicContent = {
                     </div>
                     <p>ក្នុងសូលុយស្យុងអាសុីត</p>
                   </div>
-                  <div className='flex items-start gap-3'>
-                    <div className='flex items-start'>
+                  <div className='flex items-start gap-3 flex-wrap'>
+                    <div className='flex items-start text-[13px]'>
                         <InlineMath math="R-" />
                         <div className='flex flex-col'>
                           <InlineMath math="CH-COO^{-}" />
@@ -705,7 +715,7 @@ const EighteenthTopicContent: TopicContent = {
               <div>
                   <li>គេឲ្យអាស៊ីត​<InlineMath math="\alpha" /> អាឡូសែណូកាបុកស៊ីលិច មានប្រតិកម្មជាមួយអាម៉ូញាក់ គេទទួលបានអាស៊ីត​<InlineMath math="\alpha" />-អាមីណូកាបុកស៊ីលិច ។ </li>
                   <div className='flex items-start gap-3'>
-                    <div className='flex items-start'>
+                    <div className='flex items-start text-[13px]'>
                         <div className='flex flex-col'>
                           <InlineMath math="CH_{2}-COOH" />
                           <InlineMath math="|" />
@@ -759,7 +769,7 @@ const TwentyTopicContent: TopicContent = {
     content: (
       <>
           <p>សម្ព័ន្ធប៉ិបទីត (-CO-NH-) កើតឡើងដោយម៉ូលេគុលអាស៊ីតអាមីណេចំនួនពីរភ្ជាប់គ្នាដោយការដកទឹកចេញចំនួន ១ ម៉ូលេគុល។</p>
-          <div className='flex items-start text-[6px] sm:text-xs mt-3'>
+          <div className='flex items-start text-[6px] sm:text-xs mt-3 overflow-scroll'>
               <InlineMath math="H_{2}N-CH_{2}-" />
               <div className='flex flex-col'>
                 <InlineMath math="C-OH" />
