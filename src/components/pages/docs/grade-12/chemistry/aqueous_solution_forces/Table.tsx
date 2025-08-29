@@ -8,19 +8,19 @@ const ChemisTables = () => {
       <table className="min-w-max border border-gray-300 rounded-lg text-sm sm:text-base">
         <thead>
           <tr className="bg-gray-50">
-            <th className="border border-gray-300 px-4 py-2 text-left bg-blue-500 text-white">
+            <th className="border border-gray-300 px-4 py-2 text-left bg-indigo-600  text-white">
               ប្រភេទសារធាតុ
             </th>
-            <th className="border border-gray-300 px-4 py-2 text-left bg-blue-500 text-white">
+            <th className="border border-gray-300 px-4 py-2 text-left bg-indigo-600 text-white">
               និយមន័យប្រេី
             </th>
-            <th className="border border-gray-300 px-4 py-2 text-left bg-blue-500 text-white">
+            <th className="border border-gray-300 px-4 py-2 text-left bg-indigo-600 text-white">
               ភាពរូប
             </th>
-            <th className="border border-gray-300 px-4 py-2 text-left bg-blue-500 text-white">
+            <th className="border border-gray-300 px-4 py-2 text-left bg-indigo-600 text-white">
               ចំណុចរលាយ °C
             </th>
-            <th className="border border-gray-300 px-4 py-2 text-left bg-blue-500 text-white">
+            <th className="border border-gray-300 px-4 py-2 text-left bg-indigo-600 text-white">
               ចំណុចរំពុះ °C
             </th>
           </tr>

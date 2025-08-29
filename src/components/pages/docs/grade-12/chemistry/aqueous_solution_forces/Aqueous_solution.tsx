@@ -10,6 +10,7 @@ import WarningBox from "../../../common/box/WarningBox"
 import ExerciseBox from "../../../common/box/ExerciseBox"
 import ExampleBox from "../../../common/box/ExampleBox"
 import { div } from "three/tsl"
+import { p } from 'framer-motion/client'
 
 
 
@@ -31,14 +32,67 @@ const FirstTopicContent: TopicContent = {
             <InlineMath math="NaCl(s) \rightarrow Na^{+}(aq) + Cl^{-}(aq)"/>
             <InlineMath math="HCl + H_{2}O \rightarrow H_{3}O^{+} + Cl^{-}"/>
             <InlineMath math="Ca(NO_{3})_{2} \rightarrow Ca^{2+} + 2NO_{3}^{-}"/>
+            
         </div>,
     ],
   },
   exercise: {
-    questions: [
+  questions: [
+    {
+      id: "q1",
+      question: (
+        <>
+          <div className="flex flex-col gap-3">
+            <p>សមាសធាតុមួយណាដែលអាចបំបែកជាអុីយ៉ុងនៅក្នុងទឹក?</p>
+          </div>
+        </>
+      ),
+      options: [
+        <p className='text-[13px]' key="q1-o1"><InlineMath math="NaCl"/></p>,
+        <p className='text-[13px]' key="q1-o2"><InlineMath math="C_{6}H_{12}O_{6}"/></p>,
+        <p className='text-[13px]' key="q1-o3"><InlineMath math="CCl_{4}"/></p>,
+        <p className='text-[13px]' key="q1-o4"><InlineMath math="CH_{3}OH"/></p>,
+      ],
+      correctAnswer: 1,
+    },
+    {
+      id: "q2",
+      question: (
+        <>
+          <div className="flex flex-col gap-3">
+            <p>សមីការណាដែលបង្ហាញពីការបំបែករបស់ HCl ក្នុងទឹក?</p>
+          </div>
+        </>
+      ),
+      options: [
         
-    ]
-  },
+        <p className='text-[13px]' key="q1-o1"><InlineMath key="q2-o1" math="HCl \rightarrow H^{+} + Cl^{-}" /></p>,
+        <p className='text-[13px]' key="q2-o2"><InlineMath key="q2-o2" math="HCl + H_{2}O \rightarrow H_{3}O^{+} + Cl^{-}" /></p>,
+        <p className='text-[13px]' key="q2-o3"><InlineMath key="q2-o3" math="HCl \rightarrow H_{2} + Cl_{2}" /></p>,
+        <p className='text-[13px]' key="q2-o4"><InlineMath key="q2-o4" math="HCl \rightarrow HCl(aq)" /></p>,
+      ],
+      correctAnswer: 2,
+    },
+    {
+      id: "q3",
+      question: (
+        <>
+          <div className="flex flex-col gap-3">
+            <p>បើ <span className='text-[13px]'><InlineMath math="Ca(NO_{3})_{2}"/></span> រលាយក្នុងទឹក វាបំបែកបានជាអុីយ៉ុងអ្វីខ្លះ?</p>
+          </div>
+        </>
+      ),
+      options: [
+        <p className='text-[13px]' key="q3-o1"><InlineMath key="q3-o1" math="Ca^{2+} + NO_{3}^{-}" /></p>,
+        <p className='text-[13px]' key="q3-o2"><InlineMath key="q3-o2" math="Ca^{+} + 2NO_{3}^{-}" /></p>,
+        <p className='text-[13px]' key="q3-o3"><InlineMath key="q3-o3" math="Ca^{2+} + 2NO_{3}^{-}" /></p>,
+        <p className='text-[13px]' key="q3-o4"><InlineMath key="q3-o4" math="Ca + NO_{3}" /></p>,
+      ],
+      correctAnswer: 3,
+    },
+  ],
+  }
+  
 }
 
 const SecondTopic: TopicContent = {
@@ -69,11 +123,6 @@ const SecondTopic: TopicContent = {
         </div>,
     ],
   },
-    exercise: {
-      questions: [
-          
-      ]
-    },
 }
 
 
@@ -119,7 +168,57 @@ const ThirdTopic: TopicContent = {
 
   exercise: {
     questions: [
-        
+        {
+          id: "q1",
+          question: (
+            <>
+              <div className="flex flex-col gap-3">
+                <p>ជ្រេីសសមីការបំបែកជាអុីយ៉ុងនៅក្នុងទឹករបស់ <span className='text-[13px]'><InlineMath math="KI"/></span></p>
+              </div>
+            </>
+          ),
+          options: [
+            <p className='text-[13px]' key="q1-o1"><InlineMath math="KI \rightarrow K^{+} + I^{-}" /></p>,
+            <p className='text-[13px]' key="q1-o2"><InlineMath math="KI \rightarrow K^{2+} + I^{2-}" /></p>,
+            <p className='text-[13px]' key="q1-o3"><InlineMath math="KI \rightarrow K + I" /></p>,
+            <p className='text-[13px]' key="q1-o4"><InlineMath math="KI \rightarrow KI(aq)" /></p>,
+          ],
+          correctAnswer: 1,
+        },
+        {
+          id: "q2",
+          question: (
+            <>
+              <div className="flex flex-col gap-3">
+                <p>ជ្រេីសសមីការបំបែកជាអុីយ៉ុងនៅក្នុងទឹករបស់ <span className='text-[13px]'><InlineMath math="NaNO_{3}"/></span></p>
+              </div>
+            </>
+          ),
+          options: [
+            <p className='text-[13px]' key="q2-o1"><InlineMath math="NaNO_{3} \rightarrow Na^{+} + NO_{3}^{-}" /></p>,
+            <p className='text-[13px]' key="q2-o2"><InlineMath math="NaNO_{3} \rightarrow Na^{2+} + NO_{3}^{2-}" /></p>,
+            <p className='text-[13px]' key="q2-o3"><InlineMath math="NaNO_{3} \rightarrow Na + NO_{3}" /></p>,
+            <p className='text-[13px]' key="q2-o4"><InlineMath math="NaNO_{3} \rightarrow NaNO_{3}(aq)" /></p>,
+          ],
+          correctAnswer: 1,
+        },
+        {
+          id: "q3",
+          question: (
+            <>
+              <div className="flex flex-col gap-3">
+                <p>ជ្រេីសសមីការបំបែកជាអុីយ៉ុងនៅក្នុងទឹករបស់ <span className='text-[13px]'><InlineMath math="MgCl_{2}"/></span></p>
+              </div>
+            </>
+          ),
+          options: [
+            <p className='text-[13px]' key="q3-o1"><InlineMath math="MgCl_{2} \rightarrow Mg^{2+} + 2Cl^{-}" /></p>,
+            <p className='text-[13px]' key="q3-o2"><InlineMath math="MgCl_{2} \rightarrow Mg^{+} + Cl^{-}" /></p>,
+            <p className='text-[13px]' key="q3-o3"><InlineMath math="MgCl_{2} \rightarrow Mg^{2+} + Cl_{2}^{-}" /></p>,
+            <p className='text-[13px]' key="q3-o4"><InlineMath math="MgCl_{2} \rightarrow Mg + 2Cl" /></p>,
+          ],
+          correctAnswer: 1,
+        }
     ]
   },
 }
@@ -375,6 +474,10 @@ const Aqueous_solution = () => {
             {FirstTopicContent.example && (
                 <ExampleBox question={FirstTopicContent.example.question} steps={FirstTopicContent.example.steps} answer={FirstTopicContent.example.answer} />
             )}
+            {FirstTopicContent.exercise && (
+              <ExerciseBox questions={FirstTopicContent.exercise.questions} />
+            )}
+
               </div>
               <div>
                   {SecondTopic.definition && (
@@ -402,6 +505,9 @@ const Aqueous_solution = () => {
                     )}
                     {NinethTopicContent.example && (
                         <ExampleBox question={NinethTopicContent.example.question} steps={NinethTopicContent.example.steps} />
+                    )}
+                    {ThirdTopic.exercise && (
+                      <ExerciseBox questions={ThirdTopic.exercise.questions} />
                     )}
                 </div>
                 <div>
