@@ -87,7 +87,7 @@ const FirstTopicContent: TopicContent = {
 
 const SecondTopicContent: TopicContent = {
   definition: {
-  title: "មាត្រដ្ធាន pH",
+  title: "មាត្រដ្ឋាន pH",
     content:
       <>
         <div className="flex flex-col items-start">

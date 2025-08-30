@@ -11,6 +11,33 @@ import { p } from "framer-motion/client";
 const Acid_base_practice = () => {
 
 
+  const summary: SummarySection[] = [
+    {
+      key: "formulas",
+      title: "ចំណុចសមមូលអាសុីតបាស",
+      icon: BookAIcon,
+      content: (
+        <div className="text-[13px]" key={"f1"}>
+            <InlineMath math="C_{a} \cdot V_{a} = C_{b} \cdot V_{b}" />
+        </div>
+      )
+    },
+    {
+      key: "formulas",
+      title: "មាត្រដ្ឋាន pH",
+      icon: BookAIcon,
+      content: (
+        <div className="text-[13px] flex flex-col items-start gap-4" key={"f2"}>
+            <InlineMath math="pH = -log[H_{3}O^{+}]" />
+            <InlineMath math="[H_{3}O^{+}] = 10^{-pH}" />
+            <InlineMath math="pOH = -log[OH^{-}]" />
+            <InlineMath math="[OH^{-}] = 10^{-pOH}" />
+        </div>
+      )
+    },
+  ];
+
+
 
   const practiceExercises: PracticeExercise[] = [
     {
@@ -221,21 +248,30 @@ const Acid_base_practice = () => {
       ]
     },
     {
-      id: "ex8",
-      title: "លំហាត់ទី ៨",
-      description: "លំហាត់ទី ៨",
-      problemType: "Eighth Exercise",
-      problems: [
-        <div className="flex flex-col items-start text-[13px] gap-3">
-            <p>សូលុយស្យុងមួយមាន pH ស្មេីនឹង 1.50 ។ គណនាកំហាប់របស់អុីយ៉ុង <InlineMath math="[H_{3}O^{+}]" /> និង <InlineMath math="[OH^{-}]" /> ។</p>
-        </div>
-      ],
-      answers: [
-        <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-          
-        </div>,
-      ]
-    },
+    id: "ex8",
+    title: "លំហាត់ទី ៨",
+    description: "លំហាត់ទី ៨",
+    problemType: "Eighth Exercise",
+    problems: [
+      <div className="flex flex-col items-start text-[13px] gap-3">
+          <p>សូលុយស្យុងមួយមាន pH ស្មេីនឹង 1.50 ។ គណនាកំហាប់របស់អុីយ៉ុង <InlineMath math="[H_{3}O^{+}]" /> និង <InlineMath math="[OH^{-}]" /> ។</p>
+      </div>
+    ],
+    answers: [
+      <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
+          <p>គណនាកំហាប់របស់អុីយ៉ុង <InlineMath math="[H_{3}O^{+}]" /></p>
+          <p>គេមាន pH= 1.50</p>
+          <p>តាមរូបមន្ត <InlineMath math="pH = -\log_{10}[H_{3}O^{+}]" /></p>
+          <p>នាំឲ <InlineMath math=" [H_{3}O^{+}] = 10^{-pH} = 10^{-1.50}" /></p>
+          <p><InlineMath math="[H_{3}O^{+}] = 3.16 \cdot 10^{-2} M" /></p>
+          <p>គណនាកំហាប់របស់អុីយ៉ុង <InlineMath math="[OH^{-}]" /></p>
+          <p>គេមាន <InlineMath math="K_{w} = 1.0 \cdot 10^{-14}" /></p>
+          <p>តាមរូបមន្ត <InlineMath math="[OH^{-}] = \dfrac{K_{w}}{[H_{3}O^{+}]} = \dfrac{1.0 \cdot 10^{-14}}{3.16 \cdot 10^{-2}}" /></p>
+          <p><InlineMath math="[OH^{-}] = 3.16 \cdot 10^{-13} M" /></p>
+      </div>,
+    ]
+  },
+
   {
       id: "ex9",
       title: "លំហាត់ទី ៩",
@@ -251,7 +287,31 @@ const Acid_base_practice = () => {
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-          
+            <p className="font-bold">ក. គណនាម៉ាសស័ង្កសីស៊ុលផាតដែលទទួលបាន</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p>សមីការតាងប្រតិកម្ម</p>
+              <InlineMath math="Zn + H_{2}SO_{4} \rightarrow ZnSO_{4} + H_{2}" />
+            </div>
+            <p>តាមរូបមន្ត <InlineMath math="m = n \cdot M" /></p>
+            <p>ដោយ <InlineMath math="M_{ZnSO_{4}}" /> = 65 + 32 + 4 x 16 = 98 g/mol</p>
+            <p>រក <InlineMath math="n_{ZnSO_{4}}" /></p>
+            <p>គេមាន <InlineMath math="V_{a}" /> = 100mL = 0.1 L</p>
+            <p><InlineMath math="C_{a}" /> = 6M</p>
+
+            <p>តាមរូបមន្ត <InlineMath math="n_{a} = C_{a} \cdot V_{a}" /></p>
+            <p>= 6 x 0.1 = 0.6 mol</p>
+            <p>ដោយ <InlineMath math="n_{ZnSO_{4}} = n_{a}" /></p>
+            <p>នាំឲ <InlineMath math="n_{ZnSO_{4}} = 0.6 mol" /></p>
+            <p>គេបាន <InlineMath math="m_{ZnSO_{4}} = n_{ZnSO_{4}} \cdot M_{ZnSO_{4}}" /></p>
+            <p>= 0.6 x 98 = 58.8 g</p>
+            <p>ដូច្នេះ ម៉ាសស័ង្កសីស៊ុលផាតដែលទទួលបានគឺ 58.8g</p>
+            <p className="font-bold">ខ. គណនាមាឌឧស្ម័នអុីដ្រូសែនដែលភាយចេញពីប្រតិកម្ម</p>
+            <p>តាមរូបមន្ត <InlineMath math="V_{H_{2}} = n_{H_{2}} \cdot V_{m}" /></p>
+            <p>ដោយ <InlineMath math="V_{m} = 22.4 L" /></p>
+            <p>នាំឲ <InlineMath math="n_{H_{2}} = n_{a} = 0.6 mol" /></p>
+            <p>គេបាន <InlineMath math="V_{H_{2}} = n_{H_{2}} \cdot V_{m}" /></p>
+            <p>= 0.6 x 22.4 = 13.44 L</p>
+            <p>ដូច្នេះ មាឌឧស្ម័នអុីដ្រូសែនដែលភាយចេញពីប្រតិកម្មគឺ 13.44L</p>
         </div>,
       ]
     },
@@ -266,15 +326,35 @@ const Acid_base_practice = () => {
             <p>សំបកខ្យងមួយផ្សំពី <InlineMath math="CaCO_{3}" /> មានប្រតិកម្មជាមួយសូលុយស្យុង HCl គេទទួលបាន 1500mL ឧស្ម័ន​ <InlineMath math="CO_{2}" /> នៅសីតុណ្ហភាព STP រួមទាំង <InlineMath math="CaCl_{2}" /> និងទឹក ។ គណនា:</p>
             <p>ក. បរិមាណ <InlineMath math="CaCO_{3}" /> ចូលរួមប្រតិកម្ម</p>
             <p>ខ. មាឌសូលុយស្យុង HCl នៅ 2M ដែលប្រេីក្នុងប្រតិកម្ម</p>
-            <p>(Ca = 40 , C= 12 , O= 16 , H = 1 , Cl = 35.5)</p>
+            <p>(Ca = 40 , C= 12 , O= 16 , H = 1 , Cl = 35.5 ឧស្ម័ន 1mol នៅ STP មានមាឌ 22.4L)</p>
         </div>
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-          
+            <p className="font-bold">ក. គណនាបរិមាណ <InlineMath math="CaCO_{3}" /> ចូលរួមប្រតិកម្ម</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p>សមីការតាងប្រតិកម្ម</p>
+              <InlineMath math="CaCO_{3} + 2HCl \rightarrow CaCl_{2} + H_{2}O + CO_{2}" />
+            </div>
+            <p>គេបាន <InlineMath math="V_{CO_{2}}" /> = 1500mL = 1.5 L</p>
+            <p>ដោយ <InlineMath math="V_{m}" /> = 22.4 L/mol</p>
+            <p>តាមរូបមន្ត <InlineMath math="n = \frac{V}{V_{m}}" /></p>
+            <p><InlineMath math="n_{CO_{2}} = \frac{1.5}{22.4} = 0.067 mol" /></p>
+            <p>តាមសមីការ <InlineMath math="n_{CaCO_{3}} = n_{CO_{2}}" /></p>
+            <p>នាំឲ <InlineMath math="n_{CaCO_{3}} = 0.067 mol" /></p>
+            <p>ដូច្នេះ បរិមាណ <InlineMath math="CaCO_{3}" /> ចូលរួមប្រតិកម្មគឺ 0.067 mol</p>
+
+            <p className="font-bold">ខ. គណនាមាឌសូលុយស្យុង HCl</p>
+            <p>តាមសមីការ៖ <InlineMath math="CaCO_{3} + 2HCl \rightarrow CaCl_{2} + H_{2}O + CO_{2}" /></p>
+            <p><InlineMath math="n_{HCl} = 2 \times n_{CaCO_{3}}" /></p>
+            <p>= 2 × 0.067 = 0.134 mol</p>
+            <p>តាមរូបមន្ត C = <span className='text-[16px]'><InlineMath math="\frac{n}{V}" /></span></p>
+            <p><InlineMath math="V_{HCl} = \frac{0.134}{2} = 0.067 L" /></p>
+            <p>ដូច្នេះ មាឌសូលុយស្យុង HCl ដែលបានប្រើគឺ 0.067 L</p>
         </div>,
       ]
     },
+
     {
       id: "ex11",
       title: "លំហាត់ទី ១១",
@@ -290,10 +370,25 @@ const Acid_base_practice = () => {
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-          
+            <p className="font-bold">ក. គណនាកំហាប់អុីយ៉ុង <InlineMath math="[H_{3}O^{+}]" /></p>
+            <p>ដោយ HCl ជាអាសុីតខ្លាំង</p>
+            <p>នាំឲ <InlineMath math="[H_{3}O^{+}] = C_{HCl} = 4.5 \cdot 10^{-3} M" /></p>
+
+            <p className="font-bold">ខ. កំហាប់អុីយ៉ុង <InlineMath math="[OH^{-}]" /></p>
+            <p>យើងដឹងថា <InlineMath math="K_{w} = [H_{3}O^{+}] \cdot [OH^{-}] = 1 \cdot 10^{-14}" /></p>
+            <p>នាំឲ <InlineMath math="[OH^{-}] =" /> <span className='text-[16px]'><InlineMath math="\frac{1 \cdot 10^{-14}}{[H_{3}O^{+}]}" /></span></p>
+            <p>= <span className='text-[16px]'><InlineMath math="\frac{1 \cdot 10^{-14}}{4.5 \cdot 10^{-3}}" /></span></p>
+            <p>= <InlineMath math="2.22 \cdot 10^{-12} M" /></p>
+
+            <p className="font-bold">គ. គណនា pH</p>
+            <p>តាមរូបមន្ត <InlineMath math="pH = - \log [H_{3}O^{+}]" /></p>
+            <p>= - log(4.5 × 10⁻³)</p>
+            <p>= 2.35</p>
+
         </div>,
       ]
     },
+
     {
       id: "ex12",
       title: "លំហាត់ទី ១២",
@@ -301,17 +396,36 @@ const Acid_base_practice = () => {
       problemType: "Twelfth Exercise",
       problems: [
         <div className="flex flex-col items-start text-[13px] gap-3">
-            <p>ត្រីទឹកសាបអាចរស់បាន នៅក្នុងទឹកដែលមាន pH = 6.5 ទៅ 7.5 ។ អាងចិញ្ចឹមត្រីមួយមាន ទឹកសុទ្ធ 100L (pH = 7.0) ។ គេបានច្រលំចាក់អាសុីតក្លរីឌ្រិច (Ca = 1 mol/L) ចំនួន 10ml ទៅក្នុងអាងនោះ ។</p>
+            <p>ត្រីទឹកសាបអាចរស់បាន នៅក្នុងទឹកដែលមាន pH = 6.5 ទៅ 7.5 ។ អាងចិញ្ចឹមត្រីមួយមាន ទឹកសុទ្ធ 100L (pH = 7.0) ។ គេបានច្រលំចាក់អាសុីតក្លរីឌ្រិច (HCl = 1 mol/L) ចំនួន 10ml ទៅក្នុងអាងនោះ ។</p>
             <p>ក. គណនាកំហាប់អុីយ៉ុងក្លរួ និងអុីយ៉ុងអុីដ្រូញ៉ូម ក្នុងអាង</p>
-            <p>ខ. គណា pH នៃទឹកក្នុងអាងចិញ្ចឹមត្រី ។ តេីត្រីអាចរស់ក្នុងមជ្ឈដ្ឋាននេះបានទេ ?</p>
+            <p>ខ. គណនា pH នៃទឹកក្នុងអាងចិញ្ចឹមត្រី ។ តេីត្រីអាចរស់ក្នុងមជ្ឈដ្ឋាននេះបានទេ ?</p>
         </div>
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-          
+            <p>ក. គណនាកំហាប់អុីយ៉ុង Cl⁻ និង H₃O⁺</p>
+            <p>គេមាន <InlineMath math="C_{HCl} = 1 M" />, <InlineMath math="V = 10 mL = 0.01 L" /></p>
+            <p>តាមរូបមន្ត <InlineMath math="n = C \cdot V" /></p>
+            <p>នាំឲ <InlineMath math="n_{HCl} = 1 \cdot 0.01 = 0.01 mol" /></p>
+            <p>ដោយ HCl ជាអាសុីតខ្លាំង</p>
+            <p><InlineMath math="n_{H_{3}O^{+}} = n_{Cl^{-}} = 0.01 mol" /></p>
+            <p>ទឹកក្នុងអាងសរុប <InlineMath math="V_{total} = 100 L" /></p>
+            <p>តាមរូបមន្ត <InlineMath math="[H_{3}O^{+}] =" /> <span className='text-[17px]'><InlineMath math="\frac{n_{H_{3}O^{+}}}{V_{total}}" /></span></p>
+            <p><InlineMath math="[H_{3}O^{+}] =" /> <span className='text-[16px]'><InlineMath math="\frac{0.01}{100}" /></span> = <InlineMath math="10^{-4} M" /></p>
+            <p>តាមរូបមន្ត <InlineMath math="[Cl^{-}] =" /> <span className='text-[17px]'><InlineMath math="\frac{n_{Cl^{-}}}{V_{total}}" /></span></p>
+            <p><InlineMath math="[Cl^{-}] =" /> <span className='text-[16px]'><InlineMath math="\frac{0.01}{100}" /></span> = <InlineMath math="10^{-4} M" /></p>
+            <p>ខ. គណនាថា pH</p>
+            <p><InlineMath math="pH = -\log [H_{3}O^{+}]" /></p>
+            <p>= -log(1 × 10⁻⁴)</p>
+            <p>= 4</p>
+
+            <p>ដូច្នេះ pH នៃទឹកក្នុងអាងគឺ 4</p>
+            <p>ត្រីអាចរស់បានត្រឹម pH = 6.5 → 7.5 ប៉ុណ្ណោះ។</p>
+            <p>គេបាន pH = 4 ដែលអាស៊ីតខ្លាំងពេក → ត្រីមិនអាចរស់នៅក្នុងមជ្ឈដ្ឋាននេះបានទេ។</p>
         </div>,
       ]
     },
+
     {
       id: "ex13",
       title: "លំហាត់ទី ១៣",
@@ -412,12 +526,14 @@ const Acid_base_practice = () => {
       ]
     },
 
-
-
   ];
 
   return (
     <>
+      <SummaryBox
+            title="រូបមន្តសំខាន់ៗ"
+            sections={summary}
+          />
       <TopicPracticeBox exercises={practiceExercises} />
     </>
   );
