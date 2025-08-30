@@ -4,27 +4,20 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
     ArrowLeft,
-    Edit,
-    Save,
-    Search,
-    Trash
+    Save
 } from 'lucide-react';
 import Sidebar from '@/components/pages/my-content/Sidebar';
 import ExerciseCreationBox from '@/components/pages/docs/common/box/ExerciseCreationBox';
 import VideoUpload from '@/components/pages/create-video/VideoUpload';
 import Description from '@/components/pages/create-video/Description';
-import Tags from '@/components/pages/create-video/Tags';
-import Settings from '@/components/pages/create-video/Settings';
 import { ExerciseQuestion } from '@/types/topic';
 import Link from 'next/link';
+import axios from 'axios';
 
 interface VideoFormData {
     title: string;
     description: string;
-    subjects: string[];
     thumbnail: string;
-    showLikes: boolean;
-    showComments: boolean;
     exercises: ExerciseQuestion[];
 }
 
@@ -38,10 +31,7 @@ export default function CreateVideoPage() {
     const [formData, setFormData] = useState<VideoFormData>({
         title: '',
         description: '',
-        subjects: ['គណិតវិទ្យា'],
         thumbnail: '',
-        showLikes: true,
-        showComments: true,
         exercises: []
     });
 
@@ -76,7 +66,7 @@ export default function CreateVideoPage() {
     };
 
     // Handle form changes
-    const handleInputChange = (field: keyof VideoFormData, value: string | boolean | string[] | ExerciseQuestion[]) => {
+    const handleInputChange = (field: keyof VideoFormData, value: string | ExerciseQuestion[]) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
 
@@ -88,34 +78,106 @@ export default function CreateVideoPage() {
         }));
     };
 
-    // Simulate upload process
+    // Convert base64 thumbnail to blob for upload
+    const base64ToBlob = (base64: string): Blob => {
+        const byteString = atob(base64.split(',')[1]);
+        const mimeString = base64.split(',')[0].split(':')[1].split(';')[0];
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+
+        for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+
+        return new Blob([ab], { type: mimeString });
+    };
+
+    // Convert ExerciseQuestion to the backend format
+    const convertExercisesToBackendFormat = (exercises: ExerciseQuestion[]) => {
+        return exercises.map(exercise => ({
+            title: exercise.question,
+            choices: exercise.options.map((option, index) => ({
+                text: option,
+                isCorrect: index === exercise.correctAnswer
+            }))
+        }));
+    };
+
+    // Handle upload process
     const handleUpload = async () => {
         if (!videoFile) return;
 
         setIsUploading(true);
         setUploadProgress(0);
 
-        // Simulate upload progress
-        const interval = setInterval(() => {
-            setUploadProgress(prev => {
-                if (prev >= 100) {
-                    clearInterval(interval);
-                    setIsUploading(false);
-                    // Redirect to videos page after successful upload
-                    setTimeout(() => router.push('/my-content/videos'), 1000);
-                    return 100;
-                }
-                return prev + 10;
+        try {
+            // Step 1: Get presigned URLs for video and thumbnail
+            const videoResponse = await axios.post(`http://localhost:6969/upload/upload-url`, {
+                fileName: videoFile.name,
+                fileType: videoFile.type,
             });
-        }, 200);
+
+            // Generate a unique filename for thumbnail
+            const thumbnailFileName = `thumbnail_${Date.now()}.jpg`;
+            const thumbnailResponse = await axios.post(`http://localhost:6969/upload/upload-url`, {
+                fileName: thumbnailFileName,
+                fileType: 'image/jpeg',
+            });
+
+            // Step 2: Upload files to S3/R2 using presigned URLs
+            setUploadProgress(30);
+
+            // Upload video file
+            await axios.put(videoResponse.data.signedUrl, videoFile, {
+                headers: {
+                    "Content-Type": videoFile.type
+                }
+            });
+
+            setUploadProgress(60);
+
+            // Upload thumbnail (convert base64 to blob first)
+            const thumbnailBlob = base64ToBlob(formData.thumbnail);
+            await axios.put(thumbnailResponse.data.signedUrl, thumbnailBlob, {
+                headers: {
+                    "Content-Type": "image/jpeg"
+                }
+            });
+
+            setUploadProgress(80);
+
+            // Step 3: Post video data to backend
+            await axios.post(`http://localhost:6969/videos`, {
+                videoKey: videoResponse.data.key,
+                title: formData.title,
+                description: formData.description,
+                topic: 'biology', // Fake string for now
+                type: 'biology',
+                thumbnailKey: thumbnailResponse.data.key,
+                questions: convertExercisesToBackendFormat(formData.exercises)
+            });
+
+
+            setUploadProgress(100);
+
+            // Success! Redirect to videos page
+            setTimeout(() => {
+                router.push('/my-content/videos');
+            }, 1000);
+
+        } catch (error) {
+            console.error('Error during upload:', error);
+            alert('មានបញ្ហាក្នុងការផ្ទុកវីដេអូ។ សូមព្យាយាមម្តងទៀត។');
+        } finally {
+            setIsUploading(false);
+            setUploadProgress(0);
+        }
     };
 
     const isFormValid = () => {
         return videoFile &&
             formData.title.trim() &&
             formData.description.trim() &&
-            formData.subjects.length > 0 &&
-            formData.exercises.length > 0 &&
             (
                 formData.exercises.every(ex => {
                     const questionText = typeof ex.question === 'string' ? ex.question : '';
@@ -126,7 +188,7 @@ export default function CreateVideoPage() {
                         optionsText.every(opt => opt.trim() !== '') &&
                         correctAnswer >= 0 &&
                         correctAnswer < ex.options.length;
-                }) || formData.exercises.length === 0
+                })
             );
     };
 
@@ -137,17 +199,16 @@ export default function CreateVideoPage() {
 
             {/* Main Content */}
             <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-
-
                 {/* Content */}
                 <div className="p-6">
-                    {/* Header with Back Button and Edit Button */}
+                    {/* Header with Back Button */}
                     <div className="mb-6 flex items-center justify-between">
                         <Link href="/my-content/videos" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
                             <ArrowLeft className="w-4 h-4" />
                             ត្រឡប់ទៅវីដេអូរបស់ខ្ញុំ
                         </Link>
                     </div>
+
                     {/* Video Upload Component */}
                     <VideoUpload
                         videoFile={videoFile}
@@ -160,9 +221,8 @@ export default function CreateVideoPage() {
                         }}
                     />
 
-                    {/* 2 Column Layout: Subject, Settings, Description */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 mt-8">
-                        {/* Description Component */}
+                    {/* Single Column Layout for Description */}
+                    <div className="mb-8 mt-8">
                         <Description
                             title={formData.title}
                             description={formData.description}
@@ -170,23 +230,6 @@ export default function CreateVideoPage() {
                             onTitleChange={(title) => handleInputChange('title', title)}
                             onDescriptionChange={(description) => handleInputChange('description', description)}
                         />
-
-                        {/* Right Column: Settings + Description Stacked */}
-                        <div className="space-y-6">
-                            {/* Tags Component */}
-                            <Tags
-                                subjects={formData.subjects}
-                                onSubjectsChange={(subjects) => handleInputChange('subjects', subjects)}
-                            />
-
-                            {/* Settings Component */}
-                            <Settings
-                                showLikes={formData.showLikes}
-                                showComments={formData.showComments}
-                                onShowLikesChange={(show) => handleInputChange('showLikes', show)}
-                                onShowCommentsChange={(show) => handleInputChange('showComments', show)}
-                            />
-                        </div>
                     </div>
 
                     {/* MCQ Exercises - Using ExerciseCreationBox */}
