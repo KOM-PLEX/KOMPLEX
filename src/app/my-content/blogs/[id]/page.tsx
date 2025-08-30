@@ -8,7 +8,7 @@ import axios from 'axios';
 import Sidebar from '@/components/pages/my-content/Sidebar';
 import Carousel from '@/components/common/Carousel';
 import EditBlog from '@/components/pages/my-content/blogs/EditBlog';
-import { Blog } from '@/types/content/blog';
+import { Blog } from '@/types/content/blogs';
 
 // Skeleton Loading Component for Display Mode
 function BlogPostSkeleton() {

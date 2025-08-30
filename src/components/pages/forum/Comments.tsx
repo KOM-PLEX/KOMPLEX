@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { ForumComment, ForumReply } from '@/types/content/forums';
+import { VideoComment } from '@/types/content/videos';
 import axios from 'axios';
 import CommentComponent from './Comment';
 
 interface CommentProps {
-    comments: ForumComment[];
+    type: 'forum' | 'video';
+    parentId: number;
+    comments: ForumComment[] | VideoComment[];
     focusInput?: boolean;
     isReadOnly?: boolean;
     onClose?: () => void;
@@ -14,12 +17,15 @@ interface CommentProps {
     setComment?: (comment: string) => void;
 }
 
-export default function Comment({ comments, focusInput = false, isReadOnly = false, onClose, onCommentPost, setComment }: CommentProps) {
+export default function Comments({ type, parentId, comments, focusInput = false, isReadOnly = false, onClose, onCommentPost, setComment }: CommentProps) {
     const [newComment, setNewComment] = useState('');
     const [isCommentActive, setIsCommentActive] = useState(focusInput);
     const [repliesState, setRepliesState] = useState<{ [commentId: number]: ForumReply[] }>({});
     const [loadingReplies, setLoadingReplies] = useState<{ [commentId: number]: boolean }>({});
     const [showingReplies, setShowingReplies] = useState<{ [commentId: number]: boolean }>({});
+
+    // Determine comment source type once per render based on first item
+    // const isVideoComments = Array.isArray(comments) && comments.length > 0 && 'videoId' in comments[0];
 
     // Sync the internal state with the focusInput prop
     useEffect(() => {
@@ -39,10 +45,16 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
 
         try {
             setLoadingReplies(prev => ({ ...prev, [commentId]: true }));
-            const response = await axios.get<ForumReply[]>(`http://localhost:6969/forum_replies/${commentId}`);
+            const endpoint = type === 'video'
+                ? `http://localhost:6969/video_replies/${commentId}`
+                : `http://localhost:6969/forum_replies/${commentId}`;
+
+            const response = await axios.get(endpoint);
+            // We only use id, username, createdAt, description, isLike in UI, so cast safely
+            const replies = (response.data as unknown) as ForumReply[];
             setRepliesState(prev => ({
                 ...prev,
-                [commentId]: response.data
+                [commentId]: replies
             }));
             setShowingReplies(prev => ({
                 ...prev,
@@ -55,21 +67,24 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
         }
     };
 
-    const handleSubmitComment = () => {
-        if (newComment.trim()) {
-            // Here you would typically send the comment to your backend
-            console.log('New comment:', newComment);
-            if (onCommentPost) onCommentPost(newComment);
+    const handleSubmitComment = async () => {
+        try {
+            const endpoint = type === 'video'
+                ? `http://localhost:6969/video_comments/${parentId}`
+                : `http://localhost:6969/forum_comments/${parentId}`;
+
+            const response = await axios.post(endpoint, { description: newComment });
+            console.log(response.data);
             setIsCommentActive(false);
             if (onClose) onClose();
             if (setComment) {
                 setComment('');
                 setNewComment('');
             }
+        } catch (error) {
+            console.error('Error submitting comment:', error);
         }
     };
-
-
 
     const handleCancel = () => {
         setNewComment('');
@@ -83,7 +98,10 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
 
     const handleCommentLike = async (commentId: number) => {
         try {
-            const response = await axios.patch(`http://localhost:6969/forum_comments/${commentId}/like`);
+            const endpoint = type === 'video'
+                ? `http://localhost:6969/video_comments/${commentId}/like`
+                : `http://localhost:6969/forum_comments/${commentId}/like`;
+            const response = await axios.patch(endpoint);
             console.log(response.data);
         } catch (error) {
             console.error('Error liking comment:', error);
@@ -92,7 +110,10 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
 
     const handleCommentUnlike = async (commentId: number) => {
         try {
-            const response = await axios.patch(`http://localhost:6969/forum_comments/${commentId}/unlike`);
+            const endpoint = type === 'video'
+                ? `http://localhost:6969/video_comments/${commentId}/unlike`
+                : `http://localhost:6969/forum_comments/${commentId}/unlike`;
+            const response = await axios.patch(endpoint);
             console.log(response.data);
         } catch (error) {
             console.error('Error unliking comment:', error);
@@ -101,11 +122,10 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
 
     const handleSubmitReply = async (commentId: number, description: string) => {
         try {
-            // Send reply to backend
-            await axios.post(`http://localhost:6969/forum_replies/${commentId}`, {
-                description
-            });
-
+            const endpoint = type === 'video'
+                ? `http://localhost:6969/video_replies/${commentId}`
+                : `http://localhost:6969/forum_replies/${commentId}`;
+            await axios.post(endpoint, { description });
             // Refresh replies for this comment
             await fetchReplies(commentId);
         } catch (error) {
@@ -115,7 +135,10 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
 
     const handleReplyLike = async (replyId: number) => {
         try {
-            const response = await axios.patch(`http://localhost:6969/forum_replies/${replyId}/like`);
+            const endpoint = type === 'video'
+                ? `http://localhost:6969/video_replies/${replyId}/like`
+                : `http://localhost:6969/forum_replies/${replyId}/like`;
+            const response = await axios.patch(endpoint);
             console.log(response.data);
         } catch (error) {
             console.error('Error liking reply:', error);
@@ -124,7 +147,10 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
 
     const handleReplyUnlike = async (replyId: number) => {
         try {
-            const response = await axios.patch(`http://localhost:6969/forum_replies/${replyId}/unlike`);
+            const endpoint = type === 'video'
+                ? `http://localhost:6969/video_replies/${replyId}/unlike`
+                : `http://localhost:6969/forum_replies/${replyId}/unlike`;
+            const response = await axios.patch(endpoint);
             console.log(response.data);
         } catch (error) {
             console.error('Error unliking reply:', error);
@@ -192,7 +218,7 @@ export default function Comment({ comments, focusInput = false, isReadOnly = fal
                 {comments.map((comment, index) => (
                     <CommentComponent
                         key={index}
-                        comment={comment}
+                        comment={comment as ForumComment | VideoComment}
                         repliesState={repliesState}
                         loadingReplies={loadingReplies}
                         showingReplies={showingReplies}

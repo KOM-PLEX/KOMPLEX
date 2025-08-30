@@ -3,17 +3,10 @@ import { ThumbsUp, MessageCircle, Send } from 'lucide-react';
 import { ForumComment, ForumReply } from '@/types/content/forums';
 import { getTimeAgo } from '@/utils/formater';
 import ReplyComponent from './Reply';
+import { VideoComment } from '@/types/content/videos';
 
 interface CommentComponentProps {
-    comment: ForumComment;
-    repliesState: { [commentId: number]: ForumReply[] };
-    loadingReplies: { [commentId: number]: boolean };
-    showingReplies: { [commentId: number]: boolean };
-    fetchReplies: (commentId: number) => void;
-}
-
-interface CommentComponentProps {
-    comment: ForumComment;
+    comment: ForumComment | VideoComment;
     repliesState: { [commentId: number]: ForumReply[] };
     loadingReplies: { [commentId: number]: boolean };
     showingReplies: { [commentId: number]: boolean };

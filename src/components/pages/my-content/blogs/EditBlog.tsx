@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Book, Trash, Upload, Plus, Tag, X, Save, Eye } from 'lucide-react';
 import axios from 'axios';
 import Link from 'next/link';
-import { Blog } from '@/types/content/blog';
+import { Blog } from '@/types/content/blogs';
 import { Media } from '@/types/content/media';
 
 interface EditBlogProps {

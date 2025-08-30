@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, BookAIcon } from "lucide-react";
-import { Question } from "@/types/content/exercise";
+import { Question } from "@/types/content/exercises";
 
 export interface ExerciseBoxProps {
     questions: Question[];

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Listbox, Transition } from '@headlessui/react';
 import PracticeCard from '@/components/pages/exercise/ExerciseCard';
 import axios from 'axios';
-import { Exercise, Subject, Topic } from '@/types/content/exercise';
+import { Exercise, Subject, Topic } from '@/types/content/exercises';
 
 
 // Helper functions for data transformation

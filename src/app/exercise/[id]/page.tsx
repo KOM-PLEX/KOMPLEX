@@ -7,7 +7,7 @@ import ExerciseBox from "@/components/pages/exercise/ExerciseBox";
 import PracticeInfo from "@/components/pages/exercise/ExerciseInfo";
 import PracticeResult from "@/components/pages/exercise/ExerciseResult";
 import axios from "axios";
-import { ExerciseWithQuestions, ExerciseSection, Question } from "@/types/content/exercise";
+import { ExerciseWithQuestions, ExerciseSection, Question } from "@/types/content/exercises";
 
 
 

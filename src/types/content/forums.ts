@@ -1,4 +1,5 @@
 import { Media } from "./media";
+import { Comment } from "./comments";
 
 export interface ForumPost {
   id: number;
@@ -17,16 +18,8 @@ export interface ForumPost {
   isLiked: boolean;
 }
 
-export interface ForumComment {
-  id: number;
-  userId: number;
+export interface ForumComment extends Comment {
   forumId: number;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
-  media: Media[];
-  username: string;
-  isLike: boolean;
 }
 
 export interface ForumReply {

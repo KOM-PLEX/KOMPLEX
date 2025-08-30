@@ -14,32 +14,27 @@ const navItems = [
     {
         label: 'ផ្ទាំងគ្រប់គ្រង',
         href: '/my-content',
-        icon: LayoutDashboard,
-        description: 'ទិដ្ឋភាពទូទៅនៃមាតិកានិងសកម្មភាព'
+        icon: LayoutDashboard
     },
     {
         label: 'ប្លុក',
         href: '/my-content/blogs',
-        icon: BookOpen,
-        description: 'គ្រប់គ្រងប្លុករបស់អ្នក'
+        icon: BookOpen
     },
     {
         label: 'វេទិកា',
         href: '/my-content/forums',
-        icon: MessageSquare,
-        description: 'ការសន្ទនានិងអត្ថបទរបស់អ្នក'
+        icon: MessageSquare
     },
     {
         label: 'វីដេអូ',
         href: '/my-content/videos',
-        icon: Video,
-        description: 'វីដេអូដែលអ្នកបានបង្ហោះ'
+        icon: Video
     },
     {
         label: 'លំហាត់',
         href: '/my-content/exercises',
-        icon: Pencil,
-        description: 'លំហាត់និងការអនុវត្តន៍'
+        icon: Pencil
     }
 ];
 
@@ -71,8 +66,8 @@ export default function Sidebar() {
                                         key={item.href}
                                         href={item.href}
                                         className={`group flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${active
-                                            ? 'text-indigo-600 bg-indigo-50 border border-indigo-200 shadow-sm'
-                                            : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 border border-transparent hover:border-indigo-100'
+                                            ? 'text-indigo-600 bg-indigo-50 border border-indigo-500 shadow-sm'
+                                            : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50 border border-transparent hover:border-gray-300'
                                             }`}
                                     >
                                         <div className={`p-2 rounded-lg transition-colors duration-200 ${active
@@ -81,13 +76,7 @@ export default function Sidebar() {
                                             }`}>
                                             <Icon className="w-4 h-4" />
                                         </div>
-                                        <div className="flex-1">
-                                            <div className="font-medium">{item.label}</div>
-                                            <div className={`text-xs transition-colors duration-200 ${active ? 'text-indigo-500' : 'text-gray-400 group-hover:text-indigo-400'
-                                                }`}>
-                                                {item.description}
-                                            </div>
-                                        </div>
+                                        <div className="font-medium">{item.label}</div>
                                     </Link>
                                 );
                             })}
@@ -109,8 +98,8 @@ export default function Sidebar() {
                                     key={item.href}
                                     href={item.href}
                                     className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 min-w-[70px] ${active
-                                        ? 'text-indigo-600 bg-indigo-50 border border-indigo-200'
-                                        : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 border border-transparent hover:border-indigo-100'
+                                        ? 'text-indigo-600 bg-indigo-50 border border-indigo-500'
+                                        : 'text-gray-700 hover:text-black hover:bg-gray-50 border border-transparent hover:border-gray-300'
                                         }`}
                                 >
                                     <div className={`p-1.5 rounded-md transition-colors duration-200 ${active

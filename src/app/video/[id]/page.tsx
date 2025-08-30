@@ -1,103 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Play, Pause, Volume2, VolumeX, Maximize, Settings, Share2, ThumbsUp, ThumbsDown, Bookmark, MoreVertical, User, Eye, Clock, Calendar, MessageSquare, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
-import Comment from '@/components/pages/forum/Comments';
+import Comments from '@/components/pages/forum/Comments';
 import ExerciseBox from '@/components/pages/docs/common/box/ExerciseBox';
 import VideoCard from '@/components/pages/video/VideoCard';
-import RecommendedVideoCard from '@/components/pages/video/RecommendedVideoCard';
-import VideoDescription from '@/components/pages/video/VideoDescription';
+import type { VideoPost, VideoComment } from '@/types/content/videos';
+import type { Media } from '@/types/content/media';
+import axios from 'axios';
 
-interface Video {
-    id: string;
-    title: string;
-    thumbnail: string;
-    channel: string;
-    views: string;
-    duration: string;
-    uploaded: string;
-    description: string;
-    subject: string;
-    difficulty: 'beginner' | 'intermediate' | 'advanced';
-}
-
-const mockVideos: Video[] = [
-    {
-        id: '1',
-        title: 'ដោះស្រាយសំណួរគណិតវិទ្យា ថ្នាក់ទី១២ - អនុគមន៍លោការីត',
-        thumbnail: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=225&fit=crop',
-        channel: 'គណិតវិទ្យាសាលា',
-        views: '12.5K',
-        duration: '15:32',
-        uploaded: '2 ថ្ងៃមុន',
-        description: 'រៀនពីរបៀបដោះស្រាយសំណួរអនុគមន៍លោការីតដោយជំហាន។ វីដេអូនេះនឹងបង្ហាញអ្នកពីរបៀបដោះស្រាយសំណួរគណិតវិទ្យាដោយជំហាន ដែលជាការរៀនដ៏មានប្រសិទ្ធភាពសម្រាប់សិស្សថ្នាក់ទី១២។',
-        subject: 'mathematics',
-        difficulty: 'intermediate'
-    },
-    {
-        id: '2',
-        title: 'រូបមន្តគីមីវិទ្យា - ការប្រតិកម្មអុកស៊ីតកម្ម',
-        thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=225&fit=crop',
-        channel: 'គីមីវិទ្យាសាលា',
-        views: '8.9K',
-        duration: '22:15',
-        uploaded: '1 សប្តាហ៍មុន',
-        description: 'យល់ដឹងពីរូបមន្តគីមីវិទ្យានិងការប្រតិកម្មអុកស៊ីតកម្ម។ រៀនពីរបៀបដោះស្រាយសំណួរគីមីវិទ្យានិងការយល់ដឹងពីរូបមន្តផ្សេងៗ។',
-        subject: 'chemistry',
-        difficulty: 'advanced'
-    },
-    {
-        id: '3',
-        title: 'អក្សរសាស្ត្រខ្មែរ - ការវិភាគអត្ថបទ',
-        thumbnail: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=225&fit=crop',
-        channel: 'អក្សរសាស្ត្រខ្មែរ',
-        views: '15.2K',
-        duration: '18:45',
-        uploaded: '3 ថ្ងៃមុន',
-        description: 'រៀនពីរបៀបវិភាគអត្ថបទអក្សរសាស្ត្រខ្មែរ។ វីដេអូនេះនឹងបង្ហាញអ្នកពីរបៀបវិភាគអត្ថបទអក្សរសាស្ត្រខ្មែរដោយជំហាន។',
-        subject: 'khmer',
-        difficulty: 'beginner'
-    },
-    {
-        id: '4',
-        title: 'រូបវិទ្យា - ច្បាប់ញូតុន',
-        thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=225&fit=crop',
-        channel: 'រូបវិទ្យាសាលា',
-        views: '11.7K',
-        duration: '25:10',
-        uploaded: '5 ថ្ងៃមុន',
-        description: 'យល់ដឹងពីច្បាប់ញូតុននិងការអនុវត្តន៍។ រៀនពីរបៀបដោះស្រាយសំណួររូបវិទ្យាដោយប្រើច្បាប់ញូតុន។យល់ដឹងពីច្បាប់ញូតុននិងការអនុវត្តន៍។ រៀនពីរបៀបដោះស្រាយសំណួររូបវិទ្យាដោយប្រើច្បាប់ញូតុន។យល់ដឹងពីច្បាប់ញូតុននិងការអនុវត្តន៍។ រៀនពីរបៀបដោះស្រាយសំណួររូបវិទ្យាដោយប្រើច្បាប់ញូតុន។យល់ដឹងពីច្បាប់ញូតុននិងការអនុវត្តន៍។ រៀនពីរបៀបដោះស្រាយសំណួររូបវិទ្យាដោយប្រើច្បាប់ញូតុន។យល់ដឹងពីច្បាប់ញូតុននិងការអនុវត្តន៍។ រៀនពីរបៀបដោះស្រាយសំណួររូបវិទ្យាដោយប្រើច្បាប់ញូតុន។យល់ដឹងពីច្បាប់ញូតុននិងការអនុវត្តន៍។ រៀនពីរបៀបដោះស្រាយសំណួររូបវិទ្យាដោយប្រើច្បាប់ញូតុន។យល់ដឹងពីច្បាប់ញូតុននិងការអនុវត្តន៍។ រៀនពីរបៀបដោះស្រាយសំណួររូបវិទ្យាដោយប្រើច្បាប់ញូតុន។យល់ដឹងពីច្បាប់ញូតុននិងការអនុវត្តន៍។ រៀនពីរបៀបដោះស្រាយសំណួររូបវិទ្យាដោយប្រើច្បាប់ញូតុន។',
-        subject: 'physics',
-        difficulty: 'intermediate'
-    },
-    {
-        id: '5',
-        title: 'ជីវវិទ្យា - ប្រព័ន្ធរស្មី',
-        thumbnail: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f7?w=400&h=225&fit=crop',
-        channel: 'ជីវវិទ្យាសាលា',
-        views: '9.3K',
-        duration: '20:30',
-        uploaded: '1 សប្តាហ៍មុន',
-        description: 'ស្វែងយល់ពីប្រព័ន្ធរស្មីនិងការដំណើរការរបស់វា។ រៀនពីរបៀបដោះស្រាយសំណួរជីវវិទ្យាដោយជំហាន។',
-        subject: 'biology',
-        difficulty: 'beginner'
-    },
-    {
-        id: '6',
-        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
-        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
-        channel: 'ប្រវត្តិវិទ្យាសាលា',
-        views: '13.8K',
-        duration: '28:20',
-        uploaded: '4 ថ្ងៃមុន',
-        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌។ រៀនពីរបៀបដោះស្រាយសំណួរប្រវត្តិវិទ្យាដោយជំហាន។',
-        subject: 'history',
-        difficulty: 'intermediate'
-    }
-];
-
+// Mock exercises data
 const mockExercises = [
     {
         id: "ex1",
@@ -134,191 +48,226 @@ const mockExercises = [
     }
 ];
 
-const mockComments = [
+// Mock videos data for recommendations sidebar
+const mockVideos: VideoPost[] = [
     {
         id: 1,
-        author: { name: 'សុខវណ្ណា អ៊ុំ', avatar: 'ស' },
-        time: '2 ម៉ោងមុន',
-        content: 'វីដេអូនេះមានប្រយោជន៍ណាស់! អរគុណសម្រាប់ការចែករំលែក។',
-        upvotes: 12,
-        upvoted: false
+        userId: 1,
+        title: "អនុគមន៍លោការីត - មូលដ្ឋានគ្រឹះ",
+        description: "ស្វែងយល់អំពីអនុគមន៍លោការីត និងការប្រើប្រាស់របស់វាក្នុងគណិតវិទ្យា។",
+        duration: 1200,
+        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        viewCount: 1250,
+        createdAt: "2025-08-16T09:01:37.337Z",
+        updatedAt: "2025-08-16T09:01:37.337Z",
+        username: "សុខ ដារា",
+        isSave: false,
+        isLike: false,
+        likeCount: 45,
+        saveCount: 12
     },
     {
         id: 2,
-        author: { name: 'វណ្ណា សុខ', avatar: 'វ' },
-        time: '1 ម៉ោងមុន',
-        content: 'ខ្ញុំយល់ដឹងបានច្រើនពីវីដេអូនេះ។ សូមបង្កើតវីដេអូបន្ថែមទៀត!',
-        upvotes: 8,
-        upvoted: true
+        userId: 1,
+        title: "ដេរីវេទីវ - ការគណនាអត្រានៃការផ្លាស់ប្តូរ",
+        description: "រៀនអំពីដេរីវេទីវ និងរបៀបគណនាអត្រានៃការផ្លាស់ប្តូរ។",
+        duration: 900,
+        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        viewCount: 890,
+        createdAt: "2025-08-15T14:30:00.000Z",
+        updatedAt: "2025-08-15T14:30:00.000Z",
+        username: "វណ្ណា សុខ",
+        isSave: true,
+        isLike: true,
+        likeCount: 67,
+        saveCount: 23
     },
     {
         id: 3,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
+        userId: 1,
+        title: "អាំងតេក្រាល - ការគណនាផ្ទៃក្រឡា",
+        description: "ស្វែងយល់អំពីអាំងតេក្រាល និងការគណនាផ្ទៃក្រឡាក្រោមខ្សែកោង។",
+        duration: 1500,
+        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        viewCount: 2100,
+        createdAt: "2025-08-14T10:15:00.000Z",
+        updatedAt: "2025-08-14T10:15:00.000Z",
+        username: "រតនា ម៉េង",
+        isSave: false,
+        isLike: false,
+        likeCount: 89,
+        saveCount: 34
     },
     {
         id: 4,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
+        userId: 1,
+        title: "ត្រីកោណមាត្រ - អត្តសញ្ញាណ និងកូស៊ីនុស",
+        description: "រៀនអំពីត្រីកោណមាត្រ អត្តសញ្ញាណ និងកូស៊ីនុស។",
+        duration: 1100,
+        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        viewCount: 1560,
+        createdAt: "2025-08-13T16:45:00.000Z",
+        updatedAt: "2025-08-13T16:45:00.000Z",
+        username: "សុខ ដារា",
+        isSave: true,
+        isLike: false,
+        likeCount: 78,
+        saveCount: 19
     },
     {
         id: 5,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 6,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 7,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 8,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 9,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 10,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 11,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
-    {
-        id: 12,
-        author: { name: 'រតនា ម៉េង', avatar: 'រ' },
-        time: '30 នាទីមុន',
-        content: 'ការពន្យល់ច្បាស់លាស់ណាស់។ ខ្ញុំចង់រៀនបន្ថែមទៀត!',
-        upvotes: 5,
-        upvoted: false
-    },
+        userId: 1,
+        title: "វ៉ិចទ័រ - ការបូក និងដកវ៉ិចទ័រ",
+        description: "ស្វែងយល់អំពីវ៉ិចទ័រ និងការប្រតិបត្តិការមូលដ្ឋាន។",
+        duration: 800,
+        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
+        viewCount: 980,
+        createdAt: "2025-08-12T11:20:00.000Z",
+        updatedAt: "2025-08-12T11:20:00.000Z",
+        username: "វណ្ណា សុខ",
+        isSave: false,
+        isLike: true,
+        likeCount: 56,
+        saveCount: 15
+    }
 ];
+
+// API function to fetch video by ID
+const fetchVideoById = async (id: number): Promise<VideoPost | null> => {
+    try {
+        // Replace this with your actual API endpoint
+        const response = await axios.get(`http://localhost:6969/videos/${id}`);
+        if (response.status !== 200) {
+            throw new Error('Failed to fetch video');
+        }
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching video:', error);
+        return null;
+    }
+};
+
+
 
 export default function VideoDetailPage() {
     const params = useParams();
     const router = useRouter();
-    const videoId = params.id as string;
+    const videoId = parseInt(params.id as string);
     const [activeTab, setActiveTab] = useState<'related' | 'comments' | 'exercise'>('related');
+    const [video, setVideo] = useState<VideoPost | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [comments, setComments] = useState<VideoComment[]>([]);
+    useEffect(() => {
+        const loadVideo = async () => {
+            if (!videoId || isNaN(videoId)) {
+                setError('Invalid video ID');
+                setLoading(false);
+                return;
+            }
 
-    const video = mockVideos.find(v => v.id === videoId);
+            setLoading(true);
+            setError(null);
 
-    if (!video) {
+            try {
+                const videoData = await fetchVideoById(videoId);
+                if (videoData) {
+                    setVideo(videoData);
+                } else {
+                    setError('Video not found');
+                }
+            } catch (err) {
+                setError('Failed to load video');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadVideo();
+
+        const fetchComments = async () => {
+            try {
+                const response = await axios.get(`http://localhost:6969/video_comments/${videoId}`);
+                if (response.status !== 200) {
+                    throw new Error('Failed to fetch comments');
+                }
+                setComments(response.data);
+            } catch (err) {
+                setError('Failed to fetch comments');
+            }
+        };
+
+        loadVideo();
+        fetchComments();
+    }, [videoId]);
+
+    const handleLike = async (videoId: number, isLiked: boolean, video: VideoPost) => {
+        try {
+            const response = await axios.patch(`http://localhost:6969/videos/${videoId}/${isLiked ? 'unlike' : 'like'}`);
+            if (response.status !== 200) {
+                throw new Error('Failed to like video');
+            }
+            setVideo({ ...video!, isLike: !isLiked, likeCount: isLiked ? video.likeCount - 1 : video.likeCount + 1 });
+            return response.data;
+        } catch (error) {
+            console.error('Error liking video:', error);
+            return null;
+        }
+    }
+
+    const handleSave = async (videoId: number, isSaved: boolean, video: VideoPost) => {
+        try {
+            const response = await axios.patch(`http://localhost:6969/videos/${videoId}/${isSaved ? 'unsave' : 'save'}`);
+            if (response.status !== 200) {
+                throw new Error('Failed to save video');
+            }
+            setVideo({ ...video!, isSave: !isSaved });
+            return response.data;
+        } catch (error) {
+            console.error('Error saving video:', error);
+            return null;
+        }
+    }
+
+    // Loading state
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                    <p className="text-gray-600">កំពុងផ្ទុកវីដេអូ...</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Error state
+    if (error || !video) {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
                 <div className="text-center">
                     <h1 className="text-2xl font-bold text-gray-900 mb-4">វីដេអូរកមិនឃើញ</h1>
-                    <p className="text-gray-600 mb-6">វីដេអូដែលអ្នកកំពុងស្វែងរកមិនមាននៅក្នុងប្រព័ន្ធទេ។</p>
+                    <p className="text-gray-600 mb-6">
+                        {error === 'Video not found'
+                            ? 'វីដេអូដែលអ្នកកំពុងស្វែងរកមិនមាននៅក្នុងប្រព័ន្ធទេ។'
+                            : 'មានបញ្ហាក្នុងការផ្ទុកវីដេអូ។ សូមព្យាយាមម្តងទៀត។'
+                        }
+                    </p>
                     <Link
                         href="/video"
                         className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
@@ -336,17 +285,56 @@ export default function VideoDetailPage() {
             <video
                 className="w-full aspect-video"
                 controls
-                poster={video.thumbnail}
+                poster={video.thumbnailUrl}
                 preload="metadata"
             >
-                <source src="/test.mp4" type="video/mp4" />
+                <source src={video.videoUrl} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         </div>
     );
 
     const renderVideoInfo = () => (
-        <VideoDescription video={video as Video} />
+        <div className="bg-white rounded-2xl shadow-sm p-6">
+            <div className='flex items-center gap-4 justify-between'>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-900 mb-3">{video.title}</h1>
+                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+                        <span className="flex items-center gap-2">
+                            <User size={16} />
+                            {video.username}
+                        </span>
+                        <span className="flex items-center gap-2">
+                            <Eye size={16} />
+                            {video.viewCount.toLocaleString()} ទស្សនា
+                        </span>
+                        <span className="flex items-center gap-2">
+                            <Clock size={16} />
+                            {Math.floor(video.duration / 60)}:{(video.duration % 60).toString().padStart(2, '0')}
+                        </span>
+                        <span className="flex items-center gap-2">
+                            <Calendar size={16} />
+                            {new Date(video.createdAt).toLocaleDateString('km-KH')}
+                        </span>
+                    </div>
+                </div>
+                <div className='flex items-center gap-2'>
+                    <button className='flex items-center gap-2 bg-gray-100 p-2 rounded-md' onClick={() => handleLike(video.id, video.isLike, video)}>
+                        <ThumbsUp size={16} className={`${video.isLike ? 'fill-indigo-500' : 'text-gray-500'}`} />
+                        {video.likeCount}
+                    </button>
+                    <button className='flex items-center gap-2 bg-gray-100 p-2 rounded-md' onClick={() => handleSave(video.id, video.isSave, video)}>
+                        <Bookmark size={16} className={`${video.isSave ? 'fill-indigo-500' : 'text-gray-500'}`} />
+                        រក្សាទុក
+                    </button>
+                    <button className='flex items-center gap-2 bg-gray-100 p-2 rounded-md'>
+                        <Share2 size={16} className='text-gray-500' />
+                        ចែករំលែក
+                    </button>
+                </div>
+            </div>
+            <p className="text-gray-700 leading-relaxed">{video.description}</p>
+        </div>
     );
 
     const renderDesktopTabs = () => (
@@ -381,7 +369,7 @@ export default function VideoDetailPage() {
                 </div>
             </div>
 
-            {/* Tab Content Container - Simple, no height constraints */}
+            {/* Tab Content */}
             <div className="bg-white rounded-2xl shadow-sm">
                 {activeTab === 'related' && (
                     <div className="p-6">
@@ -390,7 +378,7 @@ export default function VideoDetailPage() {
                                 .filter(v => v.id !== videoId)
                                 .slice(0, 5)
                                 .map((relatedVideo) => (
-                                    <RecommendedVideoCard key={relatedVideo.id} video={relatedVideo} />
+                                    <VideoCard key={relatedVideo.id} video={relatedVideo} variant="compact" />
                                 ))}
                         </div>
                     </div>
@@ -398,7 +386,7 @@ export default function VideoDetailPage() {
 
                 {activeTab === 'comments' && (
                     <div>
-                        <Comment comments={mockComments} />
+                        <Comments type='video' parentId={videoId} comments={comments} />
                     </div>
                 )}
             </div>
@@ -409,7 +397,7 @@ export default function VideoDetailPage() {
         <div className="lg:hidden mt-8">
             {/* Mobile Tab Navigation */}
             <div className="bg-white rounded-2xl shadow-sm mb-4">
-                <div className="flex ">
+                <div className="flex">
                     <button
                         onClick={() => setActiveTab('exercise')}
                         className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === 'exercise'
@@ -446,7 +434,6 @@ export default function VideoDetailPage() {
                             មតិតិការ
                         </div>
                     </button>
-
                 </div>
             </div>
 
@@ -455,7 +442,7 @@ export default function VideoDetailPage() {
                 <ExerciseBox questions={mockExercises} />
             )}
             {activeTab === 'comments' && (
-                <Comment comments={mockComments} />
+                <Comments type='video' parentId={videoId} comments={comments} />
             )}
             {activeTab === 'related' && (
                 <div className="bg-white rounded-2xl p-4 shadow-sm">
@@ -482,7 +469,7 @@ export default function VideoDetailPage() {
             <div className="w-full mx-auto px-5 py-6">
                 {/* Main Grid Layout - Desktop */}
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-0 lg:gap-6 items-start">
-                    {/* Left Column - Video Player and Info (Height Driver) */}
+                    {/* Left Column - Video Player and Info */}
                     <div className="space-y-4">
                         {renderVideoPlayer()}
                         {renderVideoInfo()}
@@ -493,8 +480,8 @@ export default function VideoDetailPage() {
                         </div>
                     </div>
 
-                    {/* Right Column - Sidebar (Height Follower) */}
-                    <div className="self-start h-fit  lg:top-6">
+                    {/* Right Column - Sidebar */}
+                    <div className="self-start h-fit lg:top-6">
                         {renderDesktopTabs()}
                     </div>
                 </div>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, Eye, Plus, Book } from 'lucide-react';
 import axios from 'axios';
 import Sidebar from '@/components/pages/my-content/Sidebar';
-import { Blog } from '@/types/content/blog';
+import { Blog } from '@/types/content/blogs';
 
 // Skeleton Loading Component
 function MyBlogsSkeleton() {

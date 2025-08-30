@@ -6,7 +6,7 @@ import { ArrowLeft, Bookmark, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Carousel from '@/components/common/Carousel';
-import { Blog } from '@/types/content/blog';
+import { Blog } from '@/types/content/blogs';
 
 // Skeleton Loading Component
 function BlogPostSkeleton() {

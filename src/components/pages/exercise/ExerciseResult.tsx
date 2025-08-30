@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { CheckCircle, AlertCircle, XCircle } from 'lucide-react';
-import { ExerciseSection } from '@/types/content/exercise';
+import { ExerciseSection } from '@/types/content/exercises';
 
 
 interface PracticeResultProps {

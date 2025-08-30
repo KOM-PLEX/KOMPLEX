@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import ForumCard from '@/components/pages/forum/ForumCard';
-import Comment from '@/components/pages/forum/Comments';
+import Comments from '@/components/pages/forum/Comments';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import axios from 'axios';
@@ -91,7 +91,7 @@ export default function ForumDiscussion() {
                     <ForumCard post={post} isFromBasePage={false} onCommentClick={handleCommentToggle} onLikeClick={() => handleLikeClick(post.id, post.isLiked)} />
                 </div>
 
-                <Comment comments={comments} focusInput={isCommentInputActive} onClose={handleCommentClose} onCommentPost={handleCommentPost} setComment={setComment} />
+                <Comments type='forum' parentId={post.id} comments={comments} focusInput={isCommentInputActive} onClose={handleCommentClose} onCommentPost={handleCommentPost} setComment={setComment} />
             </div>
         </div>
     );

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft, Edit, Trash, Eye } from 'lucide-react';
 import ForumCard from '@/components/pages/my-content/forums/ForumCard';
-import Comment from '@/components/pages/forum/Comments';
+import Comments from '@/components/pages/forum/Comments';
 import EditForum from '@/components/pages/my-content/forums/EditForum';
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
@@ -193,7 +193,7 @@ export default function MyForumDetail() {
                             </div>
 
                             {/* Comments Section */}
-                            <Comment comments={comments} focusInput={isCommentInputActive} isReadOnly={true} onClose={handleCommentClose} />
+                            <Comments type='forum' parentId={post.id} comments={comments} focusInput={isCommentInputActive} isReadOnly={true} onClose={handleCommentClose} />
                         </>
                     ) : (
                         /* Edit Mode */

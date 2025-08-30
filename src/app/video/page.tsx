@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Search,
     Filter,
@@ -11,6 +11,8 @@ import {
 import { useRouter } from 'next/navigation';
 import VideoCard from '@/components/pages/video/VideoCard';
 import Sidebar from '@/components/pages/video/Sidebar';
+import axios from 'axios';
+import { VideoPost } from '@/types/content/videos';
 
 interface Video {
     id: string;
@@ -161,21 +163,19 @@ const mockVideos: Video[] = [
 ];
 
 export default function VideoPage() {
-    const [selectedSubject, setSelectedSubject] = useState<string>('all');
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const router = useRouter();
-    const [showOverlay, setShowOverlay] = useState(true);   
+    const [videos, setVideos] = useState<VideoPost[]>([]);
 
-    const filteredVideos = mockVideos.filter(video => {
-        const matchesSubject = selectedSubject === 'all' || video.subject === selectedSubject;
-        const matchesDifficulty = selectedDifficulty === 'all' || video.difficulty === selectedDifficulty;
-        const matchesSearch = video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            video.description.toLowerCase().includes(searchQuery.toLowerCase());
-
-        return matchesSubject && matchesDifficulty && matchesSearch;
-    });
+    useEffect(() => {
+        const fetchVideos = async () => {
+            const response = await axios.get('http://localhost:6969/videos');
+            console.log(response.data);
+            setVideos(response.data);
+        }
+        fetchVideos();
+    }, [])
 
     const handleVideoClick = (videoId: string) => {
         router.push(`/video/${videoId}`);
@@ -184,78 +184,10 @@ export default function VideoPage() {
     return (
         <div className="flex h-screen bg-gray-50 pt-15">
             <Sidebar
-                selectedSubject={selectedSubject}
-                selectedDifficulty={selectedDifficulty}
-                onSubjectChange={setSelectedSubject}
-                onDifficultyChange={setSelectedDifficulty}
                 sidebarOpen={sidebarOpen}
                 onSidebarToggle={() => setSidebarOpen(!sidebarOpen)}
             />
 
-                {showOverlay && (
-                    <div className="fixed inset-0 bg-white/30 backdrop-blur-sm z-20 flex items-center justify-center mt-16">
-                        <div className="flex items-center justify-center  w-full">
-                            <div className="text-center max-w-2xl mx-auto px-6 py-4 rounded-2xl bg-indigo-50 border border-indigo-500">
-                                <div className="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-8">
-                                    <Video className="w-12 h-12 text-indigo-600" />
-                                </div>
-
-                                <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                                    មុខងារវីដេអូអប់រំនឹងមកដល់ឆាប់ៗ
-                                </h1>
-
-                                <p className="text-lg text-gray-600 mb-8">
-                                    យើងកំពុងធ្វើការអភិវឌ្ឍមុខងារវីដេអូអប់រំដ៏អស្ចារ្យសម្រាប់អ្នក។
-                                </p>
-
-                                <div className="bg-gray-50 rounded-2xl p-8 mb-8">
-                                    <h2 className="text-xl font-semibold text-gray-900 mb-6">
-                                        មុខងារដែលនឹងមាន៖
-                                    </h2>
-
-                                    <div className="space-y-4 text-left">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
-                                            <span className="text-gray-700">វីដេអូមេរៀនពីសាលារៀននិងគ្រូបង្រៀនដែលទុកចិត្តបាន</span>
-                                        </div>
-
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
-                                            <span className="text-gray-700">បង្កើតនិងចែករំលែកវីដេអូខ្លីៗ</span>
-                                        </div>
-
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
-                                            <span className="text-gray-700">លំហាត់និងសំណួរក្នុងវីដេអូ</span>
-                                        </div>
-
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
-                                            <span className="text-gray-700">ការពិភាក្សាជាមួយគ្រូនិងសិស្សដទៃ</span>
-                                        </div>
-
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
-                                            <span className="text-gray-700">ការតាមដានការរីកចម្រើនក្នុងការរៀន</span>
-                                        </div>
-
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
-                                            <span className="text-gray-700">ការណែនាំវីដេអូតាមកម្រិត</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button
-                                    onClick={() => setShowOverlay(false)}
-                                    className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium"
-                                >
-                                    បន្តប្រើ
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
             {/* Main Content */}
             <div className="flex-1 overflow-y-scroll relative">
                 {/* Header */}
@@ -285,17 +217,17 @@ export default function VideoPage() {
                 {/* Video Grid */}
                 <div className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
-                        {filteredVideos.map((video) => (
+                        {videos.map((video) => (
                             <VideoCard
                                 key={video.id}
                                 video={video}
                                 variant="default"
-                                onClick={() => handleVideoClick(video.id)}
+                                onClick={() => handleVideoClick(video.id.toString())}
                             />
                         ))}
                     </div>
 
-                    {filteredVideos.length === 0 && (
+                    {videos.length === 0 && (
                         <div className="text-center py-12">
                             <BookOpen size={48} className="text-gray-400 mx-auto mb-4" />
                             <h3 className="text-lg font-medium text-gray-900 mb-2">គ្មានវីដេអូ</h3>

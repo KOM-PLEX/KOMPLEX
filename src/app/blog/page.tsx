@@ -6,7 +6,7 @@ import { Search, Filter, Book, Eye, Plus, User, ChevronDown, X, Star, BookOpen }
 import Link from 'next/link';
 import Sidebar from '@/components/pages/blog/Sidebar';
 import { Listbox, Transition } from '@headlessui/react';
-import { Blog } from '@/types/content/blog';
+import { Blog } from '@/types/content/blogs';
 
 
 

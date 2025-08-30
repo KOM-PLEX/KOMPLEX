@@ -5,7 +5,7 @@ import { getTimeAgo } from '@/utils/formater';
 
 
 interface ReplyComponentProps {
-    reply: ForumReply;
+    reply: ForumReply; // TODO: add video reply
     commentId: number; // Add parent comment ID
     onSubmitReply: (commentId: number, description: string) => void;
     onReplyLike: (replyId: number) => void;
