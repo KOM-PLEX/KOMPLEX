@@ -198,6 +198,85 @@ const AqueousPractice = () => {
         </div>,
       ]
     },
+     {
+      id: "ex6",
+      title: "លំហាត់ទី ៦",
+      description: "លំហាត់ទី ៦",
+      problemType: "Sixth Exercise",
+      problems: [
+          <div className="flex flex-col items-start gap-4 text-[13px]">
+              <p>គេបន្ថែមសូលុយស្យុង <InlineMath math="FeSO_{4}" />ទៅក្នុងសូលុយស្យុង NaOH 1L ។ ក្រោយប្រតិកម្ម គេទទួលបានកករ <InlineMath math="Fe(OH)_{2}" />ចំនួន 0.45g ។</p>
+              <p>ក. ចូរសរសេរសមីការគីមី សមីការអ៊ីយ៉ុងសព្វ និងសមីការអ៊ីយ៉ុងសម្រួលសម្រាប់ប្រតិកម្មខាងលើនេះ។</p>
+              <p>ខ. គណនាកំហាប់ជាម៉ូលអ៊ីយ៉ុង <InlineMath math="OH^{-}" />និង pH នៃសូលុយស្យុង NaOH។</p>
+              <p>គេឱ្យម៉ាសម៉ូលៈ Fe = 56 g/mol, O = 16 g/mol, H = 1 g/mol</p>
+          </div>
+      ],
+      answers: [
+        <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
+            
+        </div>,
+        
+      ]
+    },
+    {
+      id: "ex7",
+      title: "លំហាត់ទី ៧",
+      description: "លំហាត់ទី ៧",
+      problemType: "Seventh Exercise",
+      problems: [
+          <div className="flex flex-col items-start gap-4 text-[13px]">
+              <p>គេលាយ 40mL នៃសូលុយស្យុង <InlineMath math="AgNO_{3}" /> នៅកំហាប់ 5M ជាមួយសូលុយស្យុង  <InlineMath math="Na_{2}SO_{4}" /> បរិមាណគ្រប់គ្រាន់ ។</p>
+              <p>ក. សរសេរសមីការបីសណ្ឋានសម្រាប់ប្រតិកម្មនេះ។</p>
+              <p>ខ. គណនាម៉ាសកករដែលទទួលបាន </p>
+              <p>គេឲ Ag= 108 g/mol , S= 32 g/mol , O= 16 g/mol</p>
+          </div>
+      ],
+      answers: [
+        <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
+           
+        </div>,
+        
+      ]
+    },
+    {
+      id: "ex8",
+      title: "លំហាត់ទី ៨",
+      description: "លំហាត់ទី ៨",
+      problemType: "Eighth Exercise",
+      problems: [
+          <div className="flex flex-col items-start gap-4 text-[13px]">
+              <p>គេដាក់ 200 mL នៃសូលុយស្យុងអាម៉ូញ៉ូមកាបូណាតដែលមានកំហាប់0.1M អោយមានប្រតិកម្មសព្វជាមួយសូលុយស្យុងកាល់ស្យូមនីត្រាត។</p>
+              <p>ក.ចូរសរសេរសមីការគីមី សមីការអ៊ុយ៉ុងសព្វ និងសមីការអ៊ីយ៉ុងសម្រួលនៃប្រតិកម្មនេះ។</p>
+              <p>ខ. ចូរកំណត់អីយ៉ុងទស្សនិក។</p>
+              <p>គ. ចូរគណនាម៉ាសកករដែលទទួលបាន។</p>
+          </div>
+      ],
+      answers: [
+        <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
+           
+        </div>,
+        
+      ]
+    },
+    {
+      id: "ex9",
+      title: "លំហាត់ទី ៩",
+      description: "លំហាត់ទី ៩",
+      problemType: "Ninth Exercise",
+      problems: [
+          <div className="flex flex-col items-start gap-4 text-[13px]">
+              <p>គេយកបារ៉ូមក្លរួ <InlineMath math="BaCl_{2}" />  ជាមួយសូដ្យូមស៊ុលផាត <InlineMath math="Na_{2}SO_{4}" />ចំនួន 20 mL កំហាប់ 0.50M គេឃើញមានកករពណ៌សកើតឡើង។</p>
+              <p>ក. ចូរសរសេរសមីការគីមី សមីការអ៊ីយ៉ុងសព្វ និងសមីការអ៊ុយ៉ុងសម្រួល។</p>
+              <p>ខ. រកមាឌបារ៉ូមក្លរួដែលត្រូវប្រើដើម្បីទទួលបានកករអតិបរមា។</p>
+          </div>
+      ],
+      answers: [
+        <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
+           
+        </div>,
+        
+      ]
+    },
 
   ];
 
