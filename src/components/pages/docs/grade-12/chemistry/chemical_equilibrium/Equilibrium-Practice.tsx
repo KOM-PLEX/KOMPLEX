@@ -37,39 +37,62 @@ const EquilibriumPractice = () => {
 
   const practiceExercises: PracticeExercise[] = [
     {
-      id: "ex1",
-      title: "លំហាត់ទី ១",
-      description: "លំហាត់ទី ១",
-      problemType: "First Exercise",
-      problems: [
-            <div className="text-[13px]">
-                 <p>គេមានប្រតិកម្ម <InlineMath math="N_{2} (g) + 3H_{2} (g) \rightleftharpoons 2NH_{3} (g)" /> ដែលមានលំនឹងនៅសីតុ, 773 K និងមានតម្លៃថេរលំនឹង k=0,286 ។
-                    សរសេរកន្សោមថេរលំនឹង K និងគណនាកំហាប់របស់ឌីអាសូត នៅពេលមានលំនឹង ដោយដឹងថានៅពេលមាន លំនឹងនេះ
-                    <InlineMath math="[H_{2}] = 0.42 mol/L" /> និង <InlineMath math="[NH_{3}] = 0.113 mol/L" />។
-                </p>
-            </div>
-      ],
-      answers: [
-        <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-            
-        </div>,
-      ]
-    },
+    id: "ex1",
+    title: "លំហាត់ទី ១",
+    description: "លំហាត់ទី ១",
+    problemType: "First Exercise",
+    problems: [
+      <div className="text-[13px]">
+        <p>គេមានប្រតិកម្ម <InlineMath math="N_{2} (g) + 3H_{2} (g) \rightleftharpoons 2NH_{3} (g)" /> ដែលមានលំនឹងនៅសីតុ, 773 K និងមានតម្លៃថេរលំនឹង k=0.286 ។
+          សរសេរកន្សោមថេរលំនឹង K និងគណនាកំហាប់របស់ឌីអាសូត នៅពេលមានលំនឹង ដោយដឹងថានៅពេលមានលំនឹងនេះ
+          <InlineMath math="[H_{2}] = 0.42\ \text{mol/L}" /> និង <InlineMath math="[NH_{3}] = 0.113\ \text{mol/L}" />។</p>
+      </div>
+    ],
+    answers: [
+      <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
+        <p>កន្សោមថេរលំនឹង (K): <InlineMath math="K = \dfrac{[NH_{3}]^{2}}{[N_{2}]\,[H_{2}]^{3}}" /></p>
+        
+
+        <p>ដើម្បីរក <InlineMath math="[N_{2}]" /> គេបាន <InlineMath math="[N_{2}] = \dfrac{[NH_{3}]^{2}}{K\,[H_{2}]^{3}}" /></p>
+        
+        <p>ដោយ </p>
+        <InlineMath math="[NH_{3}]^{2} = (0.113)^{2} = 0.012769" />
+        <InlineMath math="[H_{2}]^{3} = (0.42)^{3} = 0.074088" />
+        <InlineMath math="K\,[H_{2}]^{3} = 0.286 \times 0.074088 = 0.021189168" />
+
+        <p>ដូច្នេះ:</p>
+        <InlineMath math="[N_{2}] = \dfrac{0.012769}{0.021189168} = 0.603\ \text{mol/L}" />
+      </div>
+    ]
+  },
+
     {
       id: "ex2",
       title: "លំហាត់ទី ២",
       description: "លំហាត់ទី ២",
       problemType: "Second Exercise",
       problems: [
-            <div className="text-[13px]">
-            <p>គេមានប្រតិកម្ម :  <InlineMath math="H_{2} (g) + Cl_{2} (g) \rightleftharpoons 2HCl (g)" />ដែលមានលំនឹងនៅសីតុណ្ហភាព
-            1227°C ។ កំហាប់អង្គធាតុនៅពេលមានលំនឹងគីមី <InlineMath math="[H_{2}] = [Cl_{2}] = 4.5 \cdot 10^{-3} M" /> និង <InlineMath math="[HCl] = 62.5 \cdot 10^{-3} M" />។ ចូរគណនាតម្លៃថេរលំនឹង K ។</p>
-            </div>
+        <div className="text-[13px]">
+          <p>គេមានប្រតិកម្ម : <InlineMath math="H_{2} (g) + Cl_{2} (g) \rightleftharpoons 2HCl (g)" /> ដែលមានលំនឹងនៅសីតុណ្ហភាព 1227°C ។ កំហាប់អង្គធាតុនៅពេលមានលំនឹងគីមី <InlineMath math="[H_{2}] = [Cl_{2}] = 4.5 \cdot 10^{-3} M" /> និង <InlineMath math="[HCl] = 62.5 \cdot 10^{-3} M" />។ ចូរគណនាតម្លៃថេរលំនឹង K ។</p>
+        </div>
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-            
-        </div>,
+      
+          <p>កន្សោមថេរលំនឹង (K) : <InlineMath math="K = \dfrac{[HCl]^{2}}{[H_{2}]\,[Cl_{2}]}" /></p>
+          
+          <p>ដោយ</p>
+          <InlineMath math="[HCl] = 62.5\times10^{-3}\;M = 0.0625\;M" />
+          <InlineMath math="[H_{2}] = [Cl_{2}] = 4.5\times10^{-3}\;M = 0.0045\;M" />
+      
+          <p>នាំឲ:</p>
+          <InlineMath math="[HCl]^{2} = (0.0625)^{2} = 0.00390625" />
+          <InlineMath math="[H_{2}][Cl_{2}] = (0.0045)(0.0045) = 2.025\times10^{-5}" />
+      
+          <p>គេបាន:</p>
+          <InlineMath math="K = \dfrac{0.00390625}{2.025\times10^{-5}} = 192.90 = 1.93\times10^{2}" />
+      
+        </div>
       ]
     },
     {
@@ -85,6 +108,12 @@ const EquilibriumPractice = () => {
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
             
+        </div>,
+        <div key="a2" className="flex flex-col items-start text-[13px] gap-3">
+            
+        </div>,
+        <div key="a3" className="flex flex-col items-start text-[13px] gap-3">
+
         </div>,
       ]
     },
@@ -280,15 +309,29 @@ const EquilibriumPractice = () => {
       problemType: "Thirteenth Exercise",
       problems: [
         <div className="flex flex-col gap-3 text-[13px] items-start">
-            <p>គេមានប្រតិកម្ម <InlineMath math="N_{2} (g) + 3H_{2} (g) \rightleftharpoons 2NH_{3} (g)" /> ដែលមានលំនឹងនៅសីតុណ្ហភាព 773 K និងមានតម្លៃថេរលំនឹង K= 0.286 ។ សរសេរកន្សោមថេរលំនឹង K និងគណនាកំហាប់របស់ឌីអាសូត នៅពេលមានលំនឹង ដោយដឹងថានៅពេលមាន លំនឹងនេះ <InlineMath math="[H_{2} ] = 0.42 M និង [NH_{3}] = 0.113 M" />  ។</p>
+          <p>គេមានប្រតិកម្ម <InlineMath math="N_{2} (g) + 3H_{2} (g) \rightleftharpoons 2NH_{3} (g)" /> ដែលមានលំនឹងនៅសីតុណ្ហភាព 773 K និងមានតម្លៃថេរលំនឹង <InlineMath math="K = 0.286" /> ។ សរសេរកន្សោមថេរលំនឹង K និងគណនាកំហាប់របស់ឌីអាសូត នៅពេលមានលំនឹង ដោយដឹងថានៅពេលមានលំនឹងនេះ <InlineMath math="[H_{2}] = 0.42\;M" /> និង <InlineMath math="[NH_{3}] = 0.113\;M" />។</p>
         </div>
       ],
       answers: [
-        <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-            
-        </div>,
+        <div key="a1" className="flex flex-col items-start text-[13px] gap-3">      
+          <p>កន្សោមថេរលំនឹង (K) : <InlineMath math="K = \dfrac{[NH_{3}]^{2}}{[N_{2}]\,[H_{2}]^{3}}" /></p>
+          
+      
+          <p>ដើម្បីរក <InlineMath math="[N_{2}]" /> គេបាន : <InlineMath math="[N_{2}] = \dfrac{[NH_{3}]^{2}}{K\,[H_{2}]^{3}}" /></p>
+          
+      
+          <p>ដោយ</p>
+          <InlineMath math="[NH_{3}]^{2} = (0.113)^{2} = 0.012769" />
+          <InlineMath math="[H_{2}]^{3} = (0.42)^{3} = 0.074088" />
+          <InlineMath math="K\,[H_{2}]^{3} = 0.286 \times 0.074088 = 0.021189168" />
+      
+          <p>គេបាន:</p>
+          <InlineMath math="[N_{2}] = \dfrac{0.012769}{0.021189168} = 0.6026\;M" />
+      
+        </div>
       ]
-    },
+    }
+
     
   ];
 

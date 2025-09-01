@@ -44,12 +44,14 @@ const OrganicPractice = () => {
       problems: [
             <span className="text-[13px]">អាមីន</span>,
             <span className="text-[13px]">អាមីត</span>,
-            <span className="text-[13px]">អាសុីតអាមីណេ</span>,
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-            
+            <InlineMath math="R-NH_{2}" />
         </div>,
+        <div key="a2" className="flex flex-col items-start text-[13px] gap-3">
+            <InlineMath math="R-NH_{3}^{+}" />
+        </div>,  
       ]
     },
     {
@@ -70,8 +72,8 @@ const OrganicPractice = () => {
       ]
     },
     {
-      id: "ex2",
-      title: "លំហាត់ទី ២",
+      id: "ex3",
+      title: "លំហាត់ទី ៣",
       description: "ចូរសរសេររូបមន្តសមាសធាតុ",
       problemType: "Second Exercise",
       problems: [
@@ -83,24 +85,16 @@ const OrganicPractice = () => {
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-            
+            <InlineMath math="CH_{3}-CH_{2}-CH_{2}-C(=O)NH_{2}" />
         </div>,
-      ]
-    },
-    {
-      id: "ex3",
-      title: "លំហាត់ទី ៣",
-      description: "លំហាត់ទី ៣",
-      problemType: "Third Exercise",
-      problems: [
-            <div className="text-[13px]">
-                 <p>ចូរគណនាម៉ាសម៉ូលរបស់អាសុីតខ្លាញ់ដែលបានពីអុីដ្រូលីសខ្លាញ់ ឬប្រេងមួយដែលមានម៉ាស 884 g ។</p>
-                 <p>ចូរកំណត់រូបមន្តរបស់អាសុីតខ្លាញ់នេះ បេីគេដឹងថាម៉ូលេគុលវាមានសម្ព័ន្ធពីរជាន់មួយ ។</p>
-            </div>
-      ],
-      answers: [
-        <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
-            
+        <div key="a2" className="flex flex-col items-start text-[13px] gap-3">
+             <InlineMath math="CH_{3}-C(=O)-N(CH_{3})_{2}" />
+        </div>,
+        <div key="a3" className="flex flex-col items-start text-[13px] gap-3">
+             <InlineMath math="H-C(=O)-N(CH_{3})_{2}" />
+        </div>,
+        <div key="a4" className="flex flex-col items-start text-[13px] gap-3">
+             <InlineMath math="H_{2}N-CH_{2}-CH_{2}-CH(COOH)-CH_{3}" />
         </div>,
       ]
     },
@@ -111,8 +105,8 @@ const OrganicPractice = () => {
       problemType: "Fourth Exercise",
       problems: [
             <div className="text-[13px]">
-                 <p>អាសុីតអាសេទិចធ្វេីប្រតិកម្មជាមួយអាល់កុលបង្កេីតបានអេស្ទែដែល 0.4 mol របស់វាមានម៉ាស 40.8 g ។</p>
-                 <p>តេីអាល់កុលនោះមានម៉ាសម៉ូលប៉ុន្មាន ?</p>
+                 <p>ចូរគណនាម៉ាសម៉ូលរបស់អាសុីតខ្លាញ់ដែលបានពីអុីដ្រូលីសខ្លាញ់ ឬប្រេងមួយដែលមានម៉ាស 884 g ។</p>
+                 <p>ចូរកំណត់រូបមន្តរបស់អាសុីតខ្លាញ់នេះ បេីគេដឹងថាម៉ូលេគុលវាមានសម្ព័ន្ធពីរជាន់មួយ ។</p>
             </div>
       ],
       answers: [
@@ -128,7 +122,8 @@ const OrganicPractice = () => {
       problemType: "Fifth Exercise",
       problems: [
             <div className="text-[13px]">
-                <p>ចំហេះសព្វ 2.2 g អេស្ទែមួយផ្តល់ឧស្ម័នកាបូនឌីអុកសុីត 4.4 g ។ គេដឹងថា ផ្នែកអាល់កុលនិងផ្នែកអាសុីតដែលបង្កអេស្ទែនោះមានចំនួនអាតូមកាបូនស្មេីគ្នា ហេីយជាសមាសធាតុឆ្អែត ។ ចូរកំណត់រូបមន្តរបស់អេស្ទែនោះ។</p>
+                 <p>អាសុីតអាសេទិចធ្វេីប្រតិកម្មជាមួយអាល់កុលបង្កេីតបានអេស្ទែដែល 0.4 mol របស់វាមានម៉ាស 40.8 g ។</p>
+                 <p>តេីអាល់កុលនោះមានម៉ាសម៉ូលប៉ុន្មាន ?</p>
             </div>
       ],
       answers: [
@@ -144,7 +139,7 @@ const OrganicPractice = () => {
       problemType: "Sixth Exercise",
       problems: [
             <div className="text-[13px]">
-                <p>អាម៉ូញ៉ាក់និងឧស្ម័នកាបូនឌីអុកសុីត ធ្វេីប្រតិកម្មជាមួយគ្នានៅលក្ខខណ្ឌធម្មតាក្នុងមាឌប៉ុនគ្នា គេទទួលបានអ៊ុយរ៉េ 6 g ។ តេីឧស្ម័នណាដែលនៅសល់មិនធ្វេីប្រតិកម្ម ? មាឌប៉ុន្មាន ?</p>
+                <p>ចំហេះសព្វ 2.2 g អេស្ទែមួយផ្តល់ឧស្ម័នកាបូនឌីអុកសុីត 4.4 g ។ គេដឹងថា ផ្នែកអាល់កុលនិងផ្នែកអាសុីតដែលបង្កអេស្ទែនោះមានចំនួនអាតូមកាបូនស្មេីគ្នា ហេីយជាសមាសធាតុឆ្អែត ។ ចូរកំណត់រូបមន្តរបស់អេស្ទែនោះ។</p>
             </div>
       ],
       answers: [
@@ -158,6 +153,22 @@ const OrganicPractice = () => {
       title: "លំហាត់ទី ៧",
       description: "លំហាត់ទី ៧",
       problemType: "Seventh Exercise",
+      problems: [
+            <div className="text-[13px]">
+                <p>អាម៉ូញ៉ាក់និងឧស្ម័នកាបូនឌីអុកសុីត ធ្វេីប្រតិកម្មជាមួយគ្នានៅលក្ខខណ្ឌធម្មតាក្នុងមាឌប៉ុនគ្នា គេទទួលបានអ៊ុយរ៉េ 6 g ។ តេីឧស្ម័នណាដែលនៅសល់មិនធ្វេីប្រតិកម្ម ? មាឌប៉ុន្មាន ?</p>
+            </div>
+      ],
+      answers: [
+        <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
+            
+        </div>,
+      ]
+    },
+    {
+      id: "ex8",
+      title: "លំហាត់ទី ៨",
+      description: "លំហាត់ទី ៨",
+      problemType: "Eighth Exercise",
       problems: [
             <div className="text-[13px] flex flex-col gap-3 items-start">
                 <p>គេមានរូបមន្តដុលនៃអាមីន ៣ប្រភេទ </p>
@@ -176,10 +187,10 @@ const OrganicPractice = () => {
       ]
     },
     {
-      id: "ex8",
-      title: "លំហាត់ទី ៨",
-      description: "លំហាត់ទី ៨",
-      problemType: "Eighth Exercise",
+      id: "ex9",
+      title: "លំហាត់ទី ៩",
+      description: "លំហាត់ទី ៩",
+      problemType: "Ninth Exercise",
       problems: [
             <div className="text-[13px] flex flex-col gap-3 items-start">
               <p>ម៉ូណូអាស៊ីតកាបុកស៊ីលិចឆ្អែត A មួយមានម៉ាស 60 g/moL ។​ </p>
@@ -196,10 +207,10 @@ const OrganicPractice = () => {
       ]
     },
     {
-      id: "ex9",
-      title: "លំហាត់ទី ៩",
-      description: "លំហាត់ទី ៩",
-      problemType: "Ninth Exercise",
+      id: "ex10",
+      title: "លំហាត់ទី ១០",
+      description: "លំហាត់ទី ១០",
+      problemType: "Tenth Exercise",
       problems: [
             <div className="text-[13px] flex flex-col gap-3 items-start">
               <p>គេយកអាស៊ីតអាសេទិច 0.18mol ចំនួន 1L ឲ្យធ្វើប្រតិកម្មជាមួយអាម៉ូញ៉ាក់ គេទទួលបានអាមីត <InlineMath math="(CH_{3}CONH_{2})" />និងទឹក ។</p>
@@ -215,10 +226,10 @@ const OrganicPractice = () => {
       ]
     },
     {
-      id: "ex10",
-      title: "លំហាត់ទី ១០",
-      description: "លំហាត់ទី ១០",
-      problemType: "Tenth Exercise",
+      id: "ex11",
+      title: "លំហាត់ទី ១១",
+      description: "លំហាត់ទី ១១",
+      problemType: "Eleventh Exercise",
       problems: [
             <div className="text-[13px] flex flex-col gap-3 items-start">
                 <p>១.ចូរសរសេររូបមន្តទូទៅនៃអេស្ទែ ។</p>

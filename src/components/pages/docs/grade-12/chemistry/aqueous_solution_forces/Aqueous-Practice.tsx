@@ -198,26 +198,48 @@ const AqueousPractice = () => {
         </div>,
       ]
     },
-     {
+    {
       id: "ex6",
       title: "លំហាត់ទី ៦",
       description: "លំហាត់ទី ៦",
       problemType: "Sixth Exercise",
       problems: [
           <div className="flex flex-col items-start gap-4 text-[13px]">
-              <p>គេបន្ថែមសូលុយស្យុង <InlineMath math="FeSO_{4}" />ទៅក្នុងសូលុយស្យុង NaOH 1L ។ ក្រោយប្រតិកម្ម គេទទួលបានកករ <InlineMath math="Fe(OH)_{2}" />ចំនួន 0.45g ។</p>
+              <p>គេបន្ថែមសូលុយស្យុង <InlineMath math="FeSO_{4}" /> ទៅក្នុងសូលុយស្យុង NaOH 1L ។ ក្រោយប្រតិកម្ម គេទទួលបានកករ <InlineMath math="Fe(OH)_{2}" /> ចំនួន 0.45g ។</p>
               <p>ក. ចូរសរសេរសមីការគីមី សមីការអ៊ីយ៉ុងសព្វ និងសមីការអ៊ីយ៉ុងសម្រួលសម្រាប់ប្រតិកម្មខាងលើនេះ។</p>
-              <p>ខ. គណនាកំហាប់ជាម៉ូលអ៊ីយ៉ុង <InlineMath math="OH^{-}" />និង pH នៃសូលុយស្យុង NaOH។</p>
+              <p>ខ. គណនាកំហាប់ជាម៉ូលអ៊ីយ៉ុង <InlineMath math="OH^{-}" /> និង pH នៃសូលុយស្យុង NaOH។</p>
               <p>គេឱ្យម៉ាសម៉ូលៈ Fe = 56 g/mol, O = 16 g/mol, H = 1 g/mol</p>
           </div>
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
-            
+            <p className="font-bold">ក. សមីការតាងប្រតិកម្ម</p>
+            <p>សមីការគីមី៖</p>
+            <InlineMath math="FeSO_{4} + 2NaOH \rightarrow Fe(OH)_{2} + Na_{2}SO_{4}" />
+            <p>សមីការអ៊ីយ៉ុងសព្វ៖</p>
+            <InlineMath math="Fe^{2+} + SO_{4}^{2-} + 2Na^{+} + 2OH^{-} \rightarrow Fe(OH)_{2} + 2Na^{+} + SO_{4}^{2-}" />
+            <p>សមីការអ៊ីយ៉ុងសម្រួល៖</p>
+            <InlineMath math="Fe^{2+} + 2OH^{-} \rightarrow Fe(OH)_{2}" />
+
+            <p className="font-bold mt-2">ខ. គណនាកំហាប់ <InlineMath math="OH^{-}" /> និង pH</p>
+            <p className="font-bold">គណនាចំនួនម៉ូល <InlineMath math="Fe(OH)_{2}" /> :</p>
+            <p>គេមាន <InlineMath math="m = 0.45 \; g" /></p>
+            <InlineMath math="M(Fe(OH)_{2}) = 56 + 2(16+1) = 90 \; g/mol" />
+            <InlineMath math="n = \frac{m}{M} = \frac{0.45}{90} = 0.005 \; mol" />
+      
+            <p>តាមសមីការៈ <InlineMath math="Fe^{2+} + 2OH^{-} \rightarrow Fe(OH)_{2}" /></p>
+            <p>ម៉ូល <InlineMath math="OH^{-}" /> = <InlineMath math="2 \times 0.005 = 0.010 \; mol" /></p>
+            <p>គេបាន</p>
+            <InlineMath math="C(OH^{-}) = \frac{n}{V} = \frac{0.010}{1} = 0.010 \; M" />
+      
+            <p className="font-bold">គណនា pH:</p>
+            <InlineMath math="pOH = -\log[OH^{-}] = -\log(0.010) = 2" />
+            <InlineMath math="pH = 14 - pOH = 14 - 2 = 12" />
+      
         </div>,
-        
       ]
     },
+
     {
       id: "ex7",
       title: "លំហាត់ទី ៧",
@@ -233,8 +255,22 @@ const AqueousPractice = () => {
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
-           
-        </div>,
+            <p className="font-bold">ក. សមីការតាងប្រតិកម្ម (បីសណ្ឋាន)</p>
+            <p>សមីការគីមី៖</p>
+            <InlineMath math="2AgNO_{3}(aq) + Na_{2}SO_{4}(aq) \rightarrow Ag_{2}SO_{4}(s) + 2NaNO_{3}(aq)" />
+            <p>សមីការអ៊ីយ៉ុងសព្វ៖</p>
+            <InlineMath math="2Ag^{+} + 2NO_{3}^{-} + 2Na^{+} + SO_{4}^{2-} \rightarrow Ag_{2}SO_{4}(s) + 2Na^{+} + 2NO_{3}^{-}" />
+            <p>សមីការអ៊ីយ៉ុងសម្រួល៖</p>
+            <InlineMath math="2Ag^{+}(aq) + SO_{4}^{2-}(aq) \rightarrow Ag_{2}SO_{4}(s)" />
+
+            <p className="font-bold mt-2">ខ. គណនាម៉ាសកករ</p>
+            <p>បរិមាណ <InlineMath math="AgNO_{3}" />៖ <InlineMath math="V = 40\;mL = 0.040\;L,\; C = 5\;M" /></p>
+            <InlineMath math="n(AgNO_{3}) = C \times V = 5 \times 0.040 = 0.20\;mol" />
+            <p>តាមសមីការ៖ <InlineMath math="2AgNO_{3} \rightarrow Ag_{2}SO_{4}" /> ដូច្នេះ</p>
+            <InlineMath math="n(Ag_{2}SO_{4}) = \frac{0.20}{2} = 0.10\;mol" />
+            <p>ដោយ <InlineMath math="M(Ag_{2}SO_{4}) = 2\times108 + 32 + 4\times16 = 312\;g/mol" /></p>
+            <p>នាំឲ <InlineMath math="m = n \times M = 0.10 \times 312 = 31.2\;g" /></p>
+    </div>,
         
       ]
     },
@@ -245,39 +281,40 @@ const AqueousPractice = () => {
       problemType: "Eighth Exercise",
       problems: [
           <div className="flex flex-col items-start gap-4 text-[13px]">
-              <p>គេដាក់ 200 mL នៃសូលុយស្យុងអាម៉ូញ៉ូមកាបូណាតដែលមានកំហាប់0.1M អោយមានប្រតិកម្មសព្វជាមួយសូលុយស្យុងកាល់ស្យូមនីត្រាត។</p>
-              <p>ក.ចូរសរសេរសមីការគីមី សមីការអ៊ុយ៉ុងសព្វ និងសមីការអ៊ីយ៉ុងសម្រួលនៃប្រតិកម្មនេះ។</p>
-              <p>ខ. ចូរកំណត់អីយ៉ុងទស្សនិក។</p>
+              <p>គេដាក់ 200 mL នៃសូលុយស្យុងអាម៉ូញ៉ូមកាបូណាតដែលមានកំហាប់ 0.1 M អោយមានប្រតិកម្មសព្វជាមួយសូលុយស្យុងកាល់ស្យូមនីត្រាត។</p>
+              <p>ក. ចូរសរសេរសមីការគីមី សមីការអ៊ីយ៉ុងសព្វ និងសមីការអ៊ីយ៉ុងសម្រួលនៃប្រតិកម្មនេះ។</p>
+              <p>ខ. ចូរកំណត់អ៊ីយ៉ុងទស្សនិក។</p>
               <p>គ. ចូរគណនាម៉ាសកករដែលទទួលបាន។</p>
           </div>
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
-           
-        </div>,
-        
-      ]
-    },
-    {
-      id: "ex9",
-      title: "លំហាត់ទី ៩",
-      description: "លំហាត់ទី ៩",
-      problemType: "Ninth Exercise",
-      problems: [
-          <div className="flex flex-col items-start gap-4 text-[13px]">
-              <p>គេយកបារ៉ូមក្លរួ <InlineMath math="BaCl_{2}" />  ជាមួយសូដ្យូមស៊ុលផាត <InlineMath math="Na_{2}SO_{4}" />ចំនួន 20 mL កំហាប់ 0.50M គេឃើញមានកករពណ៌សកើតឡើង។</p>
-              <p>ក. ចូរសរសេរសមីការគីមី សមីការអ៊ីយ៉ុងសព្វ និងសមីការអ៊ុយ៉ុងសម្រួល។</p>
-              <p>ខ. រកមាឌបារ៉ូមក្លរួដែលត្រូវប្រើដើម្បីទទួលបានកករអតិបរមា។</p>
-          </div>
-      ],
-      answers: [
-        <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
-           
-        </div>,
-        
-      ]
-    },
+            <p className="font-semibold">ក. សមីការតាងប្រតិកម្ម</p>
+            <p>សមីការគីមី៖</p>
+            <InlineMath math="(NH_{4})_{2}CO_{3} + Ca(NO_{3})_{2} \rightarrow CaCO_{3} + 2NH_{4}NO_{3}" />
+            <p>សមីការអ៊ីយ៉ុងសព្វ៖</p>
+            <InlineMath math="2NH_{4}^{+} + CO_{3}^{2-} + Ca^{2+} + 2NO_{3}^{-} \rightarrow CaCO_{3} + 2NH_{4}^{+} + 2NO_{3}^{-}" />
+            <p>សមីការអ៊ីយ៉ុងសម្រួល៖</p>
+            <InlineMath math="Ca^{2+} + CO_{3}^{2-} \rightarrow CaCO_{3}" />
+      
+            <p className="font-semibold">ខ. អ៊ីយ៉ុងទស្សនិក</p>
+            <p>អ៊ីយ៉ុងទស្សនិកៈ <InlineMath math="NH_{4}^{+} \text{ និង } NO_{3}^{-}" /></p>
+      
+            <p className="font-semibold">គ. គណនាម៉ាសកករ</p>
+            <p>រកចំនួនម៉ូលនៃ <InlineMath math="(NH_{4})_{2}CO_{3}" /> :</p>
+            <p>ដោយ <InlineMath math="V = 200\;mL = 0.200\;L,\; C = 0.1\;M" /></p>
+            <p>នាំឲ <InlineMath math="n = C\times V = 0.1 \times 0.200 = 0.020\;mol" /></p>
 
+            <p>តាមសមីការ <InlineMath math="(NH_{4})_{2}CO_{3}" /> = <InlineMath math="CaCO_{3}" /> :</p>
+            <InlineMath math="➡ n(CaCO_{3}) = 0.020\;mol" />
+      
+            <InlineMath math="M(CaCO_{3}) = 40 + 12 + 3\times16 = 100\;g/mol" />
+
+            <p>គេបាន : <InlineMath math="m = n \times M = 0.020 \times 100 = 2.0\;g" /></p>
+
+        </div>,
+      ]
+    },
   ];
 
   return (
