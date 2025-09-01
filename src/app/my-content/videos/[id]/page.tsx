@@ -110,7 +110,8 @@ export default function VideoPost() {
         }
 
         try {
-            await axios.delete(`http://localhost:6969/user-content/videos/${id}`);
+            //! TO CHANGE TO USER-CONTENT ROUTE
+            await axios.delete(`http://localhost:6969/videos/${id}`);
             router.push('/my-content/videos');
         } catch (error) {
             console.error('Error deleting video:', error);

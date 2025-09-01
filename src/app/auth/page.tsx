@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Eye, EyeOff, Mail, Lock, User, Phone, Calendar, Upload } from 'lucide-react';
+import axios from 'axios';
 
 export default function AuthPage() {
     const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
@@ -121,8 +122,7 @@ export default function AuthPage() {
         };
 
         try {
-            // TODO: Implement login API call
-            console.log('Login data:', loginData);
+            await axios.post('http://localhost:6969/auth/login', loginData);
         } catch (error) {
             console.error('Login error:', error);
         }
