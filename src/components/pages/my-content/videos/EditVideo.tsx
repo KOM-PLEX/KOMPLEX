@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Save, X, Upload, Trash, Play, Clock, Calendar } from 'lucide-react';
+import { Save, Upload, Trash, Play } from 'lucide-react';
 import axios from 'axios';
 import type { VideoPost } from '@/types/content/videos';
 import { ExerciseQuestion } from '@/types/topic';
@@ -17,21 +17,34 @@ interface EditVideoFormData {
     title: string;
     description: string;
     thumbnail: string;
-    exercises: ExerciseQuestion[];
+    exercises: ExerciseQuestionWithChoiceIds[];
 }
 
-interface BackendExerciseChoice {
+interface ExerciseQuestionWithChoiceIds extends ExerciseQuestion {
+    choiceIds?: number[];
+}
+
+// API response types for exercises (matching video detail page)
+interface ExerciseChoice {
+    id: number;
+    questionId: number;
     text: string;
     isCorrect: boolean;
+    createdAt: string;
+    updatedAt: string;
 }
 
-interface BackendExerciseQuestion {
+interface ApiExercise {
+    id: number;
+    exerciseId: number;
+    userId: number | null;
     title: string;
-    choices: BackendExerciseChoice[];
-}
-
-interface BackendExerciseData {
-    questions: BackendExerciseQuestion[];
+    questionType: string;
+    section: string;
+    imageUrl: string;
+    createdAt: string;
+    updatedAt: string;
+    choices: ExerciseChoice[];
 }
 
 export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
@@ -62,20 +75,27 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
         setUploadProgress(0);
     }, [video]);
 
-    // Fetch existing exercises for this video
+    // Convert API exercise format to ExerciseQuestion format (matching video detail page)
+    const convertApiExerciseToExerciseQuestion = (apiExercise: ApiExercise): ExerciseQuestionWithChoiceIds => {
+        const correctAnswerIndex = apiExercise.choices.findIndex(choice => choice.isCorrect);
+        return {
+            id: apiExercise.id.toString(),
+            question: apiExercise.title,
+            options: apiExercise.choices.map(choice => choice.text),
+            correctAnswer: correctAnswerIndex,
+            choiceIds: apiExercise.choices.map(choice => choice.id) // Store original choice IDs
+        };
+    };
+
+    // Fetch existing exercises for this video (using same API as video detail page)
     useEffect(() => {
         const fetchExercises = async () => {
             try {
-                const response = await axios.get(`http://localhost:6969/exercises/${video.id}`); // ! TO CHANGE  
-                const exerciseData: BackendExerciseData = response.data;
-                if (exerciseData && exerciseData.questions) {
-                    // Convert backend format to ExerciseQuestion format
-                    const convertedExercises = exerciseData.questions.map((q: BackendExerciseQuestion, index: number) => ({
-                        id: `exercise_${index}`,
-                        question: q.title,
-                        options: q.choices.map((c: BackendExerciseChoice) => c.text),
-                        correctAnswer: q.choices.findIndex((c: BackendExerciseChoice) => c.isCorrect)
-                    }));
+                const response = await axios.get(`http://localhost:6969/videos/${video.id}/exercise`);
+                const apiExercises: ApiExercise[] = response.data;
+                if (apiExercises && apiExercises.length > 0) {
+                    // Convert API format to ExerciseQuestion format
+                    const convertedExercises = apiExercises.map(convertApiExerciseToExerciseQuestion);
                     setFormData(prev => ({ ...prev, exercises: convertedExercises }));
                 }
             } catch (error) {
@@ -150,9 +170,18 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
 
     // Handle MCQ exercises
     const handleExercisesChange = (newExercises: ExerciseQuestion[]) => {
+        // Convert to ExerciseQuestionWithChoiceIds, preserving choiceIds where possible
+        const exercisesWithChoiceIds: ExerciseQuestionWithChoiceIds[] = newExercises.map((exercise, exerciseIndex) => {
+            const existingExercise = formData.exercises[exerciseIndex];
+            return {
+                ...exercise,
+                choiceIds: existingExercise?.choiceIds || undefined
+            };
+        });
+
         setFormData(prev => ({
             ...prev,
-            exercises: newExercises
+            exercises: exercisesWithChoiceIds
         }));
     };
 
@@ -171,10 +200,11 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
     };
 
     // Convert ExerciseQuestion to the backend format
-    const convertExercisesToBackendFormat = (exercises: ExerciseQuestion[]) => {
+    const convertExercisesToBackendFormat = (exercises: ExerciseQuestionWithChoiceIds[]) => {
         return exercises.map(exercise => ({
             title: exercise.question,
             choices: exercise.options.map((option, index) => ({
+                id: exercise.choiceIds?.[index], // Use original ID or generate new one
                 text: option,
                 isCorrect: index === exercise.correctAnswer
             }))
@@ -237,7 +267,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
             }
 
             // Update video data
-            await axios.patch(`http://localhost:6969/user-content/videos/${video.id}`, {
+            await axios.put(`http://localhost:6969/videos/${video.id}`, {
                 title: formData.title,
                 description: formData.description,
                 videoKey: videoKey,
@@ -246,24 +276,18 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
 
             // Update exercises
             if (formData.exercises.length > 0) {
-                const exerciseData = {
-                    videoId: video.id,
-                    questions: convertExercisesToBackendFormat(formData.exercises)
-                };
-
                 // Try to update existing exercises, if fails, create new ones
                 try {
-                    await axios.put(`http://localhost:6969/exercises/${video.id}`, exerciseData);
-                } catch (error) {
-                    // If update fails, create new exercises
-                    await axios.post(`http://localhost:6969/exercises`, exerciseData);
+                    await axios.put(`http://localhost:6969/videos/${video.id}/exercise`, { questions: convertExercisesToBackendFormat(formData.exercises) });
+                } catch (updateError) {
+                    console.error('Failed to update exercises, creating new ones:', updateError);
                 }
             }
 
             setUploadProgress(100);
 
             // Fetch updated video data
-            const updatedResponse = await axios.get(`http://localhost:6969/user-content/videos/${video.id}`);
+            const updatedResponse = await axios.get(`http://localhost:6969/videos/${video.id}`);
             onSave(updatedResponse.data);
 
             // Reset edit form states

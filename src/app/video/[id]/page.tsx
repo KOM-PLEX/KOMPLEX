@@ -1,151 +1,62 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Play, Pause, Volume2, VolumeX, Maximize, Settings, Share2, ThumbsUp, ThumbsDown, Bookmark, MoreVertical, User, Eye, Clock, Calendar, MessageSquare, BookOpen } from 'lucide-react';
+import { ArrowLeft, Play, Share2, ThumbsUp, Bookmark, User, Eye, Clock, Calendar, MessageSquare, BookOpen } from 'lucide-react';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Comments from '@/components/pages/forum/Comments';
 import ExerciseBox from '@/components/pages/docs/common/box/ExerciseBox';
 import VideoCard from '@/components/pages/video/VideoCard';
 import type { VideoPost, VideoComment } from '@/types/content/videos';
-import type { Media } from '@/types/content/media';
 import axios from 'axios';
 
-// Mock exercises data
-const mockExercises = [
-    {
-        id: "ex1",
-        question: "តើអនុគមន៍លោការីតមានលក្ខណៈសម្បត្តិអ្វីខ្លះ?",
-        options: [
-            "អនុគមន៍លោការីតមានលក្ខណៈសម្បត្តិដែលអនុញ្ញាតឱ្យយើងដោះស្រាយសមីការដោយងាយស្រួល",
-            "អនុគមន៍លោការីតមានតែក្នុងគណិតវិទ្យាប៉ុណ្ណោះ",
-            "អនុគមន៍លោការីតគ្មានការប្រើប្រាស់ក្នុងជីវិតជាក់ស្តែងទេ",
-            "អនុគមន៍លោការីតគ្មានលក្ខណៈសម្បត្តិអ្វីទេ"
-        ],
-        correctAnswer: 0
-    },
-    {
-        id: "ex2",
-        question: "តើអ្វីជាលក្ខណៈសម្បត្តិសំខាន់របស់អនុគមន៍លោការីត?",
-        options: [
-            "អនុគមន៍លោការីតអាចបំប្លែងផលគុណទៅជាផលបូក",
-            "អនុគមន៍លោការីតអាចបំប្លែងផលចែកទៅជាផលដក",
-            "អនុគមន៍លោការីតអាចបំប្លែងផលគុណទៅជាផលបូក និងផលចែកទៅជាផលដក",
-            "អនុគមន៍លោការីតគ្មានលក្ខណៈសម្បត្តិបំប្លែងទេ"
-        ],
-        correctAnswer: 2
-    },
-    {
-        id: "ex3",
-        question: "តើអនុគមន៍លោការីតអាចជួយដោះស្រាយបញ្ហាអ្វីខ្លះ?",
-        options: [
-            "តែការគណនាគណិតវិទ្យាប៉ុណ្ណោះ",
-            "ការគណនាគណិតវិទ្យា ការវិភាគទិន្នន័យ និងការគណនាប្រាក់កាស",
-            "តែការគណនាប្រាក់កាសប៉ុណ្ណោះ",
-            "គ្មានការប្រើប្រាស់អ្វីទេ"
-        ],
-        correctAnswer: 1
-    }
-];
+// API response types for exercises
+interface ExerciseChoice {
+    id: number;
+    questionId: number;
+    text: string;
+    isCorrect: boolean;
+    createdAt: string;
+    updatedAt: string;
+}
 
-// Mock videos data for recommendations sidebar
-const mockVideos: VideoPost[] = [
-    {
-        id: 1,
-        userId: 1,
-        title: "អនុគមន៍លោការីត - មូលដ្ឋានគ្រឹះ",
-        description: "ស្វែងយល់អំពីអនុគមន៍លោការីត និងការប្រើប្រាស់របស់វាក្នុងគណិតវិទ្យា។",
-        duration: 1200,
-        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        viewCount: 1250,
-        createdAt: "2025-08-16T09:01:37.337Z",
-        updatedAt: "2025-08-16T09:01:37.337Z",
-        username: "សុខ ដារា",
-        isSave: false,
-        isLike: false,
-        likeCount: 45,
-        saveCount: 12
-    },
-    {
-        id: 2,
-        userId: 1,
-        title: "ដេរីវេទីវ - ការគណនាអត្រានៃការផ្លាស់ប្តូរ",
-        description: "រៀនអំពីដេរីវេទីវ និងរបៀបគណនាអត្រានៃការផ្លាស់ប្តូរ។",
-        duration: 900,
-        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        viewCount: 890,
-        createdAt: "2025-08-15T14:30:00.000Z",
-        updatedAt: "2025-08-15T14:30:00.000Z",
-        username: "វណ្ណា សុខ",
-        isSave: true,
-        isLike: true,
-        likeCount: 67,
-        saveCount: 23
-    },
-    {
-        id: 3,
-        userId: 1,
-        title: "អាំងតេក្រាល - ការគណនាផ្ទៃក្រឡា",
-        description: "ស្វែងយល់អំពីអាំងតេក្រាល និងការគណនាផ្ទៃក្រឡាក្រោមខ្សែកោង។",
-        duration: 1500,
-        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        viewCount: 2100,
-        createdAt: "2025-08-14T10:15:00.000Z",
-        updatedAt: "2025-08-14T10:15:00.000Z",
-        username: "រតនា ម៉េង",
-        isSave: false,
-        isLike: false,
-        likeCount: 89,
-        saveCount: 34
-    },
-    {
-        id: 4,
-        userId: 1,
-        title: "ត្រីកោណមាត្រ - អត្តសញ្ញាណ និងកូស៊ីនុស",
-        description: "រៀនអំពីត្រីកោណមាត្រ អត្តសញ្ញាណ និងកូស៊ីនុស។",
-        duration: 1100,
-        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        viewCount: 1560,
-        createdAt: "2025-08-13T16:45:00.000Z",
-        updatedAt: "2025-08-13T16:45:00.000Z",
-        username: "សុខ ដារា",
-        isSave: true,
-        isLike: false,
-        likeCount: 78,
-        saveCount: 19
-    },
-    {
-        id: 5,
-        userId: 1,
-        title: "វ៉ិចទ័រ - ការបូក និងដកវ៉ិចទ័រ",
-        description: "ស្វែងយល់អំពីវ៉ិចទ័រ និងការប្រតិបត្តិការមូលដ្ឋាន។",
-        duration: 800,
-        videoUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrl: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        videoUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        thumbnailUrlForDeletion: "https://res.cloudinary.com/dc5uhjhun/video/upload/v1755334691/my_app_uploads/gsywj0uootmugg4rfnur.mp4",
-        viewCount: 980,
-        createdAt: "2025-08-12T11:20:00.000Z",
-        updatedAt: "2025-08-12T11:20:00.000Z",
-        username: "វណ្ណា សុខ",
-        isSave: false,
-        isLike: true,
-        likeCount: 56,
-        saveCount: 15
+interface ApiExercise {
+    id: number;
+    exerciseId: number;
+    userId: number | null;
+    title: string;
+    questionType: string;
+    section: string;
+    imageUrl: string;
+    createdAt: string;
+    updatedAt: string;
+    choices: ExerciseChoice[];
+}
+
+// Convert API exercise format to ExerciseBox format
+const convertApiExerciseToExerciseBox = (apiExercise: ApiExercise) => {
+    const correctAnswerIndex = apiExercise.choices.findIndex(choice => choice.isCorrect);
+    return {
+        id: apiExercise.id.toString(),
+        question: apiExercise.title,
+        options: apiExercise.choices.map(choice => choice.text),
+        correctAnswer: correctAnswerIndex
+    };
+};
+
+// API function to fetch all videos for recommendations
+const fetchAllVideos = async (): Promise<VideoPost[]> => {
+    try {
+        const response = await axios.get('http://localhost:6969/videos');
+        if (response.status !== 200) {
+            throw new Error('Failed to fetch videos');
+        }
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching videos:', error);
+        return [];
     }
-];
+};
 
 // API function to fetch video by ID
 const fetchVideoById = async (id: number): Promise<VideoPost | null> => {
@@ -162,17 +73,39 @@ const fetchVideoById = async (id: number): Promise<VideoPost | null> => {
     }
 };
 
+// API function to fetch exercises for a video
+const fetchVideoExercises = async (videoId: number): Promise<ApiExercise[]> => {
+    try {
+        const response = await axios.get(`http://localhost:6969/videos/${videoId}/exercise`);
+        if (response.status !== 200) {
+            throw new Error('Failed to fetch exercises');
+        }
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching exercises:', error);
+        return [];
+    }
+};
+
 
 
 export default function VideoDetailPage() {
     const params = useParams();
-    const router = useRouter();
     const videoId = parseInt(params.id as string);
     const [activeTab, setActiveTab] = useState<'related' | 'comments' | 'exercise'>('related');
     const [video, setVideo] = useState<VideoPost | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [comments, setComments] = useState<VideoComment[]>([]);
+    const [exercises, setExercises] = useState<Array<{
+        id: string;
+        question: string;
+        options: string[];
+        correctAnswer: number;
+    }>>([]);
+    const [exercisesLoading, setExercisesLoading] = useState(false);
+    const [recommendedVideos, setRecommendedVideos] = useState<VideoPost[]>([]);
+    const [videosLoading, setVideosLoading] = useState(false);
     useEffect(() => {
         const loadVideo = async () => {
             if (!videoId || isNaN(videoId)) {
@@ -191,7 +124,8 @@ export default function VideoDetailPage() {
                 } else {
                     setError('Video not found');
                 }
-            } catch (err) {
+            } catch (error) {
+                console.error('Failed to load video:', error);
                 setError('Failed to load video');
             } finally {
                 setLoading(false);
@@ -207,13 +141,46 @@ export default function VideoDetailPage() {
                     throw new Error('Failed to fetch comments');
                 }
                 setComments(response.data);
-            } catch (err) {
-                setError('Failed to fetch comments');
+            } catch (error) {
+                console.error('Failed to fetch comments:', error);
+            }
+        };
+
+        const loadExercises = async () => {
+            setExercisesLoading(true);
+            try {
+                const apiExercises = await fetchVideoExercises(videoId);
+                const convertedExercises = apiExercises.map(convertApiExerciseToExerciseBox);
+                setExercises(convertedExercises);
+            } catch (error) {
+                console.error('Failed to load exercises:', error);
+                setExercises([]);
+            } finally {
+                setExercisesLoading(false);
+            }
+        };
+
+        const loadRecommendedVideos = async () => {
+            setVideosLoading(true);
+            try {
+                const allVideos = await fetchAllVideos();
+                // Filter out the current video and limit to 5 recommendations
+                const filteredVideos = allVideos
+                    .filter(v => v.id !== videoId)
+                    .slice(0, 5);
+                setRecommendedVideos(filteredVideos);
+            } catch (error) {
+                console.error('Failed to load recommended videos:', error);
+                setRecommendedVideos([]);
+            } finally {
+                setVideosLoading(false);
             }
         };
 
         loadVideo();
         fetchComments();
+        loadExercises();
+        loadRecommendedVideos();
     }, [videoId]);
 
     const handleLike = async (videoId: number, isLiked: boolean, video: VideoPost) => {
@@ -373,14 +340,23 @@ export default function VideoDetailPage() {
             <div className="bg-white rounded-2xl shadow-sm">
                 {activeTab === 'related' && (
                     <div className="p-6">
-                        <div className="space-y-4">
-                            {mockVideos
-                                .filter(v => v.id !== videoId)
-                                .slice(0, 5)
-                                .map((relatedVideo) => (
+                        {videosLoading ? (
+                            <div className="text-center">
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                                <p className="text-gray-600">កំពុងផ្ទុកវីដេអូ...</p>
+                            </div>
+                        ) : recommendedVideos.length > 0 ? (
+                            <div className="space-y-4">
+                                {recommendedVideos.map((relatedVideo) => (
                                     <VideoCard key={relatedVideo.id} video={relatedVideo} variant="compact" />
                                 ))}
-                        </div>
+                            </div>
+                        ) : (
+                            <div className="text-center text-gray-500">
+                                <Play size={48} className="mx-auto mb-4 text-gray-300" />
+                                <p>មិនមានវីដេអូដទៃទៀត</p>
+                            </div>
+                        )}
                     </div>
                 )}
 
@@ -439,7 +415,25 @@ export default function VideoDetailPage() {
 
             {/* Mobile Tab Content */}
             {activeTab === 'exercise' && (
-                <ExerciseBox questions={mockExercises} />
+                <>
+                    {exercisesLoading ? (
+                        <div className="bg-white rounded-2xl shadow-sm p-6">
+                            <div className="text-center">
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                                <p className="text-gray-600">កំពុងផ្ទុកលំហាត់...</p>
+                            </div>
+                        </div>
+                    ) : exercises.length > 0 ? (
+                        <ExerciseBox questions={exercises} />
+                    ) : (
+                        <div className="bg-white rounded-2xl shadow-sm p-6">
+                            <div className="text-center text-gray-500">
+                                <BookOpen size={48} className="mx-auto mb-4 text-gray-300" />
+                                <p>មិនមានលំហាត់សម្រាប់វីដេអូនេះទេ</p>
+                            </div>
+                        </div>
+                    )}
+                </>
             )}
             {activeTab === 'comments' && (
                 <Comments type='video' parentId={videoId} comments={comments} />
@@ -447,18 +441,27 @@ export default function VideoDetailPage() {
             {activeTab === 'related' && (
                 <div className="bg-white rounded-2xl p-4 shadow-sm">
                     <h3 className="font-semibold text-gray-900 mb-4 text-lg">វីដេអូដទៃទៀត</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {mockVideos
-                            .filter(v => v.id !== videoId)
-                            .slice(0, 6)
-                            .map((relatedVideo) => (
+                    {videosLoading ? (
+                        <div className="text-center py-8">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                            <p className="text-gray-600">កំពុងផ្ទុកវីដេអូ...</p>
+                        </div>
+                    ) : recommendedVideos.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {recommendedVideos.slice(0, 6).map((relatedVideo) => (
                                 <VideoCard
                                     key={relatedVideo.id}
                                     video={relatedVideo}
                                     variant="compact"
                                 />
                             ))}
-                    </div>
+                        </div>
+                    ) : (
+                        <div className="text-center text-gray-500 py-8">
+                            <Play size={48} className="mx-auto mb-4 text-gray-300" />
+                            <p>មិនមានវីដេអូដទៃទៀត</p>
+                        </div>
+                    )}
                 </div>
             )}
         </div>
@@ -476,7 +479,23 @@ export default function VideoDetailPage() {
 
                         {/* Exercise Section - Under Video for Desktop */}
                         <div className="hidden lg:block">
-                            <ExerciseBox questions={mockExercises} />
+                            {exercisesLoading ? (
+                                <div className="bg-white rounded-2xl shadow-sm p-6">
+                                    <div className="text-center">
+                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                                        <p className="text-gray-600">កំពុងផ្ទុកលំហាត់...</p>
+                                    </div>
+                                </div>
+                            ) : exercises.length > 0 ? (
+                                <ExerciseBox questions={exercises} />
+                            ) : (
+                                <div className="bg-white rounded-2xl shadow-sm p-6">
+                                    <div className="text-center text-gray-500">
+                                        <BookOpen size={48} className="mx-auto mb-4 text-gray-300" />
+                                        <p>មិនមានលំហាត់សម្រាប់វីដេអូនេះទេ</p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
 

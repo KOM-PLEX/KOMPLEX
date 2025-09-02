@@ -154,6 +154,7 @@ export default function CreateVideoPage() {
                 topic: 'biology', // Fake string for now
                 type: 'biology',
                 thumbnailKey: thumbnailResponse.data.key,
+                questions: convertExercisesToBackendFormat(formData.exercises)
             });
 
 
