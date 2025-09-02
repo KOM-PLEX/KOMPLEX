@@ -36,7 +36,7 @@ const STUDY_METHODS: TopicContent = {
 			</div>
 		  </div>
   
-		  <div className="border-t pt-3">
+		  <div className="border-t pt-3 ">
 			<div className="font-semibold mb-2">♦ ទិសដៅអថេរភាព</div>
 			<div className="space-y-2 ml-4">
 			  <div className="flex items-start gap-2">

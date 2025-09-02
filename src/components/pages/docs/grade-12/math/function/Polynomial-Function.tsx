@@ -145,7 +145,7 @@ const TOPIC_CONTENT: TopicContent = {
 						<div className=" bg-white justify-start mt-2">
             <div className="w-full max-w-full overflow-hidden bg-white justify-start mt-2">
             <div className="w-[100%] md:w-[50%] max-w-full overflow-hidden bg-white justify-start mt-2">
-      <div className="bg-white">
+      		<div className="bg-white">
         <table className="w-full border-collapse min-w-0" style={{
           fontSize: 'clamp(14px, 4vw, 16px)',
           fontFamily: 'serif'
@@ -859,6 +859,309 @@ const TOPIC_CONTENT: TopicContent = {
 	},
 
 };
+const KEY : TopicContent = {
+	tip:{
+		title: "លក្ខណៈសម្គាល់ងាយៗ​ ពេលសិក្សាសញ្ញាសមីការមានឬសតែមួយ",
+		content: (
+			<div>
+				<div>
+					<div>♦ បើសមីការមានឬសតែមួយដែលមានទម្រង់ <InlineMath math="ax+b" /></div>
+					<div>♦ នោះការសិក្សាសញ្ញាគឺ (ធំដូចតូចផ្ទុយ)</div>
+					<p>♦ មានន័យថាបើធំជាងឬសមានសញ្ញាដូច a តូចជាងឬសមានសញ្ញាផ្ទុយ a</p>
+					<div>ឧទាហរណ៍: f'(x) យកសញ្ញាតាម <InlineMath math="-x +2 = 0" /><br/>គេបាន x = 2</div>
+					<div className="w-[60%] md:w-[25%] max-w-full overflow-hidden bg-white justify-start mt-2">
+      		<div className="bg-white">
+        <table className="w-full border-collapse min-w-0" style={{
+          fontSize: 'clamp(14px, 4vw, 16px)',
+          fontFamily: 'serif'
+        }}>
+          <tbody>
+            {/* X row */}
+            <tr>
+              <td className="border-2 border-black text-center font-normal bg-white" style={{
+                width: '10%',
+                minWidth: '40px',
+                height: '45px',
+                verticalAlign: 'middle',
+                fontStyle: 'italic'
+              }}>
+                x
+              </td>
+              <td className="border-2 border-black bg-white relative" style={{
+                width: '90%',
+                height: '45px',
+                verticalAlign: 'middle'
+              }}>
+                {/* −∞ at far left */}
+                <div className="absolute" style={{
+                  left: '2%',
+                  top: '50%',
+                  transform: 'translateY(-50%)'
+                }}>
+                  −∞
+                </div>
+                
+                {/* 1 positioned */}
+                <div className="absolute" style={{
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%,-50%)'
+                }}>
+                  2
+                </div>
+                
+                {/* +∞ at far right */}
+                <div className="absolute" style={{
+                  right: '5%',
+                  top: '50%',
+                  transform: 'translateY(-50%)'
+                }}>
+                  +∞
+                </div>
+              </td>
+            </tr>
+            
+            {/* f'(x) row */}
+            <tr>
+              <td className="border-2 border-black text-center font-normal bg-white" style={{
+                height: '45px',
+                verticalAlign: 'middle',
+                fontStyle: 'italic'
+              }}>
+                f'(x)
+              </td>
+              <td className="border-2 border-black bg-white relative" style={{
+                height: '45px'
+              }}>
+                {/* + sign in first interval */}
+                <div className="absolute" style={{
+                  left: '20%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  fontSize: 'clamp(16px, 5vw, 18px)',
+                  fontWeight: 'bold'
+                }}>
+                  +
+                </div>
+                
+                {/* 0 at x=1 */}
+                <div className="absolute" style={{
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  fontSize: 'clamp(16px, 5vw, 18px)',
+                  fontWeight: 'bold'
+                }}>
+                  0
+                </div>
+                
+                {/* - sign in second interval */}
+                <div className="absolute" style={{
+                  left: '70%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  fontSize: 'clamp(16px, 5vw, 18px)',
+                  fontWeight: 'bold'
+                }}>
+                  −
+                </div>
+                
+                {/* Single vertical line at x=1 */}
+                <div className="absolute" style={{
+                  left: '50%',
+                  top: '0',
+                  height: '100%',
+                  width: '2px',
+                  backgroundColor: 'black',
+                  transform: 'translateX(-50%)'
+                }}></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+	</div>
+		<p>• <InlineMath math="(-\infty,2)"/> គឺតូចជាងឬស</p>
+		<p>• <InlineMath math="(2,+\infty)"/> គឺធំជាងឬស</p>
+	</div>
+		),
+	}
+};
+const KEY2 : TopicContent = {
+	tip:{
+		title: "លក្ខណៈសម្គាល់ងាយៗ​ ពេលសិក្សាសញ្ញាដែលមានឬស 2",
+		content: (
+			<div>
+				<div>
+					<div>♦ បើសមីការមានឬស2ដែលមានទម្រង់ <InlineMath math="ax^2+bx+c" /></div>
+					<div>♦ នោះការសិក្សាសញ្ញាគឺ (ក្រៅដូចខូចក្នុង)</div>
+					<p>♦ មានន័យថាបើនៅក្រៅឬសគឺយកសញ្ញាដូច a ហើយបើនៅចន្លោះឬសគឺសញ្ញាផ្ទុយ a</p>
+					<div>ឧទាហរណ៍: f'(x) យកសញ្ញាតាម <InlineMath math="x^2+2x-3 = 0" /><br/>គេបាន x = 2</div>
+					<div className="w-full max-w-full overflow-hidden  justify-start mt-2">
+            <div className="w-[60%] md:w-[30%] max-w-full overflow-hidden justify-start mt-2">
+      		<div className="bg-white">
+        <table className="w-full border-collapse min-w-0" style={{
+          fontSize: 'clamp(14px, 4vw, 16px)',
+          fontFamily: 'serif'
+        }}>
+          <tbody>
+            {/* X row */}
+            <tr>
+              <td className="border-2 border-black text-center font-normal bg-white" style={{
+                width: '10%',
+                minWidth: '40px',
+                height: '45px',
+                verticalAlign: 'middle',
+                fontStyle: 'italic'
+              }}>
+                x
+              </td>
+              <td className="border-2 border-black bg-white relative" style={{
+                width: '90%',
+                height: '45px',
+                verticalAlign: 'middle'
+              }}>
+                {/* −∞ at far left */}
+                <div className="absolute" style={{
+                  left: '2%',
+                  top: '50%',
+                  transform: 'translateY(-50%)'
+                }}>
+                  −∞
+                </div>
+                
+                {/* 1 positioned */}
+                <div className="absolute" style={{
+                  left: '30%',
+                  top: '50%',
+                  transform: 'translateY(-50%)'
+                }}>
+                  1
+                </div>
+                
+                {/* 3 positioned at center */}
+                <div className="absolute" style={{
+                  left: '60%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)'
+                }}>
+                  -3
+                </div>
+
+                
+                {/* +∞ at far right */}
+                <div className="absolute" style={{
+                  left: '82%',
+                  top: '50%',
+                  transform: 'translateY(-50%)'
+                }}>
+                  +∞
+                </div>
+              </td>
+            </tr>
+            
+            {/* f'(x) row */}
+            <tr>
+              <td className="border-2 border-black text-center font-normal bg-white" style={{
+                height: '45px',
+                verticalAlign: 'middle',
+                fontStyle: 'italic'
+              }}>
+                f'(x)
+              </td>
+              <td className="border-2 border-black bg-white relative" style={{
+                height: '45px'
+              }}>
+                {/* + sign in first interval */}
+                <div className="absolute" style={{
+                  left: '20%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  fontSize: 'clamp(16px, 5vw, 18px)',
+                  fontWeight: 'bold'
+                }}>
+                  +
+                </div>
+                
+                {/* 0 at x=1 */}
+                <div className="absolute" style={{
+                  left: '31%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  fontSize: 'clamp(16px, 5vw, 18px)',
+                  fontWeight: 'bold'
+                }}>
+                  0
+                </div>
+                
+                {/* - sign in second interval */}
+                <div className="absolute" style={{
+                  left: '45%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  fontSize: 'clamp(16px, 5vw, 18px)',
+                  fontWeight: 'bold'
+                }}>
+                  −
+                </div>
+                
+                {/* Single vertical line at x=1 */}
+                <div className="absolute" style={{
+                  left: '31%',
+                  top: '0',
+                  height: '100%',
+                  width: '2px',
+                  backgroundColor: 'black',
+                  transform: 'translateX(-50%)'
+                }}></div>
+      
+                
+                {/* Single vertical line at x=5 */}
+                <div className="absolute" style={{
+                  left: '60%',
+                  top: '0',
+                  height: '100%',
+                  width: '2px',
+                  backgroundColor: 'black',
+                  transform: 'translateX(-50%)'
+                }}></div>
+                {/* 0 at x=5 */}
+                <div className="absolute" style={{
+                  left: '60%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  fontSize: 'clamp(16px, 5vw, 18px)',
+                  fontWeight: 'bold'
+                }}>
+                  0
+                </div>
+                
+                {/* + sign in last interval */}
+                <div className="absolute" style={{
+                  left: '75%',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  fontSize: 'clamp(16px, 5vw, 18px)',
+                  fontWeight: 'bold'
+                }}>
+                  +
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+	</div>
+	</div>
+		<p>• <InlineMath math="(-\infty,1), (3,+\infty)"/> គឺក្រៅឬស</p>
+		<p>• <InlineMath math="(1,3)"/> គឺចន្លោះឬស</p>
+	</div>
+		),
+	}
+};
+
 
 // ===== MAIN COMPONENT =====
 
@@ -870,6 +1173,8 @@ export default function PolynomialFunction() {
 			)}
 
 			{TOPIC_CONTENT.tip && <TipBox title={TOPIC_CONTENT.tip.title} content={TOPIC_CONTENT.tip.content} />}
+			{KEY.tip && <TipBox title={KEY.tip.title} content={KEY.tip.content} />}
+			{KEY2.tip && <TipBox title={KEY2.tip.title} content={KEY2.tip.content} />}
 
 			{TOPIC_CONTENT.example && (
 				<ExampleBox
@@ -889,7 +1194,7 @@ export default function PolynomialFunction() {
 			)}
 			{TOPIC_CONTENT.hint && <HintBox content={TOPIC_CONTENT.hint.content} />}
 
-			{TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
+		
 
 		</>
 	);

@@ -155,13 +155,56 @@ const TOPIC_CONTENT: TopicContent = {
   graphExplanation: {
     expressions: [
       { id: "1", latex: "f(x) = x + \\frac{1-3e^x}{1+e^x}", color: "#FF4136" },
-      { id: "2", latex: "g(x) = x + 1", color: "#0074D9" },
-      { id: "3", latex: "h(x) = x - 3", color: "#2ECC40" },
+      { id: "2", latex: "d_1 = x + 1", color: "#0074D9" },
+      { id: "3", latex: "d_2 = x - 3", color: "#2ECC40" },
     ],
     explanation: (
       <>
-        ក្រាបបង្ហាញអនុគមន៍អិចស្ប៉ូណង់ស្យែលផ្សេងៗ: <InlineMath math="e^x" /> (ក្រហម), <InlineMath math="2^x" /> (ខៀវ), និង <InlineMath math="(\frac{1}{2})^x" /> (បៃតង)។ 
-        សម្គាល់ថាអនុគមន៍ទាំងអស់ឆ្លងកាត់ចំណុច <InlineMath math="(0, 1)" /> ព្រោះ <InlineMath math="a^0 = 1" />។
+        <div>យើងមាន <InlineMath math = "f(x) = x + \frac{1-3e^x}{1+e^x}" /> <br/>
+        <InlineMath math = "d_1: y = x + 1" />ជាអាស៊ីមតូតទ្រេតទី 1<br/>
+        <p>តារាងតម្លៃលេខ</p>
+					<table className="table-auto border-collapse border border-gray-300 text-left my-4">
+						<thead>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">x</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">0</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">-1</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">y</th>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="1" />
+								</td>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="0" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+        <InlineMath math = "d_2: y= x - 3" />ជាអាស៊ីមតូតទ្រេតទី 2</div>
+        <p>តារាងតម្លៃលេខ</p>
+					<table className="table-auto border-collapse border border-gray-300 text-left my-4">
+						<thead>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">x</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">0</th>
+								<th className="border border-gray-300 px-4 py-2 text-left font-normal">3</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th className="border border-gray-300 px-4 py-2 text-left font-bold">y</th>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="-3" />
+								</td>
+								<td className="border border-gray-300 px-4 py-2 text-left">
+									<InlineMath math="0" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
       </>
     ),
     options: {
