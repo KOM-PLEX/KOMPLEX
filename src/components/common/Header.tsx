@@ -2,12 +2,14 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil, User, Settings, LogOut, BookMarked, UserCircle, MessageCircle } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil, Settings, LogOut, BookMarked, MessageCircle, UserIcon } from 'lucide-react';
 import { Menu as HeadlessMenu, Transition } from '@headlessui/react';
 import { curriculum } from '@/curriculum/curriculum';
 import FeedbackModal from '../pages/feedback/FeedbackModal';
-import Image from 'next/image';
+import { useAuth } from '@/hooks/useAuth';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/config/firebase';
 
 const navLinks = [
     {
@@ -49,16 +51,20 @@ const navLinks = [
 ]
 
 export default function Header() {
+    const router = useRouter();
     const pathname = usePathname();
-    const isAuthPage = pathname?.startsWith('/auth');
+    const { user, userOAuth, loading } = useAuth();
+
 
     const [showFeedbackModal, setShowFeedbackModal] = useState(false);
 
-    // Mock user data - replace with actual user data later
-    const user = {
-        name: 'សុខវណ្ណា អ៊ុំ',
-        email: 'sokvanna.oum@example.com',
-        avatar: 'ស'
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            router.push("/auth");
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
     };
 
 
@@ -96,7 +102,7 @@ export default function Header() {
                                         const isActive = pathname?.includes(link.href);
                                         return (
                                             <HeadlessMenu.Item key={link.href}>
-                                                {({ active }) => (
+                                                {() => (
                                                     <Link
                                                         href={link.href}
                                                         className={`flex items-center gap-3 w-full text-left px-4 py-3 rounded-xl text-sm text-gray-600 no-underline font-medium backdrop-blur-sm  transition-all duration-300 ${isActive
@@ -112,6 +118,99 @@ export default function Header() {
                                         );
                                     })}
                                 </div>
+                                {/* Mobile: User area and actions */}
+                                {!loading && (
+                                    <div className="mt-2 p-2">
+                                        <div className='h-0.5 bg-gray-200 my-2'></div>
+                                        {userOAuth || user ? (
+                                            <>
+                                                <div className="flex items-center gap-3 px-2 py-2">
+                                                    {userOAuth ? (
+                                                        userOAuth.photoURL ? (
+                                                            <img src={userOAuth.photoURL} alt="Profile" className="w-8 h-8 border border-indigo-500 rounded-full object-cover" />
+                                                        ) : (
+                                                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
+                                                                {(userOAuth.displayName || userOAuth.email || 'U').charAt(0)}
+                                                            </div>
+                                                        )
+                                                    ) : user ? (
+                                                        user.profileImage ? (
+                                                            <img src={user.profileImage} alt="Profile" className="w-8 h-8 border border-indigo-500  rounded-full object-cover" />
+                                                        ) : (
+                                                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
+                                                                {((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || user.email || 'U').charAt(0)}
+                                                            </div>
+                                                        )
+                                                    ) : null}
+                                                    <div>
+                                                        <div className="text-sm font-semibold text-gray-900">
+                                                            {userOAuth ? (userOAuth.displayName || 'User') : user ? ((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || 'User') : 'User'}
+                                                        </div>
+                                                        <div className="text-xs text-gray-500">
+                                                            {userOAuth ? (userOAuth.email || '') : user ? (user.email || '') : ''}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="space-y-1 mt-2">
+                                                    <HeadlessMenu.Item>
+                                                        {({ active }) => (
+                                                            <Link
+                                                                href="/my-content"
+                                                                className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
+                                                            >
+                                                                <BookMarked className="w-4 h-4" />
+                                                                មាតិការបស់ខ្ញុំ
+                                                            </Link>
+                                                        )}
+                                                    </HeadlessMenu.Item>
+                                                    <HeadlessMenu.Item>
+                                                        {({ active }) => (
+                                                            <button
+                                                                onClick={() => setShowFeedbackModal(true)}
+                                                                className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
+                                                            >
+                                                                <MessageCircle className="w-4 h-4" />
+                                                                ជួយផ្ដល់មតិ
+                                                            </button>
+                                                        )}
+                                                    </HeadlessMenu.Item>
+                                                    <HeadlessMenu.Item>
+                                                        {({ active }) => (
+                                                            <Link
+                                                                href="/settings"
+                                                                className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
+                                                            >
+                                                                <Settings className="w-4 h-4" />
+                                                                ការកំណត់
+                                                            </Link>
+                                                        )}
+                                                    </HeadlessMenu.Item>
+                                                    <HeadlessMenu.Item>
+                                                        {({ active }) => (
+                                                            <button
+                                                                onClick={handleLogout}
+                                                                className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-red-600' : 'hover:bg-gray-50 hover:text-red-600'}`}
+                                                            >
+                                                                <LogOut className="w-4 h-4" />
+                                                                ចាកចេញ
+                                                            </button>
+                                                        )}
+                                                    </HeadlessMenu.Item>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <div className="px-2 py-2">
+                                                <Link
+                                                    href="/auth"
+                                                    className="w-full bg-indigo-600 text-white px-4 py-3 rounded-xl font-semibold text-sm hover:bg-indigo-500 transition-colors duration-300 shadow-lg shadow-indigo-500/30 border border-white/20 flex items-center justify-center gap-2"
+                                                >
+                                                    <UserIcon size={16} />
+                                                    ចុះឈ្មោះ
+                                                </Link>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
                             </HeadlessMenu.Items>
                         </Transition>
                     </HeadlessMenu>
@@ -133,88 +232,132 @@ export default function Header() {
                             );
                         })}
 
-                        {/* User Menu */}
-                        <HeadlessMenu as="div" className="relative ml-2">
-                            <HeadlessMenu.Button className="flex items-center gap-2 rounded-xl transition-colors duration-200 cursor-pointer">
-                                <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
-                                    {user.avatar}
-                                </div>
-                            </HeadlessMenu.Button>
+                        {/* User Menu or Sign Up Button */}
+                        {loading ? null : (userOAuth || user) ? (
+                            <HeadlessMenu as="div" className="relative ml-2">
+                                <HeadlessMenu.Button className="flex items-center gap-2 rounded-xl transition-colors duration-200 cursor-pointer">
+                                    {userOAuth ? (
+                                        userOAuth.photoURL ? (
+                                            <img src={userOAuth.photoURL} alt="Profile" className="w-8 h-8 border border-indigo-500 rounded-full object-cover" />
+                                        ) : (
+                                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
+                                                {(userOAuth.displayName || userOAuth.email || 'U').charAt(0)}
+                                            </div>
+                                        )
+                                    ) : user ? (
+                                        user.profileImage ? (
+                                            <img src={user.profileImage} alt="Profile" className="w-8 h-8 border border-indigo-500 rounded-full object-cover" />
+                                        ) : (
+                                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
+                                                {((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || user.email || 'U').charAt(0)}
+                                            </div>
+                                        )
+                                    ) : null}
+                                </HeadlessMenu.Button>
 
-                            <Transition
-                                enter="transition duration-100 ease-out"
-                                enterFrom="transform scale-95 opacity-0"
-                                enterTo="transform scale-100 opacity-100"
-                                leave="transition duration-75 ease-out"
-                                leaveFrom="transform scale-100 opacity-100"
-                                leaveTo="transform scale-95 opacity-0"
-                            >
-                                <HeadlessMenu.Items className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 backdrop-blur-sm z-50 p-4">
-                                    {/* User Info Section */}
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-lg">
-                                            {user.avatar}
+                                <Transition
+                                    enter="transition duration-100 ease-out"
+                                    enterFrom="transform scale-95 opacity-0"
+                                    enterTo="transform scale-100 opacity-100"
+                                    leave="transition duration-75 ease-out"
+                                    leaveFrom="transform scale-100 opacity-100"
+                                    leaveTo="transform scale-95 opacity-0"
+                                >
+                                    <HeadlessMenu.Items className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 backdrop-blur-sm z-50 p-4">
+                                        {/* User Info Section */}
+                                        <div className="flex items-center gap-3">
+                                            {userOAuth ? (
+                                                userOAuth.photoURL ? (
+                                                    <img src={userOAuth.photoURL} alt="Profile" className="w-12 h-12 border border-indigo-500 rounded-full object-cover" />
+                                                ) : (
+                                                    <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-lg">
+                                                        {(userOAuth.displayName || userOAuth.email || 'U').charAt(0)}
+                                                    </div>
+                                                )
+                                            ) : user ? (
+                                                user.profileImage ? (
+                                                    <img src={user.profileImage} alt="Profile" className="w-12 h-12 border border-indigo-500 rounded-full object-cover" />
+                                                ) : (
+                                                    <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-lg">
+                                                        {((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || user.email || 'U').charAt(0)}
+                                                    </div>
+                                                )
+                                            ) : null}
+                                            <div>
+                                                <h3 className="font-semibold text-gray-900 text-sm">
+                                                    {userOAuth ? (userOAuth.displayName || 'User') : user ? ((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || 'User') : 'User'}
+                                                </h3>
+                                                <p className="text-gray-500 text-xs">
+                                                    {userOAuth ? (userOAuth.email || '') : user ? (user.email || '') : ''}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h3 className="font-semibold text-gray-900 text-sm">{user.name}</h3>
-                                            <p className="text-gray-500 text-xs">{user.email}</p>
+
+                                        <div className='h-0.5 bg-gray-200 my-2'></div>
+
+                                        {/* Menu Items */}
+                                        <div className="space-y-1">
+                                            <HeadlessMenu.Item>
+                                                {({ active }) => (
+                                                    <Link
+                                                        href="/my-content"
+                                                        className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
+                                                    >
+                                                        <BookMarked className="w-4 h-4" />
+                                                        មាតិការបស់ខ្ញុំ
+                                                    </Link>
+                                                )}
+                                            </HeadlessMenu.Item>
+                                            <HeadlessMenu.Item>
+                                                {({ active }) => (
+                                                    <button
+                                                        onClick={() => setShowFeedbackModal(true)}
+                                                        className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
+                                                    >
+                                                        <MessageCircle className="w-4 h-4" />
+                                                        ជួយផ្ដល់មតិ
+                                                    </button>
+                                                )}
+                                            </HeadlessMenu.Item>
+
+                                            <HeadlessMenu.Item>
+                                                {({ active }) => (
+                                                    <Link
+                                                        href="/settings"
+                                                        className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
+                                                    >
+                                                        <Settings className="w-4 h-4" />
+                                                        ការកំណត់
+                                                    </Link>
+                                                )}
+                                            </HeadlessMenu.Item>
+
+                                            <HeadlessMenu.Item>
+                                                {({ active }) => (
+                                                    <button
+                                                        onClick={handleLogout}
+                                                        className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-red-600' : 'hover:bg-gray-50 hover:text-red-600'}`}
+                                                    >
+                                                        <LogOut className="w-4 h-4" />
+                                                        ចាកចេញ
+                                                    </button>
+                                                )}
+                                            </HeadlessMenu.Item>
                                         </div>
-                                    </div>
-
-                                    <div className='h-0.5 bg-gray-200 my-2'></div>
-
-                                    {/* Menu Items */}
-                                    <div className="space-y-1">
-                                        <HeadlessMenu.Item>
-                                            {({ active }) => (
-                                                <Link
-                                                    href="/my-content"
-                                                    className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
-                                                >
-                                                    <BookMarked className="w-4 h-4" />
-                                                    មាតិការបស់ខ្ញុំ
-                                                </Link>
-                                            )}
-                                        </HeadlessMenu.Item>
-                                        <HeadlessMenu.Item>
-                                            {({ active }) => (
-                                                <button
-                                                    onClick={() => setShowFeedbackModal(true)}
-                                                    className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
-                                                >
-                                                    <MessageCircle className="w-4 h-4" />
-                                                    ជួយផ្ដល់មតិ
-                                                </button>
-                                            )}
-                                        </HeadlessMenu.Item>
-
-                                        <HeadlessMenu.Item>
-                                            {({ active }) => (
-                                                <Link
-                                                    href="/settings"
-                                                    className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
-                                                >
-                                                    <Settings className="w-4 h-4" />
-                                                    ការកំណត់
-                                                </Link>
-                                            )}
-                                        </HeadlessMenu.Item>
-
-                                        <HeadlessMenu.Item>
-                                            {({ active }) => (
-                                                <Link
-                                                    href="/auth"
-                                                    className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-red-600' : 'hover:bg-gray-50 hover:text-red-600'}`}
-                                                >
-                                                    <LogOut className="w-4 h-4" />
-                                                    ចាកចេញ
-                                                </Link>
-                                            )}
-                                        </HeadlessMenu.Item>
-                                    </div>
-                                </HeadlessMenu.Items>
-                            </Transition>
-                        </HeadlessMenu>
+                                    </HeadlessMenu.Items>
+                                </Transition>
+                            </HeadlessMenu>
+                        ) : (
+                            <div className="ml-1">
+                                <Link
+                                    href="/auth"
+                                    className="bg-indigo-600 text-white px-4 py-3 rounded-xl font-semibold text-sm hover:bg-indigo-500 transition-colors duration-300 shadow-lg shadow-indigo-500/30 border border-white/20 flex items-center justify-between gap-2"
+                                >
+                                    <UserIcon size={16} />
+                                    ចុះឈ្មោះ
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

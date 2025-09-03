@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Save, Upload, Trash, Play } from 'lucide-react';
 import axios from 'axios';
 import type { VideoPost } from '@/types/content/videos';
-import { ExerciseQuestion } from '@/types/topic';
+import { ExerciseQuestion } from '@/types/docs/topic';
 import ExerciseCreationBox from '@/components/pages/docs/common/box/ExerciseCreationBox';
 
 interface EditVideoProps {

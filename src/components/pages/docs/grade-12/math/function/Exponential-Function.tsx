@@ -5,7 +5,7 @@ import ExerciseBox from "../../../common/box/ExerciseBox";
 import HintBox from "../../../common/box/HintBox";
 import WarningBox from "../../../common/box/WarningBox";
 import { ImageBox } from "../../../common/box/explanation-box/ImageExplanationBox";
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import Graph from "../../../../../helper/Graph";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";

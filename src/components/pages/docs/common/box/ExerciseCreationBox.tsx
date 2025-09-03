@@ -6,7 +6,7 @@ import {
     XCircle,
     BookOpen,
 } from "lucide-react";
-import { ExerciseQuestion } from "@/types/topic";
+import { ExerciseQuestion } from "@/types/docs/topic";
 
 export interface ExerciseCreationBoxProps {
     questions: ExerciseQuestion[];

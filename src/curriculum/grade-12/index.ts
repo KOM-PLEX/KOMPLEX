@@ -1,4 +1,4 @@
-import { Grade } from "@/types/curriculum";
+import { Grade } from "@/types/docs/curriculum";
 import { math } from "./math";
 import { chemistry } from "./chemistry";
 import { biology } from "./biology";

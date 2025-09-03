@@ -4,7 +4,7 @@ import 'katex/dist/katex.min.css';
 import HintBox from "../../../common/box/HintBox";
 import SummaryBox from "../../../common/box/SummaryBox";
 import { AlertTriangleIcon, BookAIcon, ChartBarIcon, LightbulbIcon, WrenchIcon } from "lucide-react";
-import { PracticeExercise, SummarySection } from "@/types/topic";
+import { PracticeExercise, SummarySection } from "@/types/docs/topic";
 import { div } from "three/tsl";
 
 
@@ -214,10 +214,10 @@ const ConicPractice = () => {
         </div>,
         <div key="a4" className="space-y-2">
           <p>គេឲ្យ៖ <InlineMath math="V(h,k)និងកំណុំF(h+p,k)" /> និង <InlineMath math=" V(-3,-2)និងF(5,-2)" /></p>
-           <p>ដោយ: <InlineMath math="V(h,k) = V(-3,-2), F(h+p,k) = F(5,-2)" /></p>
-           <p>នោះ៖ <InlineMath math="h = -3, k = -2, p = 8" /></p>
-           <p>តាមសមីការប៉ារ៉ាប៉ូលដែលមានអ័ក្សឆ្លុះដេក៖​ <InlineMath math="(y-k)^2=4p(x-h)" /></p><br />
-           <p>ដូចនេះសរសេរសមីការស្តង់ដាប៉ារ៉ាប៉ូល៖ <InlineMath math=" (x+3)^2=32(y+2)" /></p>
+          <p>ដោយ: <InlineMath math="V(h,k) = V(-3,-2), F(h+p,k) = F(5,-2)" /></p>
+          <p>នោះ៖ <InlineMath math="h = -3, k = -2, p = 8" /></p>
+          <p>តាមសមីការប៉ារ៉ាប៉ូលដែលមានអ័ក្សឆ្លុះដេក៖​ <InlineMath math="(y-k)^2=4p(x-h)" /></p><br />
+          <p>ដូចនេះសរសេរសមីការស្តង់ដាប៉ារ៉ាប៉ូល៖ <InlineMath math=" (x+3)^2=32(y+2)" /></p>
         </div>,
         <div key="a5" className="space-y-2">
           <p>គេឲ្យ៖​ <InlineMath math="(P):y^2+4x-6y+1=0" /></p><br />
@@ -341,7 +341,7 @@ const ConicPractice = () => {
       problems: [
         <div key="ex3-1">
           កំណត់កូអរដោនេ​ផ្ចិត​ កំពូល កំណុំ ​និង​អាសុីមតូតនៃ​អុីពែបូល​<br />
-        <InlineMath math="x^2 - 5y^2 = 25" />
+          <InlineMath math="x^2 - 5y^2 = 25" />
         </div>,
         <div key="ex3-2">
           កំណត់កូអរដោនេ​ផ្ចិត​ កំពូល កំណុំ ​និង​អាសុីមតូតនៃ​អុីពែបូល​<br />
@@ -352,14 +352,14 @@ const ConicPractice = () => {
           <InlineMath math="4x^2 - 4y^2 + 8x + 2y - 1=0" />
         </div>,
         <div key="ex3-4">
-            កំណត់កូអរដោនេ​ផ្ចិត​ កំពូល កំណុំ ​និង​អាសុីមតូតនៃ​អុីពែបូល​<br />
-            <InlineMath math="4(x - 2)^2 - 9(y + 3)^2 = 36" />
+          កំណត់កូអរដោនេ​ផ្ចិត​ កំពូល កំណុំ ​និង​អាសុីមតូតនៃ​អុីពែបូល​<br />
+          <InlineMath math="4(x - 2)^2 - 9(y + 3)^2 = 36" />
         </div>,
         <div key="ex3-5">
           រកសមីការស្តង់ដានៃ​អុីពែបូលដែលផ្ទៀងផ្ទាត់លក្ខនីមួយៗ<br />
           <InlineMath math="ផ្ចិត​ (0,0) កំពូលV(0,3)និង កំណុំ F(0,5)" />
         </div>,
-              ],
+      ],
       answers: [
         <div key="a1" className="space-y-2">
           <div>

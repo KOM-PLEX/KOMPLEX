@@ -10,7 +10,7 @@ import Sidebar from '@/components/pages/my-content/Sidebar';
 import ExerciseCreationBox from '@/components/pages/docs/common/box/ExerciseCreationBox';
 import VideoUpload from '@/components/pages/create-video/VideoUpload';
 import Description from '@/components/pages/create-video/Description';
-import { ExerciseQuestion } from '@/types/topic';
+import { ExerciseQuestion } from '@/types/docs/topic';
 import Link from 'next/link';
 import axios from 'axios';
 

@@ -3,7 +3,7 @@ import React from 'react'
 import DefinitionBox from "../../../common/box/DefinitionBox"
 import TipBox from "../../../common/box/TipBox"
 import HintBox from "../../../common/box/HintBox"
-import { TopicContent } from "@/types/topic"
+import { TopicContent } from "@/types/docs/topic"
 import { BlockMath, InlineMath } from "react-katex"
 import 'katex/dist/katex.min.css'
 import WarningBox from "../../../common/box/WarningBox"
@@ -20,7 +20,7 @@ const FirstTopicContent: TopicContent = {
     content:
       <>
         <div className="flex flex-col items-start">
-         
+
         </div>
       </>
   },
@@ -28,30 +28,30 @@ const FirstTopicContent: TopicContent = {
     title: "ជាទូទៅ",
     content: (
       <>
-        
+
       </>
     ),
   },
 
   example: {
     question: [
-        <div className="flex flex-col items-start gap-3" key="q1">
-           
-        </div>,
+      <div className="flex flex-col items-start gap-3" key="q1">
+
+      </div>,
     ],
     steps: [
-        
-         
+
+
     ],
-    answer:(
-            <div>
-                
-            </div> 
-        )
+    answer: (
+      <div>
+
+      </div>
+    )
   },
   exercise: {
     questions: [
-        
+
     ]
   },
 }
@@ -60,7 +60,7 @@ const FirstTopicContent: TopicContent = {
 const EquilibriumPractice = () => {
   return (
     <div>
-      
+
     </div>
   )
 }

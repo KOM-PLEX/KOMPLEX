@@ -3,7 +3,7 @@ import { BookOpen } from "lucide-react";
 import DefinitionBox from "./box/DefinitionBox";
 import ExerciseBox from "./box/ExerciseBox";
 import TipBox from "./box/TipBox";
-import { ExerciseQuestion } from "@/types/topic";
+import { ExerciseQuestion } from "@/types/docs/topic";
 
 export default function ComingSoon() {
     // Fake data for background components

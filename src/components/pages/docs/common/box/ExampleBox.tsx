@@ -1,4 +1,4 @@
-import { Step } from '@/types/topic';
+import { Step } from '@/types/docs/topic';
 import { Search } from 'lucide-react';
 
 export interface ExampleBoxProps {
@@ -72,7 +72,7 @@ export default function ExampleBox({ question, content, steps, answer }: Example
                         )}
                     </div>
                 </div>
-            )}          
+            )}
 
 
             {/* Answer */}

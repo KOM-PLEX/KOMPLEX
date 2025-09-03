@@ -1,4 +1,4 @@
-import { Content } from "@/types/curriculum";
+import { Content } from "@/types/docs/curriculum";
 import {
   Calculator,
   Target,
@@ -276,7 +276,7 @@ export const math: Content = {
         },
       ],
     },
-    {  
+    {
       lesson: "integration",
       title: "អាំងតេក្រាល",
       englishTitle: "Integration",
@@ -356,7 +356,7 @@ export const math: Content = {
         {
           title: "គោលការណ៍របាប់",
           englishTitle: "CountingPrinciple",
-          component:  CountingPrinciple,
+          component: CountingPrinciple,
         },
         {
           title: "និយមន័យប្រូបាប",

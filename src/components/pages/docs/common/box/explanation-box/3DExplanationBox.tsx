@@ -1,7 +1,7 @@
 import BulletList from '@/components/helper/BulletList';
 import { Box } from 'lucide-react';
 import { ThreeD } from '@/components/helper/ThreeD';
-import { ThreeDTextItem, TwoDTextItem } from '@/types/threeD';
+import { ThreeDTextItem, TwoDTextItem } from '@/types/docs/threeD';
 
 
 

@@ -5,7 +5,7 @@ import ExerciseBox from "../../../common/box/ExerciseBox";
 import HintBox from "../../../common/box/HintBox";
 import WarningBox from "../../../common/box/WarningBox";
 import { ImageBox } from "../../../common/box/explanation-box/ImageExplanationBox";
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 import { BlockMath } from "react-katex";
@@ -49,8 +49,8 @@ const TOPIC_CONTENT: TopicContent = {
         title: "គណនាផ្ទៃក្រឡានៃត្រីកោណ ABC",
         content: (
           <>
-            ​គេមានពីរចំណុច <InlineMath math="A(1,4,4)" />, <InlineMath math="B(1,2,3)" />​​ និង <InlineMath math="C(3,2,4)" />​។<br />
-            ​តាមរូបមន្ត​​៖  <InlineMath math="S = \frac{1}{2} |\overrightarrow{AB} \times \overrightarrow{AC}|" />​ <br />
+            គេមានពីរចំណុច <InlineMath math="A(1,4,4)" />, <InlineMath math="B(1,2,3)" />​​ និង <InlineMath math="C(3,2,4)" />​។<br />
+            តាមរូបមន្ត​​៖  <InlineMath math="S = \frac{1}{2} |\overrightarrow{AB} \times \overrightarrow{AC}|" />​ <br />
             {/* ​នាំឲ៖​​  <InlineMath math="S = \frac{1}{2} |(0, -2, -1) \times (2, -2, 0)|" />​ <br />
             ​ដូចនេះយើង​បាន៖  <InlineMath math="S = \frac{1}{2} |(-2, -2, 4)|" />​ <br />
             ​នាំឲ៖​​  <InlineMath math="S = \frac{1}{2} \sqrt{(-2)^2 + (-2)^2 + 4^2} = \frac{1}{2} \sqrt{24} = 2\sqrt{6}" />​ */}
@@ -61,7 +61,7 @@ const TOPIC_CONTENT: TopicContent = {
         title: "រកប្រវែងនៃវ៉ិចទ័រ (AB × AC)",
         content: (
           <>
-            ​ដើម្បីរកប្រវែងនៃវ៉ិចទ័រ (AB × AC) យើងត្រូវគណនាផលគុណវ៉ិចទ័រ៖ <br />
+            ដើម្បីរកប្រវែងនៃវ៉ិចទ័រ (AB × AC) យើងត្រូវគណនាផលគុណវ៉ិចទ័រ៖ <br />
             <InlineMath math={String.raw`|\overrightarrow{AB} \times \overrightarrow{AC}| = |(0, -2, -1) \times (2, -2, 0)|`} /> <br /><br />
             <InlineMath math={String.raw`= |(-2, -2, 4)|`} /> <br /><br />
             <InlineMath math={String.raw`= \sqrt{(-2)^2 + (-2)^2 + 4^2}`} /> <br /><br />
@@ -74,7 +74,7 @@ const TOPIC_CONTENT: TopicContent = {
         content: (
           <>
             យើង​បាន៖​ <InlineMath math="S = \frac{1}{2} \times 2\sqrt{6}" />​ <br /><br />
-            ​ដូចនេះផ្ទៃក្រឡានៃត្រីកោណ ABC គឺ <InlineMath math="= \sqrt{6} cm^2" />។
+            ដូចនេះផ្ទៃក្រឡានៃត្រីកោណ ABC គឺ <InlineMath math="= \sqrt{6} cm^2" />។
           </>
         )
       }

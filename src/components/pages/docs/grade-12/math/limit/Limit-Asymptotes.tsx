@@ -1,4 +1,4 @@
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 import DefinitionBox from "../../../common/box/DefinitionBox";
 import TipBox from "../../../common/box/TipBox";
@@ -13,7 +13,7 @@ const TOPIC_CONTENT: TopicContent = {
         content: <div className="text-left">
             <div className="space-y-3">
                 <div>អាស៊ីមតូតគឺជាបន្ទាត់ដែលក្រាបអនុគមន៍ខិតទៅរកជិត។ មានបីប្រភេទសំខាន់៖</div>
-                
+
                 <div className="bg-blue-50 p-4 rounded-lg space-y-3">
                     <div className="font-semibold text-blue-800">១. អាស៊ីមតូតឈរ (Vertical Asymptotes)៖</div>
                     <div>ប្រសិនបើ <InlineMath math="\lim_{x \to a} f(x) = \pm\infty" /> នោះបន្ទាត់ <InlineMath math="x = a" /> ជាអាស៊ីមតូតឈរនៃអនុគមន៍ <InlineMath math="f" /></div>
@@ -44,7 +44,7 @@ const TOPIC_CONTENT: TopicContent = {
                         <div>• ប្រសិនបើលីមីតណាមួយ = <InlineMath math="\pm\infty" /> នោះ <InlineMath math="x = a" /> ជាអាស៊ីមតូតបញ្ឈរ</div>
                     </div>
                 </div>
-                
+
                 <div className="bg-orange-50 p-4 rounded-lg">
                     <div className="font-semibold mb-2">រកអាស៊ីមតូតផ្ដេក៖</div>
                     <div className="space-y-2">
@@ -232,23 +232,23 @@ export default function LimitAsymptotes() {
             )}
 
             {TOPIC_CONTENT.example && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT.example.question} 
-                    steps={TOPIC_CONTENT.example.steps} 
-                    answer={TOPIC_CONTENT.example.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT.example.question}
+                    steps={TOPIC_CONTENT.example.steps}
+                    answer={TOPIC_CONTENT.example.answer}
                 />
             )}
 
             {TOPIC_CONTENT.example2 && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT.example2.question} 
-                    steps={TOPIC_CONTENT.example2.steps} 
-                    answer={TOPIC_CONTENT.example2.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT.example2.question}
+                    steps={TOPIC_CONTENT.example2.steps}
+                    answer={TOPIC_CONTENT.example2.answer}
                 />
             )}
 
             {TOPIC_CONTENT.exercise && (
-                <ExerciseBox 
+                <ExerciseBox
                     questions={TOPIC_CONTENT.exercise.questions}
                 />
             )}

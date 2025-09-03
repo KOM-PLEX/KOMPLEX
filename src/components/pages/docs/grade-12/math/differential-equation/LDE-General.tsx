@@ -1,7 +1,7 @@
 import DefinitionBox from "../../../common/box/DefinitionBox"
 import TipBox from "../../../common/box/TipBox"
 import HintBox from "../../../common/box/HintBox"
-import { TopicContent } from "@/types/topic"
+import { TopicContent } from "@/types/docs/topic"
 import { BlockMath, InlineMath } from "react-katex"
 import 'katex/dist/katex.min.css'
 import WarningBox from "../../../common/box/WarningBox"
@@ -40,9 +40,9 @@ const FirstTopicContent: TopicContent = {
 
         <p>ប្រសិនបើឫសស្មើគ្នា, ចម្លើយទូទៅមានរាង៖</p>
         <div className="flex items-center gap-3 flex-wrap justify-center">
-            <BlockMath math="y = (c_1 + c_2 x + \cdots + c_k x^{k-1}) e^{\lambda x}" />
-            <BlockMath math=", c_i" />
-            <p>ជាចំនួនថេរ។</p>
+          <BlockMath math="y = (c_1 + c_2 x + \cdots + c_k x^{k-1}) e^{\lambda x}" />
+          <BlockMath math=", c_i" />
+          <p>ជាចំនួនថេរ។</p>
         </div>
       </>
     ),
@@ -52,25 +52,25 @@ const FirstTopicContent: TopicContent = {
     question: [
       <>
         <div key={"q1"} className="flex flex-col items-start">
-            <div className="flex items-center gap-3 flex-wrap">
-                <p>ដោះស្រាយសមីការ</p>
-                <BlockMath math={"y^{(3)} - 6 y^{(2)} + 11 y^{(1)} - 6 y = 0"} />
-            </div>
-            <div className="flex items-center gap-3 flex-wrap">
-                <p>សមីការសម្គាល់៖</p>
-                <BlockMath math={"\\lambda^{3} - 6 \\lambda^{2} + 11 \\lambda - 6 = 0"} />
-            </div>
-            <div className="flex items-center gap-3 flex-wrap">
-              <BlockMath math={"(\\lambda - 1)(\\lambda - 2)(\\lambda - 3) = 0"} />
-              <BlockMath math={"\\implies \\lambda_1 = 1, \\lambda_2 = 2, \\lambda_3 = 3"} />
-            </div>
-            <div className="flex items-center gap-3 flex-wrap">
-                <p>ចម្លើយទូទៅគឺ :</p>
-                <BlockMath math={"y = c_1 e^{1 x} + c_2 e^{2 x} + c_3 e^{3 x}"} />
-            </div>
-            
+          <div className="flex items-center gap-3 flex-wrap">
+            <p>ដោះស្រាយសមីការ</p>
+            <BlockMath math={"y^{(3)} - 6 y^{(2)} + 11 y^{(1)} - 6 y = 0"} />
+          </div>
+          <div className="flex items-center gap-3 flex-wrap">
+            <p>សមីការសម្គាល់៖</p>
+            <BlockMath math={"\\lambda^{3} - 6 \\lambda^{2} + 11 \\lambda - 6 = 0"} />
+          </div>
+          <div className="flex items-center gap-3 flex-wrap">
+            <BlockMath math={"(\\lambda - 1)(\\lambda - 2)(\\lambda - 3) = 0"} />
+            <BlockMath math={"\\implies \\lambda_1 = 1, \\lambda_2 = 2, \\lambda_3 = 3"} />
+          </div>
+          <div className="flex items-center gap-3 flex-wrap">
+            <p>ចម្លើយទូទៅគឺ :</p>
+            <BlockMath math={"y = c_1 e^{1 x} + c_2 e^{2 x} + c_3 e^{3 x}"} />
+          </div>
+
         </div>
-        
+
       </>
     ]
   },
@@ -214,17 +214,17 @@ const SecondTopic: TopicContent = {
         content: (
           <>
             <div className="flex flex-col items-start gap-2">
-                <div className="flex items-center gap-2 flex-wrap" >
-                    <p>សមីការសម្គាល់មានរាង</p>
-                    <BlockMath math={"\\lambda^3 - 6 \\lambda^2 + 11 \\lambda - 6 = 0"} />
-                </div>
-                <div className="flex items-center gap-2 flex-wrap ">
-                    <p>ដោះស្រាយសមីការសម្គាល់៖</p>
-                    <BlockMath math={"(\\lambda - 1)(\\lambda - 2)(\\lambda - 3) = 0"} />
-                </div>
-                <p>ដូចនេះឫសគឺ <InlineMath math={"\\lambda_1 = 1, \\lambda_2 = 2, \\lambda_3 = 3"} /></p>
+              <div className="flex items-center gap-2 flex-wrap" >
+                <p>សមីការសម្គាល់មានរាង</p>
+                <BlockMath math={"\\lambda^3 - 6 \\lambda^2 + 11 \\lambda - 6 = 0"} />
+              </div>
+              <div className="flex items-center gap-2 flex-wrap ">
+                <p>ដោះស្រាយសមីការសម្គាល់៖</p>
+                <BlockMath math={"(\\lambda - 1)(\\lambda - 2)(\\lambda - 3) = 0"} />
+              </div>
+              <p>ដូចនេះឫសគឺ <InlineMath math={"\\lambda_1 = 1, \\lambda_2 = 2, \\lambda_3 = 3"} /></p>
             </div>
-            
+
           </>
         )
       },
@@ -233,14 +233,14 @@ const SecondTopic: TopicContent = {
         content: (
           <>
             <div className="flex flex-col items-start">
-                <div className="flex items-center gap-2 flex-wrap">
-                    <p>ចម្លើយទូទៅនៃសមីការអូម៉ូសែនសមីកា</p>
-                    <BlockMath math={"y_c = A e^x + B e^{2x} + C e^{3x}"} />
-                    <p>ដែល A, B, C ជាចំនួនថេរ។</p>
-                </div>
-                
+              <div className="flex items-center gap-2 flex-wrap">
+                <p>ចម្លើយទូទៅនៃសមីការអូម៉ូសែនសមីកា</p>
+                <BlockMath math={"y_c = A e^x + B e^{2x} + C e^{3x}"} />
+                <p>ដែល A, B, C ជាចំនួនថេរ។</p>
+              </div>
+
             </div>
-            
+
           </>
         )
       },
@@ -249,57 +249,57 @@ const SecondTopic: TopicContent = {
         content: (
           <>
             <div className="flex flex-col items-start">
-                
 
-                <div className="flex items-center flex-wrap gap-3">
-                      <p>តាង :</p>
-                      <BlockMath math="y_p = ax^2 + bx + c" />
-                      <p>ជាចម្លេីយពិសេសនៃសមីការ (E&apos;)</p>
-                </div>
 
-                <div className="flex items-center flex-wrap gap-3">
-                      <p>នាំឲ្យ</p>
-                      <BlockMath math="y_p' = 2ax + b, y_p'' = 2a, y_p^{3}=0" />
-                </div>
+              <div className="flex items-center flex-wrap gap-3">
+                <p>តាង :</p>
+                <BlockMath math="y_p = ax^2 + bx + c" />
+                <p>ជាចម្លេីយពិសេសនៃសមីការ (E&apos;)</p>
+              </div>
 
-                <div className="flex items-center flex-wrap gap-3">
-                    <p>គេបាន</p>
-                    <BlockMath math="y_p^{3} - 6y_p'' + 11y_p' - 6y_p" />
-                    <BlockMath math="= 2x^2 + 4x -5" />
-                </div>
+              <div className="flex items-center flex-wrap gap-3">
+                <p>នាំឲ្យ</p>
+                <BlockMath math="y_p' = 2ax + b, y_p'' = 2a, y_p^{3}=0" />
+              </div>
 
-                <div className="flex items-center flex-wrap gap-3">
-                    <BlockMath math="6(2a) -6(ax^2 + bx +c) +" />
-                    <BlockMath math="11(2ax + b)  =2x^2 + 4x -5" />
-                </div>
+              <div className="flex items-center flex-wrap gap-3">
+                <p>គេបាន</p>
+                <BlockMath math="y_p^{3} - 6y_p'' + 11y_p' - 6y_p" />
+                <BlockMath math="= 2x^2 + 4x -5" />
+              </div>
 
-                <div className="flex items-center flex-wrap gap-3">
-                    <BlockMath math="-6ax^2 + (22a - 66b)x-" />
-                    <BlockMath math="(12a - 11b +6c) =2x^2 + 4x -5" />
-                </div>
-                
-                <p>ដោយផ្ទឹមមេគុណនៃសមីការគេទាញបាន</p>
+              <div className="flex items-center flex-wrap gap-3">
+                <BlockMath math="6(2a) -6(ax^2 + bx +c) +" />
+                <BlockMath math="11(2ax + b)  =2x^2 + 4x -5" />
+              </div>
 
-                <div className="flex items-center flex-wrap gap-3">
-                    <BlockMath math="\begin{cases} 
+              <div className="flex items-center flex-wrap gap-3">
+                <BlockMath math="-6ax^2 + (22a - 66b)x-" />
+                <BlockMath math="(12a - 11b +6c) =2x^2 + 4x -5" />
+              </div>
+
+              <p>ដោយផ្ទឹមមេគុណនៃសមីការគេទាញបាន</p>
+
+              <div className="flex items-center flex-wrap gap-3">
+                <BlockMath math="\begin{cases} 
                           -6a=2 \\ 
                           22a - 6b =4\\
                           12a - 11b +6c =5 
                           \end{cases}"
-                    />
+                />
 
-                    <BlockMath math="\Rightarrow\begin{cases} 
+                <BlockMath math="\Rightarrow\begin{cases} 
                           a= - \frac{1}{3} \\ 
                           b= - \frac{17}{9}\\
                           c= - \frac{53}{27} 
                           \end{cases}"
-                    />
-                </div>
+                />
+              </div>
 
-                <div className="flex items-center flex-wrap gap-3">
-                    <p>គេបានចម្លេីយពិសេសនៃសមីការ (E&apos;)</p>
-                    <BlockMath math="y_p = - \frac{1}{3}x^2 -\frac{17}{9}x  - \frac{53}{27}  " />
-                </div> 
+              <div className="flex items-center flex-wrap gap-3">
+                <p>គេបានចម្លេីយពិសេសនៃសមីការ (E&apos;)</p>
+                <BlockMath math="y_p = - \frac{1}{3}x^2 -\frac{17}{9}x  - \frac{53}{27}  " />
+              </div>
             </div>
           </>
         )
@@ -307,16 +307,16 @@ const SecondTopic: TopicContent = {
     ],
     answer: (
       <>
-          <div className="flex flex-col items-start">
-            <div className="flex flex-col items-start gap-2">
-                <BlockMath math="y = y_c + y_p" />
-                <div className="flex item-center gap-2 flex-wrap">
-                    <BlockMath math="y = A e^x + B e^{2x} + C e^{3x}" />
-                    <BlockMath math="- \frac{1}{3}x^2 -\frac{17}{9}x  - \frac{53}{27} " />
-              </div>
+        <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start gap-2">
+            <BlockMath math="y = y_c + y_p" />
+            <div className="flex item-center gap-2 flex-wrap">
+              <BlockMath math="y = A e^x + B e^{2x} + C e^{3x}" />
+              <BlockMath math="- \frac{1}{3}x^2 -\frac{17}{9}x  - \frac{53}{27} " />
             </div>
-            <p>ដែល​ A,B,C ជាចំនួនថេរ។</p>
           </div>
+          <p>ដែល​ A,B,C ជាចំនួនថេរ។</p>
+        </div>
       </>
     )
 

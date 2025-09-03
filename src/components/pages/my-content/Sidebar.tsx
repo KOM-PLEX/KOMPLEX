@@ -7,7 +7,8 @@ import {
     BookOpen,
     MessageSquare,
     Video,
-    Pencil
+    Pencil,
+    User
 } from 'lucide-react';
 
 const navItems = [
@@ -16,6 +17,7 @@ const navItems = [
         href: '/my-content',
         icon: LayoutDashboard
     },
+
     {
         label: 'ប្លុក',
         href: '/my-content/blogs',
@@ -35,7 +37,12 @@ const navItems = [
         label: 'លំហាត់',
         href: '/my-content/exercises',
         icon: Pencil
-    }
+    },
+    {
+        label: 'ប្រវត្តិរូប',
+        href: '/my-content/profile',
+        icon: User
+    },
 ];
 
 
