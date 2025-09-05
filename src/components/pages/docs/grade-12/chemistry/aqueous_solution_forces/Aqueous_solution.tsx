@@ -221,6 +221,13 @@ const ThirdTopic: TopicContent = {
         }
     ]
   },
+  hint: {
+    content: (
+      <>
+        <p>ពេលដែលគេចង់បានសមីការបីសណ្ធាន មានន័យថា គេចង់បានសមីការទាំងបីគឺ សមីការគីមី , សមីការអុីយ៉ុងសព្វ , សមីការអុីយ៉ុងសម្រួល។</p>
+      </>
+    )
+  },
 }
 
 
@@ -508,6 +515,9 @@ const Aqueous_solution = () => {
                     )}
                     {ThirdTopic.exercise && (
                       <ExerciseBox questions={ThirdTopic.exercise.questions} />
+                    )}
+                    {ThirdTopic.hint && (
+                        <HintBox content={ThirdTopic.hint.content} />
                     )}
                 </div>
                 <div>

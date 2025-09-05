@@ -769,7 +769,7 @@ const TwentyTopicContent: TopicContent = {
     content: (
       <>
           <p>សម្ព័ន្ធប៉ិបទីត (-CO-NH-) កើតឡើងដោយម៉ូលេគុលអាស៊ីតអាមីណេចំនួនពីរភ្ជាប់គ្នាដោយការដកទឹកចេញចំនួន ១ ម៉ូលេគុល។</p>
-          <div className='flex items-start text-[6px] sm:text-xs mt-3 overflow-scroll'>
+          <div className='flex items-start text-[6px] sm:text-xs mt-3'>
               <InlineMath math="H_{2}N-CH_{2}-" />
               <div className='flex flex-col'>
                 <InlineMath math="C-OH" />

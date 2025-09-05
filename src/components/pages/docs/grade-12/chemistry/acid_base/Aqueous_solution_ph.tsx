@@ -65,13 +65,13 @@ const FirstTopicContent: TopicContent = {
                 </div>
                 <div className='flex items-center gap-3 flex-wrap'>
                    <span className='text-[13px]'>_ <InlineMath math="[H_{3}O^{+}] > [OH^{-}] " /></span>
-                   <p>ជាសូលុយស្យុងណឺត </p>
+                   <p>ជាសូលុយស្យុងអាសុីត</p>
                    <span className='text-[13px]'><InlineMath math="(pH < 7 )" /></span>
 
                 </div>
                 <div className='flex items-center gap-3 flex-wrap'>
                    <span className='text-[13px]'>_ <InlineMath math="[H_{3}O^{+}] < [OH^{-}] " /></span>
-                   <p>ជាសូលុយស្យុងណឺត</p>
+                   <p>ជាសូលុយស្យុងបាស</p>
                    <span className='text-[13px]'><InlineMath math="(pH > 7 )" /></span>
                 </div>
             </div>

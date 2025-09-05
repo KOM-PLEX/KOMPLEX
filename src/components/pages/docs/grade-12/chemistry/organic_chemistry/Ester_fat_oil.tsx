@@ -12,6 +12,7 @@ import ExampleBox from "../../../common/box/ExampleBox"
 import { ThreeDExplanationBox, ThreeDExplanationBoxProps } from "../../../common/box/explanation-box/3DExplanationBox";
 import { div } from "three/tsl"
 import { ImageBox, ImageBoxProps } from "../../../common/box/explanation-box/ImageExplanationBox";
+import { span } from 'framer-motion/client'
 
 
 
@@ -219,26 +220,29 @@ const SixthTopicContent: TopicContent = {
             title: "អាសុីតអាសេទីលសាលីសុីលិច(អាស្ពីរីន)",
             src: "/chemistry/aspirin.glb",
             target: [0, 0.5, 0],
-            scale: 1.3,
+            scale: 0.4,
             canvasBackgroundColor: "white",
             explanation: [
-                
-                <InlineMath math="CH_{3}-COO-C_{6}H_{5} " /> 
+                <InlineMath math="CH_{3}-COO-C_{6}H_{5} " /> ,
+                <span>ម៉ាសម៉ូលេគុល ≈ 180 g/mol</span>,
+                <span>ប្រើសម្រាប់៖ បំបាត់ការឈឺចាប់ បន្ថយកំដៅ បន្ថយការរលាក និងបន្ថយការកកឈាម</span>,       
             ],
         },
   ],
   imageExplanation:[
         {
             title: "អាសុីតអាសេទីលសាលីសុីលិច(អាស្ពីរីន)",
-            src: "/chemistry/aspirinImg.avif",
+            src: "/chemistry/aspirin.png",
             imageAlt: "អាសុីតអាសេទីលសាលីសុីលិច",
             explanation: [
-                <InlineMath math="CH_{3}-COO-C_{6}H_{5}" /> 
+               <InlineMath math="CH_{3}-COO-C_{6}H_{5} " />,
+                <span>ម៉ាសម៉ូលេគុល ≈ 180 g/mol</span>,
+                <span>ប្រើសម្រាប់៖ បំបាត់ការឈឺចាប់ បន្ថយកំដៅ បន្ថយការរលាក និងបន្ថយការកកឈាម</span>,       
             ],
         },
         {
             title: "អាសុីតសាលីសុីលិច",
-            src: "/chemistry/acidSalysilex.png",
+            src: "/chemistry/pic34.png",
             imageAlt: "អាសុីតសាលីសុីលិច",
             explanation: [
                 <InlineMath math="C_{6}H_{4}(OH)COOH" /> 
@@ -246,7 +250,7 @@ const SixthTopicContent: TopicContent = {
         },
         {
             title: "មេទីលបង់សូអាត",
-            src: "/chemistry/methyleBgsoart.png",
+            src: "/chemistry/pic35.png",
             imageAlt: "មេទីលបង់សូអាត",
             explanation: [
                 <InlineMath math="C_{6}H_{5}COOCH_{3}" /> 
@@ -254,7 +258,7 @@ const SixthTopicContent: TopicContent = {
         },
         {
             title: "មេទីលសាលីសុីឡាត",
-            src: "/chemistry/MethylSalicylate.jpg",
+            src: "/chemistry/pic36.png",
             imageAlt: "មេទីលសាលីសុីឡាត",
             explanation: [
                 <InlineMath math="C_{6}H_{4}COOCH_{3}" /> 

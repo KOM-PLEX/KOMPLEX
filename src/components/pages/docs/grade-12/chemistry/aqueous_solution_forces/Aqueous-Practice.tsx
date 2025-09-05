@@ -8,33 +8,9 @@ import { PracticeExercise, SummarySection } from "@/types/topic";
 
 const AqueousPractice = () => {
 
-
-
   const practiceExercises: PracticeExercise[] = [
     {
       id: "ex1",
-      title: "សរសេរសមីការបំបែកជាអុីយ៉ុងក្នុងទឹក",
-      description: "សរសេរសមីការបំបែកជាអុីយ៉ុងក្នុងទឹក",
-      problemType: "First Exercise",
-      problems: [
-        <span className='text-[13px]'><BlockMath key="p1" math={"KI"} /></span>,
-        <span className='text-[13px]'><BlockMath key="p2" math={"Na_{2}NO_{3}"} /></span>,
-        <span className='text-[13px]'><BlockMath key="p3" math={"MgCl_{2}"} /></span>,
-      ],
-      answers: [
-         <div key="a1" className="flex flex-col items-start text-[13px]">
-            <InlineMath math="KI \rightarrow K^{+}(aq) + I^{-}(aq)" />
-          </div>,
-          <div key="a2" className="flex flex-col items-start text-[13px]">
-            <InlineMath math="NaNO_{3} \rightarrow Na^{+}(aq) + NO_{3}^{-}(aq)" />
-          </div>,
-          <div key="a3" className="flex flex-col items-start text-[13px]">
-            <InlineMath math="MgCl_{2} \rightarrow Mg^{2+}(aq) + 2Cl^{-}(aq)" />
-          </div>,
-      ]
-    },
-    {
-      id: "ex2",
       title: "សរសេរសមីការតុល្យការនិងសមីការអ៊ីយ៉ុងសម្រួល (ក្នុងសូលុយស្យុងទឹក )",
       description: "សរសេរសមីការតុល្យការនិងសមីការអ៊ីយ៉ុងសម្រួល (ក្នុងសូលុយស្យុងទឹក )",
       problemType: "First Exercise",
@@ -73,10 +49,10 @@ const AqueousPractice = () => {
       ]
     },
     {
-      id: "ex3",
-      title: "លំហាត់ទី ៣",
-      description: "លំហាត់ទី ៣",
-      problemType: "Third Exercise",
+      id: "ex2",
+      title: "លំហាត់ទី ២",
+      description: "លំហាត់ទី ២",
+      problemType: "Second Exercise",
       problems: [
         <span className='text-[13px]'>
           ចូរបង្ហាញអីយ៉ុងទស្សនិកក្នុងប្រតិកម្មរវាង <InlineMath math="KCl" /> និង <InlineMath math="AgNO_{3}" /> ក្នុងសូលុយស្យុងទឹក ។
@@ -117,60 +93,11 @@ const AqueousPractice = () => {
         </div>,
       ]
     },
-    {
-      id: "ex4",
-      title: "លំហាត់ទី ៤",
-      description: "សរសេរសមីការអុីយ៉ុងសព្វ និងអុីយ៉ុងសម្រួល",
-      problemType: "Fourth Exercise",
-      problems: [
-        <span className='text-[13px]'><InlineMath math="2AgNO_{3}(aq) + Na_{2}SO_{4}(aq) \rightarrow" /></span>,
-        <span className='text-[13px]'><InlineMath math="BaCl_{2}(aq) + ZnSO_{4}(aq) \rightarrow" /></span>,
-        <span className='text-[13px]'><InlineMath math="(NH_{4})_{2}CO_{3}(aq) + CaCl_{2}(aq) \rightarrow" /></span>,
-        <span className='text-[13px]'><InlineMath math="Na_{2}S(aq) + ZnCl_{2}(aq) \rightarrow" /></span>,
-      ],
-      answers: [
-        <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
-          <p>សមីការតុល្យការ៖</p>
-          <InlineMath math="2AgNO_{3}(aq) + Na_{2}SO_{4}(aq) \rightarrow Ag_{2}SO_{4}(s) + 2NaNO_{3}(aq)" />
-          <p>អុីយ៉ុងសព្វ៖</p>
-          <InlineMath math="2Ag^{+}(aq) + 2NO_{3}^{-}(aq) + 2Na^{+}(aq) + SO_{4}^{2-}(aq) \rightarrow Ag_{2}SO_{4}(s) + 2Na^{+}(aq) + 2NO_{3}^{-}(aq)" />
-          <p>អុីយ៉ុងសម្រួល៖</p>
-          <InlineMath math="2Ag^{+}(aq) + SO_{4}^{2-}(aq) \rightarrow Ag_{2}SO_{4}(s)" />
-        </div>,
-
-        <div key="a2" className="flex flex-col items-start text-[12px] gap-2">
-          <p>សមីការតុល្យការ៖</p>
-          <InlineMath math="BaCl_{2}(aq) + ZnSO_{4}(aq) \rightarrow BaSO_{4}(s) + ZnCl_{2}(aq)" />
-          <p>អុីយ៉ុងសព្វ៖</p>
-          <InlineMath math="Ba^{2+}(aq) + 2Cl^{-}(aq) + Zn^{2+}(aq) + SO_{4}^{2-}(aq) \rightarrow BaSO_{4}(s) + Zn^{2+}(aq) + 2Cl^{-}(aq)" />
-          <p>អុីយ៉ុងសម្រួល៖</p>
-          <InlineMath math="Ba^{2+}(aq) + SO_{4}^{2-}(aq) \rightarrow BaSO_{4}(s)" />
-        </div>,
-
-        <div key="a3" className="flex flex-col items-start text-[12px] gap-2">
-          <p>សមីការតុល្យការ៖</p>
-          <InlineMath math="(NH_{4})_{2}CO_{3}(aq) + CaCl_{2}(aq) \rightarrow CaCO_{3}(s) + 2NH_{4}Cl(aq)" />
-          <p>អុីយ៉ុងសព្វ៖</p>
-          <InlineMath math="2NH_{4}^{+}(aq) + CO_{3}^{2-}(aq) + Ca^{2+}(aq) + 2Cl^{-}(aq) \rightarrow CaCO_{3}(s) + 2NH_{4}^{+}(aq) + 2Cl^{-}(aq)" />
-          <p>អុីយ៉ុងសម្រួល៖</p>
-          <InlineMath math="Ca^{2+}(aq) + CO_{3}^{2-}(aq) \rightarrow CaCO_{3}(s)" />
-        </div>,
-
-        <div key="a4" className="flex flex-col items-start text-[12px] gap-2">
-          <p>សមីការតុល្យការ៖</p>
-          <InlineMath math="Na_{2}S(aq) + ZnCl_{2}(aq) \rightarrow ZnS(s) + 2NaCl(aq)" />
-          <p>អុីយ៉ុងសព្វ៖</p>
-          <InlineMath math="2Na^{+}(aq) + S^{2-}(aq) + Zn^{2+}(aq) + 2Cl^{-}(aq) \rightarrow ZnS(s) + 2Na^{+}(aq) + 2Cl^{-}(aq)" />
-          <p>អុីយ៉ុងសម្រួល៖</p>
-          <InlineMath math="Zn^{2+}(aq) + S^{2-}(aq) \rightarrow ZnS(s)" />
-        </div>,
-      ]
-    },
      {
-      id: "ex5",
-      title: "លំហាត់ទី ៥",
-      description: "លំហាត់ទី ៥",
-      problemType: "Fifth Exercise",
+      id: "ex3",
+      title: "លំហាត់ទី ៣",
+      description: "លំហាត់ទី ៣",
+      problemType: "Third Exercise",
       problems: [
         <span className='text-[13px]'>ចូរកំណត់សមាសធាតុនីមួយៗជាសមាសធាតុរលាយ ឬមិនរលាយ <InlineMath math="Ca_{3}(PO_{4})_{2} , Mn(OH)_{2} , AgNO_{3} , K_{2}S , Hg(NO_{3})_{2} , CaCO_{3}" /> </span>,
         <span className='text-[13px]'>ចូរកំណត់សមាសធាតុនីមួយៗជាអេឡិចត្រូលីតខ្លាំង ឬអេឡិចត្រូលីតខ្សោយ <InlineMath math="H_{2}O , KCl , HNO_{3} , CH_{3}COOH , C_{12}H_{22}O_{11}" /> </span>
@@ -198,11 +125,50 @@ const AqueousPractice = () => {
         </div>,
       ]
     },
+
+  
     {
-      id: "ex6",
-      title: "លំហាត់ទី ៦",
-      description: "លំហាត់ទី ៦",
-      problemType: "Sixth Exercise",
+      id: "ex4",
+      title: "លំហាត់ទី ៤",
+      description: "បាក់ឌុប ២០២៤",
+      problemType: "Fourth Exercise",
+      problems: [
+          <div className="flex flex-col items-start gap-4 text-[13px]">
+              <p>គេយកសូលុយស្យុងទង់ដែង(II) ស៊ុលផាត ឱ្យមានប្រតិកម្មជាមួយសូលុយស្យុងសូដ្យូមអុីដ្រុកសុីតចំនួន ILគេទទួលបានកករទង់ដែង (II) អុីដ្រុកសុីតចំនួន 0.49g ។</p>
+              <p>ក. ចូរសរសេរសមីការគីមី សមីការអ៊ីយ៉ុងសព្វ និងសមីការអ៊ីយ៉ុងសម្រួល ។ </p>
+              <p>ខ. ចូរគណនា pH នៃសូលុយស្យុងសូដ្យូមអ៊ីដ្រុកស៊ីត ។</p>
+              <p>ម៉ាសម៉ូល៖ (Cu = 64, O= 16, H = 1) g/mol</p>
+          </div>
+      ],
+      answers: [
+        <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
+              <p className="font-bold">ក. សមីការគីមី</p>
+              <InlineMath math="CuSO_{4} + 2NaOH \rightarrow Na_{2}SO_{4} + Cu(OH)_{2} " />
+              <p className="font-bold"> សមីការអុីយ៉ុងសព្វ</p>
+              <InlineMath math="Cu^{2+} + SO_{4}^{2-} + 2Na^{+} + 2OH^{-} \rightarrow 2Na^{+} + SO_{4}^{2-} + Cu(OH)_{2} " />
+              <p className="font-bold"> សមីការអុីយ៉ុងសម្រួល</p>
+              <InlineMath math="Cu^{2+} + 2OH^{-} \rightarrow Cu(OH)_{2} " />
+              <p className="font-bold">ខ. គណនា pH នៃសូលុយស្យុងសូដ្យូមអុីដ្រុកសុីត</p>
+              <p>គណនា pH នៃសូលុយស្យុងសូដ្យូមអុីដ្រុកសុីត</p>
+              <p>តាមរូបមន្ត <InlineMath math="n_{Cu(OH)_{2}} = \frac{m}{M} = \frac{0.49}{98} = 5 \times 10^{-3} mol" /></p>
+              <p>គណនាកំហាប់អុីយ៉ុង <InlineMath math="[OH^{-}] " /> នៅក្នុងសូលុយស្យុង NaOH</p>
+              <p>តាមរូបមន្ត <InlineMath math="[OH^{-}] = \frac{n}{V}" /></p>
+              <p>តាមសមីការ <InlineMath math="n_{OH^{-}} = 2 \times n_{Cu(OH)_{2}} = 2 \times 5 \times 10^{-3} =  10^{-2} mol" /></p>
+              <p>នាំឲ <InlineMath math="[OH^{-}] = \frac{10^{-2}}{1} = 10^{-2} M" /></p>
+              <p>តាមរូបមន្ត <InlineMath math="pH = 14 - pOH = 14 + log[OH^{-}]" /></p>
+              <p>យេីងបាន <InlineMath math="pH = 14 + log(10^{-2})" /></p>
+              <InlineMath math="\Rightarrow pH = 12" />
+              
+
+        </div>,
+        
+      ]
+    },
+    {
+      id: "ex5",
+      title: "លំហាត់ទី ៥",
+      description: "បាក់ឌុប ២០២៣",
+      problemType: "Fifth Exercise",
       problems: [
           <div className="flex flex-col items-start gap-4 text-[13px]">
               <p>គេបន្ថែមសូលុយស្យុង <InlineMath math="FeSO_{4}" /> ទៅក្នុងសូលុយស្យុង NaOH 1L ។ ក្រោយប្រតិកម្ម គេទទួលបានកករ <InlineMath math="Fe(OH)_{2}" /> ចំនួន 0.45g ។</p>
@@ -239,12 +205,11 @@ const AqueousPractice = () => {
         </div>,
       ]
     },
-
-    {
-      id: "ex7",
-      title: "លំហាត់ទី ៧",
-      description: "លំហាត់ទី ៧",
-      problemType: "Seventh Exercise",
+     {
+      id: "ex6",
+      title: "លំហាត់ទី ៦",
+      description: "បាក់ឌុប ២០២២",
+      problemType: "Sixth Exercise",
       problems: [
           <div className="flex flex-col items-start gap-4 text-[13px]">
               <p>គេលាយ 40mL នៃសូលុយស្យុង <InlineMath math="AgNO_{3}" /> នៅកំហាប់ 5M ជាមួយសូលុយស្យុង  <InlineMath math="Na_{2}SO_{4}" /> បរិមាណគ្រប់គ្រាន់ ។</p>
@@ -274,11 +239,11 @@ const AqueousPractice = () => {
         
       ]
     },
-    {
-      id: "ex8",
-      title: "លំហាត់ទី ៨",
-      description: "លំហាត់ទី ៨",
-      problemType: "Eighth Exercise",
+     {
+      id: "ex7",
+      title: "លំហាត់ទី ៧",
+      description: "បាក់ឌុប ២០២១",
+      problemType: "Seventh Exercise",
       problems: [
           <div className="flex flex-col items-start gap-4 text-[13px]">
               <p>គេដាក់ 200 mL នៃសូលុយស្យុងអាម៉ូញ៉ូមកាបូណាតដែលមានកំហាប់ 0.1 M អោយមានប្រតិកម្មសព្វជាមួយសូលុយស្យុងកាល់ស្យូមនីត្រាត។</p>

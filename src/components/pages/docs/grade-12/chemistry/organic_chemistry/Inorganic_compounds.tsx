@@ -9,8 +9,10 @@ import 'katex/dist/katex.min.css'
 import WarningBox from "../../../common/box/WarningBox"
 import ExerciseBox from "../../../common/box/ExerciseBox"
 import ExampleBox from "../../../common/box/ExampleBox"
+import { ThreeDExplanationBox, ThreeDExplanationBoxProps } from "../../../common/box/explanation-box/3DExplanationBox";
 import { div } from "three/tsl"
-
+import { ImageBox, ImageBoxProps } from "../../../common/box/explanation-box/ImageExplanationBox";
+import { span } from 'framer-motion/client'
 
 
 
@@ -136,6 +138,24 @@ const ThirdTopicContent: TopicContent = {
       </>
     ),
   },
+  imageExplanation:[
+      {
+          title: "ផេណុល",
+          src: "/chemistry/Phenull.png",
+          imageAlt: "ផេណុល",
+          explanation: [
+             
+          ],
+      },
+      {
+          title: "2,4,6-ទ្រីនីត្រូ ផេណុល",
+          src: "/chemistry/AcidPiKrec.jpg",
+          imageAlt: "ផេណុល",
+          explanation: [
+             
+          ],
+      },
+  ]
 }
 
 
@@ -291,6 +311,48 @@ const EighthTopicContent: TopicContent = {
       </>
     ),
   },
+  imageExplanation:[
+      {
+          title: "បង់សាលដេអុីត",
+          src: "/chemistry/Benzaldehyde.svg.png",
+          imageAlt: "",
+          explanation: [
+             
+          ],
+      },
+      {
+          title: "អាសុីតបង់សូអុិច",
+          src: "/chemistry/Benzoic_acid.svg",
+          imageAlt: "",
+          explanation: [
+             
+          ],
+      },
+      {
+          title: "តូលុយអែន",
+          src: "/chemistry/Toluene.svg.png",
+          imageAlt: "",
+          explanation: [
+             
+          ],
+      },
+      {
+          title: "បង់សុីលក្លរួ",
+          src: "/chemistry/Benzyl_chloride.png",
+          imageAlt: "",
+          explanation: [
+             
+          ],
+      },
+      {
+          title: "អាសុីតផ្តាលិច",
+          src: "/chemistry/acidPtalec.png",
+          imageAlt: "",
+          explanation: [
+             
+          ],
+      },
+    ]
 }
 
 const NinethTopicContent: TopicContent = {
@@ -339,6 +401,33 @@ const NinethTopicContent: TopicContent = {
       </>
     ),
   },
+    imageExplanation:[
+      {
+          title: "អាសុីត p-ក្លរួ បង់សូអុិច",
+          src: "/chemistry/ChlorobenzoicAcid.png",
+          imageAlt: "",
+          explanation: [
+             
+          ],
+      },
+      {
+          title: "p-សុីឡែន",
+          src: "/chemistry/P-xylene.svg.png",
+          imageAlt: "",
+          explanation: [
+             
+          ],
+      },
+      {
+          title: "អាសុីតតេរេផ្តាលិច",
+          src: "/chemistry/acidTereptalec.png",
+          imageAlt: "",
+          explanation: [
+             
+          ],
+      },
+      
+    ]
 }
 
 
@@ -368,6 +457,11 @@ const Inorganic_compounds = () => {
           {ThirdTopicContent.tip && (
               <TipBox title={ThirdTopicContent.tip.title} content={ThirdTopicContent.tip.content} />
           )}
+          {ThirdTopicContent.imageExplanation &&
+              Array.isArray(ThirdTopicContent.imageExplanation) &&
+              ThirdTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
+                  <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
+          ))}
       </div>
       <div>
           {FourthTopicContent.definition && (
@@ -408,6 +502,11 @@ const Inorganic_compounds = () => {
           {EighthTopicContent.tip && (
               <TipBox title={EighthTopicContent.tip.title} content={EighthTopicContent.tip.content} />
           )}
+          {EighthTopicContent.imageExplanation &&
+              Array.isArray(EighthTopicContent.imageExplanation) &&
+              EighthTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
+                  <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
+          ))}
       </div>
       <div>
           {NinethTopicContent.definition && (
@@ -416,6 +515,11 @@ const Inorganic_compounds = () => {
           {NinethTopicContent.tip && (
               <TipBox title={NinethTopicContent.tip.title} content={NinethTopicContent.tip.content} />
           )}
+          {NinethTopicContent.imageExplanation &&
+              Array.isArray(NinethTopicContent.imageExplanation) &&
+              NinethTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
+                  <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
+          ))}
       </div>
     </div>
   )
