@@ -2,10 +2,13 @@ import api from "@/config/axios";
 import { VideoPost } from "@/types/content/videos";
 
 // Get all videos
-export const getAllVideos = async (): Promise<VideoPost[]> => {
+export const getAllVideos = async (): Promise<{ data: VideoPost[], hasMore: boolean }> => {
   try {
-    const response = await api.get<VideoPost[]>(`/feed/videos`);
-    return response.data;
+    const response = await api.get<{ data: VideoPost[], hasMore: boolean }>(`/feed/videos`);
+    return {
+      data: response.data.data,
+      hasMore: response.data.hasMore,
+    };
   } catch (error) {
     console.error("Error fetching all videos:", error);
     throw new Error("Failed to fetch videos");

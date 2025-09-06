@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Blog } from '@/types/content/blogs';
 import { getAllBlogs } from '@/services/feed/blogs';
 import BlogSkeleton from '@/components/pages/blog/BlogSkeleton';
+import BlogError from '@/components/common/ContentError';
 
 // ! TO CHANGE TOPIC AND TYPE FILTERING
 
@@ -15,18 +16,26 @@ export default function BlogPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchBlogPosts = async () => {
-            try {
-                setIsLoading(true);
-                const data = await getAllBlogs();
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchBlogPosts = async () => {
+        try {
+            setIsLoading(true);
+            setError(null);
+            const data = await getAllBlogs();
+            if (data.blogs.length === 0) {
+                setError('រកមិនឃើញប្លុក');
+            } else {
                 setBlogPosts(data.blogs);
-            } catch (error) {
-                console.error('Error fetching blog posts:', error);
-            } finally {
-                setIsLoading(false);
             }
+        } catch (error) {
+            setError('មានបញ្ហាក្នុងការទាញយកប្លុក');
+        } finally {
+            setIsLoading(false);
         }
+    };
+
+    useEffect(() => {
         fetchBlogPosts();
     }, []);
 
@@ -34,18 +43,31 @@ export default function BlogPage() {
         return <BlogSkeleton />;
     }
 
+    if (error) {
+        return (
+            <div className="min-h-screen bg-gray-50">
+                <div className="pt-36 p-5 max-w-7xl mx-auto">
+                    <BlogError type={error === 'រកមិនឃើញប្លុក' ? 'no-results' : 'error'} message={error} />
+                </div>
+            </div>
+        );
+    }
+
 
     // Filter blog posts based on search and filters
-    const filteredPosts = blogPosts.filter(post => {
-        const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.username.toLowerCase().includes(searchQuery.toLowerCase());
+    let filteredPosts: Blog[] = [];
+    if (blogPosts.length > 0) {
+        filteredPosts = blogPosts.filter(post => {
+            const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                post.username.toLowerCase().includes(searchQuery.toLowerCase());
 
-        return matchesSearch;
-    });
+            return matchesSearch;
+        });
+    }
 
     // Get featured post (first post) and remaining posts
     const featuredPost = blogPosts.sort((a, b) => b.viewCount - a.viewCount)[0];
-    const remainingPosts = filteredPosts.slice(1);
+    const remainingPosts = filteredPosts.length > 0 ? filteredPosts.slice(1) : [];
 
 
     return (
@@ -91,9 +113,11 @@ export default function BlogPage() {
                     ប្លុកពេញនិយម
                 </p>
 
-                <div className='mb-8 flex justify-center items-center'>
-                    <BlogCard key={featuredPost.id} post={featuredPost} />
-                </div>
+                {featuredPost && (
+                    <div className='mb-8 flex justify-center items-center'>
+                        <BlogCard key={featuredPost.id} post={featuredPost} />
+                    </div>
+                )}
 
 
                 {/* Blog Posts Grid */}
@@ -104,21 +128,12 @@ export default function BlogPage() {
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
 
-                        {remainingPosts.map((post) => (
+                        {remainingPosts.map((post: Blog) => (
                             <BlogCard key={post.id} post={post} />
                         ))}
 
                     </div>
                 </div>
-
-                {/* No Results Message */}
-                {filteredPosts.length === 0 && (
-                    <div className="text-center py-12">
-                        <Book className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                        <h3 className="text-lg font-medium text-gray-900 mb-2">រកមិនឃើញប្លុក</h3>
-                        <p className="text-gray-500">សូមព្យាយាមផ្លាស់ប្តូរតម្លៃច្រោះឬស្វែងរក</p>
-                    </div>
-                )}
             </div>
         </div >
     );

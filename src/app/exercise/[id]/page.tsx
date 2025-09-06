@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import ExerciseBox from "@/components/pages/exercise/ExerciseBox";
 import PracticeInfo from "@/components/pages/exercise/ExerciseInfo";
 import PracticeResult from "@/components/pages/exercise/ExerciseResult";
+import ContentError from "@/components/common/ContentError";
 import { ExerciseWithQuestions, ExerciseSection } from "@/types/content/exercises";
 import { getExerciseById } from "@/services/feed/exercises";
 import { submitExercise as submitExerciseService } from "@/services/me/exercises";
@@ -45,7 +46,7 @@ export default function LessonPage() {
 
                 console.log('Fetched exercise data:', data);
             } catch (err) {
-                setError('Failed to fetch exercise data');
+                setError('មានបញ្ហាក្នុងការទាញយកលំហាត់');
                 console.error('Error fetching exercise:', err);
             } finally {
                 setLoading(false);
@@ -247,18 +248,11 @@ export default function LessonPage() {
     if (error || !exerciseData) {
         return (
             <div className="min-h-screen bg-gray-50 flex justify-center items-center pt-14">
-                <div className="text-center max-w-md mx-auto px-6">
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                        <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-                        <h2 className="text-xl font-semibold text-red-800 mb-2">មានបញ្ហា!</h2>
-                        <p className="text-red-600 mb-4">{error || 'រកមិនឃើញលំហាត់នេះទេ'}</p>
-                        <button
-                            onClick={() => window.location.reload()}
-                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                        >
-                            ព្យាយាមម្តងទៀត
-                        </button>
-                    </div>
+                <div className="max-w-md mx-auto px-6">
+                    <ContentError
+                        type="error"
+                        message={error || 'រកមិនឃើញលំហាត់នេះទេ'}
+                    />
                 </div>
             </div>
         );

@@ -5,6 +5,7 @@ import { History, Settings, Search, ChevronDown, BarChart3 } from 'lucide-react'
 import Link from 'next/link';
 import { Listbox, Transition } from '@headlessui/react';
 import PracticeCard from '@/components/pages/exercise/ExerciseCard';
+import ContentError from '@/components/common/ContentError';
 import { Subject } from '@/types/content/exercises';
 import { getExercisesByGrade } from '@/services/feed/exercises';
 import {
@@ -42,20 +43,25 @@ export default function PracticePage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        const fetchExercises = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                const data = await getExercisesByGrade(selectedGrade.name);
-                const transformedSubjects = transformBackendDataToSubjects(data);
+    const fetchExercises = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            const data = await getExercisesByGrade(selectedGrade.name);
+            const transformedSubjects = transformBackendDataToSubjects(data);
+            if (transformedSubjects.length > 0) {
                 setSubjects(transformedSubjects);
-            } catch {
-                setError('Failed to fetch exercises');
-            } finally {
-                setLoading(false);
+            } else {
+                setError('មិនមានលំហាត់សម្រាប់ថ្នាក់នេះទេ');
             }
-        };
+        } catch {
+            setError('មានបញ្ហាក្នុងការទាញយកលំហាត់');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
         fetchExercises();
     }, [selectedGrade]);
 
@@ -184,28 +190,17 @@ export default function PracticePage() {
 
                     {/* Error State */}
                     {error && (
-                        <div className="text-center py-12">
-                            <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
-                                <p className="text-red-600">{error}</p>
-                                <button
-                                    onClick={() => window.location.reload()}
-                                    className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                                >
-                                    ព្យាយាមម្តងទៀត
-                                </button>
-                            </div>
-                        </div>
+                        <ContentError
+                            type={error === 'មិនមានលំហាត់សម្រាប់ថ្នាក់នេះទេ' ? 'no-results' : 'error'}
+                            message={error}
+                        />
                     )}
 
                     {/* Subjects and Topics */}
                     {!loading && !error && selectedGrade && (
                         <div className="grid grid-cols-1 gap-4">
                             {subjects.length === 0 ? (
-                                <div className="text-center py-12">
-                                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 max-w-md mx-auto">
-                                        <p className="text-gray-600">មិនមានលំហាត់សម្រាប់ថ្នាក់នេះទេ</p>
-                                    </div>
-                                </div>
+                                <ContentError type="no-results" message="មិនមានលំហាត់សម្រាប់ថ្នាក់នេះទេ" />
                             ) : (
                                 subjects.map((subject) => {
                                     const subjectColors = getSubjectColorVariants(subject.color);

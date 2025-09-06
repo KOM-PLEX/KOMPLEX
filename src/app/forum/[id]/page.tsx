@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import ForumCard from '@/components/pages/forum/ForumCard';
 import ForumSkeleton from '@/components/pages/forum/ForumSkeleton';
-import ForumError from '@/components/pages/forum/ForumError';
+import ContentError from '@/components/common/ContentError';
 import Comments from '@/components/pages/forum/Comments';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
@@ -24,27 +24,27 @@ export default function ForumDiscussion() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const fetchData = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const [postData, commentsData] = await Promise.all([
+                getForumById(id),
+                getForumComments(id)
+            ]);
+
+            setPost(postData);
+            setComments(commentsData);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setError('មានបញ្ហាក្នុងការទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-
-                const [postData, commentsData] = await Promise.all([
-                    getForumById(id),
-                    getForumComments(id)
-                ]);
-
-                setPost(postData);
-                setComments(commentsData);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                setError('មានបញ្ហាក្នុងការទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
-            } finally {
-                setLoading(false);
-            }
-        };
-
         fetchData();
     }, [id, refresh]);
 
@@ -78,7 +78,7 @@ export default function ForumDiscussion() {
     };
 
     const handleRetry = () => {
-        setRefresh(!refresh);
+        fetchData();
     };
 
     // Early returns for loading and error states
@@ -92,21 +92,14 @@ export default function ForumDiscussion() {
         );
     }
 
-    if (error) {
+    if (error || !post) {
         return (
             <div className="min-h-screen bg-gray-50">
                 <div className="max-w-7xl mx-auto p-5 pt-20">
-                    <ForumError message={error} onRetry={handleRetry} />
-                </div>
-            </div>
-        );
-    }
-
-    if (!post) {
-        return (
-            <div className="min-h-screen bg-gray-50">
-                <div className="max-w-7xl mx-auto p-5 pt-20">
-                    <ForumError message="រកមិនឃើញអត្ថបទ" onRetry={handleRetry} />
+                    <ContentError
+                        type="error"
+                        message={error || 'រកមិនឃើញអត្ថបទ'}
+                    />
                 </div>
             </div>
         );

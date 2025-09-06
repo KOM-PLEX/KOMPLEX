@@ -9,18 +9,17 @@ import { Blog } from '@/types/content/blogs';
 import { getBlogById } from '@/services/feed/blogs';
 import { toggleBlogSave } from '@/services/me/blogs';
 import { BlogPostSkeleton } from '@/components/pages/blog/BlogPostSkeleton';
-
-
+import ContentError from '@/components/common/ContentError';
 
 export default function BlogPost() {
     const params = useParams();
     const id = params.id as string;
 
-    const [blogPost, setBlogPost] = useState<Blog>();
+    const [blogPost, setBlogPost] = useState<Blog | null>(null);
+    const [isSaved, setIsSaved] = useState(false);
+
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-    const [isSaved, setIsSaved] = useState(false);
 
     useEffect(() => {
 
@@ -30,11 +29,10 @@ export default function BlogPost() {
                 setError(null);
                 const data = await getBlogById(id);
                 setIsSaved(data.isSaved);
-
                 setBlogPost(data);
             } catch (err) {
                 console.error('Error fetching blog post:', err);
-                setError('Failed to load blog post. Please try again.');
+                setError('មានបញ្ហាក្នុងការទាញយកប្លុក');
             } finally {
                 setIsLoading(false);
             }
@@ -52,7 +50,7 @@ export default function BlogPost() {
             setIsSaved(!isSaved);
         } catch (err) {
             console.error('Error bookmarking blog post:', err);
-            setError('Failed to bookmark blog post. Please try again.');
+            setError('មានបញ្ហាក្នុងការរក្សាទុកប្លុក');
         }
     }
 
@@ -62,19 +60,9 @@ export default function BlogPost() {
 
     if (error || !blogPost) {
         return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-                <div className="text-center">
-                    <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
-                        <span className="text-red-600 text-2xl">!</span>
-                    </div>
-                    <h2 className="text-xl font-semibold text-gray-900 mb-2">មានបញ្ហាកើតឡើង</h2>
-                    <p className="text-gray-600 mb-4">{error}</p>
-                    <button
-                        onClick={() => window.location.reload()}
-                        className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
-                    >
-                        ព្យាយាមម្តងទៀត
-                    </button>
+            <div className="min-h-screen bg-gray-50">
+                <div className="pt-36 p-5 max-w-7xl mx-auto">
+                    <ContentError type="error" message={error || 'មានបញ្ហាក្នុងការទាញយកប្លុក'} />
                 </div>
             </div>
         );

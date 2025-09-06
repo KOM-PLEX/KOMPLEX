@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import ForumCard from '@/components/pages/forum/ForumCard';
 import ForumSkeleton from '@/components/pages/forum/ForumSkeleton';
-import ForumError from '@/components/pages/forum/ForumError';
+import ContentError from '@/components/common/ContentError';
 import { Search, Filter, MessageSquare, Plus } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
@@ -17,22 +17,25 @@ export default function Forum() {
     const [forumPosts, setForumPosts] = useState<ForumPost[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    // Fetch forum posts from backend
-    useEffect(() => {
-        const fetchForumPosts = async () => {
-            try {
-                setLoading(true);
-                const { forums } = await getAllForums();
+    const fetchForumPosts = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            const { forums } = await getAllForums();
+            if (forums.length > 0) {
                 setForumPosts(forums);
-                setError(null);
-            } catch (err) {
-                console.error('Error fetching forum posts:', err);
-                setError('មានបញ្ហាក្នុងការទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
-            } finally {
-                setLoading(false);
+            } else {
+                setError('រកមិនឃើញអត្ថបទ');
             }
-        };
+        } catch (err) {
+            console.error('Error fetching forum posts:', err);
+            setError('មានបញ្ហាក្នុងការទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchForumPosts();
     }, []);
 
@@ -70,7 +73,7 @@ export default function Forum() {
     };
 
     const handleRetry = () => {
-        window.location.reload();
+        fetchForumPosts();
     };
 
     // Early returns for loading and error states
@@ -270,7 +273,10 @@ export default function Forum() {
 
                 {/* Main Content */}
                 <div className="pt-36 p-5 max-w-7xl mx-auto">
-                    <ForumError message={error} onRetry={handleRetry} />
+                    <ContentError
+                        type={error === 'រកមិនឃើញអត្ថបទ' ? 'no-results' : 'error'}
+                        message={error}
+                    />
                 </div>
             </div>
         );
@@ -377,11 +383,7 @@ export default function Forum() {
                             <ForumCard key={post.id} post={post} isFromBasePage={true} onLikeClick={() => handleLikeClick(post.id, post.isLiked)} />
                         ))
                     ) : (
-                        <div className="text-center py-12">
-                            <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                            <h3 className="text-lg font-medium text-gray-900 mb-2">រកមិនឃើញអត្ថបទ</h3>
-                            <p className="text-gray-500">សូមព្យាយាមផ្លាស់ប្តូរតម្លៃច្រោះឬស្វែងរក</p>
-                        </div>
+                        <ContentError type="no-results" message="រកមិនឃើញអត្ថបទ" />
                     )}
                 </div>
             </div>
