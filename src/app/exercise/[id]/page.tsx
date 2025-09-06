@@ -7,7 +7,8 @@ import ExerciseBox from "@/components/pages/exercise/ExerciseBox";
 import PracticeInfo from "@/components/pages/exercise/ExerciseInfo";
 import PracticeResult from "@/components/pages/exercise/ExerciseResult";
 import { ExerciseWithQuestions, ExerciseSection } from "@/types/content/exercises";
-import { getExerciseById, submitExercise as submitExerciseService } from "@/services/exercises";
+import { getExerciseById } from "@/services/feed/exercises";
+import { submitExercise as submitExerciseService } from "@/services/me/exercises";
 import { transformBackendDataToSections } from "@/utils/transform";
 
 export default function LessonPage() {

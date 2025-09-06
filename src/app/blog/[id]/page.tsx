@@ -6,7 +6,8 @@ import { ArrowLeft, Bookmark } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Carousel from '@/components/common/Carousel';
 import { Blog } from '@/types/content/blogs';
-import { getBlogById, toggleBlogSave } from '@/services/blogs';
+import { getBlogById } from '@/services/feed/blogs';
+import { toggleBlogSave } from '@/services/me/blogs';
 import { BlogPostSkeleton } from '@/components/pages/blog/BlogPostSkeleton';
 
 

@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Send, ThumbsUp } from 'lucide-react';
 import { ForumReply } from "@/types/content/forums";
 import { getTimeAgo } from '@/utils/formater';
-import { createForumReply, toggleForumReplyLike } from '@/services/forums';
+import { createForumReply } from '@/services/me/forum-replies';
+import { toggleForumReplyLike } from '@/services/me/forum-replies';
 
 
 interface ReplyComponentProps {

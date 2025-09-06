@@ -3,7 +3,7 @@ import { auth } from "@/config/firebase";
 import { onAuthStateChanged, type User as FirebaseUser } from "firebase/auth";
 
 const api = axios.create({
-  baseURL: "http://localhost:6969", // ! TO CHANGE TO PRODUCTION URL
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 // Attach Firebase ID token to every request

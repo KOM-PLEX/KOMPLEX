@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Search, Book, Plus, Star, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { Blog } from '@/types/content/blogs';
-import { getAllBlogs } from '@/services/blogs';
+import { getAllBlogs } from '@/services/feed/blogs';
 import BlogSkeleton from '@/components/pages/blog/BlogSkeleton';
 
 // ! TO CHANGE TOPIC AND TYPE FILTERING

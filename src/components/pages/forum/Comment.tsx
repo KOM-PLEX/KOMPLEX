@@ -4,7 +4,8 @@ import { ForumComment, ForumReply } from '@/types/content/forums';
 import { getTimeAgo } from '@/utils/formater';
 import ReplyComponent from './Reply';
 import { VideoComment } from '@/types/content/videos';
-import { createForumReply, toggleForumCommentLike } from '@/services/forums';
+import { createForumReply } from '@/services/me/forum-replies';
+import { toggleForumCommentLike } from '@/services/me/forum-comments';
 
 interface CommentComponentProps {
     comment: ForumComment | VideoComment;

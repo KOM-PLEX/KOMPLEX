@@ -8,7 +8,8 @@ import { Search, Filter, MessageSquare, Plus } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { ForumPost } from '@/types/content/forums';
-import { getAllForums, toggleForumLike } from '@/services/forums';
+import { getAllForums } from '@/services/feed/forums';
+import { toggleForumLike } from '@/services/me/forums';
 
 export default function Forum() {
     const [searchQuery, setSearchQuery] = useState('');

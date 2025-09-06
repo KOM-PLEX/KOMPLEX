@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Carousel from '@/components/common/Carousel';
 import { ForumPost } from '@/types/content/forums';
 import { Media } from '@/types/content/media';
-import { toggleForumLike } from '@/services/forums';
+import { toggleForumLike } from '@/services/me/forums';
 
 
 interface ForumCardProps {

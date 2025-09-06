@@ -1,11 +1,11 @@
 'use client';
 
-import { BlogPost } from "@/app/blog/page";
+import { Blog } from "@/types/content/blogs";
 import { Eye } from "lucide-react";
 import Link from "next/link";
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: Blog;
 }
 
 export default function BlogCard({ post }: BlogCardProps) {

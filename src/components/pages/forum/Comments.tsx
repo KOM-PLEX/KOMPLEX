@@ -6,11 +6,10 @@ import { VideoComment } from '@/types/content/videos';
 import axios from 'axios';
 import CommentComponent from './Comment';
 import {
-    getForumReplies,
-    createForumReply,
-    toggleForumCommentLike,
-    toggleForumReplyLike
-} from '@/services/forums';
+    getForumReplies
+} from '@/services/feed/forum-replies';
+import { createForumReply, toggleForumReplyLike } from '@/services/me/forum-replies';
+import { toggleForumCommentLike } from '@/services/me/forum-comments';
 
 interface CommentProps {
     type: 'forum' | 'video';

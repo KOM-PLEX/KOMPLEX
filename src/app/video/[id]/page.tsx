@@ -8,14 +8,11 @@ import Comments from '@/components/pages/forum/Comments';
 import ExerciseBox from '@/components/pages/docs/common/box/ExerciseBox';
 import VideoCard from '@/components/pages/video/VideoCard';
 import type { VideoPost, VideoComment } from '@/types/content/videos';
-import {
-    getAllVideos,
-    getVideoById,
-    getVideoExercises,
-    getVideoComments,
-    toggleVideoLike,
-    toggleVideoSave
-} from '@/services/videos';
+import { getAllVideos } from '@/services/feed/videos';
+import { getVideoComments } from '@/services/feed/video-comments';
+import { toggleVideoLike, toggleVideoSave } from '@/services/me/videos';
+import { getVideoExercises } from '@/services/feed/videos';
+import { getVideoById } from '@/services/feed/videos';
 
 // API response types for exercises
 interface ExerciseChoice {

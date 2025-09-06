@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import VideoCard from '@/components/pages/video/VideoCard';
 import Sidebar from '@/components/pages/video/Sidebar';
 import { VideoPost } from '@/types/content/videos';
-import { getAllVideos } from '@/services/videos';
+import { getAllVideos } from '@/services/feed/videos';
 
 
 export default function VideoPage() {

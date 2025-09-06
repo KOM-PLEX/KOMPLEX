@@ -9,10 +9,10 @@ import Comments from '@/components/pages/forum/Comments';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { ForumPost, ForumComment } from '@/types/content/forums';
-import { getForumById, getForumComments, createForumComment, toggleForumLike } from '@/services/forums';
-
-
-
+import { getForumById } from '@/services/feed/forums';
+import { getForumComments } from '@/services/feed/forum-comments';
+import { createForumComment } from '@/services/me/forum-comments';
+import { toggleForumLike } from '@/services/me/forums';
 
 export default function ForumDiscussion() {
     const params = useParams();

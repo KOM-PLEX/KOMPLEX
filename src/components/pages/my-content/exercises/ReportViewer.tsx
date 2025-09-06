@@ -1,6 +1,6 @@
 'use client';
 
-import { X, Target, TrendingUp, Clock, BarChart3, BookOpen, Calculator, Brain, Award, ArrowLeft, ArrowRight } from 'lucide-react';
+import { X, BookOpen, Calculator, Award } from 'lucide-react';
 import { ExerciseReport } from '@/types/user-content/exercise';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
