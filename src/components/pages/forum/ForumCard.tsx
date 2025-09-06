@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Carousel from '@/components/common/Carousel';
 import { ForumPost } from '@/types/content/forums';
 import { Media } from '@/types/content/media';
-import axios from 'axios';
+import { toggleForumLike } from '@/services/forums';
 
 
 interface ForumCardProps {
@@ -46,16 +46,33 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
     const getImageUrls = (media: Media[]): string[] => {
         return media.filter(m => m.type === 'image').map(m => m.url);
     };
-    const handleUpvote = (e: React.MouseEvent) => {
+    const handleUpvote = async (e: React.MouseEvent) => {
         e.stopPropagation();
-        if (upvoted) {
-            setUpvoteCount(upvoteCount - 1);
-        } else {
-            setUpvoteCount(upvoteCount + 1);
-        }
-        setUpvoted(!upvoted);
-        if (onLikeClick) {
-            onLikeClick();
+        try {
+            // Update UI optimistically
+            if (upvoted) {
+                setUpvoteCount(upvoteCount - 1);
+            } else {
+                setUpvoteCount(upvoteCount + 1);
+            }
+            setUpvoted(!upvoted);
+
+            // Call the service
+            await toggleForumLike(post.id.toString(), upvoted);
+
+            // Call parent callback if provided
+            if (onLikeClick) {
+                onLikeClick();
+            }
+        } catch (error) {
+            // Revert UI changes on error
+            if (upvoted) {
+                setUpvoteCount(upvoteCount + 1);
+            } else {
+                setUpvoteCount(upvoteCount - 1);
+            }
+            setUpvoted(upvoted);
+            console.error('Error toggling like:', error);
         }
     };
 

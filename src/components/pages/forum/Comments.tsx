@@ -5,6 +5,12 @@ import { ForumComment, ForumReply } from '@/types/content/forums';
 import { VideoComment } from '@/types/content/videos';
 import axios from 'axios';
 import CommentComponent from './Comment';
+import {
+    getForumReplies,
+    createForumReply,
+    toggleForumCommentLike,
+    toggleForumReplyLike
+} from '@/services/forums';
 
 interface CommentProps {
     type: 'forum' | 'video';
@@ -45,13 +51,17 @@ export default function Comments({ type, parentId, comments, focusInput = false,
 
         try {
             setLoadingReplies(prev => ({ ...prev, [commentId]: true }));
-            const endpoint = type === 'video'
-                ? `http://localhost:6969/video_replies/${commentId}`
-                : `http://localhost:6969/forum_replies/${commentId}`;
 
-            const response = await axios.get(endpoint);
-            // We only use id, username, createdAt, description, isLike in UI, so cast safely
-            const replies = (response.data as unknown) as ForumReply[];
+            let replies: ForumReply[];
+            if (type === 'video') {
+                // Keep video replies using direct axios for now
+                const response = await axios.get(`http://localhost:6969/video_replies/${commentId}`);
+                replies = response.data as ForumReply[];
+            } else {
+                // Use forums service for forum replies
+                replies = await getForumReplies(commentId);
+            }
+
             setRepliesState(prev => ({
                 ...prev,
                 [commentId]: replies
@@ -77,6 +87,9 @@ export default function Comments({ type, parentId, comments, focusInput = false,
             console.log(response.data);
             setIsCommentActive(false);
             if (onClose) onClose();
+            if (onCommentPost) {
+                onCommentPost(newComment);
+            }
             if (setComment) {
                 setComment('');
                 setNewComment('');
@@ -98,11 +111,14 @@ export default function Comments({ type, parentId, comments, focusInput = false,
 
     const handleCommentLike = async (commentId: number) => {
         try {
-            const endpoint = type === 'video'
-                ? `http://localhost:6969/video_comments/${commentId}/like`
-                : `http://localhost:6969/forum_comments/${commentId}/like`;
-            const response = await axios.patch(endpoint);
-            console.log(response.data);
+            if (type === 'video') {
+                // Keep video comments using direct axios for now
+                const response = await axios.patch(`http://localhost:6969/video_comments/${commentId}/like`);
+                console.log(response.data);
+            } else {
+                // Use forums service for forum comments
+                await toggleForumCommentLike(commentId, false);
+            }
         } catch (error) {
             console.error('Error liking comment:', error);
         }
@@ -110,11 +126,14 @@ export default function Comments({ type, parentId, comments, focusInput = false,
 
     const handleCommentUnlike = async (commentId: number) => {
         try {
-            const endpoint = type === 'video'
-                ? `http://localhost:6969/video_comments/${commentId}/unlike`
-                : `http://localhost:6969/forum_comments/${commentId}/unlike`;
-            const response = await axios.patch(endpoint);
-            console.log(response.data);
+            if (type === 'video') {
+                // Keep video comments using direct axios for now
+                const response = await axios.patch(`http://localhost:6969/video_comments/${commentId}/unlike`);
+                console.log(response.data);
+            } else {
+                // Use forums service for forum comments
+                await toggleForumCommentLike(commentId, true);
+            }
         } catch (error) {
             console.error('Error unliking comment:', error);
         }
@@ -122,10 +141,13 @@ export default function Comments({ type, parentId, comments, focusInput = false,
 
     const handleSubmitReply = async (commentId: number, description: string) => {
         try {
-            const endpoint = type === 'video'
-                ? `http://localhost:6969/video_replies/${commentId}`
-                : `http://localhost:6969/forum_replies/${commentId}`;
-            await axios.post(endpoint, { description });
+            if (type === 'video') {
+                // Keep video replies using direct axios for now
+                await axios.post(`http://localhost:6969/video_replies/${commentId}`, { description });
+            } else {
+                // Use forums service for forum replies
+                await createForumReply(commentId, description);
+            }
             // Refresh replies for this comment
             await fetchReplies(commentId);
         } catch (error) {
@@ -135,11 +157,14 @@ export default function Comments({ type, parentId, comments, focusInput = false,
 
     const handleReplyLike = async (replyId: number) => {
         try {
-            const endpoint = type === 'video'
-                ? `http://localhost:6969/video_replies/${replyId}/like`
-                : `http://localhost:6969/forum_replies/${replyId}/like`;
-            const response = await axios.patch(endpoint);
-            console.log(response.data);
+            if (type === 'video') {
+                // Keep video replies using direct axios for now
+                const response = await axios.patch(`http://localhost:6969/video_replies/${replyId}/like`);
+                console.log(response.data);
+            } else {
+                // Use forums service for forum replies
+                await toggleForumReplyLike(replyId, false);
+            }
         } catch (error) {
             console.error('Error liking reply:', error);
         }
@@ -147,11 +172,14 @@ export default function Comments({ type, parentId, comments, focusInput = false,
 
     const handleReplyUnlike = async (replyId: number) => {
         try {
-            const endpoint = type === 'video'
-                ? `http://localhost:6969/video_replies/${replyId}/unlike`
-                : `http://localhost:6969/forum_replies/${replyId}/unlike`;
-            const response = await axios.patch(endpoint);
-            console.log(response.data);
+            if (type === 'video') {
+                // Keep video replies using direct axios for now
+                const response = await axios.patch(`http://localhost:6969/video_replies/${replyId}/unlike`);
+                console.log(response.data);
+            } else {
+                // Use forums service for forum replies
+                await toggleForumReplyLike(replyId, true);
+            }
         } catch (error) {
             console.error('Error unliking reply:', error);
         }

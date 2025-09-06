@@ -1,57 +1,18 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Calculator, Atom, Dna, History, Settings, Search, ChevronDown, BarChart3, BookOpen } from 'lucide-react';
+import { History, Settings, Search, ChevronDown, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
 import { Listbox, Transition } from '@headlessui/react';
 import PracticeCard from '@/components/pages/exercise/ExerciseCard';
-import axios from 'axios';
-import { Exercise, Subject, Topic } from '@/types/content/exercises';
+import { Subject } from '@/types/content/exercises';
+import { getExercisesByGrade } from '@/services/exercises';
+import {
+    transformBackendDataToSubjects,
+    getSubjectColorVariants,
+    getSubjectIcon
+} from '@/utils/transform';
 
-
-// Helper functions for data transformation
-const getSubjectIcon = (subjectName: string): React.ReactNode => {
-    const iconMap: { [key: string]: React.ReactNode } = {
-        'គណិតវិទ្យា': <Calculator className="w-8 h-8" />,
-        'រូបវិទ្យា': <Atom className="w-8 h-8" />,
-        'គីមីវិទ្យា': <Dna className="w-8 h-8" />,
-        'ជីវវិទ្យា': <Dna className="w-8 h-8" />,
-    };
-    return iconMap[subjectName] || <BookOpen className="w-8 h-8" />;
-};
-
-const getSubjectColor = (subjectName: string): string => {
-    const colorMap: { [key: string]: string } = {
-        'គណិតវិទ្យា': 'bg-blue-500',
-        'រូបវិទ្យា': 'bg-purple-500',
-        'គីមីវិទ្យា': 'bg-green-500',
-        'ជីវវិទ្យា': 'bg-emerald-500',
-    };
-    return colorMap[subjectName] || 'bg-gray-500';
-};
-
-const transformBackendDataToSubjects = (backendData: Exercise): Subject[] => {
-    return Object.entries(backendData).map(([subjectName, exercises]) => {
-        const topics: Topic[] = exercises.map(exercise => ({
-            id: exercise.id.toString(),
-            name: exercise.title,
-            questionCount: exercise.numberOfQuestions,
-            estimatedTime: `${exercise.duration}`,
-            userProgress: exercise.highestScore,
-            attempts: exercise.numberOfAttempts,
-        }));
-
-        return {
-            id: subjectName.toLowerCase().replace(/\s+/g, '-'),
-            name: subjectName,
-            icon: getSubjectIcon(subjectName),
-            color: getSubjectColor(subjectName),
-            topics: topics
-        };
-    });
-};
-
-// !later extract this to a hardcoded file
 const grades = [
     {
         id: 'grade-9',
@@ -71,6 +32,7 @@ const grades = [
     },
 ];
 
+
 export default function PracticePage() {
     const [selectedGrade, setSelectedGrade] = useState({
         id: 'grade-12',
@@ -85,13 +47,11 @@ export default function PracticePage() {
             try {
                 setLoading(true);
                 setError(null);
-                const response = await axios.get<Exercise>(`http://localhost:6969/exercises/?grade=${selectedGrade.name}`);
-                const transformedSubjects = transformBackendDataToSubjects(response.data);
+                const data = await getExercisesByGrade(selectedGrade.name);
+                const transformedSubjects = transformBackendDataToSubjects(data);
                 setSubjects(transformedSubjects);
-                console.log('Fetched exercises:', response.data);
-            } catch (err) {
+            } catch {
                 setError('Failed to fetch exercises');
-                console.error('Error fetching exercises:', err);
             } finally {
                 setLoading(false);
             }
@@ -99,18 +59,6 @@ export default function PracticePage() {
         fetchExercises();
     }, [selectedGrade]);
 
-    const getSubjectColorVariants = (color: string) => {
-        const colorMap: { [key: string]: { bg: string; border: string } } = {
-            'bg-blue-500': { bg: 'bg-indigo-50/80', border: 'border-indigo-500' },
-            'bg-purple-500': { bg: 'bg-purple-50/80', border: 'border-purple-300' },
-            'bg-green-500': { bg: 'bg-green-50/80', border: 'border-green-300' },
-            'bg-emerald-500': { bg: 'bg-emerald-50/80', border: 'border-emerald-300' },
-            'bg-amber-500': { bg: 'bg-amber-50/80', border: 'border-amber-300' },
-            'bg-red-500': { bg: 'bg-red-50/80', border: 'border-red-300' },
-            'bg-gray-500': { bg: 'bg-gray-50/80', border: 'border-gray-300' }
-        };
-        return colorMap[color] || { bg: 'bg-gray-50/80', border: 'border-gray-300' };
-    };
 
     const currentGrade = grades.find(g => g.id === selectedGrade.id);
 
@@ -266,7 +214,7 @@ export default function PracticePage() {
                                             {/* Subject Header */}
                                             <div className="flex items-center gap-4 mb-6">
                                                 <div className={`w-16 h-16 ${subject.color} rounded-xl flex items-center justify-center text-white`}>
-                                                    {subject.icon}
+                                                    {React.createElement(getSubjectIcon(subject.name), { className: "w-8 h-8" })}
                                                 </div>
                                                 <div>
                                                     <h3 className="text-2xl font-bold text-gray-900 mb-2">{subject.name}</h3>

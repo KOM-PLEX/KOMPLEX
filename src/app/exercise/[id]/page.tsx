@@ -1,55 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowLeft, Clock, Target, Calculator, Brain, Zap, Star, AlertCircle, BookOpen, Flag } from "lucide-react";
+import { ArrowLeft, Clock, AlertCircle, Flag } from "lucide-react";
 import { useParams } from "next/navigation";
 import ExerciseBox from "@/components/pages/exercise/ExerciseBox";
 import PracticeInfo from "@/components/pages/exercise/ExerciseInfo";
 import PracticeResult from "@/components/pages/exercise/ExerciseResult";
-import axios from "axios";
-import { ExerciseWithQuestions, ExerciseSection, Question } from "@/types/content/exercises";
-
-
-
-const transformBackendDataToSections = (backendData: ExerciseWithQuestions): ExerciseSection[] => {
-    // Group questions by section
-    const sectionMap = new Map<string, Question[]>();
-
-    backendData.questions.forEach(question => {
-        if (!sectionMap.has(question.section)) {
-            sectionMap.set(question.section, []);
-        }
-        sectionMap.get(question.section)!.push(question);
-    });
-
-    // Convert to ExamSection format
-    const sections: ExerciseSection[] = [];
-    const totalDuration = backendData.duration;
-    const sectionCount = sectionMap.size;
-    const timePerSection = Math.ceil(totalDuration / sectionCount);
-
-    Array.from(sectionMap.entries()).forEach(([sectionName, questions], index) => {
-        const transformedQuestions: Question[] = questions.map(question => {
-            return {
-                id: question.id,
-                title: question.title,
-                imageUrl: question.imageUrl,
-                section: question.section,
-                choices: question.choices
-            };
-        });
-
-        sections.push({
-            id: `section-${index + 1}`,
-            title: sectionName,
-            description: `Questions for ${sectionName}`,
-            timeLimit: timePerSection,
-            questions: transformedQuestions
-        });
-    });
-
-    return sections;
-};
+import { ExerciseWithQuestions, ExerciseSection } from "@/types/content/exercises";
+import { getExerciseById, submitExercise as submitExerciseService } from "@/services/exercises";
+import { transformBackendDataToSections } from "@/utils/transform";
 
 export default function LessonPage() {
     const params = useParams();
@@ -76,8 +35,7 @@ export default function LessonPage() {
                 setLoading(true);
                 setError(null);
                 // Use the lesson param as the exercise ID
-                const response = await axios.get<ExerciseWithQuestions>(`http://localhost:6969/exercises/${id}`);
-                const data = response.data;
+                const data = await getExerciseById(id as string);
                 setExerciseData(data);
 
                 // Transform backend data to exam sections
@@ -206,7 +164,7 @@ export default function LessonPage() {
 
             console.log('Submitting exercise:', submissionData);
 
-            await axios.post(`http://localhost:6969/exercises/${id}/submit`, submissionData);
+            await submitExerciseService(id as string, submissionData);
 
             console.log('Exercise submitted successfully');
         } catch (error) {

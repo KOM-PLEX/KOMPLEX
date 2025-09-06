@@ -3,11 +3,13 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import ForumCard from '@/components/pages/forum/ForumCard';
+import ForumSkeleton from '@/components/pages/forum/ForumSkeleton';
+import ForumError from '@/components/pages/forum/ForumError';
 import Comments from '@/components/pages/forum/Comments';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import axios from 'axios';
 import { ForumPost, ForumComment } from '@/types/content/forums';
+import { getForumById, getForumComments, createForumComment, toggleForumLike } from '@/services/forums';
 
 
 
@@ -19,31 +21,36 @@ export default function ForumDiscussion() {
     const [post, setPost] = useState<ForumPost | null>(null);
     const [comments, setComments] = useState<ForumComment[]>([]);
     const [refresh, setRefresh] = useState(false);
-
-    const [comment, setComment] = useState<string>('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchForumPost = async () => {
-            const response = await axios.get(`http://localhost:6969/forums/${id}`);
-            const data = response.data;
-            setPost(data);
-        };
-        fetchForumPost();
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                setError(null);
 
-        const fetchComments = async () => {
-            const response = await axios.get(`http://localhost:6969/forum_comments/${id}`);
-            const data = response.data;
-            setComments(data);
+                const [postData, commentsData] = await Promise.all([
+                    getForumById(id),
+                    getForumComments(id)
+                ]);
+
+                setPost(postData);
+                setComments(commentsData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setError('មានបញ្ហាក្នុងការទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
+            } finally {
+                setLoading(false);
+            }
         };
-        fetchComments();
+
+        fetchData();
     }, [id, refresh]);
 
     const handleCommentPost = async (comment: string) => {
         try {
-            const response = await axios.post(`http://localhost:6969/forum_comments/${id}`, {
-                description: comment
-            });
-            const data = response.data;
+            const data = await createForumComment(id, comment);
             setComments([...comments, data]);
             setRefresh(!refresh);
         } catch (error) {
@@ -53,8 +60,7 @@ export default function ForumDiscussion() {
 
     const handleLikeClick = async (postId: number, isLiked: boolean) => {
         try {
-            const response = await axios.patch(`http://localhost:6969/user-content/forums/${postId}/${isLiked ? 'unlike' : 'like'}`);
-            console.log(response.data);
+            await toggleForumLike(postId.toString(), isLiked);
             setPost(prev => prev ? { ...prev, likeCount: isLiked ? prev.likeCount - 1 : prev.likeCount + 1, isLiked: !isLiked } : null);
             setRefresh(!refresh);
         } catch (error) {
@@ -62,9 +68,6 @@ export default function ForumDiscussion() {
         }
     }
 
-    if (!post) {
-        return <div>Loading...</div>;
-    }
 
     const handleCommentToggle = () => {
         setIsCommentInputActive(!isCommentInputActive);
@@ -73,6 +76,41 @@ export default function ForumDiscussion() {
     const handleCommentClose = () => {
         setIsCommentInputActive(false);
     };
+
+    const handleRetry = () => {
+        setRefresh(!refresh);
+    };
+
+    // Early returns for loading and error states
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-gray-50">
+                <div className="max-w-7xl mx-auto p-5 pt-20">
+                    <ForumSkeleton count={1} />
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen bg-gray-50">
+                <div className="max-w-7xl mx-auto p-5 pt-20">
+                    <ForumError message={error} onRetry={handleRetry} />
+                </div>
+            </div>
+        );
+    }
+
+    if (!post) {
+        return (
+            <div className="min-h-screen bg-gray-50">
+                <div className="max-w-7xl mx-auto p-5 pt-20">
+                    <ForumError message="រកមិនឃើញអត្ថបទ" onRetry={handleRetry} />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -91,7 +129,7 @@ export default function ForumDiscussion() {
                     <ForumCard post={post} isFromBasePage={false} onCommentClick={handleCommentToggle} onLikeClick={() => handleLikeClick(post.id, post.isLiked)} />
                 </div>
 
-                <Comments type='forum' parentId={post.id} comments={comments} focusInput={isCommentInputActive} onClose={handleCommentClose} onCommentPost={handleCommentPost} setComment={setComment} />
+                <Comments type='forum' parentId={post.id} comments={comments} focusInput={isCommentInputActive} onClose={handleCommentClose} onCommentPost={handleCommentPost} />
             </div>
         </div>
     );

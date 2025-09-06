@@ -1,3 +1,7 @@
+import { ForwardRefExoticComponent } from "react";
+import { LucideProps } from "lucide-react";
+import { RefAttributes } from "react";
+
 // FOR STRING AS KEY
 export interface Exercise {
   [subjectName: string]: ExerciseData[];
@@ -28,7 +32,7 @@ export interface Topic {
 export interface Subject {
   id: string;
   name: string;
-  icon: React.ReactNode;
+  icon:React.ReactNode | ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
   color: string;
   topics: Topic[];
 }

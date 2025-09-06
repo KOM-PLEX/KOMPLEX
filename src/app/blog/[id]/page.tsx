@@ -2,58 +2,14 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Bookmark, Loader2 } from 'lucide-react';
+import { ArrowLeft, Bookmark } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Carousel from '@/components/common/Carousel';
 import { Blog } from '@/types/content/blogs';
+import { getBlogById, toggleBlogSave } from '@/services/blogs';
+import { BlogPostSkeleton } from '@/components/pages/blog/BlogPostSkeleton';
 
-// Skeleton Loading Component
-function BlogPostSkeleton() {
-    return (
-        <div className="min-h-screen bg-gray-50">
-            <div className="max-w-7xl mx-auto p-5 pt-20">
-                {/* Back Button Skeleton */}
-                <div className="mb-6">
-                    <div className="w-32 h-6 bg-gray-200 rounded animate-pulse"></div>
-                </div>
 
-                {/* Blog Post Skeleton */}
-                <article className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
-                    <div className="p-6 md:p-8">
-                        {/* Title Skeleton */}
-                        <div className="mb-2">
-                            <div className="w-3/4 h-8 bg-gray-200 rounded animate-pulse"></div>
-                        </div>
-
-                        {/* User Info Skeleton */}
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-full bg-gray-200 animate-pulse"></div>
-                            <div className="flex items-center gap-2">
-                                <div className="w-24 h-4 bg-gray-200 rounded animate-pulse"></div>
-                                <div className="w-2 h-4 bg-gray-200 rounded animate-pulse"></div>
-                                <div className="w-32 h-4 bg-gray-200 rounded animate-pulse"></div>
-                            </div>
-                        </div>
-
-                        {/* Image/Carousel Skeleton */}
-                        <div className="w-full h-64 bg-gray-200 rounded-lg animate-pulse mb-6"></div>
-
-                        {/* Content Skeleton */}
-                        <div className="space-y-3">
-                            <div className="w-full h-4 bg-gray-200 rounded animate-pulse"></div>
-                            <div className="w-5/6 h-4 bg-gray-200 rounded animate-pulse"></div>
-                            <div className="w-4/5 h-4 bg-gray-200 rounded animate-pulse"></div>
-                            <div className="w-full h-4 bg-gray-200 rounded animate-pulse"></div>
-                            <div className="w-3/4 h-4 bg-gray-200 rounded animate-pulse"></div>
-                            <div className="w-5/6 h-4 bg-gray-200 rounded animate-pulse"></div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    );
-}
 
 export default function BlogPost() {
     const params = useParams();
@@ -65,62 +21,33 @@ export default function BlogPost() {
 
     const [isSaved, setIsSaved] = useState(false);
 
-    console.log('Component rendered with id:', id);
-    console.log('Current state - isLoading:', isLoading, 'blogPost:', blogPost, 'error:', error);
-
     useEffect(() => {
-        console.log('useEffect triggered with id:', id);
 
         const fetchBlogPost = async () => {
             try {
-                console.log('Starting to fetch blog post...');
                 setIsLoading(true);
                 setError(null);
-
-                // Add a minimum loading time to prevent flash
-                const startTime = Date.now();
-
-                const response = await axios.get(`http://localhost:6969/user-content/blogs/${id}`);
-                const data = response.data;
+                const data = await getBlogById(id);
                 setIsSaved(data.isSaved);
-                console.log('API response data:', data);
 
-                // Ensure minimum loading time of 800ms for better UX
-                const elapsedTime = Date.now() - startTime;
-                const minLoadingTime = 800;
-
-                if (elapsedTime < minLoadingTime) {
-                    console.log('Waiting for minimum loading time...');
-                    await new Promise(resolve => setTimeout(resolve, minLoadingTime - elapsedTime));
-                }
-
-                console.log('Setting blog post data...');
                 setBlogPost(data);
-                console.log('Blog post data set successfully');
             } catch (err) {
                 console.error('Error fetching blog post:', err);
                 setError('Failed to load blog post. Please try again.');
             } finally {
-                console.log('Setting loading to false...');
                 setIsLoading(false);
             }
         };
 
         if (id) {
-            console.log('ID exists, calling fetchBlogPost...');
             fetchBlogPost();
         } else {
-            console.log('No ID available yet');
         }
     }, [id]);
 
-    const handleBookmark = async () => {
+    const handleToggleSave = async () => {
         try {
-            if (isSaved) {
-                await axios.patch(`http://localhost:6969/user-content/blogs/${id}/unsave`);
-            } else {
-                await axios.patch(`http://localhost:6969/user-content/blogs/${id}/save`);
-            }
+            await toggleBlogSave(id, isSaved);
             setIsSaved(!isSaved);
         } catch (err) {
             console.error('Error bookmarking blog post:', err);
@@ -171,7 +98,7 @@ export default function BlogPost() {
                             <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
                                 {blogPost.title}
                             </h1>
-                            <button onClick={handleBookmark} className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
+                            <button onClick={handleToggleSave} className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
                                 {isSaved ? <Bookmark className="fill-indigo-600 w-8 h-8" /> : <Bookmark className="w-8 h-8" />}
                             </button>
                         </div>

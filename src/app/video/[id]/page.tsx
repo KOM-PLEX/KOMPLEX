@@ -8,7 +8,14 @@ import Comments from '@/components/pages/forum/Comments';
 import ExerciseBox from '@/components/pages/docs/common/box/ExerciseBox';
 import VideoCard from '@/components/pages/video/VideoCard';
 import type { VideoPost, VideoComment } from '@/types/content/videos';
-import axios from 'axios';
+import {
+    getAllVideos,
+    getVideoById,
+    getVideoExercises,
+    getVideoComments,
+    toggleVideoLike,
+    toggleVideoSave
+} from '@/services/videos';
 
 // API response types for exercises
 interface ExerciseChoice {
@@ -47,11 +54,7 @@ const convertApiExerciseToExerciseBox = (apiExercise: ApiExercise) => {
 // API function to fetch all videos for recommendations
 const fetchAllVideos = async (): Promise<VideoPost[]> => {
     try {
-        const response = await axios.get('http://localhost:6969/videos');
-        if (response.status !== 200) {
-            throw new Error('Failed to fetch videos');
-        }
-        return response.data;
+        return await getAllVideos();
     } catch (error) {
         console.error('Error fetching videos:', error);
         return [];
@@ -61,12 +64,7 @@ const fetchAllVideos = async (): Promise<VideoPost[]> => {
 // API function to fetch video by ID
 const fetchVideoById = async (id: number): Promise<VideoPost | null> => {
     try {
-        // Replace this with your actual API endpoint
-        const response = await axios.get(`http://localhost:6969/videos/${id}`);
-        if (response.status !== 200) {
-            throw new Error('Failed to fetch video');
-        }
-        return response.data;
+        return await getVideoById(id.toString());
     } catch (error) {
         console.error('Error fetching video:', error);
         return null;
@@ -76,11 +74,8 @@ const fetchVideoById = async (id: number): Promise<VideoPost | null> => {
 // API function to fetch exercises for a video
 const fetchVideoExercises = async (videoId: number): Promise<ApiExercise[]> => {
     try {
-        const response = await axios.get(`http://localhost:6969/videos/${videoId}/exercise`);
-        if (response.status !== 200) {
-            throw new Error('Failed to fetch exercises');
-        }
-        return response.data;
+        const exercises = await getVideoExercises(videoId.toString());
+        return exercises as ApiExercise[];
     } catch (error) {
         console.error('Error fetching exercises:', error);
         return [];
@@ -136,11 +131,8 @@ export default function VideoDetailPage() {
 
         const fetchComments = async () => {
             try {
-                const response = await axios.get(`http://localhost:6969/video_comments/${videoId}`);
-                if (response.status !== 200) {
-                    throw new Error('Failed to fetch comments');
-                }
-                setComments(response.data);
+                const data = await getVideoComments(videoId.toString());
+                setComments(data);
             } catch (error) {
                 console.error('Failed to fetch comments:', error);
             }
@@ -185,29 +177,19 @@ export default function VideoDetailPage() {
 
     const handleLike = async (videoId: number, isLiked: boolean, video: VideoPost) => {
         try {
-            const response = await axios.patch(`http://localhost:6969/videos/${videoId}/${isLiked ? 'unlike' : 'like'}`);
-            if (response.status !== 200) {
-                throw new Error('Failed to like video');
-            }
+            await toggleVideoLike(videoId.toString(), isLiked);
             setVideo({ ...video!, isLike: !isLiked, likeCount: isLiked ? video.likeCount - 1 : video.likeCount + 1 });
-            return response.data;
         } catch (error) {
             console.error('Error liking video:', error);
-            return null;
         }
     }
 
     const handleSave = async (videoId: number, isSaved: boolean, video: VideoPost) => {
         try {
-            const response = await axios.patch(`http://localhost:6969/videos/${videoId}/${isSaved ? 'unsave' : 'save'}`);
-            if (response.status !== 200) {
-                throw new Error('Failed to save video');
-            }
+            await toggleVideoSave(videoId.toString(), isSaved);
             setVideo({ ...video!, isSave: !isSaved });
-            return response.data;
         } catch (error) {
             console.error('Error saving video:', error);
-            return null;
         }
     }
 

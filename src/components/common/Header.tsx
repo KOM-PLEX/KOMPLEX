@@ -53,7 +53,7 @@ const navLinks = [
 export default function Header() {
     const router = useRouter();
     const pathname = usePathname();
-    const { user, userOAuth, loading } = useAuth();
+    const { user, loading } = useAuth();
 
 
     const [showFeedbackModal, setShowFeedbackModal] = useState(false);
@@ -61,6 +61,7 @@ export default function Header() {
     const handleLogout = async () => {
         try {
             await signOut(auth);
+            localStorage.removeItem("user");
             router.push("/auth");
         } catch (error) {
             console.error('Logout error:', error);
@@ -122,32 +123,26 @@ export default function Header() {
                                 {!loading && (
                                     <div className="mt-2 p-2">
                                         <div className='h-0.5 bg-gray-200 my-2'></div>
-                                        {userOAuth || user ? (
+                                        {user ? (
                                             <>
                                                 <div className="flex items-center gap-3 px-2 py-2">
-                                                    {userOAuth ? (
-                                                        userOAuth.photoURL ? (
-                                                            <img src={userOAuth.photoURL} alt="Profile" className="w-8 h-8 border border-indigo-500 rounded-full object-cover" />
-                                                        ) : (
-                                                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
-                                                                {(userOAuth.displayName || userOAuth.email || 'U').charAt(0)}
-                                                            </div>
-                                                        )
-                                                    ) : user ? (
-                                                        user.profileImage ? (
-                                                            <img src={user.profileImage} alt="Profile" className="w-8 h-8 border border-indigo-500  rounded-full object-cover" />
-                                                        ) : (
-                                                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
-                                                                {((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || user.email || 'U').charAt(0)}
-                                                            </div>
-                                                        )
-                                                    ) : null}
+                                                    {user?.profileImage ? (
+                                                        <img
+                                                            src={user.profileImage}
+                                                            alt="Profile"
+                                                            className="w-8 h-8 border border-indigo-500 rounded-full object-cover"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
+                                                            {((`${user?.firstName || ''} ${user?.lastName || ''}`.trim()) || user?.username || user?.email || 'U').toUpperCase().charAt(0)}
+                                                        </div>
+                                                    )}
                                                     <div>
                                                         <div className="text-sm font-semibold text-gray-900">
-                                                            {userOAuth ? (userOAuth.displayName || 'User') : user ? ((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || 'User') : 'User'}
+                                                            {user ? ((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || 'Unknown') : 'Unknown'}
                                                         </div>
                                                         <div className="text-xs text-gray-500">
-                                                            {userOAuth ? (userOAuth.email || '') : user ? (user.email || '') : ''}
+                                                            {user ? (user.email || '') : ''}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -198,7 +193,7 @@ export default function Header() {
                                                     </HeadlessMenu.Item>
                                                 </div>
                                             </>
-                                        ) : (
+                                        ) : pathname === "/auth" ? null : (
                                             <div className="px-2 py-2">
                                                 <Link
                                                     href="/auth"
@@ -233,26 +228,16 @@ export default function Header() {
                         })}
 
                         {/* User Menu or Sign Up Button */}
-                        {loading ? null : (userOAuth || user) ? (
+                        {loading || pathname === "/auth" ? null : user ? (
                             <HeadlessMenu as="div" className="relative ml-2">
                                 <HeadlessMenu.Button className="flex items-center gap-2 rounded-xl transition-colors duration-200 cursor-pointer">
-                                    {userOAuth ? (
-                                        userOAuth.photoURL ? (
-                                            <img src={userOAuth.photoURL} alt="Profile" className="w-8 h-8 border border-indigo-500 rounded-full object-cover" />
-                                        ) : (
-                                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
-                                                {(userOAuth.displayName || userOAuth.email || 'U').charAt(0)}
-                                            </div>
-                                        )
-                                    ) : user ? (
-                                        user.profileImage ? (
-                                            <img src={user.profileImage} alt="Profile" className="w-8 h-8 border border-indigo-500 rounded-full object-cover" />
-                                        ) : (
-                                            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
-                                                {((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || user.email || 'U').charAt(0)}
-                                            </div>
-                                        )
-                                    ) : null}
+                                    {user.profileImage ? (
+                                        <img src={user.profileImage} alt="Profile" className="w-8 h-8 border border-indigo-500 rounded-full object-cover" />
+                                    ) : (
+                                        <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
+                                            {((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || user.email || 'U').charAt(0)}
+                                        </div>
+                                    )}
                                 </HeadlessMenu.Button>
 
                                 <Transition
@@ -266,29 +251,19 @@ export default function Header() {
                                     <HeadlessMenu.Items className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 backdrop-blur-sm z-50 p-4">
                                         {/* User Info Section */}
                                         <div className="flex items-center gap-3">
-                                            {userOAuth ? (
-                                                userOAuth.photoURL ? (
-                                                    <img src={userOAuth.photoURL} alt="Profile" className="w-12 h-12 border border-indigo-500 rounded-full object-cover" />
-                                                ) : (
-                                                    <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-lg">
-                                                        {(userOAuth.displayName || userOAuth.email || 'U').charAt(0)}
-                                                    </div>
-                                                )
-                                            ) : user ? (
-                                                user.profileImage ? (
-                                                    <img src={user.profileImage} alt="Profile" className="w-12 h-12 border border-indigo-500 rounded-full object-cover" />
-                                                ) : (
-                                                    <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-lg">
-                                                        {((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || user.email || 'U').charAt(0)}
-                                                    </div>
-                                                )
-                                            ) : null}
+                                            {user.profileImage ? (
+                                                <img src={user.profileImage} alt="Profile" className="w-12 h-12 border border-indigo-500 rounded-full object-cover" />
+                                            ) : (
+                                                <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-lg">
+                                                    {((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || user.email || 'U').charAt(0)}
+                                                </div>
+                                            )}
                                             <div>
                                                 <h3 className="font-semibold text-gray-900 text-sm">
-                                                    {userOAuth ? (userOAuth.displayName || 'User') : user ? ((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || 'User') : 'User'}
+                                                    {((`${user.firstName || ''} ${user.lastName || ''}`.trim()) || user.username || 'User')}
                                                 </h3>
                                                 <p className="text-gray-500 text-xs">
-                                                    {userOAuth ? (userOAuth.email || '') : user ? (user.email || '') : ''}
+                                                    {user.email || ''}
                                                 </p>
                                             </div>
                                         </div>

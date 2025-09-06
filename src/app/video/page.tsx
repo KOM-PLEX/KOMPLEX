@@ -3,164 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import {
     Search,
-    Filter,
     Menu,
-    BookOpen,
-    Video
+    BookOpen
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import VideoCard from '@/components/pages/video/VideoCard';
 import Sidebar from '@/components/pages/video/Sidebar';
-import axios from 'axios';
 import { VideoPost } from '@/types/content/videos';
+import { getAllVideos } from '@/services/videos';
 
-interface Video {
-    id: string;
-    title: string;
-    thumbnail: string;
-    channel: string;
-    views: string;
-    duration: string;
-    uploaded: string;
-    description: string;
-    subject: string;
-    difficulty: 'beginner' | 'intermediate' | 'advanced';
-}
-
-const mockVideos: Video[] = [
-    {
-        id: '1',
-        title: 'ដោះស្រាយសំណួរគណិតវិទ្យា ថ្នាក់ទី១២ - អនុគមន៍លោការីត',
-        thumbnail: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=225&fit=crop',
-        channel: 'គណិតវិទ្យាសាលា',
-        views: '12.5K',
-        duration: '15:32',
-        uploaded: '2 ថ្ងៃមុន',
-        description: 'រៀនពីរបៀបដោះស្រាយសំណួរអនុគមន៍លោការីតដោយជំហាន',
-        subject: 'mathematics',
-        difficulty: 'intermediate'
-    },
-    {
-        id: '2',
-        title: 'រូបមន្តគីមីវិទ្យា - ការប្រតិកម្មអុកស៊ីតកម្ម',
-        thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=225&fit=crop',
-        channel: 'គីមីវិទ្យាសាលា',
-        views: '8.9K',
-        duration: '22:15',
-        uploaded: '1 សប្តាហ៍មុន',
-        description: 'យល់ដឹងពីរូបមន្តគីមីវិទ្យានិងការប្រតិកម្មអុកស៊ីតកម្ម',
-        subject: 'chemistry',
-        difficulty: 'advanced'
-    },
-    {
-        id: '3',
-        title: 'អក្សរសាស្ត្រខ្មែរ - ការវិភាគអត្ថបទ',
-        thumbnail: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=225&fit=crop',
-        channel: 'អក្សរសាស្ត្រខ្មែរ',
-        views: '15.2K',
-        duration: '18:45',
-        uploaded: '3 ថ្ងៃមុន',
-        description: 'រៀនពីរបៀបវិភាគអត្ថបទអក្សរសាស្ត្រខ្មែរ',
-        subject: 'khmer',
-        difficulty: 'beginner'
-    },
-    {
-        id: '4',
-        title: 'រូបវិទ្យា - ច្បាប់ញូតុន',
-        thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=225&fit=crop',
-        channel: 'រូបវិទ្យាសាលា',
-        views: '11.7K',
-        duration: '25:10',
-        uploaded: '5 ថ្ងៃមុន',
-        description: 'យល់ដឹងពីច្បាប់ញូតុននិងការអនុវត្តន៍',
-        subject: 'physics',
-        difficulty: 'intermediate'
-    },
-    {
-        id: '5',
-        title: 'ជីវវិទ្យា - ប្រព័ន្ធរស្មី',
-        thumbnail: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f7?w=400&h=225&fit=crop',
-        channel: 'ជីវវិទ្យាសាលា',
-        views: '9.3K',
-        duration: '20:30',
-        uploaded: '1 សប្តាហ៍មុន',
-        description: 'ស្វែងយល់ពីប្រព័ន្ធរស្មីនិងការដំណើរការរបស់វា',
-        subject: 'biology',
-        difficulty: 'beginner'
-    },
-    {
-        id: '6',
-        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
-        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
-        channel: 'ប្រវត្តិវិទ្យាសាលា',
-        views: '13.8K',
-        duration: '28:20',
-        uploaded: '4 ថ្ងៃមុន',
-        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
-        subject: 'history',
-        difficulty: 'intermediate'
-    },
-    {
-        id: '6',
-        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
-        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
-        channel: 'ប្រវត្តិវិទ្យាសាលា',
-        views: '13.8K',
-        duration: '28:20',
-        uploaded: '4 ថ្ងៃមុន',
-        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
-        subject: 'history',
-        difficulty: 'intermediate'
-    },
-    {
-        id: '6',
-        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
-        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
-        channel: 'ប្រវត្តិវិទ្យាសាលា',
-        views: '13.8K',
-        duration: '28:20',
-        uploaded: '4 ថ្ងៃមុន',
-        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
-        subject: 'history',
-        difficulty: 'intermediate'
-    },
-    {
-        id: '6',
-        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
-        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
-        channel: 'ប្រវត្តិវិទ្យាសាលា',
-        views: '13.8K',
-        duration: '28:20',
-        uploaded: '4 ថ្ងៃមុន',
-        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
-        subject: 'history',
-        difficulty: 'intermediate'
-    },
-    {
-        id: '6',
-        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
-        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
-        channel: 'ប្រវត្តិវិទ្យាសាលា',
-        views: '13.8K',
-        duration: '28:20',
-        uploaded: '4 ថ្ងៃមុន',
-        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
-        subject: 'history',
-        difficulty: 'intermediate'
-    },
-    {
-        id: '6',
-        title: 'ប្រវត្តិវិទ្យា - អាណាចក្រខ្មែរ',
-        thumbnail: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=225&fit=crop',
-        channel: 'ប្រវត្តិវិទ្យាសាលា',
-        views: '13.8K',
-        duration: '28:20',
-        uploaded: '4 ថ្ងៃមុន',
-        description: 'ស្វែងយល់ពីប្រវត្តិអាណាចក្រខ្មែរនិងអរិយធម៌',
-        subject: 'history',
-        difficulty: 'intermediate'
-    },
-];
 
 export default function VideoPage() {
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -170,9 +21,12 @@ export default function VideoPage() {
 
     useEffect(() => {
         const fetchVideos = async () => {
-            const response = await axios.get('http://localhost:6969/videos');
-            console.log(response.data);
-            setVideos(response.data);
+            try {
+                const data = await getAllVideos();
+                setVideos(data);
+            } catch (error) {
+                console.error('Error fetching videos:', error);
+            }
         }
         fetchVideos();
     }, [])

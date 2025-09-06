@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Send, ThumbsUp } from 'lucide-react';
 import { ForumReply } from "@/types/content/forums";
 import { getTimeAgo } from '@/utils/formater';
+import { createForumReply, toggleForumReplyLike } from '@/services/forums';
 
 
 interface ReplyComponentProps {
@@ -14,16 +15,20 @@ interface ReplyComponentProps {
 
 export default function ReplyComponent({ reply, commentId, onSubmitReply, onReplyLike, onReplyUnlike }: ReplyComponentProps) {
     const [replyUpvoted, setReplyUpvoted] = useState(reply.isLike);
-    const [replyUpvotes, setReplyUpvotes] = useState(0);
     const [isReplying, setIsReplying] = useState(false);
     const [replyText, setReplyText] = useState('');
 
-    const handleSubmitReply = () => {
+    const handleSubmitReply = async () => {
         if (replyText.trim()) {
-            const fullReply = `@${reply.username} ${replyText.trim()}`;
-            onSubmitReply(commentId, fullReply); // Use parent comment ID instead of reply.id
-            setReplyText('');
-            setIsReplying(false);
+            try {
+                const fullReply = `@${reply.username} ${replyText.trim()}`;
+                await createForumReply(commentId, fullReply);
+                onSubmitReply(commentId, fullReply); // Use parent comment ID instead of reply.id
+                setReplyText('');
+                setIsReplying(false);
+            } catch (error) {
+                console.error('Error submitting reply:', error);
+            }
         }
     };
 
@@ -41,18 +46,24 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, onRepl
                     <div className="text-gray-700 text-sm leading-relaxed mb-2">{reply.description}</div>
                     <div className="flex items-center gap-4">
                         <button
-                            onClick={() => {
-                                if (replyUpvoted) {
-                                    onReplyUnlike(reply.id);
-                                } else {
-                                    onReplyLike(reply.id);
+                            onClick={async () => {
+                                try {
+                                    if (replyUpvoted) {
+                                        await toggleForumReplyLike(reply.id, true);
+                                        onReplyUnlike(reply.id);
+                                    } else {
+                                        await toggleForumReplyLike(reply.id, false);
+                                        onReplyLike(reply.id);
+                                    }
+                                    setReplyUpvoted(!replyUpvoted);
+                                } catch (error) {
+                                    console.error('Error toggling reply like:', error);
                                 }
-                                setReplyUpvoted(!replyUpvoted);
                             }}
                             className={`flex items-center gap-1 text-xs font-medium cursor-pointer transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 ${replyUpvoted ? 'text-indigo-600' : 'text-gray-500'}`}
                         >
                             <ThumbsUp className={`w-3 h-3 ${replyUpvoted ? 'fill-indigo-600' : ''}`} />
-                            <span>{replyUpvotes}</span>
+                            <span>0</span>
                         </button>
                         <button
                             onClick={() => setIsReplying(!isReplying)}
