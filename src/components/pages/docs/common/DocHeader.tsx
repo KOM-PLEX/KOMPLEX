@@ -21,6 +21,8 @@ export default function DocHeader({
 }: DocHeaderProps) {
 
     const topicsScrollRef = useRef<HTMLDivElement>(null);
+    const [isScrollingDown, setIsScrollingDown] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     // Find the current grade and subject data
     const gradeData = curriculum.find(g => g.grade === currentGrade);
@@ -33,8 +35,6 @@ export default function DocHeader({
 
             if (activeTopic) {
                 // Scroll to position the active topic with some padding from the left
-                const containerWidth = container.clientWidth;
-                const topicWidth = activeTopic.offsetWidth;
                 const topicLeft = activeTopic.offsetLeft;
 
                 // Position the topic with some left padding (not at the very edge)
@@ -46,6 +46,26 @@ export default function DocHeader({
             }
         }
     }, [currentTopic, currentLesson, currentSubject, currentGrade, gradeData]);
+
+    // Handle scroll direction detection for mobile header hiding
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down and past initial 100px
+                setIsScrollingDown(true);
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up
+                setIsScrollingDown(false);
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
 
     if (!gradeData) return null;
 
@@ -93,54 +113,75 @@ export default function DocHeader({
                                 );
                             })}
                         </div>
+                        {/* Grade select for desktop */}
+                        <div className="hidden lg:flex items-center bg-indigo-50/50 p-2 gap-4 rounded-lg">
+                            {grades.map((grade) => {
+                                const isActive = currentGrade === grade.value;
+                                return (
+                                    <button
+                                        key={grade.value}
+                                        onClick={() => handleChangeGrade(grade.value)}
+                                        className={`flex items-center gap-2 p-2 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 backdrop-blur-sm ${isActive
+                                            ? 'text-indigo-600 bg-indigo-100/80 border border-indigo-500/30 shadow-sm'
+                                            : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/80 hover:border-indigo-500/20 border border-transparent'
+                                            }`}
+                                    >
+                                        <span>{grade.label}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
 
-                        {/* Grade Dropdown */}
-                        <Listbox value={currentGradeData} onChange={(grade) => {
-                            if (grade) {
-                                handleChangeGrade(grade.value);
-                            }
-                        }}>
-                            <div className="relative">
-                                <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-xl px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 flex items-center justify-between  min-w-[120px]">
-                                    <span>{currentGradeData?.label}</span>
-                                    <ChevronDown size={16} className="text-gray-500" />
-                                </Listbox.Button>
-                                <Transition
-                                    enter="transition duration-100 ease-out"
-                                    enterFrom="transform scale-95 opacity-0"
-                                    enterTo="transform scale-100 opacity-100"
-                                    leave="transition duration-75 ease-out"
-                                    leaveFrom="transform scale-100 opacity-100"
-                                    leaveTo="transform scale-95 opacity-0"
-                                >
-                                    <Listbox.Options className="absolute right-0 mt-2 w-48 bg-white rounded-xl border border-indigo-500/20 shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-auto">
-                                        {grades.map((grade) => (
-                                            <Listbox.Option
-                                                key={grade.value}
-                                                value={grade}
-                                                className={({ active }) =>
-                                                    `relative cursor-pointer select-none py-3 px-4 text-sm ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
-                                                    }`
-                                                }
-                                            >
-                                                {({ selected }) => (
-                                                    <div className="flex items-center justify-between">
-                                                        <span>{grade.label}</span>
-                                                        {selected && <Check size={16} className="text-indigo-600" />}
-                                                    </div>
-                                                )}
-                                            </Listbox.Option>
-                                        ))}
-                                    </Listbox.Options>
-                                </Transition>
-                            </div>
-                        </Listbox>
+                        {/* Grade Dropdown for mobile */}
+                        <div className="flex lg:hidden items-center gap-2">
+                            <Listbox value={currentGradeData} onChange={(grade) => {
+                                if (grade) {
+                                    handleChangeGrade(grade.value);
+                                }
+                            }}>
+                                <div className="relative">
+                                    <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-xl px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 flex items-center justify-between  min-w-[120px]">
+                                        <span>{currentGradeData?.label}</span>
+                                        <ChevronDown size={16} className="text-gray-500" />
+                                    </Listbox.Button>
+                                    <Transition
+                                        enter="transition duration-100 ease-out"
+                                        enterFrom="transform scale-95 opacity-0"
+                                        enterTo="transform scale-100 opacity-100"
+                                        leave="transition duration-75 ease-out"
+                                        leaveFrom="transform scale-100 opacity-100"
+                                        leaveTo="transform scale-95 opacity-0"
+                                    >
+                                        <Listbox.Options className="absolute right-0 mt-2 w-48 bg-white rounded-xl border border-indigo-500/20 shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-auto">
+                                            {grades.map((grade) => (
+                                                <Listbox.Option
+                                                    key={grade.value}
+                                                    value={grade}
+                                                    className={({ active }) =>
+                                                        `relative cursor-pointer select-none py-3 px-4 text-sm ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
+                                                        }`
+                                                    }
+                                                >
+                                                    {({ selected }) => (
+                                                        <div className="flex items-center justify-between">
+                                                            <span>{grade.label}</span>
+                                                            {selected && <Check size={16} className="text-indigo-600" />}
+                                                        </div>
+                                                    )}
+                                                </Listbox.Option>
+                                            ))}
+                                        </Listbox.Options>
+                                    </Transition>
+                                </div>
+                            </Listbox>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Mobile Subject Navigation */}
-            <div className="md:hidden fixed w-full top-13 z-40 bg-white/95 backdrop-blur-md border-b border-indigo-500/10">
+            <div className={`md:hidden fixed w-full top-13 z-40 bg-white/95 backdrop-blur-md border-b border-indigo-500/10 transition-transform duration-300 ${isScrollingDown ? '-translate-y-full' : 'translate-y-0'
+                }`}>
                 <div className="max-w-full mx-auto px-5 py-2">
                     <div className="flex items-center justify-between gap-3">
                         <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
@@ -209,7 +250,8 @@ export default function DocHeader({
             </div>
 
             {/* Mobile Content Navigation */}
-            <div className="md:hidden fixed w-full top-25.5 z-30 bg-white/95 backdrop-blur-md border-b border-indigo-500/10">
+            <div className={`md:hidden fixed w-full top-25.5 z-30 bg-white/95 backdrop-blur-md border-b border-indigo-500/10 transition-transform duration-300 ${isScrollingDown ? '-translate-y-full' : 'translate-y-0'
+                }`}>
                 <div className="max-w-full mx-auto px-5 py-2">
                     <div className="flex items-center justify-start gap-3">
                         {/* Mobile Lesson Dropdown */}

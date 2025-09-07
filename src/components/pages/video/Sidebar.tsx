@@ -44,6 +44,8 @@ export default function Sidebar({
     onSidebarToggle
 }: SidebarProps) {
     return (
+        
+        
         <>
             {/* Mobile Sidebar Overlay */}
             {sidebarOpen && (
