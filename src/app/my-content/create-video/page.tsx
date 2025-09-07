@@ -12,7 +12,8 @@ import VideoUpload from '@/components/pages/create-video/VideoUpload';
 import Description from '@/components/pages/create-video/Description';
 import { ExerciseQuestion } from '@/types/docs/topic';
 import Link from 'next/link';
-import axios from 'axios';
+import { uploadFileWithProgress } from '@/services/upload';
+import { createVideo, updateVideoExercises } from '@/services/me/videos';
 
 interface VideoFormData {
     title: string;
@@ -27,6 +28,8 @@ export default function CreateVideoPage() {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [videoFile, setVideoFile] = useState<File | null>(null);
     const [videoPreview, setVideoPreview] = useState<string>('');
+    const [error, setError] = useState<string>('');
+    const [success, setSuccess] = useState(false);
 
     const [formData, setFormData] = useState<VideoFormData>({
         title: '',
@@ -44,6 +47,9 @@ export default function CreateVideoPage() {
 
         // Auto-generate thumbnail from video
         generateThumbnail(url);
+
+        // Clear error when user selects a new video
+        if (error) setError('');
     };
 
     const generateThumbnail = (videoUrl: string) => {
@@ -68,6 +74,8 @@ export default function CreateVideoPage() {
     // Handle form changes
     const handleInputChange = (field: keyof VideoFormData, value: string | ExerciseQuestion[]) => {
         setFormData(prev => ({ ...prev, [field]: value }));
+        // Clear error when user makes changes
+        if (error) setError('');
     };
 
     // Handle MCQ exercises
@@ -76,6 +84,8 @@ export default function CreateVideoPage() {
             ...prev,
             exercises: newExercises
         }));
+        // Clear error when user makes changes
+        if (error) setError('');
     };
 
     // Convert base64 thumbnail to blob for upload
@@ -109,68 +119,59 @@ export default function CreateVideoPage() {
 
         setIsUploading(true);
         setUploadProgress(0);
+        setError('');
+        setSuccess(false);
 
         try {
-            // Step 1: Get presigned URLs for video and thumbnail
-            const videoResponse = await axios.post(`http://localhost:6969/upload/upload-url`, {
-                fileName: videoFile.name,
-                fileType: videoFile.type,
+            // Step 1: Upload video file with progress tracking
+            const videoKey = await uploadFileWithProgress(videoFile, (progress) => {
+                setUploadProgress(Math.round(progress * 0.7)); // Video upload is 70% of total progress
             });
 
-            // Generate a unique filename for thumbnail
-            const thumbnailFileName = `thumbnail_${Date.now()}.jpg`;
-            const thumbnailResponse = await axios.post(`http://localhost:6969/upload/upload-url`, {
-                fileName: thumbnailFileName,
-                fileType: 'image/jpeg',
-            });
-
-            // Step 2: Upload files to S3/R2 using presigned URLs
-            setUploadProgress(30);
-
-            // Upload video file
-            await axios.put(videoResponse.data.signedUrl, videoFile, {
-                headers: {
-                    "Content-Type": videoFile.type
-                }
-            });
-
-            setUploadProgress(60);
-
-            // Upload thumbnail (convert base64 to blob first)
+            // Step 2: Upload thumbnail
             const thumbnailBlob = base64ToBlob(formData.thumbnail);
-            await axios.put(thumbnailResponse.data.signedUrl, thumbnailBlob, {
-                headers: {
-                    "Content-Type": "image/jpeg"
-                }
+            const thumbnailFile = new File([thumbnailBlob], `thumbnail_${Date.now()}.jpg`, {
+                type: 'image/jpeg'
             });
 
-            setUploadProgress(80);
+            const thumbnailKey = await uploadFileWithProgress(thumbnailFile, (progress) => {
+                setUploadProgress(70 + Math.round(progress * 0.2)); // Thumbnail upload is 20% of total progress
+            });
 
-            // Step 3: Post video data to backend
-            await axios.post(`http://localhost:6969/videos`, {
-                videoKey: videoResponse.data.key,
+            setUploadProgress(90);
+
+            // Step 3: Create video record using the service
+            const createdVideo = await createVideo({
+                videoUrl: videoKey, // The service expects videoUrl but we're passing the key
                 title: formData.title,
                 description: formData.description,
-                topic: 'biology', // Fake string for now
-                type: 'biology',
-                thumbnailKey: thumbnailResponse.data.key,
-                questions: convertExercisesToBackendFormat(formData.exercises)
+                thumbnailUrl: thumbnailKey, // The service expects thumbnailUrl but we're passing the key
             });
 
+            setUploadProgress(95);
+
+            // Step 4: Add exercises if any
+            if (formData.exercises.length > 0) {
+                // TODO : change to upload video exercise
+                await updateVideoExercises(
+                    createdVideo.id.toString(),
+                    convertExercisesToBackendFormat(formData.exercises)
+                );
+            }
 
             setUploadProgress(100);
+            setSuccess(true);
 
-            // Success! Redirect to videos page
+            // Success! Redirect to videos page after a short delay
             setTimeout(() => {
                 router.push('/my-content/videos');
-            }, 1000);
+            }, 1500);
 
         } catch (error) {
             console.error('Error during upload:', error);
-            alert('មានបញ្ហាក្នុងការផ្ទុកវីដេអូ។ សូមព្យាយាមម្តងទៀត។');
+            setError('មានបញ្ហាក្នុងការផ្ទុកវីដេអូ។ សូមព្យាយាមម្តងទៀត។');
         } finally {
             setIsUploading(false);
-            setUploadProgress(0);
         }
     };
 
@@ -178,6 +179,7 @@ export default function CreateVideoPage() {
         return videoFile &&
             formData.title.trim() &&
             formData.description.trim() &&
+            !error && // Don't allow submission if there's an error
             (
                 formData.exercises.every(ex => {
                     const questionText = typeof ex.question === 'string' ? ex.question : '';
@@ -238,13 +240,49 @@ export default function CreateVideoPage() {
                         onQuestionsChange={handleExercisesChange}
                     />
 
+                    {/* Error Message */}
+                    {error && (
+                        <div className="mt-8 max-w-md mx-auto">
+                            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                                <div className="flex items-center">
+                                    <div className="flex-shrink-0">
+                                        <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div className="ml-3">
+                                        <p className="text-sm text-red-800">{error}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Success Message */}
+                    {success && (
+                        <div className="mt-8 max-w-md mx-auto">
+                            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <div className="flex items-center">
+                                    <div className="flex-shrink-0">
+                                        <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div className="ml-3">
+                                        <p className="text-sm text-green-800">ផ្ទុកវីដេអូបានជោគជ័យ! កំពុងបញ្ជូនទៅទំព័រវីដេអូ...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Upload Button */}
                     <div className="mt-12 flex justify-center">
                         <button
                             onClick={handleUpload}
                             disabled={!isFormValid() || isUploading}
-                            className={`flex items-center gap-3 px-10 py-4 rounded-lg font-semibold text-lg transition-colors ${isFormValid() && !isUploading
-                                ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg hover:shadow-xl'
+                            className={`flex items-center gap-3 px-10 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${isFormValid() && !isUploading
+                                ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
                                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                 }`}
                         >
@@ -252,6 +290,13 @@ export default function CreateVideoPage() {
                                 <>
                                     <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
                                     កំពុងផ្ទុក... {uploadProgress}%
+                                </>
+                            ) : success ? (
+                                <>
+                                    <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    បានផ្ទុកជោគជ័យ
                                 </>
                             ) : (
                                 <>
@@ -265,18 +310,41 @@ export default function CreateVideoPage() {
                     {/* Upload Progress */}
                     {isUploading && (
                         <div className="mt-8 max-w-md mx-auto">
-                            <div className="bg-white rounded-lg p-6 shadow-lg">
+                            <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-200">
                                 <div className="flex items-center justify-between mb-3">
-                                    <span className="text-sm font-medium text-gray-700">កំពុងផ្ទុកវីដេអូ...</span>
-                                    <span className="text-sm text-gray-500 font-medium">{uploadProgress}%</span>
+                                    <span className="text-sm font-medium text-gray-700">
+                                        {uploadProgress < 70 ? 'កំពុងផ្ទុកវីដេអូ...' :
+                                            uploadProgress < 90 ? 'កំពុងផ្ទុករូបភាព...' :
+                                                uploadProgress < 95 ? 'កំពុងបង្កើតវីដេអូ...' :
+                                                    'កំពុងបន្ថែមលំហាត់...'}
+                                    </span>
+                                    <span className="text-sm text-indigo-600 font-semibold">{uploadProgress}%</span>
                                 </div>
-                                <div className="w-full bg-gray-200 rounded-full h-3">
+                                <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
                                     <div
-                                        className="bg-indigo-600 h-3 rounded-full transition-all duration-300"
+                                        className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-3 rounded-full transition-all duration-500 ease-out"
                                         style={{ width: `${uploadProgress}%` }}
                                     ></div>
                                 </div>
+                                <div className="mt-2 text-xs text-gray-500 text-center">
+                                    សូមកុំបិទអេក្រង់នេះ
+                                </div>
                             </div>
+                        </div>
+                    )}
+
+                    {/* Retry Button for Errors */}
+                    {error && !isUploading && (
+                        <div className="mt-4 flex justify-center">
+                            <button
+                                onClick={handleUpload}
+                                className="flex items-center gap-2 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
+                            >
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                ព្យាយាមម្តងទៀត
+                            </button>
                         </div>
                     )}
                 </div>

@@ -3,13 +3,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Trash, Edit, Eye, Play, Clock, Calendar, Heart, MessageCircle } from 'lucide-react';
-import axios from 'axios';
+import { ArrowLeft, Trash, Edit, Eye, Clock, Heart } from 'lucide-react';
+import { getVideoById } from '@/services/feed/videos';
+import { getVideoComments } from '@/services/feed/video-comments';
+import { deleteVideo, updateVideo } from '@/services/me/videos';
 import Sidebar from '@/components/pages/my-content/Sidebar';
 import Comments from '@/components/pages/forum/Comments';
 import EditVideo from '@/components/pages/my-content/videos/EditVideo';
-import type { VideoPost } from '@/types/content/videos';
-import type { ForumComment } from '@/types/content/forums';
+import type { VideoPost, VideoComment } from '@/types/content/videos';
 
 // Skeleton Loading Component for Display Mode
 function VideoPostSkeleton() {
@@ -71,7 +72,7 @@ export default function VideoPost() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isEditMode, setIsEditMode] = useState(false);
-    const [comments, setComments] = useState<ForumComment[]>([]);
+    const [comments, setComments] = useState<VideoComment[]>([]);
     const [isCommentInputActive, setIsCommentInputActive] = useState(false);
 
     // Fetch existing video data and comments
@@ -79,8 +80,9 @@ export default function VideoPost() {
         const fetchVideo = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`http://localhost:6969/user-content/videos/${id}`);
-                setVideoPost(response.data);
+                setError(null);
+                const video = await getVideoById(id);
+                setVideoPost(video);
             } catch (error) {
                 console.error('Error fetching video:', error);
                 setError('មានបញ្ហាកើតឡើងពេលផ្ទុកវីដេអូ សូមព្យាយាមម្តងទៀត');
@@ -91,8 +93,8 @@ export default function VideoPost() {
 
         const fetchComments = async () => {
             try {
-                const response = await axios.get(`http://localhost:6969/video_comments/${id}`);
-                setComments(response.data);
+                const videoComments = await getVideoComments(id);
+                setComments(videoComments);
             } catch (error) {
                 console.error('Error fetching comments:', error);
             }
@@ -110,8 +112,7 @@ export default function VideoPost() {
         }
 
         try {
-            //! TO CHANGE TO USER-CONTENT ROUTE
-            await axios.delete(`http://localhost:6969/videos/${id}`);
+            await deleteVideo(id);
             router.push('/my-content/videos');
         } catch (error) {
             console.error('Error deleting video:', error);
@@ -119,9 +120,18 @@ export default function VideoPost() {
         }
     };
 
-    const handleSave = (updatedVideo: VideoPost) => {
-        setVideoPost(updatedVideo);
-        setIsEditMode(false);
+    const handleSave = async (updatedVideo: VideoPost) => {
+        try {
+            const updatedVideoData = await updateVideo(id, {
+                title: updatedVideo.title,
+                description: updatedVideo.description,
+            });
+            setVideoPost(updatedVideoData);
+            setIsEditMode(false);
+        } catch (error) {
+            console.error('Error updating video:', error);
+            alert('មានបញ្ហាកើតឡើងពេលកែប្រែវីដេអូ សូមព្យាយាមម្តងទៀត');
+        }
     };
 
     const handleCancel = () => {

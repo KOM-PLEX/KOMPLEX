@@ -7,8 +7,10 @@ import Comments from '@/components/pages/forum/Comments';
 import EditForum from '@/components/pages/my-content/forums/EditForum';
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import axios from 'axios';
 import { ForumPost, ForumComment } from '@/types/content/forums';
+import { getForumById } from '@/services/feed/forums';
+import { getForumComments } from '@/services/feed/forum-comments';
+import { deleteForum, updateForum } from '@/services/me/forums';
 import Sidebar from '@/components/pages/my-content/Sidebar';
 
 export default function MyForumDetail() {
@@ -26,8 +28,9 @@ export default function MyForumDetail() {
         const fetchForumPost = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:6969/user-content/forums/${id}`);
-                setPost(response.data);
+                setError(null);
+                const forumPost = await getForumById(id);
+                setPost(forumPost);
             } catch (err) {
                 console.error('Error fetching forum post:', err);
                 setError('មានបញ្ហាកើតឡើងពេលទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
@@ -38,8 +41,8 @@ export default function MyForumDetail() {
 
         const fetchComments = async () => {
             try {
-                const response = await axios.get(`http://localhost:6969/forum_comments/${id}`);
-                setComments(response.data);
+                const forumComments = await getForumComments(id);
+                setComments(forumComments);
             } catch (err) {
                 console.error('Error fetching comments:', err);
             }
@@ -58,7 +61,7 @@ export default function MyForumDetail() {
     const handleDelete = async () => {
         if (window.confirm('តើអ្នកពិតជាចង់លុបវេទិកានេះមែនទេ?')) {
             try {
-                await axios.delete(`http://localhost:6969/forums/${id}`);
+                await deleteForum(id);
                 router.push('/my-content/forums');
             } catch (error) {
                 console.error('Error deleting forum:', error);
@@ -68,13 +71,18 @@ export default function MyForumDetail() {
     };
 
     const handleSave = async (updatedForum: ForumPost) => {
-        const response = await axios.put(`http://localhost:6969/user-content/forums/${id}`, {
-            title: updatedForum.title,
-            description: updatedForum.description,
-        });
-        setPost(response.data);
-        setIsEditMode(false);
-        router.push('/my-content/forums');
+        try {
+            const updatedPost = await updateForum(id, {
+                title: updatedForum.title,
+                description: updatedForum.description,
+            });
+            setPost(updatedPost);
+            setIsEditMode(false);
+            router.push('/my-content/forums');
+        } catch (error) {
+            console.error('Error updating forum:', error);
+            alert('មានបញ្ហាកើតឡើងពេលកែប្រែវេទិកា សូមព្យាយាមម្តងទៀត');
+        }
     };
 
     const handleCancel = () => {

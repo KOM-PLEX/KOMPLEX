@@ -2,10 +2,11 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, MessageCircle, Trash, Upload, Tag, X, Plus } from 'lucide-react';
+import { ArrowLeft, MessageCircle, Trash, Tag, X, Plus } from 'lucide-react';
 import Sidebar from '@/components/pages/my-content/Sidebar';
-import axios from 'axios';
+import { createForum } from '@/services/me/forums';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function CreateForum() {
     const router = useRouter();
@@ -16,6 +17,9 @@ export default function CreateForum() {
     const [titleCharCount, setTitleCharCount] = useState(0);
     const [forumTypes, setForumTypes] = useState<string[]>([]);
     const [topics, setTopics] = useState<string[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState<string>('');
+    const [success, setSuccess] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const suggestedForumTypes = ['បទពិសោធន៍', 'វិធីសាស្ត្ររៀន', 'រឿងរ៉ាវ', 'គន្លឹះ'];
@@ -25,6 +29,8 @@ export default function CreateForum() {
         const value = e.target.value;
         setTitle(value);
         setTitleCharCount(value.length);
+        // Clear error when user makes changes
+        if (error) setError('');
     };
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +49,9 @@ export default function CreateForum() {
                 };
                 reader.readAsDataURL(file);
             });
+
+            // Clear error when user uploads images
+            if (error) setError('');
         }
     };
 
@@ -58,6 +67,8 @@ export default function CreateForum() {
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
         }
+        // Clear error when user removes images
+        if (error) setError('');
     };
 
     const addForumType = (type: string) => {
@@ -80,48 +91,90 @@ export default function CreateForum() {
         setTopics([]);
     };
 
+    const handleBodyTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setBodyText(e.target.value);
+        // Clear error when user makes changes
+        if (error) setError('');
+    };
+
+    const isFormValid = () => {
+        return title.trim() && bodyText.trim() && !error;
+    };
+
     const handleSubmit = async () => {
         if (!title.trim() || !bodyText.trim()) {
-            alert('សូមបំពេញចំណងជើងនិងមាតិកា');
+            setError('សូមបំពេញចំណងជើងនិងមាតិកា');
             return;
         }
 
+        setIsSubmitting(true);
+        setError('');
+        setSuccess(false);
+
         try {
-            // Build multipart form data per controller
+            // Build multipart form data for backend upload
             const formData = new FormData();
             formData.append('title', title.trim());
             formData.append('description', bodyText.trim());
 
-            // ! TO CHANGE
-            formData.append('type', 'biology');
-            formData.append('topic', 'idk');
+            // Use selected types or defaults
+            const selectedType = forumTypes.length > 0 ? forumTypes[0] : 'បទពិសោធន៍';
+            const selectedTopic = topics.length > 0 ? topics[0] : 'គណិតវិទ្យា';
 
-            // Add images if selected (field name must be 'images' per multer)
+            // Map to backend expected values
+            const typeMapping: { [key: string]: "discussion" | "question" | "announcement" } = {
+                'បទពិសោធន៍': 'discussion',
+                'វិធីសាស្ត្ររៀន': 'question',
+                'រឿងរ៉ាវ': 'discussion',
+                'គន្លឹះ': 'announcement'
+            };
+
+            const topicMapping: { [key: string]: "math" | "physics" | "chemistry" | "biology" | "general" } = {
+                'គណិតវិទ្យា': 'math',
+                'រូបវិទ្យា': 'physics',
+                'គីមីវិទ្យា': 'chemistry',
+                'ជីវវិទ្យា': 'biology',
+                'អូឡាំពិច': 'general'
+            };
+
+            formData.append('type', typeMapping[selectedType] || 'discussion');
+            formData.append('topic', topicMapping[selectedTopic] || 'general');
+
+            // Add images if selected
             if (selectedImages.length > 0) {
                 selectedImages.forEach((file) => {
                     formData.append('images', file);
                 });
             }
 
-            const response = await axios.post('http://localhost:6969/user-content/forums', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
+            // Create forum using the service
+            await createForum({
+                title: title.trim(),
+                description: bodyText.trim(),
+                type: typeMapping[selectedType] || 'discussion',
+                topic: topicMapping[selectedTopic] || 'general',
+                media: [] // Will be populated by backend
             });
 
-            console.log('Forum created:', response.data);
+            setSuccess(true);
 
-            // Reset form and redirect
-            setTitle('');
-            setBodyText('');
-            setSelectedImages([]);
-            setImagePreviews([]);
-            setTitleCharCount(0);
-            setForumTypes([]);
-            setTopics([]);
+            // Reset form and redirect after success
+            setTimeout(() => {
+                setTitle('');
+                setBodyText('');
+                setSelectedImages([]);
+                setImagePreviews([]);
+                setTitleCharCount(0);
+                setForumTypes([]);
+                setTopics([]);
+                router.push('/my-content/forums');
+            }, 1500);
 
-            router.push('/my-content/forums');
         } catch (error) {
             console.error('Error creating forum:', error);
-            alert('មានបញ្ហាកើតឡើងពេលបង្កើតវេទិកា សូមព្យាយាមម្តងទៀត');
+            setError('មានបញ្ហាកើតឡើងពេលបង្កើតវេទិកា សូមព្យាយាមម្តងទៀត');
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -343,10 +396,11 @@ export default function CreateForum() {
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 {imagePreviews.map((preview, index) => (
                                     <div key={index} className="relative aspect-video rounded-lg overflow-hidden border border-gray-200">
-                                        <img
+                                        <Image
                                             src={preview}
                                             alt={`Preview ${index + 1}`}
-                                            className="w-full h-full object-contain"
+                                            fill
+                                            className="object-contain"
                                         />
                                         <button
                                             onClick={() => removeImage(index)}
@@ -385,23 +439,91 @@ export default function CreateForum() {
                             </label>
                             <textarea
                                 value={bodyText}
-                                onChange={(e) => setBodyText(e.target.value)}
+                                onChange={handleBodyTextChange}
                                 placeholder="សរសេរមាតិកាការឆ្លើយតបរបស់អ្នក..."
                                 className="w-full p-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
                                 rows={12}
                             />
                         </div>
 
+                        {/* Error Message */}
+                        {error && (
+                            <div className="mb-6">
+                                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                                    <div className="flex items-center">
+                                        <div className="flex-shrink-0">
+                                            <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div className="ml-3">
+                                            <p className="text-sm text-red-800">{error}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Success Message */}
+                        {success && (
+                            <div className="mb-6">
+                                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                                    <div className="flex items-center">
+                                        <div className="flex-shrink-0">
+                                            <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div className="ml-3">
+                                            <p className="text-sm text-green-800">បង្កើតវេទិកាបានជោគជ័យ! កំពុងបញ្ជូនទៅទំព័រវេទិកា...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {/* Action Buttons */}
                         <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
                             <button
                                 onClick={handleSubmit}
-                                disabled={!title.trim() || !bodyText.trim()}
-                                className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                                disabled={!isFormValid() || isSubmitting}
+                                className={`px-6 py-2 rounded-lg transition-all duration-200 font-medium ${isFormValid() && !isSubmitting
+                                        ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+                                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                    }`}
                             >
-                                បោះផ្សាយ
+                                {isSubmitting ? (
+                                    <>
+                                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white inline-block mr-2"></div>
+                                        កំពុងបង្កើត...
+                                    </>
+                                ) : success ? (
+                                    <>
+                                        <svg className="h-4 w-4 text-white inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        បានបង្កើតជោគជ័យ
+                                    </>
+                                ) : (
+                                    'បោះផ្សាយ'
+                                )}
                             </button>
                         </div>
+
+                        {/* Retry Button for Errors */}
+                        {error && !isSubmitting && (
+                            <div className="mt-4 flex justify-center">
+                                <button
+                                    onClick={handleSubmit}
+                                    className="flex items-center gap-2 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
+                                >
+                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                    </svg>
+                                    ព្យាយាមម្តងទៀត
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

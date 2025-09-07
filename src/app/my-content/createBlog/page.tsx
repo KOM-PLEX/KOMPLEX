@@ -2,8 +2,10 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Book, Trash, Upload, Plus, Tag, X } from 'lucide-react';
-import axios from 'axios';
+import Image from 'next/image';
+import { ArrowLeft, Book, Trash, Plus, Tag, X } from 'lucide-react';
+import { createBlog } from '@/services/me/blogs';
+import { uploadFileWithProgress } from '@/services/upload';
 import Sidebar from '@/components/pages/my-content/Sidebar';
 
 export default function CreateBlog() {
@@ -14,27 +16,71 @@ export default function CreateBlog() {
     const [titleCharCount, setTitleCharCount] = useState(0);
     const [blogTypes, setBlogTypes] = useState<string[]>([]);
     const [topics, setTopics] = useState<string[]>([]);
+    const [isUploading, setIsUploading] = useState(false);
+    const [uploadProgress, setUploadProgress] = useState(0);
+    const [error, setError] = useState<string>('');
+    const [success, setSuccess] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const suggestedBlogTypes = ['បទពិសោធន៍', 'វិធីសាស្ត្ររៀន', 'រឿងរ៉ាវ', 'គន្លឹះ'];
     const suggestedTopics = ['គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];
 
     const handlePostBlog = async () => {
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('description', bodyText);
-        selectedImages.forEach(f => formData.append('images', f));
+        if (!title.trim() || !bodyText.trim()) {
+            setError('សូមបំពេញចំណងជើងនិងមាតិកាប្លុក');
+            return;
+        }
 
-        formData.append('type', 'education');
-        formData.append('topic', 'biology');
+        setIsUploading(true);
+        setUploadProgress(0);
+        setError('');
+        setSuccess(false);
 
         try {
-            const response = await axios.post('http://localhost:6969/user-content/blogs', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
-            });
-            console.log('Blog post created:', response.data);
+            let uploadedImageUrls: string[] = [];
+
+            // Upload images if any
+            if (selectedImages.length > 0) {
+                setUploadProgress(10);
+                const uploadPromises = selectedImages.map((image, index) =>
+                    uploadFileWithProgress(image, (progress) => {
+                        const imageProgress = (progress * 0.7) / selectedImages.length; // Images are 70% of total progress
+                        const baseProgress = 10 + (index * 70 / selectedImages.length);
+                        setUploadProgress(Math.round(baseProgress + imageProgress));
+                    })
+                );
+                uploadedImageUrls = await Promise.all(uploadPromises);
+            }
+
+            setUploadProgress(80);
+
+            // Create blog using the service
+            const blogData = {
+                title: title.trim(),
+                description: bodyText.trim(),
+                type: blogTypes.length > 0 ? blogTypes[0] : 'education', // Use first selected type or default
+                topic: topics.length > 0 ? topics[0] : 'biology', // Use first selected topic or default
+                media: uploadedImageUrls.map(url => ({
+                    url,
+                    type: 'image' as const
+                }))
+            };
+
+            await createBlog(blogData);
+
+            setUploadProgress(100);
+            setSuccess(true);
+
+            // Success! Redirect to blogs page after a short delay
+            setTimeout(() => {
+                window.location.href = '/my-content/blogs';
+            }, 1500);
+
         } catch (error) {
             console.error('Error creating blog post:', error);
+            setError('មានបញ្ហាក្នុងការបង្កើតប្លុក។ សូមព្យាយាមម្តងទៀត។');
+        } finally {
+            setIsUploading(false);
         }
     }
 
@@ -42,6 +88,8 @@ export default function CreateBlog() {
         const value = e.target.value;
         setTitle(value);
         setTitleCharCount(value.length);
+        // Clear error when user makes changes
+        if (error) setError('');
     };
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,6 +108,9 @@ export default function CreateBlog() {
                 };
                 reader.readAsDataURL(file);
             });
+
+            // Clear error when user uploads images
+            if (error) setError('');
         }
     };
 
@@ -75,6 +126,18 @@ export default function CreateBlog() {
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
         }
+        // Clear error when user removes images
+        if (error) setError('');
+    };
+
+    const handleBodyTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setBodyText(e.target.value);
+        // Clear error when user makes changes
+        if (error) setError('');
+    };
+
+    const isFormValid = () => {
+        return title.trim() && bodyText.trim() && !error;
     };
 
     return (
@@ -306,10 +369,11 @@ export default function CreateBlog() {
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 {imagePreviews.map((preview, index) => (
                                     <div key={index} className="relative aspect-video rounded-lg overflow-hidden border border-gray-200">
-                                        <img
+                                        <Image
                                             src={preview}
                                             alt={`Preview ${index + 1}`}
-                                            className="w-full h-full object-contain"
+                                            fill
+                                            className="object-contain"
                                         />
                                         <button
                                             onClick={() => removeImage(index)}
@@ -348,23 +412,114 @@ export default function CreateBlog() {
                             </label>
                             <textarea
                                 value={bodyText}
-                                onChange={(e) => setBodyText(e.target.value)}
+                                onChange={handleBodyTextChange}
                                 placeholder="សរសេរមាតិកាប្លុករបស់អ្នក..."
                                 className="w-full p-4 rounded-lg bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
                                 rows={12}
                             />
                         </div>
 
+                        {/* Error Message */}
+                        {error && (
+                            <div className="mb-6">
+                                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                                    <div className="flex items-center">
+                                        <div className="flex-shrink-0">
+                                            <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div className="ml-3">
+                                            <p className="text-sm text-red-800">{error}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Success Message */}
+                        {success && (
+                            <div className="mb-6">
+                                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                                    <div className="flex items-center">
+                                        <div className="flex-shrink-0">
+                                            <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div className="ml-3">
+                                            <p className="text-sm text-green-800">បង្កើតប្លុកបានជោគជ័យ! កំពុងបញ្ជូនទៅទំព័រប្លុក...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Upload Progress */}
+                        {isUploading && (
+                            <div className="mb-6">
+                                <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-200">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="text-sm font-medium text-gray-700">
+                                            {uploadProgress < 80 ? 'កំពុងផ្ទុករូបភាព...' : 'កំពុងបង្កើតប្លុក...'}
+                                        </span>
+                                        <span className="text-sm text-indigo-600 font-semibold">{uploadProgress}%</span>
+                                    </div>
+                                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                                        <div
+                                            className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-3 rounded-full transition-all duration-500 ease-out"
+                                            style={{ width: `${uploadProgress}%` }}
+                                        ></div>
+                                    </div>
+                                    <div className="mt-2 text-xs text-gray-500 text-center">
+                                        សូមកុំបិទអេក្រង់នេះ
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {/* Action Buttons */}
                         <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
                             <button
                                 onClick={handlePostBlog}
-                                disabled={!title.trim() || !bodyText.trim()}
-                                className="px-6 py-2 bg-indigo-500 text-white rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                                disabled={!isFormValid() || isUploading}
+                                className={`px-6 py-2 rounded-lg transition-all duration-200 font-medium ${isFormValid() && !isUploading
+                                    ? 'bg-indigo-500 text-white hover:bg-indigo-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+                                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                    }`}
                             >
-                                បោះផ្សាយ
+                                {isUploading ? (
+                                    <>
+                                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white inline-block mr-2"></div>
+                                        កំពុងបង្កើត... {uploadProgress}%
+                                    </>
+                                ) : success ? (
+                                    <>
+                                        <svg className="h-4 w-4 text-white inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        បានបង្កើតជោគជ័យ
+                                    </>
+                                ) : (
+                                    'បោះផ្សាយ'
+                                )}
                             </button>
                         </div>
+
+                        {/* Retry Button for Errors */}
+                        {error && !isUploading && (
+                            <div className="mt-4 flex justify-center">
+                                <button
+                                    onClick={handlePostBlog}
+                                    className="flex items-center gap-2 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
+                                >
+                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                    </svg>
+                                    ព្យាយាមម្តងទៀត
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

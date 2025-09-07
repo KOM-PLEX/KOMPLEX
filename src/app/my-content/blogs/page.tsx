@@ -2,66 +2,58 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Eye, Plus, Book } from 'lucide-react';
-import axios from 'axios';
+import { Eye, Plus, Book } from 'lucide-react';
 import Sidebar from '@/components/pages/my-content/Sidebar';
+import ContentError from '@/components/common/ContentError';
 import { Blog } from '@/types/content/blogs';
-
-// Skeleton Loading Component
-function MyBlogsSkeleton() {
-    return (
-        <div className="min-h-screen bg-gray-50">
-            <div className="pt-20 p-5 max-w-7xl mx-auto">
-                {/* Header Skeleton */}
-                <div className="mb-8">
-                    <div className="w-32 h-6 bg-gray-200 rounded animate-pulse mb-4"></div>
-                    <div className="w-48 h-8 bg-gray-200 rounded animate-pulse"></div>
-                </div>
-
-                {/* Blog Cards Skeleton */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[...Array(6)].map((_, index) => (
-                        <div key={index} className="bg-white rounded-xl shadow-sm overflow-hidden">
-                            <div className="w-full h-48 bg-gray-200 animate-pulse"></div>
-                            <div className="p-4 space-y-3">
-                                <div className="w-full h-5 bg-gray-200 rounded animate-pulse"></div>
-                                <div className="w-3/4 h-4 bg-gray-200 rounded animate-pulse"></div>
-                                <div className="flex gap-2">
-                                    <div className="w-16 h-8 bg-gray-200 rounded animate-pulse"></div>
-                                    <div className="w-16 h-8 bg-gray-200 rounded animate-pulse"></div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
+import { getUserBlogs } from '@/services/me/blogs';
+import BlogSkeleton from '@/components/pages/blog/BlogSkeleton';
 
 export default function MyBlogs() {
     const [blogPosts, setBlogPosts] = useState<Blog[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchMyBlogs = async () => {
+        try {
+            setIsLoading(true);
+            setError(null);
+            const data = await getUserBlogs();
+            if (data.blogs.length > 0) {
+                setBlogPosts(data.blogs);
+            } else {
+                setError('អ្នកមិនទាន់មានប្លុកទេ');
+            }
+        } catch (error) {
+            console.error('Error fetching my blogs:', error);
+            setError('មានបញ្ហាក្នុងការទាញយកប្លុករបស់អ្នក');
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchMyBlogs = async () => {
-            try {
-                setIsLoading(true);
-                // For now, fetch all blogs (later will be user-specific)
-                const response = await axios.get('http://localhost:6969/user-content/blogs');
-                const data = await response.data;
-                setBlogPosts(data);
-            } catch (error) {
-                console.error('Error fetching my blogs:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
         fetchMyBlogs();
     }, []);
 
     if (isLoading) {
-        return <MyBlogsSkeleton />;
+        return <BlogSkeleton />;
+    }
+
+    if (error) {
+        return (
+            <div className="flex min-h-screen bg-gray-50">
+                <Sidebar />
+                <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
+                    <div className="p-6">
+                        <ContentError
+                            type={error === 'អ្នកមិនទាន់មានប្លុកណាមួយទេ' ? 'no-results' : 'error'}
+                            message={error}
+                        />
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -168,18 +160,7 @@ export default function MyBlogs() {
                                     ))}
                                 </div>
                             ) : (
-                                <div className="text-center py-12">
-                                    <Book className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                    <h3 className="text-lg font-medium text-gray-900 mb-2">អ្នកមិនទាន់មានប្លុកណាមួយទេ</h3>
-                                    <p className="text-gray-500 mb-6">ចាប់ផ្តើមបង្កើតប្លុកដំបូងរបស់អ្នក</p>
-                                    <Link
-                                        href="/my-content/createBlog"
-                                        className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
-                                    >
-                                        <Plus className="w-4 h-4" />
-                                        បង្កើតប្លុក
-                                    </Link>
-                                </div>
+                                <ContentError type="no-results" message="អ្នកមិនទាន់មានប្លុកណាមួយទេ" />
                             )}
                         </div>
                     </div>

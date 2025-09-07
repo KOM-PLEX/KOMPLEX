@@ -1,14 +1,12 @@
 import api from "@/config/axios";
 import { User, SignupData, SocialLoginData } from "@/types/auth";
 
-const API_BASE_URL = "http://localhost:6969";
-
 // AUTH OPERATIONS
 
 // Get current user profile
 export const getCurrentUser = async (): Promise<User> => {
   try {
-    const response = await api.get<User>(`${API_BASE_URL}/auth/me`);
+    const response = await api.get<User>(`/me`);
     return response.data;
   } catch (error) {
     console.error("Error fetching current user:", error);
@@ -20,7 +18,7 @@ export const getCurrentUser = async (): Promise<User> => {
 export const signup = async (signupData: SignupData): Promise<User> => {
   try {
     const response = await api.post<User>(
-      `${API_BASE_URL}/auth/signup`,
+      `/signup`,
       signupData
     );
     return response.data;
@@ -36,7 +34,7 @@ export const socialLogin = async (
 ): Promise<User> => {
   try {
     const response = await api.post<User>(
-      `${API_BASE_URL}/auth/social-login`,
+      `/social-login`,
       socialData
     );
     return response.data;
@@ -55,7 +53,7 @@ export const updateProfile = async (
 ): Promise<User> => {
   try {
     const response = await api.put<User>(
-      `${API_BASE_URL}/auth/profile/${userId}`,
+      `/profile/${userId}`,
       profileData
     );
     return response.data;
@@ -65,79 +63,81 @@ export const updateProfile = async (
   }
 };
 
-// Change password
-export const changePassword = async (
-  userId: number,
-  currentPassword: string,
-  newPassword: string
-): Promise<void> => {
-  try {
-    await api.put(`${API_BASE_URL}/auth/change-password/${userId}`, {
-      currentPassword,
-      newPassword,
-    });
-  } catch (error) {
-    console.error("Error changing password:", error);
-    throw new Error("Failed to change password");
-  }
-};
+// ! FOR FUTURE
 
-// Delete user account
-export const deleteAccount = async (userId: number): Promise<void> => {
-  try {
-    await api.delete(`${API_BASE_URL}/auth/account/${userId}`);
-  } catch (error) {
-    console.error("Error deleting account:", error);
-    throw new Error("Failed to delete account");
-  }
-};
+// // Change password
+// export const changePassword = async (
+//   userId: number,
+//   currentPassword: string,
+//   newPassword: string
+// ): Promise<void> => {
+//   try {
+//     await api.put(`/change-password/${userId}`, {
+//       currentPassword,
+//       newPassword,
+//     });
+//   } catch (error) {
+//     console.error("Error changing password:", error);
+//     throw new Error("Failed to change password");
+//   }
+// };
 
-// FORGOT PASSWORD
+// // Delete user account
+// export const deleteAccount = async (userId: number): Promise<void> => {
+//   try {
+//     await api.delete(`/account/${userId}`);
+//   } catch (error) {
+//     console.error("Error deleting account:", error);
+//     throw new Error("Failed to delete account");
+//   }
+// };
 
-// Send password reset email
-export const sendPasswordResetEmail = async (email: string): Promise<void> => {
-  try {
-    await api.post(`${API_BASE_URL}/auth/forgot-password`, { email });
-  } catch (error) {
-    console.error("Error sending password reset email:", error);
-    throw new Error("Failed to send password reset email");
-  }
-};
+// // FORGOT PASSWORD
 
-// Reset password with token
-export const resetPassword = async (
-  token: string,
-  newPassword: string
-): Promise<void> => {
-  try {
-    await api.post(`${API_BASE_URL}/auth/reset-password`, {
-      token,
-      newPassword,
-    });
-  } catch (error) {
-    console.error("Error resetting password:", error);
-    throw new Error("Failed to reset password");
-  }
-};
+// // Send password reset email
+// export const sendPasswordResetEmail = async (email: string): Promise<void> => {
+//   try {
+//     await api.post(`/forgot-password`, { email });
+//   } catch (error) {
+//     console.error("Error sending password reset email:", error);
+//     throw new Error("Failed to send password reset email");
+//   }
+// };
 
-// VERIFICATION
+// // Reset password with token
+// export const resetPassword = async (
+//   token: string,
+//   newPassword: string
+// ): Promise<void> => {
+//   try {
+//     await api.post(`/reset-password`, {
+//       token,
+//       newPassword,
+//     });
+//   } catch (error) {
+//     console.error("Error resetting password:", error);
+//     throw new Error("Failed to reset password");
+//   }
+// };
 
-// Send email verification
-export const sendEmailVerification = async (userId: number): Promise<void> => {
-  try {
-    await api.post(`${API_BASE_URL}/auth/send-verification/${userId}`);
-  } catch (error) {
-    console.error("Error sending email verification:", error);
-    throw new Error("Failed to send verification email");
-  }
-};
+// // VERIFICATION
 
-// Verify email with token
-export const verifyEmail = async (token: string): Promise<void> => {
-  try {
-    await api.post(`${API_BASE_URL}/auth/verify-email`, { token });
-  } catch (error) {
-    console.error("Error verifying email:", error);
-    throw new Error("Failed to verify email");
-  }
-};
+// // Send email verification
+// export const sendEmailVerification = async (userId: number): Promise<void> => {
+//   try {
+//     await api.post(`/send-verification/${userId}`);
+//   } catch (error) {
+//     console.error("Error sending email verification:", error);
+//     throw new Error("Failed to send verification email");
+//   }
+// };
+
+// // Verify email with token
+// export const verifyEmail = async (token: string): Promise<void> => {
+//   try {
+//     await api.post(`/verify-email`, { token });
+//   } catch (error) {
+//     console.error("Error verifying email:", error);
+//     throw new Error("Failed to verify email");
+//   }
+// };

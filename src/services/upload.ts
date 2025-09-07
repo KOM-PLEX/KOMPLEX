@@ -25,8 +25,8 @@ export const getUploadUrl = async (
   }
 };
 
-// Upload file to S3 using presigned URL
-export const uploadFileToS3 = async (
+// Upload file to R2 using presigned URL
+export const uploadFileToR2 = async (
   signedUrl: string,
   file: File
 ): Promise<void> => {
@@ -37,7 +37,7 @@ export const uploadFileToS3 = async (
       },
     });
   } catch (error) {
-    console.error("Error uploading file to S3:", error);
+    console.error("Error uploading file to R2:", error);
     throw new Error("Failed to upload file");
   }
 };
@@ -48,7 +48,7 @@ export const uploadFileToS3 = async (
 export const uploadFile = async (file: File): Promise<string> => {
   try {
     const { signedUrl, key } = await getUploadUrl(file.name, file.type);
-    await uploadFileToS3(signedUrl, file);
+    await uploadFileToR2(signedUrl, file);
     return key;
   } catch (error) {
     console.error("Error uploading file:", error);

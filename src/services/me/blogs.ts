@@ -1,4 +1,4 @@
-import { Blog } from "@/types/user-content/blog";
+import { Blog } from "@/types/content/blogs";
 import api from "@/config/axios";
 
 // Save/unsave a blog post
@@ -62,7 +62,10 @@ export const deleteBlog = async (id: string): Promise<void> => {
 // };
 
 // Get user's own blogs
-export const getUserBlogs = async (): Promise<Blog[]> => {
+export const getUserBlogs = async (): Promise<{
+  blogs: Blog[];
+  hasMore: boolean;
+}> => {
   try {
     const response = await api.get(`/me/blogs`);
     return response.data;

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Sidebar from '@/components/pages/my-content/Sidebar';
 import {
     Video,
@@ -12,7 +13,7 @@ import {
     Clock,
     Calendar,
 } from 'lucide-react';
-import axios from 'axios';
+import { getUserVideos } from '@/services/me/videos';
 import { VideoPost } from '@/types/content/videos';
 
 
@@ -20,15 +21,19 @@ import { VideoPost } from '@/types/content/videos';
 export default function MyVideos() {
     const [videos, setVideos] = useState<VideoPost[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     // Fetch videos from backend
     useEffect(() => {
         const fetchVideos = async () => {
             try {
-                const response = await axios.get('http://localhost:6969/user-content/videos');
-                setVideos(response.data);
+                setIsLoading(true);
+                setError(null);
+                const userVideos = await getUserVideos();
+                setVideos(userVideos);
             } catch (error) {
                 console.error('Error fetching videos:', error);
+                setError('មានបញ្ហាកើតឡើងពេលទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
             } finally {
                 setIsLoading(false);
             }
@@ -148,6 +153,24 @@ export default function MyVideos() {
                         </div>
                     </div>
 
+                    {/* Error Message */}
+                    {error && (
+                        <div className="mb-6">
+                            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                                <div className="flex items-center">
+                                    <div className="flex-shrink-0">
+                                        <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div className="ml-3">
+                                        <p className="text-sm text-red-800">{error}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Videos Grid */}
                     <div className="bg-white rounded-xl shadow-sm border border-gray-200">
                         <div className="p-6 border-b border-gray-200">
@@ -173,9 +196,16 @@ export default function MyVideos() {
                                         >
                                             {/* Thumbnail */}
                                             <div className="relative">
-                                                <img src={video.thumbnailUrl} alt={video.title} onError={(e) => {
-                                                    e.currentTarget.src = '/image-error.png';
-                                                }} className="w-full h-48 object-cover" />
+                                                <Image
+                                                    src={video.thumbnailUrl}
+                                                    alt={video.title}
+                                                    width={400}
+                                                    height={192}
+                                                    className="w-full h-48 object-cover"
+                                                    onError={(e) => {
+                                                        e.currentTarget.src = '/image-error.png';
+                                                    }}
+                                                />
 
                                                 {/* Duration Badge */}
                                                 <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
@@ -220,7 +250,7 @@ export default function MyVideos() {
                                         </Link>
                                     ))}
                                 </div>
-                            ) : (
+                            ) : !error ? (
                                 <div className="text-center py-12">
                                     <Video className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                                     <h3 className="text-lg font-medium text-gray-900 mb-2">រកមិនឃើញវីដេអូ</h3>
@@ -233,7 +263,7 @@ export default function MyVideos() {
                                         បង្ហោះវីដេអូថ្មី
                                     </Link>
                                 </div>
-                            )}
+                            ) : null}
                         </div>
                     </div>
                 </div>

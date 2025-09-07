@@ -79,28 +79,6 @@ export const getUserVideos = async (): Promise<VideoPost[]> => {
   }
 };
 
-// Get user's video history
-export const getUserVideoHistory = async (): Promise<VideoPost[]> => {
-  try {
-    const response = await api.get<VideoPost[]>(`/me/video_history`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching video history:", error);
-    throw new Error("Failed to fetch video history");
-  }
-};
-
-// Delete video from history
-export const deleteVideoFromHistory = async (
-  historyId: string
-): Promise<void> => {
-  try {
-    await api.delete(`/me/video_history/${historyId}`);
-  } catch (error) {
-    console.error("Error deleting video from history:", error);
-    throw new Error("Failed to delete video from history");
-  }
-};
 
 export const updateVideoExercises = async (
   videoId: string,
