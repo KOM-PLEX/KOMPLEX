@@ -19,6 +19,13 @@ import GymnospermVegetativeOrgans from "@/components/pages/docs/grade-12/biology
 import GymnospermReproductiveOrgans from "@/components/pages/docs/grade-12/biology/gymnosperms/GymnospermReproductiveOrgans";
 import GymnospermLifeCycle from "@/components/pages/docs/grade-12/biology/gymnosperms/GymnospermLifeCycle";
 import ComingSoon from "@/components/pages/docs/common/ComingSoon";
+import AngiospermVegetativeOrgan from "@/components/pages/docs/grade-12/biology/angiosperm/AngiospermVegetativeOrgan";
+import AngiospermReproductiveOrgan from "@/components/pages/docs/grade-12/biology/angiosperm/AngiospermReproductiveOrgan";
+import PollinationProcess from "@/components/pages/docs/grade-12/biology/angiosperm/PollinationProcess";
+import Reproduction from "@/components/pages/docs/grade-12/biology/angiosperm/Reproduction";
+import LifeCycle from "@/components/pages/docs/grade-12/biology/angiosperm/LifeCycle";
+import Comparision from "@/components/pages/docs/grade-12/biology/angiosperm/Comparision";
+import Advantage from "@/components/pages/docs/grade-12/biology/angiosperm/Advantage";
 
 export const biology: Content = {
   subject: "biology",
@@ -40,17 +47,17 @@ export const biology: Content = {
         {
           title: "សរីរាង្គលូតលាស់",
           englishTitle: "gymnosperms-vegetative-organs",
-          component: ComingSoon,
+          component: GymnospermVegetativeOrgans,
         },
         {
           title: "សរីរាង្គបន្តពូជ",
           englishTitle: "gymnosperms-reproductive-organs",
-          component: ComingSoon,
+          component: GymnospermReproductiveOrgans,
         },
         {
           title: "វដ្តជីវិតស៊ីមណូស្ពែម",
           englishTitle: "gymnosperms-life-cycle",
-          component: ComingSoon,
+          component: GymnospermLifeCycle,
         },
       ],
     },
@@ -63,37 +70,37 @@ export const biology: Content = {
         {
           title: "សរីរាង្គលូតលាស់",
           englishTitle: "angiosperms-vegetative-organs",
-          component: ComingSoon,
+          component: AngiospermVegetativeOrgan,
         },
         {
           title: "សរីរាង្គបន្តពូជ",
           englishTitle: "angiosperms-reproductive-organs",
-          component: ComingSoon,
+          component: AngiospermReproductiveOrgan,
         },
         {
           title: "ដំណើរលំអង",
           englishTitle: "angiosperms-pollination-process",
-          component: ComingSoon,
+          component: PollinationProcess,
         },
         {
           title: "ការបន្តពូជរបស់អង់ស្យូស្ពៃម",
           englishTitle: "angiosperms-reproduction",
-          component: ComingSoon,
+          component: Reproduction,
         },
         {
           title: "វដ្តជីវិតរបស់រុក្ខជាតិមានផ្កា",
           englishTitle: "angiosperms-flowering-plants-life-cycle",
-          component: ComingSoon,
+          component: LifeCycle,
         },
         {
           title: "ប្រៀបធៀបម៉ូណូកូទីលេដូននិងឌីកូទីលេដូន",
           englishTitle: "angiosperms-monocot-dicot-comparison",
-          component: ComingSoon,
+          component: Comparision,
         },
         {
           title: "ផលប្រយោជន៍របស់រុក្ខជាតិមានគ្រាប់",
           englishTitle: "angiosperms-seed-plants-benefits",
-          component: ComingSoon,
+          component: Advantage,
         },
       ],
     },
