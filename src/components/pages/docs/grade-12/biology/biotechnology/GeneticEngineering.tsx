@@ -24,7 +24,7 @@ const FirstTopicContent: TopicContent = {
           src: "/docs/grade-12/biology/adn/",
           imageAlt: "",
           explanation: [
-              
+              "មានផលិតអាំងស៊ុយលីន អាំងទែផេរ៉ូន អាំងទែឡីគីន អង់ទីហ្សូទិច វ៉ាក់សាំង អង់ទីករ អេរីត្រូប្រូតេអ៊ីន...។"
           ],
       },
       {
@@ -32,7 +32,9 @@ const FirstTopicContent: TopicContent = {
           src: "/docs/grade-12/biology/adn/",
           imageAlt: "",
           explanation: [
-              
+              "គេធ្វើឲ្យរុក្ខជាតិមានផ្កា ផ្លែច្រើន ធន់នឹងជម្ងឺ ធន់នឹងអាកាសធាតុ និងថ្នាំសម្លាប់សត្វល្អិត ថ្នាំសម្លាប់ស្មៅ...។",
+              "បង្កើតបាក់តេរីភ្ជាប់អាសូត។",
+              "បន្ថែមសារធាតុចិញ្ចឹមចូលទៅក្នុងគ្រាប់ធុញ្ញជាតិ។",
           ],
       },
       {
@@ -40,7 +42,7 @@ const FirstTopicContent: TopicContent = {
           src: "/docs/grade-12/biology/adn/",
           imageAlt: "",
           explanation: [
-              
+              "បង្កើតពូជបាក់តេរី ដែលអាចបំប្លែងប្រេងឆៅឬប្រេងសម្រាប់សម្អាតសមុទ្រពេលមានបញ្ហាកំពប់ប្រេងក្នុងសមុទ្រ។",
           ],
       },
       {
@@ -48,7 +50,7 @@ const FirstTopicContent: TopicContent = {
           src: "/docs/grade-12/biology/adn/",
           imageAlt: "",
           explanation: [
-              
+              "មានផលិតអាហារមានអរម៉ូន ទឹកដោះគោជូរ ផលិតស្រាបៀរ នំប៉័ងប្រូម៉ាស...។"
           ],
       },
     ]

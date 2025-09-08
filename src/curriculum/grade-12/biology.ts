@@ -58,6 +58,7 @@ import GeneticPractice from "@/components/pages/docs/grade-12/biology/geneExpres
 import GeneticFormular from "@/components/pages/docs/grade-12/biology/geneExpression/GeneticFormular";
 import { off } from "process";
 import Offspring from "@/components/pages/docs/grade-12/biology/biotechnology/Offspring";
+import BioTechQA from "@/components/pages/docs/grade-12/biology/biotechnology/BioTechQA";
 
 export const biology: Content = {
   subject: "biology",
@@ -485,6 +486,11 @@ export const biology: Content = {
           title: "ផលវិបាកនៃវិស្វកម្មសេនេទិច",
           englishTitle: "dangers",
           component: Dangers,
+        },
+        {
+          title: "សំណួរ & ចម្លេីយ",
+          englishTitle: "BioTechQA",
+          component: BioTechQA,
         },
       ],
     },
