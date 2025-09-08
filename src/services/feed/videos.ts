@@ -2,9 +2,14 @@ import api from "@/config/axios";
 import { VideoPost } from "@/types/content/videos";
 
 // Get all videos
-export const getAllVideos = async (): Promise<{ data: VideoPost[], hasMore: boolean }> => {
+export const getAllVideos = async (): Promise<{
+  data: VideoPost[];
+  hasMore: boolean;
+}> => {
   try {
-    const response = await api.get<{ data: VideoPost[], hasMore: boolean }>(`/feed/videos`);
+    const response = await api.get<{ data: VideoPost[]; hasMore: boolean }>(
+      `/feed/videos`
+    );
     return {
       data: response.data.data,
       hasMore: response.data.hasMore,
@@ -18,8 +23,8 @@ export const getAllVideos = async (): Promise<{ data: VideoPost[], hasMore: bool
 // Get video by ID
 export const getVideoById = async (id: string): Promise<VideoPost> => {
   try {
-    const response = await api.get<VideoPost>(`/feed/videos/${id}`);
-    return response.data;
+    const response = await api.get<{ data: VideoPost }>(`/feed/videos/${id}`);
+    return response.data.data;
   } catch (error) {
     console.error("Error fetching video by ID:", error);
     throw new Error("Failed to fetch video");

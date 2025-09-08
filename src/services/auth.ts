@@ -3,24 +3,10 @@ import { User, SignupData, SocialLoginData } from "@/types/auth";
 
 // AUTH OPERATIONS
 
-// Get current user profile
-export const getCurrentUser = async (): Promise<User> => {
-  try {
-    const response = await api.get<User>(`/me`);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching current user:", error);
-    throw new Error("Failed to fetch user profile");
-  }
-};
-
 // Register new user
 export const signup = async (signupData: SignupData): Promise<User> => {
   try {
-    const response = await api.post<User>(
-      `/signup`,
-      signupData
-    );
+    const response = await api.post<User>(`/auth/signup`, signupData);
     return response.data;
   } catch (error) {
     console.error("Error during signup:", error);
@@ -33,10 +19,7 @@ export const socialLogin = async (
   socialData: SocialLoginData
 ): Promise<User> => {
   try {
-    const response = await api.post<User>(
-      `/social-login`,
-      socialData
-    );
+    const response = await api.post<User>(`/auth/social-login`, socialData);
     return response.data;
   } catch (error) {
     console.error("Error during social login:", error);
@@ -52,14 +35,22 @@ export const updateProfile = async (
   profileData: Partial<User>
 ): Promise<User> => {
   try {
-    const response = await api.put<User>(
-      `/profile/${userId}`,
-      profileData
-    );
+    const response = await api.put<User>(`/profile/${userId}`, profileData);
     return response.data;
   } catch (error) {
     console.error("Error updating profile:", error);
     throw new Error("Failed to update profile");
+  }
+};
+
+// Get current user profile
+export const getCurrentUser = async (): Promise<User> => {
+  try {
+    const response = await api.get<User>(`/me`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching current user:", error);
+    throw new Error("Failed to fetch user profile");
   }
 };
 

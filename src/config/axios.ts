@@ -19,11 +19,7 @@ api.interceptors.request.use(async (config) => {
     });
   });
 
-  if (!firebaseUser) {
-    throw new Error("No authenticated Firebase user");
-  }
-
-  const idToken = await firebaseUser.getIdToken();
+  const idToken = firebaseUser ? await firebaseUser.getIdToken() : null;
 
   config.headers.Authorization = `Bearer ${idToken}`;
 

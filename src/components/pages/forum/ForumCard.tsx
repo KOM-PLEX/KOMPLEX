@@ -91,7 +91,7 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
 
     const handleCardClick = () => {
         if (isFromBasePage) {
-            router.push(`/forum/${post.id}`);
+            router.push(`/forums/${post.id}`);
         }
     }
 

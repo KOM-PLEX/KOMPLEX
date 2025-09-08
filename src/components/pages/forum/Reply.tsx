@@ -4,26 +4,60 @@ import { ForumReply } from "@/types/content/forums";
 import { getTimeAgo } from '@/utils/formater';
 import { createForumReply } from '@/services/me/forum-replies';
 import { toggleForumReplyLike } from '@/services/me/forum-replies';
+import { createVideoReply } from '@/services/me/video-replies';
+import { toggleVideoReplyLike } from '@/services/me/video-replies';
 
 
 interface ReplyComponentProps {
     reply: ForumReply; // TODO: add video reply
     commentId: number; // Add parent comment ID
     onSubmitReply: (commentId: number, description: string) => void;
-    onReplyLike: (replyId: number) => void;
-    onReplyUnlike: (replyId: number) => void;
+    replyType: 'forum' | 'video';
 }
 
-export default function ReplyComponent({ reply, commentId, onSubmitReply, onReplyLike, onReplyUnlike }: ReplyComponentProps) {
-    const [replyUpvoted, setReplyUpvoted] = useState(reply.isLike);
+export default function ReplyComponent({ reply, commentId, onSubmitReply, replyType }: ReplyComponentProps) {
+    const [replyUpvoted, setReplyUpvoted] = useState(reply.isLike || false);
+    const [likeCount, setLikeCount] = useState('likeCount' in reply ? reply.likeCount : 0);
     const [isReplying, setIsReplying] = useState(false);
     const [replyText, setReplyText] = useState('');
+    const [isLiking, setIsLiking] = useState(false);
+
+    // Handle reply like/unlike
+    const handleReplyLike = async () => {
+        if (isLiking) return; // Prevent multiple clicks
+
+        setIsLiking(true);
+        const wasLiked = replyUpvoted;
+
+        // Optimistically update UI
+        setReplyUpvoted(!wasLiked);
+        setLikeCount((prev: number) => wasLiked ? prev - 1 : prev + 1);
+
+        try {
+            if (replyType === 'forum') {
+                await toggleForumReplyLike(reply.id, wasLiked);
+            } else {
+                await toggleVideoReplyLike(reply.id, wasLiked);
+            }
+        } catch (error) {
+            console.error('Error toggling reply like:', error);
+            // Revert optimistic update on error
+            setReplyUpvoted(wasLiked);
+            setLikeCount((prev: number) => wasLiked ? prev + 1 : prev - 1);
+        } finally {
+            setIsLiking(false);
+        }
+    };
 
     const handleSubmitReply = async () => {
         if (replyText.trim()) {
             try {
                 const fullReply = `@${reply.username} ${replyText.trim()}`;
-                await createForumReply(commentId, fullReply);
+                if (replyType === 'forum') {
+                    await createForumReply(commentId, fullReply);
+                } else {
+                    await createVideoReply(commentId, fullReply);
+                }
                 onSubmitReply(commentId, fullReply); // Use parent comment ID instead of reply.id
                 setReplyText('');
                 setIsReplying(false);
@@ -47,24 +81,12 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, onRepl
                     <div className="text-gray-700 text-sm leading-relaxed mb-2">{reply.description}</div>
                     <div className="flex items-center gap-4">
                         <button
-                            onClick={async () => {
-                                try {
-                                    if (replyUpvoted) {
-                                        await toggleForumReplyLike(reply.id, true);
-                                        onReplyUnlike(reply.id);
-                                    } else {
-                                        await toggleForumReplyLike(reply.id, false);
-                                        onReplyLike(reply.id);
-                                    }
-                                    setReplyUpvoted(!replyUpvoted);
-                                } catch (error) {
-                                    console.error('Error toggling reply like:', error);
-                                }
-                            }}
-                            className={`flex items-center gap-1 text-xs font-medium cursor-pointer transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 ${replyUpvoted ? 'text-indigo-600' : 'text-gray-500'}`}
+                            onClick={handleReplyLike}
+                            disabled={isLiking}
+                            className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${replyUpvoted ? 'text-indigo-600' : 'text-gray-500'}`}
                         >
                             <ThumbsUp className={`w-3 h-3 ${replyUpvoted ? 'fill-indigo-600' : ''}`} />
-                            <span>0</span>
+                            <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
                         </button>
                         <button
                             onClick={() => setIsReplying(!isReplying)}

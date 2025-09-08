@@ -6,46 +6,102 @@ import ReplyComponent from './Reply';
 import { VideoComment } from '@/types/content/videos';
 import { createForumReply } from '@/services/me/forum-replies';
 import { toggleForumCommentLike } from '@/services/me/forum-comments';
+import { toggleVideoCommentLike } from '@/services/me/video-comments';
+import { getForumReplies } from '@/services/feed/forum-replies';
 
 interface CommentComponentProps {
     comment: ForumComment | VideoComment;
-    repliesState: { [commentId: number]: ForumReply[] };
-    loadingReplies: { [commentId: number]: boolean };
-    showingReplies: { [commentId: number]: boolean };
-    fetchReplies: (commentId: number) => void;
-    onSubmitReply: (commentId: number, description: string) => void;
-    onCommentLike: (commentId: number) => void;
-    onCommentUnlike: (commentId: number) => void;
-    onReplyLike: (replyId: number) => void;
-    onReplyUnlike: (replyId: number) => void;
+    commentType: 'forum' | 'video';
 }
 
 export default function CommentComponent({
     comment,
-    repliesState,
-    loadingReplies,
-    showingReplies,
-    fetchReplies,
-    onSubmitReply,
-    onReplyLike,
-    onReplyUnlike,
-    onCommentLike,
-    onCommentUnlike,
+    commentType,
 }: CommentComponentProps) {
-    const [commentUpvoted, setCommentUpvoted] = useState(comment.isLike);
+    const [commentUpvoted, setCommentUpvoted] = useState(comment.isLike || false);
+    const [likeCount, setLikeCount] = useState('likeCount' in comment ? comment.likeCount : 0);
     const [isReplying, setIsReplying] = useState(false);
     const [replyText, setReplyText] = useState('');
-    const commentReplies = repliesState[comment.id] || [];
-    const isLoadingReplies = loadingReplies[comment.id] || false;
-    const isShowingReplies = showingReplies[comment.id] || false;
+    const [isLiking, setIsLiking] = useState(false);
+    const [replies, setReplies] = useState<ForumReply[]>([]);
+    const [isLoadingReplies, setIsLoadingReplies] = useState(false);
+    const [isShowingReplies, setIsShowingReplies] = useState(false);
+    const [repliesError, setRepliesError] = useState<string | null>(null);
+
+    // Fetch replies for this comment
+    const fetchReplies = async () => {
+        if (replies.length > 0) {
+            // Replies already loaded, just toggle visibility
+            setIsShowingReplies(!isShowingReplies);
+            return;
+        }
+
+        try {
+            setIsLoadingReplies(true);
+            setRepliesError(null);
+
+            let fetchedReplies: ForumReply[];
+            if (commentType === 'video') {
+                // TODO: Create getVideoReplies service function
+                const response = await fetch(`http://localhost:6969/video-replies/${comment.id}`);
+                fetchedReplies = await response.json();
+            } else {
+                fetchedReplies = await getForumReplies(comment.id);
+            }
+
+            setReplies(fetchedReplies);
+            setIsShowingReplies(true);
+        } catch (error) {
+            console.error('Error fetching replies:', error);
+            setRepliesError('មានបញ្ហាក្នុងការទាញយកការឆ្លើយតប។ សូមព្យាយាមម្តងទៀត។');
+        } finally {
+            setIsLoadingReplies(false);
+        }
+    };
+
+    // Handle comment like/unlike
+    const handleCommentLike = async () => {
+        if (isLiking) return; // Prevent multiple clicks
+
+        setIsLiking(true);
+        const wasLiked = commentUpvoted;
+
+        // Optimistically update UI
+        setCommentUpvoted(!wasLiked);
+        setLikeCount((prev: number) => wasLiked ? prev - 1 : prev + 1);
+
+        try {
+            if (commentType === 'forum') {
+                await toggleForumCommentLike(comment.id, !wasLiked);
+            } else {
+                await toggleVideoCommentLike(comment.id, !wasLiked);
+            }
+        } catch (error) {
+            console.error('Error toggling comment like:', error);
+            // Revert optimistic update on error
+            setCommentUpvoted(wasLiked);
+            setLikeCount((prev: number) => wasLiked ? prev + 1 : prev - 1);
+        } finally {
+            setIsLiking(false);
+        }
+    };
 
     const handleSubmitReply = async (replyToId: number, description: string) => {
         try {
-            // Check if this is a forum comment (has forumId property)
-            if ('forumId' in comment) {
+            if (commentType === 'forum') {
                 await createForumReply(replyToId, description);
+            } else {
+                // TODO: Use createVideoReply service
+                const response = await fetch(`http://localhost:6969/video-replies/${replyToId}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ description })
+                });
+                await response.json();
             }
-            onSubmitReply(replyToId, description);
+
+            // Refresh replies after posting
+            await fetchReplies();
             setReplyText('');
             setIsReplying(false);
         } catch (error) {
@@ -73,34 +129,13 @@ export default function CommentComponent({
                     <div className="text-gray-700 text-sm leading-relaxed mb-2">{comment.description}</div>
                     <div className="flex items-center gap-4">
                         <button
-                            onClick={async () => {
-                                try {
-                                    // Check if this is a forum comment (has forumId property)
-                                    if ('forumId' in comment) {
-                                        if (commentUpvoted) {
-                                            await toggleForumCommentLike(comment.id, true);
-                                            onCommentUnlike(comment.id);
-                                        } else {
-                                            await toggleForumCommentLike(comment.id, false);
-                                            onCommentLike(comment.id);
-                                        }
-                                    } else {
-                                        // For video comments, use the existing handlers
-                                        if (commentUpvoted) {
-                                            onCommentUnlike(comment.id);
-                                        } else {
-                                            onCommentLike(comment.id);
-                                        }
-                                    }
-                                    setCommentUpvoted(!commentUpvoted);
-                                } catch (error) {
-                                    console.error('Error toggling comment like:', error);
-                                }
-                            }}
-                            className={`flex items-center gap-1 text-xs font-medium cursor-pointer transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 ${commentUpvoted ? 'text-indigo-600' : 'text-gray-500'}`}
+                            onClick={handleCommentLike}
+                            disabled={isLiking}
+                            className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${commentUpvoted ? 'text-indigo-600' : 'text-gray-500'
+                                }`}
                         >
                             <ThumbsUp className={`w-3 h-3 ${commentUpvoted ? 'fill-indigo-600' : ''}`} />
-                            <span>0</span>
+                            <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
                         </button>
                         <button
                             onClick={() => setIsReplying(!isReplying)}
@@ -109,7 +144,7 @@ export default function CommentComponent({
                             ឆ្លើយតប
                         </button>
                         <button
-                            onClick={() => fetchReplies(comment.id)}
+                            onClick={fetchReplies}
                             disabled={isLoadingReplies}
                             className="flex items-center gap-1 text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200 disabled:opacity-50"
                         >
@@ -151,18 +186,27 @@ export default function CommentComponent({
             </div>
 
             {/* Replies */}
-            {isShowingReplies && commentReplies.length > 0 && (
+            {isShowingReplies && (
                 <div className="mt-3">
-                    {commentReplies.map((reply) => (
-                        <ReplyComponent
-                            key={reply.id}
-                            reply={reply}
-                            commentId={comment.id}
-                            onSubmitReply={onSubmitReply}
-                            onReplyLike={onReplyLike}
-                            onReplyUnlike={onReplyUnlike}
-                        />
-                    ))}
+                    {repliesError ? (
+                        <div className="text-red-500 text-sm p-2 bg-red-50 rounded">
+                            {repliesError}
+                        </div>
+                    ) : replies.length > 0 ? (
+                        replies.map((reply) => (
+                            <ReplyComponent
+                                key={reply.id}
+                                reply={reply}
+                                commentId={comment.id}
+                                onSubmitReply={handleSubmitReply}
+                                replyType={commentType}
+                            />
+                        ))
+                    ) : (
+                        <div className="text-gray-500 text-sm p-2">
+                            មិនមានការឆ្លើយតបទេ។
+                        </div>
+                    )}
                 </div>
             )}
         </div>

@@ -8,7 +8,7 @@ export const createVideoReply = async (
 ): Promise<VideoComment> => {
   try {
     const response = await api.post<VideoComment>(
-      `/me/video_replies/${commentId}`,
+      `/me/video-replies/${commentId}`,
       {
         description,
       }
@@ -27,7 +27,7 @@ export const toggleVideoReplyLike = async (
 ): Promise<void> => {
   try {
     const endpoint = isLiked ? "unlike" : "like";
-    await api.patch(`/me/video_replies/${replyId}/${endpoint}`);
+    await api.patch(`/me/video-replies/${replyId}/${endpoint}`);
   } catch (error) {
     console.error("Error toggling video reply like:", error);
     throw new Error("Failed to update video reply like status");

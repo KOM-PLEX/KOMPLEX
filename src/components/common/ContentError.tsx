@@ -26,11 +26,7 @@ export default function ContentError({ type, message }: ContentErrorProps) {
                         ? 'មានបញ្ហាក្នុងការទាញយកប្លុក'
                         : 'រកមិនឃើញប្លុក')}
             </h3>
-            <p className="text-gray-500 mb-4">
-                {isError
-                    ? 'សូមព្យាយាមម្តងទៀត'
-                    : 'សូមព្យាយាមផ្លាស់ប្តូរតម្លៃច្រោះឬស្វែងរក'}
-            </p>
+           
             <button
                 onClick={handleRetry}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors"

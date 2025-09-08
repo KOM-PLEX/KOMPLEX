@@ -2,11 +2,29 @@ import api from "@/config/axios";
 import { VideoPost } from "@/types/content/videos";
 
 // Create a new video
-export const createVideo = async (
-  videoData: Partial<VideoPost>
-): Promise<VideoPost> => {
+export const createVideo = async (videoData: {
+  videoKey: string;
+  title: string;
+  duration: number;
+  description: string;
+  thumbnailKey: string;
+  questions: {
+    title: string;
+    choices: {
+      text: string;
+      isCorrect: boolean;
+    }[];
+  }[] | undefined;
+}): Promise<VideoPost> => {
   try {
-    const response = await api.post<VideoPost>(`/me/videos`, videoData);
+    const response = await api.post<VideoPost>(`/me/videos`, {
+      videoKey: videoData.videoKey,
+      title: videoData.title,
+      duration: videoData.duration,
+      description: videoData.description,
+      thumbnailKey: videoData.thumbnailKey,
+      questions: videoData.questions,
+    });
     return response.data;
   } catch (error) {
     console.error("Error creating video:", error);
@@ -71,14 +89,13 @@ export const toggleVideoSave = async (
 // Get user's own videos
 export const getUserVideos = async (): Promise<VideoPost[]> => {
   try {
-    const response = await api.get<VideoPost[]>(`/me/videos`);
-    return response.data;
+    const response = await api.get<{ data: VideoPost[] }>(`/me/videos`);
+    return response.data.data;
   } catch (error) {
     console.error("Error fetching user videos:", error);
     throw new Error("Failed to fetch user videos");
   }
 };
-
 
 export const updateVideoExercises = async (
   videoId: string,

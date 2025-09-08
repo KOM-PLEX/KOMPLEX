@@ -16,37 +16,37 @@ const navLinks = [
         label: 'ឯកសារ',
         href: `/docs/${curriculum[0].grade}/${curriculum[0].content[0].subject}/${curriculum[0].content[0].lessons[0].lesson}/${curriculum[0].content[0].lessons[0].topics[0].englishTitle}`,
         icon: FileText,
-        style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
+        style: "bg-white/80 backdrop-blur-sm hover:text-indigo-600 hover:bg-indigo-50/90 "
     },
     {
         label: 'វេទិកា',
-        href: '/forum',
+        href: '/forums',
         icon: MessageSquare,
-        style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
+        style: "bg-white/80 backdrop-blur-sm  hover:text-indigo-600 hover:bg-indigo-50/90 "
     },
     {
         label: 'ប្លុក',
-        href: '/blog',
+        href: '/blogs',
         icon: BookOpen,
-        style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
+        style: "bg-white/80 backdrop-blur-sm  hover:text-indigo-600 hover:bg-indigo-50/90 "
     },
     {
         label: 'អនុវត្តន៍',
-        href: '/exercise',
+        href: '/exercises',
         icon: Pencil,
-        style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
+        style: "bg-white/80 backdrop-blur-sm  hover:text-indigo-600 hover:bg-indigo-50/90 "
     },
     {
         label: 'វីដេអូ',
-        href: '/video',
+        href: '/videos',
         icon: Camera,
-        style: "bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90 shadow-lg shadow-indigo-500/10"
+        style: "bg-white/80 backdrop-blur-sm  hover:text-indigo-600 hover:bg-indigo-50/90 "
     },
     {
         label: 'KOMPLEX AI',
         href: '/ai',
         icon: Bot,
-        style: "bg-indigo-600 text-white no-underline font-semibold shadow-lg shadow-indigo-500/30 border border-white/20 hover:bg-indigo-500"
+        style: "bg-indigo-600 text-white no-underline font-semibold   hover:bg-indigo-500"
     }
 ]
 
@@ -150,7 +150,7 @@ export default function Header() {
                                                     <HeadlessMenu.Item>
                                                         {({ active }) => (
                                                             <Link
-                                                                href="/my-content"
+                                                                href="/me"
                                                                 className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
                                                             >
                                                                 <BookMarked className="w-4 h-4" />
@@ -197,7 +197,7 @@ export default function Header() {
                                             <div className="px-2 py-2">
                                                 <Link
                                                     href="/auth"
-                                                    className="w-full bg-indigo-600 text-white px-4 py-3 rounded-xl font-semibold text-sm hover:bg-indigo-500 transition-colors duration-300 shadow-lg shadow-indigo-500/30 border border-white/20 flex items-center justify-center gap-2"
+                                                    className="w-full bg-indigo-600 text-white px-4 py-3 rounded-xl font-semibold text-sm hover:bg-indigo-500 transition-colors duration-300 border border-white/20 flex items-center justify-center gap-2"
                                                 >
                                                     <UserIcon size={16} />
                                                     ចុះឈ្មោះ
@@ -275,7 +275,7 @@ export default function Header() {
                                             <HeadlessMenu.Item>
                                                 {({ active }) => (
                                                     <Link
-                                                        href="/my-content"
+                                                        href="/me"
                                                         className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
                                                     >
                                                         <BookMarked className="w-4 h-4" />

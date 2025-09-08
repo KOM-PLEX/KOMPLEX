@@ -6,7 +6,7 @@ export const createForumReply = async (
   description: string
 ): Promise<ForumReply> => {
   try {
-    const response = await api.post(`/me/forum_replies/${commentId}`, {
+    const response = await api.post(`/me/forum-replies/${commentId}`, {
       description,
     });
     return response.data.data;
@@ -23,7 +23,7 @@ export const toggleForumReplyLike = async (
 ): Promise<void> => {
   try {
     const endpoint = isLiked ? "unlike" : "like";
-    await api.patch(`/me/forum_replies/${replyId}/${endpoint}`);
+    await api.patch(`/me/forum-replies/${replyId}/${endpoint}`);
   } catch (error) {
     console.error("Error toggling forum reply like:", error);
     throw new Error("Failed to update forum reply like status");

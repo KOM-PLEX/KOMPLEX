@@ -1,7 +1,6 @@
 import api from "@/config/axios";
 import { UploadUrlResponse } from "@/types/uploadUrl";
-
-const API_BASE_URL = "http://localhost:6969";
+import axios from "axios";
 
 // UPLOAD HELPERS ==============================================================
 
@@ -12,11 +11,12 @@ export const getUploadUrl = async (
 ): Promise<UploadUrlResponse> => {
   try {
     const response = await api.post<UploadUrlResponse>(
-      `${API_BASE_URL}/upload/upload-url`,
+      `/upload/upload-url`,
       {
         fileName,
         fileType,
-      }
+      },
+      { withCredentials: true }
     );
     return response.data;
   } catch (error) {
@@ -31,7 +31,7 @@ export const uploadFileToR2 = async (
   file: File
 ): Promise<void> => {
   try {
-    await api.put(signedUrl, file, {
+    await axios.put(signedUrl, file, {
       headers: {
         "Content-Type": file.type,
       },

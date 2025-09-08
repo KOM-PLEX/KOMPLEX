@@ -2,11 +2,11 @@ import { ForumPost } from "@/types/content/forums";
 import api from "@/config/axios";
 
 // Create a new forum post
-export const createForum = async (
-  forumData: Partial<ForumPost>
-): Promise<ForumPost> => {
+export const createForum = async (formData: FormData): Promise<ForumPost> => {
   try {
-    const response = await api.post(`/me/forums`, forumData);
+    const response = await api.post(`/me/forums`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     return response.data.data;
   } catch (error) {
     console.error("Error creating forum:", error);
@@ -17,7 +17,7 @@ export const createForum = async (
 // Update a forum post
 export const updateForum = async (
   id: string,
-  forumData: Partial<ForumPost>
+  forumData: FormData
 ): Promise<ForumPost> => {
   try {
     const response = await api.put(`/me/forums/${id}`, forumData);
