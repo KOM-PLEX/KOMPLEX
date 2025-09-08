@@ -45,7 +45,7 @@ export default function VideoPage() {
     }, [])
 
     const handleVideoClick = (videoId: string) => {
-        router.push(`/video/${videoId}`);
+        router.push(`/videos/${videoId}`);
     };
 
     // Filter videos based on search

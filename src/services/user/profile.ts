@@ -16,12 +16,13 @@ export interface User {
   profileImageKey: string | null;
   createdAt: string;
   updatedAt: string;
+  numberOfFollowers: number;
+  numberOfFollowing: number;
+  totalLikesAndSaves: number;
   // Additional fields for UI
   bio?: string;
   location?: string;
   isFollowing?: boolean;
-  followersCount?: number;
-  followingCount?: number;
   stats?: {
     blogs: number;
     videos: number;

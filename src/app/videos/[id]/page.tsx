@@ -1,54 +1,18 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Play, Share2, ThumbsUp, Bookmark, User, Eye, Clock, Calendar, MessageSquare, BookOpen } from 'lucide-react';
-import Link from 'next/link';
+import { Play, Share2, ThumbsUp, Bookmark, User, Eye, Clock, Calendar, MessageSquare, BookOpen } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import Comments from '@/components/pages/forum/Comments';
-import ExerciseBox from '@/components/pages/docs/common/box/ExerciseBox';
+import Exercise from '@/components/pages/video/Exercise';
 import VideoCard from '@/components/pages/video/VideoCard';
 import VideoSkeleton from '@/components/pages/video/VideoSkeleton';
 import ContentError from '@/components/common/ContentError';
-import type { VideoPost, VideoComment } from '@/types/content/videos';
+import type { VideoPost } from '@/types/content/videos';
 import { getAllVideos } from '@/services/feed/videos';
-import { getVideoComments } from '@/services/feed/video-comments';
 import { toggleVideoLike, toggleVideoSave } from '@/services/me/videos';
-import { getVideoExercises } from '@/services/feed/videos';
 import { getVideoById } from '@/services/feed/videos';
 
-// API response types for exercises
-interface ExerciseChoice {
-    id: number;
-    questionId: number;
-    text: string;
-    isCorrect: boolean;
-    createdAt: string;
-    updatedAt: string;
-}
-
-interface ApiExercise {
-    id: number;
-    exerciseId: number;
-    userId: number | null;
-    title: string;
-    questionType: string;
-    section: string;
-    imageUrl: string;
-    createdAt: string;
-    updatedAt: string;
-    choices: ExerciseChoice[];
-}
-
-// Convert API exercise format to ExerciseBox format
-const convertApiExerciseToExerciseBox = (apiExercise: ApiExercise) => {
-    const correctAnswerIndex = apiExercise.choices.findIndex(choice => choice.isCorrect);
-    return {
-        id: apiExercise.id.toString(),
-        question: apiExercise.title,
-        options: apiExercise.choices.map(choice => choice.text),
-        correctAnswer: correctAnswerIndex
-    };
-};
 
 // API function to fetch all videos for recommendations
 const fetchAllVideos = async (): Promise<VideoPost[]> => {
@@ -71,19 +35,6 @@ const fetchVideoById = async (id: number): Promise<VideoPost | null> => {
     }
 };
 
-// API function to fetch exercises for a video
-const fetchVideoExercises = async (videoId: number): Promise<ApiExercise[]> => {
-    try {
-        const exercises = await getVideoExercises(videoId.toString());
-        return exercises as ApiExercise[];
-    } catch (error) {
-        console.error('Error fetching exercises:', error);
-        return [];
-    }
-};
-
-
-
 export default function VideoDetailPage() {
     const params = useParams();
     const videoId = parseInt(params.id as string);
@@ -91,14 +42,6 @@ export default function VideoDetailPage() {
     const [video, setVideo] = useState<VideoPost | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [comments, setComments] = useState<VideoComment[]>([]);
-    const [exercises, setExercises] = useState<Array<{
-        id: string;
-        question: string;
-        options: string[];
-        correctAnswer: number;
-    }>>([]);
-    const [exercisesLoading, setExercisesLoading] = useState(false);
     const [recommendedVideos, setRecommendedVideos] = useState<VideoPost[]>([]);
     const [videosLoading, setVideosLoading] = useState(false);
     useEffect(() => {
@@ -114,10 +57,8 @@ export default function VideoDetailPage() {
 
             try {
                 // Fetch all data in parallel
-                const [videoData, commentsData, apiExercises, allVideos] = await Promise.all([
+                const [videoData, allVideos] = await Promise.all([
                     fetchVideoById(videoId),
-                    getVideoComments(videoId.toString()),
-                    fetchVideoExercises(videoId),
                     fetchAllVideos()
                 ]);
 
@@ -127,13 +68,6 @@ export default function VideoDetailPage() {
                 } else {
                     setError('វីដេអូរកមិនឃើញ');
                 }
-
-                // Set comments
-                setComments(commentsData);
-
-                // Set exercises
-                const convertedExercises = apiExercises.map(convertApiExerciseToExerciseBox);
-                setExercises(convertedExercises);
 
                 // Set recommended videos (filter out current video and limit to 5)
                 const filteredVideos = allVideos
@@ -146,7 +80,6 @@ export default function VideoDetailPage() {
                 setError('មានបញ្ហាក្នុងការទាញយកទិន្នន័យវីដេអូ');
             } finally {
                 setLoading(false);
-                setExercisesLoading(false);
                 setVideosLoading(false);
             }
         };
@@ -303,7 +236,7 @@ export default function VideoDetailPage() {
 
                 {activeTab === 'comments' && (
                     <div>
-                        <Comments type='video' parentId={videoId} comments={comments} />
+                        <Comments type='video' parentId={videoId} />
                     </div>
                 )}
             </div>
@@ -356,25 +289,10 @@ export default function VideoDetailPage() {
 
             {/* Mobile Tab Content */}
             {activeTab === 'exercise' && (
-                <>
-                    {exercisesLoading ? (
-                        <div className="bg-white rounded-2xl shadow-sm p-6">
-                            <div className="text-center">
-                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-                                <p className="text-gray-600">កំពុងផ្ទុកលំហាត់...</p>
-                            </div>
-                        </div>
-                    ) : exercises.length > 0 ? (
-                        <ExerciseBox questions={exercises} />
-                    ) : (
-                        <div className="bg-white rounded-2xl shadow-sm p-6">
-                            <ContentError type="no-results" message="មិនមានលំហាត់សម្រាប់វីដេអូនេះទេ" />
-                        </div>
-                    )}
-                </>
+                <Exercise exercises={video.exercises} />
             )}
             {activeTab === 'comments' && (
-                <Comments type='video' parentId={videoId} comments={comments} />
+                <Comments type='video' parentId={videoId} />
             )}
             {activeTab === 'related' && (
                 <div className="bg-white rounded-2xl p-4 shadow-sm">
@@ -414,20 +332,7 @@ export default function VideoDetailPage() {
 
                         {/* Exercise Section - Under Video for Desktop */}
                         <div className="hidden lg:block">
-                            {exercisesLoading ? (
-                                <div className="bg-white rounded-2xl shadow-sm p-6">
-                                    <div className="text-center">
-                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-                                        <p className="text-gray-600">កំពុងផ្ទុកលំហាត់...</p>
-                                    </div>
-                                </div>
-                            ) : exercises.length > 0 ? (
-                                <ExerciseBox questions={exercises} />
-                            ) : (
-                                <div className="bg-white rounded-2xl shadow-sm p-6">
-                                    <ContentError type="no-results" message="មិនមានលំហាត់សម្រាប់វីដេអូនេះទេ" />
-                                </div>
-                            )}
+                            <Exercise exercises={video.exercises} />
                         </div>
                     </div>
 

@@ -1,19 +1,17 @@
 import api from "@/config/axios";
-import { VideoComment } from "@/types/content/videos";
+import { VideoReply } from "@/types/content/videos";
 
 // Get replies for a video comment
 export const getVideoReplies = async (
   commentId: number
-): Promise<VideoComment[]> => {
+): Promise<VideoReply[]> => {
   try {
-    const response = await api.get<VideoComment[]>(
-      `/feed/video_replies/${commentId}`
+    const response = await api.get<{ data: VideoReply[] }>(
+      `/feed/video-replies/${commentId}`
     );
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error("Error fetching video replies:", error);
     throw new Error("Failed to fetch video replies");
   }
 };
-
-

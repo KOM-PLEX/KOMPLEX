@@ -3,11 +3,13 @@ import { ThumbsUp, MessageCircle, Send } from 'lucide-react';
 import { ForumComment, ForumReply } from '@/types/content/forums';
 import { getTimeAgo } from '@/utils/formater';
 import ReplyComponent from './Reply';
-import { VideoComment } from '@/types/content/videos';
+import { VideoComment, VideoReply } from '@/types/content/videos';
 import { createForumReply } from '@/services/me/forum-replies';
 import { toggleForumCommentLike } from '@/services/me/forum-comments';
 import { toggleVideoCommentLike } from '@/services/me/video-comments';
 import { getForumReplies } from '@/services/feed/forum-replies';
+import { getVideoReplies } from '@/services/feed/video-replies';
+import { createVideoReply } from '@/services/me/video-replies';
 
 interface CommentComponentProps {
     comment: ForumComment | VideoComment;
@@ -23,7 +25,7 @@ export default function CommentComponent({
     const [isReplying, setIsReplying] = useState(false);
     const [replyText, setReplyText] = useState('');
     const [isLiking, setIsLiking] = useState(false);
-    const [replies, setReplies] = useState<ForumReply[]>([]);
+    const [replies, setReplies] = useState<ForumReply[] | VideoReply[]>([]);
     const [isLoadingReplies, setIsLoadingReplies] = useState(false);
     const [isShowingReplies, setIsShowingReplies] = useState(false);
     const [repliesError, setRepliesError] = useState<string | null>(null);
@@ -40,11 +42,9 @@ export default function CommentComponent({
             setIsLoadingReplies(true);
             setRepliesError(null);
 
-            let fetchedReplies: ForumReply[];
+            let fetchedReplies: ForumReply[] | VideoReply[] = [];
             if (commentType === 'video') {
-                // TODO: Create getVideoReplies service function
-                const response = await fetch(`http://localhost:6969/video-replies/${comment.id}`);
-                fetchedReplies = await response.json();
+                fetchedReplies = await getVideoReplies(comment.id);
             } else {
                 fetchedReplies = await getForumReplies(comment.id);
             }
@@ -91,13 +91,7 @@ export default function CommentComponent({
             if (commentType === 'forum') {
                 await createForumReply(replyToId, description);
             } else {
-                // TODO: Use createVideoReply service
-                const response = await fetch(`http://localhost:6969/video-replies/${replyToId}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ description })
-                });
-                await response.json();
+                await createVideoReply(replyToId, description);
             }
 
             // Refresh replies after posting
@@ -196,7 +190,7 @@ export default function CommentComponent({
                         replies.map((reply) => (
                             <ReplyComponent
                                 key={reply.id}
-                                reply={reply}
+                                reply={reply as ForumReply | VideoReply}
                                 commentId={comment.id}
                                 onSubmitReply={handleSubmitReply}
                                 replyType={commentType}

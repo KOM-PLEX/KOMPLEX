@@ -6,10 +6,11 @@ import { createForumReply } from '@/services/me/forum-replies';
 import { toggleForumReplyLike } from '@/services/me/forum-replies';
 import { createVideoReply } from '@/services/me/video-replies';
 import { toggleVideoReplyLike } from '@/services/me/video-replies';
+import { VideoReply } from '@/types/content/videos';
 
 
 interface ReplyComponentProps {
-    reply: ForumReply; // TODO: add video reply
+    reply: ForumReply | VideoReply;
     commentId: number; // Add parent comment ID
     onSubmitReply: (commentId: number, description: string) => void;
     replyType: 'forum' | 'video';
@@ -52,11 +53,11 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
     const handleSubmitReply = async () => {
         if (replyText.trim()) {
             try {
-                const fullReply = `@${reply.username} ${replyText.trim()}`;
+                const fullReply = `@${reply.username?.toString()} ${replyText.trim()}`;
                 if (replyType === 'forum') {
-                    await createForumReply(commentId, fullReply);
+                    await createForumReply(commentId, fullReply as string);
                 } else {
-                    await createVideoReply(commentId, fullReply);
+                    await createVideoReply(commentId, fullReply as string);
                 }
                 onSubmitReply(commentId, fullReply); // Use parent comment ID instead of reply.id
                 setReplyText('');
@@ -71,11 +72,11 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
         <div className="ml-8 mb-3">
             <div className="flex gap-3">
                 <div className="w-7 h-7 rounded-full bg-gray-500 flex items-center justify-center text-white font-semibold text-xs">
-                    {reply.username.charAt(0)}
+                    {reply.username?.charAt(0)}
                 </div>
                 <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                        <span className="font-semibold text-gray-900 text-sm">{reply.username}</span>
+                        <span className="font-semibold text-gray-900 text-sm">{reply.username?.toString()}</span>
                         <span className="text-gray-500 text-xs">{getTimeAgo(reply.createdAt)}</span>
                     </div>
                     <div className="text-gray-700 text-sm leading-relaxed mb-2">{reply.description}</div>
@@ -116,7 +117,7 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
                                 }}
                             />
                             <div className="absolute left-2 top-2 bg-indigo-50  px-2 py-2 rounded">
-                                <p className="text-black text-xs ">@{reply.username}</p>
+                                <p className="text-black text-xs ">@{reply.username?.toString()}</p>
                             </div>
                             <button
                                 onClick={handleSubmitReply}

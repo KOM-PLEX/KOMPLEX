@@ -8,6 +8,7 @@ import ContentError from '@/components/common/ContentError';
 import { getVideoComments } from '@/services/feed/video-comments';
 import { createForumComment } from '@/services/me/forum-comments';
 import { createVideoComment } from '@/services/me/video-comments';
+import { getForumComments } from '@/services/feed/forum-comments';
 
 interface CommentProps {
     type: 'forum' | 'video';
@@ -37,7 +38,6 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
                 if (type === 'video') {
                     fetchedComments = await getVideoComments(parentId.toString());
                 } else {
-                    const { getForumComments } = await import('@/services/feed/forum-comments');
                     fetchedComments = await getForumComments(parentId.toString());
                 }
 

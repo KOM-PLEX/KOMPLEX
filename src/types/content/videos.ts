@@ -1,4 +1,5 @@
 import { Comment } from "./comments";
+import { Media } from "./media";
 
 export interface ExerciseChoice {
   id: number;
@@ -68,4 +69,16 @@ export interface VideoHistory {
   updatedAt: string;
   title: string;
   thumbnailUrl: string;
+}
+
+export interface VideoReply {
+  id: number;
+  userId: number;
+  videoCommentId: number;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  media: Media[];
+  username: string;
+  isLike: boolean;
 }

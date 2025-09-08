@@ -44,7 +44,7 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
 
     if (variant === 'sidebar') {
         return (
-            <Link href={`/video/${video.id}`} className="block group overflow-hidden">
+            <Link href={`/videos/${video.id}`} className="block group overflow-hidden">
                 <div
                     className="flex gap-3 hover:bg-gray-50 p-2 rounded-lg transition-colors flex-wrap items-center cursor-pointer overflow-hidden"
                     onMouseEnter={handleCardHover}

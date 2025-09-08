@@ -55,7 +55,7 @@ export default function UserProfilePage() {
             setUser(prev => prev ? {
                 ...prev,
                 isFollowing: !prev.isFollowing,
-                followersCount: prev.isFollowing ? (prev.followersCount || 0) - 1 : (prev.followersCount || 0) + 1
+                numberOfFollowers: prev.isFollowing ? prev.numberOfFollowers - 1 : prev.numberOfFollowers + 1
             } : null);
         } catch (error) {
             console.error('Error toggling follow:', error);
@@ -159,12 +159,17 @@ export default function UserProfilePage() {
                         {/* User Info */}
                         <div className="flex-1 w-full lg:w-auto text-center lg:text-left">
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-                                <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
-                                    {user.firstName && user.lastName
-                                        ? `${user.firstName} ${user.lastName}`.trim()
-                                        : user.username
-                                    }
-                                </h1>
+                                <div className="flex flex-col">
+                                    <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
+                                        {user.firstName && user.lastName
+                                            ? `${user.firstName} ${user.lastName}`.trim()
+                                            : user.username
+                                        }
+                                    </h1>
+                                    {user.firstName && user.lastName && user.username !== `${user.firstName} ${user.lastName}`.trim() && (
+                                        <p className="text-sm text-gray-500">@{user.username}</p>
+                                    )}
+                                </div>
                                 {user.isVerified && (
                                     <div className="flex items-center gap-1 text-indigo-600">
                                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -226,22 +231,18 @@ export default function UserProfilePage() {
                     </div>
 
                     {/* Stats Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         <div className="text-center p-4 bg-gray-50 rounded-lg border border-indigo-500/20">
-                            <div className="text-2xl font-bold text-gray-900">{user.followersCount || 0}</div>
+                            <div className="text-2xl font-bold text-gray-900">{user.numberOfFollowers}</div>
                             <div className="text-sm text-gray-600">អ្នកតាមដាន</div>
                         </div>
                         <div className="text-center p-4 bg-gray-50 rounded-lg border border-indigo-500/20">
-                            <div className="text-2xl font-bold text-gray-900">{user.followingCount || 0}</div>
+                            <div className="text-2xl font-bold text-gray-900">{user.numberOfFollowing}</div>
                             <div className="text-sm text-gray-600">កំពុងតាមដាន</div>
                         </div>
-                        <div className="text-center p-4 bg-gray-50 rounded-lg border border-indigo-500/20">
-                            <div className="text-2xl font-bold text-gray-900">{user.stats?.blogs || 0}</div>
-                            <div className="text-sm text-gray-600">ប្លុក</div>
-                        </div>
-                        <div className="text-center p-4 bg-gray-50 rounded-lg border border-indigo-500/20">
-                            <div className="text-2xl font-bold text-gray-900">{user.stats?.videos || 0}</div>
-                            <div className="text-sm text-gray-600">វីដេអូ</div>
+                        <div className="text-center p-4 bg-gray-50 rounded-lg border border-indigo-500/20 md:col-span-1 col-span-2">
+                            <div className="text-2xl font-bold text-gray-900">{user.totalLikesAndSaves}</div>
+                            <div className="text-sm text-gray-600">ចូលចិត្ត និងរក្សាទុក</div>
                         </div>
                     </div>
                 </div>
