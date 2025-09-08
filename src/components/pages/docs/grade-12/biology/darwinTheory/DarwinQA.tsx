@@ -1,0 +1,127 @@
+import TopicPracticeBox from "../../../common/box/TopicPracticeBox";
+import { BlockMath, InlineMath } from "react-katex";
+import 'katex/dist/katex.min.css';
+import HintBox from "../../../common/box/HintBox";
+import SummaryBox from "../../../common/box/SummaryBox";
+import { AlertTriangleIcon, BookAIcon, ChartBarIcon, LightbulbIcon, WrenchIcon } from "lucide-react";
+import { PracticeExercise, SummarySection } from "@/types/topic";
+import { div } from "three/tsl";
+import { p, ul } from "framer-motion/client";
+
+
+const DarwinQA = () => {
+
+    const practiceExercises: PracticeExercise[] = [
+        {
+          id: "ex1",
+          title: "",
+          description: "សំណួរទី ១",
+          problemType: "First Exercise",
+          problems: [
+            <p>តើឡាម៉ាកមានទស្សនះដូចម្តេចចំពោះដើមកំណើតនៃជីវិត?</p>
+          ],
+          answers: [
+            <div className="flex flex-col gap-3 text-[15px]">
+                <p>ឡាម៉ាកបង្ហាញថា ភាវៈរស់ដំបូងដែលកកើតឡើងលើផែនដីជាសារពាង្គកាយងាយបំផុត។ បន្ទាប់មកឆ្លងកាត់រយះ
+                ពេលដ៏យូរអង្វែង ភាវៈរស់ដំបូងនេះវិវត្តជាបន្តបន្ទាប់ ហើយបង្កើតបានជាភាវៈរស់ប្រភេទផ្សេងៗដែលអាចរស់នៅលើផែនដីសព្វថ្ងៃ។</p>
+            </div>
+          ]
+        },
+        {
+          id: "ex2",
+          title: "",
+          description: "សំណួរទី ២",
+          problemType: "Second Exercise",
+          problems: [
+                <p>ចូរពណ៌នាដោយសង្ខេបអំពីទ្រឹស្តីវិវត្តរបស់ដាវិន។</p>
+          ],
+          answers: [
+            <div className="flex flex-col gap-3 text-[15px]">
+                <p>តាមទ្រឹស្តីវិវត្តរបស់ដាវិន ជម្រើសដោយធម្មជាតិកើតឡើងបានដោយសារកត្តាមួយចំនួនៈ</p>
+                <ul className="list-disc pl-5 flex flex-col gap-3 items-start">
+                    <li>ភាវៈរស់បង្កើតកូនចៅច្រើនលើសលុប។</li>
+                    <li>ភាវៈរស់មានបម្រែបម្រួលគឺមានលក្ខណះថ្មីកើតឡើង។</li>
+                    <li>ភាវៈរស់ដែលមានបម្រែបម្រួលមានប្រយោជន៍អាចបន្សំនឹងមជ្ឈដ្ឋានអាចរស់នៅនិងបន្តពូជហើយបញ្ជូនលក្ខណះរបស់ខ្លួនទៅសន្ដានក្រោយឆ្លងកាត់តាមរយះពេលដ៏យូរបម្រែបម្រួលមានប្រយោជន៍គរផ្គុំទុកពូជ ឬប្រភេទភាវៈរស់ថ្មី។</li>
+                </ul>
+            </div>
+          ]
+        },
+        {
+          id: "ex3",
+          title: "",
+          description: "សំណួរទី ៣",
+          problemType: "Third Exercise",
+          problems: [
+            <p>ចូរពន្យល់ដោយសង្ខេបថា តើនៅពេលធ្វើដំណើរតាមសំពៅប៊ីគោលដាវិនបានសង្កេតឃើញអ្វីខ្លះ?</p>
+          ],
+          answers: [
+            
+          ]
+        },
+        {
+          id: "ex4",
+          title: "",
+          description: "សំណួរទី ៤",
+          problemType: "Fourth Exercise",
+          problems: [
+                <p>តើបង្គួយនៅលើទ្វីបអាមេរិចខាងត្បូងនិងបង្គួយនៅលើកោះកាឡាប៉ាកូសខុសគ្នាដូចម្តេចខ្លះ ?</p>
+            ],
+          answers: [
+            <div className="flex flex-col gap-3 text-[15px]">
+            </div>
+          ]
+        },
+        {
+          id: "ex5",
+          title: "",
+          description: "សំណួរទី ៥",
+          problemType: "Fifth Exercise",
+          problems: [
+                <p>តើបម្រែបម្រួលជាអ្វី?</p>
+          ],
+          answers: [
+            <div className="flex flex-col gap-3 text-[15px]">
+                <p>បម្រែបម្រួល គឺជាកំណែប្រែដែលធ្វើឲ្យមានលក្ខណះខុសគ្នារវាងឯកត្តៈនៅក្នុងប្រភេទតែមួយ។</p>
+            </div>
+          ]
+        },
+        {
+          id: "ex6",
+          title: "",
+          description: "សំណួរទី ៦",
+          problemType: "Sixth Exercise",
+          problems: [
+                <p>ដូចម្តេចដែលហៅថាការវិវត្ត?</p>
+          ],
+          answers: [
+            <div className="flex flex-col gap-3 text-[15px]">
+                <p>ការវិវត្ត គឺជាការផ្លាស់ប្តូរជាបន្តបន្ទាប់ក្នុងរយះពេលដ៏យូរអង្វែងនៃទម្រង់របស់សត្វ និងរុក្ខជាតិដែលនាំឲ្យលេចចេញនូវទម្រង់ថ្មីៗផ្សេងទៀតរបស់សត្វឬរុក្ខជាតិ។</p>
+            </div>
+          ]
+        },
+        {
+          id: "ex7",
+          title: "",
+          description: "សំណួរទី ៧",
+          problemType: "Seventh Exercise",
+          problems: [
+            <p>ចូរពន្យល់ថា តើពូជសត្វស្រុកមួយកើតឡើងរបៀបដូចម្តេច?</p>
+          ],
+          answers: [
+            <div className="flex flex-col gap-3 text-[15px]">
+                <p>នៅក្នុងហ្វូងសត្វចិញ្ចឹម បើមនុស្សសង្កេតឃើញសត្វមានលក្ខណះប្លែក ហើយលក្ខណះនោះមានប្រយោជន៍ចំពោះ
+                ខ្លួន មនុស្សនិងជ្រើសយកឯកត្តៈនោះរក្សាទុក ហើយធ្វើការបន្តពូជដោយឡែកជាច្រើនជំនាន់។ ការធ្វើបែបនេះគេនឹងទទួលបានពូជសត្វស្រុកមួយបែបថ្មីទៀត។</p>
+            </div>
+          ]
+        },
+  ];
+  return (
+    <div>
+        <>
+            <TopicPracticeBox exercises={practiceExercises} />
+        </>
+    </div>
+  )
+}
+
+export default DarwinQA

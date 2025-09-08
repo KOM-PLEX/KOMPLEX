@@ -1,9 +1,68 @@
-import React from 'react'
+import { TopicContent } from "@/types/topic";
+import DefinitionBox from "@/components/pages/docs/common/box/DefinitionBox";
+import TipBox from "@/components/pages/docs/common/box/TipBox";
+import ExampleBox from "@/components/pages/docs/common/box/ExampleBox";
+import WarningBox from "@/components/pages/docs/common/box/WarningBox";
+import { ImageBox, ImageBoxProps } from "@/components/pages/docs/common/box/explanation-box/ImageExplanationBox";
+import { ThreeDExplanationBox, ThreeDExplanationBoxProps } from "@/components/pages/docs/common/box/explanation-box/3DExplanationBox";
+import { BlockMath, InlineMath } from "react-katex"
+import 'katex/dist/katex.min.css'
+
+
+const FirstTopicContent: TopicContent = {
+  definition: {
+    title: "៣. សារះសំខាន់នៃផូស៊ីល",
+    content:
+      <>
+        <div className="flex flex-col items-start">
+        </div>
+      </>
+  },
+  tip: {
+    title: "ចំណុចសំខាន់",
+    content: (
+      <>
+        <ul className="list-disc ml-4 flex flex-col gap-2">
+            <li>ធ្វើឲ្យយើងស្គាល់ប្រវត្តិនៃការវិវត្តរបស់ភាវៈរស់ដូចជា ការកកើត ការរីកចម្រើន និងការវិនាសបាត់បង់ទៅវិញ នៃប្រភេទភាវៈរស់នីមួយៗ។</li>
+            <li>ធ្វើឲ្យយើងស្គាល់ពីប្រវត្តិនៃផែនដី ដែលបង្ហាញនូវលក្ខណះអាកាសធាតុនាសម័យកាលនីមួយៗ។</li>
+        </ul>
+      </>
+    ),
+  },
+    imageExplanation: [
+      {
+          title: "",
+          src: "/docs/grade-12/biology/adn/",
+          imageAlt: "",
+          explanation: [
+              "សត្វឥតឆ្អឹងកងកើតឡើងនៅសម័យកំព្រីយាង ស័កប៉ាឡេអូសូម៉ិច។",
+              "ល្មូនទី១ កើតឡើងនៅកាលសម័យកាបូនីភែស័កប៉ាឡេអូសូអ៊ុច។",
+              "បក្សីទី១ កើតឡើងនៅកាលសម័យកាបូនីភែស័កមេសូសូអ៊ុច។",
+              "ថនិកសត្វទី១ កើតឡើងនៅកាលសម័យសួរ៉ាស៊ិច ស័កមេសូសូអ៊ុច។",
+              "មនុស្សកើតឡើងនៅកាលសម័យក្វាទែនែ ស័កមេសូសូអ៊ុច។",
+          ],
+      },
+    ]
+}
+
 
 const FossilImportance = () => {
   return (
     <div>
-      
+          <div>
+                {FirstTopicContent.definition && (
+                  <DefinitionBox title={FirstTopicContent.definition.title} content={FirstTopicContent.definition.content} />
+                )}
+                {FirstTopicContent.tip && (
+                    <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
+                )}
+                {FirstTopicContent.imageExplanation &&
+                    Array.isArray(FirstTopicContent.imageExplanation) &&
+                    FirstTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
+                        <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
+                ))}
+          </div>
+          
     </div>
   )
 }

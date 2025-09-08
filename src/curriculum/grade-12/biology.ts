@@ -59,6 +59,9 @@ import GeneticFormular from "@/components/pages/docs/grade-12/biology/geneExpres
 import { off } from "process";
 import Offspring from "@/components/pages/docs/grade-12/biology/biotechnology/Offspring";
 import BioTechQA from "@/components/pages/docs/grade-12/biology/biotechnology/BioTechQA";
+import DarwinQA from "@/components/pages/docs/grade-12/biology/darwinTheory/DarwinQA";
+import EvolutionQA from "@/components/pages/docs/grade-12/biology/evolutionEvidence/EvolutionQA";
+import FossilQA from "@/components/pages/docs/grade-12/biology/flaskConical/FossilQA";
 
 export const biology: Content = {
   subject: "biology",
@@ -520,6 +523,11 @@ export const biology: Content = {
           englishTitle: "natural-selection",
           component: NaturalSelection,
         },
+        {
+          title: "សំណួរ & ចម្លេីយ",
+          englishTitle: "DarwinQA",
+          component: DarwinQA,
+        },
       ],
     },
     {
@@ -543,6 +551,11 @@ export const biology: Content = {
           englishTitle: "birth-of-species",
           component: OriginOfSpecies,
         },
+        {
+          title: "សំណួរ & ចម្លេីយ",
+          englishTitle: "EvolutionQA",
+          component: EvolutionQA,
+        },
       ],
     },
     {
@@ -565,6 +578,11 @@ export const biology: Content = {
           title: "សារសំខាន់នៃផូសុីល",
           englishTitle: "important-properties-of-fossil",
           component: FossilImportance,
+        },
+        {
+          title: "សំណួរ & ចម្លេីយ",
+          englishTitle: "FossilQA",
+          component: FossilQA,
         },
       ],
     },
