@@ -20,12 +20,18 @@ const TOPIC_CONTENT = {
     tip: {
       content: (
         <>
-          <b>សមីការប៉ារ៉ាម៉ែត្រនៃបន្ទាត់ L :</b>
-          <BlockMath math={String.raw`\begin{cases} x = x_0 + at \\ y = y_0 + bt \\ z = z_0 + ct \end{cases} \quad , t \in \mathbb{R}`} />
-          <br />
-          <b>សមីការឆ្លុះនៃបន្ទាត់ L :</b>
-          <BlockMath math={String.raw`\frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}`} />
-          <br />t ជា parameter (អថេរតំណាង) , (a, b, c ជាចំនួនពិត)
+        <ImageBox
+          src="/parametric.png"
+          imageAlt="2D Vector"
+          explanation={
+            <>
+              <BlockMath math={String.raw`សមីការប៉ារ៉ាម៉ែត្រនៃបន្ទាត់ L : \begin{cases} x = x_0 + at \\ y = y_0 + bt \\ z = z_0 + ct \end{cases} \quad , t \in \mathbb{R}`}/>
+              <br />
+              <BlockMath math={String.raw`សមីការឆ្លុះនៃបន្ទាត់ L : \frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}`}/>
+              <br />t ជា parameter (អថេរតំណាង) , (a, b, c ជាចំនួនពិត)
+            </>
+          }
+        />
         </>
       )
     },
@@ -42,8 +48,8 @@ const TOPIC_CONTENT = {
   example: {
     question: (
       <>
-        រកសមីការប៉ារ៉ាម៉ែត្រ និងសមីការឆ្លុះនៃបន្ទាត់ L ដែលកាត់តាមចំណុច <InlineMath math={"A(1,2,3)"} />
-        ហើយស្របនឹងវ៉ិចទ័រប្រាប់ទិស <InlineMath math={"\\vec{u} = (4,−5,6)"} />។
+        រកសមីការប៉ារ៉ាម៉ែត្រ និងសមីការឆ្លុះនៃបន្ទាត់ L ដែលកាត់តាមចំណុច <InlineMath math={"A(1,2,3)"} /> 
+        ហើយស្របនឹងវ៉ិចទ័រប្រាប់ទិស <InlineMath math={"\\vec{u} = (4,-5,6)"} />។
       </>
     ),
     steps: [
@@ -52,9 +58,8 @@ const TOPIC_CONTENT = {
         content: (
           <>
             យើងដឹងថា L កាត់តាមចំណុច​ A(1, 2, 3) ហើយស្របនឹង​ វ៉ិចទ័រប្រាប់ទិស <InlineMath math={"\\vec{u} = (a,b,c) "} /><br /><br />
-            នោះយើងទាញបាន៖​​ <InlineMath math={"\\vec{u} = (a, b, c) = (4, -5, 6)"} />, <InlineMath math={"A(x_0, y_0, z_0)=(1, 2, 3)"} /><br /><br />
-            <p>សមីការប៉ារ៉ាម៉ែត្រនៃបន្ទាត់ L គឺ៖</p><br />
-            <BlockMath math={String.raw`\begin{cases} x = 1 + 4t \\ y = 2 + 5t \\ z = 3 + 6t \end{cases} \quad , t \in \mathbb{R}`} />
+            យើងបាន៖​​ <InlineMath math={"\\vec{u} = (a, b, c) = (4, -5, 6)"} />, <InlineMath math={"A(x_0, y_0, z_0)=(1, 2, 3)"} /><br /><br />
+            <p><InlineMath math={String.raw`សមីការប៉ារ៉ាម៉ែត្រនៃបន្ទាត់ L គឺ៖ \begin{cases} x = 1 + 4t \\ y = 2 + 5t \\ z = 3 + 6t \end{cases} \quad , t \in \mathbb{R}`} /></p>
           </>
         )
       },
@@ -62,16 +67,17 @@ const TOPIC_CONTENT = {
         title: "រកសមីការឆ្លុះ",
         content: (
           <>
-            <p>សមីការឆ្លុះនៃបន្ទាត់ L គឺ៖</p>
-            <BlockMath math={String.raw`\frac{x - 1}{4} = \frac{y - 2}{5} = \frac{z - 3}{6}`} />
+            <p><InlineMath math={String.raw`គេបាន៖ \frac{x - 1}{4} = \frac{y - 2}{5} = \frac{z - 3}{6}`} /></p>
           </>
         )
       }
     ],
     answer: (
       <>
-        ដូច្នេះសមីការប៉ារ៉ាម៉ែត្រនៃបន្ទាត់ L គឺ៖
-        <BlockMath math={String.raw`\begin{cases} x = 1 + 4t \\ y = 2 + 5t \\ z = 3 + 6t \end{cases} \quad , t \in \mathbb{R}`} />
+       ដូច្នេះសមីការប៉ារ៉ាម៉ែត្រនៃបន្ទាត់ L គឺ៖
+       <InlineMath math={String.raw`\begin{cases} x = 1 + 4t \\ y = 2 + 5t \\ z = 3 + 6t \end{cases} \quad , t \in \mathbb{R}`} />
+        និងសមីការឆ្លុះនៃបន្ទាត់ L គឺ៖
+       <InlineMath math={String.raw`\frac{x - 1}{4} = \frac{y - 2}{5} = \frac{z - 3}{6}`} />
       </>
     )
   }
@@ -88,12 +94,20 @@ const TOPIC_CONTENT_PLANE = {
     tip: {
       content: (
         <>
-          <b>សមីការប្លង់ P :</b>
-          <BlockMath math={String.raw` a(x - x_0) + b(y - y_0) + c(z - z_0) = 0`} />
-          <br />
-          <b>សមីការប្លង់ទូទៅ:</b>
-          <BlockMath math={String.raw` ax + by + cz + d = 0`} />
-          <b>ដែល</b> <InlineMath math={"d = - (a x_0 + b y_0 + c z_0)"} />
+          <ImageBox
+          src="/plane.png"
+          imageAlt="2D Vector"
+          explanation={
+            <>
+              <b>សមីការប្លង់ P :</b>
+              <BlockMath math={String.raw` a(x - x_0) + b(y - y_0) + c(z - z_0) = 0`} />
+              <br />
+              <b>សមីការប្លង់ទូទៅ:</b>
+              <BlockMath math={String.raw` ax + by + cz + d = 0`} />
+              <b>ដែល</b> <BlockMath math={"d = - (a x_0 + b y_0 + c z_0)"} />
+            </>
+          }
+        />
         </>
       )
     },
@@ -108,6 +122,32 @@ const TOPIC_CONTENT_PLANE = {
       )
     }
   },
+  example: {
+    question: (
+      <>
+        រកសមីការប្លង់ P ដែលកាត់តាមចំណុច <InlineMath math={"A(1, 2, 3)"} /> និងមានវ៉ិចទ័រណរម៉ាល់ <InlineMath math={"\\vec{n} = (4, -5, 6)"} />។
+      </>
+    ),
+    steps: [
+      {
+        title: "រកសមីការប្លង់",
+        content: (
+          <>
+            យើងដឹងថា P កាត់តាមចំណុច A(1, 2, 3) និងមានវ៉ិចទ័រណរម៉ាល់ <InlineMath math={"\\vec{n} = (4, -5, 6)"} />។<br /><br />
+            នាំឲ៖​​ <InlineMath math={"\\vec{n} = (a, b, c) = (4, -5, 6)"} />,<br />
+            <InlineMath math={"A(x_0, y_0, z_0)=(1, 2, 3)"} /><br />
+            <p>សមីការប្លង់ P គឺ៖ <InlineMath math={String.raw`4(x - 1) - 5(y - 2) + 6(z - 3) = 0`} /></p><br />
+          </>
+        )
+      }
+    ],
+    answer: (
+      <>
+        ដូច្នេះសមីការប្លង់ P គឺ៖
+        <InlineMath math={String.raw`4(x - 1) - 5(y - 2) + 6(z - 3) = 0`} />
+      </>
+    )
+  }
 }
 
 const TOPIC_CONTENT_SPHERICAL = {
@@ -115,19 +155,27 @@ const TOPIC_CONTENT_SPHERICAL = {
     title: "សមីការស្វ៊ែ",
     content: (
       <>
-        បើស្វ៊ែ S មានផ្ចិត ​<InlineMath math={"I (x_0, y_0, z_0)"} /> និងមានកាំ <InlineMath math={"r"} /> នោះគេបាន៖
+        បើស្វ៊ែ S មានផ្ចិត <InlineMath math={"I (x_0, y_0, z_0)"} /> និងមានកាំ <InlineMath math={"r"} /> នោះគេបាន៖
       </>
     ),
     tip: {
       content: (
         <>
-          <b>សមីការស្តង់ដា ​:</b>
-          <BlockMath math={String.raw`(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2 = r^2`} />
-          <br />
-          <b>សមីការទូទៅ​ :</b>
-          <BlockMath math={String.raw`x^2 + y^2 + z^2 - 2x_0 x - 2y_0 y - 2z_0 z + k = 0`} />
-          <br />
-          <b>ដែល</b> <InlineMath math={"k = x_0^2 + y_0^2 + z_0^2 - r^2"} />
+          <ImageBox
+          src="/spherical.png"
+          imageAlt="2D Vector"
+          explanation={
+            <>
+              <b>សមីការស្វ៊ែ S :</b>
+              <BlockMath math={String.raw`(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2 = r^2`} />
+              <br />
+              <b>សមីការទូទៅ​នៃស្វ៊ែ S :</b>
+              <BlockMath math={String.raw`x^2 + y^2 + z^2 - 2x_0 x - 2y_0 y - 2z_0 z + k = 0`} />
+              <br />
+              <b>ដែល</b> <BlockMath math={"k = x_0^2 + y_0^2 + z_0^2 - r^2"} />
+            </>
+          }
+        />
 
         </>
       )
@@ -136,10 +184,38 @@ const TOPIC_CONTENT_SPHERICAL = {
       content: (
         <>
           <li>ស្វ៊ែ S មានផ្ចិត​ <InlineMath math={"I(x_0, y_0, z_0)"} /> និងមានកាំ <InlineMath math={"r"} />។</li>
+          <li>ពាក្យ x<sup>2</sup>, y<sup>2</sup>, និង z<sup>2</sup> ត្រូវតែមានមេគុណស្មើគ្នា និងជាវិជ្ជមាន (ជាទូទៅគឺ 1)។</li>
+          <li>វាមិនមានពាក្យលាយបញ្ចូលគ្នាដូចជា xy, yz, ឬ zx ទេ។</li>
+          <li>វាគឺជាសមីការដឺក្រេទីពីរនៃអថេរបី (x, y, z)។</li>
         </>
       )
     }
   },
+  example: {
+    question: (
+      <>
+        រកសមីការស្វ៊ែ S ដែលមានផ្ចិត I(1, 2, 3) និងមានកាំ r = 4។
+      </>
+    ),
+    steps: [
+      {
+        title: "រកសមីការស្វ៊ែ",
+        content: (
+          <>
+            យើងដឹងថា S មានផ្ចិត I(1, 2, 3) និងមានកាំ r = 4។<br /><br />
+            នាំឲ៖​​ <InlineMath math={"I(x_0, y_0, z_0)=(1, 2, 3)"} /><br/><br />
+            <p>សមីការស្វ៊ែ S គឺ៖ <InlineMath math={String.raw`(x - 1)^2 + (y - 2)^2 + (z - 3)^2 = 16`} /></p>
+          </>
+        )
+      }
+    ],
+    answer: (
+      <>
+        ដូច្នេះសមីការស្វ៊ែ S គឺ៖
+        <InlineMath math={String.raw`(x - 1)^2 + (y - 2)^2 + (z - 3)^2 = 16`} />
+      </>
+    )
+  }
 }
 
 const TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS = {
@@ -173,6 +249,113 @@ const TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS = {
       )
     }
   },
+  example: {
+    question:(
+      <>
+        រកចម្ងាយពីចំណុច A(1, 2, 3) ទៅប្លង់ P: 2x - 3y + z + 4 = 0។
+      </>
+    ),
+    steps: [
+      {
+        title: "រកចម្ងាយពីចំណុចទៅប្លង់",
+        content: (
+          <>
+            យើងអាចប្រើសមីការចម្ងាយពីចំណុចទៅប្លង់ដើម្បីរកចម្ងាយពីចំណុច A(1, 2, 3) ទៅប្លង់ P: 2x - 3y + z + 4 = 0។<br /><br />
+            <p>តាមសមីការចម្ងាយពីចំណុច A ទៅប្លង់ P ៖
+            <InlineMath math={String.raw`d = \frac{|a x_0 + b y_0 + c z_0 + d|}{\sqrt{a^2 + b^2 + c^2}}`} /></p>
+            <p>ក្នុងករណីនេះ:</p><br />
+            <ul>
+              <li><InlineMath math={"x_0 = 1, y_0 = 2, z_0 = 3"} /></li>
+              <li><InlineMath math={"a = 2, b = -3, c = 1, d = 4"} /></li>
+            </ul><br />
+            <p>គេបាន៖ <InlineMath math={String.raw`d = \frac{|2(1) - 3(2) + 1(3) + 4|}{\sqrt{2^2 + (-3)^2 + 1^2}}`} /></p><br />
+            <p><InlineMath math={String.raw` = \frac{|2 - 6 + 3 + 4|}{\sqrt{4 + 9 + 1}}`} /></p><br />
+            <p><InlineMath math={String.raw` = \frac{|3|}{\sqrt{14}}`} /></p>
+          </>
+        )
+      }
+    ],
+    answer: (
+      <>
+        ដូច្នេះចម្ងាយពីចំណុច A ទៅប្លង់ P គឺ៖
+        <InlineMath math={String.raw`d = \frac{3}{\sqrt{14}}`} />
+      </>
+    )
+  },
+  example2: {
+    question: (
+      <>
+        គេមានវ៉ិចទ័រ <InlineMath math={"u = (1,2,3)"} />, <InlineMath math={"v = (0,1,4)"} />, <InlineMath math={"w = (2,-1,1)"} />។<br />
+        គណនា <InlineMath math={"u \\cdot (v \\times w)"} />
+      </>
+    ),
+    steps: [
+      {
+        title: "​គណនា v × w",
+        content: (
+          <>
+            យើងមាន <InlineMath math={"v = (0,1,4), w = (2,-1,1)"} /> <br />
+            នាំឲ៖​ <InlineMath math={String.raw`v \\times w = \begin{vmatrix} \\vec{i} & \\vec{j} & \\vec{k} \\ 0 & 1 & 4 \\ 2 & -1 & 1 \end{vmatrix}`}/><br /><br />
+            <InlineMath math={String.raw`= ((1)(1) - (4)(-1))\\vec{i} - ((0)(1) - (4)(2))\\vec{j} + ((0)(-1) - (1)(2))\\vec{k}`}/><br /><br />
+            <InlineMath math={String.raw`= (1 + 4)\\vec{i} - (0 - 8)\\vec{j} + (0 - 2)\\vec{k}`}/><br /><br />
+            <InlineMath math={String.raw`= 5\\vec{i} + 8\\vec{j} - 2\\vec{k}`}/>
+          </>
+        )
+      },
+      {
+        title: "គណនា u · (v × w)",
+        content: (
+          <>
+            យើងមាន <InlineMath math={"u = (1,2,3), v \\times w = (5,8,-2)"} /> <br /><br />
+            នាំឲ៖ <InlineMath math={String.raw`u \\cdot (v \\times w) = (1)(5) + (2)(8) + (3)(-2)`}/><br /><br />
+            ដូចនេះ <InlineMath math={"u \\cdot (v \\times w) = 15"} />
+          </>
+        )
+      }
+    ],
+    answer: (
+      <>
+        <InlineMath math={"u \\cdot (v \\times w) = 15"} />
+      </>
+    )
+  },
+  exercise: {
+    questions: [
+      {
+        id: "1",
+        question: (
+          <>
+            គេមានវ៉ិចទ័រ <InlineMath math={"u = (1,2,3)"} />, <InlineMath math={"v = (0,1,4)"} />, <InlineMath math={"w = (2,-1,1)"} />។<br />
+            តើ​<InlineMath math={"u \\cdot (v \\times w)"} />ស្មើប៉ុន្មាន?
+          </>
+        ),
+        options: ["15", "12", "18", "21"],
+        correctAnswer: "15"
+      },
+      {
+        id: "2",
+        question: (
+          <>
+            គេមានវ៉ិចទ័រ <InlineMath math={"u = (1,2,3)"} />, <InlineMath math={"v = (4,5,6)"} />។<br />
+            តើកូអរដោនេនៃវិចទ័រ AB ស្មើប៉ុន្មាន?
+          </>
+        ),
+        options: ["(3, -3, 2)", "(4, 2, 3)", "(3, 4, -2)", "(3, 4, 2)"],
+        correctAnswer: "(3, 4, 2)"
+      },
+      {
+        id: "3",
+        question: (
+          <>
+            គេមានវ៉ិចទ័រ <InlineMath math={"A = (2,2,3)"} />, <InlineMath math={"C = (4,5,6)"} />។<br />
+            តើកូអរដោនេនៃវ៉ិចទ័រចំណុចកណ្ដាលនៃ AC​​​ស្មើប៉ុន្មាន?
+          </>
+        ),
+        options: ["(3, -4, 2)", "(3, 4, 4)", "(3, 4, -2)", "(3, 4, 3)"],
+        correctAnswer: "(3, 4, 4)"
+      }
+    ],
+  }
 }
 
 const Equations = () => {
@@ -191,6 +374,7 @@ const Equations = () => {
         <ExampleBox
           question={TOPIC_CONTENT.example.question}
           steps={TOPIC_CONTENT.example.steps}
+          answer={TOPIC_CONTENT.example.answer}
         />
       )}
       {TOPIC_CONTENT_PLANE.definition && (
@@ -202,6 +386,13 @@ const Equations = () => {
       {TOPIC_CONTENT_PLANE.definition?.hint && (
         <HintBox content={TOPIC_CONTENT_PLANE.definition.hint.content} />
       )}
+      {TOPIC_CONTENT_PLANE.example && (
+        <ExampleBox
+          question={TOPIC_CONTENT_PLANE.example.question}
+          steps={TOPIC_CONTENT_PLANE.example.steps}
+          answer={TOPIC_CONTENT_PLANE.example.answer}
+        />
+      )}
       {TOPIC_CONTENT_SPHERICAL.definition && (
         <DefinitionBox title={TOPIC_CONTENT_SPHERICAL.definition.title} content={TOPIC_CONTENT_SPHERICAL.definition.content} />
       )}
@@ -210,6 +401,13 @@ const Equations = () => {
       )}
       {TOPIC_CONTENT_SPHERICAL.definition?.hint && (
         <HintBox content={TOPIC_CONTENT_SPHERICAL.definition.hint.content} />
+      )}
+      {TOPIC_CONTENT_SPHERICAL.example && (
+        <ExampleBox
+          question={TOPIC_CONTENT_SPHERICAL.example.question}
+          steps={TOPIC_CONTENT_SPHERICAL.example.steps}
+          answer={TOPIC_CONTENT_SPHERICAL.example.answer}
+        />
       )}
       {TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.definition && (
         <DefinitionBox title={TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.definition.title} content={TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.definition.content} />
@@ -220,7 +418,18 @@ const Equations = () => {
       {TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.definition?.hint && (
         <HintBox content={TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.definition.hint.content} />
       )}
-
+      {TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.example && (
+        <ExampleBox
+          question={TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.example.question}
+          steps={TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.example.steps}
+          answer={TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.example.answer}
+        />
+      )}
+      {TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.exercise && (
+        <ExerciseBox
+          questions={TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS.exercise.questions}
+        />
+      )}
     </div>
   )
 }

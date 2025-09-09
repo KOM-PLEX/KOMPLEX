@@ -21,6 +21,10 @@
     --foreground: black;
   }
 }
+html{
+  scroll-behavior: smooth;
+}
+
 
 body {
   background: var(--background);
@@ -29,6 +33,7 @@ body {
     sans-serif;
   font-weight: 500;
   line-height: 1.6;
+  
 }
 
 /* English text styling - use Inter for better English rendering */

@@ -5,11 +5,25 @@ import TipBox from '../../../common/box/TipBox'
 import { BlockMath, InlineMath } from 'react-katex';
 import ExampleBox from '../../../common/box/ExampleBox';
 import { ImageBox } from '../../../common/box/explanation-box/ImageExplanationBox';
+import HintBox from '../../../common/box/HintBox';
 
 const TOPIC_CONTENT: TopicContent = {
   definition: {
     title: "តើវ៉ិចទ័រគឺជាអ្វី?",
     content: "វ៉ិចទ័រគឺជាអថេរដែលមាន​ទំហំ​ ទិស ទិសដៅ និងប្រវែង។ វាអាចត្រូវបានបង្ហាញដោយសមីការដូចជា v = ai + bj ដែល a និង b ជាចំនួនពិត។"
+  },
+  hint: {
+    content: (
+      <>
+        <ul>
+          <li>វ៉ិចទ័រមានទិស និងប្រវែង។</li>
+          <li>វ៉ិចទ័រអាចត្រូវបានផ្តល់ជាគូអរដោនេ ឬសមីការ (u = ai + bj)។</li>
+          <li>ប្រវែងវ៉ិចទ័រ <InlineMath math={"|\vec{u}| = \sqrt{a^2 + b^2}"} />។</li>
+          <li>វ៉ិចទ័រអាចបូក ដក និងគុណដោយចំនួនពិត។</li>
+          <li>វ៉ិចទ័រត្រូវបានប្រើសម្រាប់បង្ហាញទិសដៅ និងចលនា។</li>
+        </ul>
+      </>
+    )
   },
   tip: {
     title: "ចំណុចសំខាន់ៗ",
@@ -67,18 +81,21 @@ const VectorDefinition = () => {
         <ExampleBox question={TOPIC_CONTENT_COMPLEX.example.question} steps={TOPIC_CONTENT_COMPLEX.example.steps} answer={TOPIC_CONTENT_COMPLEX.example.answer} />
       )}
       <ImageBox
-        src=" "  // Remove 'public' since Next.js serves from public by default
-        imageAlt="ក្រាប"
-        explanation={
-          <div>
-            ក្នុងក្រាបខាងឆ្វេងនេះ ៖
-            <ul className="list-disc list-inside mt-2 space-y-1">
-              បន្ទាត់ពណ៌ក្រហម និង បន្ទាត់ពណ៌ខៀវមានមេគុណប្រាប់ទិស​ដូចគ្នា។<br />
-              បន្ទាត់ពណ៌បៃតងកាត់បន្ទាត់ទាំងពីរ
-            </ul>
-          </div>
-        }
-      />
+              src="/vector-graph.png"  // Remove 'public' since Next.js serves from public by default
+              imageAlt="ក្រាប"
+              explanation={
+                <div>
+                  ក្នុងក្រាបខាងឆ្វេងនេះ ៖
+                  <ul className="list-disc list-inside mt-2 space-y-1">
+                    បន្ទាត់ពណ៌ក្រហម និង បន្ទាត់ពណ៌ខៀវមានមេគុណប្រាប់ទិស​ដូចគ្នា។<br />
+                    បន្ទាត់ពណ៌បៃតងកាត់បន្ទាត់ទាំងពីរ
+                  </ul>
+                </div>
+              }
+            />
+      {TOPIC_CONTENT_COMPLEX.hint && (
+        <HintBox content={TOPIC_CONTENT_COMPLEX.hint.content} />
+      )}
 
     </div>
   )

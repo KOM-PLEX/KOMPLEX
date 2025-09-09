@@ -56,22 +56,22 @@ const SecondTopic: TopicContent = {
 }
 
 const ThirdTopic: TopicContent = {
-    definition: {
-        title: "១.២ ប្រតិកម្មយឺត",
-        content:
+  definition: {
+    title: "១.២ ប្រតិកម្មយឺត",
+    content:
+        <div>
             <div>
-                <div>
-                    <p>ប្រតិកម្មយឺតគឺជាប្រតិកម្មដែលកកេីតឡេីងក្នុងរយៈពេលច្រើននវិនាទី នាទី ឬច្រេីនម៉ោង។</p>
-                </div>
+                <p>ប្រតិកម្មយឺតគឺជាប្រតិកម្មដែលកកេីតឡេីងក្នុងរយៈពេលច្រើននវិនាទី នាទី ឬច្រេីនម៉ោង។</p>
             </div>
-    },
-    example: {
-        question: [
-            <div key="q1">
-                {/* <ChemicalSlowReactionDiagram/> */}
-            </div>
-        ],
-    },
+        </div>
+  },
+  example: {
+    question: [
+        <div key="q1">
+              {/* <ChemicalSlowReactionDiagram/> */}
+        </div>
+    ],
+  },
 
 
 }
@@ -80,40 +80,40 @@ const ThirdTopic: TopicContent = {
 
 
 const RateChemicalReaction = () => {
-    return (
-        <>
-            <div>
-                {FirstTopicContent.definition && (
-                    <DefinitionBox title={FirstTopicContent.definition.title} content={FirstTopicContent.definition.content} />
-                )}
-                {FirstTopicContent.tip && (
-                    <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
-                )}
-            </div>
-            <div>
-                {SecondTopic.definition && (
-                    <DefinitionBox title={SecondTopic.definition.title} content={SecondTopic.definition.content} />
-                )}
-                {SecondTopic.tip && (
-                    <TipBox title={SecondTopic.tip.title} content={SecondTopic.tip.content} />
-                )}
-                {SecondTopic.example && (
-                    <ExampleBox question={SecondTopic.example.question} steps={SecondTopic.example.steps} answer={SecondTopic.example.answer} />
-                )}
-            </div>
-            <div>
-                {ThirdTopic.definition && (
-                    <DefinitionBox title={ThirdTopic.definition.title} content={ThirdTopic.definition.content} />
-                )}
-                {ThirdTopic.tip && (
-                    <TipBox title={ThirdTopic.tip.title} content={ThirdTopic.tip.content} />
-                )}
-                {ThirdTopic.example && (
-                    <ExampleBox question={ThirdTopic.example.question} steps={ThirdTopic.example.steps} answer={ThirdTopic.example.answer} />
-                )}
-            </div>
-        </>
-    )
+  return (
+    <>
+        <div>
+            {FirstTopicContent.definition && (
+                              <DefinitionBox title={FirstTopicContent.definition.title} content={FirstTopicContent.definition.content} />
+            )}
+            {FirstTopicContent.tip && (
+                <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {SecondTopic.definition && (
+                <DefinitionBox title={SecondTopic.definition.title} content={SecondTopic.definition.content} />
+            )}
+            {SecondTopic.tip && (
+                <TipBox title={SecondTopic.tip.title} content={SecondTopic.tip.content} />
+            )}
+            {SecondTopic.example && (
+                <ExampleBox question={SecondTopic.example.question} steps={SecondTopic.example.steps} answer={SecondTopic.example.answer} />
+            )}
+        </div>
+        <div>
+            {ThirdTopic.definition && (
+                <DefinitionBox title={ThirdTopic.definition.title} content={ThirdTopic.definition.content} />
+            )}
+            {ThirdTopic.tip && (
+                <TipBox title={ThirdTopic.tip.title} content={ThirdTopic.tip.content} />
+            )}
+            {ThirdTopic.example && (
+                <ExampleBox question={ThirdTopic.example.question} steps={ThirdTopic.example.steps} answer={ThirdTopic.example.answer} />
+            )}
+        </div>
+    </>
+  )
 }
 
 export default RateChemicalReaction

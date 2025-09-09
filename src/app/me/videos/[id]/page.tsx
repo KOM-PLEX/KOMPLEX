@@ -115,7 +115,6 @@ export default function VideoPost() {
                 title: updatedVideo.title,
                 description: updatedVideo.description,
             });
-            setVideoPost(updatedVideoData);
             setIsEditMode(false);
         } catch (error) {
             console.error('Error updating video:', error);

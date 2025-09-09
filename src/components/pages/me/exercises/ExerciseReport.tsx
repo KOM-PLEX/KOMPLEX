@@ -1,12 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Target, TrendingUp, Clock, BarChart3, Calculator, Atom, Dna, BookOpen, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Target, TrendingUp, BarChart3, ChevronDown } from 'lucide-react';
 import ReportViewer from './ReportViewer';
 import { ExerciseWithAttempts } from '@/types/user-content/exercise';
 import { Listbox, Transition } from '@headlessui/react';
-import axios from 'axios';
 import { getExercisesByGrade } from '@/services/feed/exercises';
+import { Subject } from '@/types/content/exercises';
+import {
+    transformBackendDataToSubjects,
+    getSubjectColorVariants,
+    getSubjectIcon
+} from '@/utils/transform';
 
 // Grade options
 const grades = [
@@ -28,110 +33,60 @@ const grades = [
     },
 ];
 
-interface ExerciseReportData {
-    [subjectName: string]: {
-        id: number;
-        title: string;
-        duration: number;
-        subject: string;
-        grade: string;
-        numberOfAttempts: number;
-        highestScore: number | null;
-        lastAttempt: string | null;
-    }[];
-}
-
-interface ExerciseItem {
-    id: number;
-    title: string;
-    duration: number;
-    subject: string;
-    grade: string;
-    numberOfAttempts: number;
-    highestScore: number | null;
-    lastAttempt: string | null;
-}
 
 export default function ExerciseReportComponent() {
     const [selectedGrade, setSelectedGrade] = useState({
         id: 'grade-12',
         name: 'ថ្នាក់ទី១២',
     });
-    const [exerciseData, setExerciseData] = useState<ExerciseReportData>({});
+    const [subjects, setSubjects] = useState<Subject[]>([]);
     const [selectedExercise, setSelectedExercise] = useState<ExerciseWithAttempts | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    // Helper functions for subject icons and colors
-    const getSubjectIcon = (subjectName: string): React.ReactNode => {
-        const iconMap: { [key: string]: React.ReactNode } = {
-            'គណិតវិទ្យា': <Calculator className="w-8 h-8" />,
-            'រូបវិទ្យា': <Atom className="w-8 h-8" />,
-            'គីមីវិទ្យា': <Dna className="w-8 h-8" />,
-            'ជីវវិទ្យា': <Dna className="w-8 h-8" />,
-        };
-        return iconMap[subjectName] || <BookOpen className="w-8 h-8" />;
-    };
 
-    const getSubjectColor = (subjectName: string): string => {
-        const colorMap: { [key: string]: string } = {
-            'គណិតវិទ្យា': 'bg-blue-500',
-            'រូបវិទ្យា': 'bg-purple-500',
-            'គីមីវិទ្យា': 'bg-green-500',
-            'ជីវវិទ្យា': 'bg-emerald-500',
-        };
-        return colorMap[subjectName] || 'bg-gray-500';
-    };
-
-    const getSubjectColorVariants = (color: string) => {
-        const colorMap: { [key: string]: { bg: string; border: string } } = {
-            'bg-blue-500': { bg: 'bg-indigo-50/80', border: 'border-indigo-500' },
-            'bg-purple-500': { bg: 'bg-purple-50/80', border: 'border-purple-300' },
-            'bg-green-500': { bg: 'bg-green-50/80', border: 'border-green-300' },
-            'bg-emerald-500': { bg: 'bg-emerald-50/80', border: 'border-emerald-300' },
-            'bg-amber-500': { bg: 'bg-amber-50/80', border: 'border-amber-300' },
-            'bg-red-500': { bg: 'bg-red-50/80', border: 'border-red-300' },
-            'bg-gray-500': { bg: 'bg-gray-50/80', border: 'border-gray-300' }
-        };
-        return colorMap[color] || { bg: 'bg-gray-50/80', border: 'border-gray-300' };
+    const fetchExercises = async () => {
+        try {
+            setIsLoading(true);
+            setError(null);
+            const data = await getExercisesByGrade(selectedGrade.name);
+            const transformedSubjects = transformBackendDataToSubjects(data);
+            if (transformedSubjects.length > 0) {
+                setSubjects(transformedSubjects);
+            } else {
+                setError('មិនមានលំហាត់សម្រាប់ថ្នាក់នេះទេ');
+            }
+        } catch {
+            setError('មានបញ្ហាក្នុងការទាញយកលំហាត់');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     useEffect(() => {
-        const fetchExercises = async () => {
-            try {
-                setIsLoading(true);
-                const response = await getExercisesByGrade(selectedGrade.name);
-                setExerciseData(response);
-                console.log('Fetched exercise reports:', response);
-            } catch (error) {
-                console.error('Error fetching exercise reports:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
         fetchExercises();
     }, [selectedGrade]);
 
-    const openModal = (exercise: ExerciseItem) => {
-        // For now, we'll create a mock ExerciseWithAttempts structure
-        // In the future, this should fetch detailed attempt data from the API
+    const openModal = (topic: { id: string; name: string; attempts?: number; userProgress?: number; estimatedTime: string }) => {
+        // all we need is the id 
+        // ! TODO: change later
         const mockExercise: ExerciseWithAttempts = {
-            exerciseId: exercise.id,
-            title: exercise.title,
-            totalAttempts: exercise.numberOfAttempts || 0,
-            bestScore: exercise.highestScore || 0,
-            averageScore: exercise.highestScore || 0,
-            lastAttempted: exercise.lastAttempt || new Date().toISOString(),
+            exerciseId: parseInt(topic.id),
+            title: topic.name,
+            totalAttempts: topic.attempts || 0,
+            bestScore: topic.userProgress || 0,
+            averageScore: topic.userProgress || 0,
+            lastAttempted: new Date().toISOString(),
             attempts: [
                 {
                     id: 1,
-                    score: exercise.highestScore || 0,
-                    timeTaken: exercise.duration * 60,
-                    createdAt: exercise.lastAttempt || new Date().toISOString(),
+                    score: topic.userProgress || 0,
+                    timeTaken: parseInt(topic.estimatedTime) * 60,
+                    createdAt: new Date().toISOString(),
                     sectionScores: [
-                        { sectionName: 'ផ្នែកទី១', score: exercise.highestScore || 0, totalQuestions: 10, correctAnswers: Math.floor((exercise.highestScore || 0) / 10) },
-                        { sectionName: 'ផ្នែកទី២', score: exercise.highestScore || 0, totalQuestions: 8, correctAnswers: Math.floor((exercise.highestScore || 0) / 12.5) },
-                        { sectionName: 'ផ្នែកទី៣', score: exercise.highestScore || 0, totalQuestions: 6, correctAnswers: Math.floor((exercise.highestScore || 0) / 16.67) }
+                        { sectionName: 'ផ្នែកទី១', score: topic.userProgress || 0, totalQuestions: 10, correctAnswers: Math.floor((topic.userProgress || 0) / 10) },
+                        { sectionName: 'ផ្នែកទី២', score: topic.userProgress || 0, totalQuestions: 8, correctAnswers: Math.floor((topic.userProgress || 0) / 12.5) },
+                        { sectionName: 'ផ្នែកទី៣', score: topic.userProgress || 0, totalQuestions: 6, correctAnswers: Math.floor((topic.userProgress || 0) / 16.67) }
                     ]
                 }
             ]
@@ -207,7 +162,7 @@ export default function ExerciseReportComponent() {
                                         {grades.map((grade) => (
                                             <Listbox.Option
                                                 key={grade.id}
-                                                value={grade.id}
+                                                value={grade}
                                                 className={({ active, selected }) =>
                                                     `relative cursor-pointer select-none px-4 py-3 text-sm ${selected
                                                         ? 'bg-indigo-50 text-indigo-600 font-medium'
@@ -228,32 +183,46 @@ export default function ExerciseReportComponent() {
                 </div>
 
                 <div className="p-6">
-                    {Object.keys(exerciseData).length > 0 ? (
+                    {/* Error State */}
+                    {error && (
+                        <div className="text-center py-12">
+                            <Target className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                            <h3 className="text-lg font-medium text-gray-900 mb-2">
+                                {error === 'មិនមានលំហាត់សម្រាប់ថ្នាក់នេះទេ' ? 'រកមិនឃើញរបាយការណ៍លំហាត់' : 'មានបញ្ហាក្នុងការទាញយករបាយការណ៍'}
+                            </h3>
+                            <p className="text-gray-500">
+                                {error === 'មិនមានលំហាត់សម្រាប់ថ្នាក់នេះទេ' ? 'សូមចាប់ផ្តើមលំហាត់ដើម្បីមើលរបាយការណ៍' : 'សូមព្យាយាមម្តងទៀត'}
+                            </p>
+                        </div>
+                    )}
+
+                    {/* Subjects and Topics */}
+                    {!error && subjects.length > 0 && (
                         <div className="space-y-8">
-                            {Object.entries(exerciseData).map(([subjectName, exercises]) => {
-                                const subjectColors = getSubjectColorVariants(getSubjectColor(subjectName));
+                            {subjects.map((subject) => {
+                                const subjectColors = getSubjectColorVariants(subject.color);
                                 return (
-                                    <div key={subjectName} className="border border-gray-200 rounded-xl overflow-hidden">
+                                    <div key={subject.id} className="border border-gray-200 rounded-xl overflow-hidden">
                                         {/* Subject Header */}
                                         <div className="bg-gray-50 p-4 border-b border-gray-200">
                                             <div className="flex items-center gap-4">
-                                                <div className={`w-12 h-12 ${getSubjectColor(subjectName)} rounded-xl flex items-center justify-center text-white`}>
-                                                    {getSubjectIcon(subjectName)}
+                                                <div className={`w-12 h-12 ${subject.color} rounded-xl flex items-center justify-center text-white`}>
+                                                    {React.createElement(getSubjectIcon(subject.name), { className: "w-8 h-8" })}
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-xl font-semibold text-gray-900">{subjectName}</h3>
-                                                    <p className="text-sm text-gray-600">{exercises.length} លំហាត់</p>
+                                                    <h3 className="text-xl font-semibold text-gray-900">{subject.name}</h3>
+                                                    <p className="text-sm text-gray-600">{subject.topics.length} លំហាត់</p>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        {/* Exercises Grid */}
+                                        {/* Topics Grid */}
                                         <div className="p-4">
                                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                                {exercises.map((exercise) => (
+                                                {subject.topics.map((topic) => (
                                                     <div
-                                                        key={exercise.id}
-                                                        onClick={() => openModal(exercise)}
+                                                        key={topic.id}
+                                                        onClick={() => openModal(topic)}
                                                         className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-4 cursor-pointer hover:shadow-lg hover:border-indigo-200 transition-all duration-200 group"
                                                     >
                                                         <div className="flex items-center justify-between mb-3">
@@ -261,14 +230,11 @@ export default function ExerciseReportComponent() {
                                                                 <div className="flex items-center gap-2 p-2 rounded-lg bg-indigo-100 text-indigo-600 group-hover:bg-indigo-200 transition-colors">
                                                                     <Target className="w-4 h-4" />
                                                                 </div>
-                                                                <h4 className="font-semibold text-gray-900  text-base group-hover:text-indigo-600 transition-colors">
-                                                                    {exercise.title}
+                                                                <h4 className="font-semibold text-gray-900 text-base group-hover:text-indigo-600 transition-colors">
+                                                                    {topic.name}
                                                                 </h4>
                                                             </div>
-
                                                         </div>
-
-
 
                                                         <div className="space-y-2">
                                                             <div className="flex items-center justify-between text-xs">
@@ -276,16 +242,16 @@ export default function ExerciseReportComponent() {
                                                                     <BarChart3 className="w-3 h-3" />
                                                                     ព្យាយាម
                                                                 </span>
-                                                                <span className="font-medium text-gray-900">{exercise.numberOfAttempts || 0} ដង</span>
+                                                                <span className="font-medium text-gray-900">{topic.attempts || 0} ដង</span>
                                                             </div>
 
-                                                            {exercise.highestScore ? (
+                                                            {topic.userProgress ? (
                                                                 <div className="flex justify-between rounded-full text-xs font-medium">
                                                                     <span className="text-gray-600 flex items-center gap-1">
                                                                         <BarChart3 className="w-3 h-3" />
                                                                         ពិន្ទុខ្ពស់បំផុត
                                                                     </span>
-                                                                    {exercise.highestScore || 0}%
+                                                                    {topic.userProgress}%
                                                                 </div>
                                                             ) : (
                                                                 <div className="flex justify-between rounded-full text-xs font-medium">
@@ -297,23 +263,13 @@ export default function ExerciseReportComponent() {
                                                                 </div>
                                                             )}
 
-                                                            {exercise.lastAttempt ? (
-                                                                <div className="flex items-center justify-between text-xs">
-                                                                    <span className="text-gray-600 flex items-center gap-1">
-                                                                        <TrendingUp className="w-3 h-3" />
-                                                                        ចុងក្រោយ
-                                                                    </span>
-                                                                    <span className="font-medium text-gray-900">{formatDate(exercise.lastAttempt)}</span>
-                                                                </div>
-                                                            ) : (
-                                                                <div className="flex items-center justify-between text-xs">
-                                                                    <span className="text-gray-600 flex items-center gap-1">
-                                                                        <TrendingUp className="w-3 h-3" />
-                                                                        ចុងក្រោយ
-                                                                    </span>
-                                                                    <span className="font-medium text-gray-900">មិនមានរបាយការណ៍</span>
-                                                                </div>
-                                                            )}
+                                                            <div className="flex items-center justify-between text-xs">
+                                                                <span className="text-gray-600 flex items-center gap-1">
+                                                                    <TrendingUp className="w-3 h-3" />
+                                                                    ចំនួនសំណួរ
+                                                                </span>
+                                                                <span className="font-medium text-gray-900">{topic.questionCount} សំណួរ</span>
+                                                            </div>
                                                         </div>
 
                                                         <div className="mt-3 pt-3 border-t border-gray-100">
@@ -329,7 +285,10 @@ export default function ExerciseReportComponent() {
                                 );
                             })}
                         </div>
-                    ) : (
+                    )}
+
+                    {/* No Data State */}
+                    {!error && subjects.length === 0 && !isLoading && (
                         <div className="text-center py-12">
                             <Target className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                             <h3 className="text-lg font-medium text-gray-900 mb-2">រកមិនឃើញរបាយការណ៍លំហាត់</h3>

@@ -13,7 +13,7 @@ import Description from '@/components/pages/create-video/Description';
 import { ExerciseQuestion } from '@/types/docs/topic';
 import Link from 'next/link';
 import { uploadFile } from '@/services/upload';
-import { createVideo, updateVideoExercises } from '@/services/me/videos';
+import { createVideo } from '@/services/me/videos';
 
 interface VideoFormData {
     title: string;

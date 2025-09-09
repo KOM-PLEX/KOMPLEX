@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil, Settings, LogOut, BookMarked, MessageCircle, UserIcon } from 'lucide-react';
@@ -10,6 +9,7 @@ import FeedbackModal from '../pages/feedback/FeedbackModal';
 import { useAuth } from '@/hooks/useAuth';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/config/firebase';
+import { useState } from 'react';
 
 const navLinks = [
     {
