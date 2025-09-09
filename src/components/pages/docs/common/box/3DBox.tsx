@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from 'lucide-react'
 import BulletList from '../../../../helper/BulletList'
 import { ThreeD } from '@/components/helper/ThreeD'
-import { ThreeDTextItem, TwoDTextItem } from '@/types/threeD'
+import { ThreeDTextItem, TwoDTextItem } from '@/types/docs/threeD'
 
 export interface ThreeDBoxProps {
     src?: string | React.ReactNode

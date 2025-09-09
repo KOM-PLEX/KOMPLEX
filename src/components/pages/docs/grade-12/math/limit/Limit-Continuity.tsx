@@ -1,4 +1,4 @@
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 import DefinitionBox from "../../../common/box/DefinitionBox";
 import TipBox from "../../../common/box/TipBox";
@@ -16,13 +16,13 @@ const TOPIC_CONTENT: TopicContent = {
                 <div className="bg-blue-50 p-4 rounded-lg space-y-2">
                     <div className="font-semibold text-blue-800">លក្ខខណ្ឌភាពជាប់៖</div>
                     <div><strong>១.</strong> <InlineMath math="f" /> កំណត់ចំពោះ <InlineMath math="x = c" /></div>
-                    <div><strong>២.</strong> <InlineMath math="f" /> មានលីមីតកាលណា<InlineMath math="x" /> <InlineMath math= '\\rightarrow' /> <InlineMath math="c" /></div>
+                    <div><strong>២.</strong> <InlineMath math="f" /> មានលីមីតកាលណា<InlineMath math="x" /> <InlineMath math='\\rightarrow' /> <InlineMath math="c" /></div>
                     <div><strong>៣.</strong> <InlineMath math="lim_{x \to a} f(x) = f(c)" /></div>
                 </div>
                 <div className="bg-green-50 p-4 rounded-lg">
                     <div className="font-semibold text-green-800 mb-2">អនុវត្តន៍បន្លាយនៃភាពជាប់៖</div>
                     <div>
-                            បើ <InlineMath math="f" /> ជាអនុគមន៍មិនកំណត់ត្រង់​ <InlineMath math="x = a" /> និងមាន
+                        បើ <InlineMath math="f" /> ជាអនុគមន៍មិនកំណត់ត្រង់​ <InlineMath math="x = a" /> និងមាន
                         <div className="flex flex-col">
                             <div><InlineMath math="lim_{x \to a} f(x) = l" />​​ ​នោះ​​ <InlineMath math="f" /> មានភាពជាប់ត្រង់ <InlineMath math="a" /> ​</div>
                             <div className="flex justify-start items-center gap-2">
@@ -33,7 +33,7 @@ const TOPIC_CONTENT: TopicContent = {
                                 \end{cases}" />
                             </div>
                         </div>
-                    </div>​
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,11 +49,11 @@ const TOPIC_CONTENT: TopicContent = {
                         <div><strong>១.</strong> <InlineMath math="f(x) + g(x)" /> ជាអនុគមន៍ជាប់ត្រង់ <InlineMath math="x = a" /></div>
                         <div><strong>២.</strong> <InlineMath math="f(x) - g(x)" /> ជាអនុគមន៍ជាប់ត្រង់ <InlineMath math="x = a" /></div>
                         <div><strong>៣.</strong> <InlineMath math="f(x) \cdot g(x)" /> ជាអនុគមន៍ជាប់ត្រង់ <InlineMath math="x = a" /></div>
-                        <div><strong>៤.</strong> <InlineMath math="\lambda f(x)" /> ជាអនុគមន៍ជាប់ត្រង់ <InlineMath math="x = a" /> <br/>(<InlineMath math="\lambda" /> ជាចំនួនពិត)</div>
+                        <div><strong>៤.</strong> <InlineMath math="\lambda f(x)" /> ជាអនុគមន៍ជាប់ត្រង់ <InlineMath math="x = a" /> <br />(<InlineMath math="\lambda" /> ជាចំនួនពិត)</div>
                         <div className=" text-base"><strong>៥.</strong> <InlineMath math="\frac{f(x)}{g(x)}" /> ជាអនុគមន៍ជាប់ត្រង់ <InlineMath math="x = a" /> ប្រសិនបើ <InlineMath math="g(a) \neq 0" /></div>
                     </div>
                 </div>
-                
+
                 <div className="bg-purple-50 p-4 rounded-lg">
                     <div className="font-semibold mb-2">ភាពជាប់លើចន្លោះ៖</div>
                     <div className="space-y-2">
@@ -248,23 +248,23 @@ export default function LimitContinuity() {
             )}
 
             {TOPIC_CONTENT.example && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT.example.question} 
-                    steps={TOPIC_CONTENT.example.steps} 
-                    answer={TOPIC_CONTENT.example.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT.example.question}
+                    steps={TOPIC_CONTENT.example.steps}
+                    answer={TOPIC_CONTENT.example.answer}
                 />
             )}
 
             {TOPIC_CONTENT.example2 && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT.example2.question} 
-                    steps={TOPIC_CONTENT.example2.steps} 
-                    answer={TOPIC_CONTENT.example2.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT.example2.question}
+                    steps={TOPIC_CONTENT.example2.steps}
+                    answer={TOPIC_CONTENT.example2.answer}
                 />
             )}
 
             {TOPIC_CONTENT.exercise && (
-                <ExerciseBox 
+                <ExerciseBox
                     questions={TOPIC_CONTENT.exercise.questions}
                 />
             )}

@@ -4,7 +4,7 @@ import 'katex/dist/katex.min.css';
 import HintBox from "../../../common/box/HintBox";
 import SummaryBox from "../../../common/box/SummaryBox";
 import { AlertTriangleIcon, BookAIcon, ChartBarIcon, LightbulbIcon, WrenchIcon } from "lucide-react";
-import { PracticeExercise, SummarySection } from "@/types/topic";
+import { PracticeExercise, SummarySection } from "@/types/docs/topic";
 import { div } from "three/tsl";
 
 
@@ -491,7 +491,7 @@ const ConicPractice = () => {
       problems: [
         <div key="ex3-1">
           កំណត់កូអរដោនេ​ផ្ចិត​ កំពូល កំណុំ ​និង​អាសុីមតូតនៃ​អុីពែបូល​<br />
-        <InlineMath math="x^2 - 5y^2 = 25" />
+          <InlineMath math="x^2 - 5y^2 = 25" />
         </div>,
         <div key="ex3-2">
           កំណត់កូអរដោនេ​ផ្ចិត​ កំពូល កំណុំ ​និង​អាសុីមតូតនៃ​អុីពែបូល​<br />

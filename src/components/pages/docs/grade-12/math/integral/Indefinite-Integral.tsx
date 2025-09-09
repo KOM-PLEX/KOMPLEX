@@ -4,7 +4,7 @@ import TipBox from "../../../common/box/TipBox";
 import ExerciseBox from "../../../common/box/ExerciseBox";
 import HintBox from "../../../common/box/HintBox";
 import WarningBox from "../../../common/box/WarningBox";
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 
 /** ជំនួយ UI សម្រាប់បន្ទាត់គណិតសម្រាប់ទូរស័ព្ទ (ឆ្វេង & អូសបាន) */

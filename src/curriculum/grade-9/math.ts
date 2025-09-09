@@ -1,4 +1,4 @@
-import { Content } from "@/types/curriculum";
+import { Content } from "@/types/docs/curriculum";
 import {
   Calculator,
   Target,
@@ -124,7 +124,7 @@ export const math: Content = {
       title: "ប្រូបាប",
       englishTitle: "Probability",
       icon: Dice1,
-        topics: [
+      topics: [
         {
           title: "នឹងមកដល់ឆាប់នេះ",
           englishTitle: "coming-soon",

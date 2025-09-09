@@ -1,5 +1,5 @@
-import { Content } from "@/types/curriculum";
-import { 
+import { Content } from "@/types/docs/curriculum";
+import {
   Leaf,
   Microscope,
   Baby,
@@ -8,7 +8,7 @@ import {
   Wind,
   Globe,
   Sprout,
-  HeartPulse
+  HeartPulse,
 } from "lucide-react";
 import ComingSoon from "@/components/pages/docs/common/ComingSoon";
 

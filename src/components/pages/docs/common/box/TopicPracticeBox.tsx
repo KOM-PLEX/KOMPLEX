@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';  
-import { PracticeExercise } from '@/types/topic';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { PracticeExercise } from '@/types/docs/topic';
 
 
 
@@ -15,7 +15,7 @@ export default function TopicPracticeBox({ exercises }: TopicPracticeBoxProps) {
 
     const toggleQuestion = (questionId: string) => {
         setExpandedQuestions(prev => ({
-            ...prev,    
+            ...prev,
             [questionId]: !prev[questionId]
         }));
     };

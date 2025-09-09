@@ -1,4 +1,4 @@
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 import DefinitionBox from "../../../common/box/DefinitionBox";
 import TipBox from "../../../common/box/TipBox";
@@ -12,12 +12,12 @@ const TOPIC_CONTENT: TopicContent = {
         content: <div className="text-left">
             <div>នៅពេលដែលយើងគណនាលីមីត ប្រសិនបើការជំនួសតម្លៃដោយផ្ទាល់ធ្វើឱ្យបាន <InlineMath math="\frac{\infty}{\infty}" /></div>
             <div>
-                នេះហៅថា <strong>ទម្រង់មិនកំណត់</strong>។ 
+                នេះហៅថា <strong>ទម្រង់មិនកំណត់</strong>។
             </div>
             <div>
-            ឧទាហរណ៍ ៖ <InlineMath math="lim_{x \to \infty} \frac{x^2 + 3x}{x}​ = \frac{{\infty^2}+3({\infty})}{\infty} = \frac{\infty}{\infty}" />ជាទម្រង់មិនកំណត់
+                ឧទាហរណ៍ ៖ <InlineMath math="lim_{x \to \infty} \frac{x^2 + 3x}{x}​ = \frac{{\infty^2}+3({\infty})}{\infty} = \frac{\infty}{\infty}" />ជាទម្រង់មិនកំណត់
             </div>
-        
+
         </div>
     },
     tip: {
@@ -66,8 +66,8 @@ const TOPIC_CONTENT: TopicContent = {
             },
             {
                 title: "គណនាលីមីត",
-                content: <div className="text-left space-y-2">  
-                    <div className="text-xl"><InlineMath math="\Rightarrow"/> <InlineMath math="lim_{x \to \infty} \frac{3x^2 + 2x - 1}{x^2 + 5x + 6}" /></div>
+                content: <div className="text-left space-y-2">
+                    <div className="text-xl"><InlineMath math="\Rightarrow" /> <InlineMath math="lim_{x \to \infty} \frac{3x^2 + 2x - 1}{x^2 + 5x + 6}" /></div>
                     <div className="text-xl"><InlineMath math=" = lim_{x \to \infty}\frac{x^2(3 + \frac{2}{x} - \frac{1}{x^2})}{x^2(1 + \frac{5}{x} + \frac{6}{x^2})}" /></div>
                     <div className="text-xl"><InlineMath math="= lim_{x \to \infty} \frac{3 + \frac{2}{x} - \frac{1}{x^2}}{1 + \frac{5}{x} + \frac{6}{x^2}} = \frac{3 + 0 - 0}{1 + 0 + 0} = \frac{3}{1} = 3" /></div>
                     <div className="text-x">ព្រោះ <InlineMath math="lim_{x \to \infty} \frac{1}{x^n} = 0" /> <InlineMath math="(n > 0)" /></div>
@@ -86,7 +86,7 @@ const TOPIC_CONTENT: TopicContent = {
                     <div>• <strong>ទម្រង់ពហុធា</strong>: ចាប់កត្តាដែលមានឌឺក្រេខ្ពស់បំផុត</div>
                     <div>• <strong>ទម្រង់រ៉ាឌីកាល់</strong>: គុណនឹងកន្សោមឆ្លាស់​ ឬ​​កន្សោមផ្សេងដើម្បីតម្រូវរូបមន្ត</div>
                 </div>
-            
+
             </div>
         </div>
     },
@@ -156,7 +156,7 @@ export default function LimitInfinityOverInfinity() {
                 content={TOPIC_CONTENT.tip?.content}
             />
             <ExampleBox
-      
+
                 question={TOPIC_CONTENT.example?.question}
                 content={TOPIC_CONTENT.example?.content}
                 steps={TOPIC_CONTENT.example?.steps}

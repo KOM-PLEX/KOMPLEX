@@ -1,4 +1,4 @@
-import { Content } from "@/types/curriculum";
+import { Content } from "@/types/docs/curriculum";
 import { Leaf, Dna, FlaskConical, User, Sprout } from "lucide-react";
 import ComingSoon from "@/components/pages/docs/common/ComingSoon";
 

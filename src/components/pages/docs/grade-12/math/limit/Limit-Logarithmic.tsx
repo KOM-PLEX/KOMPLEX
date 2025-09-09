@@ -1,4 +1,4 @@
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 import DefinitionBox from "../../../common/box/DefinitionBox";
 import TipBox from "../../../common/box/TipBox";
@@ -52,7 +52,7 @@ const TOPIC_CONTENT: TopicContent = {
                         <div><InlineMath math="\log_a x = \frac{\ln x}{\ln a}" /></div>
                     </div>
                 </div>
-                
+
                 <div className="bg-orange-50 p-4 rounded-lg">
                     <div className="font-semibold mb-2">លីមីតទូទៅ៖</div>
                     <div className="space-y-2">
@@ -70,7 +70,7 @@ const TOPIC_CONTENT: TopicContent = {
         </div>
     },
 
-   
+
     example2: {
         question: <div className="text-left">
             គណនា <InlineMath math="\lim_{x \to 0} \frac{\ln(1 + 3x)}{2x}" />
@@ -163,7 +163,7 @@ const TOPIC_CONTENT: TopicContent = {
             }
         ]
     },
-    
+
     hint: {
         content: <div className="text-left">
             <div className="space-y-3">
@@ -191,23 +191,23 @@ export default function LimitLogarithmic() {
             )}
 
             {TOPIC_CONTENT.example && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT.example.question} 
-                    steps={TOPIC_CONTENT.example.steps} 
-                    answer={TOPIC_CONTENT.example.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT.example.question}
+                    steps={TOPIC_CONTENT.example.steps}
+                    answer={TOPIC_CONTENT.example.answer}
                 />
             )}
 
             {TOPIC_CONTENT.example2 && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT.example2.question} 
-                    steps={TOPIC_CONTENT.example2.steps} 
-                    answer={TOPIC_CONTENT.example2.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT.example2.question}
+                    steps={TOPIC_CONTENT.example2.steps}
+                    answer={TOPIC_CONTENT.example2.answer}
                 />
             )}
 
             {TOPIC_CONTENT.exercise && (
-                <ExerciseBox 
+                <ExerciseBox
                     questions={TOPIC_CONTENT.exercise.questions}
                 />
             )}

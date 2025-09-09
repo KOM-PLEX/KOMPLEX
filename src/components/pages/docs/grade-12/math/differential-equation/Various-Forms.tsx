@@ -1,6 +1,6 @@
 import DefinitionBox from "../../../common/box/DefinitionBox"
 import TipBox from "../../../common/box/TipBox"
-import { TopicContent } from "@/types/topic"
+import { TopicContent } from "@/types/docs/topic"
 import { BlockMath, InlineMath } from "react-katex"
 import 'katex/dist/katex.min.css'
 import ExerciseBox from "../../../common/box/ExerciseBox"
@@ -58,8 +58,8 @@ const FirstTopicContent: TopicContent = {
               <BlockMath math="y' = 3x^2 - e^x + 1" />
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-                <p>គេបាន</p>
-                <BlockMath math="y = \int (3x^2 - e^x + 1) dx " />
+              <p>គេបាន</p>
+              <BlockMath math="y = \int (3x^2 - e^x + 1) dx " />
             </div>
             <BlockMath math="\Rightarrow y = x^3 - e^x + x + c ,\ c \in \mathbb{R}" />
           </div>
@@ -69,12 +69,12 @@ const FirstTopicContent: TopicContent = {
         content:
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-2 flex-wrap">
-                <p>សមីការ៖ </p>
-                <BlockMath math="y' = x e^{x^2} + 2" />
+              <p>សមីការ៖ </p>
+              <BlockMath math="y' = x e^{x^2} + 2" />
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-                <p>គេបាន</p>
-                <BlockMath math="y = \int (xe^2 + 2) dx " />
+              <p>គេបាន</p>
+              <BlockMath math="y = \int (xe^2 + 2) dx " />
             </div>
             <div className="flex items-center flex-col">
               <BlockMath math="\Rightarrow y = \int xe^{x^2} dx  + \int 2 dx" />
@@ -182,10 +182,10 @@ const SecondTopic: TopicContent = {
               <BlockMath math="\frac{d_y}{d_x} = e^{x+y}" />
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-                <p>គេបាន:</p>
-                <div className="flex items-center gap-2">
-                    <BlockMath math="\frac{d_y}{d_x} = e^{x+y}" />
-                    <BlockMath math="\Rightarrow \frac{d_y}{d_x} = e^{x} e^{y}" />
+              <p>គេបាន:</p>
+              <div className="flex items-center gap-2">
+                <BlockMath math="\frac{d_y}{d_x} = e^{x+y}" />
+                <BlockMath math="\Rightarrow \frac{d_y}{d_x} = e^{x} e^{y}" />
               </div>
             </div>
 
@@ -219,32 +219,32 @@ const SecondTopic: TopicContent = {
         content:
           <div className="flex flex-col items-start">
             <div className="flex items-center gap-2 flex-wrap">
-                <p>សមីការ៖ </p>
-                <BlockMath math="\frac{dy}{dx} = \frac{y^2 - 1}{x}" />
+              <p>សមីការ៖ </p>
+              <BlockMath math="\frac{dy}{dx} = \frac{y^2 - 1}{x}" />
             </div>
-            
+
             <div className="flex items-center gap-2 flex-wrap">
-                <p>គេបាន:</p>
-                <div className="flex items-center gap-2">
-                    <BlockMath math="\frac{dy}{dx} = \frac{y^2 - 1}{x}" />
-                    <BlockMath math="\Rightarrow \frac{dy}{y^2 - 1} = \frac{dx}{x}" />
-              </div>
-            </div>       
-
+              <p>គេបាន:</p>
               <div className="flex items-center gap-2">
-                <BlockMath math="\Rightarrow \int \frac{dy}{y^2 - 1} = \int \frac{dx}{x}" />
+                <BlockMath math="\frac{dy}{dx} = \frac{y^2 - 1}{x}" />
+                <BlockMath math="\Rightarrow \frac{dy}{y^2 - 1} = \frac{dx}{x}" />
               </div>
+            </div>
 
-              <div className="flex items-center gap-2">
-                <BlockMath math="\Rightarrow \frac{1}{2} \ln\left|\frac{y-1}{y+1}\right| = \ln|x| + C" />
-              </div>
+            <div className="flex items-center gap-2">
+              <BlockMath math="\Rightarrow \int \frac{dy}{y^2 - 1} = \int \frac{dx}{x}" />
+            </div>
+
+            <div className="flex items-center gap-2">
+              <BlockMath math="\Rightarrow \frac{1}{2} \ln\left|\frac{y-1}{y+1}\right| = \ln|x| + C" />
+            </div>
             <p>តែដោយ y(1)=2</p>
-              <div className="flex items-center gap-2">
-                <BlockMath math="\Rightarrow \frac{1}{2} \ln\left|\frac{2-1}{2+1}\right| = \ln|1| + C" />
-              </div>
-              <div className="flex items-center gap-2">
-                <BlockMath math="\Rightarrow c= - \frac{1}{2} \ln3 " />
-              </div>
+            <div className="flex items-center gap-2">
+              <BlockMath math="\Rightarrow \frac{1}{2} \ln\left|\frac{2-1}{2+1}\right| = \ln|1| + C" />
+            </div>
+            <div className="flex items-center gap-2">
+              <BlockMath math="\Rightarrow c= - \frac{1}{2} \ln3 " />
+            </div>
           </div>
       }
     ],

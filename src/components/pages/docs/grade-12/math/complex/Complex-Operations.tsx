@@ -1,5 +1,5 @@
 import React from 'react'
-import { TopicContent } from '@/types/topic'
+import { TopicContent } from '@/types/docs/topic'
 import DefinitionBox from '../../../common/box/DefinitionBox'
 import TipBox from '../../../common/box/TipBox'
 import { BlockMath, InlineMath } from 'react-katex';
@@ -13,11 +13,11 @@ const TOPIC_CONTENT: TopicContent = {
             "​ការបូក​ ដក ចំនួនកុំផ្លិចគឺត្រូវធ្វើប្រមាណវិធី​តាមផ្នែកពិតជាមួយផ្នែកពិត​ ផ្នែកនិមិត្តជាមួយផ្នែកនិមិត្ត "
     },
     tip: {
-        title:<div>
+        title: <div>
             <div className='text-sm'>
                 បើ <InlineMath math="z_1 = a + bi" /> និង <InlineMath math="z_2 = c + di" />  នោះគេបាន
             </div>
-            </div>,
+        </div>,
         content: <div>
             <div className='flex flex-col'>
                 <div><InlineMath math="z_1 + z_2 = (a + c) + (b + d)i" /></div>
@@ -33,12 +33,12 @@ const TOPIC_CONTENT: TopicContent = {
             <div className="flex flex-col ">
                 <div className='flex flex-row justify-start items-center gap-2'>
                     <div>គេមាន</div>
-                    <div><InlineMath math="z_1 = 3 + 4i" /> </div>និង <div> <InlineMath math="z_2 = 2 - 3i" /></div> 
+                    <div><InlineMath math="z_1 = 3 + 4i" /> </div>និង <div> <InlineMath math="z_2 = 2 - 3i" /></div>
                 </div>
 
                 <div className='flex flex-row justify-start items-center gap-2'>
                     <div>គណនា</div>
-                    <InlineMath math="z_1 + z_2 ," /> , <InlineMath math="z_1 - z_2" /> 
+                    <InlineMath math="z_1 + z_2 ," /> , <InlineMath math="z_1 - z_2" />
                 </div>
             </div>,
 
@@ -91,34 +91,34 @@ const TOPIC_CONTENT: TopicContent = {
             {
                 id: "q3",
                 question:
-                <div className="flex flex-col ">
-                <div className='flex flex-row justify-start items-center gap-2 '>
-                    <div>គេមាន</div>
-                    <div><InlineMath math="z_1 = 9 -7i" /> </div>និង <div> <InlineMath math="z_2 = -3 +2i" /></div> 
-                </div>
+                    <div className="flex flex-col ">
+                        <div className='flex flex-row justify-start items-center gap-2 '>
+                            <div>គេមាន</div>
+                            <div><InlineMath math="z_1 = 9 -7i" /> </div>និង <div> <InlineMath math="z_2 = -3 +2i" /></div>
+                        </div>
 
-                <div className='flex flex-row justify-start items-center gap-2'>
-                    <div>គណនា</div>
-                    <InlineMath math="z_1 + z_2 ," /> , <InlineMath math="z_1 - z_2" /> 
-                </div>
-            </div>,
+                        <div className='flex flex-row justify-start items-center gap-2'>
+                            <div>គណនា</div>
+                            <InlineMath math="z_1 + z_2 ," /> , <InlineMath math="z_1 - z_2" />
+                        </div>
+                    </div>,
                 options: ["(6+5i),(12-9i)", "(6-5i),(12+9i)", "(6+5i),(12+9i)", "(6-5i),(12-9i)"],
                 correctAnswer: 2
             },
             {
                 id: "q4",
-                question: 
-                <div className='flex flex-col '>
-                    <div className='flex flex-row justify-start items-center gap-2 '>
-                        <div>គេមាន</div>
-                        <div><InlineMath math="z_1 = 4 + 2i" /> </div>និង <div> <InlineMath math="z_2 = 3 - 2i" /></div> 
-                    </div>
+                question:
+                    <div className='flex flex-col '>
+                        <div className='flex flex-row justify-start items-center gap-2 '>
+                            <div>គេមាន</div>
+                            <div><InlineMath math="z_1 = 4 + 2i" /> </div>និង <div> <InlineMath math="z_2 = 3 - 2i" /></div>
+                        </div>
 
-                    <div className='flex flex-row justify-start items-center gap-2'>
-                        <div>គណនា</div>
-                        <InlineMath math="z_1 + z_2" /> , <InlineMath math="z_1 - z_2" /> 
-                    </div>
-                </div>,
+                        <div className='flex flex-row justify-start items-center gap-2'>
+                            <div>គណនា</div>
+                            <InlineMath math="z_1 + z_2" /> , <InlineMath math="z_1 - z_2" />
+                        </div>
+                    </div>,
                 options: ["(7+0i),(1+4i)", "(7+0i),(1-4i)", "(7),(1-4i)", "មិនមាន"],
                 correctAnswer: 0
             }

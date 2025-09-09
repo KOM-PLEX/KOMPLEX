@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookAIcon } from "lucide-react";
-import { ExerciseQuestion } from "@/types/topic";
+import { ExerciseQuestion } from "@/types/docs/topic";
 import { InlineMath } from "react-katex";
 
 export interface ExerciseBoxProps {
@@ -74,15 +74,13 @@ export default function ExerciseBox({ questions }: ExerciseBoxProps) {
 								key={index}
 								onClick={() => handleAnswerSelect(index)}
 								disabled={showResult}
-								className={`w-full text-left p-4 rounded-xl border-2 border-gray-200 transition-all duration-300 font-medium ${
-									isSelected && !showResult
+								className={`w-full text-left p-4 rounded-xl border-2 border-gray-200 transition-all duration-300 font-medium ${isSelected && !showResult
 										? "border-indigo-500 bg-indigo-50/80 text-indigo-700"
 										: !showResult
-										? "border-gray-200 hover:border-indigo-300 hover:bg-indigo-50/40 text-gray-700"
-										: ""
-								} ${showCorrect ? "border-green-500 bg-green-50/80 text-green-700" : ""} ${
-									showIncorrect ? "border-red-500 bg-red-50/80 text-red-700" : ""
-								} ${showCorrectAnswer ? "border-green-500 bg-green-50/60 text-green-700" : ""}`}
+											? "border-gray-200 hover:border-indigo-300 hover:bg-indigo-50/40 text-gray-700"
+											: ""
+									} ${showCorrect ? "border-green-500 bg-green-50/80 text-green-700" : ""} ${showIncorrect ? "border-red-500 bg-red-50/80 text-red-700" : ""
+									} ${showCorrectAnswer ? "border-green-500 bg-green-50/60 text-green-700" : ""}`}
 							>
 								<div className="flex items-center gap-3">
 									<span className="text-lg font-semibold">
@@ -90,7 +88,7 @@ export default function ExerciseBox({ questions }: ExerciseBoxProps) {
 									</span>
 									<span>
 										{typeof option === "string" &&
-										(option.startsWith("\\") || option.includes("{")) ? (
+											(option.startsWith("\\") || option.includes("{")) ? (
 											<InlineMath math={option} />
 										) : (
 											option
@@ -131,9 +129,8 @@ export default function ExerciseBox({ questions }: ExerciseBoxProps) {
 						<button
 							key={index}
 							onClick={() => goToQuestion(index)}
-							className={`w-3 h-3 rounded-full transition-all duration-300 ${
-								index === currentQuestionIndex ? "bg-indigo-600" : "bg-gray-100 hover:bg-gray-200"
-							}`}
+							className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentQuestionIndex ? "bg-indigo-600" : "bg-gray-100 hover:bg-gray-200"
+								}`}
 						/>
 					))}
 				</div>

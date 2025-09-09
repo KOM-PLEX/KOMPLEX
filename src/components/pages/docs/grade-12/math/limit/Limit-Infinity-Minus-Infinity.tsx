@@ -1,4 +1,4 @@
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 import DefinitionBox from "../../../common/box/DefinitionBox";
 import TipBox from "../../../common/box/TipBox";
@@ -14,7 +14,7 @@ const TOPIC_CONTENT: TopicContent = {
                 នៅពេលដែលយើងគណនាលីមីត ប្រសិនបើការជំនួសតម្លៃដោយផ្ទាល់ធ្វើឱ្យបាន <InlineMath math="\infty - \infty" />នេះហៅថា <strong>ទម្រង់មិនកំណត់</strong>
             </div>
             <div>
-             ឧទាហរណ៍ ៖ <InlineMath math="lim_{x \to \infty} (x^2 - x) = \infty - \infty" />ជាទម្រង់មិនកំណត់
+                ឧទាហរណ៍ ៖ <InlineMath math="lim_{x \to \infty} (x^2 - x) = \infty - \infty" />ជាទម្រង់មិនកំណត់
             </div>
         </div>
     },
@@ -41,9 +41,9 @@ const TOPIC_CONTENT: TopicContent = {
                 title: "ជំនួសតម្លៃ x​ចូលដើម្បីពិនិត្យមើលទម្រង់",
                 content: <div className="text-left space-y-2 text-lg">
                     <div>នៅពេល x → ∞:</div>
-                    <div><InlineMath math="x^3 - 4x^2 + 12 = \infty^3 - 4(\infty^2) + 12"/></div> <div><InlineMath math="= \infty - \infty + 12" /></div>
+                    <div><InlineMath math="x^3 - 4x^2 + 12 = \infty^3 - 4(\infty^2) + 12" /></div> <div><InlineMath math="= \infty - \infty + 12" /></div>
                     <div>បានទម្រង់មិនកំណត់ <InlineMath math="\infty - \infty" /></div>
-                </div>  
+                </div>
             },
             {
                 title: "ចាប់កត្តាដែលមានឌឺក្រេខ្ពស់បំផុត",
@@ -56,8 +56,8 @@ const TOPIC_CONTENT: TopicContent = {
             },
             {
                 title: "គណនាលីមីត",
-                content: <div className="text-left space-y-2">  
-                    <div className="text-base"><InlineMath math="\Rightarrow"/> <InlineMath math="lim_{x \to \infty} (x^3 - 4x^2 + 12)" /></div>
+                content: <div className="text-left space-y-2">
+                    <div className="text-base"><InlineMath math="\Rightarrow" /> <InlineMath math="lim_{x \to \infty} (x^3 - 4x^2 + 12)" /></div>
                     <div className="text-base"><InlineMath math="= lim_{x \to \infty} x^3(1 - \frac{4}{x} + \frac{12}{x^3})" /></div>
                     <div className="text-base"><InlineMath math="= lim_{x \to \infty} x^3 \cdot lim_{x \to \infty}(1 - \frac{4}{x} + \frac{12}{x^3})" /></div>
                     <div className="text-base"><InlineMath math="= \infty \cdot (1 - 0 + 0) = \infty \cdot 1 = \infty" /></div>
@@ -78,7 +78,7 @@ const TOPIC_CONTENT: TopicContent = {
                     <div>• <strong>ទម្រង់រ៉ាឌីកាល់</strong>: គុណនឹងកន្សោមឆ្លាស់​ ឬ​​កន្សោមផ្សេងដើម្បីតម្រូវរូបមន្ត</div>
                     <div>• <strong>ទម្រង់អ៊ិចស្ប៉ុណង់ស្យែល</strong>: ប្រើលក្ខខណ្ឌពិសេស <InlineMath math="e^x > n \ln x" /></div>
                 </div>
-            
+
                 <div className="mt-6">
                     <div className="font-semibold mb-3">ឧទាហរណ៍ពីឯកសារ:</div>
                     <div className="space-y-3 ml-4">
@@ -95,7 +95,7 @@ const TOPIC_CONTENT: TopicContent = {
                             <InlineMath math="D = lim_{x \to \infty} \left[e^{2x} - 2x - \ln^2(x^2 + 1)\right]" />
                         </div>
                     </div>
-                    
+
                     <div className="mt-4">
                         <div className="font-semibold mb-2">ឧទាហរណ៍ A ការគណនាលម្អិត:</div>
                         <div className="ml-4 space-y-2">

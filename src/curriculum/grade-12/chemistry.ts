@@ -1,4 +1,4 @@
-import { Content } from "@/types/curriculum";
+import { Content } from "@/types/docs/curriculum";
 import { FlaskConical } from "lucide-react";
 import RateChemicalReaction from "@/components/pages/docs/grade-12/chemistry/chemica- kinetics/Rate-chemical-reaction";
 import Reaction_rate_factors from "@/components/pages/docs/grade-12/chemistry/chemica- kinetics/Reaction_rate_factors";
@@ -18,10 +18,6 @@ import Acid_base_practice from "@/components/pages/docs/grade-12/chemistry/acid_
 import EquilibriumPractice from "@/components/pages/docs/grade-12/chemistry/chemical_equilibrium/Equilibrium-Practice";
 import OrganicPractice from "@/components/pages/docs/grade-12/chemistry/organic_chemistry/Organic-Practice";
 import ChemisTables from "@/components/pages/docs/grade-12/chemistry/aqueous_solution_forces/Table";
-
-
-
-
 
 export const chemistry: Content = {
   subject: "chemistry",

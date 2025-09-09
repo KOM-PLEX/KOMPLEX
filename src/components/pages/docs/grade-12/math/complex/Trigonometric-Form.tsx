@@ -1,5 +1,5 @@
 import React from 'react'
-import { TopicContent } from '@/types/topic'
+import { TopicContent } from '@/types/docs/topic'
 import DefinitionBox from '../../../common/box/DefinitionBox'
 import TipBox from '../../../common/box/TipBox'
 import ExampleBox from '../../../common/box/ExampleBox'
@@ -15,7 +15,7 @@ const TOPIC_CONTENT: TopicContent = {
   tip: {
     title: "ទម្រង់ទូទៅ",
     content: <div className='text-[17.5px]'>
-      ចំនួនកុំផ្លិចមួយ <InlineMath math="z = a + bi" /> អាចសរសេរជាទម្រង់ត្រីកោណមាត្រ<br/> <InlineMath math="z = r(\cos\theta + i\sin\theta)" /><br />
+      ចំនួនកុំផ្លិចមួយ <InlineMath math="z = a + bi" /> អាចសរសេរជាទម្រង់ត្រីកោណមាត្រ<br /> <InlineMath math="z = r(\cos\theta + i\sin\theta)" /><br />
       ដែល <InlineMath math="r = |z|= \sqrt{a^2 + b^2}" /> ជាប្រវែង <br />
       និង <InlineMath math="\theta = \tan^{-1}\left(\frac{b}{a}\right)" /> ជាមុំ (ក្រាបនៅទំព័រម៉ូឌុលនៃកុំផ្លិច)
     </div>
@@ -31,15 +31,15 @@ const TOPIC_CONTENT_OPERATION: TopicContent = {
       <div>បើ</div>
       <div className='flex flex-row text-[15px] gap-x-1'>
         <div>
-           <div><InlineMath math="z_1 = r_1(\cos\theta_1 + i\sin\theta_1)" /></div> 
-      
-           <div><InlineMath math="z_2 = r_2(\cos\theta_2 + i\sin\theta_2)" /></div> 
-          </div>
+          <div><InlineMath math="z_1 = r_1(\cos\theta_1 + i\sin\theta_1)" /></div>
+
+          <div><InlineMath math="z_2 = r_2(\cos\theta_2 + i\sin\theta_2)" /></div>
+        </div>
       </div>
     </div>,
     content: <div className='flex flex-col text-lg gap-y-1.5'>
-       
-         <p><b>គេបានរូបមន្ត</b></p>
+
+      <p><b>គេបានរូបមន្ត</b></p>
       <div><InlineMath math="z_1z_2 = r_1r_2[\cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2)]" /></div>
       <div><InlineMath math="\frac{z_1}{z_2} = \frac{r_1}{r_2}[\cos(\theta_1 - \theta_2) + i\sin(\theta_1 - \theta_2)]" /></div>
       <div><b>ករណីស្វ័យគុណ n</b></div>
@@ -133,19 +133,19 @@ const SPECIAL_FORM_2: TopicContent = {
 
     </div>
   },
-    tip: {
-      title: <div>ករណី <InlineMath math=" z = (\sin\theta + i\ cos\theta)" /></div>,
-      content: <div>
-        យើងត្រូវបំលែងទៅទម្រង់ដើមតាមរូបមន្ត <br />
-        <InlineMath math="\sin\theta = \cos(\frac{\pi}{2} - \theta)" /> <br />
-        <InlineMath math="\cos\theta = \sin(\frac{\pi}{2} - \theta)" /> <br />
-        <div>
-          <InlineMath math='\Rightarrow'/><InlineMath math=" z = (\sin\theta + i\ cos\theta)" /><br/> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos(\frac{\pi}{2} - \theta) + i\sin(\frac{\pi}{2} - \theta))" /> <br /></div>
-      </div>
-    }
+  tip: {
+    title: <div>ករណី <InlineMath math=" z = (\sin\theta + i\ cos\theta)" /></div>,
+    content: <div>
+      យើងត្រូវបំលែងទៅទម្រង់ដើមតាមរូបមន្ត <br />
+      <InlineMath math="\sin\theta = \cos(\frac{\pi}{2} - \theta)" /> <br />
+      <InlineMath math="\cos\theta = \sin(\frac{\pi}{2} - \theta)" /> <br />
+      <div>
+        <InlineMath math='\Rightarrow' /><InlineMath math=" z = (\sin\theta + i\ cos\theta)" /><br /> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos(\frac{\pi}{2} - \theta) + i\sin(\frac{\pi}{2} - \theta))" /> <br /></div>
+    </div>
   }
+}
 
-const NEGATIVE_SIN_COS : TopicContent = {
+const NEGATIVE_SIN_COS: TopicContent = {
   tip: {
     title: <b>វិធីងាយៗក្នុងការបំបែកមុំ</b>,
     content: <div className='text-[16px] flex flex-col gap-y-1.5'>
@@ -163,7 +163,7 @@ const NEGATIVE_SIN_COS : TopicContent = {
         </div>
 
         <div>
-          គេបាន​ <InlineMath math=" z = (-\cos\frac{\pi}{3} + i\sin\frac{\pi}{3})" /><br/> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos\frac{2\pi}{3} + i\sin\frac{2\pi}{3})" />
+          គេបាន​ <InlineMath math=" z = (-\cos\frac{\pi}{3} + i\sin\frac{\pi}{3})" /><br /> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos\frac{2\pi}{3} + i\sin\frac{2\pi}{3})" />
         </div>
 
         <div>
@@ -171,7 +171,7 @@ const NEGATIVE_SIN_COS : TopicContent = {
         </div>
 
         <div>
-          គេបាន​ <InlineMath math=" z = (-\cos\frac{\pi}{3} - i\sin\frac{\pi}{3})" /><br/> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos\frac{4\pi}{3} + i\sin\frac{4\pi}{3})" />
+          គេបាន​ <InlineMath math=" z = (-\cos\frac{\pi}{3} - i\sin\frac{\pi}{3})" /><br /> <InlineMath math="\Rightarrow" /> <InlineMath math=" z = (\cos\frac{4\pi}{3} + i\sin\frac{4\pi}{3})" />
         </div>
       </div>
     </div>

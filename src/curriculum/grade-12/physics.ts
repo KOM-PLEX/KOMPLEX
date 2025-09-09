@@ -1,4 +1,4 @@
-import { Content } from "@/types/curriculum";
+import { Content } from "@/types/docs/curriculum";
 import { Atom } from "lucide-react";
 import KineticTheory from "@/components/pages/docs/grade-12/physic/thermodynamic/Kinetic-Theory";
 import FirstLawThermodynamics from "@/components/pages/docs/grade-12/physic/thermodynamic/First-Law-Thermodynamics";

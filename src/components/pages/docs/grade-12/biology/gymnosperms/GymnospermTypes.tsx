@@ -1,4 +1,4 @@
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import ComingSoon from "../../../common/ComingSoon";
 import DefinitionBox from "../../../common/box/DefinitionBox";
 import TipBox from "../../../common/box/TipBox";

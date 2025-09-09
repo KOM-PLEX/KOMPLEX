@@ -1,6 +1,6 @@
 import TipBox from "./TipBox";
 import React from "react";
-import { SummarySection } from "@/types/topic";
+import { SummarySection } from "@/types/docs/topic";
 
 
 

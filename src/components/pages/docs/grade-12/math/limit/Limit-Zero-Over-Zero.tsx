@@ -1,4 +1,4 @@
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 import DefinitionBox from "../../../common/box/DefinitionBox";
 import TipBox from "../../../common/box/TipBox";
@@ -11,10 +11,10 @@ const TOPIC_CONTENT: TopicContent = {
         content: <div className="text-left">
             <div>នៅពេលដែលយើងគណនាលីមីត ប្រសិនបើការជំនួសតម្លៃដោយផ្ទាល់ធ្វើឱ្យបាន <InlineMath math="\frac{0}{0}" /></div>
             <div>
-                 នេះហៅថា <strong>ទម្រង់មិនកំណត់</strong>។ 
+                នេះហៅថា <strong>ទម្រង់មិនកំណត់</strong>។
             </div>
             <div>
-                <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \frac{2^2 - 4}{2 - 2} = \frac{0}{0}" /> 
+                <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} = \frac{2^2 - 4}{2 - 2} = \frac{0}{0}" />
             </div>
         </div>
     },
@@ -22,7 +22,7 @@ const TOPIC_CONTENT: TopicContent = {
         title: "ចំណាំ!",
         content: <div className="text-left">
             <div className="space-y-3">
-                <div className = 'text-base'>ដើម្បីគណនាលីមីតអនុគមន៍សនិទាន <InlineMath math="\frac{0}{0}" /> យើងត្រូវ</div>
+                <div className='text-base'>ដើម្បីគណនាលីមីតអនុគមន៍សនិទាន <InlineMath math="\frac{0}{0}" /> យើងត្រូវ</div>
                 <div className="ml-2 space-y-2">
                     <div><strong>ដំណាក់កាល១</strong>: ដាក់ភាគយកនិងភាគបែងជាផលគុណកត្តា</div>
                     <div><strong>ដំណាក់កាល២</strong>: សម្រួលកត្តាដូចគ្នាចោល</div>
@@ -71,7 +71,7 @@ const TOPIC_CONTENT: TopicContent = {
                 title: "គណនាលីមីត",
                 content: <div className="text-left space-y-2">
                     <div>
-                    <InlineMath math="\Rightarrow"/> <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} " />
+                        <InlineMath math="\Rightarrow" /> <InlineMath math="\lim_{x \to 2} \frac{x^2 - 4}{x - 2} " />
                     </div>
                     <div><InlineMath math="= \lim_{x \to 2} \frac{(x + 2)(x - 2)}{x - 2}" /></div>
                     <div>
@@ -116,7 +116,7 @@ const TOPIC_CONTENT_EXERCISE: TopicContent = {
                 title: "គណនាលីមីត",
                 content: <div className="text-left space-y-2">
                     <div>
-                    <InlineMath math="\Rightarrow"/> <InlineMath math="\lim_{x \to 3} \frac{x^2 - 9}{x - 3} " />
+                        <InlineMath math="\Rightarrow" /> <InlineMath math="\lim_{x \to 3} \frac{x^2 - 9}{x - 3} " />
                     </div>
                     <div>
                         <InlineMath math="= \lim_{x \to 3} \frac{(x + 3)(x - 3)}{x - 3}" />
@@ -131,41 +131,41 @@ const TOPIC_CONTENT_EXERCISE: TopicContent = {
             ដូច្នេះ <InlineMath math="\lim_{x \to 3} \frac{x^2 - 9}{x - 3} = 6" />
         </div>
     },
-       tip: {
-     title: "សំខាន់!",
-     content: <div className="text-left">
-         <div>ពេលសម្រួលកត្តាមួយហើយនៅតែជំនួសចូលឃើញ <InlineMath math="\mathbf{\frac{0}{0}}" /><br/>
-         យើងត្រូវតែបំបែកកត្តាតទៅទៀតហើយសម្រួលកត្តាដូចគ្នាចោលទៀរហូតលែងចេញ <InlineMath math="\mathbf{\frac{0}{0}}" /></div>
-         
-         <div className="mt-6">
-             <div className=" mb-3">រូបមន្តសំខាន់:</div>
-             <div className="space-y-3 ">
-                 <div>
-                     ► បើ <InlineMath math="\sqrt{a} - \sqrt{b}" /> គេត្រូវគុណនឹង <InlineMath math="\sqrt{a} + \sqrt{b}" /> , (a,b)
-                 </div>
-                 <div>
-                     ► បើ n ជាចំនួនគត់ធំជាង 2  ៖ <InlineMath math="\sqrt[n]{a} - \sqrt[n]{b}" /> គេត្រូវគុណនឺងកន្សោម ៖ 
-                 </div>
-                 <div className="ml-4">
-                     <InlineMath math="\sqrt[n]{a^{n-1}} + \sqrt[n]{a^{n-2} \cdot b} + \sqrt[n]{a^{n-3} \cdot b^2} + ... + \sqrt[n]{a^2 \cdot b^{n-3}} + \sqrt[n]{a\cdot b^{n-2}} + \sqrt[n]{b^{n-1}}" /> , (a,b)
-                 </div>
-                 <div>
-                     ► បើ n ជាចំនួន​គត់សេសធំជាង 1 ៖ <InlineMath math="\sqrt[n]{a} - \sqrt[n]{b}" /> គេត្រូវគុណនឺងកន្សោម ៖
-                 </div>
-                 <div className="ml-4">
-                 <InlineMath math="\sqrt[n]{a^{n-1}} + \sqrt[n]{a^{n-2} \cdot b} + \sqrt[n]{a^{n-3} \cdot b^2} + ... + \sqrt[n]{a^2 \cdot b^{n-3}} + \sqrt[n]{a\cdot b^{n-2}} + \sqrt[n]{b^{n-1}}" /> , (a,b)
-                 </div>
-                 <div>
-                     ► បើ n ជាចំនួន​គត់សេសធំជាង 1 ៖ <InlineMath math="\sqrt[n]{a} + \sqrt[n]{b}" /> គេត្រូវគុណនឺងកន្សោម ៖
-                 </div>
-                 <div className="ml-4">
-                 <InlineMath math="\sqrt[n]{a^{n-1}} - \sqrt[n]{a^{n-2} \cdot b} + \sqrt[n]{a^{n-3} \cdot b^2} - ... + \sqrt[n]{a^2 \cdot b^{n-3}} - \sqrt[n]{a\cdot b^{n-2}} + \sqrt[n]{b^{n-1}}" /> , (a,b)
-                 </div>
-                 
-               
-             </div>
-         </div>
-     </div>
+    tip: {
+        title: "សំខាន់!",
+        content: <div className="text-left">
+            <div>ពេលសម្រួលកត្តាមួយហើយនៅតែជំនួសចូលឃើញ <InlineMath math="\mathbf{\frac{0}{0}}" /><br />
+                យើងត្រូវតែបំបែកកត្តាតទៅទៀតហើយសម្រួលកត្តាដូចគ្នាចោលទៀរហូតលែងចេញ <InlineMath math="\mathbf{\frac{0}{0}}" /></div>
+
+            <div className="mt-6">
+                <div className=" mb-3">រូបមន្តសំខាន់:</div>
+                <div className="space-y-3 ">
+                    <div>
+                        ► បើ <InlineMath math="\sqrt{a} - \sqrt{b}" /> គេត្រូវគុណនឹង <InlineMath math="\sqrt{a} + \sqrt{b}" /> , (a,b)
+                    </div>
+                    <div>
+                        ► បើ n ជាចំនួនគត់ធំជាង 2  ៖ <InlineMath math="\sqrt[n]{a} - \sqrt[n]{b}" /> គេត្រូវគុណនឺងកន្សោម ៖
+                    </div>
+                    <div className="ml-4">
+                        <InlineMath math="\sqrt[n]{a^{n-1}} + \sqrt[n]{a^{n-2} \cdot b} + \sqrt[n]{a^{n-3} \cdot b^2} + ... + \sqrt[n]{a^2 \cdot b^{n-3}} + \sqrt[n]{a\cdot b^{n-2}} + \sqrt[n]{b^{n-1}}" /> , (a,b)
+                    </div>
+                    <div>
+                        ► បើ n ជាចំនួន​គត់សេសធំជាង 1 ៖ <InlineMath math="\sqrt[n]{a} - \sqrt[n]{b}" /> គេត្រូវគុណនឺងកន្សោម ៖
+                    </div>
+                    <div className="ml-4">
+                        <InlineMath math="\sqrt[n]{a^{n-1}} + \sqrt[n]{a^{n-2} \cdot b} + \sqrt[n]{a^{n-3} \cdot b^2} + ... + \sqrt[n]{a^2 \cdot b^{n-3}} + \sqrt[n]{a\cdot b^{n-2}} + \sqrt[n]{b^{n-1}}" /> , (a,b)
+                    </div>
+                    <div>
+                        ► បើ n ជាចំនួន​គត់សេសធំជាង 1 ៖ <InlineMath math="\sqrt[n]{a} + \sqrt[n]{b}" /> គេត្រូវគុណនឺងកន្សោម ៖
+                    </div>
+                    <div className="ml-4">
+                        <InlineMath math="\sqrt[n]{a^{n-1}} - \sqrt[n]{a^{n-2} \cdot b} + \sqrt[n]{a^{n-3} \cdot b^2} - ... + \sqrt[n]{a^2 \cdot b^{n-3}} - \sqrt[n]{a\cdot b^{n-2}} + \sqrt[n]{b^{n-1}}" /> , (a,b)
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
     },
     exercise: {
         questions: [
@@ -233,18 +233,18 @@ const LimitZeroOverZero = () => {
             )}
 
             {TOPIC_CONTENT.example && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT.example.question} 
-                    steps={TOPIC_CONTENT.example.steps} 
-                    answer={TOPIC_CONTENT.example.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT.example.question}
+                    steps={TOPIC_CONTENT.example.steps}
+                    answer={TOPIC_CONTENT.example.answer}
                 />
             )}
 
             {TOPIC_CONTENT_EXERCISE.example && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT_EXERCISE.example.question} 
-                    steps={TOPIC_CONTENT_EXERCISE.example.steps} 
-                    answer={TOPIC_CONTENT_EXERCISE.example.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT_EXERCISE.example.question}
+                    steps={TOPIC_CONTENT_EXERCISE.example.steps}
+                    answer={TOPIC_CONTENT_EXERCISE.example.answer}
                 />
             )}
 
@@ -253,7 +253,7 @@ const LimitZeroOverZero = () => {
             )}
 
             {TOPIC_CONTENT_EXERCISE.exercise && (
-                <ExerciseBox 
+                <ExerciseBox
                     questions={TOPIC_CONTENT_EXERCISE.exercise.questions}
                 />
             )}

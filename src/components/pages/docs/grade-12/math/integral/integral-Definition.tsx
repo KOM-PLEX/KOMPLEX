@@ -4,7 +4,7 @@ import TipBox from "../../../common/box/TipBox";
 import ExerciseBox from "../../../common/box/ExerciseBox";
 import HintBox from "../../../common/box/HintBox";
 import WarningBox from "../../../common/box/WarningBox";
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 
 /** ជំនួយ UI: បង្ហាញសមីការ​ឲ្យអូសបានលើទូរស័ព្ទ និងតម្រៀបឆ្វេង */

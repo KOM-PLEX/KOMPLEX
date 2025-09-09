@@ -1,4 +1,4 @@
-import { TopicContent } from "@/types/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 import DefinitionBox from "../../../common/box/DefinitionBox";
 import TipBox from "../../../common/box/TipBox";
@@ -13,7 +13,7 @@ const TOPIC_CONTENT: TopicContent = {
         content: <div className="text-left">
             <div className="space-y-3">
                 <div>ក្បួនរបស់ ល៍ ហូពីតាល់ ប្រើសម្រាប់គណនាលីមីតដែលបានទម្រង់មិនកំណត់។</div>
-                
+
                 <div className="bg-blue-50 p-4 rounded-lg">
                     <div className="font-semibold text-blue-800 mb-2">ក្បួនចម្បង៖</div>
                     <div className="flex justify-start">
@@ -43,14 +43,14 @@ const TOPIC_CONTENT: TopicContent = {
                     <div className="grid grid-cols-2 gap-4">
                         <div className='flex flex-row gap-2 items-center'>
                             <div className="font-base">ទម្រង់ចម្បង៖</div>
-                                <div className="flex flex-row gap-2 items-center">
-                                    <div><InlineMath math="\frac{0}{0}" /></div>
-                                    <div><InlineMath math="\frac{\infty}{\infty}" /></div>
-                                </div>
+                            <div className="flex flex-row gap-2 items-center">
+                                <div><InlineMath math="\frac{0}{0}" /></div>
+                                <div><InlineMath math="\frac{\infty}{\infty}" /></div>
                             </div>
                         </div>
                     </div>
-                
+                </div>
+
                 <div className="bg-orange-50 p-4 rounded-lg">
                     <div className="font-semibold mb-2">ទម្រង់មិនកំណត់ផ្សេងទៀត៖</div>
                     <div className="grid grid-cols-3 gap-2 text-sm">
@@ -254,7 +254,7 @@ const TOPIC_CONTENT: TopicContent = {
 export default function LHopitalRule() {
     return (
         <>
-             {TOPIC_CONTENT.definition && (
+            {TOPIC_CONTENT.definition && (
                 <DefinitionBox title={TOPIC_CONTENT.definition.title} content={TOPIC_CONTENT.definition.content} />
             )}
 
@@ -263,23 +263,23 @@ export default function LHopitalRule() {
             )}
 
             {TOPIC_CONTENT.example && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT.example.question} 
-                    steps={TOPIC_CONTENT.example.steps} 
-                    answer={TOPIC_CONTENT.example.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT.example.question}
+                    steps={TOPIC_CONTENT.example.steps}
+                    answer={TOPIC_CONTENT.example.answer}
                 />
             )}
 
             {TOPIC_CONTENT.example2 && (
-                <ExampleBox 
-                    question={TOPIC_CONTENT.example2.question} 
-                    steps={TOPIC_CONTENT.example2.steps} 
-                    answer={TOPIC_CONTENT.example2.answer} 
+                <ExampleBox
+                    question={TOPIC_CONTENT.example2.question}
+                    steps={TOPIC_CONTENT.example2.steps}
+                    answer={TOPIC_CONTENT.example2.answer}
                 />
             )}
 
             {TOPIC_CONTENT.exercise && (
-                <ExerciseBox 
+                <ExerciseBox
                     questions={TOPIC_CONTENT.exercise.questions}
                 />
             )}

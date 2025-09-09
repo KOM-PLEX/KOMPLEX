@@ -1,139 +1,176 @@
-'use client';
+import { useState } from 'react';
+import { ThumbsUp, MessageCircle, Send } from 'lucide-react';
+import { ForumComment, ForumReply } from '@/types/content/forums';
+import { getTimeAgo } from '@/utils/formater';
+import ReplyComponent from './Reply';
+import { VideoComment, VideoReply } from '@/types/content/videos';
+import { createForumReply } from '@/services/me/forum-replies';
+import { toggleForumCommentLike } from '@/services/me/forum-comments';
+import { toggleVideoCommentLike } from '@/services/me/video-comments';
+import { getForumReplies } from '@/services/feed/forum-replies';
+import { getVideoReplies } from '@/services/feed/video-replies';
+import { createVideoReply } from '@/services/me/video-replies';
 
-import { useState, useEffect } from 'react';
-import { ThumbsUp } from 'lucide-react';
-
-interface Comment {
-    id: number;
-    author: { name: string; avatar: string; };
-    time: string;
-    content: string;
-    upvotes: number;
-    upvoted: boolean;
-    replies?: Comment[];
+interface CommentComponentProps {
+    comment: ForumComment | VideoComment;
+    commentType: 'forum' | 'video';
 }
 
-interface CommentProps {
-    comments: Comment[];
-    focusInput?: boolean;
-    onClose?: () => void;
-}
+export default function CommentComponent({
+    comment,
+    commentType,
+}: CommentComponentProps) {
+    const [commentUpvoted, setCommentUpvoted] = useState(comment.isLike || false);
+    const [likeCount, setLikeCount] = useState('likeCount' in comment ? comment.likeCount : 0);
+    const [isReplying, setIsReplying] = useState(false);
+    const [replyText, setReplyText] = useState('');
+    const [isLiking, setIsLiking] = useState(false);
+    const [replies, setReplies] = useState<ForumReply[] | VideoReply[]>([]);
+    const [isLoadingReplies, setIsLoadingReplies] = useState(false);
+    const [isShowingReplies, setIsShowingReplies] = useState(false);
+    const [repliesError, setRepliesError] = useState<string | null>(null);
 
-export default function Comment({ comments, focusInput = false, onClose }: CommentProps) {
-    const [newComment, setNewComment] = useState('');
-    const [isCommentActive, setIsCommentActive] = useState(focusInput);
+    // Fetch replies for this comment
+    const fetchReplies = async () => {
+        if (replies.length > 0) {
+            // Replies already loaded, just toggle visibility
+            setIsShowingReplies(!isShowingReplies);
+            return;
+        }
 
-    // Sync the internal state with the focusInput prop
-    useEffect(() => {
-        setIsCommentActive(focusInput);
-    }, [focusInput]);
+        try {
+            setIsLoadingReplies(true);
+            setRepliesError(null);
 
-    const CommentComponent = ({ comment, isReply = false }: { comment: Comment; isReply?: boolean }) => {
-        const [commentUpvoted, setCommentUpvoted] = useState(comment.upvoted);
-        const [commentUpvotes, setCommentUpvotes] = useState(comment.upvotes);
+            let fetchedReplies: ForumReply[] | VideoReply[] = [];
+            if (commentType === 'video') {
+                fetchedReplies = await getVideoReplies(comment.id);
+            } else {
+                fetchedReplies = await getForumReplies(comment.id);
+            }
 
-        return (
-            <div className={`${isReply ? 'ml-8' : ''} mb-4`}>
-                <div className="flex gap-3">
-                    <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
-                        {comment.author.avatar}
-                    </div>
-                    <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                            <span className="font-semibold text-gray-900 text-sm">{comment.author.name}</span>
-                            <span className="text-gray-500 text-xs">{comment.time}</span>
-                        </div>
-                        <div className="text-gray-700 text-sm leading-relaxed mb-2">{comment.content}</div>
-                        <div className="flex items-center gap-4">
-                            <button
-                                onClick={() => {
-                                    if (commentUpvoted) {
-                                        setCommentUpvotes(commentUpvotes - 1);
-                                    } else {
-                                        setCommentUpvotes(commentUpvotes + 1);
-                                    }
-                                    setCommentUpvoted(!commentUpvoted);
-                                }}
-                                className={`flex items-center gap-1 text-xs font-medium cursor-pointer transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 ${commentUpvoted ? 'text-indigo-600' : 'text-gray-500'}`}
-                            >
-                                <ThumbsUp className={`w-3 h-3 ${commentUpvoted ? 'fill-indigo-600' : ''}`} />
-                                <span>{commentUpvotes}</span>
-                            </button>
-                            <button className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200">ឆ្លើយតប</button>
-                            <button className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200">ចែករំលែក</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    };
-
-    const handleSubmitComment = () => {
-        if (newComment.trim()) {
-            // Here you would typically send the comment to your backend
-            console.log('New comment:', newComment);
-            setNewComment('');
-            setIsCommentActive(false);
-            if (onClose) onClose();
+            setReplies(fetchedReplies);
+            setIsShowingReplies(true);
+        } catch (error) {
+            console.error('Error fetching replies:', error);
+            setRepliesError('មានបញ្ហាក្នុងការទាញយកការឆ្លើយតប។ សូមព្យាយាមម្តងទៀត។');
+        } finally {
+            setIsLoadingReplies(false);
         }
     };
 
-    const handleCancel = () => {
-        setNewComment('');
-        setIsCommentActive(false);
-        if (onClose) onClose();
+    // Handle comment like/unlike
+    const handleCommentLike = async () => {
+        if (isLiking) return; // Prevent multiple clicks
+
+        setIsLiking(true);
+        const wasLiked = commentUpvoted;
+
+        // Optimistically update UI
+        setCommentUpvoted(!wasLiked);
+        setLikeCount((prev: number) => wasLiked ? prev - 1 : prev + 1);
+
+        try {
+            if (commentType === 'forum') {
+                await toggleForumCommentLike(comment.id, !wasLiked);
+            } else {
+                await toggleVideoCommentLike(comment.id, !wasLiked);
+            }
+        } catch (error) {
+            console.error('Error toggling comment like:', error);
+            // Revert optimistic update on error
+            setCommentUpvoted(wasLiked);
+            setLikeCount((prev: number) => wasLiked ? prev + 1 : prev - 1);
+        } finally {
+            setIsLiking(false);
+        }
     };
 
-    const handleInputClick = () => {
-        setIsCommentActive(true);
+    const handleSubmitReply = async (replyToId: number, description: string) => {
+        try {
+            if (commentType === 'forum') {
+                await createForumReply(replyToId, description);
+            } else {
+                await createVideoReply(replyToId, description);
+            }
+
+            // Refresh replies after posting
+            await fetchReplies();
+            setReplyText('');
+            setIsReplying(false);
+        } catch (error) {
+            console.error('Error submitting reply:', error);
+        }
+    };
+
+    const handleSubmitDirectReply = () => {
+        if (replyText.trim()) {
+            handleSubmitReply(comment.id, replyText.trim());
+        }
     };
 
     return (
-        <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10">
-            {/* <h3 className="text-lg font-bold text-gray-900 mb-4">ការឆ្លើយតប ({comments.length})</h3> */}
-
-            {/* Add Comment */}
-            <div className="mb-6">
-                <h1 className='text-gray-900 font-bold mb-6'>សុខវណ្ណា អ៊ុំ</h1>
-
-                {/* Comment Input Container */}
-                <div className="relative">
-                    {!isCommentActive ? (
-                        // Inactive state - clickable placeholder
-                        <div
-                            onClick={handleInputClick}
-                            className="w-full p-4 border border-gray-300 rounded-xl cursor-text hover:border-gray-400 transition-colors duration-200"
+        <div className="mb-4">
+            <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
+                    {comment.username.charAt(0)}
+                </div>
+                <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                        <span className="font-semibold text-gray-900 text-sm">{comment.username}</span>
+                        <span className="text-gray-500 text-xs">{getTimeAgo(comment.createdAt)}</span>
+                    </div>
+                    <div className="text-gray-700 text-sm leading-relaxed mb-2">{comment.description}</div>
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={handleCommentLike}
+                            disabled={isLiking}
+                            className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${commentUpvoted ? 'text-indigo-600' : 'text-gray-500'
+                                }`}
                         >
-                            <div className="flex items-center justify-between">
-                                <span className="text-gray-500 text-sm">Join the conversation</span>
-                                <div className="text-gray-400 text-xs">Aa</div>
-                            </div>
-                        </div>
-                    ) : (
-                        // Active state - textarea with buttons
-                        <div className="w-full border border-gray-300 rounded-xl overflow-hidden">
-                            <div className="relative">
-                                <textarea
-                                    value={newComment}
-                                    onChange={(e) => setNewComment(e.target.value)}
-                                    placeholder="Join the conversation"
-                                    className="w-full p-4 pr-20 text-sm focus:outline-none resize-none border-none"
-                                    rows={3}
-                                    autoFocus
-                                />
-                                <div className="absolute bottom-3 right-3 flex items-center gap-2">
+                            <ThumbsUp className={`w-3 h-3 ${commentUpvoted ? 'fill-indigo-600' : ''}`} />
+                            <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
+                        </button>
+                        <button
+                            onClick={() => setIsReplying(!isReplying)}
+                            className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200"
+                        >
+                            ឆ្លើយតប
+                        </button>
+                        <button
+                            onClick={fetchReplies}
+                            disabled={isLoadingReplies}
+                            className="flex items-center gap-1 text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200 disabled:opacity-50"
+                        >
+                            <MessageCircle className="w-3 h-3" />
+                            {isLoadingReplies ? 'កំពុងដំណើរការ...' :
+                                isShowingReplies ? 'លាក់ការឆ្លើយតប' : 'បង្ហាញការឆ្លើយតប'}
+                        </button>
+                    </div>
+
+                    {/* Reply Input */}
+                    {isReplying && (
+                        <div className="mt-3 flex gap-2">
+                            <div className="flex-1">
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        value={replyText}
+                                        onChange={(e) => setReplyText(e.target.value)}
+                                        placeholder="សរសេរការឆ្លើយតប..."
+                                        className="flex-1 px-3 py-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500"
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                handleSubmitDirectReply();
+                                            }
+                                        }}
+                                    />
                                     <button
-                                        onClick={handleCancel}
-                                        className="px-3 py-1.5 text-sm bg-gray-50 rounded-lg text-gray-600 hover:text-gray-800 transition-colors duration-200"
+                                        onClick={handleSubmitDirectReply}
+                                        disabled={!replyText.trim()}
+                                        className="px-3 py-1 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        onClick={handleSubmitComment}
-                                        disabled={!newComment.trim()}
-                                        className="px-4 py-1.5 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                                    >
-                                        Comment
+                                        <Send></Send>
                                     </button>
                                 </div>
                             </div>
@@ -142,12 +179,30 @@ export default function Comment({ comments, focusInput = false, onClose }: Comme
                 </div>
             </div>
 
-            {/* Comments List */}
-            <div className="space-y-4">
-                {comments.map((comment) => (
-                    <CommentComponent key={comment.id} comment={comment} />
-                ))}
-            </div>
+            {/* Replies */}
+            {isShowingReplies && (
+                <div className="mt-3">
+                    {repliesError ? (
+                        <div className="text-red-500 text-sm p-2 bg-red-50 rounded">
+                            {repliesError}
+                        </div>
+                    ) : replies.length > 0 ? (
+                        replies.map((reply) => (
+                            <ReplyComponent
+                                key={reply.id}
+                                reply={reply as ForumReply | VideoReply}
+                                commentId={comment.id}
+                                onSubmitReply={handleSubmitReply}
+                                replyType={commentType}
+                            />
+                        ))
+                    ) : (
+                        <div className="text-gray-500 text-sm p-2">
+                            មិនមានការឆ្លើយតបទេ។
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

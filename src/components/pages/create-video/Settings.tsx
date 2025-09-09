@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ThumbsUp, MessageSquare, Settings2, SettingsIcon } from 'lucide-react';
+import { ThumbsUp, MessageSquare, SettingsIcon } from 'lucide-react';
 
 interface SettingsProps {
     showLikes: boolean;

@@ -1,4 +1,4 @@
-import { Content } from "@/types/curriculum";
+import { Content } from "@/types/docs/curriculum";
 import { Atom, Zap, Cog, Battery, Magnet, Eye } from "lucide-react";
 import ComingSoon from "@/components/pages/docs/common/ComingSoon";
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { TopicContent } from '@/types/topic'
+import { TopicContent } from '@/types/docs/topic'
 import DefinitionBox from '../../../common/box/DefinitionBox'
 import TipBox from '../../../common/box/TipBox'
 import { BlockMath, InlineMath } from 'react-katex';
@@ -31,7 +31,7 @@ const TOPIC_CONTENT: TopicContent = {
       <>
         • វ៉ិចទ័រមានទិស និងប្រវែង។ <br />
         • វ៉ិចទ័រអាចត្រូវបានបង្ហាញដោយសមីការដូចជា v = ai + bj។ <br />
-        • វ៉ិចទ័រអាចត្រូវបានគណនាដោយប្រើសមីការបូក និងដក។ <br />   
+        • វ៉ិចទ័រអាចត្រូវបានគណនាដោយប្រើសមីការបូក និងដក។ <br />
       </>
     )
   },
@@ -51,9 +51,9 @@ const TOPIC_CONTENT_COMPLEX: TopicContent = {
     title: "លក្ខណៈនៃវ៉ិចទ័រប្រាប់ទិស",
     content: (
       <>
-        • វ៉ិចទ័រប្រាប់ទិសមានទិសដៅស្រប នឹងបន្ទាត់។<br/>
-        • ប្រសិនបើបន្ទាត់ <InlineMath math="(D)" /> មានវ៉ិចទ័រប្រាប់ទិស <InlineMath math="\vec{u}" /> នោះគ្រប់វ៉ិចទ័រ <InlineMath math="\vec{v}" /> ដែល <InlineMath math="\vec{v} = k \vec{u}" /> (<InlineMath math="k ≠ 0" />) ក៏ជាវ៉ិចទ័រប្រាប់ទិសដែរ។ <br/>
-        • វ៉ិចទ័រប្រាប់ទិសពីចំណុចលើបន្ទាត់ប្រសិនបើ <InlineMath math="A" /> និង <InlineMath math="B" /> ជាចំណុចលើបន្ទាត់ <InlineMath math="(D)" /> ហើយ <InlineMath math="A ≠ B" /> នោះ <InlineMath math="\overrightarrow{AB}" /> គឺជាវ៉ិចទ័រប្រាប់ទិសនៃ <InlineMath math="(D)" />។ <br/>
+        • វ៉ិចទ័រប្រាប់ទិសមានទិសដៅស្រប នឹងបន្ទាត់។<br />
+        • ប្រសិនបើបន្ទាត់ <InlineMath math="(D)" /> មានវ៉ិចទ័រប្រាប់ទិស <InlineMath math="\vec{u}" /> នោះគ្រប់វ៉ិចទ័រ <InlineMath math="\vec{v}" /> ដែល <InlineMath math="\vec{v} = k \vec{u}" /> (<InlineMath math="k ≠ 0" />) ក៏ជាវ៉ិចទ័រប្រាប់ទិសដែរ។ <br />
+        • វ៉ិចទ័រប្រាប់ទិសពីចំណុចលើបន្ទាត់ប្រសិនបើ <InlineMath math="A" /> និង <InlineMath math="B" /> ជាចំណុចលើបន្ទាត់ <InlineMath math="(D)" /> ហើយ <InlineMath math="A ≠ B" /> នោះ <InlineMath math="\overrightarrow{AB}" /> គឺជាវ៉ិចទ័រប្រាប់ទិសនៃ <InlineMath math="(D)" />។ <br />
         • បន្ទាត់ពីរដែលមានវ៉ិចទ័រប្រាប់ទិសស្របគ្នា គេអាចថាបន្ទាត់ទាំងពីរនោះជាបន្ទាត់ស្របគ្នា។
       </>
     )

@@ -4,7 +4,7 @@ import 'katex/dist/katex.min.css';
 import HintBox from "../../../common/box/HintBox";
 import SummaryBox from "../../../common/box/SummaryBox";
 import { AlertTriangleIcon, BookAIcon, ChartBarIcon, LightbulbIcon, WrenchIcon } from "lucide-react";
-import { PracticeExercise, SummarySection } from "@/types/topic";
+import { PracticeExercise, SummarySection } from "@/types/docs/topic";
 
 const ComplexPractice = () => {
 
@@ -196,7 +196,7 @@ const ComplexPractice = () => {
             &
             <InlineMath math="z_1 - z_2" />
           </div>
-          
+
         </div>,
         <div key="p2" className="flex items-center gap-4">
           <span>រក</span>
@@ -204,18 +204,18 @@ const ComplexPractice = () => {
           <span>បើ</span>
           <InlineMath math="z = 5 - 7i" />
         </div>,
-          <div key="p3" className="flex flex-col text-lg items-start gap-2">
-            <div className="flex flex-row gap-2">
-              <span>គេមាន</span>
-              <InlineMath math="z = 2 + 3i" />
-            </div>
-            <div className="flex flex-row gap-2">
-              <span>គណនា</span>
-              <InlineMath math="z + \bar{z}" />
-              &
-              <InlineMath math="z \cdot \bar{z}" />
-            </div>
-          </div>,
+        <div key="p3" className="flex flex-col text-lg items-start gap-2">
+          <div className="flex flex-row gap-2">
+            <span>គេមាន</span>
+            <InlineMath math="z = 2 + 3i" />
+          </div>
+          <div className="flex flex-row gap-2">
+            <span>គណនា</span>
+            <InlineMath math="z + \bar{z}" />
+            &
+            <InlineMath math="z \cdot \bar{z}" />
+          </div>
+        </div>,
         <div key="p4" className="flex flex-row text-base items-start gap-2">
           <span>ដោះស្រាយ</span>
           <InlineMath math="(1 + 2i) + (3 - i) - (2 + 4i)" />
@@ -231,16 +231,16 @@ const ComplexPractice = () => {
           <div className="flex  gap-2">
             <p>ការបូក៖</p>
             <div>
-               <div className="text-sm"><InlineMath math="z_1 + z_2 = (3 + 2) + (4 + (-3))i " /></div>
-               <div className="text-sm ml-13.5"><InlineMath math="= 5 + i" /></div>
-               </div>
+              <div className="text-sm"><InlineMath math="z_1 + z_2 = (3 + 2) + (4 + (-3))i " /></div>
+              <div className="text-sm ml-13.5"><InlineMath math="= 5 + i" /></div>
+            </div>
           </div>
           <div className="flex  gap-2">
             <p>ការដក៖</p>
             <div>
-               <div className="text-sm"><InlineMath math="z_1 - z_2 = (3 - 2) + (4 - (-3))i " /></div>
-               <div className="text-sm ml-13.5"><InlineMath math="= 1 + 7i" /></div>
-               </div>
+              <div className="text-sm"><InlineMath math="z_1 - z_2 = (3 - 2) + (4 - (-3))i " /></div>
+              <div className="text-sm ml-13.5"><InlineMath math="= 1 + 7i" /></div>
+            </div>
           </div>
           <p><strong>ចម្លើយ៖</strong> z₁ + z₂ = 5 + i និង z₁ - z₂ = 1 + 7i</p>
         </div>,
@@ -422,7 +422,7 @@ const ComplexPractice = () => {
         <div key="p1" className="flex flex-row items-center gap-2">
           <span>សរសេរ</span>
           <div><InlineMath math="z = 1 + i" /></div>
-          <div><span>ជាទម្រង់ត្រីកោណមាត្រ</span></div> 
+          <div><span>ជាទម្រង់ត្រីកោណមាត្រ</span></div>
         </div>,
         <div key="p2" className="flex items-center gap-4">
           <span>គណនា</span>
@@ -476,7 +476,7 @@ const ComplexPractice = () => {
     }
   ];
 
-  return (  
+  return (
     <>
       <SummaryBox
         title="រូបមន្តគន្លឹះ និងវិធីដោះស្រាយចំនួនកុំផ្លិច"
