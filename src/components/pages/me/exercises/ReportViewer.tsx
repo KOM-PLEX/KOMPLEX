@@ -5,6 +5,7 @@ import { ExerciseReport } from '@/types/user-content/exercise';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import api from '@/config/axios';
 
 interface ReportViewerProps {
     id: number,
@@ -20,7 +21,7 @@ export default function ReportViewer({ id, onClose }: ReportViewerProps) {
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get(`http://localhost:6969/user-content/exercises/${id}`);
+                const response = await api.get(`/me/exercises/${id}/report`);
                 if (response.status === 200) {
                     setReport(response.data);
                 } else if (response.status === 404) {

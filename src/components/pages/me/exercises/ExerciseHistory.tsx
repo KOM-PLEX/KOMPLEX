@@ -5,6 +5,7 @@ import { Plus, Target } from 'lucide-react';
 import { ExerciseHistory } from '@/types/user-content/exercise';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import api from '@/config/axios';
 
 export default function ExerciseHistoryComponent() {
     const [history, setHistory] = useState<ExerciseHistory[]>([]);
@@ -13,7 +14,7 @@ export default function ExerciseHistoryComponent() {
         // Fetch history data
         const fetchHistory = async () => {
             try {
-                const historyResponse = await axios.get<ExerciseHistory[]>('http://localhost:6969/user-content/exercises/history');
+                const historyResponse = await api.get<ExerciseHistory[]>('/me/exercises/history');
                 setHistory(historyResponse.data);
             } catch (error) {
                 console.error('Error fetching exercise history:', error);

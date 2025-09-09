@@ -8,13 +8,15 @@ export const createVideo = async (videoData: {
   duration: number;
   description: string;
   thumbnailKey: string;
-  questions: {
-    title: string;
-    choices: {
-      text: string;
-      isCorrect: boolean;
-    }[];
-  }[] | undefined;
+  questions:
+    | {
+        title: string;
+        choices: {
+          text: string;
+          isCorrect: boolean;
+        }[];
+      }[]
+    | undefined;
 }): Promise<VideoPost> => {
   try {
     const response = await api.post<VideoPost>(`/me/videos`, {
@@ -29,20 +31,6 @@ export const createVideo = async (videoData: {
   } catch (error) {
     console.error("Error creating video:", error);
     throw new Error("Failed to create video");
-  }
-};
-
-// Update a video
-export const updateVideo = async (
-  id: string,
-  videoData: Partial<VideoPost>
-): Promise<VideoPost> => {
-  try {
-    const response = await api.put<VideoPost>(`/me/videos/${id}`, videoData);
-    return response.data;
-  } catch (error) {
-    console.error("Error updating video:", error);
-    throw new Error("Failed to update video");
   }
 };
 
@@ -97,16 +85,30 @@ export const getUserVideos = async (): Promise<VideoPost[]> => {
   }
 };
 
-export const updateVideoExercises = async (
-  videoId: string,
-  exercises: unknown[]
-): Promise<void> => {
+// Update video with exercises
+export const updateVideo = async (
+  id: string,
+  payload: {
+    title?: string;
+    description?: string;
+    videoKey?: string;
+    thumbnailKey?: string;
+    questions?: {
+      id?: string;
+      title: string;
+      choices: {
+        id?: string;
+        text: string;
+        isCorrect: boolean;
+      }[];
+    }[];
+  }
+): Promise<{ data: { success: boolean } }> => {
   try {
-    await api.put(`/me/videos/${videoId}/exercise`, {
-      questions: exercises,
-    });
+    const response = await api.put(`/me/videos/${id}`, payload);
+    return response.data;
   } catch (error) {
-    console.error("Error updating video exercises:", error);
-    throw new Error("Failed to update video exercises");
+    console.error("Error updating video:", error);
+    throw new Error("Failed to update video");
   }
 };

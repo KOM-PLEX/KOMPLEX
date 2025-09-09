@@ -71,7 +71,7 @@ export const getUserBlogs = async (): Promise<{
 }> => {
   try {
     const response = await api.get(`/me/blogs`);
-    return { blogs: response.data.data.blogWithMedia };
+    return { blogs: response.data.data };
   } catch (error) {
     console.error("Error fetching user blogs:", error);
     throw new Error("Failed to fetch user blogs");

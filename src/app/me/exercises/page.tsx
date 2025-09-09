@@ -25,7 +25,7 @@ export default function MyExercises() {
                 setIsLoading(true);
 
                 // Fetch dashboard data
-                const dashboardResponse = await axios.get<ExerciseDashboard>('http://localhost:6969/user-content/exercises/dashboard');
+                const dashboardResponse = await axios.get<ExerciseDashboard>('http://localhost:6969/api/me/exercises/dashboard');
                 setDashboard(dashboardResponse.data);
 
             } catch (error) {

@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { Save, Upload, Trash, Play } from 'lucide-react';
-import axios from 'axios';
 import type { VideoPost, ExerciseQuestion as ApiExerciseQuestion } from '@/types/content/videos';
 import { ExerciseQuestion } from '@/types/docs/topic';
 import ExerciseCreationBox from '@/components/pages/docs/common/box/ExerciseCreationBox';
+import { updateVideo } from '@/services/me/videos';
+import { uploadFile } from '@/services/upload';
+import { getVideoById } from '@/services/feed/videos';
 
 interface EditVideoProps {
     video: VideoPost;
@@ -176,10 +178,11 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
     // Convert ExerciseQuestion to the backend format
     const convertExercisesToBackendFormat = (exercises: ExerciseQuestionWithChoiceIds[]) => {
         return exercises.map(exercise => ({
-            title: exercise.question,
+            id: exercise.id !== 'new' ? exercise.id : undefined, // Only include ID if it's not a new exercise
+            title: String(exercise.question),
             choices: exercise.options.map((option, index) => ({
-                id: exercise.choiceIds?.[index], // Use original ID or generate new one
-                text: option,
+                id: exercise.choiceIds?.[index] ? exercise.choiceIds[index].toString() : undefined,
+                text: String(option),
                 isCorrect: index === exercise.correctAnswer
             }))
         }));
@@ -201,21 +204,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
             // If new video is selected, upload it
             if (selectedVideo) {
                 setUploadProgress(20);
-
-                // Get presigned URL for new video
-                const videoResponse = await axios.post(`http://localhost:6969/upload/upload-url`, {
-                    fileName: selectedVideo.name,
-                    fileType: selectedVideo.type,
-                });
-
-                // Upload new video
-                await axios.put(videoResponse.data.signedUrl, selectedVideo, {
-                    headers: {
-                        "Content-Type": selectedVideo.type
-                    }
-                });
-
-                videoKey = videoResponse.data.key;
+                videoKey = await uploadFile(selectedVideo);
                 setUploadProgress(40);
             }
 
@@ -223,54 +212,54 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
             if (formData.thumbnail !== video.thumbnailUrl) {
                 setUploadProgress(60);
 
-                const thumbnailFileName = `thumbnail_${Date.now()}.jpg`;
-                const thumbnailResponse = await axios.post(`http://localhost:6969/upload/upload-url`, {
-                    fileName: thumbnailFileName,
-                    fileType: 'image/jpeg',
-                });
-
                 const thumbnailBlob = base64ToBlob(formData.thumbnail);
-                await axios.put(thumbnailResponse.data.signedUrl, thumbnailBlob, {
-                    headers: {
-                        "Content-Type": "image/jpeg"
-                    }
+                const thumbnailFile = new File([thumbnailBlob], `thumbnail_${Date.now()}.jpg`, {
+                    type: 'image/jpeg'
                 });
 
-                thumbnailKey = thumbnailResponse.data.key;
+                thumbnailKey = await uploadFile(thumbnailFile);
                 setUploadProgress(80);
             }
 
-            // Update video data
-            await axios.put(`http://localhost:6969/videos/${video.id}`, {
+            // Update video data and exercises using the new API
+            const updatePayload: {
+                title: string;
+                description: string;
+                videoKey?: string;
+                thumbnailKey?: string;
+                questions?: {
+                    id?: string;
+                    title: string;
+                    choices: {
+                        id?: string;
+                        text: string;
+                        isCorrect: boolean;
+                    }[];
+                }[];
+            } = {
                 title: formData.title,
                 description: formData.description,
-                videoKey: videoKey,
-                thumbnailKey: thumbnailKey,
-            });
+            };
 
-            // Update exercises
-            if (formData.exercises.length > 0) {
-                // Try to update existing exercises, if fails, create new ones
-                try {
-                    await axios.put(`http://localhost:6969/feed/videos/${video.id}/exercise`, { questions: convertExercisesToBackendFormat(formData.exercises) });
-                } catch (updateError) {
-                    console.error('Failed to update exercises, creating new ones:', updateError);
-                }
-            } else {
-                // If no exercises, delete existing ones
-                try {
-                    await axios.delete(`http://localhost:6969/feed/videos/${video.id}/exercise`);
-                } catch (deleteError) {
-                    console.error('Failed to delete exercises:', deleteError);
-                    // Don't fail the entire save if exercise deletion fails
-                }
+            if (videoKey) {
+                updatePayload.videoKey = videoKey;
             }
+
+            if (thumbnailKey) {
+                updatePayload.thumbnailKey = thumbnailKey;
+            }
+
+            if (formData.exercises.length > 0) {
+                updatePayload.questions = convertExercisesToBackendFormat(formData.exercises);
+            }
+
+            await updateVideo(video.id.toString(), updatePayload);
 
             setUploadProgress(100);
 
             // Fetch updated video data
-            const updatedResponse = await axios.get(`http://localhost:6969/feed/videos/${video.id}`);
-            onSave(updatedResponse.data.data);
+            const updatedVideo = await getVideoById(video.id.toString());
+            onSave(updatedVideo);
 
             // Reset edit form states
             setSelectedVideo(null);

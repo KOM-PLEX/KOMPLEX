@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -17,7 +17,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #F9FAFB;
+    --background: #f9fafb;
     --foreground: black;
   }
 }
@@ -25,39 +25,112 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
   font-weight: 500;
   line-height: 1.6;
 }
 
 /* English text styling - use Inter for better English rendering */
-.en, .english {
+.en,
+.english {
   font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Khmer text styling - use Noto Sans Khmer */
-.km, .khmer {
+.km,
+.khmer {
   font-family: "Noto Sans Khmer", sans-serif;
 }
 
 /* Mixed content - default to Noto Sans Khmer with good fallbacks */
-body, p, h1, h2, h3, h4, h5, h6, span, div {
-  font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div {
+  font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
-a{
+a {
   cursor: pointer;
 }
 
-.scrollbar-hide{
+.scrollbar-hide {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-.scrollbar-hide::-webkit-scrollbar{
+.scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+.prose h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Headings spacing */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Lists spacing */
+.prose ul,
+.prose ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem; /* more indentation */
+}
+
+/* List items spacing */
+.prose li {
+  margin-bottom: 0.75rem;
+}
+
+/* LaTeX display math spacing */
+.katex-display {
+  margin: 2rem 0;
+}
+
+.prose ul li::marker {
+  content: "• "; /* math example */
+  color: #7436e7; /* Tailwind indigo-500 */
+  font-weight: bold;
 }

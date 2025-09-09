@@ -20,10 +20,10 @@ interface PracticeCardProps {
     };
 }
 
-export default function PracticeCard({ topic, subjectId, subjectColors }: PracticeCardProps) {
+export default function PracticeCard({ topic, subjectColors }: PracticeCardProps) {
     return (
         <Link
-            href={`/exercise/${topic.id}`}
+            href={`/exercises/${topic.id}`}
             className={`${subjectColors.bg} border-2 ${subjectColors.border} rounded-xl lg:p-6 p-4 hover:shadow-md transition-all hover:scale-101 group`}
         >
             <div className="mb-4">
@@ -42,7 +42,7 @@ export default function PracticeCard({ topic, subjectId, subjectColors }: Practi
 
             {/* Progress Section */}
             <div className="mt-4 pt-4 border-t border-gray-200">
-                {topic.userProgress && topic.userProgress > 0 ? (
+                {topic.attempts > 0 ? (
                     <div className="space-y-2">
                         <div className="flex items-center justify-between text-sm">
                             <span className="text-gray-600">ពិន្ទុខ្ពស់បំផុត</span>

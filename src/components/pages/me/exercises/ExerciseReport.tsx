@@ -6,6 +6,7 @@ import ReportViewer from './ReportViewer';
 import { ExerciseWithAttempts } from '@/types/user-content/exercise';
 import { Listbox, Transition } from '@headlessui/react';
 import axios from 'axios';
+import { getExercisesByGrade } from '@/services/feed/exercises';
 
 // Grade options
 const grades = [
@@ -98,9 +99,9 @@ export default function ExerciseReportComponent() {
         const fetchExercises = async () => {
             try {
                 setIsLoading(true);
-                const response = await axios.get<ExerciseReportData>(`http://localhost:6969/user-content/exercises/?grade=${selectedGrade.name}`);
-                setExerciseData(response.data);
-                console.log('Fetched exercise reports:', response.data);
+                const response = await getExercisesByGrade(selectedGrade.name);
+                setExerciseData(response);
+                console.log('Fetched exercise reports:', response);
             } catch (error) {
                 console.error('Error fetching exercise reports:', error);
             } finally {
