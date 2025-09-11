@@ -1,15 +1,13 @@
 import TopicPracticeBox from "../../../common/box/TopicPracticeBox";
 import { BlockMath, InlineMath } from "react-katex";
 import 'katex/dist/katex.min.css';
-import HintBox from "../../../common/box/HintBox";
 import SummaryBox from "../../../common/box/SummaryBox";
-import { AlertTriangleIcon, BookAIcon, ChartBarIcon, LightbulbIcon, WrenchIcon } from "lucide-react";
-import { PracticeExercise, SummarySection } from "@/types/topic";
-import { div } from "three/tsl";
+import { BookAIcon, ChartBarIcon, LightbulbIcon } from "lucide-react";
+import { PracticeExercise, SummarySection } from "@/types/docs/topic";
 
 const WavesPractice = () => {
   const summary: SummarySection[] = [
-      {
+    {
       key: "wave-properties",
       title: "រូបមន្តរលក និងសមីការរលក",
       icon: BookAIcon,
@@ -19,25 +17,25 @@ const WavesPractice = () => {
           <div>
             <div className="font-bold mb-1">១. រូបមន្តប្រើក្នុងរលក</div>
             <div className="ml-4 space-y-1">
-              <div><span className="text-indigo-600">•</span> ខួប : <InlineMath math={String.raw`T = \frac{1}{f}`}/></div> {/* \quad \Leftrightarrow */}
-              <div><span className="text-indigo-600">•</span> ប្រេកង់: <InlineMath math={String.raw`f = \frac{1}{T} = \frac{\omega}{2\pi} = \frac{v}{\lambda}`}/></div>
-              <div><span className="text-indigo-600">•</span> ល្បឿនមុំ: <InlineMath math={String.raw`\omega = 2\pi f = \frac{2\pi}{T} = v \times k`}/></div>
-              <div><span className="text-indigo-600">•</span> ជំហានរលក: <InlineMath math={String.raw`\lambda = vT = \frac{v}{f} = \frac{2\pi}{k}`}/></div>
-              <div><span className="text-indigo-600">•</span> ចំនួនរលក: <InlineMath math={String.raw`k = \frac{2\pi}{\lambda} = \frac{\omega}{v}`}/></div>
+              <div><span className="text-indigo-600">•</span> ខួប : <InlineMath math={String.raw`T = \frac{1}{f}`} /></div> {/* \quad \Leftrightarrow */}
+              <div><span className="text-indigo-600">•</span> ប្រេកង់: <InlineMath math={String.raw`f = \frac{1}{T} = \frac{\omega}{2\pi} = \frac{v}{\lambda}`} /></div>
+              <div><span className="text-indigo-600">•</span> ល្បឿនមុំ: <InlineMath math={String.raw`\omega = 2\pi f = \frac{2\pi}{T} = v \times k`} /></div>
+              <div><span className="text-indigo-600">•</span> ជំហានរលក: <InlineMath math={String.raw`\lambda = vT = \frac{v}{f} = \frac{2\pi}{k}`} /></div>
+              <div><span className="text-indigo-600">•</span> ចំនួនរលក: <InlineMath math={String.raw`k = \frac{2\pi}{\lambda} = \frac{\omega}{v}`} /></div>
             </div>
           </div>
           {/* Wave Equations */}
           <div>
             <div className="font-bold mb-1">២. រាងនៃសមីការរលក</div>
             <div className="ml-4 space-y-1">
-              <div><InlineMath math={String.raw`y = a \sin(\omega t)`}/></div>
-              <div><InlineMath math={String.raw`y = a \sin(\omega t + \varphi)`}/></div>
-              <div><InlineMath math={String.raw`y = a \sin(\omega t + kx)`}/></div>
-              <div><InlineMath math={String.raw`y = a \sin(kx + \omega t)`}/></div>
-              <div><InlineMath math={String.raw`y = a \sin(kx)`}/></div>
-              <div><InlineMath math={String.raw`y = a \sin(\omega t - \varphi)`}/></div>
-              <div><InlineMath math={String.raw`y = a \sin(\omega t - kx)`}/></div>
-              <div><InlineMath math={String.raw`y = a \sin(kx - \omega t)`}/></div>
+              <div><InlineMath math={String.raw`y = a \sin(\omega t)`} /></div>
+              <div><InlineMath math={String.raw`y = a \sin(\omega t + \varphi)`} /></div>
+              <div><InlineMath math={String.raw`y = a \sin(\omega t + kx)`} /></div>
+              <div><InlineMath math={String.raw`y = a \sin(kx + \omega t)`} /></div>
+              <div><InlineMath math={String.raw`y = a \sin(kx)`} /></div>
+              <div><InlineMath math={String.raw`y = a \sin(\omega t - \varphi)`} /></div>
+              <div><InlineMath math={String.raw`y = a \sin(\omega t - kx)`} /></div>
+              <div><InlineMath math={String.raw`y = a \sin(kx - \omega t)`} /></div>
             </div>
           </div>
         </div>
@@ -54,24 +52,24 @@ const WavesPractice = () => {
             <div className="font-bold mb-1">ក. ករណីរលកពីរ</div>
             <div className="ml-4 space-y-1 text-sm">
               <div>
-                <span className="text-indigo-600">• </span> 
-                <span><InlineMath math={String.raw`y_1 = a_1 \sin(\omega t + \varphi_1)`} /></span> 
+                <span className="text-indigo-600">• </span>
+                <span><InlineMath math={String.raw`y_1 = a_1 \sin(\omega t + \varphi_1)`} /></span>
               </div>
               <div>
-                <span className="text-indigo-600">• </span> 
+                <span className="text-indigo-600">• </span>
                 <span><InlineMath math={String.raw`y_2 = a_2 \sin(\omega t + \varphi_2)`} /></span>
               </div>
               <div>
-                <span className="text-indigo-600 ">• </span>  
+                <span className="text-indigo-600 ">• </span>
                 <span><InlineMath math={String.raw`y = y_1 + y_2 = a \sin(\omega t + \varphi)`} /></span><br />
               </div>
               <div>
                 <span className="text-indigo-600 ">•</span> អំព្លីទុតនៃរលកពីរ :<br />
-                <span><InlineMath math={String.raw`a = \sqrt{a_1^2 + a_2^2 + 2a_1 a_2 \cos(\Delta\varphi)}`}/></span>
+                <span><InlineMath math={String.raw`a = \sqrt{a_1^2 + a_2^2 + 2a_1 a_2 \cos(\Delta\varphi)}`} /></span>
                 <div><span className="ml-2">ដែល <InlineMath math={String.raw`\Delta\varphi = \varphi_2 - \varphi_1`} /></span></div>
               </div>
               <div>
-                <span className="text-indigo-600 ml-1"></span> ឬ <InlineMath math={String.raw`a = \sqrt{a_x^2 + a_y^2}`}/>
+                <span className="text-indigo-600 ml-1"></span> ឬ <InlineMath math={String.raw`a = \sqrt{a_x^2 + a_y^2}`} />
                 <div className="ml-4">
                   <div><InlineMath math={String.raw`a_x = a_1 \cos\varphi_1 + a_2 \cos\varphi_2`} /></div>
                   <div><InlineMath math={String.raw`a_y = a_1 \sin\varphi_1 + a_2 \sin\varphi_2`} /></div>
@@ -87,7 +85,7 @@ const WavesPractice = () => {
             <div className="font-bold mb-1">ខ. ករណីរលកច្រើន</div>
             <div className="ml-4 space-y-1 text-sm">
               <div>
-                <span className="text-indigo-600">• </span>  
+                <span className="text-indigo-600">• </span>
                 <InlineMath math={String.raw`y = y_1 + y_2 + ... + y_n = a \sin(\omega t + \varphi)`} />
               </div>
               <div>
@@ -183,7 +181,7 @@ const WavesPractice = () => {
               <span className="text-indigo-600 mt-1">•</span>
               <span>
                 សមីការរលកជញ្ជ្រុំ៖ <br />
-                <InlineMath math={String.raw`\sin p + \sin q = 2 \sin\left(\frac{p+q}{2}\right) \cos\left(\frac{p-q}{2}\right)`} /> 
+                <InlineMath math={String.raw`\sin p + \sin q = 2 \sin\left(\frac{p+q}{2}\right) \cos\left(\frac{p-q}{2}\right)`} />
               </span>
             </div>
           </div>
@@ -375,8 +373,8 @@ const WavesPractice = () => {
         <div key="a2" className="space-y-2 ml-2">
           <p><b>គណនាប្រេកង់ និងល្បឿនដំណាលរលក</b></p>
           <p>សមីការរលក៖ <InlineMath math={String.raw`y = 0.60\,\sin\!\left(2\pi\,\frac{x}{55} - 2\pi\,\frac{t}{0.05}\right)\,\text{m}`} /></p>
-          <p>ប្រៀបធៀបជាមួយសមីការទូទៅ <InlineMath math={String.raw`y = a\,\sin(kx - \omega t)`}/> យើងបាន៖</p>
-          <p><InlineMath math={String.raw`a = 0.60\,\text{m}`}/></p>
+          <p>ប្រៀបធៀបជាមួយសមីការទូទៅ <InlineMath math={String.raw`y = a\,\sin(kx - \omega t)`} /> យើងបាន៖</p>
+          <p><InlineMath math={String.raw`a = 0.60\,\text{m}`} /></p>
           <p><InlineMath math={String.raw`k = \dfrac{2\pi}{55}\,\text{rad/m}`} /></p>
           <p><InlineMath math={String.raw`\omega = \dfrac{2\pi}{0.05}\,\text{rad/s} = 40\pi \approx 125.66\,\text{rad/s}`} /></p>
           <p><b>ប្រេកង់</b>៖ <InlineMath math={String.raw`f = \dfrac{\omega}{2\pi} = \dfrac{1}{0.05} = 20\,\text{Hz}`} /></p>
@@ -390,10 +388,10 @@ const WavesPractice = () => {
           <p>តាមលោលការណ៍ត្រួតស៊ីគ្នា៖ <InlineMath math={String.raw`y = y_1 + y_2 = a\,\sin(\omega t + \varphi)`} /></p>
           <p><b>+ អំព្លីទុត៖</b></p>
           <div className="mt-4"></div>  <InlineMath math={String.raw`a = \sqrt{a_1^2 + a_2^2 + 2 a_1 a_2 \cos(\varphi_2 - \varphi_1)}`} /> <br />
-          <div className="mt-4"></div>  <InlineMath math={String.raw` = \sqrt{4^2 + 6^2 + 2\cdot 4\cdot 6\cos\!\left(\dfrac{\pi}{2} - \dfrac{\pi}{6}\right)}`}/> <br />
-          <div className="mt-4"></div>  <InlineMath math={String.raw` = \sqrt{16 + 36 + 48\cos\!\left(\dfrac{\pi}{3}\right)} `}/> <br />
-          <div className="mt-4"></div>  <InlineMath math={String.raw` = \sqrt{52 + 24} = \sqrt{76} \approx 8.7\,\text{cm}`}/> <br />
-          <div className="mt-4"></div>  <InlineMath math={String.raw` = \sqrt{76} \approx 8.7\,\text{cm}`}/> <br />
+          <div className="mt-4"></div>  <InlineMath math={String.raw` = \sqrt{4^2 + 6^2 + 2\cdot 4\cdot 6\cos\!\left(\dfrac{\pi}{2} - \dfrac{\pi}{6}\right)}`} /> <br />
+          <div className="mt-4"></div>  <InlineMath math={String.raw` = \sqrt{16 + 36 + 48\cos\!\left(\dfrac{\pi}{3}\right)} `} /> <br />
+          <div className="mt-4"></div>  <InlineMath math={String.raw` = \sqrt{52 + 24} = \sqrt{76} \approx 8.7\,\text{cm}`} /> <br />
+          <div className="mt-4"></div>  <InlineMath math={String.raw` = \sqrt{76} \approx 8.7\,\text{cm}`} /> <br />
           <p><b>+ ផាសដើម៖</b></p>
           <div className="mt-4"></div><InlineMath math={String.raw`\tan\varphi = \dfrac{a_1\sin\varphi_1 + a_2\sin\varphi_2}{a_1\cos\varphi_1 + a_2\cos\varphi_2}`} /> <br />
           <div className="mt-4"></div><InlineMath math={String.raw`\tan\varphi = \dfrac{4\sin\!\left(\dfrac{\pi}{6}\right) + 6\sin\!\left(\dfrac{\pi}{2}\right)}{4\cos\!\left(\dfrac{\pi}{6}\right) + 6\cos\!\left(\dfrac{\pi}{2}\right)} `} />
@@ -436,7 +434,7 @@ const WavesPractice = () => {
           ដោយ៖​  <InlineMath math={String.raw`k = 3.0 \, \text{rad/cm} `} /> <br />
           <InlineMath math={String.raw`\quad \lambda = \frac{2\pi}{k} = \frac{2\pi}{3.0} = \frac{2\pi}{3} \, \text{cm}`} />
           <p>យើងបាន :  <InlineMath math={String.raw`x = \frac{n \times 2\pi/3}{4} = \frac{n \pi}{6} \, \text{cm}`} /></p>
-          <p>ដូចនេះ​ : <InlineMath math={String.raw`x = \frac{n \pi}{6} \, \text{cm}`} />  ដែល n ជាចំនួនគត់សេស (n = 1,3,5,7,.....) </p> 
+          <p>ដូចនេះ​ : <InlineMath math={String.raw`x = \frac{n \pi}{6} \, \text{cm}`} />  ដែល n ជាចំនួនគត់សេស (n = 1,3,5,7,.....) </p>
           <p>ទីតាំងថ្នាំង : <InlineMath math={String.raw`x = \frac{n\lambda}{2}`} /></p>
           <p>យើងបាន : <InlineMath math={String.raw`x = \frac{n \times 2\pi/3}{2} = \frac{n \pi}{3} \, \text{cm}`} /></p>
           <p>ដូចនេះ : <InlineMath math={String.raw`x = \frac{n \pi}{3} \, \text{cm} `} /> ដែល n ជាចំនួនគត់ (n = 0,1,2,3,.....)</p>

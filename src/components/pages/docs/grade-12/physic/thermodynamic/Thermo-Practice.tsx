@@ -1,10 +1,9 @@
 import TopicPracticeBox from "../../../common/box/TopicPracticeBox";
-import { BlockMath, InlineMath } from "react-katex";
+import { InlineMath } from "react-katex";
 import 'katex/dist/katex.min.css';
 import SummaryBox from "../../../common/box/SummaryBox";
 import { BookAIcon, ChartBarIcon, ClipboardListIcon, LightbulbIcon } from "lucide-react";
-import { PracticeExercise, SummarySection } from "@/types/topic";
-import { div } from "three/tsl";
+import { PracticeExercise, SummarySection } from "@/types/docs/topic";
 
 const ThermoPractice = () => {
   const summary: SummarySection[] = [
