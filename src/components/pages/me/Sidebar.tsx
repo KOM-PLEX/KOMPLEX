@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 import {
     LayoutDashboard,
     BookOpen,
@@ -48,6 +49,7 @@ const navItems = [
 
 export default function Sidebar() {
     const pathname = usePathname();
+    const mobileNavRef = useRef<HTMLDivElement>(null);
 
     const isActive = (href: string) => {
         if (href === '/me') {
@@ -55,6 +57,20 @@ export default function Sidebar() {
         }
         return pathname?.startsWith(href);
     };
+
+    // Auto-scroll mobile top bar to ensure active item is visible
+    useEffect(() => {
+        const container = mobileNavRef.current;
+        if (!container) return;
+
+        const activeEl = container.querySelector('[data-active="true"]') as HTMLElement | null;
+        if (!activeEl) return;
+
+        const containerRect = container.getBoundingClientRect();
+        const elRect = activeEl.getBoundingClientRect();
+        const desiredLeft = elRect.left - containerRect.left + container.scrollLeft - (container.clientWidth / 2 - elRect.width / 2);
+        container.scrollTo({ left: Math.max(0, desiredLeft) });
+    }, [pathname]);
 
     return (
         <>
@@ -95,7 +111,7 @@ export default function Sidebar() {
             {/* Mobile Top Navigation */}
             <div className="lg:hidden fixed top-14 left-0 right-0 bg-white border-b border-gray-200 z-40">
                 <div className="px-5 py-2">
-                    <nav className="flex justify-between items-center gap-4 overflow-x-auto scrollbar-hide">
+                    <nav ref={mobileNavRef} className="flex justify-between items-center gap-2 overflow-x-auto scrollbar-hide">
                         {navItems.map((item) => {
                             const Icon = item.icon;
                             const active = isActive(item.href);
@@ -104,6 +120,7 @@ export default function Sidebar() {
                                 <Link
                                     key={item.href}
                                     href={item.href}
+                                    data-active={active ? 'true' : 'false'}
                                     className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 min-w-[70px] ${active
                                         ? 'text-indigo-600 bg-indigo-50 border border-indigo-500'
                                         : 'text-gray-700 hover:text-black hover:bg-gray-50 border border-transparent hover:border-gray-300'

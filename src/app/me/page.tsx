@@ -13,6 +13,7 @@ import {
 import { formatToKhmerDate } from '@/utils/formater';
 import api from '@/config/axios';
 import { useAuth } from '@/hooks/useAuth';
+import MeSkeleton from '@/components/pages/me/MeSkeleton';
 
 
 interface RecentActivity {
@@ -56,67 +57,6 @@ const getContentTypeIcon = (contentType: string) => {
     }
 }
 
-const LoadingSkeleton = () => {
-    return (
-        <div className="flex min-h-screen bg-gray-50">
-            <Sidebar />
-            <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                <div className="p-6">
-                    {/* Header */}
-                    <div className="mb-8 space-y-4">
-                        <div className="w-20 h-4 bg-gray-200 rounded animate-pulse"></div>
-                        <div className="w-40 h-4 bg-gray-200 rounded animate-pulse"></div>
-                    </div>
-
-                    {/* Stats Cards Loading Skeleton */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        {[...Array(4)].map((_, i) => (
-                            <div key={i} className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <div className="h-4 w-16 bg-gray-200 rounded animate-pulse mb-2"></div>
-                                        <div className="h-8 w-24 bg-gray-200 rounded animate-pulse"></div>
-                                    </div>
-                                    <div className="p-3 bg-gray-100 rounded-lg">
-                                        <div className="w-6 h-6 bg-gray-200 rounded animate-pulse"></div>
-                                    </div>
-                                </div>
-                                <div className="mt-4 flex items-center">
-                                    <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Recent Activity Loading Skeleton */}
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-                        <div className="p-6 border-b border-gray-200 space-y-4">
-                            <div className="w-20 h-4 bg-gray-200 rounded animate-pulse"></div>
-                            <div className="w-40 h-4 bg-gray-200 rounded animate-pulse"></div>
-                        </div>
-                        <div className="p-6">
-                            <div className="space-y-4">
-                                {[...Array(5)].map((_, i) => (
-                                    <div key={i} className="flex items-center gap-4 p-4 rounded-lg">
-                                        <div className="p-2 rounded-lg bg-gray-100">
-                                            <div className="w-4 h-4 bg-gray-200 rounded animate-pulse"></div>
-                                        </div>
-                                        <div className="flex-1">
-                                            <div className="h-5 w-48 bg-gray-200 rounded animate-pulse mb-2"></div>
-                                            <div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
-                                        </div>
-                                        <div className="h-4 w-20 bg-gray-200 rounded animate-pulse"></div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
 export default function MyContent() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
@@ -157,7 +97,7 @@ export default function MyContent() {
 
     // Show loading while checking auth or fetching data
     if (authLoading || isLoading) {
-        return <LoadingSkeleton />;
+        return <MeSkeleton />;
     }
 
     // Don't render anything if not authenticated (will redirect)

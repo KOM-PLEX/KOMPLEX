@@ -2,8 +2,6 @@
 
 import BlogCard from '@/components/pages/blog/BlogCard';
 import { useEffect, useState } from 'react';
-import { Search, Book, Plus, Star, BookOpen } from 'lucide-react';
-import Link from 'next/link';
 import { Blog } from '@/types/content/blogs';
 import { getAllBlogs } from '@/services/feed/blogs';
 import BlogsSkeleton from '@/components/pages/blog/BlogsSkeleton';
@@ -43,7 +41,7 @@ export default function BlogPage() {
     if (isLoading) {
         return (
             <div className="min-h-screen bg-gray-50">
-                <div className="pt-20 lg:pt-20 p-5 max-w-7xl mx-auto">
+                <div className="pt-36 lg:pt-20 p-5 max-w-7xl mx-auto">
                     <div className="flex gap-6">
                         <Sidebar />
                         {/* Main Content Area */}
@@ -59,7 +57,7 @@ export default function BlogPage() {
     if (error) {
         return (
             <div className="min-h-screen bg-gray-50">
-                <div className="pt-20 lg:pt-20 p-5 max-w-7xl mx-auto">
+                <div className="pt-36 lg:pt-20 p-5 max-w-7xl mx-auto">
                     <div className="flex gap-6">
                         <Sidebar />
                         {/* Main Content Area */}

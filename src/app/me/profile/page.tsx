@@ -51,36 +51,36 @@ export default function ProfilePage() {
             <div className="flex min-h-screen bg-gray-50">
                 <Sidebar />
                 <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                    <div className="max-w-4xl mx-auto p-6">
+                    <div className="max-w-7xl mx-auto p-6">
                         {/* Header Skeleton */}
                         <div className="mb-8">
-                            <div className="h-8 bg-gray-200 rounded w-1/3 animate-pulse"></div>
-                            <div className="h-4 bg-gray-200 rounded w-1/2 mt-2 animate-pulse"></div>
+                            <div className="h-8 bg-gray-200 rounded w-2/3 sm:w-1/2 md:w-1/3 animate-pulse"></div>
+                            <div className="h-4 bg-gray-200 rounded w-3/4 sm:w-1/2 mt-2 animate-pulse"></div>
                         </div>
 
                         {/* Profile Card Skeleton */}
-                        <div className="bg-white border border-gray-200 rounded-2xl p-6 animate-pulse">
-                            <div className="flex items-start justify-between gap-4 mb-6">
+                        <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 animate-pulse">
+                            <div className="flex flex-col gap-4 mb-6 md:flex-row md:items-start md:justify-between">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-20 h-20 bg-gray-200 rounded-full"></div>
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full"></div>
                                     <div>
-                                        <div className="h-6 bg-gray-200 rounded w-48 mb-2"></div>
-                                        <div className="h-4 bg-gray-200 rounded w-32"></div>
+                                        <div className="h-6 bg-gray-200 rounded w-32 sm:w-48 mb-2"></div>
+                                        <div className="h-4 bg-gray-200 rounded w-24 sm:w-32"></div>
                                     </div>
                                 </div>
-                                <div className="h-10 bg-gray-200 rounded w-32"></div>
+                                <div className="h-10 bg-gray-200 rounded w-24 sm:w-32 mt-4 md:mt-0"></div>
                             </div>
 
                             <div className="h-px bg-gray-200 mb-6"></div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {[...Array(6)].map((_, i) => (
-                                    <div key={i} className="bg-gray-50 rounded-xl p-4">
+                                    <div key={i} className="bg-gray-50 rounded-xl p-3 sm:p-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 bg-gray-200 rounded-lg"></div>
+                                            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-200 rounded-lg"></div>
                                             <div className="flex-1">
-                                                <div className="h-3 bg-gray-200 rounded w-20 mb-2"></div>
-                                                <div className="h-4 bg-gray-200 rounded w-24"></div>
+                                                <div className="h-3 bg-gray-200 rounded w-16 sm:w-20 mb-2"></div>
+                                                <div className="h-4 bg-gray-200 rounded w-20 sm:w-24"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@ export default function ProfilePage() {
             <div className="flex min-h-screen bg-gray-50">
                 <Sidebar />
                 <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                    <div className="max-w-4xl mx-auto p-6">
+                    <div className="max-w-7xl mx-auto p-6">
                         <div className="mb-8">
                             <div className="flex items-center gap-3 mb-2">
                                 <UserCircle className="w-8 h-8 text-indigo-600" />
@@ -124,7 +124,7 @@ export default function ProfilePage() {
             <div className="flex min-h-screen bg-gray-50">
                 <Sidebar />
                 <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                    <div className="max-w-4xl mx-auto p-6">
+                    <div className="max-w-7xl mx-auto p-6">
                         <div className="mb-8">
                             <div className="flex items-center gap-3 mb-2">
                                 <UserCircle className="w-8 h-8 text-indigo-600" />
@@ -155,7 +155,7 @@ export default function ProfilePage() {
         <div className="flex min-h-screen bg-gray-50">
             <Sidebar />
             <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                <div className="max-w-4xl mx-auto p-6">
+                <div className="max-w-7xl mx-auto p-6">
                     {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
@@ -198,13 +198,13 @@ export default function ProfilePage() {
                                     </div>
                                 </div>
                             </div>
-                            <Link
+                            {/* <Link
                                 href="/settings"
                                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg shadow-indigo-500/20 transition-all duration-200 font-medium"
                             >
                                 <Settings size={16} />
                                 កែប្រែព័ត៌មាន
-                            </Link>
+                            </Link> */}
                         </div>
 
                         <div className="h-px bg-gray-200 mb-6"></div>

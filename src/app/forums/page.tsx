@@ -1,12 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import ForumCard from '@/components/pages/forums/ForumCard';
 import ForumSkeleton from '@/components/pages/forums/ForumSkeleton';
 import ContentError from '@/components/common/ContentError';
-import { Search, Filter, MessageSquare, Plus } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
 import { ForumPost } from '@/types/content/forums';
 import { getAllForums } from '@/services/feed/forums';
 import { toggleForumLike } from '@/services/me/forums';
@@ -82,9 +79,9 @@ export default function Forum() {
         return (
             <div className="min-h-screen bg-gray-50">
                 {/* Main Content */}
-                <div className="pt-20 p-5 max-w-7xl mx-auto">
+                <div className="lg:pt-20 pt-36 p-5 max-w-7xl mx-auto">
                     <div className="flex gap-6">
-                    <Sidebar />
+                        <Sidebar />
                         {/* Main Content Area */}
                         <div className="flex-1">
                             <ForumSkeleton count={6} />
@@ -99,7 +96,7 @@ export default function Forum() {
         return (
             <div className="min-h-screen bg-gray-50">
                 {/* Main Content */}
-                <div className="pt-20 p-5 max-w-7xl mx-auto">
+                <div className="pt-36 lg:pt-20 p-5 max-w-7xl mx-auto">
                     <Sidebar />
                     <div className="flex gap-6">
                         {/* Sidebar */}

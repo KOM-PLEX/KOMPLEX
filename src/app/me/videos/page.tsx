@@ -135,114 +135,114 @@ function MyVideosContent() {
                         <p className="text-gray-600">គ្រប់គ្រងវីដេអូនិងមើលដំណើរការរបស់អ្នក</p>
                     </div>
 
-                    {/* Tabs */}
+                    {/* Tabs - pill style, horizontally scrollable */}
+
+
+                    {/* Stats Cards - Only show for My Videos tab */}
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-medium text-gray-600">វីដេអូសរុប</p>
+                                    <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+                                </div>
+                                <div className="p-3 bg-indigo-100 rounded-lg">
+                                    <Video className="w-6 h-6 text-indigo-600" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-medium text-gray-600">ទស្សនាសរុប</p>
+                                    <p className="text-2xl font-bold text-blue-600">{stats.totalViews.toLocaleString()}</p>
+                                </div>
+                                <div className="p-3 bg-blue-100 rounded-lg">
+                                    <Eye className="w-6 h-6 text-blue-600" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-medium text-gray-600">ចូលចិត្តសរុប</p>
+                                    <p className="text-2xl font-bold text-green-600">{stats.totalLikes}</p>
+                                </div>
+                                <div className="p-3 bg-green-100 rounded-lg">
+                                    <Heart className="w-6 h-6 text-green-600" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <p className="text-sm font-medium text-gray-600">ពេលវេលាសរុប</p>
+                                    <p className="text-2xl font-bold text-purple-600">{Math.floor(stats.totalDuration / 60)} នាទី</p>
+                                </div>
+                                <div className="p-3 bg-purple-100 rounded-lg">
+                                    <Clock className="w-6 h-6 text-purple-600" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="mb-8">
-                        <div className="border-b border-gray-200">
-                            <nav className="-mb-px flex space-x-8">
+                        <div className="overflow-x-hidden">
+                            <nav className="flex gap-2 whitespace-nowrap">
                                 <Link
                                     href="/me/videos?tab=myVideos"
-                                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === 'myVideos' || activeTab === null
-                                        ? 'border-indigo-500 text-indigo-600'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'myVideos' || activeTab === null
+                                        ? 'bg-indigo-600 text-white'
+                                        : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                         }`}
                                 >
-                                    <div className="flex items-center gap-2">
+                                    <span className="inline-flex items-center gap-2">
                                         <Video className="w-4 h-4" />
-                                        វីដេអូរបស់ខ្ញុំ
-                                    </div>
+                                        <span className="hidden lg:block">វីដេអូរបស់ខ្ញុំ</span>
+                                    </span>
                                 </Link>
                                 <Link
                                     href="/me/videos?tab=likedVideos"
-                                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === 'likedVideos'
-                                        ? 'border-indigo-500 text-indigo-600'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'likedVideos'
+                                        ? 'bg-indigo-600 text-white'
+                                        : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                         }`}
                                 >
-                                    <div className="flex items-center gap-2">
+                                    <span className="inline-flex items-center gap-2">
                                         <ThumbsUp className="w-4 h-4" />
-                                        វីដេអូដែលចូលចិត្ត
-                                    </div>
+                                        <span className="hidden lg:block">វីដេអូដែលចូលចិត្ត</span>
+                                    </span>
                                 </Link>
                                 <Link
                                     href="/me/videos?tab=savedVideos"
-                                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === 'savedVideos'
-                                        ? 'border-indigo-500 text-indigo-600'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'savedVideos'
+                                        ? 'bg-indigo-600 text-white'
+                                        : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                         }`}
                                 >
-                                    <div className="flex items-center gap-2">
+                                    <span className="inline-flex items-center gap-2">
                                         <Bookmark className="w-4 h-4" />
-                                        វីដេអូដែលរក្សាទុក
-                                    </div>
+                                        <span className="hidden lg:block">វីដេអូដែលរក្សាទុក</span>
+                                    </span>
                                 </Link>
                                 <Link
                                     href="/me/videos?tab=videoHistory"
-                                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === 'videoHistory'
-                                        ? 'border-indigo-500 text-indigo-600'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'videoHistory'
+                                        ? 'bg-indigo-600 text-white'
+                                        : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                         }`}
                                 >
-                                    <div className="flex items-center gap-2">
+                                    <span className="inline-flex items-center gap-2">
                                         <History className="w-4 h-4" />
-                                        ប្រវត្តិវីដេអូ
-                                    </div>
+                                        <span className="hidden lg:block">ប្រវត្តិវីដេអូ</span>
+                                    </span>
                                 </Link>
                             </nav>
                         </div>
                     </div>
-
-                    {/* Stats Cards - Only show for My Videos tab */}
-                    {activeTab === 'myVideos' && (
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm font-medium text-gray-600">វីដេអូសរុប</p>
-                                        <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
-                                    </div>
-                                    <div className="p-3 bg-indigo-100 rounded-lg">
-                                        <Video className="w-6 h-6 text-indigo-600" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm font-medium text-gray-600">ទស្សនាសរុប</p>
-                                        <p className="text-2xl font-bold text-blue-600">{stats.totalViews.toLocaleString()}</p>
-                                    </div>
-                                    <div className="p-3 bg-blue-100 rounded-lg">
-                                        <Eye className="w-6 h-6 text-blue-600" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm font-medium text-gray-600">ចូលចិត្តសរុប</p>
-                                        <p className="text-2xl font-bold text-green-600">{stats.totalLikes}</p>
-                                    </div>
-                                    <div className="p-3 bg-green-100 rounded-lg">
-                                        <Heart className="w-6 h-6 text-green-600" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <p className="text-sm font-medium text-gray-600">ពេលវេលាសរុប</p>
-                                        <p className="text-2xl font-bold text-purple-600">{Math.floor(stats.totalDuration / 60)} នាទី</p>
-                                    </div>
-                                    <div className="p-3 bg-purple-100 rounded-lg">
-                                        <Clock className="w-6 h-6 text-purple-600" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
 
                     {/* Tab Content */}
                     {activeTab === 'myVideos' && (
