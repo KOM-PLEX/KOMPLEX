@@ -302,6 +302,7 @@ export default function ExerciseReportComponent() {
             {selectedExercise && (
                 <ReportViewer
                     id={selectedExercise.exerciseId}
+                    isOpen={!!selectedExercise}
                     onClose={() => setSelectedExercise(null)}
                 />
             )}

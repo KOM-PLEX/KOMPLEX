@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import ForumCard from '@/components/pages/forum/ForumCard';
-import ForumSkeleton from '@/components/pages/forum/ForumSkeleton';
+import ForumCard from '@/components/pages/forums/ForumCard';
+import ForumSkeleton from '@/components/pages/forums/ForumSkeleton';
 import ContentError from '@/components/common/ContentError';
-import Comments from '@/components/pages/forum/Comments';
+import Comments from '@/components/common/comments/Comments';
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { ForumPost } from '@/types/content/forums';
@@ -88,7 +88,7 @@ export default function ForumDiscussion() {
 
                 {/* Back Button */}
                 <div className="mb-6">
-                    <Link href="/forum" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
+                    <Link href="/forums" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
                         <ArrowLeft className="w-4 h-4" />
                         ត្រឡប់ទៅវេទិកា
                     </Link>

@@ -44,6 +44,10 @@ export default function RootLayout({
           src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"
           strategy="beforeInteractive"
         />
+        <Script src="https://cdn.jsdelivr.net/npm/eruda" strategy="beforeInteractive" />
+        <Script id="eruda-init" strategy="beforeInteractive">
+          {`eruda.init();`}
+        </Script>
         <AuthProvider>
           <Header />
           {children}

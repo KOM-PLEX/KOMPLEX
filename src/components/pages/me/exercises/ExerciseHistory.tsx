@@ -40,7 +40,7 @@ export default function ExerciseHistoryComponent() {
                 <div className="flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-gray-900">ប្រវត្តិលំហាត់</h2>
                     <Link
-                        href="/practice"
+                        href="/exercises"
                         className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
                     >
                         <Plus className="w-4 h-4" />
@@ -71,7 +71,7 @@ export default function ExerciseHistoryComponent() {
 
                                 <div className="w-full lg:w-auto flex justify-end">
                                     <Link
-                                        href={`/exercise/${exercise.id}`}
+                                        href={`/exercises/${exercise.id}`}
                                         className='w-full lg:w-auto px-4 py-2 hover:bg-indigo-400 hover:text-white bg-indigo-500 rounded-lg transition-colors flex items-center justify-center gap-2'
                                     >
                                         <p className='text-sm font-medium text-white'>ធ្វើលំហាត់ម្ដងទៀត</p>

@@ -6,9 +6,9 @@ import {
     Menu,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import VideoCard from '@/components/pages/video/VideoCard';
-import VideoCardSkeleton from '@/components/pages/video/VideoCardSkeleton';
-import Sidebar from '@/components/pages/video/Sidebar';
+import VideoCard from '@/components/pages/videos/VideoCard';
+import VideoCardSkeleton from '@/components/pages/videos/VideoCardSkeleton';
+import Sidebar from '@/components/pages/videos/Sidebar';
 import ContentError from '@/components/common/ContentError';
 import { VideoPost } from '@/types/content/videos';
 import { getAllVideos } from '@/services/feed/videos';
@@ -142,7 +142,7 @@ export default function VideoPage() {
             {/* Main Content */}
             <div className="flex-1 overflow-y-scroll relative">
                 {/* Header */}
-                <div className="bg-white shadow-sm border-b border-gray-200 lg:p-2 py-2 px-5 sticky top-0 z-10">
+                <div className="bg-white  border-b border-gray-200 lg:p-2 py-2 px-5 sticky top-0 z-10">
                     <div className="flex justify-center items-center gap-2">
                         {/* Mobile Menu Button */}
                         <button

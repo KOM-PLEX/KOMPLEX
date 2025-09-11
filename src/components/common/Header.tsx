@@ -13,40 +13,40 @@ import { useState } from 'react';
 
 const navLinks = [
     {
-        label: 'ឯកសារ',
+        label: 'មេរៀន',
         href: `/docs/${curriculum[0].grade}/${curriculum[0].content[0].subject}/${curriculum[0].content[0].lessons[0].lesson}/${curriculum[0].content[0].lessons[0].topics[0].englishTitle}`,
         icon: FileText,
-        style: "bg-white/80 backdrop-blur-sm hover:text-indigo-600 hover:bg-indigo-50/90 "
-    },
-    {
-        label: 'វេទិកា',
-        href: '/forums',
-        icon: MessageSquare,
-        style: "bg-white/80 backdrop-blur-sm  hover:text-indigo-600 hover:bg-indigo-50/90 "
-    },
-    {
-        label: 'ប្លុក',
-        href: '/blogs',
-        icon: BookOpen,
-        style: "bg-white/80 backdrop-blur-sm  hover:text-indigo-600 hover:bg-indigo-50/90 "
+        style: "bg-transparent  hover:text-indigo-600 hover:bg-indigo-50/90 "
     },
     {
         label: 'អនុវត្តន៍',
         href: '/exercises',
         icon: Pencil,
-        style: "bg-white/80 backdrop-blur-sm  hover:text-indigo-600 hover:bg-indigo-50/90 "
+        style: "bg-transparent  hover:text-indigo-600 hover:bg-indigo-50/90 "
+    },
+    {
+        label: 'ពិភាក្សា',
+        href: '/forums',
+        icon: MessageSquare,
+        style: "bg-transparent  hover:text-indigo-600 hover:bg-indigo-50/90 "
+    },
+    {
+        label: 'អត្ថបទ',
+        href: '/blogs',
+        icon: BookOpen,
+        style: "bg-transparent  hover:text-indigo-600 hover:bg-indigo-50/90 "
     },
     {
         label: 'វីដេអូ',
         href: '/videos',
         icon: Camera,
-        style: "bg-white/80 backdrop-blur-sm  hover:text-indigo-600 hover:bg-indigo-50/90 "
+        style: "bg-transparent  hover:text-indigo-600 hover:bg-indigo-50/90 "
     },
     {
-        label: 'KOMPLEX AI',
+        label: 'តារា',
         href: '/ai',
         icon: Bot,
-        style: "bg-indigo-600 text-white no-underline font-semibold   hover:bg-indigo-500"
+        style: "bg-indigo-600 text-white no-underline   hover:bg-indigo-500"
     }
 ]
 
@@ -84,7 +84,7 @@ export default function Header() {
 
                     {/* Mobile Menu */}
                     <HeadlessMenu as="div" className="md:hidden relative">
-                        <HeadlessMenu.Button className="bg-none border-none text-2xl text-indigo-600 cursor-pointer p-2 hover:bg-indigo-50 rounded-lg transition-colors duration-200">
+                        <HeadlessMenu.Button className="bg-none border-none focus:outline-none text-2xl text-indigo-600 cursor-pointer py-2 rounded-lg transition-colors duration-200">
                             <Menu size={24} />
                         </HeadlessMenu.Button>
 
@@ -96,11 +96,14 @@ export default function Header() {
                             leaveFrom="transform scale-100 opacity-100"
                             leaveTo="transform scale-95 opacity-0"
                         >
-                            <HeadlessMenu.Items className="absolute -right-6 mt-2 w-56 bg-white rounded-bl-2xl shadow-2xl border border-indigo-500/10 backdrop-blur-sm z-50 p-2">
+                            <HeadlessMenu.Items className="absolute -right-6 mt-3 w-56 bg-white rounded-bl-2xl shadow-4xl border border-indigo-500/10 backdrop-blur-sm z-50 focus:outline-none p-2">
                                 <div className="space-y-1">
                                     {navLinks.map((link) => {
                                         const Icon = link.icon;
-                                        const isActive = pathname?.includes(link.href);
+                                        // Get the first segment after the domain (e.g., "blogs" from "/blogs" or "me" from "/me/blogs")
+                                        const pathSegment = pathname.split("/")[1];
+                                        const linkSegment = link.href.split("/")[1];
+                                        const isActive = pathSegment === linkSegment;
                                         return (
                                             <HeadlessMenu.Item key={link.href}>
                                                 {() => (
@@ -171,17 +174,6 @@ export default function Header() {
                                                     </HeadlessMenu.Item>
                                                     <HeadlessMenu.Item>
                                                         {({ active }) => (
-                                                            <Link
-                                                                href="/settings"
-                                                                className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
-                                                            >
-                                                                <Settings className="w-4 h-4" />
-                                                                ការកំណត់
-                                                            </Link>
-                                                        )}
-                                                    </HeadlessMenu.Item>
-                                                    <HeadlessMenu.Item>
-                                                        {({ active }) => (
                                                             <button
                                                                 onClick={handleLogout}
                                                                 className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-red-600' : 'hover:bg-gray-50 hover:text-red-600'}`}
@@ -214,12 +206,15 @@ export default function Header() {
                     <div className="hidden md:flex gap-2.5 items-center">
                         {navLinks.map((link) => {
                             const Icon = link.icon;
-                            const isActive = pathname?.includes(link.href);
+                            // Get the first segment after the domain (e.g., "blogs" from "/blogs" or "me" from "/me/blogs")
+                            const pathSegment = pathname.split("/")[1];
+                            const linkSegment = link.href.split("/")[1];
+                            const isActive = pathSegment === linkSegment;
                             return (
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className={`flex items-center gap-2 text-gray-600 no-underline font-medium text-sm px-3 py-2.5 rounded-xl transition-all duration-300 relative ${isActive ? 'text-indigo-600 bg-indigo-50/90 shadow-sm border border-indigo-500/10' : link.style}`}
+                                    className={`flex items-center gap-2 text-gray-600 no-underline font-semibold  text-sm px-3 py-2.5 rounded-xl transition-all duration-300 relative ${isActive ? 'text-indigo-600 bg-indigo-50/90 shadow-sm ' : link.style}`}
                                 >
                                     <Icon size={18} />
                                     {link.label}
@@ -248,7 +243,7 @@ export default function Header() {
                                     leaveFrom="transform scale-100 opacity-100"
                                     leaveTo="transform scale-95 opacity-0"
                                 >
-                                    <HeadlessMenu.Items className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 backdrop-blur-sm z-50 p-4">
+                                    <HeadlessMenu.Items className="absolute  right-0 mt-3 focus:outline-none w-72 bg-white rounded-xl shadow-2xl border border-gray-200 backdrop-blur-sm z-50 p-4">
                                         {/* User Info Section */}
                                         <div className="flex items-center gap-3">
                                             {user.profileImage ? (
@@ -292,18 +287,6 @@ export default function Header() {
                                                         <MessageCircle className="w-4 h-4" />
                                                         ជួយផ្ដល់មតិ
                                                     </button>
-                                                )}
-                                            </HeadlessMenu.Item>
-
-                                            <HeadlessMenu.Item>
-                                                {({ active }) => (
-                                                    <Link
-                                                        href="/settings"
-                                                        className={`flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-lg text-sm text-gray-700 no-underline font-medium transition-colors duration-200 ${active ? 'bg-gray-50 text-indigo-600' : 'hover:bg-gray-50 hover:text-indigo-600'}`}
-                                                    >
-                                                        <Settings className="w-4 h-4" />
-                                                        ការកំណត់
-                                                    </Link>
                                                 )}
                                             </HeadlessMenu.Item>
 

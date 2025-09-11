@@ -3,15 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Share2, ThumbsUp, Bookmark, User, Eye, Clock, Calendar, MessageSquare, BookOpen } from 'lucide-react';
 import { useParams } from 'next/navigation';
-import Comments from '@/components/pages/forum/Comments';
-import Exercise from '@/components/pages/video/Exercise';
-import VideoCard from '@/components/pages/video/VideoCard';
-import VideoSkeleton from '@/components/pages/video/VideoSkeleton';
+import Comments from '@/components/common/comments/Comments';
+import Exercise from '@/components/pages/videos/Exercise';
+import VideoCard from '@/components/pages/videos/VideoCard';
+import VideoSkeleton from '@/components/pages/videos/VideoSkeleton';
 import ContentError from '@/components/common/ContentError';
 import type { VideoPost } from '@/types/content/videos';
 import { getAllVideos } from '@/services/feed/videos';
 import { toggleVideoLike, toggleVideoSave } from '@/services/me/videos';
 import { getVideoById } from '@/services/feed/videos';
+import VideoDescription from '@/components/pages/videos/VideoDescription';
 
 
 // API function to fetch all videos for recommendations
@@ -139,46 +140,7 @@ export default function VideoDetailPage() {
     );
 
     const renderVideoInfo = () => (
-        <div className="bg-white rounded-2xl shadow-sm p-6">
-            <div className='flex items-center gap-4 justify-between'>
-                <div>
-                    <h1 className="text-2xl font-bold text-gray-900 mb-3">{video.title}</h1>
-                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                        <span className="flex items-center gap-2">
-                            <User size={16} />
-                            {video.username}
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <Eye size={16} />
-                            {video.viewCount.toLocaleString()} ទស្សនា
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <Clock size={16} />
-                            {Math.floor(video.duration / 60)}:{(video.duration % 60).toString().padStart(2, '0')}
-                        </span>
-                        <span className="flex items-center gap-2">
-                            <Calendar size={16} />
-                            {new Date(video.createdAt).toLocaleDateString('km-KH')}
-                        </span>
-                    </div>
-                </div>
-                <div className='flex items-center gap-2'>
-                    <button className='flex items-center gap-2 bg-gray-100 p-2 rounded-md' onClick={() => handleLike(video.id, video.isLike, video)}>
-                        <ThumbsUp size={16} className={`${video.isLike ? 'fill-indigo-500' : 'text-gray-500'}`} />
-                        {video.likeCount}
-                    </button>
-                    <button className='flex items-center gap-2 bg-gray-100 p-2 rounded-md' onClick={() => handleSave(video.id, video.isSave, video)}>
-                        <Bookmark size={16} className={`${video.isSave ? 'fill-indigo-500' : 'text-gray-500'}`} />
-                        រក្សាទុក
-                    </button>
-                    <button className='flex items-center gap-2 bg-gray-100 p-2 rounded-md'>
-                        <Share2 size={16} className='text-gray-500' />
-                        ចែករំលែក
-                    </button>
-                </div>
-            </div>
-            <p className="text-gray-700 leading-relaxed">{video.description}</p>
-        </div>
+        <VideoDescription video={video} onLike={handleLike} onBookmark={handleSave}></VideoDescription>
     );
 
     const renderDesktopTabs = () => (

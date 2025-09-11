@@ -86,7 +86,7 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
         return (
             <div className="block group cursor-pointer" onClick={onClick}>
                 <div
-                    className=" rounded-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform overflow-hidden cursor-pointer"
+                    className=" rounded-2xl  backdrop-blur-sm  transition-all duration-300 transform overflow-hidden cursor-pointer"
                     onMouseEnter={handleCardHover}
                     onMouseLeave={handleCardLeave}
                 >
@@ -136,7 +136,7 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
             onMouseEnter={handleCardHover}
             onMouseLeave={handleCardLeave}
         >
-            <div className=" rounded-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm hover:shadow-xl transition-all duration-300 transform overflow-hidden">
+            <div className=" rounded-2xl bg-white border border-gray-200  backdrop-blur-sm  transition-all duration-300 transform overflow-hidden">
                 <div className="relative overflow-hidden">
                     <video
                         className="w-full aspect-video object-cover rounded-t-2xl z-10 group-hover:scale-105 transition-all duration-300"

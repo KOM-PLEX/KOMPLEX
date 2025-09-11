@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowLeft, Edit, Trash, Eye } from 'lucide-react';
 import ForumCard from '@/components/pages/me/forums/ForumCard';
-import Comments from '@/components/pages/forum/Comments';
+import Comments from '@/components/common/comments/Comments';
 import EditForum from '@/components/pages/me/forums/EditForum';
 import ContentError from '@/components/common/ContentError';
 import { useEffect, useState } from 'react';
@@ -69,7 +69,7 @@ export default function MyForumDetail() {
         return (
             <div className="flex min-h-screen transition-colors duration-200 bg-gray-50">
                 <Sidebar />
-                <div className="flex-1 ml-0 lg:ml-64 pt-32 lg:pt-20">
+                <div className="flex-1 lg:ml-64 pt-32 lg:pt-16">
                     <div className="max-w-7xl mx-auto p-5">
                         {/* Loading Skeleton */}
                         <div className="mb-6">
@@ -124,7 +124,7 @@ export default function MyForumDetail() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 ml-64 pt-20">
+            <div className="flex-1 lg:ml-64 pt-32 lg:pt-16">
                 <div className="max-w-7xl mx-auto p-5">
                     {/* Header with Back Button and Actions */}
                     <div className="mb-6 flex items-center justify-between">
@@ -165,7 +165,7 @@ export default function MyForumDetail() {
                         <>
                             {/* Main Post */}
                             <div className="mb-6">
-                                <ForumCard post={post} />
+                                <ForumCard post={post} isFromMePage={false} />
                             </div>
 
                             {/* Comments Section */}

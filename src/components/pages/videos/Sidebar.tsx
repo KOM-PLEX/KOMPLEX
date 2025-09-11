@@ -19,13 +19,13 @@ const videoSidebar = [
         disabled: false,
     },
     {
-        href: '/video-history',
+        href: '/me/video-history?tab=videoHistory',
         label: 'ប្រវត្តិ',
         icon: History,
         disabled: false,
     },
     {
-        href: '/my-content/create-video',
+        href: '/me/create-video',
         label: 'បង្កើតវីដេអូ',
         icon: Plus,
         disabled: false,
@@ -71,7 +71,7 @@ export default function Sidebar({
             )}
 
             {/* Sidebar */}
-            <div className={`fixed lg:static h-full top-14 left-0 z-50 w-64 bg-white shadow-lg overflow-y-auto scrollbar-hide border-r border-gray-200 transform transition-transform duration-300 ease-in-out max-h-[calc(100vh-3.5rem)] ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+            <div className={`fixed lg:static h-full top-14 left-0 z-50 w-64 bg-white overflow-y-auto scrollbar-hide border-r border-gray-200 transform transition-transform duration-300 ease-in-out max-h-[calc(100vh-3.5rem)] ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
                 }`}>
                 {/* Navigation */}
                 <nav className="p-4 space-y-2">

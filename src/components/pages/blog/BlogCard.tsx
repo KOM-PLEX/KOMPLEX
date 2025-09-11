@@ -10,7 +10,7 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <Link href={`/blogs/${post.id}`} key={post.id} className="relative aspect-[16/8] w-full rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">
+    <Link href={`/blogs/${post.id}`} key={post.id} className="relative aspect-[16/8] w-full rounded-2xl overflow-hidden border border-indigo-500/10 transition-all duration-300 cursor-pointer  ">
       {/* Background Image */}
       <img
         src={post.media[0]?.url}

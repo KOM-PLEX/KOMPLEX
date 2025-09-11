@@ -15,18 +15,18 @@ import {
 } from '@/utils/transform';
 
 const grades = [
-    {
-        id: 'grade-9',
-        name: 'ថ្នាក់ទី៩',
-    },
-    {
-        id: 'grade-10',
-        name: 'ថ្នាក់ទី១០',
-    },
-    {
-        id: 'grade-11',
-        name: 'ថ្នាក់ទី១១',
-    },
+    // {
+    //     id: 'grade-9',
+    //     name: 'ថ្នាក់ទី៩',
+    // },
+    // {
+    //     id: 'grade-10',
+    //     name: 'ថ្នាក់ទី១០',
+    // },
+    // {
+    //     id: 'grade-11',
+    //     name: 'ថ្នាក់ទី១១',
+    // },
     {
         id: 'grade-12',
         name: 'ថ្នាក់ទី១២',
@@ -70,43 +70,8 @@ export default function PracticePage() {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Secondary Header */}
-            <div className="fixed w-full top-14 z-40 bg-white/95 backdrop-blur-md border-b border-indigo-500/10">
-                <div className="max-w-full mx-auto px-5 py-3">
-                    <div className="flex items-center justify-between">
 
-                        {/* Search Bar */}
-                        <div className="flex items-center gap-2 flex-1">
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    placeholder="ស្វែងរកលំហាត់"
-                                    className="pl-9 pr-4 py-2 w-full  text-sm bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                                />
-                                <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                            </div>
-                        </div>
-
-                        {/* Navigation Links */}
-                        <div className="flex items-center gap-2 ">
-                            <Link href="/practice/history" className="flex items-center gap-2 p-1 lg:px-3 lg:py-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
-                                <History size={16} />
-                                <span className="hidden lg:inline">ប្រវត្តិ</span>
-                            </Link>
-                            <Link href="/practice/reports" className="flex items-center gap-2 p-1 lg:px-3 lg:py-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
-                                <BarChart3 size={16} />
-                                <span className="hidden lg:inline">របាយការណ៍</span>
-                            </Link>
-                            <Link href="/practice/settings" className="flex items-center gap-2 p-1 lg:px-3 lg:py-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
-                                <Settings size={16} />
-                                <span className="hidden lg:inline">ការកំណត់</span>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="pt-32">
+            <div className="pt-16">
 
                 <div className="max-w-7xl mx-auto px-5 py-8">
                     {/* Page Header with Grade Selection */}

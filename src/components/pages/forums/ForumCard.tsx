@@ -1,9 +1,10 @@
 'use client';
 
-import { MessageCircle, Share, ThumbsUp } from 'lucide-react';
+import { MessageCircle, Share, ThumbsUp, Copy, Check, LinkIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Menu, Transition } from '@headlessui/react';
 import Carousel from '@/components/common/Carousel';
 import { ForumPost } from '@/types/content/forums';
 import { Media } from '@/types/content/media';
@@ -20,6 +21,7 @@ interface ForumCardProps {
 export default function ForumCard({ isFromBasePage, post, onCommentClick, onLikeClick }: ForumCardProps) {
     const [upvoted, setUpvoted] = useState(post.isLiked);
     const [upvoteCount, setUpvoteCount] = useState(post.likeCount);
+    const [copied, setCopied] = useState(false);
     const router = useRouter();
 
     // Helper functions to format backend data
@@ -83,10 +85,16 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
         }
     };
 
-    const handleShareClick = (e: React.MouseEvent) => {
+    const handleCopyLink = async (e: React.MouseEvent) => {
         e.stopPropagation();
-        // Add share functionality here
-        console.log('Share clicked');
+        try {
+            const url = `${window.location.origin}/forums/${post.id}`;
+            await navigator.clipboard.writeText(url);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (error) {
+            console.error('Failed to copy link:', error);
+        }
     };
 
     const handleCardClick = () => {
@@ -96,7 +104,7 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
     }
 
     return (
-        <div className={`bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-0.5 ${isFromBasePage ? 'cursor-pointer' : ''}`} onClick={handleCardClick}>
+        <div className={`bg-white rounded-2xl p-6  border border-indigo-500/10 transition-all duration-300   ${isFromBasePage ? 'cursor-pointer' : ''}`} onClick={handleCardClick}>
             <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-base">
                     {getAvatar(post.username)}
@@ -133,21 +141,57 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
                 {
                     isFromBasePage ? (
                         <Link href={`/forum/${post.id}`} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
-                            <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប ({Math.floor(Math.random() * 20)})</span>
+                            <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប </span>
                         </Link>
                     ) : (
                         <button onClick={handleCommentClick} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
-                            <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប ({Math.floor(Math.random() * 20)})</span>
+                            <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប </span>
                         </button>
                     )
                 }
 
-                <button
-                    onClick={handleShareClick}
-                    className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60"
-                >
-                    <Share className="w-4 h-4" /> <span className="text-gray-500">ចែករំលែក</span>
-                </button>
+                <Menu as="div" className="relative">
+                    <Menu.Button
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60 focus:outline-none"
+                    >
+                        <Share className="w-4 h-4" />
+                        <span className="text-gray-500">ចែករំលែក</span>
+                    </Menu.Button>
+
+                    <Transition
+                        enter="transition duration-100 ease-out"
+                        enterFrom="transform scale-95 opacity-0"
+                        enterTo="transform scale-100 opacity-100"
+                        leave="transition duration-75 ease-out"
+                        leaveFrom="transform scale-100 opacity-100"
+                        leaveTo="transform scale-95 opacity-0"
+                    >
+                        <Menu.Items className="absolute left-0  w-48 bg-white rounded-lg border border-gray-200 shadow-lg z-50 focus:outline-none">
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <button
+                                        onClick={handleCopyLink}
+                                        className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
+                                            }`}
+                                    >
+                                        {copied ? (
+                                            <>
+                                                <Check className="w-4 h-4 text-green-500" />
+                                                <span>បានចម្លង!</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <LinkIcon className="w-4 h-4" />
+                                                <span>ចម្លងតំណ</span>
+                                            </>
+                                        )}
+                                    </button>
+                                )}
+                            </Menu.Item>
+                        </Menu.Items>
+                    </Transition>
+                </Menu>
             </div>
         </div>
     );

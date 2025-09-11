@@ -37,11 +37,7 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
 
     // No exercises state
     if (exercises.length === 0) {
-        return (
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-                <ContentError type="no-results" message="មិនមានលំហាត់សម្រាប់វីដេអូនេះទេ" />
-            </div>
-        );
+        return null;
     }
 
     const currentExercise = exercises[currentExerciseIndex];

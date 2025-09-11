@@ -4,8 +4,8 @@ import api from "@/config/axios";
 // Get user's video history
 export const getUserVideoHistory = async (): Promise<VideoHistory[]> => {
   try {
-    const response = await api.get<VideoHistory[]>(`/me/video-history`);
-    return response.data;
+    const response = await api.get<{ data: VideoHistory[] }>(`/me/video-history`);
+    return response.data.data;
   } catch (error) {
     console.error("Error fetching video history:", error);
     throw new Error("Failed to fetch video history");

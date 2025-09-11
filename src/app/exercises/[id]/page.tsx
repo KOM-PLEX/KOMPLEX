@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ArrowLeft, Clock, AlertCircle, Flag } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { ArrowLeft, Clock, Flag } from "lucide-react";
 import { useParams } from "next/navigation";
 import ExerciseBox from "@/components/pages/exercise/ExerciseBox";
 import PracticeInfo from "@/components/pages/exercise/ExerciseInfo";
@@ -17,6 +17,7 @@ export default function LessonPage() {
     const { id } = params;
 
     const [currentSection, setCurrentSection] = useState(0);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [timeRemaining, setTimeRemaining] = useState(0);
     const [isExamStarted, setIsExamStarted] = useState(false);
     const [examCompleted, setExamCompleted] = useState(false);
@@ -82,6 +83,12 @@ export default function LessonPage() {
         setIsExamStarted(true);
         setTimeRemaining(totalTime * 60); // Convert to seconds
         setExamStartTime(Date.now()); // Track start time
+        setCurrentQuestionIndex(0); // Reset to first question
+    };
+
+    const handleSectionChange = (sectionIndex: number) => {
+        setCurrentSection(sectionIndex);
+        setCurrentQuestionIndex(0); // Always start at question 1 when switching sections
     };
 
     const formatTime = (seconds: number) => {
@@ -184,9 +191,9 @@ export default function LessonPage() {
     };
 
     // Handle time expiry
-    const handleTimeExpiry = async () => {
+    const handleTimeExpiry = useCallback(async () => {
         await completeExam();
-    };
+    }, [examSections, answers, exerciseData, examStartTime]);
 
     // Loading state
     if (loading) {
@@ -324,6 +331,7 @@ export default function LessonPage() {
                             setExamCompleted(false);
                             setAnswers({});
                             setCurrentSection(0);
+                            setCurrentQuestionIndex(0);
                         }}
                     />
                 </div>
@@ -371,10 +379,10 @@ export default function LessonPage() {
                     {examSections.map((section, index) => (
                         <button
                             key={section.id}
-                            onClick={() => setCurrentSection(index)}
-                            className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${index === currentSection
-                                ? 'bg-indigo-600 text-white'
-                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            onClick={() => handleSectionChange(index)}
+                            className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${index === currentSection
+                                ? 'bg-indigo-600 text-white shadow-md'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm'
                                 }`}
                         >
                             {section.title}
@@ -385,15 +393,21 @@ export default function LessonPage() {
                 {/* Current Section */}
                 <ExerciseBox
                     questions={currentSectionData.questions}
+                    currentQuestionIndex={currentQuestionIndex}
                     onAnswerSubmit={handleAnswerSubmit}
+                    onQuestionChange={setCurrentQuestionIndex}
+                    sectionAnswers={answers[`section-${currentSection + 1}`] || {}}
                 />
 
                 {/* Navigation Buttons */}
                 <div className="flex items-center justify-between">
                     <button
-                        onClick={() => setCurrentSection(prev => Math.max(0, prev - 1))}
+                        onClick={() => {
+                            const prevSection = Math.max(0, currentSection - 1);
+                            handleSectionChange(prevSection);
+                        }}
                         disabled={currentSection === 0}
-                        className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                        className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-md disabled:shadow-none"
                     >
                         <ArrowLeft size={20} />
                         ផ្នែកមុន
@@ -403,14 +417,17 @@ export default function LessonPage() {
                         <button
                             onClick={completeExam}
                             disabled={isSubmitting}
-                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed text-white px-8 py-3 rounded-xl font-semibold text-lg transition-colors"
+                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-200 hover:shadow-md disabled:shadow-none"
                         >
                             {isSubmitting ? 'កំពុងបញ្ជូន...' : 'បញ្ចប់វិញ្ញាសា'}
                         </button>
                     ) : (
                         <button
-                            onClick={() => setCurrentSection(prev => prev + 1)}
-                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                            onClick={() => {
+                                const nextSection = currentSection + 1;
+                                handleSectionChange(nextSection);
+                            }}
+                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-md"
                         >
                             ផ្នែកបន្ទាប់
                             <ArrowLeft size={20} className="rotate-180" />

@@ -6,8 +6,9 @@ import { Search, Book, Plus, Star, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { Blog } from '@/types/content/blogs';
 import { getAllBlogs } from '@/services/feed/blogs';
-import BlogSkeleton from '@/components/pages/blog/BlogSkeleton';
+import BlogsSkeleton from '@/components/pages/blog/BlogsSkeleton';
 import BlogError from '@/components/common/ContentError';
+import Sidebar from '@/components/pages/blog/Sidebar';
 
 // ! TO CHANGE TOPIC AND TYPE FILTERING
 
@@ -40,14 +41,32 @@ export default function BlogPage() {
     }, []);
 
     if (isLoading) {
-        return <BlogSkeleton />;
+        return (
+            <div className="min-h-screen bg-gray-50">
+                <div className="pt-20 lg:pt-20 p-5 max-w-7xl mx-auto">
+                    <div className="flex gap-6">
+                        <Sidebar />
+                        {/* Main Content Area */}
+                        <div className="flex-1">
+                            <BlogsSkeleton />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     if (error) {
         return (
             <div className="min-h-screen bg-gray-50">
-                <div className="pt-36 p-5 max-w-7xl mx-auto">
-                    <BlogError type={error === 'រកមិនឃើញប្លុក' ? 'no-results' : 'error'} message={error} />
+                <div className="pt-20 lg:pt-20 p-5 max-w-7xl mx-auto">
+                    <div className="flex gap-6">
+                        <Sidebar />
+                        {/* Main Content Area */}
+                        <div className="flex-1">
+                            <BlogError type={error === 'រកមិនឃើញប្លុក' ? 'no-results' : 'error'} message={error} />
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -72,65 +91,38 @@ export default function BlogPage() {
 
     return (
         <div className="min-h-screen bg-gray-50">
-            {/* Secondary Header */}
-            <div className="fixed w-full top-14 z-40 bg-white/95 backdrop-blur-md border-b border-indigo-500/10">
-                <div className=" mx-auto px-6 py-2">
-                    <div className="flex items-center justify-between gap-6">
-                        {/* Left Section: Search and Filter */}
-                        <div className="flex items-center gap-4 flex-1">
-                            {/* Search Bar */}
-                            <div className="relative flex-1 max-w-md">
-                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                                <input
-                                    type="text"
-                                    placeholder="ស្វែងរកប្លុក..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
-                                />
-                            </div>
-                        </div>
 
-                        {/* Right Section: Action Buttons */}
-                        <div className="flex items-center gap-3">
-                            <Link
-                                href="/my-content/createBlog"
-                                className="flex items-center gap-2 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors"
-                            >
-                                <Plus className="w-4 h-4" />
-                                <span className='hidden lg:block'>បង្កើតប្លុក</span>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             {/* Main Content */}
-            <div className="pt-36 p-5 max-w-7xl mx-auto">
-                {/* Featured Post Section */}
-                <p className='text-2xl font-bold text-left mb-8 flex items-center gap-2'>
-                    <Star className='w-6 h-6 text-indigo-500' />
-                    ប្លុកពេញនិយម
-                </p>
-
-                {featuredPost && (
-                    <div className='mb-8 flex justify-center items-center'>
-                        <BlogCard key={featuredPost.id} post={featuredPost} />
-                    </div>
-                )}
+            <div className="pt-36 lg:pt-20 p-5 max-w-7xl mx-auto">
+                <div className="flex gap-6">
+                    {/* Sidebar */}
+                    <Sidebar />
 
 
-                {/* Blog Posts Grid */}
-                <div className='bg-white rounded-xl shadow-sm overflow-hidden p-6'>
-                    <p className='text-2xl font-bold text-left mb-8  flex items-center gap-2'>
-                        <BookOpen className='w-6 h-6 text-indigo-500' />
-                        ប្លុកដទៃទៀត
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
+                    {/* Main Content Area */}
+                    <div className="flex-1 w-full lg:w-auto">
+                        {/* Featured Post Section */}
+                        <div className="mb-8">
+                            {/* <p className='text-2xl font-bold text-left mb-6 flex items-center gap-2'>
+                                <Star className='w-6 h-6 text-indigo-500' />
+                                ប្លុកពេញនិយម
+                            </p> */}
 
-                        {remainingPosts.map((post: Blog) => (
-                            <BlogCard key={post.id} post={post} />
-                        ))}
+                            {featuredPost && (
+                                <div className='flex justify-center items-center'>
+                                    <BlogCard key={featuredPost.id} post={featuredPost} />
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Blog Posts Grid */}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {remainingPosts.map((post: Blog) => (
+                                <BlogCard key={post.id} post={post} />
+                            ))}
+                        </div>
 
                     </div>
                 </div>

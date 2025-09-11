@@ -324,146 +324,146 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
     };
 
     return (
-        <div className="space-y-6">
-            {/* Title Input */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-                <label className="block text-sm font-medium mb-2 text-gray-700">
-                    ចំណងជើង
-                </label>
-                <input
-                    type="text"
-                    value={formData.title}
-                    onChange={(e) => handleInputChange('title', e.target.value)}
-                    placeholder="សរសេរចំណងជើងវីដេអូរបស់អ្នក..."
-                    className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
-                />
-            </div>
-
-            {/* Video Replacement Section */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-                <label className="block text-sm font-medium mb-2 text-gray-700">
-                    ជំនួសវីដេអូ
-                </label>
-
-                {/* Current Video Display */}
-                <div className="mb-4 p-4 bg-gray-50 rounded-lg">
-                    <div className="flex items-center gap-3 mb-3">
-                        <Play className="w-5 h-5 text-indigo-600" />
-                        <span className="font-medium text-gray-900">វីដេអូបច្ចុប្បន្ន</span>
-                    </div>
-                    <div className="relative">
-                        <video
-                            src={video.videoUrl}
-                            poster={video.thumbnailUrl}
-                            className="w-full h-48 object-cover rounded-lg"
-                            controls
-                        />
-                        <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
-                            {formatDuration(video.duration)}
-                        </div>
-                    </div>
-                    <p className="text-sm text-gray-600 mt-2">
-                        ទំហំ: {video.title} • រយៈពេល: {formatDuration(video.duration)}
-                    </p>
+        <div className="bg-white rounded-2xl shadow-sm p-8">
+            <div className="space-y-8">
+                {/* Title Input */}
+                <div>
+                    <label className="block text-sm font-medium mb-3 text-gray-700">
+                        ចំណងជើង
+                    </label>
+                    <input
+                        type="text"
+                        value={formData.title}
+                        onChange={(e) => handleInputChange('title', e.target.value)}
+                        placeholder="សរសេរចំណងជើងវីដេអូរបស់អ្នក..."
+                        className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
+                    />
                 </div>
 
-                {/* New Video Upload */}
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-indigo-400 transition-colors duration-200">
-                    {!selectedVideo ? (
-                        <div>
-                            <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                            <p className="text-gray-600 mb-2">អូសវីដេអូឬជ្រើសរើសឯកសារ</p>
-                            <p className="text-sm text-gray-500 mb-4">
-                                គាំទ្រទម្រង់ MP4, MOV, AVI • ទំហំអតិបរមា 100MB
-                            </p>
-                            <label className="cursor-pointer inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">
-                                <Upload className="w-4 h-4 mr-2" />
-                                ជ្រើសរើសវីដេអូ
-                                <input
-                                    type="file"
-                                    accept="video/*"
-                                    onChange={handleVideoUpload}
-                                    className="hidden"
-                                />
-                            </label>
+                {/* Video Replacement Section */}
+                <div>
+                    <label className="block text-sm font-medium mb-4 text-gray-700">
+                        ជំនួសវីដេអូ
+                    </label>
+
+                    {/* Current Video Display */}
+                    <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                        <div className="flex items-center gap-3 mb-4">
+                            <Play className="w-5 h-5 text-indigo-600" />
+                            <span className="font-medium text-gray-900">វីដេអូបច្ចុប្បន្ន</span>
                         </div>
-                    ) : (
-                        <div>
-                            <div className="relative mb-4">
-                                <video
-                                    src={videoPreview || ''}
-                                    className="w-full h-48 object-cover rounded-lg"
-                                    controls
-                                />
-                                <button
-                                    onClick={removeVideo}
-                                    className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
-                                >
-                                    <Trash className="w-4 h-4" />
-                                </button>
+                        <div className="relative">
+                            <video
+                                src={video.videoUrl}
+                                poster={video.thumbnailUrl}
+                                className="w-full aspect-video object-cover rounded-lg"
+                                controls
+                            />
+                            <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
+                                {formatDuration(video.duration)}
                             </div>
-                            <p className="text-sm text-gray-600 mb-2">
-                                ឯកសារថ្មី: {selectedVideo.name}
-                            </p>
-                            <p className="text-sm text-gray-500">
-                                ទំហំ: {(selectedVideo.size / (1024 * 1024)).toFixed(2)} MB
-                            </p>
+                        </div>
+                        <p className="text-sm text-gray-600 mt-3">
+                            ទំហំ: {video.title} • រយៈពេល: {formatDuration(video.duration)}
+                        </p>
+                    </div>
+
+                    {/* New Video Upload */}
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-indigo-400 transition-colors duration-200">
+                        {!selectedVideo ? (
+                            <div>
+                                <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                                <p className="text-gray-600 mb-2">អូសវីដេអូឬជ្រើសរើសឯកសារ</p>
+                                <p className="text-sm text-gray-500 mb-4">
+                                    គាំទ្រទម្រង់ MP4, MOV, AVI • ទំហំអតិបរមា 100MB
+                                </p>
+                                <label className="cursor-pointer inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">
+                                    <Upload className="w-4 h-4 mr-2" />
+                                    ជ្រើសរើសវីដេអូ
+                                    <input
+                                        type="file"
+                                        accept="video/*"
+                                        onChange={handleVideoUpload}
+                                        className="hidden"
+                                    />
+                                </label>
+                            </div>
+                        ) : (
+                            <div>
+                                <div className="relative mb-4">
+                                    <video
+                                        src={videoPreview || ''}
+                                        className="w-full aspect-video object-cover rounded-lg"
+                                        controls
+                                    />
+                                    <button
+                                        onClick={removeVideo}
+                                        className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-200"
+                                    >
+                                        <Trash className="w-4 h-4" />
+                                    </button>
+                                </div>
+                                <p className="text-sm text-gray-600 mb-2">
+                                    ឯកសារថ្មី: {selectedVideo.name}
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                    ទំហំ: {(selectedVideo.size / (1024 * 1024)).toFixed(2)} MB
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                    {error && (
+                        <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                            <p className="text-red-600 text-sm">{error}</p>
                         </div>
                     )}
                 </div>
 
-                {error && (
-                    <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-                        <p className="text-red-600 text-sm">{error}</p>
+                {/* Description */}
+                <div>
+                    <label className="block text-sm font-medium mb-3 text-gray-700">
+                        មាតិកា
+                    </label>
+                    <textarea
+                        value={formData.description}
+                        onChange={(e) => handleInputChange('description', e.target.value)}
+                        placeholder="សរសេរមាតិកាវីដេអូរបស់អ្នក..."
+                        className="w-full p-4 rounded-lg bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
+                        rows={8}
+                    />
+                </div>
+
+                {/* MCQ Exercises */}
+                <div>
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-lg font-semibold text-gray-900">លំហាត់</h3>
+                        <span className="text-sm text-gray-500">(ជម្រើស)</span>
+                    </div>
+                    <ExerciseCreationBox
+                        questions={formData.exercises}
+                        onQuestionsChange={handleExercisesChange}
+                    />
+                </div>
+
+                {/* Upload Progress */}
+                {isSaving && (
+                    <div className="p-6 bg-gray-50 rounded-lg">
+                        <div className="flex items-center justify-between mb-3">
+                            <span className="text-sm font-medium text-gray-700">កំពុងរក្សាទុក...</span>
+                            <span className="text-sm text-gray-500 font-medium">{uploadProgress}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-3">
+                            <div
+                                className="bg-indigo-600 h-3 rounded-full transition-all duration-300"
+                                style={{ width: `${uploadProgress}%` }}
+                            ></div>
+                        </div>
                     </div>
                 )}
-            </div>
 
-            {/* Description */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-                <label className="block text-sm font-medium mb-2 text-gray-700">
-                    មាតិកា
-                </label>
-                <textarea
-                    value={formData.description}
-                    onChange={(e) => handleInputChange('description', e.target.value)}
-                    placeholder="សរសេរមាតិកាវីដេអូរបស់អ្នក..."
-                    className="w-full p-4 rounded-lg bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
-                    rows={8}
-                />
-            </div>
-
-            {/* MCQ Exercises */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-                <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900">លំហាត់</h3>
-                    <span className="text-sm text-gray-500">(ជម្រើស)</span>
-                </div>
-                <ExerciseCreationBox
-                    questions={formData.exercises}
-                    onQuestionsChange={handleExercisesChange}
-                />
-            </div>
-
-            {/* Upload Progress */}
-            {isSaving && (
-                <div className="bg-white rounded-2xl shadow-sm p-6">
-                    <div className="flex items-center justify-between mb-3">
-                        <span className="text-sm font-medium text-gray-700">កំពុងរក្សាទុក...</span>
-                        <span className="text-sm text-gray-500 font-medium">{uploadProgress}%</span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3">
-                        <div
-                            className="bg-indigo-600 h-3 rounded-full transition-all duration-300"
-                            style={{ width: `${uploadProgress}%` }}
-                        ></div>
-                    </div>
-                </div>
-            )}
-
-            {/* Action Buttons */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-                <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                {/* Action Buttons */}
+                <div className="flex justify-end gap-3 pt-6 border-t border-gray-200">
                     <button
                         onClick={() => {
                             resetEditForm();

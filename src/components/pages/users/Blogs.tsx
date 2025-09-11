@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Eye } from 'lucide-react';
 import ContentError from '@/components/common/ContentError';
-import BlogSkeleton from '@/components/pages/blog/BlogSkeleton';
+import BlogSkeleton from '@/components/pages/blog/BlogsSkeleton';
 import { getUserBlogs } from '@/services/user/blogs';
 
 

@@ -7,7 +7,8 @@ import Sidebar from '@/components/pages/me/Sidebar';
 import ContentError from '@/components/common/ContentError';
 import { Blog } from '@/types/content/blogs';
 import { getUserBlogs } from '@/services/me/blogs';
-import BlogSkeleton from '@/components/pages/blog/BlogSkeleton';
+import BlogSkeleton from '@/components/pages/blog/BlogsSkeleton';
+import MeSkeleton from '@/components/pages/me/MeSkeleton';
 
 export default function MyBlogs() {
     const [blogPosts, setBlogPosts] = useState<Blog[]>([]);
@@ -38,30 +39,10 @@ export default function MyBlogs() {
 
     if (isLoading) {
         return (
-            <div className="flex min-h-screen bg-gray-50">
-                <Sidebar />
-                <div className="flex-1 lg:ml-64  lg:pt-20">
-                    <BlogSkeleton />
-                </div>
-            </div>
+            <MeSkeleton />
         )
     }
 
-    if (error) {
-        return (
-            <div className="flex min-h-screen bg-gray-50">
-                <Sidebar />
-                <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                    <div className="p-6">
-                        <ContentError
-                            type={error === 'អ្នកមិនទាន់មានប្លុកណាមួយទេ' ? 'no-results' : 'error'}
-                            message={error}
-                        />
-                    </div>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className="flex min-h-screen bg-gray-50">
@@ -119,7 +100,12 @@ export default function MyBlogs() {
                             </div>
                         </div>
                         <div className="p-6">
-                            {blogPosts.length > 0 ? (
+                            {error ? (
+                                <ContentError
+                                    type={error === 'អ្នកមិនទាន់មានប្លុកទេ' ? 'no-results' : 'error'}
+                                    message={error}
+                                />
+                            ) : blogPosts.length > 0 ? (
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {blogPosts.map((post) => (
                                         <Link key={post.id} href={`/me/blogs/${post.id}`} className="relative h-72 rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">

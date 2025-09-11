@@ -74,7 +74,7 @@ export default function PracticeInfo({ examTitle, examSections, totalTime, onSta
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <Link
-                    href="/exercise"
+                    href="/exercises"
                     className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all hover:shadow-lg flex items-center justify-center gap-2"
                 >
                     <ArrowLeft size={20} />

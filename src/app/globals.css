@@ -21,10 +21,9 @@
     --foreground: black;
   }
 }
-html{
+html {
   scroll-behavior: smooth;
 }
-
 
 body {
   background: var(--background);
@@ -33,7 +32,6 @@ body {
     sans-serif;
   font-weight: 500;
   line-height: 1.6;
-  
 }
 
 /* English text styling - use Inter for better English rendering */
@@ -82,41 +80,45 @@ a {
 
 .prose h1 {
   font-size: 2rem;
-  font-weight: 700;
-  margin-top: 2rem;
+  font-weight: 800;
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
 .prose h2 {
   font-size: 1.75rem;
-  font-weight: 600;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .prose h3 {
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 1rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 1rem;
 }
 
 .prose h4 {
   font-size: 1.25rem;
-  font-weight: 600;
-  margin-top: 0.75rem;
-  margin-bottom: 0.25rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
 }
 
-/* Headings spacing */
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4 {
-  margin-top: 2rem;
+.prose h5 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
+.prose h6 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 /* Lists spacing */
 .prose ul,
 .prose ol {
@@ -124,9 +126,14 @@ a {
   padding-left: 1.5rem; /* more indentation */
 }
 
-/* List items spacing */
-.prose li {
-  margin-bottom: 0.75rem;
+.prose hr {
+  display: none;
+}
+
+.prose p {
+  font-weight: 500;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* LaTeX display math spacing */

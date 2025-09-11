@@ -8,9 +8,10 @@ import { Eye, MessageCircle, Heart, ThumbsUp } from 'lucide-react';
 
 interface ForumCardProps {
     post: ForumPost;
+    isFromMePage: boolean;
 }
 
-export default function ForumCard({ post }: ForumCardProps) {
+export default function ForumCard({ post, isFromMePage }: ForumCardProps) {
     const router = useRouter();
     // Helper functions to format backend data
     const getTimeAgo = (dateString: string): string => {
@@ -38,11 +39,13 @@ export default function ForumCard({ post }: ForumCardProps) {
     };
 
     const handleCardClick = () => {
-        router.push(`/me/forums/${post.id}`);
+        if (isFromMePage) {
+            router.push(`/me/forums/${post.id}`);
+        }
     }
 
     return (
-        <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-0.5 cursor-pointer" onClick={handleCardClick}>
+        <div className={`bg-white rounded-2xl p-6  border border-indigo-500/10 transition-all duration-300  ${isFromMePage ? 'cursor-pointer' : 'cursor-default'}`} onClick={handleCardClick}>
             <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-base">
                     {getAvatar(post.username)}

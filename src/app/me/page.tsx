@@ -173,10 +173,6 @@ export default function MyContent() {
                                     <BookOpen className="w-6 h-6 text-indigo-600" />
                                 </div>
                             </div>
-                            <div className="mt-4 flex items-center text-sm text-gray-500">
-                                <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
-                                <span>+2 ក្នុងខែនេះ</span>
-                            </div>
                         </div>
 
                         {/* Videos */}
@@ -190,10 +186,7 @@ export default function MyContent() {
                                     <Video className="w-6 h-6 text-green-600" />
                                 </div>
                             </div>
-                            <div className="mt-4 flex items-center text-sm text-gray-500">
-                                <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
-                                <span>+5 ក្នុងខែនេះ</span>
-                            </div>
+
                         </div>
 
                         {/* Exercises */}
@@ -207,10 +200,7 @@ export default function MyContent() {
                                     <Pencil className="w-6 h-6 text-purple-600" />
                                 </div>
                             </div>
-                            <div className="mt-4 flex items-center text-sm text-gray-500">
-                                <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
-                                <span>+8 ក្នុងខែនេះ</span>
-                            </div>
+
                         </div>
 
                         {/* Forums */}
@@ -223,10 +213,6 @@ export default function MyContent() {
                                 <div className="p-3 bg-blue-100 rounded-lg">
                                     <MessageSquare className="w-6 h-6 text-blue-600" />
                                 </div>
-                            </div>
-                            <div className="mt-4 flex items-center text-sm text-gray-500">
-                                <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
-                                <span>+3 ក្នុងខែនេះ</span>
                             </div>
                         </div>
                     </div>

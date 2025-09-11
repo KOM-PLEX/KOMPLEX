@@ -213,7 +213,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
         <div className="max-w-7xl mx-auto p-5">
             {/* Header */}
             <div className="mb-6 flex items-center justify-between">
-                <Link href="/my-content/blogs" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
+                <Link href="/me/blogs" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
                     <ArrowLeft className="w-4 h-4" />
                     ត្រឡប់ទៅប្លុករបស់ខ្ញុំ
                 </Link>
@@ -249,7 +249,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                         value={title}
                         onChange={handleTitleChange}
                         placeholder="សរសេរចំណងជើងប្លុករបស់អ្នក..."
-                        className="w-full px-4 py-3 bg-indigo-50 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
+                        className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
                         maxLength={300}
                     />
                     <div className="flex justify-between items-center mt-2">
@@ -260,8 +260,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                 </div>
 
                 {/* Blog Type and Topic Selection */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                    {/* Blog Type Selection */}
+                {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                     <div className="lg:bg-white bg-gray-50 rounded-2xl lg:shadow-sm lg:p-6">
                         <div className="flex items-center justify-between mb-6 pb-4">
                             <div className="text-indigo-600 font-semibold text-xl flex gap-3 items-center">
@@ -270,7 +269,6 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                             </div>
                         </div>
                         <div className="space-y-6">
-                            {/* Blog Type Input */}
                             <div className="relative">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     ប្រភេទប្លុក
@@ -294,7 +292,6 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                                 </div>
                             </div>
 
-                            {/* Blog Type Suggestions */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     អនុសាសន៍
@@ -313,7 +310,6 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                                 </div>
                             </div>
 
-                            {/* Selected Blog Type Tags */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     ប្រភេទដែលបានជ្រើសរើស
@@ -338,7 +334,6 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                         </div>
                     </div>
 
-                    {/* Topic Selection */}
                     <div className="lg:bg-white bg-gray-50 rounded-2xl lg:shadow-sm lg:p-6">
                         <div className="flex items-center justify-between mb-6 pb-4">
                             <div className="text-indigo-600 font-semibold text-xl flex gap-3 items-center">
@@ -347,7 +342,6 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                             </div>
                         </div>
                         <div className="space-y-6">
-                            {/* Topic Input */}
                             <div className="relative">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     ប្រធានបទ
@@ -371,7 +365,6 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                                 </div>
                             </div>
 
-                            {/* Topic Suggestions */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     អនុសាសន៍
@@ -390,7 +383,6 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                                 </div>
                             </div>
 
-                            {/* Selected Topic Tags */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     ប្រធានបទដែលបានជ្រើសរើស
@@ -414,7 +406,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Image Upload Area */}
                 <div className="mb-6">
@@ -478,7 +470,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                         value={bodyText}
                         onChange={(e) => setBodyText(e.target.value)}
                         placeholder="សរសេរមាតិកាប្លុករបស់អ្នក..."
-                        className="w-full p-4 rounded-lg bg-indigo-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
+                        className="w-full p-4 rounded-lg bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
                         rows={12}
                     />
                 </div>

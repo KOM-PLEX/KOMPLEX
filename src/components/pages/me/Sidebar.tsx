@@ -19,12 +19,12 @@ const navItems = [
     },
 
     {
-        label: 'ប្លុក',
+        label: 'អត្ថបទ',
         href: '/me/blogs',
         icon: BookOpen
     },
     {
-        label: 'វេទិកា',
+        label: 'ពិភាក្សា',
         href: '/me/forums',
         icon: MessageSquare
     },

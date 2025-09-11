@@ -14,6 +14,7 @@ import {
 import { ForumPost } from '@/types/content/forums';
 import { getUserForums } from '@/services/me/forums';
 import ForumCard from '@/components/pages/me/forums/ForumCard';
+import MeSkeleton from '@/components/pages/me/MeSkeleton';
 
 export default function MyForums() {
     const [forumPosts, setForumPosts] = useState<ForumPost[]>([]);
@@ -40,7 +41,7 @@ export default function MyForums() {
     let stats = {
         total: 0,
         totalViews: 0,
-        totalComments: 0,
+        // totalComments: 0,
         totalLikes: 0,
     };
 
@@ -48,74 +49,29 @@ export default function MyForums() {
         stats = {
             total: forumPosts.length,
             totalViews: forumPosts.reduce((acc, p) => acc + p.viewCount, 0),
-            totalComments: forumPosts.reduce((acc, p) => acc + p.commentCount, 0),
+            // totalComments: forumPosts.reduce((acc, p) => acc + p.commentCount, 0),
             totalLikes: forumPosts.reduce((acc, p) => acc + p.likeCount, 0),
         };
     } else {
         stats = {
             total: 0,
             totalViews: 0,
-            totalComments: 0,
+            // totalComments: 0,
             totalLikes: 0,
         };
     }
 
     if (isLoading) {
         return (
-            <div className="flex min-h-screen bg-gray-50">
+            <div className='flex min-h-screen bg-gray-50'>
                 <Sidebar />
-                <div className="flex-1 ml-64 pt-20">
-                    <div className="p-6">
-                        <div className="animate-pulse space-y-6">
-                            <div className="h-8 bg-gray-200 rounded w-1/3"></div>
-                            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                                {[...Array(4)].map((_, i) => (
-                                    <div key={i} className="h-24 bg-gray-200 rounded"></div>
-                                ))}
-                            </div>
-                            <div className="h-64 bg-gray-200 rounded"></div>
-                        </div>
-                    </div>
+                <div className='flex-1 '>
+                    <MeSkeleton />
                 </div>
             </div>
         );
     }
 
-    // Handle all error states at the top level
-    if (error) {
-        return (
-            <div className="flex min-h-screen bg-gray-50">
-                <Sidebar />
-                <div className="flex-1 ml-64 pt-20">
-                    <div className="p-6">
-                        <div className="mb-8">
-                            <h1 className="text-3xl font-bold text-gray-900 mb-2">វេទិការបស់ខ្ញុំ</h1>
-                            <p className="text-gray-600">គ្រប់គ្រងអត្ថបទនិងការសន្ទនារបស់អ្នក</p>
-                        </div>
-                        <ContentError type="error" message={error} />
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    // Handle no posts state
-    if (!forumPosts || forumPosts.length === 0) {
-        return (
-            <div className="flex min-h-screen bg-gray-50">
-                <Sidebar />
-                <div className="flex-1 ml-64 pt-20">
-                    <div className="p-6">
-                        <div className="mb-8">
-                            <h1 className="text-3xl font-bold text-gray-900 mb-2">វេទិការបស់ខ្ញុំ</h1>
-                            <p className="text-gray-600">គ្រប់គ្រងអត្ថបទនិងការសន្ទនារបស់អ្នក</p>
-                        </div>
-                        <ContentError type="no-results" message="អ្នកមិនទាន់មានអត្ថបទវេទិកាណាមួយទេ" />
-                    </div>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className="flex min-h-screen bg-gray-50">
@@ -123,7 +79,7 @@ export default function MyForums() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
+            <div className="flex-1 lg:ml-64 pt-32 lg:pt-16">
                 <div className="p-6">
                     {/* Header */}
                     <div className="mb-8">
@@ -132,7 +88,7 @@ export default function MyForums() {
                     </div>
 
                     {/* Stats Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
@@ -157,7 +113,7 @@ export default function MyForums() {
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        {/* <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ចម្លើយសរុប</p>
@@ -167,16 +123,16 @@ export default function MyForums() {
                                     <MessageCircle className="w-6 h-6 text-green-600" />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ចូលចិត្តសរុប</p>
-                                    <p className="text-2xl font-bold text-red-600">{stats.totalLikes}</p>
+                                    <p className="text-2xl font-bold text-indigo-600">{stats.totalLikes}</p>
                                 </div>
-                                <div className="p-3 bg-red-100 rounded-lg">
-                                    <Heart className="w-6 h-6 text-red-600" />
+                                <div className="p-3 bg-indigo-100 rounded-lg">
+                                    <Heart className="w-6 h-6 text-indigo-600" />
                                 </div>
                             </div>
                         </div>
@@ -217,11 +173,17 @@ export default function MyForums() {
                             </div>
                         </div>
                         <div className="p-6">
-                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                                {forumPosts.map((post) => (
-                                    <ForumCard key={post.id} post={post} />
-                                ))}
-                            </div>
+                            {error ? (
+                                <ContentError type="error" message={error} />
+                            ) : !forumPosts || forumPosts.length === 0 ? (
+                                <ContentError type="no-results" message="អ្នកមិនទាន់មានអត្ថបទវេទិកាណាមួយទេ" />
+                            ) : (
+                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                                    {forumPosts.map((post) => (
+                                        <ForumCard key={post.id} post={post} isFromMePage={true} />
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
