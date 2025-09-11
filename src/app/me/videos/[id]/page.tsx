@@ -12,6 +12,7 @@ import EditVideo from '@/components/pages/me/videos/EditVideo';
 import ContentError from '@/components/common/ContentError';
 import Exercise from '@/components/pages/videos/Exercise';
 import type { VideoPost } from '@/types/content/videos';
+import { useAuth } from '@/hooks/useAuth';
 
 // Skeleton Loading Component for Display Mode
 function VideoPostSkeleton() {
@@ -65,6 +66,7 @@ function VideoPostSkeleton() {
 }
 
 export default function VideoPost() {
+    const { user, loading: authLoading } = useAuth();
     const params = useParams();
     const router = useRouter();
     const id = params.id as string;
@@ -76,26 +78,33 @@ export default function VideoPost() {
     const [isCommentInputActive, setIsCommentInputActive] = useState(false);
     const [activeTab, setActiveTab] = useState<'comments' | 'exercise'>('comments');
 
+    // Redirect to auth if not authenticated
+    useEffect(() => {
+        if (!authLoading && !user) {
+            router.push('/auth');
+        }
+    }, [user, authLoading, router]);
+
     // Fetch existing video data
     useEffect(() => {
-        const fetchVideo = async () => {
-            try {
-                setIsLoading(true);
-                setError(null);
-                const video = await getVideoById(id);
-                setVideoPost(video);
-            } catch (error) {
-                console.error('Error fetching video:', error);
-                setError('មានបញ្ហាកើតឡើងពេលផ្ទុកវីដេអូ សូមព្យាយាមម្តងទៀត');
-            } finally {
-                setIsLoading(false);
-            }
-        };
+        if (id && user) {
+            const fetchVideo = async () => {
+                try {
+                    setIsLoading(true);
+                    setError(null);
+                    const video = await getVideoById(id);
+                    setVideoPost(video);
+                } catch (error) {
+                    console.error('Error fetching video:', error);
+                    setError('មានបញ្ហាកើតឡើងពេលផ្ទុកវីដេអូ សូមព្យាយាមម្តងទៀត');
+                } finally {
+                    setIsLoading(false);
+                }
+            };
 
-        if (id) {
             fetchVideo();
         }
-    }, [id]);
+    }, [id, user]);
 
     const handleDelete = async () => {
         if (!confirm('តើអ្នកប្រាកដជាចង់លុបវីដេអូនេះមែនទេ?')) {
@@ -147,14 +156,19 @@ export default function VideoPost() {
         });
     };
 
-    if (isLoading) {
-
+    // Show loading while checking auth or fetching data
+    if (authLoading || isLoading) {
         return <div className="flex min-h-screen transition-colors duration-200 bg-gray-50">
             <Sidebar />
             <div className="flex-1 ml-64 pt-16">
                 <VideoPostSkeleton />
             </div>
         </div>;
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
     }
 
     if (error || !videoPost) {

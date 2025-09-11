@@ -8,31 +8,45 @@ import Link from 'next/link';
 import { Mail, Calendar, Phone, User as UserIcon, AtSign, ShieldCheck, ShieldAlert, UserCircle, Settings } from 'lucide-react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function ProfilePage() {
+    const { user: authUser, loading: authLoading } = useAuth();
+    const router = useRouter();
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Redirect to auth if not authenticated
     useEffect(() => {
-        const fetchProfile = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                const userData = await getCurrentUser();
-                setUser(userData);
-            } catch (error) {
-                console.error('Error fetching profile:', error);
-                setError('មានបញ្ហាក្នុងការទាញយកព័ត៌មានប្រវត្តិ។ សូមព្យាយាមម្តងទៀត។');
-                setUser(null);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProfile();
-    }, []);
+        if (!authLoading && !authUser) {
+            router.push('/auth');
+        }
+    }, [authUser, authLoading, router]);
 
-    if (loading) {
+    useEffect(() => {
+        if (authUser) {
+            const fetchProfile = async () => {
+                try {
+                    setLoading(true);
+                    setError(null);
+                    const userData = await getCurrentUser();
+                    setUser(userData);
+                } catch (error) {
+                    console.error('Error fetching profile:', error);
+                    setError('មានបញ្ហាក្នុងការទាញយកព័ត៌មានប្រវត្តិ។ សូមព្យាយាមម្តងទៀត។');
+                    setUser(null);
+                } finally {
+                    setLoading(false);
+                }
+            };
+            fetchProfile();
+        }
+    }, [authUser]);
+
+    // Show loading while checking auth or fetching data
+    if (authLoading || loading) {
         return (
             <div className="flex min-h-screen bg-gray-50">
                 <Sidebar />
@@ -77,6 +91,11 @@ export default function ProfilePage() {
                 </div>
             </div>
         );
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!authUser) {
+        return null;
     }
 
     // Handle all error states at the top level

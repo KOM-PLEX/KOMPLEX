@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/pages/me/Sidebar';
 import {
     BookOpen,
@@ -12,35 +13,48 @@ import axios from 'axios';
 import { ExerciseDashboard } from '@/types/user-content/exercise';
 import ExerciseHistoryComponent from '@/components/pages/me/exercises/ExerciseHistory';
 import ExerciseReportComponent from '@/components/pages/me/exercises/ExerciseReport';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function MyExercises() {
+    const { user, loading: authLoading } = useAuth();
+    const router = useRouter();
     const [dashboard, setDashboard] = useState<ExerciseDashboard | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [activeTab, setActiveTab] = useState<'history' | 'report'>('history');
 
+    // Redirect to auth if not authenticated
+    useEffect(() => {
+        if (!authLoading && !user) {
+            router.push('/auth');
+        }
+    }, [user, authLoading, router]);
+
     // Fetch dashboard and history data
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setIsLoading(true);
+        if (user) {
+            const fetchData = async () => {
+                try {
+                    setIsLoading(true);
 
-                // Fetch dashboard data
-                const dashboardResponse = await axios.get<ExerciseDashboard>('http://localhost:6969/api/me/exercises/dashboard');
-                setDashboard(dashboardResponse.data);
+                    // Fetch dashboard data
+                    const dashboardResponse = await axios.get<ExerciseDashboard>('http://localhost:6969/api/me/exercises/dashboard');
+                    setDashboard(dashboardResponse.data);
 
-            } catch (error) {
-                console.error('Error fetching exercise data:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+                } catch (error) {
+                    console.error('Error fetching exercise data:', error);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
 
-        fetchData();
-    }, []); // Empty dependency array ensures this only runs once on mount
+            fetchData();
+        }
+    }, [user]); // Empty dependency array ensures this only runs once on mount
 
 
 
-    if (isLoading) {
+    // Show loading while checking auth or fetching data
+    if (authLoading || isLoading) {
         return (
             <div className="flex min-h-screen bg-gray-50">
                 <Sidebar />
@@ -59,6 +73,11 @@ export default function MyExercises() {
                 </div>
             </div>
         );
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
     }
 
     return (

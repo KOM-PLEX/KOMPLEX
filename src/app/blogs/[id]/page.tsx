@@ -10,6 +10,7 @@ import { getBlogById } from '@/services/feed/blogs';
 import { toggleBlogSave } from '@/services/me/blogs';
 import { BlogPostSkeleton } from '@/components/pages/blog/BlogPostSkeleton';
 import ContentError from '@/components/common/ContentError';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function BlogPost() {
     const params = useParams();
@@ -20,6 +21,8 @@ export default function BlogPost() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    const { user, openLoginModal } = useAuth()
 
     useEffect(() => {
 
@@ -40,12 +43,15 @@ export default function BlogPost() {
 
         if (id) {
             fetchBlogPost();
-        } else {
         }
     }, [id]);
 
     const handleToggleSave = async () => {
         try {
+            if (!user) {
+                openLoginModal();
+                return;
+            }
             await toggleBlogSave(id, isSaved);
             setIsSaved(!isSaved);
         } catch (err) {

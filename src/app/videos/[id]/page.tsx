@@ -13,6 +13,7 @@ import { getAllVideos } from '@/services/feed/videos';
 import { toggleVideoLike, toggleVideoSave } from '@/services/me/videos';
 import { getVideoById } from '@/services/feed/videos';
 import VideoDescription from '@/components/pages/videos/VideoDescription';
+import { useAuth } from '@/hooks/useAuth';
 
 
 // API function to fetch all videos for recommendations
@@ -45,6 +46,9 @@ export default function VideoDetailPage() {
     const [error, setError] = useState<string | null>(null);
     const [recommendedVideos, setRecommendedVideos] = useState<VideoPost[]>([]);
     const [videosLoading, setVideosLoading] = useState(false);
+
+    const { user, openLoginModal } = useAuth();
+
     useEffect(() => {
         const loadAllData = async () => {
             if (!videoId || isNaN(videoId)) {
@@ -90,6 +94,10 @@ export default function VideoDetailPage() {
 
     const handleLike = async (videoId: number, isLiked: boolean, video: VideoPost) => {
         try {
+            if (!user) {
+                openLoginModal();
+                return;
+            }
             await toggleVideoLike(videoId.toString(), isLiked);
             setVideo({ ...video!, isLike: !isLiked, likeCount: isLiked ? video.likeCount - 1 : video.likeCount + 1 });
         } catch (error) {
@@ -99,6 +107,10 @@ export default function VideoDetailPage() {
 
     const handleSave = async (videoId: number, isSaved: boolean, video: VideoPost) => {
         try {
+            if (!user) {
+                openLoginModal();
+                return;
+            }
             await toggleVideoSave(videoId.toString(), isSaved);
             setVideo({ ...video!, isSave: !isSaved });
         } catch (error) {

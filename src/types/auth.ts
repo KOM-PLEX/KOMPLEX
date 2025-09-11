@@ -28,7 +28,7 @@ export interface User {
   
   // Social login data interface
   export interface SocialLoginData {
-    provider: "google" | "facebook" | "microsoft";
+    provider: "google" | "github" | "microsoft";
     email: string;
     username: string;
     uid: string;

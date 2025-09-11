@@ -11,6 +11,7 @@ import { useParams } from 'next/navigation';
 import { ForumPost } from '@/types/content/forums';
 import { getForumById } from '@/services/feed/forums';
 import { toggleForumLike } from '@/services/me/forums';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function ForumDiscussion() {
     const params = useParams();
@@ -19,6 +20,8 @@ export default function ForumDiscussion() {
     const [post, setPost] = useState<ForumPost | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const { user, openLoginModal } = useAuth();
+
 
     const fetchData = useCallback(async () => {
         try {
@@ -41,6 +44,10 @@ export default function ForumDiscussion() {
 
     const handleLikeClick = async (postId: number, isLiked: boolean) => {
         try {
+            if (!user) {
+                openLoginModal();
+                return;
+            }
             await toggleForumLike(postId.toString(), isLiked);
             setPost(prev => prev ? { ...prev, likeCount: isLiked ? prev.likeCount - 1 : prev.likeCount + 1, isLiked: !isLiked } : null);
         } catch (error) {

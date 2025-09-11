@@ -10,6 +10,7 @@ import { toggleVideoCommentLike } from '@/services/me/video-comments';
 import { getForumReplies } from '@/services/feed/forum-replies';
 import { getVideoReplies } from '@/services/feed/video-replies';
 import { createVideoReply } from '@/services/me/video-replies';
+import { useAuth } from '@/hooks/useAuth';
 
 interface CommentComponentProps {
     comment: ForumComment | VideoComment;
@@ -20,6 +21,8 @@ export default function CommentComponent({
     comment,
     commentType,
 }: CommentComponentProps) {
+    const { user, openLoginModal } = useAuth();
+
     const [commentUpvoted, setCommentUpvoted] = useState(comment.isLike || false);
     const [likeCount, setLikeCount] = useState('likeCount' in comment ? comment.likeCount : 0);
     const [isReplying, setIsReplying] = useState(false);
@@ -61,6 +64,10 @@ export default function CommentComponent({
 
     // Handle comment like/unlike
     const handleCommentLike = async () => {
+        if (!user) {
+            openLoginModal();
+            return;
+        }
         if (isLiking) return; // Prevent multiple clicks
 
         setIsLiking(true);
@@ -88,6 +95,10 @@ export default function CommentComponent({
 
     const handleSubmitReply = async (replyToId: number, description: string) => {
         try {
+            if (!user) {
+                openLoginModal();
+                return;
+            }
             if (commentType === 'forum') {
                 await createForumReply(replyToId, description);
             } else {
@@ -104,6 +115,10 @@ export default function CommentComponent({
     };
 
     const handleSubmitDirectReply = () => {
+        if (!user) {
+            openLoginModal();
+            return;
+        }
         if (replyText.trim()) {
             handleSubmitReply(comment.id, replyText.trim());
         }

@@ -5,6 +5,7 @@ import { Send, Bot, ChevronUp, Copy, Check, X, Loader, RefreshCw, Square } from 
 import { Listbox, Transition } from '@headlessui/react';
 import { callAiAndWriteToHistory } from '@/services/me/ai';
 import MarkdownRenderer from '@/components/helper/MarkDownRenderer';
+import { useAuth } from '@/hooks/useAuth';
 
 interface Message {
     id: string;
@@ -40,6 +41,13 @@ export default function AIChat() {
     const streamingRafRef = useRef<number | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    const { user, openLoginModal } = useAuth();
+
+
+    useEffect(() => {
+        if (!user) openLoginModal();
+    }, []);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });

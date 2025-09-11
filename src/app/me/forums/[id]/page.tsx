@@ -12,8 +12,10 @@ import { ForumPost } from '@/types/content/forums';
 import { getForumById } from '@/services/feed/forums';
 import { deleteForum } from '@/services/me/forums';
 import Sidebar from '@/components/pages/me/Sidebar';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function MyForumDetail() {
+    const { user, loading: authLoading } = useAuth();
     const params = useParams();
     const router = useRouter();
     const id = params.id as string;
@@ -23,25 +25,32 @@ export default function MyForumDetail() {
     const [error, setError] = useState<string | null>(null);
     const [isEditMode, setIsEditMode] = useState(false);
 
+    // Redirect to auth if not authenticated
     useEffect(() => {
-        const fetchForumPost = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                const forumPost = await getForumById(id);
-                setPost(forumPost);
-            } catch (err) {
-                console.error('Error fetching forum post:', err);
-                setError('មានបញ្ហាកើតឡើងពេលទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
-            } finally {
-                setLoading(false);
-            }
-        };
+        if (!authLoading && !user) {
+            router.push('/auth');
+        }
+    }, [user, authLoading, router]);
 
-        if (id) {
+    useEffect(() => {
+        if (id && user) {
+            const fetchForumPost = async () => {
+                try {
+                    setLoading(true);
+                    setError(null);
+                    const forumPost = await getForumById(id);
+                    setPost(forumPost);
+                } catch (err) {
+                    console.error('Error fetching forum post:', err);
+                    setError('មានបញ្ហាកើតឡើងពេលទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
+                } finally {
+                    setLoading(false);
+                }
+            };
+
             fetchForumPost();
         }
-    }, [id]);
+    }, [id, user]);
 
     const handleCommentClose = () => {
         setIsCommentInputActive(false);
@@ -65,7 +74,8 @@ export default function MyForumDetail() {
         setIsEditMode(false);
     };
 
-    if (loading) {
+    // Show loading while checking auth or fetching data
+    if (authLoading || loading) {
         return (
             <div className="flex min-h-screen transition-colors duration-200 bg-gray-50">
                 <Sidebar />
@@ -93,6 +103,11 @@ export default function MyForumDetail() {
                 </div>
             </div>
         );
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
     }
 
     // Handle all error states at the top level

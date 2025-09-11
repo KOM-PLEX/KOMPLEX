@@ -12,6 +12,8 @@ interface LoginFormProps {
     setShowPassword: (show: boolean) => void;
     isLoginValid: () => boolean;
     handleLogin: (e: React.FormEvent) => void;
+    isSubmitting?: boolean;
+    errorMessage?: string | null;
 }
 
 export default function LogIn({
@@ -23,9 +25,16 @@ export default function LogIn({
     setShowPassword,
     isLoginValid,
     handleLogin,
+    isSubmitting = false,
+    errorMessage = null,
 }: LoginFormProps) {
     return (
         <form onSubmit={handleLogin} className="space-y-4 mx-auto">
+            {errorMessage && (
+                <div className="w-full rounded-lg border border-red-200 bg-red-50 text-red-700 text-sm p-3">
+                    {errorMessage}
+                </div>
+            )}
             <div>
                 <label className="block text-sm font-medium text-black mb-2">
                     អ៊ីមែល ឬ ឈ្មោះអ្នកប្រើប្រាស់
@@ -38,6 +47,7 @@ export default function LogIn({
                         onChange={(e) => setLoginIdentifier(e.target.value)}
                         className="w-full pl-10 pr-4 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                         placeholder="បញ្ចូលអ៊ីមែល ឬ ឈ្មោះអ្នកប្រើប្រាស់"
+                        disabled={isSubmitting}
                     />
                 </div>
             </div>
@@ -54,18 +64,20 @@ export default function LogIn({
                         onChange={(e) => setLoginPassword(e.target.value)}
                         className="w-full pl-10 pr-12 py-3 border border-indigo-500/20 rounded-xl bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                         placeholder="បញ្ចូលពាក្យសម្ងាត់"
+                        disabled={isSubmitting}
                     />
                     <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-600 hover:text-gray-600 transition-colors"
+                        disabled={isSubmitting}
                     >
                         {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                 </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
                 <label className="flex items-center">
                     <input
                         type="checkbox"
@@ -76,14 +88,14 @@ export default function LogIn({
                 <Link href="/forgot-password" className="text-sm text-indigo-600 hover:text-indigo-500 font-medium">
                     ភ្លេចពាក្យសម្ងាត់?
                 </Link>
-            </div>
+            </div> */}
 
             <button
                 type="submit"
-                disabled={!isLoginValid()}
+                disabled={!isLoginValid() || isSubmitting}
                 className="w-full bg-indigo-600 text-white py-3 px-4 rounded-xl font-semibold hover:bg-indigo-500 transition-colors duration-300 shadow-lg shadow-indigo-500/30 border border-white/20 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-                ចូលទៅកាន់
+                {isSubmitting ? 'កំពុងចូល...' : 'ចូលទៅកាន់'}
             </button>
         </form>
     );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Sidebar from '@/components/pages/me/Sidebar';
 import ContentError from '@/components/common/ContentError';
@@ -15,28 +16,40 @@ import { ForumPost } from '@/types/content/forums';
 import { getUserForums } from '@/services/me/forums';
 import ForumCard from '@/components/pages/me/forums/ForumCard';
 import MeSkeleton from '@/components/pages/me/MeSkeleton';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function MyForums() {
+    const { user, loading: authLoading } = useAuth();
+    const router = useRouter();
     const [forumPosts, setForumPosts] = useState<ForumPost[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Redirect to auth if not authenticated
     useEffect(() => {
-        const fetchForums = async () => {
-            try {
-                setIsLoading(true);
-                setError(null);
-                const forums = await getUserForums();
-                setForumPosts(forums);
-            } catch (error) {
-                console.error('Error fetching forums:', error);
-                setError('មានបញ្ហាកើតឡើងពេលទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
-            } finally {
-                setIsLoading(false);
-            }
+        if (!authLoading && !user) {
+            router.push('/auth');
         }
-        fetchForums();
-    }, []);
+    }, [user, authLoading, router]);
+
+    useEffect(() => {
+        if (user) {
+            const fetchForums = async () => {
+                try {
+                    setIsLoading(true);
+                    setError(null);
+                    const forums = await getUserForums();
+                    setForumPosts(forums);
+                } catch (error) {
+                    console.error('Error fetching forums:', error);
+                    setError('មានបញ្ហាកើតឡើងពេលទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
+                } finally {
+                    setIsLoading(false);
+                }
+            }
+            fetchForums();
+        }
+    }, [user]);
 
     let stats = {
         total: 0,
@@ -61,7 +74,8 @@ export default function MyForums() {
         };
     }
 
-    if (isLoading) {
+    // Show loading while checking auth or fetching data
+    if (authLoading || isLoading) {
         return (
             <div className='flex min-h-screen bg-gray-50'>
                 <Sidebar />
@@ -70,6 +84,11 @@ export default function MyForums() {
                 </div>
             </div>
         );
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
     }
 
 

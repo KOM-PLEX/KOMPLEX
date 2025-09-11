@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
     ArrowLeft,
@@ -14,6 +14,7 @@ import { ExerciseQuestion } from '@/types/docs/topic';
 import Link from 'next/link';
 import { uploadFile } from '@/services/upload';
 import { createVideo } from '@/services/me/videos';
+import { useAuth } from '@/hooks/useAuth';
 
 interface VideoFormData {
     title: string;
@@ -23,6 +24,7 @@ interface VideoFormData {
 }
 
 export default function CreateVideoPage() {
+    const { user, loading: authLoading, openLoginModal } = useAuth();
     const router = useRouter();
     const [isUploading, setIsUploading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
@@ -31,6 +33,15 @@ export default function CreateVideoPage() {
     const [videoDuration, setVideoDuration] = useState<number>(0);
     const [error, setError] = useState<string>('');
     const [success, setSuccess] = useState(false);
+
+    // Prompt auth modal if not authenticated (no redirect)
+    const hasPromptedRef = React.useRef(false);
+    useEffect(() => {
+        if (!authLoading && !user && !hasPromptedRef.current) {
+            openLoginModal();
+            hasPromptedRef.current = true;
+        }
+    }, [user, authLoading, openLoginModal]);
 
     const [formData, setFormData] = useState<VideoFormData>({
         title: '',
@@ -209,6 +220,28 @@ export default function CreateVideoPage() {
                 })
             );
     };
+
+    // Show loading while checking auth
+    if (authLoading) {
+        return (
+            <div className='flex min-h-screen bg-gray-50'>
+                <Sidebar />
+                <div className='flex-1 lg:ml-64 pt-32 lg:pt-20'>
+                    <div className='p-6'>
+                        <div className='animate-pulse space-y-6'>
+                            <div className='h-8 bg-gray-200 rounded w-1/3'></div>
+                            <div className='h-64 bg-gray-200 rounded'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
+    }
 
     return (
         <div className="flex min-h-screen bg-gray-50">

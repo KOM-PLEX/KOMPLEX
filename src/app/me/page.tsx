@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/pages/me/Sidebar';
 import {
     BookOpen,
@@ -11,6 +12,7 @@ import {
 } from 'lucide-react';
 import { formatToKhmerDate } from '@/utils/formater';
 import api from '@/config/axios';
+import { useAuth } from '@/hooks/useAuth';
 
 
 interface RecentActivity {
@@ -116,6 +118,8 @@ const LoadingSkeleton = () => {
 };
 
 export default function MyContent() {
+    const { user, loading: authLoading } = useAuth();
+    const router = useRouter();
     const [stats, setStats] = useState<ContentStats>({
         dashboardData: {
             numOfBlogs: 0,
@@ -127,23 +131,38 @@ export default function MyContent() {
     });
     const [isLoading, setIsLoading] = useState(true);
 
+    // Redirect to auth if not authenticated
     useEffect(() => {
-        const fetchStats = async () => {
-            try {
-                setIsLoading(true);
-                const response = await api.get('/me/dashboard');
-                setStats(response.data);
-            } catch (error) {
-                console.error('Error fetching dashboard stats:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchStats();
-    }, []);
+        if (!authLoading && !user) {
+            router.push('/auth');
+        }
+    }, [user, authLoading, router]);
 
-    if (isLoading) {
+    useEffect(() => {
+        if (user) {
+            const fetchStats = async () => {
+                try {
+                    setIsLoading(true);
+                    const response = await api.get('/me/dashboard');
+                    setStats(response.data);
+                } catch (error) {
+                    console.error('Error fetching dashboard stats:', error);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+            fetchStats();
+        }
+    }, [user]);
+
+    // Show loading while checking auth or fetching data
+    if (authLoading || isLoading) {
         return <LoadingSkeleton />;
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
     }
 
     return (

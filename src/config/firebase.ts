@@ -7,8 +7,8 @@ import {
 import {
   getAuth,
   GoogleAuthProvider,
-  FacebookAuthProvider,
   OAuthProvider,
+  GithubAuthProvider,
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -42,8 +42,7 @@ if (typeof window !== "undefined") {
 // Initialize Auth and providers
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
-// Microsoft via generic OAuth provider
+const githubProvider = new GithubAuthProvider();
 const microsoftProvider = new OAuthProvider("microsoft.com");
 
 export {
@@ -51,6 +50,6 @@ export {
   analytics,
   auth,
   googleProvider,
-  facebookProvider,
+  githubProvider,
   microsoftProvider,
 };

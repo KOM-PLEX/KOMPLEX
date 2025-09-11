@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Sidebar from '@/components/pages/me/Sidebar';
 import {
     Video,
@@ -21,6 +21,7 @@ import { VideoPost } from '@/types/content/videos';
 import ContentError from '@/components/common/ContentError';
 import MeSkeleton from '@/components/pages/me/MeSkeleton';
 import VideoHistoryComponent from '@/components/pages/me/videos/VideoHistory';
+import { useAuth } from '@/hooks/useAuth';
 
 
 
@@ -33,6 +34,8 @@ export default function MyVideos() {
 }
 
 function MyVideosContent() {
+    const { user, loading: authLoading } = useAuth();
+    const router = useRouter();
     const searchParams = useSearchParams();
     const activeTab = searchParams.get('tab') || 'myVideos';
 
@@ -40,44 +43,53 @@ function MyVideosContent() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Redirect to auth if not authenticated
     useEffect(() => {
-        const fetchVideos = async () => {
-            try {
-                setIsLoading(true);
-                setError(null);
-                const userVideos = await getUserVideos();
-                setVideos(userVideos.map((v) => {
-                    return {
-                        id: v.id,
-                        userId: v.userId,
-                        title: v.title,
-                        description: v.description,
-                        duration: Number(v.duration),
-                        videoUrl: v.videoUrl,
-                        thumbnailUrl: v.thumbnailUrl,
-                        videoUrlForDeletion: v.videoUrlForDeletion,
-                        thumbnailUrlForDeletion: v.thumbnailUrlForDeletion,
-                        viewCount: Number(v.viewCount),
-                        createdAt: v.createdAt,
-                        updatedAt: v.updatedAt,
-                        username: v.username,
-                        isSave: v.isSave,
-                        isLike: v.isLike,
-                        likeCount: Number(v.likeCount),
-                        saveCount: Number(v.saveCount),
-                        exercises: v.exercises,
-                    }
-                }));
-            } catch (error) {
-                console.error('Error fetching videos:', error);
-                setError('មានបញ្ហាកើតឡើងពេលទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
-            } finally {
-                setIsLoading(false);
-            }
-        };
+        if (!authLoading && !user) {
+            router.push('/auth');
+        }
+    }, [user, authLoading, router]);
 
-        fetchVideos();
-    }, []);
+    useEffect(() => {
+        if (user) {
+            const fetchVideos = async () => {
+                try {
+                    setIsLoading(true);
+                    setError(null);
+                    const userVideos = await getUserVideos();
+                    setVideos(userVideos.map((v) => {
+                        return {
+                            id: v.id,
+                            userId: v.userId,
+                            title: v.title,
+                            description: v.description,
+                            duration: Number(v.duration),
+                            videoUrl: v.videoUrl,
+                            thumbnailUrl: v.thumbnailUrl,
+                            videoUrlForDeletion: v.videoUrlForDeletion,
+                            thumbnailUrlForDeletion: v.thumbnailUrlForDeletion,
+                            viewCount: Number(v.viewCount),
+                            createdAt: v.createdAt,
+                            updatedAt: v.updatedAt,
+                            username: v.username,
+                            isSave: v.isSave,
+                            isLike: v.isLike,
+                            likeCount: Number(v.likeCount),
+                            saveCount: Number(v.saveCount),
+                            exercises: v.exercises,
+                        }
+                    }));
+                } catch (error) {
+                    console.error('Error fetching videos:', error);
+                    setError('មានបញ្ហាកើតឡើងពេលទាញយកទិន្នន័យ។ សូមព្យាយាមម្តងទៀត។');
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+
+            fetchVideos();
+        }
+    }, [user]);
 
     const formatDuration = (seconds: number) => {
         const minutes = Math.floor(seconds / 60);
@@ -99,10 +111,14 @@ function MyVideosContent() {
         totalDuration: videos?.reduce((acc, v) => acc + (v.duration ?? 0), 0) ?? 0
     };
 
-    if (isLoading) {
-        return (
-            <MeSkeleton />
-        );
+    // Show loading while checking auth or fetching data
+    if (authLoading || isLoading) {
+        return <MeSkeleton />;
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
     }
 
     return (

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { auth, googleProvider, facebookProvider, microsoftProvider } from '@/config/firebase';
+import { auth, googleProvider, microsoftProvider, githubProvider } from '@/config/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { getCurrentUser, signup, socialLogin } from '@/services/auth';
 import { uploadFile } from '@/services/upload';
@@ -29,15 +29,6 @@ const socialPlatforms = [
         )
     },
     {
-        name: 'Facebook',
-        provider: 'facebook',
-        icon: (
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="#1877F2">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-            </svg>
-        )
-    },
-    {
         name: 'Microsoft',
         provider: 'microsoft',
         icon: (
@@ -45,7 +36,16 @@ const socialPlatforms = [
                 <path d="M0 0h11v11H0zm12 0h11v11H12zM0 12h11v11H0zm12 0h11v11H12z" />
             </svg>
         )
-    }
+    },
+    {
+        name: 'GitHub',
+        provider: 'github',
+        icon: (
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" d="M12 .5C5.73.5.99 5.24.99 11.5c0 4.85 3.14 8.96 7.49 10.41.55.1.75-.24.75-.52 0-.26-.01-.95-.02-1.87-3.05.66-3.7-1.47-3.7-1.47-.5-1.27-1.22-1.61-1.22-1.61-.99-.68.08-.66.08-.66 1.1.08 1.68 1.12 1.68 1.12.98 1.67 2.56 1.19 3.19.9.1-.71.38-1.19.69-1.46-2.44-.28-5.01-1.22-5.01-5.43 0-1.2.43-2.17 1.12-2.93-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.12.88-.25 1.82-.38 2.76-.39.94.01 1.88.14 2.76.39 2.12-1.42 3.05-1.12 3.05-1.12.6 1.53.22 2.66.11 2.94.69.76 1.12 1.73 1.12 2.93 0 4.22-2.57 5.14-5.02 5.42.39.34.73 1.02.73 2.06 0 1.49-.01 2.69-.01 3.05 0 .29.2.63.76.52 4.34-1.45 7.48-5.56 7.48-10.41C23.01 5.24 18.27.5 12 .5z" clipRule="evenodd" />
+            </svg>
+        )
+    },
 ];
 
 export default function AuthPage() {
@@ -53,6 +53,8 @@ export default function AuthPage() {
     const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formError, setFormError] = useState<string | null>(null);
 
     // Login form state
     const [loginIdentifier, setLoginIdentifier] = useState('');
@@ -84,17 +86,25 @@ export default function AuthPage() {
         e.preventDefault();
         if (!isLoginValid()) return;
 
+        setFormError(null);
+        setIsSubmitting(true);
+
         try {
             // Use Firebase email/password login regardless of username/email entered
             const result = await signInWithEmailAndPassword(auth, loginIdentifier, loginPassword);
-            const token = await result.user.getIdToken(true);
+            await result.user.getIdToken(true);
             const userData = await getCurrentUser();
 
             localStorage.setItem("user", JSON.stringify(userData));
 
             router.push('/');
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Login error:', error);
+            const message = error instanceof Error ? error.message : 'មានបញ្ហាក្នុងការចូល';
+            setFormError(message);
+        }
+        finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -102,10 +112,20 @@ export default function AuthPage() {
         e.preventDefault();
         if (!isSignupValid()) return;
 
+        setFormError(null);
+        setIsSubmitting(true);
+
         try {
             let imageKey = '';
             if (signupData.profileImage) {
-                imageKey = await uploadFile(signupData.profileImage);
+                try {
+                    imageKey = await uploadFile(signupData.profileImage);
+                } catch (uploadErr) {
+                    console.error('Upload error:', uploadErr);
+                    setFormError('បញ្ហាក្នុងការបង្ហោះរូបភាព');
+                    setIsSubmitting(false);
+                    return;
+                }
             }
 
             const result = await createUserWithEmailAndPassword(auth, signupData.email, signupData.password);
@@ -124,16 +144,23 @@ export default function AuthPage() {
 
             // redirect to home page
             router.push('/');
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Signup error:', error);
+            const message = error instanceof Error ? error.message : 'មានបញ្ហាក្នុងការចុះឈ្មោះ';
+            setFormError(message);
+        }
+        finally {
+            setIsSubmitting(false);
         }
     };
 
-    const handleSocialLogin = async (providerKey: 'google' | 'facebook' | 'microsoft') => {
+    const handleSocialLogin = async (providerKey: 'google' | 'github' | 'microsoft') => {
+        setFormError(null);
+        setIsSubmitting(true);
         try {
             const provider =
                 providerKey === 'google' ? googleProvider :
-                    providerKey === 'facebook' ? facebookProvider :
+                    providerKey === 'github' ? githubProvider :
                         microsoftProvider;
             const result = await signInWithPopup(auth, provider);
             const userData = await socialLogin({
@@ -151,8 +178,13 @@ export default function AuthPage() {
 
             localStorage.setItem("user", JSON.stringify(userData));
             router.push('/');
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Social login error:', error);
+            const message = error instanceof Error ? error.message : 'មានបញ្ហាក្នុងការចូលដោយប្រើគណនីសង្គម';
+            setFormError(message);
+        }
+        finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -218,6 +250,8 @@ export default function AuthPage() {
                             setShowPassword={setShowPassword}
                             isLoginValid={isLoginValid}
                             handleLogin={handleLogin}
+                            isSubmitting={isSubmitting}
+                            errorMessage={formError}
                         />
                     )}
 
@@ -233,6 +267,8 @@ export default function AuthPage() {
                             isSignupValid={isSignupValid}
                             handleSignup={handleSignup}
                             handleProfileImageChange={handleProfileImageChange}
+                            isSubmitting={isSubmitting}
+                            errorMessage={formError}
                         />
                     )}
 
@@ -248,8 +284,9 @@ export default function AuthPage() {
                         {socialPlatforms.map((platform, index) => (
                             <button
                                 key={index}
-                                onClick={() => handleSocialLogin(platform.provider as 'google' | 'facebook' | 'microsoft')}
-                                className="flex-1 bg-white border border-indigo-500/20 text-gray-700 py-3 px-4 rounded-xl font-medium hover:bg-gray-50 transition-colors duration-300 flex items-center justify-center gap-2"
+                                onClick={() => handleSocialLogin(platform.provider as 'google' | 'github' | 'microsoft')}
+                                className="flex-1 bg-white border border-indigo-500/20 text-gray-700 py-3 px-4 rounded-xl font-medium hover:bg-gray-50 transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                disabled={isSubmitting}
                             >
                                 {platform.icon}
                             </button>

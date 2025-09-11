@@ -11,6 +11,7 @@ import { ExerciseWithQuestions, ExerciseSection } from "@/types/content/exercise
 import { getExerciseById } from "@/services/feed/exercises";
 import { submitExercise as submitExerciseService } from "@/services/me/exercises";
 import { transformBackendDataToSections } from "@/utils/transform";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function LessonPage() {
     const params = useParams();
@@ -31,12 +32,18 @@ export default function LessonPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [examStartTime, setExamStartTime] = useState<number>(0);
 
+    const { user, openLoginModal } = useAuth();
+
     // Fetch exercise data from backend
     useEffect(() => {
         const fetchExerciseData = async () => {
             try {
                 setLoading(true);
                 setError(null);
+                if (!user) {
+                    openLoginModal();
+                    return;
+                }
                 // Use the lesson param as the exercise ID
                 const data = await getExerciseById(id as string);
                 setExerciseData(data);

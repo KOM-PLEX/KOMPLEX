@@ -7,6 +7,7 @@ import { toggleForumReplyLike } from '@/services/me/forum-replies';
 import { createVideoReply } from '@/services/me/video-replies';
 import { toggleVideoReplyLike } from '@/services/me/video-replies';
 import { VideoReply } from '@/types/content/videos';
+import { useAuth } from "@/hooks/useAuth";
 
 
 interface ReplyComponentProps {
@@ -17,6 +18,8 @@ interface ReplyComponentProps {
 }
 
 export default function ReplyComponent({ reply, commentId, onSubmitReply, replyType }: ReplyComponentProps) {
+    const { user, openLoginModal } = useAuth();
+
     const [replyUpvoted, setReplyUpvoted] = useState(reply.isLike || false);
     const [likeCount, setLikeCount] = useState('likeCount' in reply ? reply.likeCount : 0);
     const [isReplying, setIsReplying] = useState(false);
@@ -25,6 +28,10 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
 
     // Handle reply like/unlike
     const handleReplyLike = async () => {
+        if (!user) {
+            openLoginModal();
+            return;
+        }
         if (isLiking) return; // Prevent multiple clicks
 
         setIsLiking(true);
@@ -51,6 +58,10 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
     };
 
     const handleSubmitReply = async () => {
+        if (!user) {
+            openLoginModal();
+            return;
+        }
         if (replyText.trim()) {
             try {
                 const fullReply = `@${reply.username?.toString()} ${replyText.trim()}`;

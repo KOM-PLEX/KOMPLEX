@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Eye, Plus, Book } from 'lucide-react';
 import Sidebar from '@/components/pages/me/Sidebar';
@@ -9,11 +10,21 @@ import { Blog } from '@/types/content/blogs';
 import { getUserBlogs } from '@/services/me/blogs';
 import BlogSkeleton from '@/components/pages/blog/BlogsSkeleton';
 import MeSkeleton from '@/components/pages/me/MeSkeleton';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function MyBlogs() {
+    const { user, loading: authLoading } = useAuth();
+    const router = useRouter();
     const [blogPosts, setBlogPosts] = useState<Blog[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    // Redirect to auth if not authenticated
+    useEffect(() => {
+        if (!authLoading && !user) {
+            router.push('/auth');
+        }
+    }, [user, authLoading, router]);
 
     const fetchMyBlogs = async () => {
         try {
@@ -34,13 +45,19 @@ export default function MyBlogs() {
     };
 
     useEffect(() => {
-        fetchMyBlogs();
-    }, []);
+        if (user) {
+            fetchMyBlogs();
+        }
+    }, [user]);
 
-    if (isLoading) {
-        return (
-            <MeSkeleton />
-        )
+    // Show loading while checking auth or fetching data
+    if (authLoading || isLoading) {
+        return <MeSkeleton />;
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
     }
 
 

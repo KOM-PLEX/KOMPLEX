@@ -1,14 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Play, Clock, Calendar, Trash2, History, AlertCircle, CheckCircle } from 'lucide-react';
 import { getUserVideoHistory, deleteVideoFromHistory } from '@/services/me/video-history';
 import Sidebar from '@/components/pages/me/Sidebar';
 import type { VideoHistory } from '@/types/content/videos';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function VideoHistory() {
+    const { user, loading: authLoading } = useAuth();
+    const router = useRouter();
     const [videoHistory, setVideoHistory] = useState<VideoHistory[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -16,23 +20,32 @@ export default function VideoHistory() {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [selectedItems, setSelectedItems] = useState<Set<number>>(new Set());
 
+    // Redirect to auth if not authenticated
     useEffect(() => {
-        const fetchVideoHistory = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                const history = await getUserVideoHistory();
-                setVideoHistory(history);
-            } catch (err) {
-                console.error('Error fetching video history:', err);
-                setError('មានបញ្ហាក្នុងការផ្ទុកប្រវត្តិវីដេអូ។ សូមព្យាយាមម្តងទៀត។');
-            } finally {
-                setLoading(false);
-            }
-        };
+        if (!authLoading && !user) {
+            router.push('/auth');
+        }
+    }, [user, authLoading, router]);
 
-        fetchVideoHistory();
-    }, []);
+    useEffect(() => {
+        if (user) {
+            const fetchVideoHistory = async () => {
+                try {
+                    setLoading(true);
+                    setError(null);
+                    const history = await getUserVideoHistory();
+                    setVideoHistory(history);
+                } catch (err) {
+                    console.error('Error fetching video history:', err);
+                    setError('មានបញ្ហាក្នុងការផ្ទុកប្រវត្តិវីដេអូ។ សូមព្យាយាមម្តងទៀត។');
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            fetchVideoHistory();
+        }
+    }, [user]);
 
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
@@ -104,7 +117,8 @@ export default function VideoHistory() {
         }
     };
 
-    if (loading) {
+    // Show loading while checking auth or fetching data
+    if (authLoading || loading) {
         return (
             <div className="flex min-h-screen transition-colors duration-200 bg-gray-50">
                 <Sidebar />
@@ -135,6 +149,11 @@ export default function VideoHistory() {
                 </div>
             </div>
         );
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
     }
 
     if (error) {

@@ -9,6 +9,7 @@ import { getVideoComments } from '@/services/feed/video-comments';
 import { createForumComment } from '@/services/me/forum-comments';
 import { createVideoComment } from '@/services/me/video-comments';
 import { getForumComments } from '@/services/feed/forum-comments';
+import { useAuth } from '@/hooks/useAuth';
 
 interface CommentProps {
     type: 'forum' | 'video';
@@ -26,6 +27,8 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [commentsError, setCommentsError] = useState<string | null>(null);
+
+    const { user, openLoginModal } = useAuth();
 
     // Fetch comments on component mount
     useEffect(() => {
@@ -58,8 +61,11 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
         setIsCommentActive(focusInput);
     }, [focusInput]);
 
-
     const handleSubmitComment = async () => {
+        if (!user) {
+            openLoginModal();
+            return;
+        }
         if (!newComment.trim()) {
             setError('សូមបំពេញមាតិកាការឆ្លើយតប');
             return;

@@ -12,9 +12,11 @@ import { Blog } from '@/types/content/blogs';
 import { getBlogById } from '@/services/feed/blogs';
 import { deleteBlog } from '@/services/me/blogs';
 import { BlogPostSkeleton } from '@/components/pages/blog/BlogPostSkeleton';
+import { useAuth } from '@/hooks/useAuth';
 
 
 export default function BlogPost() {
+    const { user, loading: authLoading } = useAuth();
     const params = useParams();
     const router = useRouter();
     const id = params.id as string;
@@ -23,6 +25,13 @@ export default function BlogPost() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isEditMode, setIsEditMode] = useState(false);
+
+    // Redirect to auth if not authenticated
+    useEffect(() => {
+        if (!authLoading && !user) {
+            router.push('/auth');
+        }
+    }, [user, authLoading, router]);
 
     const fetchBlog = async () => {
         try {
@@ -40,10 +49,10 @@ export default function BlogPost() {
 
     // Fetch existing blog data
     useEffect(() => {
-        if (id) {
+        if (id && user) {
             fetchBlog();
         }
-    }, [id]);
+    }, [id, user]);
 
     const handleDelete = async () => {
         try {
@@ -64,7 +73,8 @@ export default function BlogPost() {
         setIsEditMode(false);
     };
 
-    if (isLoading) {
+    // Show loading while checking auth or fetching data
+    if (authLoading || isLoading) {
         return (
             <div className='flex min-h-screen bg-gray-50'>
                 <Sidebar />
@@ -73,6 +83,11 @@ export default function BlogPost() {
                 </div>
             </div>
         );
+    }
+
+    // Don't render anything if not authenticated (will redirect)
+    if (!user) {
+        return null;
     }
 
     if (error || !blogPost) {
