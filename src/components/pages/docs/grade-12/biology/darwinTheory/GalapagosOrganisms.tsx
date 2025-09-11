@@ -21,7 +21,7 @@ const FirstTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic21.webp",
           imageAlt: "",
           explanation: [
               "បង្គួយនៅលើកោះកាឡាប៉ាកូសមានក្រញ៉ាំជើងធំដែលអាចធ្វើឲ្យវាអាចតោងថ្មរអិលតាមមាត់សមុទ្រ ហើយវាស៊ីសារាយសមុទ្រ។"
@@ -29,7 +29,7 @@ const FirstTopicContent: TopicContent = {
       },
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic23.jpg",
           imageAlt: "",
           explanation: [
               "បង្គួយនៅលើទ្វីបអាមេរិចខាងត្បូងមានក្រញ៉ាំជើងតូចៗ សម្រាប់តោងលើដើមឈើ វាស៊ីសត្វល្អិត និងស្លឹក។"
@@ -56,16 +56,6 @@ const SecondTopicContent: TopicContent = {
       </>
     ),
   },
-    imageExplanation: [
-      {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
-          explanation: [
-              
-          ],
-      },
-    ]
 }
 
 const ThirdTopicContent: TopicContent = {
@@ -90,7 +80,7 @@ const ThirdTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "លក្ខណះបន្សំរបស់សត្វស្លាបនៅលើប្រជុំកោះកាឡាប៉ាកូស៖",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic22.jpg",
           imageAlt: "",
           explanation: [
               "ចំពុះវែងហើយតូចឆ្មារដើម្បីជញ្ជក់ស្រូបអាហារ។",
@@ -123,11 +113,6 @@ const GalapagosOrganisms = () => {
                 {SecondTopicContent.tip && (
                   <TipBox title={SecondTopicContent.tip.title} content={SecondTopicContent.tip.content} />
                 )}
-                {SecondTopicContent.imageExplanation &&
-                    Array.isArray(SecondTopicContent.imageExplanation) &&
-                    SecondTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
-                        <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
-                ))}
           </div>
           <div>
                 {ThirdTopicContent.definition && (

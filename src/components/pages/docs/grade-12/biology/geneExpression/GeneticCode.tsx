@@ -31,7 +31,7 @@ const FirstTopicContent: TopicContent = {
   imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic5.png",
           imageAlt: "",
           explanation: [
               "សម្មតិកម្មទី១: បើនុយក្លេអូទីត1 កំណត់អាស៊ីតអាមីនេ1 ⇒ ចំនួនបន្សំ = 4¹ = 4 អាស៊ីតអាមីនេនៅសល់16ប្រភេទទៀតគ្មានក្រមកំណត់។",
@@ -66,7 +66,7 @@ const SecondTopicContent: TopicContent = {
   imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic6.png",
           imageAlt: "",
           explanation: [
               "ក្នុងតារាងក្រមសេនេទិចមាន៦៤កូដុង ក្នុងនោះមាន:",

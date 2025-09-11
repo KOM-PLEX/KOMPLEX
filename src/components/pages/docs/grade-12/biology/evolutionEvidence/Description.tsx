@@ -31,11 +31,13 @@ const FirstTopicContent: TopicContent = {
   },
     imageExplanation: [
       {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
+          title: "ឆ្អឹងដាយណូស័រ ",
+          src: "/docs/grade-12/biology/mixs/die.webp",
           imageAlt: "",
           explanation: [
-              
+              "រូបភាពនេះបង្ហាញពីឆ្អឹងដាយណូស័រ ដែលជាផូស៊ីលសារពាង្គកាយដែលបានរកឃើញនៅក្នុងស្រទាប់សិលា។",
+              "ផូស៊ីលឆ្អឹងនេះជាសំណល់ដែលអាចផ្តល់ព័ត៌មានអំពីទំហំ និងរូបរាងសាច់ដុំ និងឆ្អឹងរបស់ដាយណូស័រ។",
+              "វាជាភស្តុតាងសំខាន់សម្រាប់ការសិក្សាអំពីការវិវត្តន៍ និងប្រវត្តិជីវៈនៅសម័យមុន។",
           ],
       },
     ]
@@ -63,7 +65,7 @@ const SecondTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic24.png",
           imageAlt: "",
           explanation: [
               "ក្នុងដំណាក់កាលដំបូង អំប្រ៊ីយ៉ុងនៃសត្វឆ្អឹងកងទាំងប្រាំថ្នាក់ មានលក្ខណះស្រដៀងគ្នា(កន្ទុយ ពង្រាងអវយវៈ រង្វះស្រកី ខួរឆ្អឹងខ្នង របត់ឈាមទោល។ល។",
@@ -85,7 +87,7 @@ const ThirdTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "ភស្តុតាងដែលបង្ហាញថាសត្វឆ្អឹងកងទាំងអស់មានបុព្វរួមតែមួយ៖",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic25.png",
           imageAlt: "",
           explanation: [
               "រូបផ្តុំក្នុងដូចគ្នា(គ្រោងឆ្អឹងក្នុង និងមានឆ្អឹងកង)។",

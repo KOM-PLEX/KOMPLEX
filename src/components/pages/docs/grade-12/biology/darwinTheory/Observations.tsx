@@ -18,28 +18,17 @@ const FirstTopicContent: TopicContent = {
         </div>
       </>
   },
-  tip: {
-    title: "ចំណុចសំខាន់",
-    content: (
-      <>
-          <ul className="list-disc ml-4 flex flex-col gap-3">
-              <li>ដាវិនសង្កេតឃើញភាវៈរស់ប្លែកៗ</li>
-              <li>ផូស៊ីលសត្វខ្លះមានលក្ខណះខុសប្លែកពីសត្វសព្វថ្ងៃ ហើយខ្លះទៀតក៏មានលក្ខណះដូចសត្វសព្វថ្ងៃខ្លះដែរ។</li>
-              <li>នៅប្រជុំកោះកាឡាប៉ាកូសភាវៈរស់មានលក្ខណះប្លែកៗ ខុសគ្នាពីកោះមួយទៅកោះមួយទៀត។</li>
-              <li>លក្ខណះនីមួយៗ ជាលក្ខណះបណ្ដុំនៃភាវៈរស់នៅក្នុងមជ្ឈដ្ឋានមួយ។</li>
-              <li>សត្វនៅលើកោះកាឡាប៉ាកូស មានលក្ខណះដូចគ្នាខ្លះជាមួយសត្វនៅលើទ្វីបអាមេរិចខាងត្បូង។</li>
-              <li>ដាវិនសន្និដ្ឋានថា សត្វនៅលើកោះមានដើមកំណើតពីសត្វនៅលើទ្វីប។</li>
-          </ul>
-      </>
-    ),
-  },
     imageExplanation: [
       {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
+          title: "ដាវិនសង្កេតឃើញភាវៈរស់ប្លែកៗ",
+          src: "/docs/grade-12/biology/mixs/pic20.avif",
           imageAlt: "",
           explanation: [
-              
+              "ផូស៊ីលសត្វខ្លះមានលក្ខណះខុសប្លែកពីសត្វសព្វថ្ងៃ ហើយខ្លះទៀតក៏មានលក្ខណះដូចសត្វសព្វថ្ងៃខ្លះដែរ។",
+              "នៅប្រជុំកោះកាឡាប៉ាកូសភាវៈរស់មានលក្ខណះប្លែកៗ ខុសគ្នាពីកោះមួយទៅកោះមួយទៀត។",
+              "លក្ខណះនីមួយៗ ជាលក្ខណះបណ្ដុំនៃភាវៈរស់នៅក្នុងមជ្ឈដ្ឋានមួយ។",
+              "សត្វនៅលើកោះកាឡាប៉ាកូស មានលក្ខណះដូចគ្នាខ្លះជាមួយសត្វនៅលើទ្វីបអាមេរិចខាងត្បូង។",
+              "ដាវិនសន្និដ្ឋានថា សត្វនៅលើកោះមានដើមកំណើតពីសត្វនៅលើទ្វីប។",
           ],
       },
     ]
@@ -52,9 +41,6 @@ const Observations = () => {
           <div>
                 {FirstTopicContent.definition && (
                   <DefinitionBox title={FirstTopicContent.definition.title} content={FirstTopicContent.definition.content} />
-                )}
-                {FirstTopicContent.tip && (
-                    <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
                 )}
                 {FirstTopicContent.imageExplanation &&
                     Array.isArray(FirstTopicContent.imageExplanation) &&

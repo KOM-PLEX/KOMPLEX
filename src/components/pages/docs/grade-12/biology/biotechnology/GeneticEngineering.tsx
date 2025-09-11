@@ -21,7 +21,7 @@ const FirstTopicContent: TopicContent = {
   imageExplanation: [
       {
           title: "ក្នុងវិស័យសុខាភិបាល",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic12.png",
           imageAlt: "",
           explanation: [
               "មានផលិតអាំងស៊ុយលីន អាំងទែផេរ៉ូន អាំងទែឡីគីន អង់ទីហ្សូទិច វ៉ាក់សាំង អង់ទីករ អេរីត្រូប្រូតេអ៊ីន...។"
@@ -29,7 +29,7 @@ const FirstTopicContent: TopicContent = {
       },
       {
           title: "ក្នុងវិស័យកសិកម្ម",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic13.png",
           imageAlt: "",
           explanation: [
               "គេធ្វើឲ្យរុក្ខជាតិមានផ្កា ផ្លែច្រើន ធន់នឹងជម្ងឺ ធន់នឹងអាកាសធាតុ និងថ្នាំសម្លាប់សត្វល្អិត ថ្នាំសម្លាប់ស្មៅ...។",
@@ -39,7 +39,7 @@ const FirstTopicContent: TopicContent = {
       },
       {
           title: "ក្នុងវិស័យបរិស្ថាន",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic15.jpg",
           imageAlt: "",
           explanation: [
               "បង្កើតពូជបាក់តេរី ដែលអាចបំប្លែងប្រេងឆៅឬប្រេងសម្រាប់សម្អាតសមុទ្រពេលមានបញ្ហាកំពប់ប្រេងក្នុងសមុទ្រ។",
@@ -47,7 +47,7 @@ const FirstTopicContent: TopicContent = {
       },
       {
           title: "ក្នុងវិស័យឧស្សាហកម្មស្បៀង",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic14.jpg",
           imageAlt: "",
           explanation: [
               "មានផលិតអាហារមានអរម៉ូន ទឹកដោះគោជូរ ផលិតស្រាបៀរ នំប៉័ងប្រូម៉ាស...។"

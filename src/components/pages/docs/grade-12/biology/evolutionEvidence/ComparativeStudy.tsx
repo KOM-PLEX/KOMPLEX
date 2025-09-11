@@ -29,16 +29,6 @@ const FirstTopicContent: TopicContent = {
       </>
     ),
   },
-    imageExplanation: [
-      {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
-          explanation: [
-              
-          ],
-      },
-    ]
 }
 
 const SecondTopicContent: TopicContent = {
@@ -69,16 +59,6 @@ const SecondTopicContent: TopicContent = {
             </div>,
         ],
       },
-    imageExplanation: [
-      {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
-          explanation: [
-              
-          ],
-      },
-    ]
 }
 
 const ThirdTopicContent: TopicContent = {
@@ -93,7 +73,7 @@ const ThirdTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "គេអាចសន្និដ្ឋាននូវប្រវត្តិនៃការវិវត្តរបស់ភាវៈរស់ដោយ",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic27.png",
           imageAlt: "",
           explanation: [
               "កំណត់រកតំណលំដាប់នុយក្លេអូទីតក្នុងសែន។",
@@ -114,11 +94,6 @@ const ComparativeStudy = () => {
                 {FirstTopicContent.tip && (
                     <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
                 )}
-                {FirstTopicContent.imageExplanation &&
-                    Array.isArray(FirstTopicContent.imageExplanation) &&
-                    FirstTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
-                        <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
-                ))}
           </div>
           <div>
                 {SecondTopicContent.definition && (

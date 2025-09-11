@@ -41,7 +41,7 @@ const SecondTopicContent: TopicContent = {
   imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic40.png",
           imageAlt: "",
           explanation: [
               "ផ្តើមដោយកូដុងផ្តើម AUG ដែលត្រូវនឹងអាស៊ីតអាមីនេមេត្យូនីន ការតម្រូវអង់ទីកូដុង កូដុងនៅក្នុងថត Pនៃរីបូសូម។",
@@ -63,7 +63,7 @@ const ThirdTopicContent: TopicContent = {
   imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic41.png",
           imageAlt: "",
           explanation: [
               "ARN_t ទី2 ភ្ជាប់កូដុងទី2 នៃARN_m តម្រូវអង់ទីកូដុង និងកូដុងក្នុងថតនៃរីបូសូម។",
@@ -86,7 +86,7 @@ const FourthTopicContent: TopicContent = {
   imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic42.png",
           imageAlt: "",
           explanation: [
               "នៅពេលរីបូសូមលោតដល់កូដុងស្តុប (UAA ឬUAG ឬUGA) ចលនការសំយោគប្រូតេអ៊ីនត្រូវបានបញ្ចប់ ដោយសារធាតុចម្រុះមាន ARN_t, ARN_m រីបូសូម និងច្រវ៉ាក់ប៉ូលីប៉ិបទីត ត្រូវបានបំបែកចេញពីគ្នា ហើយភ្លាមនោះមេត្យូនីន ក៏បានផ្តាច់ចេញពីច្រវ៉ាក់ប៉ូលីប៉ិបទីតដែរ។",

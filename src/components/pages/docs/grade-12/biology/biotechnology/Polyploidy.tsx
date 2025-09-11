@@ -29,20 +29,13 @@ const FirstTopicContent: TopicContent = {
       </>
     ),
   },
-  example: {
-      question: [
-          <div className="flex flex-col items-start gap-3" key="q1">
-              <p>ស្រូវសាលី ពោត កប្បាស ត្រកួន ឪឡឹក ប៉ោម ទំពាំងបាយជូរ...ជាតេត្រាប្លូអ៊ុត។</p>
-          </div>,
-      ],
-    },
     imageExplanation: [
       {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
+          title: "ឧទាហរណ៏",
+          src: "/docs/grade-12/biology/mixs/pic10.webp",
           imageAlt: "",
           explanation: [
-              
+              "ស្រូវសាលី ពោត កប្បាស ត្រកួន ឪឡឹក ប៉ោម ទំពាំងបាយជូរ...ជាតេត្រាប្លូអ៊ុត។"
           ],
       },
     ]

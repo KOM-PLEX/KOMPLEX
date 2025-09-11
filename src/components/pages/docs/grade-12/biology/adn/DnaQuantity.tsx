@@ -69,7 +69,7 @@ const ThirdTopicContent: TopicContent = {
   },
   imageExplanation: [
         {
-            title: "",
+            title: "ដំណើរការស្វ័យតំឡើងទ្វេ ADN",
             src: "/docs/grade-12/biology/adn/pic1.png",
             imageAlt: "",
             explanation: [

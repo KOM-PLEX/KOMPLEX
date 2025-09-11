@@ -28,11 +28,14 @@ const FirstTopicContent: TopicContent = {
   },
     imageExplanation: [
       {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
+          title: "ឧទាហរណ៏ប្រភេទសត្វបក្សី",
+          src: "/docs/grade-12/biology/mixs/pic28.png",
+          imageAlt: "ពីរបក្សីស្រដៀងគ្នា",
           explanation: [
-              
+              "រូបភាពនេះបង្ហាញពីពីរបក្សីដែលស្រដៀងគ្នា ហើយចូលក្នុងប្រភេទដូចគ្នា។",
+              "ពួកវាអាចធ្វើការបន្តពូជគ្នា និងបង្កើតកូនចៅដែលអាចបន្តពូជបាន។",
+              "វាបង្ហាញពីលក្ខណៈសាមញ្ញនៃការកំណត់ប្រភេទដោយផ្អែកលើរូបរាង និងសមាសភាពសារពាង្គកាយ។",
+              "ការប្រៀបធៀបប្រភេទជួយសិក្សាអំពីការរីកចម្រើន និងការវិវត្តន៍របស់សត្វក្នុងបរិស្ថានផ្សេងៗ។"
           ],
       },
     ]
@@ -59,16 +62,6 @@ const SecondTopicContent: TopicContent = {
       </>
     ),
   },
-    imageExplanation: [
-      {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
-          explanation: [
-              
-          ],
-      },
-    ]
 }
 
 const ThirdTopicContent: TopicContent = {
@@ -96,16 +89,6 @@ const ThirdTopicContent: TopicContent = {
       </>
     ),
   },
-    imageExplanation: [
-      {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
-          explanation: [
-              
-          ],
-      },
-    ]
 }
 
 
@@ -132,11 +115,6 @@ const OriginOfSpecies = () => {
                 {SecondTopicContent.tip && (
                     <TipBox title={SecondTopicContent.tip.title} content={SecondTopicContent.tip.content} />
                 )}
-                {SecondTopicContent.imageExplanation &&
-                    Array.isArray(SecondTopicContent.imageExplanation) &&
-                    SecondTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
-                        <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
-                ))}
           </div>
           <div>
                 {ThirdTopicContent.definition && (
@@ -145,11 +123,6 @@ const OriginOfSpecies = () => {
                 {ThirdTopicContent.tip && (
                     <TipBox title={ThirdTopicContent.tip.title} content={ThirdTopicContent.tip.content} />
                 )}
-                {ThirdTopicContent.imageExplanation &&
-                    Array.isArray(ThirdTopicContent.imageExplanation) &&
-                    ThirdTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
-                        <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
-                ))}
           </div>
     </div>
   )

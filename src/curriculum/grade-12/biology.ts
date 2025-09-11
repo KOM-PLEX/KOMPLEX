@@ -62,6 +62,18 @@ import BioTechQA from "@/components/pages/docs/grade-12/biology/biotechnology/Bi
 import DarwinQA from "@/components/pages/docs/grade-12/biology/darwinTheory/DarwinQA";
 import EvolutionQA from "@/components/pages/docs/grade-12/biology/evolutionEvidence/EvolutionQA";
 import FossilQA from "@/components/pages/docs/grade-12/biology/flaskConical/FossilQA";
+import FormAminoAcid from "@/components/pages/docs/grade-12/biology/aminoAcid/FormAminoAcid";
+import TypesAminoAcid from "@/components/pages/docs/grade-12/biology/aminoAcid/TypesAminoAcid";
+import Peptide from "@/components/pages/docs/grade-12/biology/aminoAcid/Peptide";
+import StructureProtein from "@/components/pages/docs/grade-12/biology/protein/StructureProtein";
+import FunctionProtein from "@/components/pages/docs/grade-12/biology/protein/FunctionProtein";
+import ProteinDenaturation from "@/components/pages/docs/grade-12/biology/protein/ProteinDenaturation";
+import EnzymeDefinition from "@/components/pages/docs/grade-12/biology/enzymes/EnzymeDefinition";
+import EnzymeFunction from "@/components/pages/docs/grade-12/biology/enzymes/EnzymeFunction";
+import CharacteristicEnzyme from "@/components/pages/docs/grade-12/biology/enzymes/CharacteristicEnzyme";
+import AminoAcidQA from "@/components/pages/docs/grade-12/biology/aminoAcid/AminoAcidQA";
+import ProteinQA from "@/components/pages/docs/grade-12/biology/protein/ProteinQA";
+import EnzymesQA from "@/components/pages/docs/grade-12/biology/enzymes/EnzymesQA";
 
 export const biology: Content = {
   subject: "biology",
@@ -303,17 +315,22 @@ export const biology: Content = {
         {
           title: "ទម្រង់អាស៊ីតអាមីណេ",
           englishTitle: "forms-of-amino-acids",
-          component: ComingSoon,
+          component: FormAminoAcid,
         },
         {
           title: "ប្រភេទផ្សេងៗនៃអាស៊ីតអាមីណេ",
           englishTitle: "different-types-of-amino-acids",
-          component: ComingSoon,
+          component: TypesAminoAcid,
         },
         {
           title: "ប៉ិបទីត",
           englishTitle: "peptide",
-          component: ComingSoon,
+          component: Peptide,
+        },
+        {
+          title: "សំណួរ & ចម្លេីយ",
+          englishTitle: "AminoAcidQA",
+          component: AminoAcidQA,
         },
       ],
     },
@@ -326,17 +343,22 @@ export const biology: Content = {
         {
           title: "រូបផ្គុំរបស់ប្រូតេអ៊ីន",
           englishTitle: "structure-of-protein",
-          component: ComingSoon,
+          component: StructureProtein,
         },
         {
           title: "នាទីរបស់ប្រូតេអ៊ីន",
           englishTitle: "function-of-protein",
-          component: ComingSoon,
+          component: FunctionProtein,
         },
         {
           title: "ការបាត់បង់គុណភាពរបស់ប្រូតេអ៊ីន",
           englishTitle: "protein-denaturation",
-          component: ComingSoon,
+          component: ProteinDenaturation,
+        },
+        {
+          title: "សំណួរ & ចម្លេីយ",
+          englishTitle: "ProteinQA",
+          component: ProteinQA,
         },
       ],
     },
@@ -349,17 +371,22 @@ export const biology: Content = {
         {
           title: "អ្វីជាអង់ស៊ីម?",
           englishTitle: "what-is-enzyme",
-          component: ComingSoon,
+          component: EnzymeDefinition,
         },
         {
           title: "ចំណែកថាក់របស់អង់ស៊ីម",
           englishTitle: "enzyme-function",
-          component: ComingSoon,
+          component: EnzymeFunction,
         },
         {
           title: "លក្ខណៈរបស់អង់ស៊ីម",
           englishTitle: "characteristics-of-enzymes",
-          component: ComingSoon,
+          component: CharacteristicEnzyme,
+        },
+        {
+          title: "សំណួរ & ចម្លេីយ",
+          englishTitle: "EnzymesQA",
+          component: EnzymesQA,
         },
       ],
     },

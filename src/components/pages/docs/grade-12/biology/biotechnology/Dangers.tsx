@@ -21,7 +21,7 @@ const FirstTopicContent: TopicContent = {
   imageExplanation: [
       {
           title: "គ្រោះថ្នាក់ប៉ះពាល់ដល់បរិស្ថាន",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic16.jpg",
           imageAlt: "",
           explanation: [
               "រុក្ខជាតិGMធ្វើឲ្យបាត់បង់ដល់ជីវិតជីវចម្រុះ។",
@@ -30,7 +30,7 @@ const FirstTopicContent: TopicContent = {
       },
       {
           title: "គ្រោះថ្នាក់ដល់សុខភាព",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic17.png",
           imageAlt: "",
           explanation: [
               "ផលិតសារធាតុគីមីប្រើប្រាស់ក្នុងសង្គ្រាម។",
@@ -39,7 +39,7 @@ const FirstTopicContent: TopicContent = {
       },
       {
           title: "ប៉ះពាល់សីលធម៌ និងសង្គម",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic18.png",
           imageAlt: "",
           explanation: [
               "ធ្វើឲ្យមានសែនមុយតាស្យុង ដែលមានឥទ្ធិពលអាក្រក់ ដល់សន្តានក្រោយ។",
@@ -48,7 +48,7 @@ const FirstTopicContent: TopicContent = {
       },
       {
           title: "គ្រោះថ្នាក់ប៉ះពាល់ដល់សេដ្ឋកិច្ច",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/money.jpg",
           imageAlt: "",
           explanation: [
               "ក្រុមហ៊ុនដែលផលិតគ្រាប់រុក្ខជាតិGM មានសិទ្ធិការពារស្របច្បាប់មិនអនុញ្ញាតឲ្យក្រុមហ៊ុនដទៃផលិតរុក្ខជាតិGM។ ដូចនេះកសិករត្រូវទិញគ្រាប់ពូជពីក្រុមហ៊ុននោះជារៀងរាល់ឆ្នាំ។"

@@ -43,7 +43,7 @@ const SecondTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/carrot.png",
           imageAlt: "",
           explanation: [
               "គេយកពន្លកការ៉ុតមួយទៅបណ្តុះក្នុងបំពង់កែវ ដែលមានមជ្ឈដ្ឋានចិញ្ចឹម។",
@@ -75,7 +75,7 @@ const ThirdTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/cow.png",
           imageAlt: "",
           explanation: [
               "ដំបូងគេជ្រើសរើសមេគោពូជល្អមួយ (ផ្តល់សាច់ និងទឹកដោះច្រើន)។",

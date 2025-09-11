@@ -147,7 +147,7 @@ const ADNFormulars = () => {
             </div>       
        </div> 
         <h2 className='font-bold text-xl'>ខ្នាតប្រេីក្នុងជីវៈវិទ្យា</h2>
-       <ul className='flex flex-col items-start gap-3 bg-indigo-50/80 border-l-4 border-indigo-600 p-6 my-6 rounded-r-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm w-full list-disc'>
+       <ul className='flex flex-col items-start gap-3 bg-indigo-50/80 border-l-4 border-indigo-600 p-6 my-6 rounded-r-2xl shadow-lg shadow-indigo-500/10 backdrop-blur-sm w-full list-disc text-[14px]'>
             <div className='flex items-center gap-20'>
                 <li><InlineMath math="1A^{0} = 10^{-1} nm" /></li>
                 <li><InlineMath math="1nm = 10^{1} A^{0}" /></li>

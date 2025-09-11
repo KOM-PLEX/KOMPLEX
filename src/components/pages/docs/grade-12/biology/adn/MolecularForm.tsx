@@ -47,11 +47,14 @@ const FirstTopicContent: TopicContent = {
   },
   imageExplanation: [
         {
-            title: "",
-            src: "/docs/grade-12/biology/adn/",
+            title: "បាសអាសូត",
+            src: "/docs/grade-12/biology/mixs/pic2.png",
             imageAlt: "",
             explanation: [
-                
+                "បាសពួរីន : អាដេនីន(A) , កានីន(G)",
+                "បាសពីរីមីឌីន : ទីមីន(T) , ស៊ីតូស៊ីន(C)",
+                "ការភ្ជាប់គូរពីរនេះធានាថា ADN មានរចនាសម្ព័ន្ធទ្វេស្រទាប់ដែលមានស្ថេរភាព",
+
             ],
         },
     ]
@@ -99,13 +102,7 @@ const ThirdTopicContent: TopicContent = {
     content: (
       <>
         <div className="flex flex-col gap-3 items-start">
-            <p>ក្នុងឆ្នាំ១៩៥៣លោកវ៉ាត់ស៊ុន និងគ្រីកបានបង្ហាញថា៖</p>
             <ul className="list-disc ml-3 flex flex-col gap-3">
-                <li>ម៉ូលេគុលADN ជាប៉ូលីមែនៃនុយក្លេអូទីត។ វាកើតពីច្រវាក់នុយក្លេអូទីតពីរខ្សែស្របគ្នា រុំជារង្វេលជុំវិញអ័ក្សបញ្ឈរមួយ ដែលមានអង្កត់ផ្ចិត2nm ។</li>
-                <li>ក្នុងច្រវាក់ម្ខាងៗ នុយក្លេអូទីតភ្ជាប់គ្នាដោយសម្ព័ន្ធគីមី(សម្ព័ន្ធកូវ៉ាឡង់) រវាងអាស៊ីតផូស្វ័រិចនៃនុយក្លេអូទីតមួយ ទៅនឹងស្ករដេអុកស៊ីរីបូសនៃនុយក្លេអូទីតមួយទៀតដែលនៅជាប់គ្នា។</li>
-                <li>ច្រវាក់ទាំងពីររបស់ADN ភ្ជាប់គ្នាទៅវិញទៅមកដោយសារសម្ព័ន្ធអ៊ីដ្រូសែនខ្សោយរវាងបាស២បំពេញគ្នាគឺ:</li>
-                <p>_ បាសAបំពេញT(A-T)ភ្ជាប់ដោយសម្ព័ន្ធអ៊ីដ្រូសែន២</p>
-                <p>_ បាសCបំពេញG(C-G)ភ្ជាប់ដោយសម្ព័ន្ធអ៊ីដ្រូសែន៣</p>
                 <li>តាមគោលការណ៏បំពេញបាស A-T , C-G នោះ A=T និង C=G</li>
                 <p>_ -AGC  TAC  GGC  TAC  TAG-</p>
                 <p>_ -TCG  ATG  CCG  ATG  ATC-</p>
@@ -115,13 +112,33 @@ const ThirdTopicContent: TopicContent = {
       </>
     ),
   },
+  threeDExplanation: [
+        {
+            title: "ក្នុងឆ្នាំ១៩៥៣លោកវ៉ាត់ស៊ុន និងគ្រីកបានបង្ហាញថា៖",
+            src: "/docs/grade-12/biology/mixs/test.glb",
+            target: [0,2, 0],
+            scale: 2,
+            canvasBackgroundColor: "white",
+            explanation: [
+                "ម៉ូលេគុលADN ជាប៉ូលីមែនៃនុយក្លេអូទីត។ វាកើតពីច្រវាក់នុយក្លេអូទីតពីរខ្សែស្របគ្នា រុំជារង្វេលជុំវិញអ័ក្សបញ្ឈរមួយ ដែលមានអង្កត់ផ្ចិត2nm ។",
+                "ក្នុងច្រវាក់ម្ខាងៗ នុយក្លេអូទីតភ្ជាប់គ្នាដោយសម្ព័ន្ធគីមី(សម្ព័ន្ធកូវ៉ាឡង់) រវាងអាស៊ីតផូស្វ័រិចនៃនុយក្លេអូទីតមួយ ទៅនឹងស្ករដេអុកស៊ីរីបូសនៃនុយក្លេអូទីតមួយទៀតដែលនៅជាប់គ្នា។",
+                "ច្រវាក់ទាំងពីររបស់ADN ភ្ជាប់គ្នាទៅវិញទៅមកដោយសារសម្ព័ន្ធអ៊ីដ្រូសែនខ្សោយរវាងបាស២បំពេញគ្នាគឺ:",
+                "បាសAបំពេញT(A-T)ភ្ជាប់ដោយសម្ព័ន្ធអ៊ីដ្រូសែន២",
+                "បាសCបំពេញG(C-G)ភ្ជាប់ដោយសម្ព័ន្ធអ៊ីដ្រូសែន៣"
+            ],
+        },
+    ],
   imageExplanation: [
         {
-            title: "",
-            src: "/docs/grade-12/biology/adn/",
+            title: "ក្នុងឆ្នាំ១៩៥៣លោកវ៉ាត់ស៊ុន និងគ្រីកបានបង្ហាញថា៖",
+            src: "/docs/grade-12/biology/mixs/dnaPic.png",
             imageAlt: "",
             explanation: [
-                
+                "ម៉ូលេគុលADN ជាប៉ូលីមែនៃនុយក្លេអូទីត។ វាកើតពីច្រវាក់នុយក្លេអូទីតពីរខ្សែស្របគ្នា រុំជារង្វេលជុំវិញអ័ក្សបញ្ឈរមួយ ដែលមានអង្កត់ផ្ចិត2nm ។",
+                "ក្នុងច្រវាក់ម្ខាងៗ នុយក្លេអូទីតភ្ជាប់គ្នាដោយសម្ព័ន្ធគីមី(សម្ព័ន្ធកូវ៉ាឡង់) រវាងអាស៊ីតផូស្វ័រិចនៃនុយក្លេអូទីតមួយ ទៅនឹងស្ករដេអុកស៊ីរីបូសនៃនុយក្លេអូទីតមួយទៀតដែលនៅជាប់គ្នា។",
+                "ច្រវាក់ទាំងពីររបស់ADN ភ្ជាប់គ្នាទៅវិញទៅមកដោយសារសម្ព័ន្ធអ៊ីដ្រូសែនខ្សោយរវាងបាស២បំពេញគ្នាគឺ:",
+                "បាសAបំពេញT(A-T)ភ្ជាប់ដោយសម្ព័ន្ធអ៊ីដ្រូសែន២",
+                "បាសCបំពេញG(C-G)ភ្ជាប់ដោយសម្ព័ន្ធអ៊ីដ្រូសែន៣"
             ],
         },
     ]
@@ -160,16 +177,31 @@ const MolecularForm = () => {
               )}
               {ThirdTopicContent.tip && (
                   <TipBox title={ThirdTopicContent.tip.title} content={ThirdTopicContent.tip.content} />
-              )}
+              )}            
+              {ThirdTopicContent.threeDExplanation &&
+              Array.isArray(ThirdTopicContent.threeDExplanation) &&
+              ThirdTopicContent.threeDExplanation.map((threeD: ThreeDExplanationBoxProps, index: number) => (
+                  <ThreeDExplanationBox
+                      key={index}
+                      title={threeD.title}
+                      src={threeD.src}
+                      explanation={threeD.explanation}
+                      canvasBackgroundColor="white"
+                      scale={threeD.scale}
+                      target={threeD.target}
+                  />
+              ))} 
               {ThirdTopicContent.imageExplanation &&
                   Array.isArray(ThirdTopicContent.imageExplanation) &&
                   ThirdTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
                       <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
-              ))}
-                      
+              ))}                  
         </div>
     </div>
   )
 }
 
 export default MolecularForm
+
+
+

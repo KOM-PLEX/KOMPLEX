@@ -32,7 +32,7 @@ const FirstTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic33.png",
           imageAlt: "",
           explanation: [
               "សត្វឥតឆ្អឹងកងកើតឡើងនៅសម័យកំព្រីយាង ស័កប៉ាឡេអូសូម៉ិច។",

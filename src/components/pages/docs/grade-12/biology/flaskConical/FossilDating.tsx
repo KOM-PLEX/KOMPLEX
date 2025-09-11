@@ -32,16 +32,6 @@ const FirstTopicContent: TopicContent = {
       </>
     ),
   },
-    imageExplanation: [
-      {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
-          explanation: [
-              
-          ],
-      },
-    ]
 }
 
 const SecondTopicContent: TopicContent = {
@@ -56,7 +46,7 @@ const SecondTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic31.png",
           imageAlt: "",
           explanation: [
               "គេប្រៀបធៀបអាយុធៀបផូស៊ីល ដែលមាននៅក្នុង ស្រទាប់សិលាកម្ទេចកំណ។",
@@ -75,17 +65,17 @@ const ThirdTopicContent: TopicContent = {
         </div>
       </>
   },
-    imageExplanation: [
-      {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
-          explanation: [
-              "សារធាតុវិទ្យុសកម្មអាចបំបែក ហើយប្លែងជាសារធាតុមួយផ្សេងទៀត ហើយល្បឿននៃការបំបែកនេះថេរ មិនទាក់ទង នឹងលក្ខខណ្ឌនៃមជ្ឈដ្ឋានក្រៅទេ។",
-              "ក្នុងការកំណត់អាយុសិលា ឬផូស៊ីល គេអាចគណនារយះពេលនៃការបំបែកសារធាតុវិទ្យុសកម្ម ដែលមានក្នុងផូស៊ីល ឬសិលានោះ។"
-          ],
-      },
-    ],
+  tip: {
+    title: "ចំណុចសំខាន់",
+    content: (
+      <>
+          <ul className="list-disc ml-4 flex flex-col gap-3">
+                <li>សារធាតុវិទ្យុសកម្មអាចបំបែក ហើយប្លែងជាសារធាតុមួយផ្សេងទៀត ហើយល្បឿននៃការបំបែកនេះថេរ មិនទាក់ទង នឹងលក្ខខណ្ឌនៃមជ្ឈដ្ឋានក្រៅទេ។</li>
+                <li>ក្នុងការកំណត់អាយុសិលា ឬផូស៊ីល គេអាចគណនារយះពេលនៃការបំបែកសារធាតុវិទ្យុសកម្ម ដែលមានក្នុងផូស៊ីល ឬសិលានោះ។</li>
+          </ul>
+      </>
+    ),
+  },
     example: {
         question: [
             <div className="flex flex-col items-start gap-3" key="q1">  
@@ -137,6 +127,9 @@ const FossilDating = () => {
                     ThirdTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
                         <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
                 ))}
+                {ThirdTopicContent.example && (
+                          <ExampleBox question={ThirdTopicContent.example.question}  />
+                )}
           </div>
     </div>
   )

@@ -32,7 +32,7 @@ const FirstTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic35.png",
           imageAlt: "",
           explanation: [
               
@@ -59,16 +59,6 @@ const SecondTopicContent: TopicContent = {
       </>
     ),
   },
-    imageExplanation: [
-      {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
-          explanation: [
-              
-          ],
-      },
-    ]
 }
 
 const Evolution = () => {
@@ -86,6 +76,14 @@ const Evolution = () => {
                     FirstTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
                         <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
                 ))}
+          </div>
+          <div>
+                {SecondTopicContent.definition && (
+                  <DefinitionBox title={SecondTopicContent.definition.title} content={SecondTopicContent.definition.content} />
+                )}
+                {SecondTopicContent.tip && (
+                    <TipBox title={SecondTopicContent.tip.title} content={SecondTopicContent.tip.content} />
+                )}
           </div>
     </div>
   )

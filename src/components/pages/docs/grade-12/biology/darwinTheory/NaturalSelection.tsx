@@ -34,16 +34,6 @@ const FirstTopicContent: TopicContent = {
       </>
     ),
   },
-    imageExplanation: [
-      {
-          title: "",
-          src: "/docs/grade-12/biology/adn/",
-          imageAlt: "",
-          explanation: [
-              
-          ],
-      },
-    ]
 }
 
 
@@ -57,11 +47,6 @@ const NaturalSelection = () => {
                 {FirstTopicContent.tip && (
                     <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
                 )}
-                {FirstTopicContent.imageExplanation &&
-                    Array.isArray(FirstTopicContent.imageExplanation) &&
-                    FirstTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
-                        <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
-                ))}
           </div>
     </div>
   )

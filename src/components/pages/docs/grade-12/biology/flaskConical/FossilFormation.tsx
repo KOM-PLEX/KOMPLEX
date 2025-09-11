@@ -31,7 +31,7 @@ const FirstTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic30.jpg",
           imageAlt: "",
           explanation: [
               "សំណល់ភាវរស់ខ្លះដែលកប់ជាប់ក្នុងកម្ទេចកំណប្លែងទៅជាថ្ម។",
@@ -64,7 +64,15 @@ const SecondTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic31.jpg",
+          imageAlt: "",
+          explanation: [
+              
+          ],
+      },
+      {
+          title: "",
+          src: "/docs/grade-12/biology/mixs/pic36.png",
           imageAlt: "",
           explanation: [
               
@@ -93,7 +101,7 @@ const ThirdTopicContent: TopicContent = {
     imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic33.jpg",
           imageAlt: "",
           explanation: [
               

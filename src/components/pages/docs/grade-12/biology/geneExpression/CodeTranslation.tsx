@@ -33,7 +33,7 @@ const FirstTopicContent: TopicContent = {
   imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic7.png",
           imageAlt: "",
           explanation: [
               "ឯកតារងទាំងពីរចេញពីណ្វៃយ៉ូ ទៅក្នុងស៊ីតូប្លាសភ្ជាប់គ្នាបង្កើតបានរីបូសូម នៅលើបណ្តាញរ៉េទីគុយលូមអង់ដូប្លាស។",
@@ -69,7 +69,7 @@ const SecondTopicContent: TopicContent = {
   imageExplanation: [
       {
           title: "",
-          src: "/docs/grade-12/biology/adn/",
+          src: "/docs/grade-12/biology/mixs/pic8.png",
           imageAlt: "",
           explanation: [
               "ARN_t រុំបត់បែនជារាងកំពកបី។ កំពកកណ្តាលមានបាសបីតគ្នាសម្រាប់បំពេញជាមួយកូដុងហៅថាអង់ទីកូដុង។",

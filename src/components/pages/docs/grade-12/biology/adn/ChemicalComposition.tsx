@@ -55,7 +55,7 @@ const SecondTopicContent: TopicContent = {
   imageExplanation: [
         {
             title: "ពិសោធន៏របស់លោកអាវីរី",
-            src: "/docs/grade-12/biology/",
+            src: "/docs/grade-12/biology/mixs/pic1.png",
             imageAlt: "",
             explanation: [
                 "លោកអាវីរីទាញយកADN ពីបាក់តេរី S តាមបច្ចេកទេសគីមី ដោយយកទៅលាយជាមួយបាក់តេរី R ហើយយកល្បាយនោះចាក់ឲ្យកណ្តុរ។ កណ្តុរនោះស្លាប់ដោយសារជំងឺរលាកសួត ហើយក្នុងឈាមរបស់កណ្តុរមានបាក់តេរី S មានជីវិត។",
