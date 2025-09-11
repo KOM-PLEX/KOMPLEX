@@ -37,6 +37,7 @@ export default function AIChat() {
     const [isStreaming, setIsStreaming] = useState(false);
     const [isRequestInProgress, setIsRequestInProgress] = useState(false);
     const streamingIntervalRef = useRef<NodeJS.Timeout | null>(null);
+    const streamingRafRef = useRef<number | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -101,18 +102,26 @@ export default function AIChat() {
         setIsStreaming(true);
         setStreamingMessage('');
         let index = 0;
+        // Adaptive step: starts small, increases as content grows
+        const maxStep = 32;
+        const minStep = 3;
 
-        streamingIntervalRef.current = setInterval(() => {
+        const tick = () => {
             if (index < text.length) {
-                setStreamingMessage(text.slice(0, index + 1));
-                index++;
+                const dynamicStep = Math.min(minStep + Math.floor(index / 50), maxStep);
+                index = Math.min(index + dynamicStep, text.length);
+                setStreamingMessage(text.slice(0, index));
+                streamingRafRef.current = requestAnimationFrame(tick);
             } else {
+                if (streamingRafRef.current !== null) {
+                    cancelAnimationFrame(streamingRafRef.current);
+                    streamingRafRef.current = null;
+                }
                 if (streamingIntervalRef.current) {
                     clearInterval(streamingIntervalRef.current);
                     streamingIntervalRef.current = null;
                 }
                 setIsStreaming(false);
-                // Add the complete message to the messages array
                 const aiResponse: Message = {
                     id: (Date.now() + 1).toString(),
                     content: text,
@@ -122,7 +131,9 @@ export default function AIChat() {
                 setMessages(prev => [...prev, aiResponse]);
                 setStreamingMessage('');
             }
-        }, 5); // Adjust speed here (lower = faster)
+        };
+
+        streamingRafRef.current = requestAnimationFrame(tick);
     };
 
     const autoResizeTextarea = () => {
@@ -175,6 +186,10 @@ export default function AIChat() {
             setError('បានបញ្ឈប់ការស្នើសុំ។');
         } else if (isStreaming) {
             // Case 2: Stop the fake streaming and keep what has been streamed
+            if (streamingRafRef.current !== null) {
+                cancelAnimationFrame(streamingRafRef.current);
+                streamingRafRef.current = null;
+            }
             if (streamingIntervalRef.current) {
                 clearInterval(streamingIntervalRef.current);
                 streamingIntervalRef.current = null;
@@ -251,7 +266,7 @@ export default function AIChat() {
                         ))}
 
                         {isLoading && (
-                            <div className="w-full">
+                            <div className="w-full h-96">
                                 <div className="flex items-center gap-2">
                                     <div className="flex space-x-1">
                                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Sidebar from '@/components/pages/me/Sidebar';
@@ -25,6 +25,14 @@ import VideoHistoryComponent from '@/components/pages/me/videos/VideoHistory';
 
 
 export default function MyVideos() {
+    return (
+        <Suspense fallback={<MeSkeleton />}>
+            <MyVideosContent />
+        </Suspense>
+    );
+}
+
+function MyVideosContent() {
     const searchParams = useSearchParams();
     const activeTab = searchParams.get('tab') || 'myVideos';
 
@@ -32,7 +40,6 @@ export default function MyVideos() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    // Fetch videos from backend
     useEffect(() => {
         const fetchVideos = async () => {
             try {
@@ -97,7 +104,6 @@ export default function MyVideos() {
             <MeSkeleton />
         );
     }
-
 
     return (
         <div className="flex min-h-screen bg-gray-50">
@@ -348,4 +354,4 @@ export default function MyVideos() {
             </div>
         </div>
     );
-} 
+}
