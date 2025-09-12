@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ThumbsUp, Share, Bookmark, Check, LinkIcon } from 'lucide-react';
+import { ThumbsUp, Share, Bookmark, Check, LinkIcon, UserPlus, UserCheck } from 'lucide-react';
 import { Menu, Transition } from '@headlessui/react';
 import { VideoPost } from '@/types/content/videos';
 import Link from 'next/link';
+import { followUser, unfollowUser } from '@/services/me/follow';
+import { useAuth } from '@/hooks/useAuth';
 
 interface VideoDescriptionProps {
     video: VideoPost;
@@ -15,6 +17,9 @@ interface VideoDescriptionProps {
 export default function VideoDescription({ video, onLike, onBookmark }: VideoDescriptionProps) {
     const [showFullDescription, setShowFullDescription] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [isFollowing, setIsFollowing] = useState(video.isFollowing);
+    const [isFollowLoading, setIsFollowLoading] = useState(false);
+    const { user, openLoginModal } = useAuth();
 
     const handleCopyLink = async (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -25,6 +30,34 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
             setTimeout(() => setCopied(false), 2000);
         } catch (error) {
             console.error('Failed to copy link:', error);
+        }
+    };
+
+    const handleFollow = async () => {
+        if (!user) {
+            openLoginModal();
+            return;
+        }
+
+        // Don't allow following yourself
+        if (user.id === video.userId) {
+            return;
+        }
+
+        try {
+            setIsFollowLoading(true);
+
+            if (isFollowing) {
+                await unfollowUser(video.userId);
+                setIsFollowing(false);
+            } else {
+                await followUser(video.userId);
+                setIsFollowing(true);
+            }
+        } catch (error) {
+            console.error('Error toggling follow:', error);
+        } finally {
+            setIsFollowLoading(false);
         }
     };
 
@@ -92,9 +125,30 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
                             <h3 className="font-semibold text-gray-900 text-sm sm:text-base truncate hover:underline">{video.username}</h3>
                         </div>
                     </Link>
-                    {/* <button className="px-3 py-1.5 bg-indigo-600 text-white text-xs sm:text-sm rounded-lg hover:bg-indigo-700 transition-colors flex-shrink-0">
-                        តាមដាន
-                    </button> */}
+
+                    {/* Follow Button - Always show, but opens modal if not logged in */}
+                    <button
+                        onClick={handleFollow}
+                        disabled={isFollowLoading}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors flex-shrink-0 ${isFollowing
+                            ? 'bg-indigo-100 text-indigo-700 border border-indigo-200 hover:bg-indigo-200'
+                            : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                            } ${isFollowLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                        {isFollowLoading ? (
+                            <div className="w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" />
+                        ) : isFollowing ? (
+                            <>
+                                <UserCheck className="w-3 h-3" />
+                                បានតាមដាន
+                            </>
+                        ) : (
+                            <>
+                                <UserPlus className="w-3 h-3" />
+                                តាមដាន
+                            </>
+                        )}
+                    </button>
                 </div>
 
                 {/* Action Buttons */}

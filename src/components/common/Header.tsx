@@ -133,6 +133,9 @@ export default function Header() {
                                                             src={user.profileImage}
                                                             alt="Profile"
                                                             className="w-8 h-8 border border-indigo-500 rounded-full object-cover"
+                                                            onError={(e) => {
+                                                                (e.target as HTMLImageElement).src = "/image-error.png";
+                                                            }}
                                                         />
                                                     ) : (
                                                         <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">

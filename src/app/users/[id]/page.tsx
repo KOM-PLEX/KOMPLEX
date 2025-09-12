@@ -7,13 +7,15 @@ import ContentError from '@/components/common/ContentError';
 import Blogs from '@/components/pages/users/Blogs';
 import VideoTab from '@/components/pages/users/Video';
 import Forums from '@/components/pages/users/Forums';
-import { getUserProfile, followUser, unfollowUser, User } from '@/services/user/profile';
+import { getUserProfile, User } from '@/services/user/profile';
+import { useAuth } from '@/hooks/useAuth';
+import { followUser, unfollowUser } from '@/services/me/follow';
 
 
 const tabs = [
     { id: 'blogs', label: 'ប្លុក', icon: BookOpen },
     { id: 'videos', label: 'វីដេអូ', icon: Video },
-    { id: 'forums', label: 'ព័ត៌មាន', icon: MessageSquare }
+    { id: 'forums', label: 'ការពិភាក្សា', icon: MessageSquare }
 ];
 
 export default function UserProfilePage() {
@@ -23,6 +25,8 @@ export default function UserProfilePage() {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [isFollowLoading, setIsFollowLoading] = useState(false);
+    const { user: currentUser, openLoginModal } = useAuth();
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -45,11 +49,24 @@ export default function UserProfilePage() {
     const handleFollow = async () => {
         if (!user) return;
 
+        // Check if user is logged in
+        if (!currentUser) {
+            openLoginModal();
+            return;
+        }
+
+        // Prevent following self
+        if (currentUser.id === user.id) {
+            return;
+        }
+
         try {
+            setIsFollowLoading(true);
+
             if (user.isFollowing) {
-                await unfollowUser(userId);
+                await unfollowUser(Number(userId));
             } else {
-                await followUser(userId);
+                await followUser(Number(userId));
             }
 
             setUser(prev => prev ? {
@@ -59,6 +76,8 @@ export default function UserProfilePage() {
             } : null);
         } catch (error) {
             console.error('Error toggling follow:', error);
+        } finally {
+            setIsFollowLoading(false);
         }
     };
 
@@ -206,28 +225,36 @@ export default function UserProfilePage() {
                             </div>
                         </div>
 
-                        {/* Follow Button - Moved to right */}
-                        <div className="flex-shrink-0">
-                            <button
-                                onClick={handleFollow}
-                                className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${user.isFollowing
-                                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                    : 'bg-indigo-600 text-white hover:bg-indigo-700'
-                                    }`}
-                            >
-                                {user.isFollowing ? (
-                                    <>
-                                        <UserCheck className="w-4 h-4 inline mr-2" />
-                                        បានតាមដាន
-                                    </>
-                                ) : (
-                                    <>
-                                        <UserPlus className="w-4 h-4 inline mr-2" />
-                                        តាមដាន
-                                    </>
-                                )}
-                            </button>
-                        </div>
+                        {/* Follow Button - Only show if not current user's profile */}
+                        {currentUser && currentUser.id !== user.id && (
+                            <div className="flex-shrink-0">
+                                <button
+                                    onClick={handleFollow}
+                                    disabled={isFollowLoading}
+                                    className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 ${user.isFollowing
+                                        ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                                        } ${isFollowLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                >
+                                    {isFollowLoading ? (
+                                        <>
+                                            <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin inline mr-2" />
+                                            {user.isFollowing ? 'កំពុងបញ្ឈប់' : 'កំពុងតាមដាន'}
+                                        </>
+                                    ) : user.isFollowing ? (
+                                        <>
+                                            <UserCheck className="w-4 h-4 inline mr-2" />
+                                            បានតាមដាន
+                                        </>
+                                    ) : (
+                                        <>
+                                            <UserPlus className="w-4 h-4 inline mr-2" />
+                                            តាមដាន
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        )}
                     </div>
 
                     {/* Stats Grid */}

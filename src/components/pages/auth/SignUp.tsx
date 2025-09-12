@@ -53,11 +53,6 @@ export default function SignUp({
 }: SignupFormProps) {
     return (
         <form onSubmit={handleSignup} className="space-y-6 mx-auto">
-            {errorMessage && (
-                <div className="w-full rounded-lg border border-red-200 bg-red-50 text-red-700 text-sm p-3">
-                    {errorMessage}
-                </div>
-            )}
             {/* Profile Image and Basic Info Row */}
             <div className="flex flex-col lg:flex-row gap-6 items-start">
                 {/* Profile Image */}
@@ -259,6 +254,12 @@ export default function SignUp({
                     )}
                 </div>
             </div>
+
+            {errorMessage && (
+                <div className="w-full rounded-lg border border-red-200 bg-red-50 text-red-700 text-sm p-3">
+                    {errorMessage}
+                </div>
+            )}
 
             {/* <div className="flex items-start">
                 <input

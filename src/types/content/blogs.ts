@@ -4,6 +4,7 @@ export interface Blog {
   id: number;
   userId: number;
   profileImage: string;
+  isFollowing: boolean;
   username: string;
   title: string;
   type: string;

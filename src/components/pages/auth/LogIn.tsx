@@ -30,11 +30,7 @@ export default function LogIn({
 }: LoginFormProps) {
     return (
         <form onSubmit={handleLogin} className="space-y-4 mx-auto">
-            {errorMessage && (
-                <div className="w-full rounded-lg border border-red-200 bg-red-50 text-red-700 text-sm p-3">
-                    {errorMessage}
-                </div>
-            )}
+            
             <div>
                 <label className="block text-sm font-medium text-black mb-2">
                     អ៊ីមែល ឬ ឈ្មោះអ្នកប្រើប្រាស់
@@ -76,6 +72,12 @@ export default function LogIn({
                     </button>
                 </div>
             </div>
+
+            {errorMessage && (
+                <div className="w-full rounded-lg border border-red-200 bg-red-50 text-red-700 text-sm p-3">
+                    {errorMessage}
+                </div>
+            )}
 
             {/* <div className="flex items-center justify-between">
                 <label className="flex items-center">

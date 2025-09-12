@@ -40,21 +40,3 @@ export const getUserProfile = async (userId: string): Promise<User> => {
     throw new Error("Failed to fetch user profile");
   }
 };
-
-export const followUser = async (userId: string): Promise<void> => {
-  try {
-    await api.post(`/users/${userId}/follow`);
-  } catch (error) {
-    console.error("Error following user:", error);
-    throw new Error("Failed to follow user");
-  }
-};
-
-export const unfollowUser = async (userId: string): Promise<void> => {
-  try {
-    await api.delete(`/users/${userId}/follow`);
-  } catch (error) {
-    console.error("Error unfollowing user:", error);
-    throw new Error("Failed to unfollow user");
-  }
-};
