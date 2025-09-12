@@ -25,6 +25,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "KOMPLEX",
   description: "KOMPLEX is a platform for learning and teaching mathematics and physics.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
