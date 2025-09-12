@@ -15,7 +15,7 @@ export default function Home() {
       <Hero />
       <Features />
       <AboutFeatures />
-      <Goals />
+      {/* <Goals /> */}
       <Founders />
       <Footer />
     </div>

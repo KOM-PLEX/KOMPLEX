@@ -106,17 +106,30 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
     return (
         <div className={`bg-white rounded-2xl p-6  border border-indigo-500/10 transition-all duration-300   ${isFromBasePage ? 'cursor-pointer' : ''}`} onClick={handleCardClick}>
             <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-base">
-                    {getAvatar(post.username)}
-                </div>
-                <div className="flex-1">
-                    <div className="font-semibold text-gray-900 text-sm mb-0.5">
-                        {post.username}
+                <Link href={`/users/${post.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    {post.profileImage ? (
+                        <img
+                            src={post.profileImage}
+                            alt={post.username}
+                            className="w-10 h-10 rounded-full object-cover border-2 border-indigo-500"
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                            }}
+                        />
+                    ) : null}
+                    <div className={`w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-base ${post.profileImage ? 'hidden' : ''}`}>
+                        {getAvatar(post.username)}
                     </div>
-                    <div className="text-gray-500 text-xs">
-                        {getTimeAgo(post.createdAt)}
+                    <div className="flex-1">
+                        <div className="font-semibold text-gray-900 text-sm mb-0.5 hover:underline">
+                            {post.username}
+                        </div>
+                        <div className="text-gray-500 text-xs">
+                            {getTimeAgo(post.createdAt)}
+                        </div>
                     </div>
-                </div>
+                </Link>
             </div>
 
             <div className="text-lg font-bold text-gray-900 mb-2.5 leading-relaxed">

@@ -113,10 +113,7 @@ export default function AboutFeatures() {
                         <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
                             <BookOpen size={24} className="text-indigo-600 mt-2" />
                             មេរៀន</h3>
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            រៀនគណិតវិទ្យាតាមរយៈមេរៀនដែលស្រួលយល់ និងរូបភាពច្បាស់លាស់។
-                            អ្នកអាចរុករកមេរៀនតាមថ្នាក់រៀន និងមុខវិជ្ជាបានយ៉ាងងាយស្រួល។
-                        </p>
+
                         <motion.ul
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -191,9 +188,6 @@ export default function AboutFeatures() {
                             <ImageIcon size={24} className="text-indigo-600 mt-2" />
                             រូបភាព 3D
                         </h3>
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            រៀនតាមរយៈរូបភាព 3D ដែលធ្វើឱ្យគោលគំនិតស្មុគស្មាញកាន់តែងាយយល់។
-                        </p>
                         <motion.ul
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -231,7 +225,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-green-600" />
-                                បន្ថែមអត្ថបទ 3D ដើម្បីពន្យល់បន្ថែម
+                                អក្សរ 3D ដើម្បីពន្យល់បន្ថែម
                             </motion.li>
                         </motion.ul>
                     </motion.div>
@@ -278,10 +272,6 @@ export default function AboutFeatures() {
                         <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
                             <ChartBar size={24} className="text-indigo-600 mt-2" />
                             ក្រាប</h3>
-                        <p className="text-lg text-gray-600 leading-relaxed flex items-center gap-2">
-                            បង្កើត និងពិសោធន៍ជាមួយក្រាប។
-                            អ្នកអាចបង្កើតក្រាប និងមើលពីរបៀបដែលវាផ្លាស់ប្តូរ។
-                        </p>
                         <motion.ul
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -297,7 +287,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-blue-600" />
-                                បង្កើតក្រាបគណិតវិទ្យាស្មុគស្មាញ
+                                មើលក្រាបគណិតវិទ្យាស្មុគស្មាញ
                             </motion.li>
                             <motion.li
                                 initial={{ opacity: 0, x: -20 }}
@@ -356,12 +346,6 @@ export default function AboutFeatures() {
                             <BookOpen size={24} className="text-indigo-600 mt-2" />
                             លំហាត់អនុវត្តន៍ក្នុងមេរៀន</h3>
 
-                        {/* //! TO CHANGE */}
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            ធ្វើលំហាត់អនុវត្តន៍ជាមួយនឹងការណែនាំជាក់លាក់។
-                        </p>
-
-                        {/* //! TO CHANGE */}
                         <motion.ul
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -377,7 +361,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-purple-600" />
-                                លំហាត់អនុវត្តន៍ជាមួយនឹងការណែនាំជាក់លាក់
+                                សាលល្បងសម្ថភាព
                             </motion.li>
                             <motion.li
                                 initial={{ opacity: 0, x: 20 }}
@@ -387,7 +371,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-purple-600" />
-                                ការវាយតម្លៃដោយភ្លាមៗ
+                                ទទួលបានចម្លើយភ្លាមៗ
                             </motion.li>
                             <motion.li
                                 initial={{ opacity: 0, x: 20 }}
@@ -397,7 +381,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-purple-600" />
-                                ការណែនាំពិស្តារ និងដំណោះស្រាយ
+                                លំហាត់មានសម្បូរបែប
                             </motion.li>
                         </motion.ul>
                     </motion.div>
@@ -417,9 +401,72 @@ export default function AboutFeatures() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-15"
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20"
                 >
-                    <h2 className="text-4xl font-extrabold text-gray-900 mb-4">មុខងារអនុវត្តន៍</h2>
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="lg:order-1 space-y-6"
+                    >
+                        <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                            <BookOpen size={24} className="text-indigo-600 mt-2" />
+                            លំហាត់អនុវត្តន៍</h3>
+
+                        <motion.ul
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="space-y-3 text-gray-600"
+                        >
+                            <motion.li
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.5 }}
+                                className="flex items-center gap-3"
+                            >
+                                <CheckCircle className="w-5 h-5 text-purple-600" />
+                                សាលល្បងសម្ថភាព
+                            </motion.li>
+                            <motion.li
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.6 }}
+                                className="flex items-center gap-3"
+                            >
+                                <CheckCircle className="w-5 h-5 text-purple-600" />
+                                ទទួលបានរបាយការណ៏
+                            </motion.li>
+                            <motion.li
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.7 }}
+                                className="flex items-center gap-3"
+                            >
+                                <CheckCircle className="w-5 h-5 text-purple-600" />
+                                ធ្វើតេស្តបានច្រើនដង
+                            </motion.li>
+                        </motion.ul>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="bg-white rounded-2xl p-6 shadow-lg"
+                    >
+                        <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
+                            <div className="text-center">
+                                <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                                <p className="text-gray-500">រូបភាពមេរៀនអន្តរកម្មនឹងត្រូវបានបង្ហាញនៅទីនេះ</p>
+                            </div>
+                        </div>
+                    </motion.div>
                 </motion.div>
 
                 {/* AI Assistant */}
@@ -439,11 +486,8 @@ export default function AboutFeatures() {
                     >
                         <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
                             <Bot size={24} className="text-indigo-600 mt-2" />
-                            KOMPLEX AI</h3>
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            KOMPLEX AI ដែលអាចជួយដោះស្រាយបញ្ហាគណិតវិទ្យា និងផ្តល់ការណែនាំជាក់លាក់។
-                            សួរសំណួរណាមួយដែលអ្នកមាន។
-                        </p>
+                            <div className="flex items-center"><span className="text-indigo-500">តា</span> <span className="text-black">រា</span> </div>
+                        </h3>
                         <motion.ul
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -459,7 +503,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-green-600" />
-                                ដោះស្រាយបញ្ហាគណិតវិទ្យាជាមួយនឹងការណែនាំជាក់លាក់
+                                ដោះស្រាយបញ្ហាជាមួយនឹងការណែនាំជាក់លាក់
                             </motion.li>
                             <motion.li
                                 initial={{ opacity: 0, x: -20 }}
@@ -527,9 +571,6 @@ export default function AboutFeatures() {
                         <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
                             <FileText size={24} className="text-indigo-600 mt-2" />
                             អត្ថបទ</h3>
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            អានអត្ថបទ ប្រើបទពិសោធន៍ និងគន្លឹះសិក្សាពីសិស្ស និងគ្រូផ្សេងទៀត។
-                        </p>
                         <motion.ul
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -602,11 +643,8 @@ export default function AboutFeatures() {
                     >
                         <h3 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
                             <MessageSquare size={24} className="text-indigo-600 mt-2" />
-                            វេទិកាពិភាក្សា</h3>
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            ចូលរួមក្នុងការពិភាក្សាជាមួយសិស្សដទៃទៀត។
-                            សួរសំណួរ និងចែករំលែកចំណេះដឹងរបស់អ្នក។
-                        </p>
+                            ការពិភាក្សា</h3>
+
                         <motion.ul
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -642,7 +680,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-blue-600" />
-                                ស្វែងរកគន្លឹះ និងដំណោះស្រាយ
+                                ចែករំលែកបទពិសោធន៍
                             </motion.li>
                         </motion.ul>
                     </motion.div>
@@ -682,11 +720,6 @@ export default function AboutFeatures() {
                             <Video size={24} className="text-indigo-600 " />
                             វីដេអូ</h3>
 
-                        {/* //! TO CHANGE */}
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            មើលវីដេអូរៀនឥតគិតថ្លៃដែលពន្យល់អំពីគោលគំនិតសំខាន់ៗ។
-                            វីដេអូយើងត្រូវបានធ្វើឡើងដោយអ្នកជំនាញដើម្បីជួយអ្នកយល់។
-                        </p>
                         <motion.ul
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
@@ -702,7 +735,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-red-600" />
-                                វីដេអូរៀនគណិតវិទ្យាឥតគិតថ្លៃ
+                                វីដេអូសិក្សាដោយអ្នកជំនាញ និងសិស្សដទៃទៀត
                             </motion.li>
                             <motion.li
                                 initial={{ opacity: 0, x: 20 }}
@@ -712,7 +745,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-red-600" />
-                                ការពន្យល់ជាក់លាក់ដោយអ្នកជំនាញ
+                                មានលំហាត់អនុវត្តន៍ភ្ជាប់នឹងវីដេអូ
                             </motion.li>
                             <motion.li
                                 initial={{ opacity: 0, x: 20 }}
@@ -722,7 +755,7 @@ export default function AboutFeatures() {
                                 className="flex items-center gap-3"
                             >
                                 <CheckCircle className="w-5 h-5 text-red-600" />
-                                វីដេអូអន្តរកម្មជាមួយនឹងការអនុវត្តន៍
+                                ផ្ដល់មតិ និងពិភាក្សាទាក់ទងនឹងវីដេអូ
                             </motion.li>
                         </motion.ul>
                     </motion.div>

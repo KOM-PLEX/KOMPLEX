@@ -20,7 +20,7 @@ interface ReplyComponentProps {
 export default function ReplyComponent({ reply, commentId, onSubmitReply, replyType }: ReplyComponentProps) {
     const { user, openLoginModal } = useAuth();
 
-    const [replyUpvoted, setReplyUpvoted] = useState(reply.isLike || false);
+    const [replyUpvoted, setReplyUpvoted] = useState(reply.isLiked || false);
     const [likeCount, setLikeCount] = useState('likeCount' in reply ? reply.likeCount : 0);
     const [isReplying, setIsReplying] = useState(false);
     const [replyText, setReplyText] = useState('');

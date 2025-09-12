@@ -67,7 +67,7 @@ const FOUNDERS = [
 
 export default function Founders() {
     return (
-        <section id="founders" className="py-20 px-5 bg-white">
+        <section id="founders" className="pb-20 px-5 bg-white">
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
@@ -76,10 +76,7 @@ export default function Founders() {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-15"
                 >
-                    <h2 className="text-4xl font-extrabold text-gray-900 mb-4">អ្នកបង្កើត</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        ស្គាល់អ្នកដែលបង្កើតប្រព័ន្ធរៀន STEM សម្រាប់សិស្សខ្មែរ
-                    </p>
+                    <h2 className="text-4xl font-extrabold text-gray-900 mb-4">ស្ថាបនិក</h2>
                 </motion.div>
 
                 <motion.div

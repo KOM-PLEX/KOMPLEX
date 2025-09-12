@@ -8,7 +8,7 @@ const FEATURES = [
         icon: BookOpen,
         title: "មេរៀន",
         description:
-            "សិក្សានិងស្រាវជ្រាវ ដោយមានមេរៀនច្បាស់ និងរូបភាពច្បាស់លាស់",
+            "សិក្សានិងស្រាវជ្រាវ ដោយមានមេរៀនងាយយល់ និងរូបភាពច្បាស់លាស់",
         color: "indigo",
         bgColor: "bg-indigo-50/80",
         borderColor: "border-indigo-600",
@@ -16,10 +16,10 @@ const FEATURES = [
     },
     {
         icon: MessageSquare,
-        title: "វេទិកាពិភាក្សា",
+        title: "ការពិភាក្សា",
         description:
             "ចែករំលែកចំណេះដឹង សួរសំណួរ និងពិភាក្សាជាមួយសិស្សដទៃទៀត",
-        color: "green", 
+        color: "green",
         bgColor: "bg-green-50/80",
         borderColor: "border-green-600",
         iconColor: "text-green-600",
@@ -28,7 +28,7 @@ const FEATURES = [
         icon: FileText,
         title: "អត្ថបទ",
         description:
-            "អានអត្ថបទ ប្រើបទពិសោធន៍ និងគន្លឹះសិក្សាពីសិស្ស និងគ្រូផ្សេងទៀត",
+            "អានអត្ថបទ ទទួលបានបទពិសោធន៍ និងគន្លឹះសិក្សាពីសិស្ស និងគ្រូផ្សេងទៀត",
         color: "purple",
         bgColor: "bg-purple-50/80",
         borderColor: "border-purple-600",
@@ -38,7 +38,7 @@ const FEATURES = [
         icon: Edit,
         title: "លំហាត់អនុវត្តន៍",
         description:
-            "អនុវត្តលំហាត់ដើម្បីបង្កើនជំនាញ ដោះស្រាយបញ្ហា និងទទួលបានការណែនាំជាក់លាក់",
+            "អនុវត្តលំហាត់ដើម្បីបង្កើនជំនាញ ដោះស្រាយបញ្ហា និងទទួលបានរបាយការណ៍ជាក់លាក់",
         color: "orange",
         bgColor: "bg-orange-50/80",
         borderColor: "border-orange-600",
@@ -48,7 +48,7 @@ const FEATURES = [
         icon: Video,
         title: "វីដេអូ",
         description:
-            "មើលវីដេអូសិក្សាឥតគិតថ្លៃ ដែលពន្យល់អំពីគោលគំនិតសំខាន់ៗ",
+            "មើលវីដេអូសិក្សា ដែលពន្យល់អំពីគោលគំនិតសំខាន់ៗ",
         color: "red",
         bgColor: "bg-red-50/80",
         borderColor: "border-red-600",
@@ -56,9 +56,9 @@ const FEATURES = [
     },
     {
         icon: Bot,
-        title: "AI",
+        title: "តារា AI",
         description:
-            "ប្រើប្រាស់ AI ជាអ្នកជួយសិក្សា ដោះស្រាយបញ្ហាគណិតវិទ្យា និងផ្តល់ការណែនាំឆាប់រហ័ស",
+            "ប្រើប្រាស់ តារា AI ជាអ្នកជួយសិក្សា ដោះស្រាយបញ្ហា និងផ្តល់ការណែនាំឆាប់រហ័ស",
         color: "blue", // swapped with forum
         bgColor: "bg-blue-50/80",
         borderColor: "border-blue-600",
@@ -79,9 +79,7 @@ export default function Features() {
                     className="text-center mb-15"
                 >
                     <h2 className="text-4xl font-extrabold text-gray-900 mb-4">មុខងារសំខាន់ៗ</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        ប្រព័ន្ធរៀនដែលមានមុខងារល្អជាមួយនឹងបទពិសោធន៍រៀនដ៏អស្ចារ្យ
-                    </p>
+                    
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

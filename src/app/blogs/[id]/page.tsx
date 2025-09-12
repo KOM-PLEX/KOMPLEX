@@ -98,14 +98,27 @@ export default function BlogPost() {
                             </button>
                         </div>
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold">
-                                {blogPost.username.split(" ")[0].charAt(0)}
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <span className="font-semibold text-gray-900">{blogPost.username}</span>
-                                <span>|</span>
-                                <span className="text-gray-500 text-sm">{new Date(blogPost.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                            </div>
+                            <Link href={`/users/${blogPost.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                                {blogPost.profileImage ? (
+                                    <img
+                                        src={blogPost.profileImage}
+                                        alt={blogPost.username}
+                                        className="w-10 h-10 rounded-full object-cover border-2 border-indigo-500"
+                                        onError={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                            e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                        }}
+                                    />
+                                ) : null}
+                                <div className={`w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold ${blogPost.profileImage ? 'hidden' : ''}`}>
+                                    {blogPost.username.split(" ")[0].charAt(0)}
+                                </div>
+                                <div className='flex items-center gap-2'>
+                                    <span className="font-semibold text-gray-900 hover:underline">{blogPost.username}</span>
+                                    <span>|</span>
+                                    <span className="text-gray-500 text-sm">{new Date(blogPost.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                                </div>
+                            </Link>
                         </div>
 
 

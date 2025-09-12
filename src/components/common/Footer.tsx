@@ -1,17 +1,18 @@
 import Link from "next/link"
 
 const FEATURES_LINKS = [
-    { href: "#features", text: "មេរៀនអន្តរកម្ម" },
-    { href: "/forum", text: "វេទិកាពិភាក្សា" },
-    { href: "/blog", text: "ប្លុកបទពិសោធន៍" },
-    { href: "#", text: "អ្នកជំនាញ AI" }
+    { href: "/docs", text: "មេរៀនអន្តរកម្ម" },
+    { href: "/forums", text: "វេទិកាពិភាក្សា" },
+    { href: "/blogs", text: "ប្លុកបទពិសោធន៍" },
+    { href: "/exercises", text: "អនុវត្តន៍" },
+    { href: "/ai", text: "តារា AI" }
 ]
 
 const ABOUT_LINKS = [
-    { href: "#goals", text: "គោលដៅ" },
-    { href: "#founders", text: "អ្នកបង្កើត" },
-    { href: "#", text: "រួមចំណែក" },
-    { href: "#", text: "ទាក់ទង" }
+    { href: "#features", text: "មុខងារ" },
+    { href: "#founders", text: "ស្ថាបនិក" },
+    // { href: "#", text: "រួមចំណែក" },
+    // { href: "#", text: "ទាក់ទង" }
 ]
 
 export default function Footer() {
@@ -20,9 +21,9 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-2  lg:grid-cols-4 gap-10">
                     <div>
-                        <h3 className="text-xl font-bold mb-5 text-indigo-600">KOMPLEX</h3>
+                        <h3 className="text-xl font-bold mb-5 text-indigo-600 flex items-center gap-2"><img src="/logo.png" alt="KOMPLEX" className="w-6 h-6" />KOMPLEX</h3>
                         <p className="text-gray-900 leading-relaxed">
-                            ប្រព័ន្ធរៀន STEM សម្រាប់សិស្សខ្មែរ ដែលផ្តល់ជាមេរៀនឥតគិតថ្លៃ និងមានប្រសិទ្ធភាព។
+                            ប្រព័ន្ធសិក្សា សម្រាប់សិស្សខ្មែរ បង្កើតឡើងដោយសិស្សកម្ពុជា
                         </p>
                     </div>
 
@@ -66,7 +67,7 @@ export default function Footer() {
                 </div>
 
                 <div className="text-center pt-8 mt-10 border-t border-gray-200 text-gray-900">
-                    <p>&copy; 2024 KOMPLEX. បង្កើតឡើងសម្រាប់សិស្សខ្មែរ។</p>
+                    <p>&copy; 2025 KOMPLEX. បង្កើតឡើងសម្រាប់សិស្សខ្មែរ។</p>
                 </div>
             </div>
         </footer>

@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ThumbsUp, Share, Bookmark, MoreVertical, Eye, User, Heart, Copy, Check, LinkIcon } from 'lucide-react';
+import { ThumbsUp, Share, Bookmark, Check, LinkIcon } from 'lucide-react';
 import { Menu, Transition } from '@headlessui/react';
 import { VideoPost } from '@/types/content/videos';
+import Link from 'next/link';
 
 interface VideoDescriptionProps {
     video: VideoPost;
@@ -70,29 +71,42 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
                 {/* Channel Info */}
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-indigo-600 font-semibold text-sm">
-                            {video.username.charAt(0).toUpperCase()}
-                        </span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-gray-900 text-sm sm:text-base truncate">{video.username}</h3>
-                    </div>
-                    <button className="px-3 py-1.5 bg-indigo-600 text-white text-xs sm:text-sm rounded-lg hover:bg-indigo-700 transition-colors flex-shrink-0">
-                        Follow
-                    </button>
+                    <Link href={`/users/${video.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                        {video.profileImage ? (
+                            <img
+                                src={video.profileImage}
+                                alt={video.username}
+                                className="w-10 h-10 rounded-full object-cover border-2 border-indigo-500"
+                                onError={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                }}
+                            />
+                        ) : null}
+                        <div className={`w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0 ${video.profileImage ? 'hidden' : ''}`}>
+                            <span className="text-indigo-600 font-semibold text-sm">
+                                {video.username.charAt(0).toUpperCase()}
+                            </span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-gray-900 text-sm sm:text-base truncate hover:underline">{video.username}</h3>
+                        </div>
+                    </Link>
+                    {/* <button className="px-3 py-1.5 bg-indigo-600 text-white text-xs sm:text-sm rounded-lg hover:bg-indigo-700 transition-colors flex-shrink-0">
+                        តាមដាន
+                    </button> */}
                 </div>
 
                 {/* Action Buttons */}
                 <div className="flex items-center gap-2 flex-wrap">
                     <button
-                        onClick={() => onLike(video.id, video.isLike, video)}
-                        className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg transition-colors ${video.isLike
+                        onClick={() => onLike(video.id, video.isLiked, video)}
+                        className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg transition-colors ${video.isLiked
                             ? 'text-indigo-600 bg-indigo-50'
                             : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
                             }`}
                     >
-                        <ThumbsUp size={18} className={`${video.isLike ? 'fill-indigo-600' : ''}`} />
+                        <ThumbsUp size={18} className={`${video.isLiked ? 'fill-indigo-600' : ''}`} />
                         <span className="text-xs sm:text-sm font-medium">{formatViewCount(video.likeCount)}</span>
                     </button>
 
