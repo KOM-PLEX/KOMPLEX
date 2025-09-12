@@ -23,7 +23,7 @@ export default function CommentComponent({
 }: CommentComponentProps) {
     const { user, openLoginModal } = useAuth();
 
-    const [commentUpvoted, setCommentUpvoted] = useState(comment.isLike || false);
+    const [commentUpvoted, setCommentUpvoted] = useState(comment.isLiked || false);
     const [likeCount, setLikeCount] = useState('likeCount' in comment ? comment.likeCount : 0);
     const [isReplying, setIsReplying] = useState(false);
     const [replyText, setReplyText] = useState('');

@@ -4,6 +4,7 @@ import { Comment } from "./comments";
 export interface ForumPost {
   id: number;
   userId: number;
+  profileImage: string;
   title: string;
   description: string;
   type: "discussion" | "question" | "announcement";
@@ -25,11 +26,12 @@ export interface ForumComment extends Comment {
 export interface ForumReply {
   id: number;
   userId: number;
+  profileImage: string;
   forumCommentId: number;
   description: string;
   createdAt: string;
   updatedAt: string;
   media: Media[];
   username: string;
-  isLike: boolean;
+  isLiked: boolean;
 }

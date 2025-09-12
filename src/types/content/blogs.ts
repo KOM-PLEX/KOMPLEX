@@ -2,6 +2,8 @@ import { Media } from "./media";
 
 export interface Blog {
   id: number;
+  userId: number;
+  profileImage: string;
   username: string;
   title: string;
   type: string;

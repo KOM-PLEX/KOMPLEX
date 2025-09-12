@@ -99,25 +99,6 @@ export default function Forum() {
                 <div className="pt-36 lg:pt-20 p-5 max-w-7xl mx-auto">
                     <Sidebar />
                     <div className="flex gap-6">
-                        {/* Sidebar */}
-                        <div className="w-80 flex-shrink-0">
-                            <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 h-fit sticky top-20">
-                                <div className="mb-6">
-                                    <h1 className="text-2xl font-extrabold mb-2 text-indigo-600">វេទិកា</h1>
-                                    <p className="text-gray-500 text-sm">ពិភាក្សា និងចែករំលែកបទពិសោធន៍</p>
-                                </div>
-                                <div className="animate-pulse">
-                                    <div className="h-12 bg-gray-200 rounded-xl mb-6"></div>
-                                    <div className="h-10 bg-gray-200 rounded-xl mb-6"></div>
-                                    <div className="space-y-2">
-                                        <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                                        <div className="h-8 bg-gray-200 rounded"></div>
-                                        <div className="h-8 bg-gray-200 rounded"></div>
-                                        <div className="h-8 bg-gray-200 rounded"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         {/* Main Content Area */}
                         <div className="flex-1">
                             <ContentError

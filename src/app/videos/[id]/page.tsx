@@ -99,7 +99,7 @@ export default function VideoDetailPage() {
                 return;
             }
             await toggleVideoLike(videoId.toString(), isLiked);
-            setVideo({ ...video!, isLike: !isLiked, likeCount: isLiked ? video.likeCount - 1 : video.likeCount + 1 });
+            setVideo({ ...video!, isLiked: !isLiked, likeCount: isLiked ? video.likeCount - 1 : video.likeCount + 1 });
         } catch (error) {
             console.error('Error liking video:', error);
         }

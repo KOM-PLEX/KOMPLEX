@@ -67,7 +67,9 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
                         <h4 className="font-bold text-gray-900 text-md line-clamp-2 group-hover:text-indigo-600 transition-colors">
                             {video.title}
                         </h4>
-                        <p className="text-xs text-gray-600 mt-1">{video.username}</p>
+                        <Link href={`/users/${video.userId}`} className="text-xs text-gray-600 mt-1 hover:text-indigo-600 hover:underline transition-colors">
+                            {video.username}
+                        </Link>
                         <div className="flex items-center gap-2 text-xs text-gray-500 mt-1">
                             <span className='flex items-center gap-1'>
                                 <Eye size={12} />
@@ -110,10 +112,23 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
                         </h4>
 
                         <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-                            <div className='rounded-full p-1 bg-indigo-50 border border-indigo-600'>
-                                <User size={12} />
-                            </div>
-                            <span>{video.username}</span>
+                            <Link href={`/users/${video.userId}`} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                                {video.profileImage ? (
+                                    <img
+                                        src={video.profileImage}
+                                        alt={video.username}
+                                        className="w-6 h-6 rounded-full object-cover border border-indigo-600"
+                                        onError={(e) => {
+                                            e.currentTarget.style.display = 'none';
+                                            e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                        }}
+                                    />
+                                ) : null}
+                                <div className={`rounded-full p-1 bg-indigo-50 border border-indigo-600 ${video.profileImage ? 'hidden' : ''}`}>
+                                    <User size={12} />
+                                </div>
+                                <span className="hover:underline">{video.username}</span>
+                            </Link>
                             <span>•</span>
                             <span>{formatDate(video.createdAt)}</span>
                         </div>
@@ -158,10 +173,23 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
                     </h3>
 
                     <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
-                        <div className='rounded-full p-1 bg-indigo-50 border border-indigo-600'>
-                            <User size={16} />
-                        </div>
-                        <span>{video.username}</span>
+                        <Link href={`/users/${video.userId}`} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                            {video.profileImage ? (
+                                <img
+                                    src={video.profileImage}
+                                    alt={video.username}
+                                    className="w-8 h-8 rounded-full object-cover border border-indigo-600"
+                                    onError={(e) => {
+                                        e.currentTarget.style.display = 'none';
+                                        e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                    }}
+                                />
+                            ) : null}
+                            <div className={`rounded-full p-1 bg-indigo-50 border border-indigo-600 ${video.profileImage ? 'hidden' : ''}`}>
+                                <User size={16} />
+                            </div>
+                            <span className="hover:underline">{video.username}</span>
+                        </Link>
                         <span>•</span>
                         <span>{formatDate(video.createdAt)}</span>
                     </div>

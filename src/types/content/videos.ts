@@ -40,6 +40,7 @@ export interface VideoExercise {
 export interface VideoPost {
   id: number;
   userId: number;
+  profileImage: string;
   title: string;
   description: string;
   duration: number;
@@ -52,7 +53,7 @@ export interface VideoPost {
   updatedAt: string;
   username: string;
   isSave: boolean;
-  isLike: boolean;
+  isLiked: boolean;
   likeCount: number;
   saveCount: number;
   exercises?: VideoExercise[];
@@ -74,11 +75,12 @@ export interface VideoHistory {
 export interface VideoReply {
   id: number;
   userId: number;
+  profileImage: string;
   videoCommentId: number;
   description: string;
   createdAt: string;
   updatedAt: string;
   media: Media[];
   username: string;
-  isLike: boolean;
+  isLiked: boolean;
 }

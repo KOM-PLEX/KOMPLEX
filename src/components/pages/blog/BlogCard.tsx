@@ -27,12 +27,23 @@ export default function BlogCard({ post }: BlogCardProps) {
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-end p-5 text-white">
         <div className="flex items-center gap-4 mb-3 text-xs opacity-90">
-          <div className="flex items-center gap-1.5">
-            <div className="w-4.5 h-4.5 rounded-full bg-indigo-600 backdrop-blur-sm flex items-center justify-center text-white font-semibold text-xs border border-white/30">
+          <Link href={`/users/${post.userId}`} className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+            {post.profileImage ? (
+              <img
+                src={post.profileImage}
+                alt={post.username}
+                className="w-4.5 h-4.5 rounded-full object-cover border border-white/30"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+            ) : null}
+            <div className={`w-4.5 h-4.5 rounded-full bg-indigo-600 backdrop-blur-sm flex items-center justify-center text-white font-semibold text-xs border border-white/30 ${post.profileImage ? 'hidden' : ''}`}>
               {post.username.charAt(0)}
             </div>
-            {post.username}
-          </div>
+            <span className="hover:underline">{post.username}</span>
+          </Link>
           |
           <span>{new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
         </div>

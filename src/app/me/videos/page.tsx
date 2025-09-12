@@ -61,6 +61,7 @@ function MyVideosContent() {
                         return {
                             id: v.id,
                             userId: v.userId,
+                            profileImage: v.profileImage,
                             title: v.title,
                             description: v.description,
                             duration: Number(v.duration),
@@ -73,7 +74,7 @@ function MyVideosContent() {
                             updatedAt: v.updatedAt,
                             username: v.username,
                             isSave: v.isSave,
-                            isLike: v.isLike,
+                            isLiked: v.isLiked,
                             likeCount: Number(v.likeCount),
                             saveCount: Number(v.saveCount),
                             exercises: v.exercises,
@@ -100,7 +101,7 @@ function MyVideosContent() {
         return new Date(dateString).toLocaleDateString('km-KH', {
             year: 'numeric',
             month: 'short',
-            day: 'numeric'
+            day: 'numeric'  
         });
     };
 
