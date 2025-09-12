@@ -1,17 +1,26 @@
 'use client';
 
-import { Filter, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function Sidebar() {
+interface SidebarProps {
+  onSearch?: (query: string) => void;
+}
+
+export default function Sidebar({ onSearch }: SidebarProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('ទាំងអស់');
-  const [selectedSubject, setSelectedSubject] = useState('');
-  const [showFilters, setShowFilters] = useState(false);
+  // const [selectedCategory, setSelectedCategory] = useState('ទាំងអស់');
+  // const [selectedSubject, setSelectedSubject] = useState('');
+  // const [showFilters, setShowFilters] = useState(false);
 
   const subjects = ['ទាំងអស់', 'គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា'];
   const categories = ['ទាំងអស់', 'បទពិសោធន៍', 'វិធីសាស្ត្ររៀន', 'រឿងរ៉ាវ', 'គន្លឹះ'];
+
+  const handleSearch = (query: string) => {
+    setSearchTerm(query);
+    onSearch?.(query);
+  };
 
   return (
     <>
@@ -24,7 +33,7 @@ export default function Sidebar() {
               placeholder="ស្វែងរកប្លុក..."
               className="w-full py-2 px-3 border border-indigo-500/20 rounded-lg text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => handleSearch(e.target.value)}
             />
           </div>
           {/* <button
@@ -103,11 +112,11 @@ export default function Sidebar() {
             className="w-full py-3 px-4 border border-indigo-500/20 rounded-xl text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
             placeholder="ស្វែងរកប្លុក..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
 
-        
+
 
         <div className="mb-6 opacity-50">
           <div className="font-bold text-gray-400 mb-3 text-sm">មុខវិជ្ជា</div>

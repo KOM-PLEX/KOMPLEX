@@ -1,18 +1,24 @@
 'use client';
 
-import { Book, Bookmark, Filter, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function Sidebar() {
+interface SidebarProps {
+    onSearch?: (query: string) => void;
+}
+
+export default function Sidebar({ onSearch }: SidebarProps) {
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedSubject, setSelectedSubject] = useState('ទាំងអស់');
-    const [selectedType, setSelectedType] = useState('');
-    const [showFilters, setShowFilters] = useState(false);
 
     const subjects = ['ទាំងអស់', 'គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា'];
     const types = ['ទាំងអស់', 'សំណួរ', 'ចែករំលែក', 'ពិភាក្សា'];
+
+    const handleSearch = (query: string) => {
+        setSearchTerm(query);
+        onSearch?.(query);
+    };
 
     return (
         <>
@@ -25,7 +31,7 @@ export default function Sidebar() {
                             placeholder="ស្វែងរកការពិភាក្សា..."
                             className="w-full py-2 px-3 border border-indigo-500/20 rounded-lg text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
                             value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onChange={(e) => handleSearch(e.target.value)}
                         />
                     </div>
                     <Link href={"/me/create-forum"} className="bg-indigo-600 text-white py-2 px-4 rounded-lg border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
@@ -48,7 +54,7 @@ export default function Sidebar() {
                 </Link>
 
                 <div className="mb-6">
-                    <label htmlFor="search-input" className="block font-semibold text-gray-900 mb-2 text-sm flex items-center gap-2">
+                    <label htmlFor="search-input" className="flex font-semibold text-gray-900 mb-2 text-sm items-center gap-2">
                         <Search className='w-4 h-4'></Search>
                         ស្វែងរក
                     </label>
@@ -58,7 +64,7 @@ export default function Sidebar() {
                         className="w-full py-3 px-4 border border-indigo-500/20 rounded-xl text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
                         placeholder="ស្វែងរកការពិភាក្សា..."
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onChange={(e) => handleSearch(e.target.value)}
                     />
                 </div>
 

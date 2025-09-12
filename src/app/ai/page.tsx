@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
-import { Send, Bot, ChevronUp, Copy, Check, RefreshCw, Square } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { Send, Bot, ChevronUp, Copy, Check, RefreshCw, Square, ChevronDown } from 'lucide-react';
 import { Listbox, Transition } from '@headlessui/react';
 import { callAiAndWriteToHistory, getAiHistory } from '@/services/me/ai';
 import MarkdownRenderer from '@/components/helper/MarkDownRenderer';
@@ -20,6 +20,124 @@ const languages = [
     { id: 'spanish', name: 'Español', acronym: 'ES' },
 ];
 
+// Simplified Language Option Component for better performance
+const LanguageOption = React.memo(({ language, isSelected, isActive }: {
+    language: typeof languages[0];
+    isSelected: boolean;
+    isActive: boolean;
+}) => {
+    const baseClasses = "relative cursor-pointer select-none px-3 py-2 text-sm transition-colors duration-75";
+    const selectedClasses = "bg-indigo-50 text-indigo-600 font-medium";
+    const activeClasses = "bg-gray-50 text-gray-700";
+    const defaultClasses = "text-gray-700";
+
+    const className = isSelected ? `${baseClasses} ${selectedClasses}` :
+        isActive ? `${baseClasses} ${activeClasses}` :
+            `${baseClasses} ${defaultClasses}`;
+
+    return (
+        <div className={className}>
+            {language.name}
+        </div>
+    );
+});
+
+LanguageOption.displayName = 'LanguageOption';
+
+// Memoized Message Component to prevent unnecessary re-renders
+const MessageItem = React.memo(({
+    message,
+    onCopyMessage,
+    copiedMessageId
+}: {
+    message: Message;
+    onCopyMessage: (messageId: string, content: string) => void;
+    copiedMessageId: string | null;
+}) => {
+    return (
+        <div className="mb-8">
+            {message.sender === 'user' ? (
+                // User message
+                <div className="flex justify-end">
+                    <div className="bg-indigo-600 text-white rounded-2xl px-4 py-3 max-w-[70%]">
+                        <p className="text-sm leading-relaxed">{message.content}</p>
+                    </div>
+                </div>
+            ) : (
+                // AI message
+                <div className="w-full">
+                    <div className="relative">
+                        <MarkdownRenderer content={message.content} />
+                        <div className="flex items-center justify-between mt-2">
+                            <button
+                                onClick={() => onCopyMessage(message.id, message.content)}
+                                className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                                title="Copy response"
+                            >
+                                {copiedMessageId === message.id ? (
+                                    <div className="flex items-center gap-2">
+                                        <Check className="w-4 h-4 text-green-600" />
+                                        បានចម្លង
+                                    </div>
+                                ) : (
+                                    <div className="flex items-center gap-2">
+                                        <Copy className="w-4 h-4 text-gray-600" />
+                                        ចម្លង
+                                    </div>
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+});
+
+MessageItem.displayName = 'MessageItem';
+
+// Chat Skeleton Component
+const ChatSkeleton = React.memo(() => {
+    return (
+        <div className="space-y-6 p-4">
+            {/* User message skeleton */}
+            <div className="flex justify-end">
+                <div className="bg-gray-200 rounded-2xl px-4 py-3 max-w-[70%] animate-pulse">
+                    <div className="h-4 bg-gray-300 rounded w-32"></div>
+                </div>
+            </div>
+
+            {/* AI message skeleton */}
+            <div className="w-full">
+                <div className="space-y-3">
+                    <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-4 bg-gray-200 rounded w-4/5 animate-pulse"></div>
+                    <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+                    <div className="h-4 bg-gray-200 rounded w-5/6 animate-pulse"></div>
+                </div>
+            </div>
+
+            {/* User message skeleton */}
+            <div className="flex justify-end">
+                <div className="bg-gray-200 rounded-2xl px-4 py-3 max-w-[70%] animate-pulse">
+                    <div className="h-4 bg-gray-300 rounded w-24"></div>
+                </div>
+            </div>
+
+            {/* AI message skeleton */}
+            <div className="w-full">
+                <div className="space-y-3">
+                    <div className="h-4 bg-gray-200 rounded animate-pulse"></div>
+                    <div className="h-4 bg-gray-200 rounded w-4/5 animate-pulse"></div>
+                    <div className="h-4 bg-gray-200 rounded w-2/3 animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+    );
+});
+
+ChatSkeleton.displayName = 'ChatSkeleton';
+
 export default function AIChat() {
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputMessage, setInputMessage] = useState('');
@@ -35,10 +153,14 @@ export default function AIChat() {
     const [hasMoreHistory, setHasMoreHistory] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const [showScrollButton, setShowScrollButton] = useState(false);
+    const [isInputDisabled, setIsInputDisabled] = useState(false);
     const streamingIntervalRef = useRef<NodeJS.Timeout | null>(null);
     const streamingRafRef = useRef<number | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const debounceRef = useRef<NodeJS.Timeout | null>(null);
+    const chatContainerRef = useRef<HTMLDivElement>(null);
 
     const { user, openLoginModal } = useAuth();
 
@@ -99,6 +221,21 @@ export default function AIChat() {
         if (!user) openLoginModal();
     }, [user, openLoginModal]);
 
+    // Cleanup all timeouts and intervals on unmount
+    useEffect(() => {
+        return () => {
+            if (streamingIntervalRef.current) {
+                clearInterval(streamingIntervalRef.current);
+            }
+            if (streamingRafRef.current !== null) {
+                cancelAnimationFrame(streamingRafRef.current);
+            }
+            if (debounceRef.current) {
+                clearTimeout(debounceRef.current);
+            }
+        };
+    }, []);
+
     // Load AI history on component mount
     useEffect(() => {
         if (user) {
@@ -112,13 +249,39 @@ export default function AIChat() {
         }
     };
 
-    const scrollToBottom = () => {
+    const scrollToBottom = useCallback(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
+    }, []);
 
+    // Handle scroll detection for scroll-to-bottom button
+    const handleScroll = useCallback(() => {
+        if (chatContainerRef.current) {
+            const { scrollTop, scrollHeight, clientHeight } = chatContainerRef.current;
+            const isNearBottom = scrollHeight - scrollTop - clientHeight < 150;
+            setShowScrollButton(!isNearBottom && scrollHeight > clientHeight);
+        }
+    }, []);
+
+    // Scroll to bottom when new messages arrive
     useEffect(() => {
         scrollToBottom();
-    }, [messages]);
+    }, [messages, scrollToBottom]);
+
+    // Add scroll listener and initial check
+    useEffect(() => {
+        const chatContainer = chatContainerRef.current;
+        if (chatContainer) {
+            chatContainer.addEventListener('scroll', handleScroll);
+            // Initial check for scroll button
+            handleScroll();
+            return () => chatContainer.removeEventListener('scroll', handleScroll);
+        }
+    }, [handleScroll]);
+
+    // Manage input disabled state
+    useEffect(() => {
+        setIsInputDisabled(isLoading || isStreaming || isRequestInProgress);
+    }, [isLoading, isStreaming, isRequestInProgress]);
 
     const handleSendMessage = async () => {
         if (!inputMessage.trim()) return;
@@ -144,11 +307,6 @@ export default function AIChat() {
 
             // Start streaming animation
             streamText(response.data);
-
-            // Refresh history to include the new conversation
-            setTimeout(() => {
-                loadHistory(1, false);
-            }, 1000);
         } catch (error) {
             console.error('Error calling AI:', error);
             setIsLoading(false);
@@ -164,7 +322,7 @@ export default function AIChat() {
         }
     };
 
-    const handleCopyMessage = async (messageId: string, content: string) => {
+    const handleCopyMessage = useCallback(async (messageId: string, content: string) => {
         try {
             await navigator.clipboard.writeText(content);
             setCopiedMessageId(messageId);
@@ -172,7 +330,7 @@ export default function AIChat() {
         } catch (error) {
             console.error('Failed to copy text: ', error);
         }
-    };
+    }, []);
 
     const streamText = (text: string) => {
         setIsStreaming(true);
@@ -206,6 +364,8 @@ export default function AIChat() {
                 };
                 setMessages(prev => [...prev, aiResponse]);
                 setStreamingMessage('');
+
+                // No need to refresh history - the new message is already added to the UI
             }
         };
 
@@ -230,9 +390,25 @@ export default function AIChat() {
         }
     }, [isMultiLine]);
 
+    const debouncedAutoResize = useCallback(() => {
+        if (debounceRef.current) {
+            clearTimeout(debounceRef.current);
+        }
+        debounceRef.current = setTimeout(() => {
+            autoResizeTextarea();
+        }, 16); // ~60fps
+    }, [autoResizeTextarea]);
+
     useEffect(() => {
-        autoResizeTextarea();
-    }, [inputMessage, autoResizeTextarea]);
+        debouncedAutoResize();
+
+        // Cleanup timeout on unmount
+        return () => {
+            if (debounceRef.current) {
+                clearTimeout(debounceRef.current);
+            }
+        };
+    }, [inputMessage, debouncedAutoResize]);
 
     const handleTryAgain = async () => {
         setIsLoading(true);
@@ -283,21 +459,21 @@ export default function AIChat() {
                 setMessages(prev => [...prev, aiResponse]);
             }
             setStreamingMessage('');
+
+            // No need to refresh history - the partial message is already added to the UI
         }
     };
 
     return (
         <div className="min-h-screen relative bg-gray-50 pt-16 pb-32">
             {/* Main Chat Area */}
-            <div className=" overflow-y-auto p-4 space-y-4 max-w-4xl mx-auto w-full scrollbar-hide">
+            <div
+                ref={chatContainerRef}
+                className="overflow-y-auto p-4 space-y-4 max-w-4xl mx-auto w-full scrollbar-hide"
+            >
                 {isLoadingHistory ? (
-                    // Loading history
-                    <div className="flex flex-col items-center justify-center h-64">
-                        <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
-                            <span className="text-sm text-gray-500">កំពុងទាញយកប្រវត្តិសន្ទនា...</span>
-                        </div>
-                    </div>
+                    // Chat skeleton while loading history
+                    <ChatSkeleton />
                 ) : messages.length === 0 ? (
                     // Welcome screen
                     <div className="flex flex-col items-center justify-center h-full">
@@ -312,9 +488,9 @@ export default function AIChat() {
                 ) : (
                     // Messages
                     <>
-                        {/* Load More History Button */}
-                        {hasMoreHistory && (
-                            <div className="flex justify-center py-4">
+                        {/* History Controls */}
+                        <div className="flex justify-center gap-2 py-4">
+                            {hasMoreHistory && (
                                 <button
                                     onClick={loadMoreHistory}
                                     disabled={isLoadingMore}
@@ -329,46 +505,16 @@ export default function AIChat() {
                                         'ទាញយកប្រវត្តិសន្ទនាបន្ថែម'
                                     )}
                                 </button>
-                            </div>
-                        )}
+                            )}
+                        </div>
 
                         {messages.map((message) => (
-                            <div key={message.id} className="mb-8">
-                                {message.sender === 'user' ? (
-                                    // User message
-                                    <div className="flex justify-end">
-                                        <div className={`bg-indigo-600 text-white rounded-2xl px-4 py-3 max-w-[70%]`}>
-                                            <p className="text-sm leading-relaxed">{message.content}</p>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    // AI message
-                                    <div className="w-full">
-                                        <div className={`relative`}>
-                                            <MarkdownRenderer content={message.content} />
-                                            <div className="flex items-center justify-between mt-2">
-                                                <button
-                                                    onClick={() => handleCopyMessage(message.id, message.content)}
-                                                    className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-                                                    title="Copy response"
-                                                >
-                                                    {copiedMessageId === message.id ? (
-                                                        <div className="flex items-center gap-2">
-                                                            <Check className="w-4 h-4 text-green-600" />
-                                                            បានចម្លង
-                                                        </div>
-                                                    ) : (
-                                                        <div className="flex items-center gap-2">
-                                                            <Copy className="w-4 h-4 text-gray-600" />
-                                                            ចម្លង
-                                                        </div>
-                                                    )}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
+                            <MessageItem
+                                key={message.id}
+                                message={message}
+                                onCopyMessage={handleCopyMessage}
+                                copiedMessageId={copiedMessageId}
+                            />
                         ))}
 
                         {isLoading && (
@@ -413,6 +559,20 @@ export default function AIChat() {
                 <div ref={messagesEndRef} />
             </div>
 
+            {/* Scroll to Bottom Button */}
+            {showScrollButton && (
+                <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50">
+                    <button
+                        onClick={scrollToBottom}
+                        className="bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-2"
+                        title="Scroll to bottom"
+                    >
+                        <ChevronDown className="w-4 h-4" />
+                        <span className="text-sm font-medium">Scroll to bottom</span>
+                    </button>
+                </div>
+            )}
+
             {/* Fixed Input Area */}
             <div className='bg-gray-50 fixed h-20 w-full bottom-0 '></div>
             <div className="fixed bottom-0 left-0 right-0 px-4 py-2">
@@ -423,35 +583,44 @@ export default function AIChat() {
                         <div className={`flex items-center gap-2`}>
                             {/* Language Dropdown */}
                             <div className={`relative flex-shrink-0 ${isMultiLine ? 'hidden' : 'flex'}`}>
-                                <Listbox value={selectedLanguage} onChange={setSelectedLanguage}>
-                                    <Listbox.Button className="flex items-center gap-1 px-3 py-2 bg-gray-100 border border-gray-300 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all">
-                                        <span className="text-xs font-medium text-gray-700">{selectedLanguage.acronym}</span>
-                                        <ChevronUp size={14} className="text-gray-500 transition-transform ui-open:rotate-180" />
+                                <Listbox
+                                    value={selectedLanguage}
+                                    onChange={setSelectedLanguage}
+                                    disabled={isInputDisabled}
+                                >
+                                    <Listbox.Button
+                                        disabled={isInputDisabled}
+                                        className={`flex items-center gap-1 px-3 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all ${isInputDisabled
+                                            ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+                                            : 'bg-gray-100 border-gray-300 text-gray-700 hover:bg-gray-200'
+                                            }`}
+                                    >
+                                        <span className="text-xs font-medium">{selectedLanguage.acronym}</span>
+                                        <ChevronUp size={14} className={`transition-transform ui-open:rotate-180 ${isInputDisabled ? 'text-gray-400' : 'text-gray-500'
+                                            }`} />
                                     </Listbox.Button>
 
                                     <Transition
                                         enter="transition duration-100 ease-out"
                                         enterFrom="transform scale-95 opacity-0"
                                         enterTo="transform scale-100 opacity-100"
-                                        leave="transition duration-75 ease-out"
+                                        leave="transition duration-75 ease-in"
                                         leaveFrom="transform scale-100 opacity-100"
                                         leaveTo="transform scale-95 opacity-0"
                                     >
-                                        <Listbox.Options className="absolute bottom-full mb-2 left-0 w-32 bg-white rounded-lg border border-gray-200 shadow-lg z-50 focus:outline-none">
+                                        <Listbox.Options className="absolute bottom-full mb-2 left-0 w-32 bg-white rounded-lg border border-gray-200 shadow-lg z-50 focus:outline-none max-h-48 overflow-y-auto">
                                             {languages.map((language) => (
                                                 <Listbox.Option
                                                     key={language.id}
                                                     value={language}
-                                                    className={({ active, selected }) =>
-                                                        `relative cursor-pointer select-none px-3 py-2 text-sm ${selected
-                                                            ? 'bg-indigo-50 text-indigo-600 font-medium'
-                                                            : active
-                                                                ? 'bg-gray-50 text-gray-700'
-                                                                : 'text-gray-700'
-                                                        }`
-                                                    }
                                                 >
-                                                    {language.name}
+                                                    {({ active, selected }) => (
+                                                        <LanguageOption
+                                                            language={language}
+                                                            isActive={active}
+                                                            isSelected={selected}
+                                                        />
+                                                    )}
                                                 </Listbox.Option>
                                             ))}
                                         </Listbox.Options>
@@ -466,8 +635,12 @@ export default function AIChat() {
                                     value={inputMessage}
                                     onChange={(e) => setInputMessage(e.target.value)}
                                     onKeyPress={handleKeyPress}
-                                    placeholder="សរសេរសំណួររបស់អ្នក..."
-                                    className="w-full px-3 py-2 text-sm focus:outline-none resize-none bg-transparent border-none placeholder-gray-400"
+                                    disabled={isInputDisabled}
+                                    placeholder={isInputDisabled ? "កំពុងដំណើរការ..." : "សរសេរសំណួររបស់អ្នក..."}
+                                    className={`w-full px-3 py-2 text-sm focus:outline-none resize-none bg-transparent border-none ${isInputDisabled
+                                        ? 'placeholder-gray-300 text-gray-400 cursor-not-allowed'
+                                        : 'placeholder-gray-400'
+                                        }`}
                                     style={{
                                         minHeight: '30px',
                                         maxHeight: '120px',
@@ -480,7 +653,7 @@ export default function AIChat() {
                             {
                                 !isLoading && !isStreaming ? (<button
                                     onClick={handleSendMessage}
-                                    disabled={!inputMessage.trim()}
+                                    disabled={!inputMessage.trim() || isInputDisabled}
                                     className={`flex-shrink-0 p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${isMultiLine ? 'hidden' : 'flex'}`}
                                 >
                                     <Send className="w-4 h-4" />
@@ -502,35 +675,44 @@ export default function AIChat() {
                             <div className="flex items-center justify-between">
                                 {/* Language Dropdown */}
                                 <div className="relative">
-                                    <Listbox value={selectedLanguage} onChange={setSelectedLanguage}>
-                                        <Listbox.Button className="flex items-center gap-1 px-3 py-2 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all">
-                                            <span className="text-xs font-medium text-gray-700">{selectedLanguage.acronym}</span>
-                                            <ChevronUp size={14} className="text-gray-500 transition-transform ui-open:rotate-180" />
+                                    <Listbox
+                                        value={selectedLanguage}
+                                        onChange={setSelectedLanguage}
+                                        disabled={isInputDisabled}
+                                    >
+                                        <Listbox.Button
+                                            disabled={isInputDisabled}
+                                            className={`flex items-center gap-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all ${isInputDisabled
+                                                ? 'bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed'
+                                                : 'bg-gray-100 border-gray-300 text-gray-700 hover:bg-gray-200'
+                                                }`}
+                                        >
+                                            <span className="text-xs font-medium">{selectedLanguage.acronym}</span>
+                                            <ChevronUp size={14} className={`transition-transform ui-open:rotate-180 ${isInputDisabled ? 'text-gray-400' : 'text-gray-500'
+                                                }`} />
                                         </Listbox.Button>
 
                                         <Transition
                                             enter="transition duration-100 ease-out"
                                             enterFrom="transform scale-95 opacity-0"
                                             enterTo="transform scale-100 opacity-100"
-                                            leave="transition duration-75 ease-out"
+                                            leave="transition duration-75 ease-in"
                                             leaveFrom="transform scale-100 opacity-100"
                                             leaveTo="transform scale-95 opacity-0"
                                         >
-                                            <Listbox.Options className="absolute bottom-full mb-2 left-0 w-32 bg-white rounded-lg border border-gray-200 shadow-lg z-50">
+                                            <Listbox.Options className="absolute bottom-full mb-2 left-0 w-32 bg-white rounded-lg border border-gray-200 shadow-lg z-50 max-h-48 overflow-y-auto">
                                                 {languages.map((language) => (
                                                     <Listbox.Option
                                                         key={language.id}
                                                         value={language}
-                                                        className={({ active, selected }) =>
-                                                            `relative cursor-pointer select-none px-3 py-2 text-sm ${selected
-                                                                ? 'bg-indigo-50 text-indigo-600 font-medium'
-                                                                : active
-                                                                    ? 'bg-gray-50 text-gray-700'
-                                                                    : 'text-gray-700'
-                                                            }`
-                                                        }
                                                     >
-                                                        {language.name}
+                                                        {({ active, selected }) => (
+                                                            <LanguageOption
+                                                                language={language}
+                                                                isActive={active}
+                                                                isSelected={selected}
+                                                            />
+                                                        )}
                                                     </Listbox.Option>
                                                 ))}
                                             </Listbox.Options>
@@ -542,7 +724,7 @@ export default function AIChat() {
                                 {!isLoading && !isStreaming ? (
                                     <button
                                         onClick={handleSendMessage}
-                                        disabled={!inputMessage.trim()}
+                                        disabled={!inputMessage.trim() || isInputDisabled}
                                         className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         <Send className="w-4 h-4" />

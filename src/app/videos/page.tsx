@@ -12,6 +12,7 @@ import Sidebar from '@/components/pages/videos/Sidebar';
 import ContentError from '@/components/common/ContentError';
 import { VideoPost } from '@/types/content/videos';
 import { getAllVideos } from '@/services/feed/videos';
+import { searchVideos } from '@/services/feed/search/videos';
 
 
 export default function VideoPage() {
@@ -20,13 +21,14 @@ export default function VideoPage() {
     const router = useRouter();
     const [videos, setVideos] = useState<VideoPost[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isSearching, setIsSearching] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const fetchVideos = async () => {
         try {
             setLoading(true);
             setError(null);
-            const { data, hasMore } = await getAllVideos();
+            const { data } = await getAllVideos();
             if (data.length > 0) {
                 setVideos(data);
             } else {
@@ -40,6 +42,33 @@ export default function VideoPage() {
         }
     };
 
+    const handleSearch = async (query: string) => {
+        setSearchQuery(query);
+
+        if (query.trim() === '') {
+            // If search is empty, fetch all videos
+            fetchVideos();
+            return;
+        }
+
+        try {
+            setIsSearching(true);
+            setError(null);
+            const searchResults = await searchVideos(query, 50, 0);
+
+            if (searchResults.length === 0) {
+                setError('រកមិនឃើញវីដេអូ');
+                setVideos([]);
+            } else {
+                setVideos(searchResults);
+            }
+        } catch {
+            setError('មានបញ្ហាក្នុងការស្វែងរកវីដេអូ');
+        } finally {
+            setIsSearching(false);
+        }
+    };
+
     useEffect(() => {
         fetchVideos();
     }, [])
@@ -48,14 +77,10 @@ export default function VideoPage() {
         router.push(`/videos/${videoId}`);
     };
 
-    // Filter videos based on search
-    const filteredVideos = videos.filter(video =>
-        video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        video.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        video.username.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    // Use videos directly since search filtering is handled by the backend
+    const filteredVideos = videos;
 
-    if (loading) {
+    if (loading || isSearching) {
         return (
             <div className="flex h-screen bg-gray-50 pt-15">
                 <Sidebar
@@ -77,7 +102,7 @@ export default function VideoPage() {
                                     type="text"
                                     placeholder="ស្វែងរកវីដេអូ..."
                                     value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    onChange={(e) => handleSearch(e.target.value)}
                                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                 />
                             </div>
@@ -115,7 +140,7 @@ export default function VideoPage() {
                                     type="text"
                                     placeholder="ស្វែងរកវីដេអូ..."
                                     value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    onChange={(e) => handleSearch(e.target.value)}
                                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                 />
                             </div>
@@ -158,12 +183,24 @@ export default function VideoPage() {
                                 type="text"
                                 placeholder="ស្វែងរកវីដេអូ..."
                                 value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onChange={(e) => handleSearch(e.target.value)}
                                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             />
                         </div>
                     </div>
                 </div>
+
+                {/* Search Results Header */}
+                {searchQuery && (
+                    <div className="px-6 pt-4">
+                        <p className="text-lg font-semibold text-gray-700">
+                            លទ្ធផលស្វែងរក: &ldquo;{searchQuery}&rdquo;
+                        </p>
+                        <p className="text-sm text-gray-500">
+                            រកឃើញ {videos.length} វីដេអូ
+                        </p>
+                    </div>
+                )}
 
                 {/* Video Grid */}
                 <div className="p-6">
