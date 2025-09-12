@@ -4,60 +4,54 @@ import { motion } from "framer-motion";
 
 const FOUNDERS = [
     {
-        image: "/angkor.jpg",
+        image: "/landing/founders/raksa.jpeg",
         name: "អោយ ចន្ទ័រក្សា",
-        role: "កម្មករ",
-        description: "អ្នកជំនាញវិទ្យាសាស្ត្រកុំព្យូទ័រ (Bro Next.js)",
+        role: "Full Stack Developer",
         color: "indigo",
         bgColor: "bg-indigo-50/80",
         borderColor: "border-indigo-600",
         iconColor: "text-indigo-600"
     },
     {
-        image: "/angkor.jpg",
+        image: "/landing/founders/vatana.jpg",
         name: "អ៊ុក វឌ្ឍនា",
-        role: "មេការ សំណង់",
-        description: "អ្នកអភិវឌ្ឍន៍វេបសាយ (bro pdf)",
+        role: "Frontend Developer",
         color: "green",
         bgColor: "bg-green-50/80",
         borderColor: "border-green-600",
         iconColor: "text-green-600"
     },
     {
-        image: "/angkor.jpg",
+        image: "/landing/founders/rafat.jpg",
         name: "ម៉ាន អារ៉ាហ្វាត",
-        role: "កម្មករ",
-        description: "អ្នកជំនាញ(front-end) (bro typescript)",
+        role: "Frontend Developer",
         color: "blue",
         bgColor: "bg-blue-50/80",
         borderColor: "border-blue-600",
         iconColor: "text-blue-600"
     },
     {
-        image: "/angkor.jpg",
+        image: "/landing/founders/kimly.jpg",
         name: "ហាក់ គីមលី",
-        role: "cashier",
-        description: "អ្នកជំនាញគណនី (sis excel)",
+        role: "Frontend Developer",
         color: "purple",
         bgColor: "bg-purple-50/80",
         borderColor: "border-purple-600",
         iconColor: "text-purple-600"
     },
     {
-        image: "/angkor.jpg",
+        image: "/landing/founders/visal.jpg",
         name: "សៅ វិសាល",
-        role: "អ្នក backend",
-        description: "អ្នកជំនាញខ្ជិលធ្វើ front-end (bro fast-api)",
+        role: "Backend Developer",
         color: "red",
         bgColor: "bg-red-50/80",
         borderColor: "border-red-600",
         iconColor: "text-red-600"
     },
     {
-        image: "/angkor.jpg",
+        image: "/landing/founders/neitong.jpg",
         name: "កែវ ហេងណៃតុង",
-        role: "មេ algorithm",
-        description: "អ្នកជំនាញមកយឺត time complexity មកសាលា O(n!) (bro c++)",
+        role: "Frontend Developer",
         color: "orange",
         bgColor: "bg-orange-50/80",
         borderColor: "border-orange-600",
@@ -115,7 +109,6 @@ export default function Founders() {
                             </motion.div>
                             <h3 className="text-2xl text-center font-bold text-gray-900 mb-2">{founder.name}</h3>
                             <div className={`${founder.iconColor} font-semibold text-base mb-4 text-center`}>{founder.role}</div>
-                            <p className="text-gray-600 leading-relaxed text-center">{founder.description}</p>
                         </motion.div>
                     ))}
                 </motion.div>

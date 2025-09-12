@@ -6,14 +6,15 @@ import ContentError from '@/components/common/ContentError';
 import { useState, useEffect } from 'react';
 import { ForumPost } from '@/types/content/forums';
 import { getAllForums } from '@/services/feed/forums';
+import { searchForums } from '@/services/feed/search/forums';
 import { toggleForumLike } from '@/services/me/forums';
 import Sidebar from '@/components/pages/forums/Sidebar';
 
 export default function Forum() {
     const [searchQuery, setSearchQuery] = useState('');
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [forumPosts, setForumPosts] = useState<ForumPost[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isSearching, setIsSearching] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const fetchForumPosts = async () => {
         try {
@@ -33,6 +34,33 @@ export default function Forum() {
         }
     };
 
+    const handleSearch = async (query: string) => {
+        setSearchQuery(query);
+
+        if (query.trim() === '') {
+            // If search is empty, fetch all forums
+            fetchForumPosts();
+            return;
+        }
+
+        try {
+            setIsSearching(true);
+            setError(null);
+            const searchResults = await searchForums(query, 50, 0);
+
+            if (searchResults.length === 0) {
+                setError('រកមិនឃើញអត្ថបទ');
+                setForumPosts([]);
+            } else {
+                setForumPosts(searchResults);
+            }
+        } catch {
+            setError('មានបញ្ហាក្នុងការស្វែងរកអត្ថបទ');
+        } finally {
+            setIsSearching(false);
+        }
+    };
+
     useEffect(() => {
         fetchForumPosts();
     }, []);
@@ -46,42 +74,17 @@ export default function Forum() {
         }
     }
 
-    const categories = ['គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];
-
-    // Filter forum posts based on search and categories
-    const filteredPosts = forumPosts.filter(post => {
-        const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.username.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(post.topic);
-
-        return matchesSearch && matchesCategory;
-    });
-
-    const toggleCategory = (category: string) => {
-        setSelectedCategories(prev =>
-            prev.includes(category)
-                ? prev.filter(c => c !== category)
-                : [...prev, category]
-        );
-    };
-
-    const clearFilters = () => {
-        setSelectedCategories([]);
-    };
-
-    const handleRetry = () => {
-        fetchForumPosts();
-    };
+    // Use forum posts directly since search filtering is handled by the backend
+    const filteredPosts = forumPosts;
 
     // Early returns for loading and error states
-    if (loading) {
+    if (loading || isSearching) {
         return (
             <div className="min-h-screen bg-gray-50">
                 {/* Main Content */}
                 <div className="lg:pt-20 pt-36 p-5 max-w-7xl mx-auto">
                     <div className="flex gap-6">
-                        <Sidebar />
+                        <Sidebar onSearch={handleSearch} />
                         {/* Main Content Area */}
                         <div className="flex-1">
                             <ForumSkeleton count={6} />
@@ -97,8 +100,8 @@ export default function Forum() {
             <div className="min-h-screen bg-gray-50">
                 {/* Main Content */}
                 <div className="pt-36 lg:pt-20 p-5 max-w-7xl mx-auto">
-                    <Sidebar />
                     <div className="flex gap-6">
+                        <Sidebar onSearch={handleSearch} />
                         {/* Main Content Area */}
                         <div className="flex-1">
                             <ContentError
@@ -201,10 +204,19 @@ export default function Forum() {
             <div className="pt-36 lg:pt-20 p-5 max-w-7xl mx-auto">
                 <div className="flex gap-6">
                     {/* Sidebar */}
-                    <Sidebar />
+                    <Sidebar onSearch={handleSearch} />
 
                     {/* Main Content Area */}
                     <div className="flex-1">
+                        {/* Search Results Header */}
+                        {searchQuery && (
+                            <div className="mb-6">
+                                <p className="text-lg font-semibold text-gray-700">
+                                    លទ្ធផលស្វែងរក: &ldquo;{searchQuery}&rdquo;
+                                </p>
+                            </div>
+                        )}
+
                         {/* Forum Posts List */}
                         <div className="flex flex-col gap-5">
                             {filteredPosts.length > 0 ? (

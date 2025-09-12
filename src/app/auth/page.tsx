@@ -4,13 +4,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { auth, googleProvider, microsoftProvider, githubProvider } from '@/config/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, getAuth, fetchSignInMethodsForEmail } from 'firebase/auth';
 import { getCurrentUser, signup, socialLogin } from '@/services/auth';
 import { uploadFile } from '@/services/upload';
 import {
     validateLoginForm,
     validateSignupForm,
 } from '@/utils/validator';
+import { getErrorMessage, isFirebaseAuthError } from '@/utils/firebaseError';
 import LogIn from '@/components/pages/auth/LogIn';
 import SignUp from '@/components/pages/auth/SignUp';
 
@@ -100,8 +101,7 @@ export default function AuthPage() {
             router.push('/');
         } catch (error: unknown) {
             console.error('Login error:', error);
-            const message = error instanceof Error ? error.message : 'មានបញ្ហាក្នុងការចូល';
-            setFormError(message);
+            setFormError(getErrorMessage(error, 'login'));
         }
         finally {
             setIsSubmitting(false);
@@ -146,8 +146,7 @@ export default function AuthPage() {
             router.push('/');
         } catch (error: unknown) {
             console.error('Signup error:', error);
-            const message = error instanceof Error ? error.message : 'មានបញ្ហាក្នុងការចុះឈ្មោះ';
-            setFormError(message);
+            setFormError(getErrorMessage(error, 'signup'));
         }
         finally {
             setIsSubmitting(false);
@@ -180,8 +179,21 @@ export default function AuthPage() {
             router.push('/');
         } catch (error: unknown) {
             console.error('Social login error:', error);
-            const message = error instanceof Error ? error.message : 'មានបញ្ហាក្នុងការចូលដោយប្រើគណនីសង្គម';
-            setFormError(message);
+
+            // Handle special case for account exists with different credential
+            if (isFirebaseAuthError(error) && error.code === "auth/account-exists-with-different-credential") {
+                const email = error.customData?.email;
+                try {
+                    // Get the existing sign-in methods for this email
+                    const methods = await fetchSignInMethodsForEmail(getAuth(), email);
+                    setFormError(getErrorMessage(error, 'social', { email: email || '', methods }));
+                } catch (fetchError) {
+                    console.error('Error fetching sign-in methods:', fetchError);
+                    setFormError(getErrorMessage(error, 'social'));
+                }
+            } else {
+                setFormError(getErrorMessage(error, 'social'));
+            }
         }
         finally {
             setIsSubmitting(false);

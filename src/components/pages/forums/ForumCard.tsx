@@ -1,6 +1,6 @@
 'use client';
 
-import { MessageCircle, Share, ThumbsUp, Copy, Check, LinkIcon } from 'lucide-react';
+import { MessageCircle, Share, ThumbsUp, Check, LinkIcon, UserPlus, UserCheck } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -9,6 +9,8 @@ import Carousel from '@/components/common/Carousel';
 import { ForumPost } from '@/types/content/forums';
 import { Media } from '@/types/content/media';
 import { toggleForumLike } from '@/services/me/forums';
+import { followUser, unfollowUser } from '@/services/me/follow';
+import { useAuth } from '@/hooks/useAuth';
 
 
 interface ForumCardProps {
@@ -22,7 +24,10 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
     const [upvoted, setUpvoted] = useState(post.isLiked);
     const [upvoteCount, setUpvoteCount] = useState(post.likeCount);
     const [copied, setCopied] = useState(false);
+    const [isFollowing, setIsFollowing] = useState(post.isFollowing);
+    const [isFollowLoading, setIsFollowLoading] = useState(false);
     const router = useRouter();
+    const { user, openLoginModal } = useAuth();
 
     // Helper functions to format backend data
     const getTimeAgo = (dateString: string): string => {
@@ -97,6 +102,36 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
         }
     };
 
+    const handleFollow = async (e: React.MouseEvent) => {
+        e.stopPropagation();
+
+        if (!user) {
+            openLoginModal();
+            return;
+        }
+
+        // Don't allow following yourself
+        if (user.id === post.userId) {
+            return;
+        }
+
+        try {
+            setIsFollowLoading(true);
+
+            if (isFollowing) {
+                await unfollowUser(post.userId);
+                setIsFollowing(false);
+            } else {
+                await followUser(post.userId);
+                setIsFollowing(true);
+            }
+        } catch (error) {
+            console.error('Error toggling follow:', error);
+        } finally {
+            setIsFollowLoading(false);
+        }
+    };
+
     const handleCardClick = () => {
         if (isFromBasePage) {
             router.push(`/forums/${post.id}`);
@@ -130,6 +165,32 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
                         </div>
                     </div>
                 </Link>
+
+                {/* Follow Button - Only show if not from base page and not current user's post */}
+                {!isFromBasePage && user && user.id !== post.userId && (
+                    <button
+                        onClick={handleFollow}
+                        disabled={isFollowLoading}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${isFollowing
+                            ? 'bg-indigo-100 text-indigo-700 border border-indigo-200 hover:bg-indigo-200'
+                            : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                            } ${isFollowLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    >
+                        {isFollowLoading ? (
+                            <div className="w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" />
+                        ) : isFollowing ? (
+                            <>
+                                <UserCheck className="w-3 h-3" />
+                                បានតាមដាន
+                            </>
+                        ) : (
+                            <>
+                                <UserPlus className="w-3 h-3" />
+                                តាមដាន
+                            </>
+                        )}
+                    </button>
+                )}
             </div>
 
             <div className="text-lg font-bold text-gray-900 mb-2.5 leading-relaxed">

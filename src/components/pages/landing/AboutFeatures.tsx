@@ -160,12 +160,8 @@ export default function AboutFeatures() {
                         transition={{ duration: 0.8, delay: 0.3 }}
                         className="bg-white rounded-2xl p-6 shadow-lg"
                     >
-                        <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
-                            <div className="text-center">
-                                <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                <p className="text-gray-500">រូបភាពមេរៀនអន្តរកម្មនឹងត្រូវបានបង្ហាញនៅទីនេះ</p>
-                            </div>
-                        </div>
+
+                        <img src="/landing/lesson.png" alt="lesson" className="w-full h-full object-cover" />
                     </motion.div>
                 </motion.div>
 
@@ -195,8 +191,6 @@ export default function AboutFeatures() {
                             transition={{ duration: 0.8, delay: 0.4 }}
                             className="space-y-3 text-gray-600"
                         >
-
-                            {/* //! TO CHANGE */}
                             <motion.li
                                 initial={{ opacity: 0, x: 20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
@@ -234,7 +228,7 @@ export default function AboutFeatures() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.3 }}
-                        className="lg:order-1"
+                        className="lg:order-1 aspect-video"
                     >
                         <ThreeDBox
                             src="/adult_brain.glb"
@@ -461,10 +455,7 @@ export default function AboutFeatures() {
                         className="bg-white rounded-2xl p-6 shadow-lg"
                     >
                         <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
-                            <div className="text-center">
-                                <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                <p className="text-gray-500">រូបភាពមេរៀនអន្តរកម្មនឹងត្រូវបានបង្ហាញនៅទីនេះ</p>
-                            </div>
+                            <img src="/landing/exercises.png" alt="exercises" className="w-full h-full object-cover" />
                         </div>
                     </motion.div>
                 </motion.div>
@@ -535,10 +526,7 @@ export default function AboutFeatures() {
                         className="bg-white rounded-2xl p-6 shadow-lg"
                     >
                         <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
-                            <div className="text-center">
-                                <Brain className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                <p className="text-gray-500">រូបភាពអ្នកជំនាញ AI នឹងត្រូវបានបង្ហាញនៅទីនេះ</p>
-                            </div>
+                            <img src="/landing/dara.png" alt="dara" className="w-full h-full object-cover" />
                         </div>
                     </motion.div>
                 </motion.div>
@@ -618,10 +606,7 @@ export default function AboutFeatures() {
                         className="bg-white rounded-2xl p-6 shadow-lg"
                     >
                         <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
-                            <div className="text-center">
-                                <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                <p className="text-gray-500">រូបភាពប្លុកនឹងត្រូវបានបង្ហាញនៅទីនេះ</p>
-                            </div>
+                            <img src="/landing/articles.png" alt="blog" className="w-full h-full object-cover" />
                         </div>
                     </motion.div>
                 </motion.div>
@@ -692,10 +677,7 @@ export default function AboutFeatures() {
                         className="lg:order-1 bg-white rounded-2xl p-6 shadow-lg"
                     >
                         <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
-                            <div className="text-center">
-                                <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                <p className="text-gray-500">រូបភាពវេទិកានឹងត្រូវបានបង្ហាញនៅទីនេះ</p>
-                            </div>
+                            <img src="/landing/forums.png" alt="forum" className="w-full h-full object-cover" />
                         </div>
                     </motion.div>
                 </motion.div>
@@ -767,10 +749,7 @@ export default function AboutFeatures() {
                         className="lg:order-1 bg-white rounded-2xl p-6 shadow-lg"
                     >
                         <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
-                            <div className="text-center">
-                                <Video className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                                <p className="text-gray-500">វីដេអូរៀននឹងត្រូវបានបង្ហាញនៅទីនេះ</p>
-                            </div>
+                            <img src="/landing/videos.png" alt="videos" className="w-full h-full object-cover" />
                         </div>
                     </motion.div>
                 </motion.div>

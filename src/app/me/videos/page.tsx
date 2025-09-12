@@ -78,6 +78,7 @@ function MyVideosContent() {
                             likeCount: Number(v.likeCount),
                             saveCount: Number(v.saveCount),
                             exercises: v.exercises,
+                            isFollowing: v.isFollowing,
                         }
                     }));
                 } catch (error) {

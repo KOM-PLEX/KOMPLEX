@@ -41,6 +41,7 @@ export interface VideoPost {
   id: number;
   userId: number;
   profileImage: string;
+  isFollowing: boolean;
   title: string;
   description: string;
   duration: number;

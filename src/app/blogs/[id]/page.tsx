@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Bookmark } from 'lucide-react';
+import { ArrowLeft, Bookmark, UserPlus, UserCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Carousel from '@/components/common/Carousel';
 import { Blog } from '@/types/content/blogs';
@@ -11,6 +11,7 @@ import { toggleBlogSave } from '@/services/me/blogs';
 import { BlogPostSkeleton } from '@/components/pages/blog/BlogPostSkeleton';
 import ContentError from '@/components/common/ContentError';
 import { useAuth } from '@/hooks/useAuth';
+import { followUser, unfollowUser } from '@/services/me/follow';
 
 export default function BlogPost() {
     const params = useParams();
@@ -18,6 +19,8 @@ export default function BlogPost() {
 
     const [blogPost, setBlogPost] = useState<Blog | null>(null);
     const [isSaved, setIsSaved] = useState(false);
+    const [isFollowing, setIsFollowing] = useState(false);
+    const [isFollowLoading, setIsFollowLoading] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -32,6 +35,7 @@ export default function BlogPost() {
                 setError(null);
                 const data = await getBlogById(id);
                 setIsSaved(data.isSaved);
+                setIsFollowing(data.isFollowing);
                 setBlogPost(data);
             } catch (err) {
                 console.error('Error fetching blog post:', err);
@@ -59,6 +63,34 @@ export default function BlogPost() {
             setError('មានបញ្ហាក្នុងការរក្សាទុកប្លុក');
         }
     }
+
+    const handleFollow = async () => {
+        if (!user) {
+            openLoginModal();
+            return;
+        }
+
+        // Don't allow following yourself
+        if (user.id === blogPost?.userId) {
+            return;
+        }
+
+        try {
+            setIsFollowLoading(true);
+
+            if (isFollowing) {
+                await unfollowUser(blogPost!.userId);
+                setIsFollowing(false);
+            } else {
+                await followUser(blogPost!.userId);
+                setIsFollowing(true);
+            }
+        } catch (error) {
+            console.error('Error toggling follow:', error);
+        } finally {
+            setIsFollowLoading(false);
+        }
+    };
 
     if (isLoading) {
         return <BlogPostSkeleton />;
@@ -97,7 +129,7 @@ export default function BlogPost() {
                                 {isSaved ? <Bookmark className="fill-indigo-600 w-8 h-8" /> : <Bookmark className="w-8 h-8" />}
                             </button>
                         </div>
-                        <div className="flex items-center gap-3 mb-6">
+                        <div className="flex items-center  gap-3 mb-6 mt-4">
                             <Link href={`/users/${blogPost.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                                 {blogPost.profileImage ? (
                                     <img
@@ -113,12 +145,37 @@ export default function BlogPost() {
                                 <div className={`w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold ${blogPost.profileImage ? 'hidden' : ''}`}>
                                     {blogPost.username.split(" ")[0].charAt(0)}
                                 </div>
-                                <div className='flex items-center gap-2'>
-                                    <span className="font-semibold text-gray-900 hover:underline">{blogPost.username}</span>
-                                    <span>|</span>
-                                    <span className="text-gray-500 text-sm">{new Date(blogPost.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                                </div>
+                                <span className="font-semibold text-gray-900 hover:underline">{blogPost.username}</span>
                             </Link>
+
+                            {/* Follow Button - Only show if not current user's post */}
+                            {user && user.id !== blogPost.userId && (
+                                <button
+                                    onClick={handleFollow}
+                                    disabled={isFollowLoading}
+                                    className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${isFollowing
+                                        ? 'bg-indigo-100 text-indigo-700 border border-indigo-200 hover:bg-indigo-200'
+                                        : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                                        } ${isFollowLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                >
+                                    {isFollowLoading ? (
+                                        <div className="w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" />
+                                    ) : isFollowing ? (
+                                        <>
+                                            <UserCheck className="w-3 h-3" />
+                                            បានតាមដាន
+                                        </>
+                                    ) : (
+                                        <>
+                                            <UserPlus className="w-3 h-3" />
+                                            តាមដាន
+                                        </>
+                                    )}
+                                </button>
+                            )}
+                        </div>
+                        <div className='flex items-center gap-2 mb-6'>
+                            <span className="text-gray-500 text-sm">{new Date(blogPost.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                         </div>
 
 

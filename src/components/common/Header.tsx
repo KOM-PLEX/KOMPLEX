@@ -2,9 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil, Settings, LogOut, BookMarked, MessageCircle, UserIcon } from 'lucide-react';
+import { Menu, FileText, MessageSquare, BookOpen, Bot, Camera, Pencil, LogOut, BookMarked, MessageCircle, UserIcon } from 'lucide-react';
 import { Menu as HeadlessMenu, Transition } from '@headlessui/react';
-import { curriculum } from '@/curriculum/curriculum';
 import FeedbackModal from '../pages/feedback/FeedbackModal';
 import { useAuth } from '@/hooks/useAuth';
 import { signOut } from 'firebase/auth';
@@ -14,7 +13,7 @@ import { useState } from 'react';
 const navLinks = [
     {
         label: 'មេរៀន',
-        href: `/docs/${curriculum[0].grade}/${curriculum[0].content[0].subject}/${curriculum[0].content[0].lessons[0].lesson}/${curriculum[0].content[0].lessons[0].topics[0].englishTitle}`,
+        href: `/docs`,
         icon: FileText,
         style: "bg-transparent  hover:text-indigo-600 hover:bg-indigo-50/90 "
     },
@@ -134,6 +133,9 @@ export default function Header() {
                                                             src={user.profileImage}
                                                             alt="Profile"
                                                             className="w-8 h-8 border border-indigo-500 rounded-full object-cover"
+                                                            onError={(e) => {
+                                                                (e.target as HTMLImageElement).src = "/image-error.png";
+                                                            }}
                                                         />
                                                     ) : (
                                                         <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
