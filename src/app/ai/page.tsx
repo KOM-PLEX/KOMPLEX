@@ -1,18 +1,12 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { Send, Bot, ChevronUp, Copy, Check, X, Loader, RefreshCw, Square } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import { Send, Bot, ChevronUp, Copy, Check, RefreshCw, Square } from 'lucide-react';
 import { Listbox, Transition } from '@headlessui/react';
-import { callAiAndWriteToHistory } from '@/services/me/ai';
+import { callAiAndWriteToHistory, getAiHistory } from '@/services/me/ai';
 import MarkdownRenderer from '@/components/helper/MarkDownRenderer';
 import { useAuth } from '@/hooks/useAuth';
-
-interface Message {
-    id: string;
-    content: string;
-    sender: 'user' | 'ai';
-    timestamp: Date;
-}
+import { Message, AIHistoryItem } from '@/types/content/ai';
 
 const languages = [
     { id: 'khmer', name: 'ភាសាខ្មែរ', acronym: 'KH' },
@@ -37,6 +31,10 @@ export default function AIChat() {
     const [streamingMessage, setStreamingMessage] = useState<string>('');
     const [isStreaming, setIsStreaming] = useState(false);
     const [isRequestInProgress, setIsRequestInProgress] = useState(false);
+    const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+    const [hasMoreHistory, setHasMoreHistory] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
     const streamingIntervalRef = useRef<NodeJS.Timeout | null>(null);
     const streamingRafRef = useRef<number | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -45,9 +43,74 @@ export default function AIChat() {
     const { user, openLoginModal } = useAuth();
 
 
+    const convertHistoryToMessages = (historyItems: AIHistoryItem[]): Message[] => {
+        const messages: Message[] = [];
+        historyItems.forEach((item) => {
+            // Add user message
+            messages.push({
+                id: `user-${item.id}`,
+                content: item.prompt,
+                sender: 'user',
+                timestamp: new Date(item.createdAt),
+                isFromHistory: true
+            });
+            // Add AI response
+            messages.push({
+                id: `ai-${item.id}`,
+                content: item.aiResult,
+                sender: 'ai',
+                timestamp: new Date(item.createdAt),
+                isFromHistory: true
+            });
+        });
+        return messages;
+    };
+
+    const loadHistory = useCallback(async (page: number = 1, append: boolean = false) => {
+        if (!user) return;
+
+        try {
+            if (page === 1) {
+                setIsLoadingHistory(true);
+            } else {
+                setIsLoadingMore(true);
+            }
+
+            const response = await getAiHistory(page, 20);
+            const historyMessages = convertHistoryToMessages(response.data);
+
+            if (append) {
+                setMessages(prev => [...historyMessages, ...prev]);
+            } else {
+                setMessages(historyMessages);
+            }
+
+            setHasMoreHistory(response.hasMore);
+            setCurrentPage(page);
+        } catch (error) {
+            console.error('Error loading AI history:', error);
+        } finally {
+            setIsLoadingHistory(false);
+            setIsLoadingMore(false);
+        }
+    }, [user]);
+
     useEffect(() => {
         if (!user) openLoginModal();
-    }, []);
+    }, [user, openLoginModal]);
+
+    // Load AI history on component mount
+    useEffect(() => {
+        if (user) {
+            loadHistory();
+        }
+    }, [user, loadHistory]);
+
+    const loadMoreHistory = () => {
+        if (hasMoreHistory && !isLoadingMore) {
+            loadHistory(currentPage + 1, true);
+        }
+    };
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -81,6 +144,11 @@ export default function AIChat() {
 
             // Start streaming animation
             streamText(response.data);
+
+            // Refresh history to include the new conversation
+            setTimeout(() => {
+                loadHistory(1, false);
+            }, 1000);
         } catch (error) {
             console.error('Error calling AI:', error);
             setIsLoading(false);
@@ -144,7 +212,7 @@ export default function AIChat() {
         streamingRafRef.current = requestAnimationFrame(tick);
     };
 
-    const autoResizeTextarea = () => {
+    const autoResizeTextarea = useCallback(() => {
         if (textareaRef.current) {
             textareaRef.current.style.height = '30px';
             const scrollHeight = textareaRef.current.scrollHeight;
@@ -160,11 +228,11 @@ export default function AIChat() {
 
             setIsMultiLine(hasMultipleLines);
         }
-    };
+    }, [isMultiLine]);
 
     useEffect(() => {
         autoResizeTextarea();
-    }, [inputMessage]);
+    }, [inputMessage, autoResizeTextarea]);
 
     const handleTryAgain = async () => {
         setIsLoading(true);
@@ -222,7 +290,15 @@ export default function AIChat() {
         <div className="min-h-screen relative bg-gray-50 pt-16 pb-32">
             {/* Main Chat Area */}
             <div className=" overflow-y-auto p-4 space-y-4 max-w-4xl mx-auto w-full scrollbar-hide">
-                {messages.length === 0 ? (
+                {isLoadingHistory ? (
+                    // Loading history
+                    <div className="flex flex-col items-center justify-center h-64">
+                        <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+                            <span className="text-sm text-gray-500">កំពុងទាញយកប្រវត្តិសន្ទនា...</span>
+                        </div>
+                    </div>
+                ) : messages.length === 0 ? (
                     // Welcome screen
                     <div className="flex flex-col items-center justify-center h-full">
                         <div className="text-center max-w-2xl">
@@ -230,43 +306,65 @@ export default function AIChat() {
                                 <Bot className="w-10 h-10 text-indigo-600" />
                             </div>
                             <h2 className="text-2xl font-semibold text-gray-900 mb-4">ស្វាគមន៍!</h2>
-                            <p className="text-gray-600 mb-8">ខ្ញុំជា AI ជំនួយការរៀន។ តើអ្នកចង់សួរអ្វីអំពីអ្វីដែរ?</p>
+                            <p className="text-gray-600 mb-8">ខ្ញុំឈ្មោះតារា ជា AI ជំនួយការរៀន។ តើអ្នកចង់សួរអ្វីអំពីអ្វីដែរ?</p>
                         </div>
                     </div>
                 ) : (
                     // Messages
                     <>
+                        {/* Load More History Button */}
+                        {hasMoreHistory && (
+                            <div className="flex justify-center py-4">
+                                <button
+                                    onClick={loadMoreHistory}
+                                    disabled={isLoadingMore}
+                                    className="px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {isLoadingMore ? (
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                                            កំពុងទាញយកប្រវត្តិសន្ទនា...
+                                        </div>
+                                    ) : (
+                                        'ទាញយកប្រវត្តិសន្ទនាបន្ថែម'
+                                    )}
+                                </button>
+                            </div>
+                        )}
+
                         {messages.map((message) => (
                             <div key={message.id} className="mb-8">
                                 {message.sender === 'user' ? (
                                     // User message
                                     <div className="flex justify-end">
-                                        <div className="bg-indigo-600 text-white rounded-2xl px-4 py-3 max-w-[70%]">
+                                        <div className={`bg-indigo-600 text-white rounded-2xl px-4 py-3 max-w-[70%]`}>
                                             <p className="text-sm leading-relaxed">{message.content}</p>
                                         </div>
                                     </div>
                                 ) : (
                                     // AI message
                                     <div className="w-full">
-                                        <div className="relative ">
+                                        <div className={`relative`}>
                                             <MarkdownRenderer content={message.content} />
-                                            <button
-                                                onClick={() => handleCopyMessage(message.id, message.content)}
-                                                className=" mt-2"
-                                                title="Copy response"
-                                            >
-                                                {copiedMessageId === message.id ? (
-                                                    <div className="flex items-center gap-2">
-                                                        <Check className="w-4 h-4 text-green-600" />
-                                                        បានចម្លង
-                                                    </div>
-                                                ) : (
-                                                    <div className="flex items-center gap-2">
-                                                        <Copy className="w-4 h-4 text-gray-600" />
-                                                        ចម្លង
-                                                    </div>
-                                                )}
-                                            </button>
+                                            <div className="flex items-center justify-between mt-2">
+                                                <button
+                                                    onClick={() => handleCopyMessage(message.id, message.content)}
+                                                    className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                                                    title="Copy response"
+                                                >
+                                                    {copiedMessageId === message.id ? (
+                                                        <div className="flex items-center gap-2">
+                                                            <Check className="w-4 h-4 text-green-600" />
+                                                            បានចម្លង
+                                                        </div>
+                                                    ) : (
+                                                        <div className="flex items-center gap-2">
+                                                            <Copy className="w-4 h-4 text-gray-600" />
+                                                            ចម្លង
+                                                        </div>
+                                                    )}
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 )}
