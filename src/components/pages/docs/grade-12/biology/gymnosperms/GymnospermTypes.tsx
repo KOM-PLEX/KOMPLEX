@@ -9,7 +9,7 @@ import { ThreeDExplanationBox, ThreeDExplanationBoxProps } from "../../../common
 
 export const TOPIC_CONTENT: TopicContent = {
     definition: {
-        title: "ប្រភេទនៃស៊ីមណូស្តែម",
+        title: "តើស៊ីមណូស្តែមជាអ្វី?",
         content: "ស៊ីមណូស្តែម មកពីពាក្យក្រិច ស៊ីមណូស(ននល) ស្ពៃម៉ា(គ្រាប់)។ ស៊ីមណូស្តែម ជារុក្ខជាតិមានគ្រាប់ តែគ្មានសំបកការពារពីខាងក្រៅទេ វាមានគ្រាប់ននល។ "
     },
     tip: {

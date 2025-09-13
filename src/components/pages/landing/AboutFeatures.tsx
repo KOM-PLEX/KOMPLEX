@@ -749,7 +749,10 @@ export default function AboutFeatures() {
                         className="lg:order-1 bg-white rounded-2xl p-6 shadow-lg"
                     >
                         <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center">
-                            <img src="/landing/videos.png" alt="videos" className="w-full h-full object-cover" />
+                            <div className="text-center">
+                                <Video className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                                <p className="text-gray-500">វីដេអូរៀននឹងត្រូវបានបង្ហាញនៅទីនេះ</p>
+                            </div>
                         </div>
                     </motion.div>
                 </motion.div>
