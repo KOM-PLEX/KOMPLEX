@@ -28,26 +28,26 @@ const FirstTopicContent: TopicContent = {
     title: "ជាទូទៅ",
     content: (
       <>
-        <div className='flex items-start  gap-40'>
-          <div className='flex items-start flex-col gap-3'>
-            <p className='font-bold p'>សមាសធាតុអុីយ៉ុង </p>
-            <ul className='list-disc pl-3'>
-              <li>ភាគច្រេីនជាអង្គធាតុរឹង ឬក្រាម</li>
-              <li>ភាគច្រេីនបង្កពីលោហះ និងអលោហះ</li>
-              <li>មានសីតុណ្ហភាពរលាយ និងរំពុះខ្ពស់</li>
-              <li>ដង់សុីតេខ្ពស់</li>
-            </ul>
+          <div className='flex items-start gap-10 flex-col sm:flex-row sm:gap-40'>
+              <div className='flex items-start flex-col gap-3'>
+                  <p className='font-bold pl-5'>សមាសធាតុអុីយ៉ុង </p>
+                  <ul className='list-disc pl-3'>
+                      <li>ភាគច្រេីនជាអង្គធាតុរឹង ឬក្រាម</li>
+                      <li>ភាគច្រេីនបង្កពីលោហះ និងអលោហះ</li>
+                      <li>មានសីតុណ្ហភាពរលាយ និងរំពុះខ្ពស់</li>
+                      <li>ដង់សុីតេខ្ពស់</li>
+                  </ul>
+              </div>
+              <div className='flex items-start flex-col gap-3'>
+                  <p className='font-bold pl-5'>សមាសធាតុកូវ៉ាឡង់</p>
+                  <ul className='list-disc pl-3'>
+                      <li>ភាគច្រេីនជាអង្គធាតុរាង​ ឬឧស្ម័ន</li>
+                      <li>ភាគច្រេីនបង្កពីអលោហះ និងអលោហះ</li>
+                      <li>មានសីតុណ្ហភាពរលាយ និងរំពុះទាប</li>
+                      <li>ដង់សុីតេទាប</li>
+                  </ul>
+              </div>
           </div>
-          <div className='flex items-start flex-col gap-3'>
-            <p className='font-bold pl-5'>សមាសធាតុកូវ៉ាឡង់</p>
-            <ul className='list-disc pl-3'>
-              <li>ភាគច្រេីនជាអង្គធាតុរាង​ ឬឧស្ម័ន</li>
-              <li>ភាគច្រេីនបង្កពីអលោហះ និងអលោហះ</li>
-              <li>មានសីតុណ្ហភាពរលាយ និងរំពុះទាប</li>
-              <li>ដង់សុីតេទាប</li>
-            </ul>
-          </div>
-        </div>
       </>
     ),
   },
@@ -327,92 +327,130 @@ const SixthTopicContent: TopicContent = {
 
   example2: {
     question: [
-      <div className="flex flex-col items-start gap-3" key="q1">
-        <p>ចូរកំណត់កម្លាំងអន្តរម៉ូលេគុលនិងសម្ព័ន្ធអុីដ្រូសែន នៃគូក្នុងសមាសធាតុខាងក្រោម៖</p>
-        <div className='flex items-start gap-3 flex-col'>
-          <div className='flex items-center gap-2 flex-wrap'>
-            <p>ក. </p>
-            <InlineMath math="HBr" />
-            <p>និង</p>
-            <InlineMath math="H_{2}S" />
-          </div>
-          <div className='flex items-center gap-2 flex-wrap'>
-            <p>ខ. </p>
-            <InlineMath math="Cl_{2}" />
-            <p>និង</p>
-            <InlineMath math="CBr_{4}" />
-          </div>
-          <div className='flex items-center gap-2 flex-wrap'>
-            <p>គ. </p>
-            <InlineMath math="NH_{3}" />
-            <p>និង</p>
-            <InlineMath math="H_{2}O" />
-          </div>
-        </div>
-      </div>,
+        <div className="flex flex-col items-start gap-3" key="q1">
+            <p>ចូរកំណត់កម្លាំងអន្តរម៉ូលេគុលនិងសម្ព័ន្ធអុីដ្រូសែន នៃគូក្នុងសមាសធាតុខាងក្រោម៖</p>
+            <div className='flex items-start gap-3 flex-col'>
+                <div className='flex items-center gap-2 flex-wrap'>
+                    <p>ក. </p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="HBr" /> 
+                    </div>
+                    <p>និង</p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="H_{2}S" />
+                    </div>
+                </div>
+                <div className='flex items-center gap-2 flex-wrap'>
+                    <p>ខ. </p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="Cl_{2}" />   
+                    </div>
+                    <p>និង</p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="CBr_{4}" />                   
+                    </div>
+                </div>
+                <div className='flex items-center gap-2 flex-wrap'>
+                    <p>គ. </p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="NH_{3}" />                              
+                    </div>
+                    <p>និង</p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="H_{2}O" />                          
+                    </div>
+                </div>
+            </div>
+        </div>,
     ],
     steps: [
-      {
-        title:
-          <div className='flex items-center gap-2 flex-wrap'>
-            <p>ក. </p>
-            <InlineMath math="HBr" />
-            <p>និង</p>
-            <InlineMath math="H_{2}S" />
-          </div>,
-        content:
+        {
+          title: 
+                <div className='flex items-center gap-2 flex-wrap'>
+                    <p>ក. </p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="HBr" /> 
+                    </div>
+                    <p>និង</p>
+                    <div className='text-[13px]'>
+                       <InlineMath math="H_{2}S" />
+                    </div>
+                    
+                </div>,
+          content: 
           <div>
-            <div className="flex flex-col items-start gap-3">
-              <div className='flex items-center gap-2 flex-wrap'>
-                <InlineMath math="HBr" />
-                <p>និង</p>
-                <InlineMath math="H_{2}S" />
-                <p>គឺជាម៉ូលេគុលប៉ូលែ។</p>
-              </div>
-              <p>ដូចនេះរវាងកម្លាំងម៉ូលេគុលទាំងពីរជាកម្លាំងឌីប៉ូល-ឌីប៉ូល ហេីយវាក៏មានកម្លាំងឡុនដុនផងដែរ។</p>
-            </div>
+              <div className="flex flex-col items-start gap-3">
+                  <div className='flex items-center gap-2 flex-wrap'>
+                    <div className='text-[13px]'>
+                        <InlineMath math="HBr" /> 
+                    </div>
+                    <p>និង</p>
+                    <div className='text-[13px]'>
+                       <InlineMath math="H_{2}S" />
+                    </div>
+                    <p>គឺជាម៉ូលេគុលប៉ូលែ។</p>
+                  </div>
+                  <p>ដូចនេះរវាងកម្លាំងម៉ូលេគុលទាំងពីរជាកម្លាំងឌីប៉ូល-ឌីប៉ូល ហេីយវាក៏មានកម្លាំងឡុនដុនផងដែរ។</p>
+              </div>  
           </div>
-      },
-      {
-        title:
-          <div className='flex items-center gap-2 flex-wrap'>
-            <p>ខ. </p>
-            <InlineMath math="Cl_{2}" />
-            <p>និង</p>
-            <InlineMath math="CBr_{4}" />
-          </div>,
-        content:
+        },
+        {
+          title: 
+                <div className='flex items-center gap-2 flex-wrap'>
+                   <p>ខ. </p>
+                   <div className='text-[13px]'>
+                      <InlineMath math="Cl_{2}" />                        
+                    </div>
+                    <p>និង</p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="CBr_{4}" />                                          
+                    </div>
+                </div>,
+          content: 
           <div>
-            <div className="flex flex-col items-start gap-3">
-              <div className='flex items-center gap-2 flex-wrap'>
-                <InlineMath math="Cl_{2}" />
-                <p>និង</p>
-                <InlineMath math="CBr_{4}" />
-                <p>គឺជាម៉ូលេគុលមិនប៉ូលែ។</p>
-              </div>
-              <p>ដូចនេះរវាងកម្លាំងម៉ូលេគុលទាំងពីរជាកម្លាំងឡុនដុនតែមួយគត់។</p>
-            </div>
+              <div className="flex flex-col items-start gap-3">
+                  <div className='flex items-center gap-1 flex-wrap'>
+                      <div className='text-[13px]'>
+                          <InlineMath math="Cl_{2}" />                        
+                      </div>
+                      <p>និង</p>
+                      <div className='text-[13px]'>
+                        <InlineMath math="CBr_{4}" />                                          
+                      </div>
+                    <p>គឺជាម៉ូលេគុល</p>
+                    <p>មិនប៉ូលែ។</p>
+                  </div>
+                  <p>ដូចនេះរវាងកម្លាំងម៉ូលេគុលទាំងពីរជាកម្លាំងឡុនដុនតែមួយគត់។</p>
+              </div>  
           </div>
-      },
-      {
-        title:
-          <div className='flex items-center gap-2 flex-wrap'>
-            <p>គ. </p>
-            <InlineMath math="NH_{3}" />
-            <p>និង</p>
-            <InlineMath math="H_{2}O" />
-          </div>,
-        content:
+        },
+        {
+          title: 
+                <div className='flex items-center gap-2 flex-wrap'>
+                   <p>គ. </p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="NH_{3}" />                                      
+                    </div>    
+                    <p>និង</p>
+                    <div className='text-[13px]'>
+                        <InlineMath math="H_{2}O" />                                      
+                    </div>                    
+                </div>,
+          content: 
           <div>
-            <div className="flex flex-col items-start gap-3">
-              <div className='flex items-center gap-2 flex-wrap'>
-                <InlineMath math="NH_{3}" />
-                <p>និង</p>
-                <InlineMath math="H_{2}O" />
-                <p>គឺជាម៉ូលេគុលប៉ូលែ។</p>
-              </div>
-              <p>ដូចនេះរវាងកម្លាំងម៉ូលេគុលទាំងពីរជាកម្លាំងឌីប៉ូល-ឌីប៉ូល ហេីយវាក៏មានសម្ព័ន្ធអុីដ្រូសែនផងដែរ។</p>
-            </div>
+              <div className="flex flex-col items-start gap-3">
+                  <div className='flex items-center gap-2 flex-wrap'>
+                      <div className='text-[13px]'>
+                        <InlineMath math="NH_{3}" />                                      
+                     </div>   
+                      <p>និង</p>
+                      <div className='text-[13px]'>
+                        <InlineMath math="H_{2}O" />                                      
+                      </div>
+                    <p>គឺជាម៉ូលេគុលប៉ូលែ។</p>
+                  </div>
+                  <p>ដូចនេះរវាងកម្លាំងម៉ូលេគុលទាំងពីរជាកម្លាំងឌីប៉ូល-ឌីប៉ូល ហេីយវាក៏មានសម្ព័ន្ធអុីដ្រូសែនផងដែរ។</p>
+              </div>  
           </div>
       },
     ]
@@ -435,62 +473,59 @@ const SixthTopicContent: TopicContent = {
 const Intermolecular_forces = () => {
   return (
     <div>
-      <div>
-        {FirstTopicContent.definition && (
-          <DefinitionBox title={FirstTopicContent.definition.title} content={FirstTopicContent.definition.content} />
-        )}
-        {FirstTopicContent.tip && (
-          <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
-        )}
-        {/* {FirstTopicContent.example && (
-                <ExampleBox question={FirstTopicContent.example.question} steps={FirstTopicContent.example.steps} answer={FirstTopicContent.example.answer} />
-            )} */}
-      </div>
-      <div>
-        {SecondTopic.definition && (
-          <DefinitionBox title={SecondTopic.definition.title} content={SecondTopic.definition.content} />
-        )}
-        {SecondTopic.tip && (
-          <TipBox title={SecondTopic.tip.title} content={SecondTopic.tip.content} />
-        )}
-      </div>
-      <div>
-        {ThirdTopic.definition && (
-          <DefinitionBox title={ThirdTopic.definition.title} content={ThirdTopic.definition.content} />
-        )}
-        {ThirdTopic.tip && (
-          <TipBox title={ThirdTopic.tip.title} content={ThirdTopic.tip.content} />
-        )}
-      </div>
-      <div>
-        {FourthTopicContent.definition && (
-          <DefinitionBox title={FourthTopicContent.definition.title} content={FourthTopicContent.definition.content} />
-        )}
-        {FourthTopicContent.tip && (
-          <TipBox title={FourthTopicContent.tip.title} content={FourthTopicContent.tip.content} />
-        )}
-      </div>
-      <div>
-        {FifthTopicContent.definition && (
-          <DefinitionBox title={FifthTopicContent.definition.title} content={FifthTopicContent.definition.content} />
-        )}
-        {FifthTopicContent.tip && (
-          <TipBox title={FifthTopicContent.tip.title} content={FifthTopicContent.tip.content} />
-        )}
-      </div>
-      <div>
-        {SixthTopicContent.definition && (
-          <DefinitionBox title={SixthTopicContent.definition.title} content={SixthTopicContent.definition.content} />
-        )}
-        {SixthTopicContent.tip && (
-          <TipBox title={SixthTopicContent.tip.title} content={SixthTopicContent.tip.content} />
-        )}
-        {SixthTopicContent.example && (
-          <ExampleBox question={SixthTopicContent.example.question} steps={SixthTopicContent.example.steps} answer={SixthTopicContent.example.answer} />
-        )}
-        {SixthTopicContent.example2 && (
-          <ExampleBox question={SixthTopicContent.example2.question} steps={SixthTopicContent.example2.steps} answer={SixthTopicContent.example2.answer} />
-        )}
+        <div>
+            {FirstTopicContent.definition && (
+                <DefinitionBox title={FirstTopicContent.definition.title} content={FirstTopicContent.definition.content} />
+            )}
+            {FirstTopicContent.tip && (
+                <TipBox title={FirstTopicContent.tip.title} content={FirstTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {SecondTopic.definition && (
+                <DefinitionBox title={SecondTopic.definition.title} content={SecondTopic.definition.content} />
+            )}
+            {SecondTopic.tip && (
+                <TipBox title={SecondTopic.tip.title} content={SecondTopic.tip.content} />
+            )}
+        </div>
+        <div>
+            {ThirdTopic.definition && (
+                <DefinitionBox title={ThirdTopic.definition.title} content={ThirdTopic.definition.content} />
+            )}
+            {ThirdTopic.tip && (
+                <TipBox title={ThirdTopic.tip.title} content={ThirdTopic.tip.content} />
+            )}
+        </div>
+        <div>
+            {FourthTopicContent.definition && (
+                <DefinitionBox title={FourthTopicContent.definition.title} content={FourthTopicContent.definition.content} />
+            )}
+            {FourthTopicContent.tip && (
+                <TipBox title={FourthTopicContent.tip.title} content={FourthTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {FifthTopicContent.definition && (
+                <DefinitionBox title={FifthTopicContent.definition.title} content={FifthTopicContent.definition.content} />
+            )}
+            {FifthTopicContent.tip && (
+                <TipBox title={FifthTopicContent.tip.title} content={FifthTopicContent.tip.content} />
+            )}
+        </div>
+        <div>
+            {SixthTopicContent.definition && (
+                <DefinitionBox title={SixthTopicContent.definition.title} content={SixthTopicContent.definition.content} />
+            )}
+            {SixthTopicContent.tip && (
+                <TipBox title={SixthTopicContent.tip.title} content={SixthTopicContent.tip.content} />
+            )}
+            {SixthTopicContent.example && (
+                <ExampleBox question={SixthTopicContent.example.question} steps={SixthTopicContent.example.steps} answer={SixthTopicContent.example.answer} />
+            )}
+            {SixthTopicContent.example2 && (
+                <ExampleBox question={SixthTopicContent.example2.question} steps={SixthTopicContent.example2.steps} answer={SixthTopicContent.example2.answer} />
+            )}
 
       </div>
 
