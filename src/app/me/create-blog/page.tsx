@@ -1,17 +1,16 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, Book, Trash, Plus, Tag, X } from 'lucide-react';
 import { createBlog } from '@/services/me/blogs';
 import Sidebar from '@/components/pages/me/Sidebar';
 import { useAuth } from '@/hooks/useAuth';
+import BlogEditor from '@/components/common/Editor';
 
 export default function CreateBlog() {
     const { user, loading: authLoading, openLoginModal } = useAuth();
-    const router = useRouter();
     const [title, setTitle] = useState('');
     const [bodyText, setBodyText] = useState('');
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
@@ -37,7 +36,10 @@ export default function CreateBlog() {
     const suggestedTopics = ['គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];
 
     const handlePostBlog = async () => {
-        if (!title.trim() || !bodyText.trim()) {
+        // Check if bodyText has actual content (not just empty HTML tags)
+        const hasContent = bodyText.trim() && bodyText.replace(/<[^>]*>/g, '').trim();
+
+        if (!title.trim() || !hasContent) {
             setError('សូមបំពេញចំណងជើងនិងមាតិកាប្លុក');
             return;
         }
@@ -61,20 +63,19 @@ export default function CreateBlog() {
             formData.append('type', blogTypes.length > 0 ? blogTypes[0] : 'education');
             formData.append('topic', topics.length > 0 ? topics[0] : 'biology');
 
-            // Create blog using the service - backend handles file uploads
+            // Make the actual API call with markdown content
             await createBlog(formData);
 
             setSuccess(true);
 
-            // Success! Redirect to blogs page after a short delay
+            // Success! Redirect to blogs page
             setTimeout(() => {
                 window.location.href = '/blogs';
-            }, 1500);
+            }, 2000);
 
         } catch (error) {
-            console.error('Error creating blog post:', error);
+            console.error('Error processing blog post:', error);
             setError('មានបញ្ហាក្នុងការបង្កើតប្លុក។ សូមព្យាយាមម្តងទៀត។');
-        } finally {
             setIsUploading(false);
         }
     }
@@ -125,14 +126,15 @@ export default function CreateBlog() {
         if (error) setError('');
     };
 
-    const handleBodyTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setBodyText(e.target.value);
-        // Clear error when user makes changes
+    // Handle editor content changes
+    const handleEditorChange = (content: string) => {
+        setBodyText(content);
         if (error) setError('');
     };
 
     const isFormValid = () => {
-        return title.trim() && bodyText.trim() && !error;
+        const hasContent = bodyText.trim() && bodyText.replace(/<[^>]*>/g, '').trim();
+        return title.trim() && hasContent && !error;
     };
 
     // Show loading while checking auth
@@ -200,9 +202,7 @@ export default function CreateBlog() {
                             </div>
                         </div>
 
-                        {/* Blog Type and Topic Selection */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                            {/* Blog Type Selection */}
+                        {/* co<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                             <div className="lg:bg-white bg-gray-50 rounded-2xl lg:shadow-sm lg:p-6">
                                 <div className="flex items-center justify-between mb-6 pb-4">
                                     <div className="text-indigo-600 font-semibold text-xl flex gap-3 items-center">
@@ -211,7 +211,6 @@ export default function CreateBlog() {
                                     </div>
                                 </div>
                                 <div className="space-y-6">
-                                    {/* Blog Type Input */}
                                     <div className="relative">
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រភេទប្លោក
@@ -235,7 +234,6 @@ export default function CreateBlog() {
                                         </div>
                                     </div>
 
-                                    {/* Blog Type Suggestions */}
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             អនុសាសន៍
@@ -258,7 +256,6 @@ export default function CreateBlog() {
                                         </div>
                                     </div>
 
-                                    {/* Selected Blog Type Tags */}
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រភេទដែលបានជ្រើសរើស
@@ -283,7 +280,6 @@ export default function CreateBlog() {
                                 </div>
                             </div>
 
-                            {/* Topic Selection */}
                             <div className="lg:bg-white bg-gray-50 rounded-2xl lg:shadow-sm lg:p-6">
                                 <div className="flex items-center justify-between mb-6 pb-4">
                                     <div className="text-indigo-600 font-semibold text-xl flex gap-3 items-center">
@@ -292,7 +288,6 @@ export default function CreateBlog() {
                                     </div>
                                 </div>
                                 <div className="space-y-6">
-                                    {/* Topic Input */}
                                     <div className="relative">
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រធានបទ
@@ -316,7 +311,6 @@ export default function CreateBlog() {
                                         </div>
                                     </div>
 
-                                    {/* Topic Suggestions */}
                                     <div>
                                         <label className="block text.sm font-medium text-gray-700 mb-2">
                                             អនុសាសន៍
@@ -339,7 +333,6 @@ export default function CreateBlog() {
                                         </div>
                                     </div>
 
-                                    {/* Selected Topic Tags */}
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រធានបទដែលបានជ្រើសរើស
@@ -363,7 +356,7 @@ export default function CreateBlog() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Image Upload Area */}
                         <div className="mb-6">
@@ -419,18 +412,21 @@ export default function CreateBlog() {
                             </div>
                         </div>
 
-                        {/* Body Text */}
+                        {/* Body Text with Rich Editor */}
                         <div className="mb-6">
                             <label className="block text-sm font-medium mb-2 text-gray-700">
                                 មាតិកា
                             </label>
-                            <textarea
-                                value={bodyText}
-                                onChange={handleBodyTextChange}
-                                placeholder="សរសេរមាតិកាប្លុករបស់អ្នក..."
-                                className="w-full p-4 rounded-lg bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
-                                rows={12}
-                            />
+
+                            {/* Blog Editor Component */}
+                            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                                <BlogEditor
+                                    value={bodyText}
+                                    onChange={handleEditorChange}
+                                    placeholder="សរសេរមាតិកាប្លុករបស់អ្នក..."
+                                    height="600px"
+                                />
+                            </div>
                         </div>
 
                         {/* Error Message */}
@@ -462,7 +458,7 @@ export default function CreateBlog() {
                                             </svg>
                                         </div>
                                         <div className="ml-3">
-                                            <p className="text-sm text-green-800">បង្កើតប្លុកបានជោគជ័យ! កំពុងបញ្ជូនទៅទំព័រប្លុក...</p>
+                                            <p className="text-sm text-green-800">បានបង្កើតប្លុកដោយជោគជ័យ! កំពុងបញ្ជូនទៅទំព័រប្លុក...</p>
                                         </div>
                                     </div>
                                 </div>
@@ -528,6 +524,7 @@ export default function CreateBlog() {
                     </div>
                 </div>
             </div>
+
         </div>
     );
 } 

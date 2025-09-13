@@ -108,7 +108,7 @@ export default function MyBlogs() {
                             <div className="flex items-center justify-between">
                                 <h2 className="text-lg font-semibold text-gray-900">ប្លុក</h2>
                                 <Link
-                                    href="/my-content/createBlog"
+                                    href="/me/create-blog"
                                     className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
                                 >
                                     <Plus className="w-4 h-4" />
