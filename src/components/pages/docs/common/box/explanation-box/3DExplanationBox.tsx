@@ -21,10 +21,10 @@ export interface ThreeDExplanationBoxProps {
 export const ThreeDExplanationBox = ({
     src,
     explanation,
-    scale = 0.7,
+    scale = 4,
     target = [0, 0, 0],
     canvasBackground,
-    canvasBackgroundColor = 'black',
+    canvasBackgroundColor = 'white',
     threeDText,
     twoDText,
     height = 400,

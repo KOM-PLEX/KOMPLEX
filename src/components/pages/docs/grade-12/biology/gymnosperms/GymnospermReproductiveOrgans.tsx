@@ -8,14 +8,7 @@ import { ImageBox, ImageBoxProps } from "../../../common/box/explanation-box/Ima
 import { ThreeDExplanationBox, ThreeDExplanationBoxProps } from "../../../common/box/explanation-box/3DExplanationBox";
 
 const TOPIC_CONTENT: TopicContent={
-    imageExplanation:[
-        {
-            title: "",
-            src: "/docs/grade-12/biology/gymnosperms/life_cycle.png",
-            imageAlt: "",
-            explanation: ""
-        },
-    ],
+
     threeDExplanation:[
         {
             title: "រូបភាពនៃកោន និង ប្រៀបធៀបកោនឈ្មោល និង កោនញី",
@@ -116,11 +109,11 @@ export default function GymnospermReproductiveOrgans() {
                         </ul>
                     </div>  
                 </div>
-                {TOPIC_CONTENT.imageExplanation &&
-                    Array.isArray(TOPIC_CONTENT.imageExplanation) &&
-                    TOPIC_CONTENT.imageExplanation.map((image: ImageBoxProps, index: number) => (
-                        <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
-                    ))}
+                <img 
+                    src="/docs/grade-12/biology/gymnosperms/life_cycle.png" 
+                    alt="Gymnosperm Reproductive Organs" 
+                    className="w-full max-w-[700px] h-auto mx-auto"
+                />
                 {TOPIC_CONTENT.threeDExplanation &&
                     Array.isArray(TOPIC_CONTENT.threeDExplanation) &&
                     TOPIC_CONTENT.threeDExplanation.map((threeD: ThreeDExplanationBoxProps, index: number) => (

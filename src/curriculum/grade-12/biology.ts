@@ -26,11 +26,15 @@ import Reproduction from "@/components/pages/docs/grade-12/biology/angiosperm/Re
 import LifeCycle from "@/components/pages/docs/grade-12/biology/angiosperm/LifeCycle";
 import Comparision from "@/components/pages/docs/grade-12/biology/angiosperm/Comparision";
 import Advantage from "@/components/pages/docs/grade-12/biology/angiosperm/Advantage";
+import NoneSpine from "@/components/pages/docs/grade-12/biology/nervous/NoneSpine";
+import Spine from "@/components/pages/docs/grade-12/biology/nervous/Spine";
+import Role from "@/components/pages/docs/grade-12/biology/nervous/Role";
+import Neuron from "@/components/pages/docs/grade-12/biology/nervous/Neuron";
 
 export const biology: Content = {
   subject: "biology",
   title: "ជីវវិទ្យា",
-  englishTitle: "Biology",
+  englishTitle: "Biology",  
   icon: Leaf,
   lessons: [
     {
@@ -113,22 +117,22 @@ export const biology: Content = {
         {
           title: "តម្រូវប្រសាទសត្វឥតឆ្អឹងកង",
           englishTitle: "nervous-system-invertebrates",
-          component: ComingSoon,
+          component: NoneSpine,
         },
         {
           title: "តម្រូវប្រសាទសត្វឆ្អឹងកង",
           englishTitle: "nervous-system-vertebrates",
-          component: ComingSoon,
+          component: Spine,
         },
         {
           title: "នាទីប្រព័ន្ធប្រសាទ",
           englishTitle: "nervous-system-function",
-          component: ComingSoon,
+          component: Role,
         },
         {
           title: "ណឺរ៉ូន (ឬកោសិកាប្រសាទ)",
           englishTitle: "neuron-nerve-cell",
-          component: ComingSoon,
+          component: Neuron,
         },
         {
           title: "មជ្ឈមណ្ឌលប្រសាទ",
