@@ -6,6 +6,7 @@ import Carousel from '@/components/common/Carousel';
 import { useRouter } from 'next/navigation';
 import { Eye, MessageCircle, Heart, ThumbsUp } from 'lucide-react';
 import Link from 'next/link';
+import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 
 interface ForumCardProps {
     post: ForumPost;
@@ -79,7 +80,7 @@ export default function ForumCard({ post, isFromMePage }: ForumCardProps) {
             </div>
 
             <div className="text-gray-700 text-sm leading-relaxed mb-4">
-                {post.description}
+                <MarkDownRenderer content={post.description} />
             </div>
 
             {post.media && post.media.length > 0 && (

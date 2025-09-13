@@ -178,7 +178,7 @@ export default function CreateBlog() {
                         <div className="mb-6">
                             <h1 className="text-2xl font-bold mb-2 flex items-center gap-2 text-gray-700">
                                 <Book className='w-6 h-6' style={{ color: '#6366f1' }} />
-                                បង្កើតប្លុក
+                                បង្កើតអត្ថបទ
                             </h1>
                         </div>
 

@@ -15,11 +15,13 @@ import { useAuth } from '@/hooks/useAuth';
 interface CommentComponentProps {
     comment: ForumComment | VideoComment;
     commentType: 'forum' | 'video';
+    isReadOnly?: boolean;
 }
 
 export default function CommentComponent({
     comment,
     commentType,
+    isReadOnly = false,
 }: CommentComponentProps) {
     const { user, openLoginModal } = useAuth();
 
@@ -137,21 +139,30 @@ export default function CommentComponent({
                     </div>
                     <div className="text-gray-700 text-sm leading-relaxed mb-2">{comment.description}</div>
                     <div className="flex items-center gap-4">
-                        <button
-                            onClick={handleCommentLike}
-                            disabled={isLiking}
-                            className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${commentUpvoted ? 'text-indigo-600' : 'text-gray-500'
-                                }`}
-                        >
-                            <ThumbsUp className={`w-3 h-3 ${commentUpvoted ? 'fill-indigo-600' : ''}`} />
-                            <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
-                        </button>
-                        <button
-                            onClick={() => setIsReplying(!isReplying)}
-                            className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200"
-                        >
-                            ឆ្លើយតប
-                        </button>
+                        {!isReadOnly ? (
+                            <>
+                                <button
+                                    onClick={handleCommentLike}
+                                    disabled={isLiking}
+                                    className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${commentUpvoted ? 'text-indigo-600' : 'text-gray-500'
+                                        }`}
+                                >
+                                    <ThumbsUp className={`w-3 h-3 ${commentUpvoted ? 'fill-indigo-600' : ''}`} />
+                                    <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
+                                </button>
+                                <button
+                                    onClick={() => setIsReplying(!isReplying)}
+                                    className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200"
+                                >
+                                    ឆ្លើយតប
+                                </button>
+                            </>
+                        ) : (
+                            <div className="flex items-center gap-1 text-xs text-gray-500">
+                                <ThumbsUp className="w-3 h-3" />
+                                <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
+                            </div>
+                        )}
                         <button
                             onClick={fetchReplies}
                             disabled={isLoadingReplies}
@@ -164,7 +175,7 @@ export default function CommentComponent({
                     </div>
 
                     {/* Reply Input */}
-                    {isReplying && (
+                    {!isReadOnly && isReplying && (
                         <div className="mt-3 flex gap-2">
                             <div className="flex-1">
                                 <div className="flex gap-2">
@@ -209,6 +220,7 @@ export default function CommentComponent({
                                 commentId={comment.id}
                                 onSubmitReply={handleSubmitReply}
                                 replyType={commentType}
+                                isReadOnly={isReadOnly}
                             />
                         ))
                     ) : (

@@ -6,6 +6,7 @@ import { Eye, ThumbsUp, MessageCircle, Calendar } from 'lucide-react';
 import ContentError from '@/components/common/ContentError';
 import { getUserForums } from '@/services/user/forums';
 import Carousel from '@/components/common/Carousel';
+import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 
 
 interface Forum {
@@ -135,7 +136,7 @@ export default function Forums({ userId }: ForumsProps) {
                             </div>
 
                             <div className="text-gray-700 text-sm leading-relaxed mb-4 line-clamp-2">
-                                {forum.description}
+                                <MarkDownRenderer content={forum.description} />
                             </div>
 
                             <Carousel

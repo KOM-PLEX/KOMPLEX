@@ -12,6 +12,7 @@ import { BlogPostSkeleton } from '@/components/pages/blog/BlogPostSkeleton';
 import ContentError from '@/components/common/ContentError';
 import { useAuth } from '@/hooks/useAuth';
 import { followUser, unfollowUser } from '@/services/me/follow';
+import MarkdownRenderer from '@/components/helper/MarkDownRenderer';
 
 export default function BlogPost() {
     const params = useParams();
@@ -186,11 +187,7 @@ export default function BlogPost() {
                             )
                         }
 
-                        <div className="prose prose-lg max-w-none mt-6">
-                            <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                                {blogPost.description}
-                            </div>
-                        </div>
+                        <MarkdownRenderer content={blogPost.description} />
                     </div>
                 </article>
             </div>

@@ -11,6 +11,7 @@ import { Media } from '@/types/content/media';
 import { toggleForumLike } from '@/services/me/forums';
 import { followUser, unfollowUser } from '@/services/me/follow';
 import { useAuth } from '@/hooks/useAuth';
+import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 
 
 interface ForumCardProps {
@@ -198,7 +199,7 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
             </div>
 
             <div className="text-gray-700 text-sm leading-relaxed mb-4">
-                {post.description}
+                <MarkDownRenderer content={post.description} />
             </div>
 
             {post.media && post.media.length > 0 && (

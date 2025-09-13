@@ -1,14 +1,14 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Save, X } from 'lucide-react';
-import axios from 'axios';
-import Link from 'next/link';
+import { Save, X, Eye } from 'lucide-react';
 import { ForumPost } from '@/types/content/forums';
 import { Media } from '@/types/content/media';
 import { updateForum } from '@/services/me/forums';
 import { getForumById } from '@/services/feed/forums';
 import { useRouter } from 'next/navigation';
+import BlogEditor from '@/components/common/Editor';
+import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 
 interface EditForumProps {
     forum: ForumPost;
@@ -26,6 +26,7 @@ export default function EditForum({ forum, onCancel }: EditForumProps) {
     const [removedImages, setRemovedImages] = useState<string[]>([]);
     const [previewSources, setPreviewSources] = useState<('existing' | 'new')[]>([]);
     const [isSaving, setIsSaving] = useState(false);
+    const [showPreview, setShowPreview] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     // Initialize form with existing forum data
@@ -46,6 +47,10 @@ export default function EditForum({ forum, onCancel }: EditForumProps) {
             setPreviewSources([]);
         }
     }, [forum]);
+
+    const handleDescriptionChange = (value: string) => {
+        setDescription(value);
+    };
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || []);
@@ -238,16 +243,33 @@ export default function EditForum({ forum, onCancel }: EditForumProps) {
 
                 {/* Description */}
                 <div className="mb-6">
-                    <label className="block text-sm font-medium mb-2 text-gray-700">
-                        មាតិកា
-                    </label>
-                    <textarea
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        placeholder="សរសេរមាតិកាវេទិការបស់អ្នក..."
-                        className="w-full p-4 rounded-lg bg-indigo-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
-                        rows={8}
-                    />
+                    <div className="flex items-center justify-between mb-2">
+                        <label className="block text-sm font-medium text-gray-700">
+                            មាតិកា
+                        </label>
+                        <button
+                            type="button"
+                            onClick={() => setShowPreview(!showPreview)}
+                            className="flex items-center gap-2 px-3 py-1.5 text-sm bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors"
+                        >
+                            <Eye className="w-4 h-4" />
+                            {showPreview ? 'កែប្រែ' : 'មើលជាមុន'}
+                        </button>
+                    </div>
+
+                    {!showPreview ? (
+                        <BlogEditor
+                            value={description}
+                            onChange={handleDescriptionChange}
+                            height="400px"
+                        />
+                    ) : (
+                        <div className="border border-gray-200 rounded-lg p-4 bg-white min-h-[400px]">
+                            <div className="prose prose-lg max-w-none">
+                                <MarkDownRenderer content={description} />
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* Action Buttons */}
