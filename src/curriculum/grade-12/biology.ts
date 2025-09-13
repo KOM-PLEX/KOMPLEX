@@ -19,6 +19,15 @@ import GymnospermVegetativeOrgans from "@/components/pages/docs/grade-12/biology
 import GymnospermReproductiveOrgans from "@/components/pages/docs/grade-12/biology/gymnosperms/GymnospermReproductiveOrgans";
 import GymnospermLifeCycle from "@/components/pages/docs/grade-12/biology/gymnosperms/GymnospermLifeCycle";
 import ComingSoon from "@/components/pages/docs/common/ComingSoon";
+import FormAminoAcid from "@/components/pages/docs/grade-12/biology/aminoAcid/FormAminoAcid";
+import TypesAminoAcid from "@/components/pages/docs/grade-12/biology/aminoAcid/TypesAminoAcid";
+import Peptide from "@/components/pages/docs/grade-12/biology/aminoAcid/Peptide";
+import StructureProtein from "@/components/pages/docs/grade-12/biology/protein/StructureProtein";
+import FunctionProtein from "@/components/pages/docs/grade-12/biology/protein/FunctionProtein";
+import ProteinDenaturation from "@/components/pages/docs/grade-12/biology/protein/ProteinDenaturation";
+import EnzymeDefinition from "@/components/pages/docs/grade-12/biology/enzymes/EnzymeDefinition";
+import EnzymeFunction from "@/components/pages/docs/grade-12/biology/enzymes/EnzymeFunction";
+import CharacteristicEnzyme from "@/components/pages/docs/grade-12/biology/enzymes/CharacteristicEnzyme";
 import ChemicalComposition from "@/components/pages/docs/grade-12/biology/adn/ChemicalComposition";
 import MolecularForm from "@/components/pages/docs/grade-12/biology/adn/MolecularForm";
 import DnaQuantity from "@/components/pages/docs/grade-12/biology/adn/DnaQuantity";
@@ -40,37 +49,24 @@ import Observations from "@/components/pages/docs/grade-12/biology/darwinTheory/
 import GalapagosOrganisms from "@/components/pages/docs/grade-12/biology/darwinTheory/GalapagosOrganisms";
 import Evolution from "@/components/pages/docs/grade-12/biology/darwinTheory/Evolution";
 import NaturalSelection from "@/components/pages/docs/grade-12/biology/darwinTheory/NaturalSelection";
-import Description from "@/components/pages/create-video/Description";
 import DescriptionDarwin from "@/components/pages/docs/grade-12/biology/evolutionEvidence/Description";
 import ComparativeStudy from "@/components/pages/docs/grade-12/biology/evolutionEvidence/ComparativeStudy";
 import OriginOfSpecies from "@/components/pages/docs/grade-12/biology/evolutionEvidence/OriginOfSpecies";
 import FossilFormation from "@/components/pages/docs/grade-12/biology/flaskConical/FossilFormation";
 import FossilDating from "@/components/pages/docs/grade-12/biology/flaskConical/FossilDating";
 import FossilImportance from "@/components/pages/docs/grade-12/biology/flaskConical/FossilImportance";
-import QuestionAnswer from "@/components/pages/docs/grade-12/biology/adn/QuestionAnswer";
-import ADNFormulars from "@/components/pages/docs/grade-12/biology/adn/ADNFormulars";
-import GeneticTransform from "@/components/pages/docs/grade-12/biology/geneExpression/GeneticTransform";
-import CodeTranslation from "@/components/pages/docs/grade-12/biology/geneExpression/CodeTranslation";
-import GeneticPractice from "@/components/pages/docs/grade-12/biology/geneExpression/GeneticPractice";
-import GeneticFormular from "@/components/pages/docs/grade-12/biology/geneExpression/GeneticFormular";
-import { off } from "process";
-import Offspring from "@/components/pages/docs/grade-12/biology/biotechnology/Offspring";
-import BioTechQA from "@/components/pages/docs/grade-12/biology/biotechnology/BioTechQA";
-import DarwinQA from "@/components/pages/docs/grade-12/biology/darwinTheory/DarwinQA";
-import EvolutionQA from "@/components/pages/docs/grade-12/biology/evolutionEvidence/EvolutionQA";
-import FossilQA from "@/components/pages/docs/grade-12/biology/flaskConical/FossilQA";
-import FormAminoAcid from "@/components/pages/docs/grade-12/biology/aminoAcid/FormAminoAcid";
-import TypesAminoAcid from "@/components/pages/docs/grade-12/biology/aminoAcid/TypesAminoAcid";
-import Peptide from "@/components/pages/docs/grade-12/biology/aminoAcid/Peptide";
-import StructureProtein from "@/components/pages/docs/grade-12/biology/protein/StructureProtein";
-import FunctionProtein from "@/components/pages/docs/grade-12/biology/protein/FunctionProtein";
-import ProteinDenaturation from "@/components/pages/docs/grade-12/biology/protein/ProteinDenaturation";
-import EnzymeDefinition from "@/components/pages/docs/grade-12/biology/enzymes/EnzymeDefinition";
-import EnzymeFunction from "@/components/pages/docs/grade-12/biology/enzymes/EnzymeFunction";
-import CharacteristicEnzyme from "@/components/pages/docs/grade-12/biology/enzymes/CharacteristicEnzyme";
-import AminoAcidQA from "@/components/pages/docs/grade-12/biology/aminoAcid/AminoAcidQA";
-import ProteinQA from "@/components/pages/docs/grade-12/biology/protein/ProteinQA";
-import EnzymesQA from "@/components/pages/docs/grade-12/biology/enzymes/EnzymesQA";
+import AngiospermVegetativeOrgan from "@/components/pages/docs/grade-12/biology/angiosperm/AngiospermVegetativeOrgan";
+import AngiospermReproductiveOrgan from "@/components/pages/docs/grade-12/biology/angiosperm/AngiospermReproductiveOrgan";
+import PollinationProcess from "@/components/pages/docs/grade-12/biology/angiosperm/PollinationProcess";
+import Reproduction from "@/components/pages/docs/grade-12/biology/angiosperm/Reproduction";
+import LifeCycle from "@/components/pages/docs/grade-12/biology/angiosperm/LifeCycle";
+import Comparision from "@/components/pages/docs/grade-12/biology/angiosperm/Comparision";
+import Advantage from "@/components/pages/docs/grade-12/biology/angiosperm/Advantage";
+import NoneSpine from "@/components/pages/docs/grade-12/biology/nervous/NoneSpine";
+import Spine from "@/components/pages/docs/grade-12/biology/nervous/Spine";
+import Role from "@/components/pages/docs/grade-12/biology/nervous/Role";
+import Neuron from "@/components/pages/docs/grade-12/biology/nervous/Neuron";
+import CentralNervous from "@/components/pages/docs/grade-12/biology/nervous/CentralNervous";
 
 export const biology: Content = {
   subject: "biology",
@@ -92,17 +88,17 @@ export const biology: Content = {
         {
           title: "សរីរាង្គលូតលាស់",
           englishTitle: "gymnosperms-vegetative-organs",
-          component: ComingSoon,
+          component: GymnospermVegetativeOrgans,
         },
         {
           title: "សរីរាង្គបន្តពូជ",
           englishTitle: "gymnosperms-reproductive-organs",
-          component: ComingSoon,
+          component: GymnospermReproductiveOrgans,
         },
         {
           title: "វដ្តជីវិតស៊ីមណូស្ពែម",
           englishTitle: "gymnosperms-life-cycle",
-          component: ComingSoon,
+          component: GymnospermLifeCycle,
         },
       ],
     },
@@ -115,37 +111,37 @@ export const biology: Content = {
         {
           title: "សរីរាង្គលូតលាស់",
           englishTitle: "angiosperms-vegetative-organs",
-          component: ComingSoon,
+          component: AngiospermVegetativeOrgan,
         },
         {
           title: "សរីរាង្គបន្តពូជ",
           englishTitle: "angiosperms-reproductive-organs",
-          component: ComingSoon,
+          component: AngiospermReproductiveOrgan,
         },
         {
           title: "ដំណើរលំអង",
           englishTitle: "angiosperms-pollination-process",
-          component: ComingSoon,
+          component: PollinationProcess,
         },
         {
           title: "ការបន្តពូជរបស់អង់ស្យូស្ពៃម",
           englishTitle: "angiosperms-reproduction",
-          component: ComingSoon,
+          component: Reproduction,
         },
         {
           title: "វដ្តជីវិតរបស់រុក្ខជាតិមានផ្កា",
           englishTitle: "angiosperms-flowering-plants-life-cycle",
-          component: ComingSoon,
+          component: LifeCycle,
         },
         {
           title: "ប្រៀបធៀបម៉ូណូកូទីលេដូននិងឌីកូទីលេដូន",
           englishTitle: "angiosperms-monocot-dicot-comparison",
-          component: ComingSoon,
+          component: Comparision,
         },
         {
           title: "ផលប្រយោជន៍របស់រុក្ខជាតិមានគ្រាប់",
           englishTitle: "angiosperms-seed-plants-benefits",
-          component: ComingSoon,
+          component: Advantage,
         },
       ],
     },
@@ -158,30 +154,35 @@ export const biology: Content = {
         {
           title: "តម្រូវប្រសាទសត្វឥតឆ្អឹងកង",
           englishTitle: "nervous-system-invertebrates",
-          component: ComingSoon,
+          component: NoneSpine,
         },
         {
           title: "តម្រូវប្រសាទសត្វឆ្អឹងកង",
           englishTitle: "nervous-system-vertebrates",
-          component: ComingSoon,
+          component: Spine,
         },
         {
           title: "នាទីប្រព័ន្ធប្រសាទ",
           englishTitle: "nervous-system-function",
-          component: ComingSoon,
+          component: Role,
         },
         {
           title: "ណឺរ៉ូន (ឬកោសិកាប្រសាទ)",
           englishTitle: "neuron-nerve-cell",
-          component: ComingSoon,
-        },
-        {
-          title: "មជ្ឈមណ្ឌលប្រសាទ",
-          englishTitle: "central-nervous-system",
-          component: ComingSoon,
+          component: Neuron,
         },
         {
           title: "ខួរក្បាល",
+          englishTitle: "central-nervous-system",
+          component: CentralNervous,
+        },
+        {
+          title: "ខួរធំ",
+          englishTitle: "brain",
+          component: ComingSoon,
+        },
+        {
+          title: "ខួរតូច",
           englishTitle: "brain",
           component: ComingSoon,
         },
@@ -324,11 +325,6 @@ export const biology: Content = {
           englishTitle: "peptide",
           component: Peptide,
         },
-        {
-          title: "សំណួរ & ចម្លេីយ",
-          englishTitle: "AminoAcidQA",
-          component: AminoAcidQA,
-        },
       ],
     },
     {
@@ -351,11 +347,6 @@ export const biology: Content = {
           title: "ការបាត់បង់គុណភាពរបស់ប្រូតេអ៊ីន",
           englishTitle: "protein-denaturation",
           component: ProteinDenaturation,
-        },
-        {
-          title: "សំណួរ & ចម្លេីយ",
-          englishTitle: "ProteinQA",
-          component: ProteinQA,
         },
       ],
     },
@@ -380,11 +371,6 @@ export const biology: Content = {
           englishTitle: "characteristics-of-enzymes",
           component: CharacteristicEnzyme,
         },
-        {
-          title: "សំណួរ & ចម្លេីយ",
-          englishTitle: "EnzymesQA",
-          component: EnzymesQA,
-        },
       ],
     },
     {
@@ -404,19 +390,14 @@ export const biology: Content = {
           component: MolecularForm,
         },
         {
-          title: "ស្វ័យដំឡើងទ្វេ ADN",
+          title: "បរិមាណ ADN ក្នុងកោសិកា",
           englishTitle: "quantity-of-dna-in-cell",
           component: DnaQuantity,
         },
         {
-          title: "រូបមន្តសង្ខេប",
-          englishTitle: "summary-of-dna-replication",
-          component: ADNFormulars,
-        },
-        {
-          title: "សំណួរ & លំហាត់",
+          title: "ស្វ័យដំឡើងទ្វេ ADN",
           englishTitle: "dna-self-replication",
-          component: QuestionAnswer,
+          component: ComingSoon,
         },
       ],
     },
@@ -427,14 +408,19 @@ export const biology: Content = {
       icon: Activity,
       topics: [
         {
-          title: "ភាពដូចគ្នានិងខុសគ្នានៃ ADN និងប្រូតេអ៊ីន",
+          title: "ភាពត្រូវគ្នានិងខុសគ្នានៃ ADN និងប្រូតេអ៊ីន",
           englishTitle: "dna-protein-comparison",
           component: DnaVsProtein,
         },
         {
-          title: "ការចម្លងព័ត៍មានសេនេទិច",
-          englishTitle: "genetic-information-replication",
-          component: GeneticTransform,
+          title: "រូបផ្តុំ ARN នាំសារ (ARNm)",
+          englishTitle: "messenger-rna-mrna",
+          component: ComingSoon,
+        },
+        {
+          title: "ចលនការចម្លងក្រម",
+          englishTitle: "transcription-process",
+          component: ComingSoon,
         },
         {
           title: "ក្រមសេនេទិច",
@@ -442,9 +428,14 @@ export const biology: Content = {
           component: GeneticCode,
         },
         {
-          title: "ការបកប្រែក្រម",
-          englishTitle: "code-translation",
-          component: CodeTranslation,
+          title: "រីបូសូម",
+          englishTitle: "ribosome",
+          component: Ribosome,
+        },
+        {
+          title: "ARN ដឹកនាំ (ARNt)",
+          englishTitle: "transfer-rna-trna",
+          component: ComingSoon,
         },
         {
           title: "ចលនការបកប្រែក្រម",
@@ -455,16 +446,6 @@ export const biology: Content = {
           title: "តម្រូវនៃការសំដែងផេណូទីប",
           englishTitle: "requirements-for-phenotypic-expression",
           component: PhenotypeExpression,
-        },
-        {
-          title: "រូបមន្តការសម្តែងចេញនៃសេន",
-          englishTitle: "GeneticFormular",
-          component: GeneticFormular,
-        },
-        {
-          title: "សំណួរ & លំហាត់",
-          englishTitle: "GeneticPractice",
-          component: GeneticPractice,
         },
       ],
     },
@@ -485,12 +466,17 @@ export const biology: Content = {
           component: AnimalBreeding,
         },
         {
-          title: "ក្លូន",
-          englishTitle: "offspring",
-          component: Offspring,
+          title: "កូនរុក្ខជាតិ",
+          englishTitle: "plant-offspring",
+          component: PlantOffspring,
         },
         {
-          title: "ប៉ូលីប្លូអុីឌី",
+          title: "កូនសត្វ",
+          englishTitle: "animal-offspring",
+          component: AnimalOffspring,
+        },
+        {
+          title: "ប៉ូលីប្តូស៊ីឌី",
           englishTitle: "polyploidy",
           component: Polyploidy,
         },
@@ -505,19 +491,14 @@ export const biology: Content = {
           component: GeneTransferExamples,
         },
         {
-          title: "បច្ចេកវិទ្យាក្នុងការផលិត",
+          title: "វិស្វកម្មសេនេទិចក្នុងវិស័យ",
           englishTitle: "genetic-engineering-in-field",
           component: GeneticEngineering,
         },
         {
-          title: "ផលវិបាកនៃវិស្វកម្មសេនេទិច",
+          title: "គ្រោះថ្នាក់",
           englishTitle: "dangers",
           component: Dangers,
-        },
-        {
-          title: "សំណួរ & ចម្លេីយ",
-          englishTitle: "BioTechQA",
-          component: BioTechQA,
         },
       ],
     },
@@ -547,11 +528,6 @@ export const biology: Content = {
           englishTitle: "natural-selection",
           component: NaturalSelection,
         },
-        {
-          title: "សំណួរ & ចម្លេីយ",
-          englishTitle: "DarwinQA",
-          component: DarwinQA,
-        },
       ],
     },
     {
@@ -575,11 +551,6 @@ export const biology: Content = {
           englishTitle: "birth-of-species",
           component: OriginOfSpecies,
         },
-        {
-          title: "សំណួរ & ចម្លេីយ",
-          englishTitle: "EvolutionQA",
-          component: EvolutionQA,
-        },
       ],
     },
     {
@@ -602,11 +573,6 @@ export const biology: Content = {
           title: "សារសំខាន់នៃផូសុីល",
           englishTitle: "important-properties-of-fossil",
           component: FossilImportance,
-        },
-        {
-          title: "សំណួរ & ចម្លេីយ",
-          englishTitle: "FossilQA",
-          component: FossilQA,
         },
       ],
     },
