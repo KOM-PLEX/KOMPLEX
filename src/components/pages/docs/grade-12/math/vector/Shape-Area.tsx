@@ -17,10 +17,10 @@ const TOPIC_CONTENT: TopicContent = {
     title: "ផ្ទៃក្រឡាត្រីកោណ",
     content: (
       <>
-        ត្រីកោណ គឺជារាងភ្លោះប្លង់ដែលកើតឡើងពីរចំណុចបី​មិនស្របគ្នា​តភ្ជាប់ដោយបន្ទាត់ត្រង់។ <br />
+        <div mt-4>• ត្រីកោណ គឺជារាងភ្លោះប្លង់ដែលកើតឡើងពីរចំណុចបី​មិនស្របគ្នា​តភ្ជាប់ដោយបន្ទាត់ត្រង់។ <br /></div>
         លក្ខណៈសំខាន់ៗរបស់ត្រីកោណមានដូចជា៖
-        <li>មាន 3 ជ្រុងនិង 3 មុំ</li>
-        <li>ផលបូកមុំទាំង 3 គឺ 180 ដឺក្រេ</li>
+        <div>• មាន 3 ជ្រុងនិង 3 មុំ</div>
+        <div>• ផលបូកមុំទាំង 3 គឺ 180 ដឺក្រេ</div>
         <ImageBox
           src="/triangle.png"
           imageAlt="2D Vector"
@@ -83,10 +83,10 @@ const TOPIC_CONTENT: TopicContent = {
   },
   hint: {
     content: (
-      <>
-        <p>ដើម្បីរកផ្ទៃក្រឡានៃត្រីកោណ ABC អ្នកអាចប្រើរូបមន្ត <InlineMath math="S = \frac{1}{2} |\overrightarrow{AB} \times \overrightarrow{AC}|" />។</p>
-        <p>ចូរបញ្ចូលតម្លៃនៃ <InlineMath math="\overrightarrow{AB}" /> និង <InlineMath math="\overrightarrow{AC}" /> ដើម្បីគណនាផ្ទៃ។</p>
-      </>
+      <div>
+        • ដើម្បីរកផ្ទៃក្រឡានៃត្រីកោណ ABC អ្នកអាចប្រើរូបមន្ត <InlineMath math="S = \frac{1}{2} |\overrightarrow{AB} \times \overrightarrow{AC}|" />។<br />
+        • ចូរបញ្ចូលតម្លៃនៃ <InlineMath math="\overrightarrow{AB}" /> និង <InlineMath math="\overrightarrow{AC}" /> ដើម្បីគណនាផ្ទៃ។ 
+      </div>
     )
   }
 };
@@ -95,10 +95,14 @@ const TOPIC_CONTENT_PARALLELOGRAM: TopicContent = {
     title: "ផ្ទៃក្រឡាប្រលេឡូក្រាម",
     content: (
       <>
-        ក្រឡាប្រលេឡូក្រាម គឺជាចតុកោណដែលមានជ្រុងទាំងពីរគូទល់គ្នាស្របគ្នានិងប្រវែងស្មើគ្នា។<br />
-        លក្ខណៈសំខាន់ៗរបស់ក្រឡាប្រលេឡូក្រាមមានដូចជា៖
-        <li>ជ្រុងពីរទល់គ្នាស្របរៀងគ្នា</li>
-        <li>​មុំគូទល់គ្នាស្មើគ្នា</li>
+        <div className="ml-2">
+          ក្រឡាប្រលេឡូក្រាម គឺជាចតុកោណដែលមានជ្រុងទាំងពីរគូទល់គ្នាស្របគ្នានិងប្រវែងស្មើគ្នា។<br />
+          លក្ខណៈសំខាន់ៗរបស់ក្រឡាប្រលេឡូក្រាមមានដូចជា៖
+          <div className="ml-2">
+            • ជ្រុងពីរទល់គ្នាស្របរៀងគ្នា <br />
+            • ​មុំគូទល់គ្នាស្មើគ្នា 
+          </div>
+        </div>
         <ImageBox
           src="/parallelogram.png"
           imageAlt="2D Vector"
@@ -147,10 +151,12 @@ const TOPIC_CONTENT_PARALLELOGRAM: TopicContent = {
             <InlineMath math="\overrightarrow{AB} = (2, -4, -1)" /> <br />
             <InlineMath math="\overrightarrow{AD} = (-1, 3, 1)" /> <br />
             នាំឲ៖ <InlineMath math={String.raw`\vec{AB}\times\vec{AD} = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ 2 & -4 & -1 \\ -1 & 3 & 1 \end{vmatrix}`}/> <br /><br />
-            <InlineMath math=" = \begin{vmatrix} -4 & -1 \\ 3 & 1 \end{vmatrix}\vec{i} - \begin{vmatrix} 2 & -1 \\ -1 & 1 \end{vmatrix}\vec{j} + \begin{vmatrix} 2 & -4 \\ -1 & 3 \end{vmatrix}\vec{k}" /> <br /><br />
-            <InlineMath math={String.raw`= (-4 \times 1 - (-1) \times 3)\vec{i} - (2 \times 1 - (-1) \times (-1))\vec{j} + (2 \times 3 - (-4) \times -1)\vec{k}`}/> <br /><br />
-            <InlineMath math={String.raw`= (-4 + 3)\vec{i} - (2 - 1)\vec{j} + (6 - 4)\vec{k}`}/> <br /><br />
-            <InlineMath math={String.raw`= -1\vec{i} -1\vec{j} + 2\vec{k}`}/><br /><br />
+            <div className="ml-4">
+              <InlineMath math=" = \begin{vmatrix} -4 & -1 \\ 3 & 1 \end{vmatrix}\vec{i} - \begin{vmatrix} 2 & -1 \\ -1 & 1 \end{vmatrix}\vec{j} + \begin{vmatrix} 2 & -4 \\ -1 & 3 \end{vmatrix}\vec{k}" /> <br /><br />
+              <InlineMath math={String.raw`= (-4 \times 1 - (-1) \times 3)\vec{i} - (2 \times 1 - (-1) \times (-1))\vec{j} + (2 \times 3 - (-4) \times -1)\vec{k}`}/> <br /><br />
+              <InlineMath math={String.raw`= (-4 + 3)\vec{i} - (2 - 1)\vec{j} + (6 - 4)\vec{k}`}/> <br /><br />
+              <InlineMath math={String.raw`= -1\vec{i} -1\vec{j} + 2\vec{k}`}/><br /><br />
+            </div>
             យើងបាន៖ <InlineMath math={String.raw`S = |\overrightarrow{AB} \times \overrightarrow{AD}| = \sqrt{(-1)^2 + (-1)^2 + 2^2} = \sqrt{6}`}/> <br /><br />
           </>
         )
@@ -164,10 +170,10 @@ const TOPIC_CONTENT_PARALLELOGRAM: TopicContent = {
   },
   hint: {
     content: (
-      <>
-        <p>ដើម្បីរកផ្ទៃក្រឡាប្រលេឡូក្រាម ABCD អ្នកអាចប្រើរូបមន្ត <InlineMath math="S = |\overrightarrow{AB} \times \overrightarrow{AD}|" />។</p>
-        <p>ចូរបញ្ចូលតម្លៃនៃ <InlineMath math="\overrightarrow{AB}" /> និង <InlineMath math="\overrightarrow{AD}" /> ដើម្បីគណនាផ្ទៃ។</p>
-      </>
+      <div className="ml-2">
+        • ដើម្បីរកផ្ទៃក្រឡាប្រលេឡូក្រាម ABCD អ្នកអាចប្រើរូបមន្ត <InlineMath math="S = |\overrightarrow{AB} \times \overrightarrow{AD}|" />។ <br />
+        • ចូរបញ្ចូលតម្លៃនៃ <InlineMath math="\overrightarrow{AB}" /> និង <InlineMath math="\overrightarrow{AD}" /> ដើម្បីគណនាផ្ទៃ។ 
+      </div>
     )
   },
   exercise: {

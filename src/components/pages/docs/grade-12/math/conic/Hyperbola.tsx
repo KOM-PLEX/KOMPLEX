@@ -22,11 +22,11 @@ const Hyperbola = () => {
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="font-medium mb-3">លក្ខណៈពិសេសនៃអុីពែបូល៖</p>
             <ul className="space-y-2 ml-4">
-              <li>• ចំណុច <InlineMath math="I(h,k)" /> ហៅថា <strong>ចំណុចកណ្តាល (Center)</strong></li>
-              <li>• ចំណុច <InlineMath math="V_1, V_2" /> ហៅថា <strong>កំពូលអុីពែបូល (Vertices)</strong></li>
-              <li>• ចំណុច <InlineMath math="F_1, F_2" /> ហៅថា <strong>កំណុំអុីពែបូល (Foci)</strong> <InlineMath math="(F_1F_2 = 2c)" /></li>
-              <li>• ចម្ងាយ <InlineMath math="V_1V_2 = 2a" /> ហៅថា <strong>អ័ក្សធំ (Transverse Axis)</strong></li>
-              <li>• ចម្ងាយ <InlineMath math="B_1B_2 = 2b" /> ហៅថា <strong>អ័ក្សតូច (Conjugate Axis)</strong></li>
+              <li>• ចំណុច <InlineMath math="I(h,k)" /> ហៅថា <strong>ចំណុចកណ្តាល </strong></li>
+              <li>• ចំណុច <InlineMath math="V_1, V_2" /> ហៅថា <strong>កំពូលអុីពែបូល </strong></li>
+              <li>• ចំណុច <InlineMath math="F_1, F_2" /> ហៅថា <strong>កំណុំអុីពែបូល </strong> <InlineMath math="(F_1F_2 = 2c)" /></li>
+              <li>• ចម្ងាយ <InlineMath math="V_1V_2 = 2a" /> ហៅថា <strong>អ័ក្សធំ </strong></li>
+              <li>• ចម្ងាយ <InlineMath math="B_1B_2 = 2b" /> ហៅថា <strong>អ័ក្សតូច </strong></li>
               <li>• ក្នុងអុីពែបូល <InlineMath math="c > a > b" /> និង <InlineMath math="c^2 = a^2 + b^2" /></li>
             </ul>
           </div>
@@ -37,18 +37,15 @@ const Hyperbola = () => {
       )
     },
     tip: {
-      title: "គន្លឹះសំខាន់",
+      title: "កំណត់ចំណាំ",
       content: (
         <div className="space-y-3">
-          <div className="bg-yellow-50 p-3 rounded-lg">
-            <p className="font-medium text-yellow-800">កំណត់ចំណាំ៖</p>
-            <ul className="space-y-1 text-sm text-yellow-700 mt-2">
+            <ul className="space-y-1 text-sm mt-2">
               <li>• អុីពែបូលមានសញ្ញា <strong>ដក (-)</strong> រវាង x² និង y²</li>
               <li>• អាស៊ីមតូតជាបន្ទាត់ដែលកោងអុីពែបូលខិតជិតតែមិនប៉ះគ្នា</li>
               <li>• <InlineMath math="c > a" /> និង <InlineMath math="c > b" /> ជានិច្ច</li>
               <li>• អុិចសង់ទ្រីសុីតេ <InlineMath math="e = \frac{c}{a} > 1" /></li>
-            </ul>
-          </div>
+            </ul>        
         </div>
       )
     },
@@ -130,14 +127,12 @@ const Hyperbola = () => {
     },
     graph: {
       expressions: [
-        { id: "hyperbola1", latex: "y = 0.5\\sqrt{4(x - 2)^2 - 16} + 1", color: "#2563eb" },
-        { id: "hyperbola2", latex: "y = -0.5\\sqrt{4(x - 2)^2 - 16} + 1", color: "#2563eb" }, 
-        { id: "asymptote1", latex: "y = 0.5(x - 2) + 1", color: "#7c3aed" },
-        { id: "asymptote2", latex: "y = -0.5(x - 2) + 1", color: "#7c3aed" },
-        { id: "vertices", latex: "(0, 1), (4, 1)", color: "#dc2626" },
-        { id: "center", latex: "(2, 1)", color: "#059669" },
-        { id: "asymptote1", latex: "y = 0.5(x - 2) + 1", color: "#7c3aed" },
-        { id: "asymptote2", latex: "y = -0.5(x - 2) + 1", color: "#7c3aed" }
+        { id: "hyperbola1", latex: "y = 1 + 0.75\\sqrt{(x - 3)^2 - 16}", color: "#2563eb" },
+        { id: "hyperbola2", latex: "y = 1 - 0.75\\sqrt{(x - 3)^2 - 16}", color: "#2563eb" }, 
+        { id: "asymptote1", latex: "y = 0.75(x - 3) + 1", color: "#7c3aed" },
+        { id: "asymptote2", latex: "y = -0.75(x - 3) + 1", color: "#7c3aed" },
+        { id: "vertices", latex: "(-1, 1), (7, 1)", color: "#dc2626" },
+        { id: "center", latex: "(3, 1)", color: "#059669" }
       ],
       options: {
         showGrid: true,
@@ -185,8 +180,7 @@ const Hyperbola = () => {
                   <p>កំណុំ៖ <InlineMath math="(\pm c, 0) = (\pm 5, 0)" /> ដូច្នេះ <InlineMath math="c = 5" /></p>
                   <p>រកតម្លៃ b៖ <InlineMath math="c^2 = a^2 + b^2 \Rightarrow b^2 = c^2 - a^2 = 25 - 9 = 16" /></p>
                   <div className="border-l-4 border-green-400 pl-4">
-                    <p>ដូច្នេះសមីការអុីពែបូលគឺ៖</p>
-                    <BlockMath math="\frac{x^2}{9} - \frac{y^2}{16} = 1" />
+                    <p>ដូច្នេះសមីការអុីពែបូលគឺ៖ <InlineMath math="\frac{x^2}{9} - \frac{y^2}{16} = 1" /></p>
                   </div>
                 </div>
               </div>
@@ -198,11 +192,11 @@ const Hyperbola = () => {
     warning: {
       content: (
         <>
-          <li> ត្រូវកំណត់ត្រឹមត្រូវថាតើអុីពែបូលដេក ឬ ឈរ</li>
-          <li> ចាំថា <InlineMath math="c^2 = a^2 + b^2" /> សម្រាប់អុីពែបូល (ផ្ទុយពីអេលីប)</li>
-          <li> អាស៊ីមតូតឆ្លងកាត់ចំណុចកណ្តាល និងមានបំរៀង <InlineMath math="\pm \frac{b}{a}" /></li>
-          <li> កំណុំនឹងនៅខាងក្រៅនៃកំពូល</li>
-          <li> សមីការអុីពែបូលត្រូវមានសញ្ញាដក (-) រវាង x² និង y²</li>
+          • ត្រូវកំណត់ត្រឹមត្រូវថាតើអុីពែបូលដេក ឬ ឈរ <br />
+          • ចាំថា <InlineMath math="c^2 = a^2 + b^2" /> សម្រាប់អុីពែបូល (ផ្ទុយពីអេលីប) <br />
+          • អាស៊ីមតូតឆ្លងកាត់ចំណុចកណ្តាល និងមានបំរៀង <InlineMath math="\pm \frac{b}{a}" /><br />
+          • កំណុំនឹងនៅខាងក្រៅនៃកំពូល <br />
+          • សមីការអុីពែបូលត្រូវមានសញ្ញាដក (-) រវាង x² និង y²
         </>
       )
     },

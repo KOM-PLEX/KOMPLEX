@@ -8,30 +8,31 @@ import GraphBox from "../../../common/box/GraphBox";
 import { TopicContent } from "@/types/docs/topic";
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from "react-katex";
+import { div } from "three/tsl";
 
 const Parabola = () => {
   const TOPIC_CONTENT: TopicContent = {
   definition: {
     title: "តើប៉ារ៉ាបូលជាអ្វី?",
     content: (
-      <>
+      <div className="ml-2">
         ប៉ារ៉ាបូល គឺជាសំណុំចំណុចនៅក្នុងប្លង់ដែលមានចម្ងាយស្មើពីចំណុចនឹង F មួយនិងបន្ទាត់នឹង ∆ មួយនៅក្នុងប្លង់នោះ។ <br />
         • ចំណុច <InlineMath math="F" /> ហៅថា <strong>កំណុំ​</strong> <br />
         • បន្ទាត់ <InlineMath math="\Delta" /> ហៅថា <strong>បន្ទាត់ប្រាប់ទិស​</strong> <br />
         • ចំណុច <InlineMath math="V(h,k)" /> ហៅថា <strong>កំពូលប៉ារ៉ាបូល​</strong> <br />
         • បន្ទាត់ <InlineMath math="x = h" /> ហៅថា <strong>អ័ក្សសមស្មើ​</strong> <br />
-      </>
+      </div>
     )
   },
   tip: {
     title: "គន្លឹះសំខាន់",
     content: (
-      <>
+      <div className="ml-2">
         • ប្រសិនបើ <InlineMath math="p > 0" /> ប៉ារ៉ាបូលបើកឡើងលើ <br />
         • ប្រសិនបើ <InlineMath math="p < 0" /> ប៉ារ៉ាបូលបើកចុះក្រោម <br />
         • ចម្ងាយពីកំពូលទៅកំណុំ = <InlineMath math="|p|" /> <br />
         • ចម្ងាយពីកំពូលទៅបន្ទាត់ប្រាប់ទិស = <InlineMath math="|p|" /> <br />
-      </>
+      </div>
     )
   },
   hint: {
@@ -201,12 +202,12 @@ const Parabola = () => {
   },
   warning: {
     content: (
-      <ul>
-        <li>• ត្រូវកំណត់ត្រឹមត្រូវថាតើប៉ារ៉ាបូលបើកឡើងលើ ឬ ចុះក្រោម</li>
-        <li>• ចាំថា <InlineMath math="4p" /> នៅក្នុងរូបមន្ត មិនមែន <InlineMath math="p" /> ទេ</li>
-        <li>• កំណុំនឹងនៅខាងផ្ទៃនៃប៉ារ៉ាបូល</li>
-        <li>• បន្ទាត់ប្រាប់ទិសនឹងនៅផ្សេងខាងនៃកំណុំ ពីកំពូល</li>
-      </ul>
+      <div className="ml-2">
+        • ត្រូវកំណត់ត្រឹមត្រូវថាតើប៉ារ៉ាបូលបើកឡើងលើ ឬ ចុះក្រោម <br />
+        • ចាំថា <InlineMath math="4p" /> នៅក្នុងរូបមន្ត មិនមែន <InlineMath math="p" /> ទេ <br />
+        • កំណុំនឹងនៅខាងផ្ទៃនៃប៉ារ៉ាបូល <br />
+        • បន្ទាត់ប្រាប់ទិសនឹងនៅផ្សេងខាងនៃកំណុំ ពីកំពូល <br />
+      </div>
     )
   },
   exercise: {
