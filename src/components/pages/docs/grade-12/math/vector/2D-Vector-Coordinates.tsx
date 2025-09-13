@@ -222,11 +222,11 @@ const TOPIC_CONTENT_VECTOR = {
   hint: {
     title: "កំណត់សំគាល់",
     content: (
-      <>
-        <p>1. ផលគុណស្កាលែគឺជាផលគុណរវាងវ៉ិចទ័រ ២ គឺ <InlineMath math={"\\vec{u} \\cdot \\vec{v}"} />។</p>
-        <p>2. ប្រវែងវ៉ិចទ័រ <InlineMath math={"|\\vec{u}|"} /> និង <InlineMath math={"|\\vec{v}|"} /> ត្រូវបានគណនាដោយប្រើរូបមន្ត <InlineMath math={"|\\vec{u}| = \\sqrt{x^2 + y^2 + z^2}"} />។</p>
-        <p>3. ការគណនាផលគុណស្កាលែអាចប្រើបានសម្រាប់រកមុំ <InlineMath math={"\\theta"} />។</p>
-      </>
+      <div className='ml-2'>
+        • ផលគុណស្កាលែគឺជាផលគុណរវាងវ៉ិចទ័រ ២ គឺ <InlineMath math={"\\vec{u} \\cdot \\vec{v}"} />។ <br />
+        • ប្រវែងវ៉ិចទ័រ <InlineMath math={"|\\vec{u}|"} /> និង <InlineMath math={"|\\vec{v}|"} /> ត្រូវបានគណនាដោយប្រើរូបមន្ត <InlineMath math={"|\\vec{u}| = \\sqrt{x^2 + y^2 + z^2}"} />។ <br />
+        • ការគណនាផលគុណស្កាលែអាចប្រើបានសម្រាប់រកមុំ <InlineMath math={"\\theta"} />។
+      </div>
     )
   },
 }
@@ -280,7 +280,7 @@ const Vector3DContent = () => (
           )
         },
         {
-          title: "ខ. ផ្ទាល់ខ្លួន៖",
+          title: "ខ. ការេ៖",
           content: (
             <>
               គេមាន <InlineMath math={"\\vec{u} = (3,4)"} /> <br />​<br />
@@ -481,11 +481,11 @@ const TOPIC_CONTENT_PRODUCT_THREE_VECTOR = {
   hint: {
     title: "កំណត់សំគាល់",
     content: (
-      <>
-        <p>1. ផលគុណស្កាលែគឺជាផលគុណរវាងវ៉ិចទ័រ ២ គឺ <InlineMath math={"\\vec{u} \\cdot \\vec{v}"} />។</p>
-        <p>2. ប្រវែងវ៉ិចទ័រ <InlineMath math={"|\\vec{u}|"} /> និង <InlineMath math={"|\\vec{v}|"} /> ត្រូវបានគណនាដោយប្រើរូបមន្ត <InlineMath math={"|\\vec{u}| = \\sqrt{x^2 + y^2 + z^2}"} />។</p>
-        <p>3. ការគណនាផលគុណស្កាលែអាចប្រើបានសម្រាប់រកមុំ <InlineMath math={"\\theta"} />។</p>
-      </>
+      <div className='ml-2'>
+        • ផលគុណស្កាលែគឺជាផលគុណរវាងវ៉ិចទ័រ ២ គឺ <InlineMath math={"\\vec{u} \\cdot \\vec{v}"} />។ <br />
+        • ប្រវែងវ៉ិចទ័រ <InlineMath math={"|\\vec{u}|"} /> និង <InlineMath math={"|\\vec{v}|"} /> ត្រូវបានគណនាដោយប្រើរូបមន្ត <InlineMath math={"|\\vec{u}| = \\sqrt{x^2 + y^2 + z^2}"} />។ <br />
+        • ការគណនាផលគុណស្កាលែអាចប្រើបានសម្រាប់រកមុំ <InlineMath math={"\\theta"} />។
+      </div>
     )
   },
   example: {

@@ -37,11 +37,11 @@ const TOPIC_CONTENT = {
     },
     hint: {
       content: (
-        <>
-          <li>បន្ទាត់ L កំណត់ដោយចំណុច <InlineMath math={"A(x_0, y_0, z_0)"} /> និងវ៉ិចទ័រទិសដៅ <InlineMath math={"\\vec{u} = (a, b, c)"} />។</li>
-          <li>សមីការប៉ារ៉ាម៉ែត្របង្ហាញពីទីតាំងនៃបន្ទាត់ដោយប្រើប៉ារ៉ាម៉ែត្រ t។</li>
-          <li>រាល់តម្លៃ <InlineMath math={"t"} /> ផ្តល់ចំណុចមួយលើបន្ទាត់។</li>
-        </>
+        <div className='ml-2'>
+          • បន្ទាត់ L កំណត់ដោយចំណុច <InlineMath math={"A(x_0, y_0, z_0)"} /> និងវ៉ិចទ័រទិសដៅ <InlineMath math={"\\vec{u} = (a, b, c)"} />។ <br />
+          • សមីការប៉ារ៉ាម៉ែត្របង្ហាញពីទីតាំងនៃបន្ទាត់ដោយប្រើប៉ារ៉ាម៉ែត្រ t។ <br />
+          • រាល់តម្លៃ <InlineMath math={"t"} /> ផ្តល់ចំណុចមួយលើបន្ទាត់។ 
+        </div>
       )
     }
   },
@@ -113,12 +113,12 @@ const TOPIC_CONTENT_PLANE = {
     },
     hint: {
       content: (
-        <>
-          <li>វ៉ិចទ័រណរម៉ាល់ ​ឬ វ៉ិចទ័រកែង <InlineMath math={"\\vec{n} = (a, b, c)"} />។</li>
-          <li>វ៉ិចទ័រណរម៉ាល់ <InlineMath math={"\\vec{n} = (a, b, c)"} /> ជាវ៉ិចទ័រដែលបង្ហាញពីទិសដៅនៃប្លង់។</li>
-          <li>ប្លង់ P កំណត់ដោយចំណុច <InlineMath math={"A(x_0, y_0, z_0)"} /> និងវ៉ិចទ័រប្រាប់ទិស <InlineMath math={"\\vec{n} = (a, b, c)"} />។</li>
-          <li>សមីការប្លង់ទូទៅអាចបង្ហាញពីទិសដៅនៃប្លង់បាន។</li>
-        </>
+        <div className='ml-2'>
+          • វ៉ិចទ័រណរម៉ាល់ ​ឬ វ៉ិចទ័រកែង <InlineMath math={"\\vec{n} = (a, b, c)"} />។ <br />
+          • វ៉ិចទ័រណរម៉ាល់ <InlineMath math={"\\vec{n} = (a, b, c)"} /> ជាវ៉ិចទ័រដែលបង្ហាញពីទិសដៅនៃប្លង់។ <br />
+          • ប្លង់ P កំណត់ដោយចំណុច <InlineMath math={"A(x_0, y_0, z_0)"} /> និងវ៉ិចទ័រប្រាប់ទិស <InlineMath math={"\\vec{n} = (a, b, c)"} />។ <br />
+          • សមីការប្លង់ទូទៅអាចបង្ហាញពីទិសដៅនៃប្លង់បាន។ 
+        </div>
       )
     }
   },
@@ -133,10 +133,10 @@ const TOPIC_CONTENT_PLANE = {
         title: "រកសមីការប្លង់",
         content: (
           <>
-            យើងដឹងថា P កាត់តាមចំណុច A(1, 2, 3) និងមានវ៉ិចទ័រណរម៉ាល់ <InlineMath math={"\\vec{n} = (4, -5, 6)"} />។<br /><br />
-            នាំឲ៖​​ <InlineMath math={"\\vec{n} = (a, b, c) = (4, -5, 6)"} />,<br />
-            <InlineMath math={"A(x_0, y_0, z_0)=(1, 2, 3)"} /><br />
-            <p>សមីការប្លង់ P គឺ៖ <InlineMath math={String.raw`4(x - 1) - 5(y - 2) + 6(z - 3) = 0`} /></p><br />
+            យើងដឹងថា P កាត់តាមចំណុច A(1, 2, 3) និងមានវ៉ិចទ័រណរម៉ាល់ <InlineMath math={"\\vec{n} = (4, -5, 6)"} />។<br /> 
+            <div className='mt-4'>នាំឲ៖​​ <InlineMath math={"\\vec{n} = (a, b, c) = (4, -5, 6)"} /> </div>
+            <div className='mt-4'><InlineMath math={"A(x_0, y_0, z_0)=(1, 2, 3)"} /><br /></div>
+            <div className='mt-4'><p>សមីការប្លង់ P គឺ៖ <InlineMath math={String.raw`4(x - 1) - 5(y - 2) + 6(z - 3) = 0`} /></p></div>
           </>
         )
       }
@@ -182,12 +182,12 @@ const TOPIC_CONTENT_SPHERICAL = {
     },
     hint: {
       content: (
-        <>
-          <li>ស្វ៊ែ S មានផ្ចិត​ <InlineMath math={"I(x_0, y_0, z_0)"} /> និងមានកាំ <InlineMath math={"r"} />។</li>
-          <li>ពាក្យ x<sup>2</sup>, y<sup>2</sup>, និង z<sup>2</sup> ត្រូវតែមានមេគុណស្មើគ្នា និងជាវិជ្ជមាន (ជាទូទៅគឺ 1)។</li>
-          <li>វាមិនមានពាក្យលាយបញ្ចូលគ្នាដូចជា xy, yz, ឬ zx ទេ។</li>
-          <li>វាគឺជាសមីការដឺក្រេទីពីរនៃអថេរបី (x, y, z)។</li>
-        </>
+        <div className='ml-2'>
+          • ស្វ៊ែ S មានផ្ចិត​ <InlineMath math={"I(x_0, y_0, z_0)"} /> និងមានកាំ <InlineMath math={"r"} />។ <br />
+          • ពាក្យ x<sup>2</sup>, y<sup>2</sup>, និង z<sup>2</sup> ត្រូវតែមានមេគុណស្មើគ្នា និងជាវិជ្ជមាន (ជាទូទៅគឺ 1)។ <br />
+          • វាមិនមានពាក្យលាយបញ្ចូលគ្នាដូចជា xy, yz, ឬ zx ទេ។ <br />
+          • វាគឺជាសមីការដឺក្រេទីពីរនៃអថេរបី (x, y, z)។ 
+        </div>
       )
     }
   },
@@ -202,7 +202,7 @@ const TOPIC_CONTENT_SPHERICAL = {
         title: "រកសមីការស្វ៊ែ",
         content: (
           <>
-            យើងដឹងថា S មានផ្ចិត I(1, 2, 3) និងមានកាំ r = 4។<br /><br />
+            <div>យើងដឹងថា S មានផ្ចិត I(1, 2, 3) និងមានកាំ r = 4។<br /><br /></div>
             នាំឲ៖​​ <InlineMath math={"I(x_0, y_0, z_0)=(1, 2, 3)"} /><br/><br />
             <p>សមីការស្វ៊ែ S គឺ៖ <InlineMath math={String.raw`(x - 1)^2 + (y - 2)^2 + (z - 3)^2 = 16`} /></p>
           </>
@@ -225,16 +225,16 @@ const TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS = {
     tip: {
       content: (
         <>
-          <b>ចម្ងាយពីរចំណុចមួយទៅចំណុចមួយក្នុងលំហ</b><br />
+          <b>• ចម្ងាយពីរចំណុចមួយទៅចំណុចមួយក្នុងលំហ</b><br />
           ចម្ងាយពីចំណុច <InlineMath math={"A(x_1, y_1, z_1)"} /> ទៅ <InlineMath math={"B(x_2, y_2, z_2)"} /> ក្នុងលំហគឺ៖
           <BlockMath math={"d(A,B) = |\\overrightarrow{AB}| = \\sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2}"} /><br />
-          <b>ចម្ងាយពីចំណុចទៅប្លង់</b><br />
+          <b>• ចម្ងាយពីចំណុចទៅប្លង់</b><br />
           បើប្លង់ <InlineMath math={"P"} /> មានសមីការ<InlineMath math={" ax + by + cz + d = 0"} /> នោះចម្ងាយពីចំណុច <InlineMath math={"A(x_0, y_0, z_0)"} /> ទៅប្លង់ P គឺ៖
           <BlockMath math={String.raw`d = \frac{|a x_0 + b y_0 + c z_0 + d|}{\sqrt{a^2 + b^2 + c^2}}`} />
-          <b>ចម្ងាយពីរចំណុចមួយទៅបន្ទាត់មួយក្នុងលំហ</b> <br />
+          <b>• ចម្ងាយពីរចំណុចមួយទៅបន្ទាត់មួយក្នុងលំហ</b> <br />
           បើបន្ទាត់​​ <InlineMath math={"L"} /> ស្របនឹងវិចទ័រ​ <InlineMath math={"\\vec{u}"} /> និង <InlineMath math={"M \\in L"} /> ហើយ​ <InlineMath math={"A \\notin L"} /> នោះយើងបាន៖
           <BlockMath math={String.raw`d(A, L) = \frac{|\overrightarrow{MA} \times \vec{u}|}{|\vec{u}|}`} />
-          <b>ចម្ងាយរវាងប្លង់ពីរស្របគ្នា</b><br />
+          <b>• ចម្ងាយរវាងប្លង់ពីរស្របគ្នា</b><br />
           បើប្លង់ <InlineMath math={"P_1"} /> និង <InlineMath math={"P_2"} /> ស្របគ្នា ហើយ <InlineMath math={"A \\in P_1"} /> និង <InlineMath math={"B \\in P_2"} /> នោះចម្ងាយរវាងប្លង់ពីរស្របគ្នាគឺ៖
           <BlockMath math={String.raw`d(P_1,P_2) = d(A,P_2) = d(B,P_1)`} />
         </>
@@ -242,10 +242,10 @@ const TOPIC_CONTENT_DISTANCE_BETWEEN_POINTS = {
     },
     hint: {
       content: (
-        <>
-          <li>ចម្ងាយគឺជាអត្រារវាងចំណុចនិងបន្ទាត់។</li>
-          <li>អាចប្រើសមីការចម្ងាយដើម្បីរកចម្ងាយពីចំណុចទៅប្លង់។</li>
-        </>
+        <div className='ml-2'>
+          • ចម្ងាយគឺជាអត្រារវាងចំណុចនិងបន្ទាត់។ <br />
+          • អាចប្រើសមីការចម្ងាយដើម្បីរកចម្ងាយពីចំណុចទៅប្លង់។ 
+        </div>
       )
     }
   },

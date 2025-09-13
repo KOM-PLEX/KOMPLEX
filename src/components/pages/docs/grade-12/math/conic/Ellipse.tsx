@@ -22,11 +22,11 @@ const Ellipse = () => {
           <div className="bg-blue-50 p-4 rounded-lg">
             <p className="font-medium mb-3">លក្ខណៈពិសេសនៃអេលីប៖</p>
             <ul className="space-y-2 ml-4">
-              <li>• ចំណុច <InlineMath math="I(h,k)" /> ហៅថា <strong>ចំណុចកណ្តាល (Center)</strong></li>
-              <li>• ចំណុច <InlineMath math="V_1, V_2" /> ហៅថា <strong>កំពូលអេលីប (Vertices)</strong></li>
-              <li>• ចម្ងាយ <InlineMath math="V_1V_2 = 2a" /> ហៅថា <strong>អ័ក្សធំ (Major Axis)</strong></li>
-              <li>• ចម្ងាយ <InlineMath math="B_1B_2 = 2b" /> ហៅថា <strong>អ័ក្សតូច (Minor Axis)</strong></li>
-              <li>• ចំណុច <InlineMath math="F_1, F_2" /> ហៅថា <strong>កំណុំអេលីប (Foci)</strong> <InlineMath math="(F_1F_2 = 2c)" /></li>
+              <li>• ចំណុច <InlineMath math="I(h,k)" /> ហៅថា <strong>ចំណុចកណ្តាល </strong></li>
+              <li>• ចំណុច <InlineMath math="V_1, V_2" /> ហៅថា <strong>កំពូលអេលីប </strong></li>
+              <li>• ចម្ងាយ <InlineMath math="V_1V_2 = 2a" /> ហៅថា <strong>អ័ក្សធំ </strong></li>
+              <li>• ចម្ងាយ <InlineMath math="B_1B_2 = 2b" /> ហៅថា <strong>អ័ក្សតូច </strong></li>
+              <li>• ចំណុច <InlineMath math="F_1, F_2" /> ហៅថា <strong>កំណុំអេលីប </strong> <InlineMath math="(F_1F_2 = 2c)" /></li>
               <li>• ក្នុងអេលីប <InlineMath math="a > b, a > c" /> និង <InlineMath math="c^2 = a^2 - b^2" /></li>
             </ul>
           </div>
@@ -40,12 +40,12 @@ const Ellipse = () => {
     tip: {
       title: "គន្លឹះសំខាន់",
       content: (
-        <>
+        <div ml-4>
           • ភាពវែងមិនកំណេបាន: <InlineMath math="e = \frac{c}{a}" /> ដែល <InlineMath math="e = \frac{c}{a}" /> <br />
           • សម្រាប់អេលីប <InlineMath math="0 < e < 1" /> (ជិតរង្វង់ប្រសិនបើ <InlineMath math="e" /> ជិត 0) <br />
           • ចម្ងាយពីចំណុចណាមួយក្នុងអេលីបទៅកំណុំទាំងពីរ: <InlineMath math="PF_1 + PF_2 = 2a" /> <br />
           • ក្នុងអេលីប <InlineMath math="a" /> តែងតែធំជាង <InlineMath math="b" /> និង <InlineMath math="c" />
-        </>
+        </div>
       )
     },
 
@@ -211,7 +211,6 @@ const Ellipse = () => {
           content: (
             <div className="space-y-4">
               <p>រកសមីការអេលីបដែលមានកំពូលនៅ <InlineMath math="(\pm 6, 0)" /> និងកំណុំនៅ <InlineMath math="(\pm 4, 0)" /></p>
-
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="font-medium">ដំណោះស្រាយ៖</p>
                 <div className="space-y-3 mt-2">
@@ -222,8 +221,7 @@ const Ellipse = () => {
                   <p><InlineMath math="b^2 = 36 - 16 = 20" /></p>
 
                   <div className="border-l-4 border-green-400 pl-4">
-                    <p>ដូច្នេះសមីការអេលីបគឺ៖</p>
-                    <BlockMath math="\frac{x^2}{36} + \frac{y^2}{20} = 1" />
+                    <p>ដូច្នេះសមីការអេលីបគឺ៖ <InlineMath math="\frac{x^2}{36} + \frac{y^2}{20} = 1" /></p>
                   </div>
                 </div>
               </div>
@@ -249,7 +247,11 @@ const Ellipse = () => {
       questions: [
         {
           id: "1",
-          question: "ចំណុចកណ្តាលនៃអេលីប \\frac{(x-2)^2}{16} + \\frac{(y+1)^2}{9} = 1 គឺ៖",
+          question: (
+            <>
+              ចំណុចកណ្តាលនៃអេលីប <InlineMath math='\frac {(x-2)^2}{16} + \frac {(y+1)^2}{9} = 1' /> គឺ៖
+            </>
+          ),
           options: [
             "(2, -1)",
             "(-2, 1)",
@@ -260,7 +262,11 @@ const Ellipse = () => {
         },
         {
           id: "2",
-          question: "ប្រសិនបើអេលីបមានកំពូលនៅ (\pm 5, 0) និងកំពូលតូចនៅ (0, \pm 3) សមីការរបស់វាគឺ៖",
+          question: ( 
+            <>
+              ប្រសិនបើអេលីបមានកំពូលនៅ <InlineMath math='(\pm 5, 0)' /> និងកំពូលតូចនៅ <InlineMath math='(0, \pm 3)' /> សមីការរបស់វាគឺ៖
+            </>
+          ),
           options: [
             "\\frac{x^2}{25} + \\frac{y^2}{9} = 1",
             "\\frac{x^2}{9} + \\frac{y^2}{25} = 1",
@@ -271,12 +277,16 @@ const Ellipse = () => {
         },
         {
           id: "3",
-          question: "កំណុំនៃអេលីប \\frac{x^2}{9} + \\frac{y^2}{25} = 1 គឺ៖",
+          question: (
+            <>
+              កំណុំនៃអេលីប <InlineMath math='\frac{x^2}{9} + \frac{y^2}{25} = 1' /> គឺ៖
+            </>
+          ),
           options: [
-            "(0, \pm 4)",
-            "(\pm 4, 0)",
-            "(0, \pm 2)",
-            "(\pm 2, 0)"
+            <InlineMath math='(0, \pm 4)' key='0'/>,
+            <InlineMath math='(\pm 4, 0)' key='1'/>,
+            <InlineMath math='(0, \pm 2)' key='2'/>,
+            <InlineMath math='\pm 2, 0' key='3'/>,
           ],
           correctAnswer: 0
         }
