@@ -4,11 +4,8 @@ import TipBox from "../../../common/box/TipBox";
 import ExerciseBox from "../../../common/box/ExerciseBox";
 import HintBox from "../../../common/box/HintBox";
 import WarningBox from "../../../common/box/WarningBox";
-import { ImageBox } from "../../../common/box/explanation-box/ImageExplanationBox";
 import { TopicContent } from "@/types/docs/topic";
-import Graph from "../../../../../helper/Graph";
 import { InlineMath } from "react-katex";
-import { GraphExplanationBox } from "../../../common/box/explanation-box/GraphExplanationBox";
 
 // ===== TOPIC CONTENT DATA =====
 
@@ -17,88 +14,47 @@ const TOPIC_CONTENT: TopicContent = {
     title: "អនុគមន៍សនិទាន",
     content: (
       <>
-        អនុគមន៍សនិទាន គឺជាអនុគមន៍ដែលមានតម្លៃ <InlineMath math="f(x)" /> ដូចគ្នា សម្រាប់គ្រប់តម្លៃ{" "}
-        <InlineMath math="x" /> ទាំងអស់។
-        <br />
-        ក្នុងទម្រង់គណិតវិទ្យា អាចសរសេរ៖ <InlineMath math="f(x) = c" /> ដែល <InlineMath math="c" /> ជាចំនួនថេរ។
+        អនុគមន៍គឺជាគំនិតមួយក្នុងគណិតវិទ្យា​ដែលបង្ហាញពីទំនាក់ទំនងរវាងរវាងសំណុំទិន្នន័យ 2
       </>
     ),
   },
 
   tip: {
-    title: "លក្ខណៈសំខាន់",
+    title: "ដែនកំណត់",
     content: (
       <>
-        • ក្រាបជាបន្ទាត់ផ្តេកកាត់អ័ក្ស y នៅ <InlineMath math="y = c" /> <br />
-        • ចំនួនថេរ <InlineMath math="c" /> គឺជាកម្ពស់នៃបន្ទាត់
-        <br />• មិនសូវមានការប្រែប្រួលតម្លៃទេ ព្រោះគ្រប់ <InlineMath math="x" /> ផ្តល់តម្លៃដូចគ្នា
+        <p>ជាសំណុំតម្លៃអថេរធ្វើអោយភាគបែងមានតម្លៃខុសពីសូន្យ</p>
       </>
     ),
   },
 
   example: {
-    question: <InlineMath math="f(x) = 5" />,
+    question: <div className="ml-2">រកដែនកំណត់នៃអនុគមន៍ <InlineMath math="f(x) = - \frac{1}{2x+3}" /></div>,
     steps: [
       {
-        title: "ជ្រើសតម្លៃ x",
+        title: "អោយភាគបែងស្មើរសូន្យ",
         content: (
           <>
-            ជ្រើស <InlineMath math="x = -1, 0, 2" />
+            <InlineMath math="-2x-3 = 0" />
+            <br />
+            <InlineMath math="x = - \frac{3}{2}" />
           </>
         ),
       },
       {
-        title: "គណនាតម្លៃ f(x)",
+        title: "ចម្លើយ",
         content: (
           <>
-            <ul className="list-disc list-inside space-y-3 text-small">
-              <li>
-                <InlineMath math="f(1) = \log_2 1 = 0" />
-              </li>
-              <li>
-                <InlineMath math="f(2) = \log_2 2 = 1" />
-              </li>
-              <li>
-                <InlineMath math="f(4) = \log_2 4 = 2" />
-              </li>
-              <li>
-                <InlineMath math="f(8) = \log_2 8 = 3" />
-              </li>
-            </ul>
+            <div>
+              <div>f(x) មានដែនកំណត់កាលណា​ x​ ខុសពី​​ <InlineMath math="-\frac{3}{2}" /></div>
+              <div><InlineMath math="D_f = \mathbb{R} \setminus \left\{ - \frac{3}{2} \right\}" /></div>
+            </div>
           </>
-        ),
-      },
-      {
-        title: "តារាងតម្លៃ",
-        content: (
-          <table className="table-auto border-collapse border border-gray-300 text-left my-4">
-            <thead>
-              <tr>
-                <th className="border border-gray-300 px-4 py-2 text-left font-bold">x</th>
-                <th className="border border-gray-300 px-4 py-2 text-left font-normal">-1</th>
-                <th className="border border-gray-300 px-4 py-2 text-left font-normal">0</th>
-                <th className="border border-gray-300 px-4 py-2 text-left font-normal">2</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th className="border border-gray-300 px-4 py-2 text-left font-bold">f(x)</th>
-                <td className="border border-gray-300 px-4 py-2 text-left">
-                  <InlineMath math="5" />
-                </td>
-                <td className="border border-gray-300 px-4 py-2 text-left">
-                  <InlineMath math="5" />
-                </td>
-                <td className="border border-gray-300 px-4 py-2 text-left">
-                  <InlineMath math="5" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
         ),
       },
     ],
-    answer: "គ្រប់តម្លៃ x ទាំងអស់ផ្តល់ f(x) = 5 ដូចគ្នា",
+    answer:<div>​ដូចនេះ <InlineMath math="D_f = \mathbb{R} \setminus \left\{ - \frac{3}{2} \right\}" /></div>
+
   },
 
   exercise: {
@@ -107,27 +63,27 @@ const TOPIC_CONTENT: TopicContent = {
         id: "q1",
         question: (
           <>
-            រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = -3, \quad f(7) = \;?" />
+            កំំណត់ដែនកំណត់នៃអនុគមន៍ <InlineMath math="f(x) = \frac{1}{x-3}" />
           </>
         ),
         options: ["7", "-3", "0", "3"],
-        correctAnswer: 1,
+        correctAnswer: 3,
       },
       {
         id: "q2",
         question: (
           <>
-            រកតម្លៃអនុវត្តន៍: <InlineMath math="f(x) = 10, \quad f(-5) = \;?" />
+            រកដែនកំណត់នៃអនុ​ .  <InlineMath math="f(x) = \frac{x^2-3x+2}{x^2-4}" />
           </>
         ),
-        options: ["10", "-5", "5", "0"],
+        options: ["(2,-2)", "2", "-2", "គ្មាន"],
         correctAnswer: 0,
       },
       {
         id: "q3",
-        question: "ក្រាបរបស់អនុគមន៍សនិទានមានរូបរាងដូចម្តេច?",
-        options: ["បន្ទាត់ផ្តេក", "បន្ទាត់ទ្រេត", "បន្ទាត់កោង", "បន្ទាត់បញ្ឈរ"],
-        correctAnswer: 0,
+        question: (<>រកដែនកំណត់នៃអនុ . <InlineMath math="f(x) = \frac{1}{x^2-3x+2}" /></>),
+        options: ["(-1,-2)", "(-1,2)", "(1,-2)", "(1,2)"],
+        correctAnswer: 3,
       },
     ],
   },
@@ -135,8 +91,7 @@ const TOPIC_CONTENT: TopicContent = {
   hint: {
     content: (
       <>
-        សូមចងចាំថា អនុគមន៍សនិទាន <InlineMath math="f(x) = c" /> មានតម្លៃថេរ មិនថា <InlineMath math="x" />{" "}
-        ផ្លាស់ប្ដូរយ៉ាងណាក៏ដោយ។
+      ​ ក្នុងអនុគមន៍សនិទានដែនកំណត់​គឺជាអាស៊ីមតូតឈរ
       </>
     ),
   },
@@ -151,15 +106,90 @@ const TOPIC_CONTENT: TopicContent = {
   },
 
   graphExplanation: {
-    expressions: [{ id: "1", latex: "f(x)=5", color: "#FF4136" }],
+    expressions: [
+      { id: "1", latex: "f(x)=5", color: "#FF4136" },
+
+    ],
+    
     explanation: (
       <>
         ក្រាបបង្ហាញអនុគមន៍ <InlineMath math="f(x) = 5" /> ជាបន្ទាត់ផ្តេកកាត់អ័ក្ស y នៅចំណុច{" "}
         <InlineMath math="y = 5" />។
       </>
     ),
+    options: {
+      showGrid: true,
+      expressions: true,
+      xAxisLabel: "x",
+      yAxisLabel: "y",
+
+    },
   }
 };
+const INCREASE_DECREASE: TopicContent = {
+  definition: {
+    title: "អនុគមន៍កើន",
+    content: (
+      <div className="space-y-2">
+        <div className="flex items-center gap-2">
+          <span>✧</span>
+          <span><InlineMath math="f" /> ជាអនុគមន៍កើនចន្លោះ <InlineMath math="I" /> លុះត្រាតែ<InlineMath math="f'(x) > 0" /> គ្រប់ <InlineMath math="x \in I" /></span>
+        </div>
+        <div>
+          <span>✧ លក្ខណ: ៖ បើ <InlineMath math="\alpha, \beta \in I" /> ដែល <InlineMath math="\alpha > \beta" /> នាំឱ្យ <InlineMath math="f(\alpha) < f(\beta)" /> ។</span>
+        </div>
+      </div>
+    ),
+  },
+  
+  tip: {
+    title: "អនុគមន៍ចុះ",
+    content: (
+      <div className="space-y-2">
+        <div className="flex items-center gap-2">
+          <span>✧</span>
+          <span><InlineMath math="f" /> ជាអនុគមន៍ចុះចន្លោះ <InlineMath math="I" /> លុះត្រា<InlineMath math="f'(x) < 0" /> គ្រប់ <InlineMath math="x \in I" /></span>
+        </div>
+        <div>
+          <span>✧ សកម្មភាព៖ បើ <InlineMath math="\alpha, \beta \in I" /> ដែល <InlineMath math="\alpha > \beta" /> នាំឱ្យ <InlineMath math="f(\alpha) > f(\beta)" /> ។</span>
+        </div>
+      </div>
+    ),
+  },
+};
+
+const EXTREMA_VALUES: TopicContent = {
+  definition: {
+    title: "អតិបរមាធៀប",
+    content: (
+      <div className="space-y-2">
+        <div className="flex items-center gap-2">
+          <span>✧</span>
+          <span>អនុគមន៍ <InlineMath math="f" /> មានអតិបរមាធៀបត្រង់ <InlineMath math="x = x_0" /> ​កាលណា <InlineMath math="\begin{cases} f'(x_0) = 0 \\ f''(x_0) < 0 \end{cases}" /></span>
+        </div>
+        <div>
+          <span>✧ <InlineMath math="f(x_0) = m" /> ជាតម្លៃអតិបរមាធៀប</span>
+        </div>
+      </div>
+    ),
+  },
+  
+  tip: {
+    title: "អប្បបរមាធៀប",
+    content: (
+      <div className="space-y-2">
+        <div className="flex items-center gap-2">
+          <span>✧</span>
+          <span>អនុគមន៍ <InlineMath math="f" /> មានអប្បរមាធៀបត្រង់ <InlineMath math="x = x_0" /> ​កាលណា <InlineMath math="\begin{cases} f'(x_0) = 0 \\ f''(x_0) > 0 \end{cases}" /></span>
+        </div>
+        <div>
+          <span>✧ <InlineMath math="f(x_0) = m" /> ជាតម្លៃអប្បរមាធៀប</span>
+        </div>
+      </div>
+    ),
+  },
+};
+
 
 // ===== MAIN COMPONENT =====
 
@@ -186,11 +216,20 @@ export default function AnukomSanitean() {
 
       {TOPIC_CONTENT.warning && <WarningBox content={TOPIC_CONTENT.warning.content} />}
 
-      {TOPIC_CONTENT.graphExplanation && (
-        <GraphExplanationBox
-          expressions={TOPIC_CONTENT.graphExplanation.expressions}
-          explanation={TOPIC_CONTENT.graphExplanation.explanation}
-        />
+      {INCREASE_DECREASE.definition && (
+        <TipBox title={INCREASE_DECREASE.definition.title} content={INCREASE_DECREASE.definition.content} />
+      )}
+
+      {INCREASE_DECREASE.tip && (
+        <TipBox title={INCREASE_DECREASE.tip.title} content={INCREASE_DECREASE.tip.content} />
+      )}
+
+      {EXTREMA_VALUES.definition && (
+        <TipBox title={EXTREMA_VALUES.definition.title} content={EXTREMA_VALUES.definition.content} />
+      )}
+
+      {EXTREMA_VALUES.tip && (
+        <TipBox title={EXTREMA_VALUES.tip.title} content={EXTREMA_VALUES.tip.content} />
       )}
     </>
   );

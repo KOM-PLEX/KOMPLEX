@@ -35,10 +35,17 @@ const CustomDesmosGraph = ({
 
             // Initialize calculator
             calculatorInstance.current = window.Desmos.GraphingCalculator(calculatorRef.current, {
-                expressions: false,
-                keypad: false,
+                expressions: true,
+                keypad: true,
                 settingsMenu: false,
-                zoomButtons: false,
+                zoomButtons: true,
+                showGrid: true,
+                showXAxis: true,
+                showYAxis: true,
+                xAxisLabel: "x",
+                yAxisLabel: "y",
+                xAxisStep: 1,
+                yAxisStep: 1,
                 ...options,
             });
 
