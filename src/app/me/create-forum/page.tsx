@@ -8,6 +8,7 @@ import { createForum } from '@/services/me/forums';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useAuth } from '@/hooks/useAuth';
+import BlogEditor from '@/components/common/Editor';
 
 export default function CreateForum() {
     const { user, loading: authLoading, openLoginModal } = useAuth();
@@ -102,8 +103,8 @@ export default function CreateForum() {
         setTopics([]);
     };
 
-    const handleBodyTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setBodyText(e.target.value);
+    const handleBodyTextChange = (value: string) => {
+        setBodyText(value);
         // Clear error when user makes changes
         if (error) setError('');
     };
@@ -223,7 +224,7 @@ export default function CreateForum() {
                     <div className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 p-6">
                         {/* Header */}
                         <div className="mb-6">
-                            <h1 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2"><MessageCircle className='w-6 h-6 text-indigo-500' />បង្កើតការឆ្លើយតប</h1>
+                            <h1 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2"><MessageCircle className='w-6 h-6 text-indigo-500' />បង្កើតការពិភាក្សា</h1>
                         </div>
 
                         {/* Title Input */}
@@ -247,8 +248,7 @@ export default function CreateForum() {
                         </div>
 
                         {/* Forum Type and Topic Selection */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                            {/* Forum Type Selection */}
+                        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                             <div className="lg:bg-white bg-gray-50 rounded-2xl lg:shadow-sm lg:p-6">
                                 <div className="flex items-center justify-between mb-6 pb-4">
                                     <div className="text-indigo-600 font-semibold text-xl flex gap-3 items-center">
@@ -257,7 +257,6 @@ export default function CreateForum() {
                                     </div>
                                 </div>
                                 <div className="space-y-6">
-                                    {/* Forum Type Input */}
                                     <div className="relative">
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រភេទវេទិកា
@@ -281,7 +280,6 @@ export default function CreateForum() {
                                         </div>
                                     </div>
 
-                                    {/* Forum Type Suggestions */}
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             អនុសាសន៍
@@ -300,7 +298,6 @@ export default function CreateForum() {
                                         </div>
                                     </div>
 
-                                    {/* Selected Forum Type Tags */}
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រភេទដែលបានជ្រើសរើស
@@ -325,7 +322,6 @@ export default function CreateForum() {
                                 </div>
                             </div>
 
-                            {/* Topic Selection */}
                             <div className="lg:bg-white bg-gray-50 rounded-2xl lg:shadow-sm lg:p-6">
                                 <div className="flex items-center justify-between mb-6 pb-4">
                                     <div className="text-indigo-600 font-semibold text-xl flex gap-3 items-center">
@@ -334,7 +330,6 @@ export default function CreateForum() {
                                     </div>
                                 </div>
                                 <div className="space-y-6">
-                                    {/* Topic Input */}
                                     <div className="relative">
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រធានបទ
@@ -358,7 +353,6 @@ export default function CreateForum() {
                                         </div>
                                     </div>
 
-                                    {/* Topic Suggestions */}
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             អនុសាសន៍
@@ -377,7 +371,6 @@ export default function CreateForum() {
                                         </div>
                                     </div>
 
-                                    {/* Selected Topic Tags */}
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រធានបទដែលបានជ្រើសរើស
@@ -401,9 +394,8 @@ export default function CreateForum() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
-                        {/* Image Upload Area */}
                         <div className="mb-6">
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 រូបគំរូ (អតិបរមា 4 រូប)
@@ -462,12 +454,10 @@ export default function CreateForum() {
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 មាតិកា
                             </label>
-                            <textarea
+                            <BlogEditor
                                 value={bodyText}
                                 onChange={handleBodyTextChange}
-                                placeholder="សរសេរមាតិកាការឆ្លើយតបរបស់អ្នក..."
-                                className="w-full p-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
-                                rows={12}
+                                height="400px"
                             />
                         </div>
 

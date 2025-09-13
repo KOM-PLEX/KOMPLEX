@@ -7,6 +7,7 @@ import { VideoPost } from '@/types/content/videos';
 import Link from 'next/link';
 import { followUser, unfollowUser } from '@/services/me/follow';
 import { useAuth } from '@/hooks/useAuth';
+import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 
 interface VideoDescriptionProps {
     video: VideoPost;
@@ -227,7 +228,7 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
                 </div>
 
                 <div className="text-gray-700 leading-relaxed text-sm">
-                    {displayText}
+                    <MarkDownRenderer content={displayText} />
                     {isTruncated && !showFullDescription && '...'}
                 </div>
 

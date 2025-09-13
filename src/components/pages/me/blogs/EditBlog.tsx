@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Book, Trash, Upload, Plus, Tag, X, Save, Eye } from 'lucide-react';
-import axios from 'axios';
+import { ArrowLeft, Book, Trash, Plus, Save, Eye } from 'lucide-react';
 import Link from 'next/link';
 import { Blog } from '@/types/content/blogs';
 import { Media } from '@/types/content/media';
 import { updateBlog } from '@/services/me/blogs';
 import { getBlogById } from '@/services/feed/blogs';
+import BlogEditor from '@/components/common/Editor';
+import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 
 interface EditBlogProps {
     blog: Blog;
@@ -28,10 +29,9 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
     const [blogTypes, setBlogTypes] = useState<string[]>(blog.type ? [blog.type] : []);
     const [topics, setSelectedTopics] = useState<string[]>(blog.topic ? [blog.topic] : []);
     const [isSaving, setIsSaving] = useState(false);
+    const [showPreview, setShowPreview] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const suggestedBlogTypes = ['បទពិសោធន៍', 'វិធីសាស្ត្ររៀន', 'រឿងរ៉ាវ', 'គន្លឹះ'];
-    const suggestedTopics = ['គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];
 
     // Initialize form with existing blog data
     useEffect(() => {
@@ -66,6 +66,10 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
         const value = e.target.value;
         setTitle(value);
         setTitleCharCount(value.length);
+    };
+
+    const handleBodyTextChange = (value: string) => {
+        setBodyText(value);
     };
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,25 +127,6 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
         }
     };
 
-    const addBlogType = (type: string) => {
-        if (type.trim() && !blogTypes.includes(type)) {
-            setBlogTypes([type.trim()]);
-        }
-    };
-
-    const removeBlogType = () => {
-        setBlogTypes([]);
-    };
-
-    const addTopic = (topic: string) => {
-        if (topic.trim() && !topics.includes(topic)) {
-            setSelectedTopics([topic.trim()]);
-        }
-    };
-
-    const removeTopic = () => {
-        setSelectedTopics([]);
-    };
 
     const handleSave = async () => {
         if (!title.trim() || !bodyText.trim()) {
@@ -235,7 +220,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                 <div className="mb-6">
                     <h1 className="text-2xl font-bold mb-2 flex items-center gap-2 text-gray-700">
                         <Book className='w-6 h-6' style={{ color: '#6366f1' }} />
-                        កែប្រែប្លុក
+                        កែប្រែអត្ថបទ
                     </h1>
                 </div>
 
@@ -248,7 +233,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                         type="text"
                         value={title}
                         onChange={handleTitleChange}
-                        placeholder="សរសេរចំណងជើងប្លុករបស់អ្នក..."
+                        placeholder="សរសេរចំណងជើងអត្ថបទរបស់អ្នក..."
                         className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
                         maxLength={300}
                     />
@@ -463,16 +448,33 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
 
                 {/* Body Text */}
                 <div className="mb-6">
-                    <label className="block text-sm font-medium mb-2 text-gray-700">
-                        មាតិកា
-                    </label>
-                    <textarea
-                        value={bodyText}
-                        onChange={(e) => setBodyText(e.target.value)}
-                        placeholder="សរសេរមាតិកាប្លុករបស់អ្នក..."
-                        className="w-full p-4 rounded-lg bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
-                        rows={12}
-                    />
+                    <div className="flex items-center justify-between mb-2">
+                        <label className="block text-sm font-medium text-gray-700">
+                            មាតិកា
+                        </label>
+                        <button
+                            type="button"
+                            onClick={() => setShowPreview(!showPreview)}
+                            className="flex items-center gap-2 px-3 py-1.5 text-sm bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors"
+                        >
+                            <Eye className="w-4 h-4" />
+                            {showPreview ? 'កែប្រែ' : 'មើលជាមុន'}
+                        </button>
+                    </div>
+
+                    {!showPreview ? (
+                        <BlogEditor
+                            value={bodyText}
+                            onChange={handleBodyTextChange}
+                            height="400px"
+                        />
+                    ) : (
+                        <div className="border border-gray-200 rounded-lg p-4 bg-white min-h-[400px]">
+                            <div className="prose prose-lg max-w-none">
+                                <MarkDownRenderer content={bodyText} />
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* Action Buttons */}

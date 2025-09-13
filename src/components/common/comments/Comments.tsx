@@ -245,6 +245,7 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
                             key={comment.id || index}
                             comment={comment as ForumComment | VideoComment}
                             commentType={type}
+                            isReadOnly={isReadOnly}
                         />
                     ))}
                 </div>

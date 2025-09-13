@@ -39,6 +39,8 @@
     "recharts": "^3.1.2",
     "rehype-highlight": "^7.0.2",
     "rehype-katex": "^7.0.1",
+    "rehype-raw": "^7.0.0",
+    "remark-breaks": "^4.0.0",
     "remark-math": "^6.0.0",
     "three": "^0.179.1",
     "vfile-location": "^5.0.3"

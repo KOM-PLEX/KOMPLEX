@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Play, Share2, ThumbsUp, Bookmark, User, Eye, Clock, Calendar, MessageSquare, BookOpen } from 'lucide-react';
+import { Play, MessageSquare, BookOpen } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import Comments from '@/components/common/comments/Comments';
 import Exercise from '@/components/pages/videos/Exercise';
@@ -210,7 +210,7 @@ export default function VideoDetailPage() {
 
                 {activeTab === 'comments' && (
                     <div>
-                        <Comments type='video' parentId={videoId} />
+                        <Comments type='video' parentId={videoId} isReadOnly={true} />
                     </div>
                 )}
             </div>
@@ -266,7 +266,7 @@ export default function VideoDetailPage() {
                 <Exercise exercises={video.exercises} />
             )}
             {activeTab === 'comments' && (
-                <Comments type='video' parentId={videoId} />
+                <Comments type='video' parentId={videoId} isReadOnly={true} />
             )}
             {activeTab === 'related' && (
                 <div className="bg-white rounded-2xl p-4 shadow-sm">

@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { BookOpen, FileText } from 'lucide-react';
+import { FileText } from 'lucide-react';
+import BlogEditor from '@/components/common/Editor';
 
 interface DescriptionProps {
     title: string;
@@ -38,12 +39,10 @@ export default function Description({ title, description, thumbnail, onTitleChan
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                         ការពិពណ៌នា
                     </label>
-                    <textarea
-                        placeholder="ពិពណ៌នាអំពីវីដេអូរបស់អ្នក..."
+                    <BlogEditor
                         value={description}
-                        onChange={(e) => onDescriptionChange(e.target.value)}
-                        rows={6}
-                        className="w-full px-4 py-3 border bg-white border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+                        onChange={onDescriptionChange}
+                        height="300px"
                     />
                 </div>
 

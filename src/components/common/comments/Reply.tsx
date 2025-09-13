@@ -15,9 +15,10 @@ interface ReplyComponentProps {
     commentId: number; // Add parent comment ID
     onSubmitReply: (commentId: number, description: string) => void;
     replyType: 'forum' | 'video';
+    isReadOnly?: boolean;
 }
 
-export default function ReplyComponent({ reply, commentId, onSubmitReply, replyType }: ReplyComponentProps) {
+export default function ReplyComponent({ reply, commentId, onSubmitReply, replyType, isReadOnly = false }: ReplyComponentProps) {
     const { user, openLoginModal } = useAuth();
 
     const [replyUpvoted, setReplyUpvoted] = useState(reply.isLiked || false);
@@ -92,26 +93,35 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
                     </div>
                     <div className="text-gray-700 text-sm leading-relaxed mb-2">{reply.description}</div>
                     <div className="flex items-center gap-4">
-                        <button
-                            onClick={handleReplyLike}
-                            disabled={isLiking}
-                            className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${replyUpvoted ? 'text-indigo-600' : 'text-gray-500'}`}
-                        >
-                            <ThumbsUp className={`w-3 h-3 ${replyUpvoted ? 'fill-indigo-600' : ''}`} />
-                            <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
-                        </button>
-                        <button
-                            onClick={() => setIsReplying(!isReplying)}
-                            className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200"
-                        >
-                            ឆ្លើយតប
-                        </button>
+                        {!isReadOnly ? (
+                            <>
+                                <button
+                                    onClick={handleReplyLike}
+                                    disabled={isLiking}
+                                    className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${replyUpvoted ? 'text-indigo-600' : 'text-gray-500'}`}
+                                >
+                                    <ThumbsUp className={`w-3 h-3 ${replyUpvoted ? 'fill-indigo-600' : ''}`} />
+                                    <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
+                                </button>
+                                <button
+                                    onClick={() => setIsReplying(!isReplying)}
+                                    className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200"
+                                >
+                                    ឆ្លើយតប
+                                </button>
+                            </>
+                        ) : (
+                            <div className="flex items-center gap-1 text-xs text-gray-500">
+                                <ThumbsUp className="w-3 h-3" />
+                                <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
+                            </div>
+                        )}
                     </div>
 
                     {/* Reply Input */}
                 </div>
             </div>
-            {isReplying && (
+            {!isReadOnly && isReplying && (
                 <div className="mt-3 flex gap-2">
                     <div className="flex-1">
                         <div className="flex gap-2 relative">

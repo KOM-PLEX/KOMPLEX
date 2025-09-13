@@ -6,6 +6,7 @@ import ForumCard from '@/components/pages/me/forums/ForumCard';
 import Comments from '@/components/common/comments/Comments';
 import EditForum from '@/components/pages/me/forums/EditForum';
 import ContentError from '@/components/common/ContentError';
+import DeleteConfirm from '@/components/common/DeleteConfirm';
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ForumPost } from '@/types/content/forums';
@@ -24,6 +25,7 @@ export default function MyForumDetail() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isEditMode, setIsEditMode] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     // Redirect to auth if not authenticated
     useEffect(() => {
@@ -57,16 +59,17 @@ export default function MyForumDetail() {
     };
 
 
-    const handleDelete = async () => {
-        // TODO: change to use modal
-        if (window.confirm('តើអ្នកពិតជាចង់លុបវេទិកានេះមែនទេ?')) {
-            try {
-                await deleteForum(id);
-                router.push('/me/forums');
-            } catch (error) {
-                console.error('Error deleting forum:', error);
-                alert('មានបញ្ហាកើតឡើងពេលលុបវេទិកា សូមព្យាយាមម្តងទៀត');
-            }
+    const handleDeleteClick = () => {
+        setShowDeleteModal(true);
+    };
+
+    const handleDeleteConfirm = async () => {
+        try {
+            await deleteForum(id);
+            router.push('/me/forums');
+        } catch (error) {
+            console.error('Error deleting forum:', error);
+            alert('មានបញ្ហាកើតឡើងពេលលុបវេទិកា សូមព្យាយាមម្តងទៀត');
         }
     };
 
@@ -150,7 +153,7 @@ export default function MyForumDetail() {
                         {!isEditMode && (
                             <div className='flex gap-2 items-center'>
                                 <button
-                                    onClick={handleDelete}
+                                    onClick={handleDeleteClick}
                                     className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
                                 >
                                     <Trash className="w-4 h-4" />
@@ -188,7 +191,7 @@ export default function MyForumDetail() {
                                 type='forum'
                                 parentId={post.id}
                                 focusInput={isCommentInputActive}
-                                isReadOnly={false}
+                                isReadOnly={true}
                                 onClose={handleCommentClose}
                             />
                         </>
@@ -201,6 +204,15 @@ export default function MyForumDetail() {
                     )}
                 </div>
             </div>
+
+            {/* Delete Confirmation Modal */}
+            <DeleteConfirm
+                isOpen={showDeleteModal}
+                onClose={() => setShowDeleteModal(false)}
+                onConfirm={handleDeleteConfirm}
+                title="លុបវេទិកា"
+                message="តើអ្នកពិតជាចង់លុបវេទិកានេះមែនទេ? សកម្មភាពនេះមិនអាចបញ្ច្រាស់បានទេ។"
+            />
         </div>
     );
 }

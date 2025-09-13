@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { getUserVideos } from '@/services/me/videos';
 import { VideoPost } from '@/types/content/videos';
+import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 import ContentError from '@/components/common/ContentError';
 import MeSkeleton from '@/components/pages/me/MeSkeleton';
 import VideoHistoryComponent from '@/components/pages/me/videos/VideoHistory';
@@ -102,7 +103,7 @@ function MyVideosContent() {
         return new Date(dateString).toLocaleDateString('km-KH', {
             year: 'numeric',
             month: 'short',
-            day: 'numeric'  
+            day: 'numeric'
         });
     };
 
@@ -306,9 +307,9 @@ function MyVideosContent() {
                                                     <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors">
                                                         {video.title || 'Untitled Video'}
                                                     </h3>
-                                                    <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                                                        {video.description || 'No description available'}
-                                                    </p>
+                                                    <div className="text-sm text-gray-600 mb-3 line-clamp-2">
+                                                        <MarkDownRenderer content={video.description || 'No description available'} />
+                                                    </div>
 
                                                     {/* Stats */}
                                                     <div className="flex items-center justify-between text-sm text-gray-500">

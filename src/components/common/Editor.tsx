@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Fragment } from "react";
 import dynamic from "next/dynamic";
-import { Calculator, X, Plus } from "lucide-react";
+import { Dialog, Transition } from '@headlessui/react';
+import { Calculator, Plus } from "lucide-react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "mathlive/fonts.css";
 
@@ -31,6 +32,66 @@ declare global {
 }
 
 const Editor = dynamic(() => import("@toast-ui/react-editor").then(mod => ({ default: mod.Editor })), { ssr: false });
+
+// Sanitize LaTeX output from MathLive for proper rendering
+function sanitizeMathliveLatex(latex: string) {
+    if (!latex) return "";
+
+    // Step 1: normalize double backslashes → single
+    latex = latex.replace(/\\\\/g, "\\");
+
+    // Step 2: clean unnecessary escapes for punctuation and brackets
+    latex = latex
+        .replace(/\\_/g, "_")
+        .replace(/\\\{/g, "{").replace(/\\\}/g, "}")
+        .replace(/\\\[/g, "[").replace(/\\\]/g, "]")
+        .replace(/\\\(/g, "(").replace(/\\\)/g, ")")
+        .replace(/\\,/g, ",")
+        .replace(/\\;/g, ";")
+        .replace(/\\:/g, ":")
+        .replace(/\\%/g, "%")
+        .replace(/\\#/g, "#")
+        .replace(/\\&/g, "&")
+        .replace(/\\\$/g, "$")
+        .replace(/\\\^/g, "^")
+        .replace(/\\~/g, "~")
+        .replace(/\\ /g, " "); // unescape spaces
+
+    // Step 3: remove unnecessary MathLive spacing like \!
+    latex = latex.replace(/\\!/g, ""); // optional negative thin space
+
+    // Step 4: fix differential spacing
+    latex = latex.replace(/,dx/g, "\\,dx");
+
+    // Step 5: restore important LaTeX commands in case anything went wrong
+    const importantCommands = [
+        "int", "lim", "frac", "sqrt", "overline", "sum", "prod",
+        "sin", "cos", "tan", "log", "quad", "qquad"
+    ];
+    for (const cmd of importantCommands) {
+        const regex = new RegExp(`(?<!\\\\)${cmd}`, "g");
+        latex = latex.replace(regex, `\\${cmd}`);
+    }
+
+    // Step 6: fix known constants
+    latex = latex
+        .replace(/\\exponentialE/g, "\\mathrm{e}")
+        .replace(/\\pi/g, "\\pi")
+        .replace(/\\infty/g, "\\infty");
+
+    // Step 7: trim
+    return latex.trim();
+}
+
+
+
+// Sanitize entire markdown content to clean up LaTeX equations
+function sanitizeMarkdownContent(markdown: string) {
+    return markdown.replace(/\$\$([^$]+)\$\$/g, (match, latexContent) => {
+        const sanitizedLatex = sanitizeMathliveLatex(latexContent);
+        return `$$${sanitizedLatex}$$`;
+    });
+}
 
 interface BlogEditorProps {
     value?: string;
@@ -77,6 +138,8 @@ export default function BlogEditor({
                         smartFence: true,
                         smartSuperscript: true,
                         recognizeTypedFractions: true,
+                        virtualKeyboardToolbar: 'all',
+                        virtualKeyboards: 'all',
                     });
 
                     console.log('MathField initialized:', mathField);
@@ -92,7 +155,9 @@ export default function BlogEditor({
     const handleEditorChange = () => {
         if (editorRef.current && onChange) {
             const markdown = editorRef.current.getInstance().getMarkdown();
-            onChange(markdown);
+            // Sanitize the entire markdown content to clean up LaTeX equations
+            const sanitizedMarkdown = sanitizeMarkdownContent(markdown);
+            onChange(sanitizedMarkdown);
         }
     };
 
@@ -100,8 +165,10 @@ export default function BlogEditor({
         if (!mathLatex) return;
         const editor = editorRef.current?.getInstance();
         if (editor) {
-            // Insert LaTeX with proper delimiters for Toast UI Editor
-            editor.insertText(`$$${mathLatex}$$`);
+            // Sanitize the LaTeX output from MathLive
+            const sanitizedLatex = sanitizeMathliveLatex(mathLatex);
+            // Insert LaTeX with proper delimiters and add newline after
+            editor.insertText(`$$${sanitizedLatex}$$\n\n`);
             handleEditorChange();
         }
         setMathLatex("");
@@ -120,13 +187,18 @@ export default function BlogEditor({
     return (
         <div className="w-full">
             {/* Custom Toolbar */}
-            <div className="flex items-center justify-end gap-2 p-3 bg-gray-50 border-b border-gray-200 rounded-t-lg">
+            <div className="flex items-center justify-between gap-2 p-3 bg-gray-50 border-b border-gray-200 rounded-t-xl">
+                <div className="flex items-center justify-center gap-0">
+                    <span className="text-2xl font-extrabold tracking-tight text-indigo-500">KOM</span>
+                    <span className="text-2xl font-extrabold tracking-tight text-black">PLEX</span>
+                    <span className="text-sm text-gray-500 ml-2 font-bold">EDITOR</span>
+                </div>
                 <button
                     onClick={() => setShowMath(true)}
                     className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500 text-white text-sm font-medium rounded-md hover:bg-indigo-600 transition-colors duration-200"
                 >
                     <Calculator className="w-4 h-4" />
-                    Insert Math
+                    បញ្ចូលសមីការ
                 </button>
             </div>
 
@@ -157,80 +229,101 @@ export default function BlogEditor({
                 }}
             />
 
-            {/* Math Modal */}
-            {showMath && (
-                <div className="fixed inset-0 bg-black/20 flex items-center justify-center z-50" >
-                    <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-2xl mx-4  mb-30">
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                                <Calculator className="w-5 h-5 text-indigo-500" />
-                                Insert Mathematical Equation
-                            </h3>
-                            <button
-                                onClick={() => setShowMath(false)}
-                                className="text-gray-400 hover:text-gray-600 transition-colors"
+            {/* Math Dialog */}
+            <Transition appear show={showMath} as={Fragment}>
+                <Dialog as="div" className="relative z-50" onClose={() => setShowMath(false)}>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-black/25" />
+                    </Transition.Child>
+
+                    <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full items-center justify-center p-4">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
                             >
-                                <X className="w-6 h-6" />
-                            </button>
-                        </div>
+                                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                    <Dialog.Title
+                                        as="h3"
+                                        className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4"
+                                    >
+                                        <Calculator className="w-5 h-5 text-indigo-500" />
+                                        បញ្ចូលសមីការគណិតវិទ្យា
+                                    </Dialog.Title>
 
-                        <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                LaTeX Equation
-                            </label>
-                            <div className="border border-gray-300 rounded-lg p-3 bg-white">
-                                {/* @ts-expect-error - MathLive is not typed */}
-                                <math-field
-                                    style={{
-                                        width: "100%",
-                                        minHeight: "80px",
-                                        fontSize: "18px",
-                                        border: "2px solid #e5e7eb",
-                                        background: "white",
-                                        borderRadius: "6px",
-                                        padding: "12px",
-                                        outline: "none"
-                                    }}
-                                    virtual-keyboard-mode="onfocus"
-                                    onInput={(evt: Event) => setMathLatex((evt.target as MathFieldElement).value)}
-                                    onClick={() => {
-                                        console.log('Math field clicked');
-                                        const mathField = document.querySelector('math-field') as MathFieldElement;
-                                        if (mathField && mathField.executeCommand) {
-                                            mathField.executeCommand('showVirtualKeyboard');
-                                        }
-                                    }}
-                                    value={mathLatex}
-                                />
-                            </div>
-                            <div className="mt-3">
-                                <p className="text-xs text-gray-500 text-center">
-                                    Click on the math field above to start typing. Virtual keyboard will appear automatically.
-                                </p>
-                            </div>
-                        </div>
+                                    <div className="mb-4">
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                            សមីការ LaTeX
+                                        </label>
+                                        <div className="border border-gray-300 rounded-lg p-3 bg-white">
+                                            {/* @ts-expect-error - MathLive is not typed */}
+                                            <math-field
+                                                style={{
+                                                    width: "100%",
+                                                    minHeight: "80px",
+                                                    fontSize: "18px",
+                                                    border: "2px solid #e5e7eb",
+                                                    background: "white",
+                                                    borderRadius: "6px",
+                                                    padding: "12px",
+                                                    outline: "none"
+                                                }}
+                                                virtual-keyboard-mode="onfocus"
+                                                onInput={(evt: Event) => setMathLatex((evt.target as MathFieldElement).value)}
+                                                onClick={() => {
+                                                    console.log('Math field clicked');
+                                                    const mathField = document.querySelector('math-field') as MathFieldElement;
+                                                    if (mathField && mathField.executeCommand) {
+                                                        mathField.executeCommand('showVirtualKeyboard');
+                                                    }
+                                                }}
+                                                value={mathLatex}
+                                            />
+                                        </div>
+                                        <div className="mt-3">
+                                            <p className="text-xs text-gray-500 text-center">
+                                                ចុចលើវាលគណិតវិទ្យាខាងលើដើម្បីចាប់ផ្តើមវាយ។ ក្តារចុចនឹងបង្ហាញដោយស្វ័យប្រវត្តិ។
+                                            </p>
+                                        </div>
+                                    </div>
 
-                        <div className="flex items-center justify-between">
-                            <div className="flex justify-between gap-3 w-full">
-                                <button
-                                    onClick={() => setShowMath(false)}
-                                    className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    onClick={insertMath}
-                                    disabled={!mathLatex.trim()}
-                                    className="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-2"
-                                >
-                                    <Plus className="w-4 h-4" />
-                                    Insert Equation
-                                </button>
-                            </div>
+                                    <div className="flex items-center justify-end space-x-3">
+                                        <button
+                                            type="button"
+                                            className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none transition-colors duration-200"
+                                            onClick={() => setShowMath(false)}
+                                        >
+                                            បោះបង់
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="rounded-lg bg-indigo-600 border border-indigo-600 px-4 py-2 text-sm font-medium text-white focus:outline-none hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-2"
+                                            onClick={insertMath}
+                                            disabled={!mathLatex.trim()}
+                                        >
+                                            <Plus className="w-4 h-4" />
+                                            បញ្ចូលសមីការ
+                                        </button>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
                         </div>
                     </div>
-                </div>
-            )}
+                </Dialog>
+            </Transition>
         </div>
     );
 }
