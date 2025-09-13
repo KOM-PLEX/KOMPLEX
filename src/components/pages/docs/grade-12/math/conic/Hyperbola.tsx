@@ -204,20 +204,42 @@ const Hyperbola = () => {
       questions: [
         {
           id: "1",
-          question: "កំពូលនៃអុីពែបូល (x-2)^2/9 - (y+3)^2/16 = 1 គឺ៖",
+          question: (
+            <>
+              កំពូលនៃអុីពែបូល <InlineMath math="\frac {(x-2)^2}{9} - \frac{(y+3)^2}{16} = 1"/>គឺ៖
+            </>
+          ),
           options: ["(2 ± 3, -3)", "(-2 ± 3, 3)", "(2, -3 ± 4)", "(-2, -3)"],
           correctAnswer: 0
         },
         {
           id: "2",
-          question: "ប្រសិនបើអុីពែបូលមានកំពូល (0,0) និងកំណុំ (0,±5) និង a=3 សមីការរបស់វាគឺ៖",
-          options: ["y²/9 - x²/16 = 1", "x²/9 - y²/16 = 1", "y²/16 - x²/9 = 1", "x²/16 - y²/9 = 1"],
+          question: (
+            <>
+              ប្រសិនបើអុីពែបូលមានកំពូល (0,0) និងកំណុំ (0,±5) និង a=3 សមីការរបស់វាគឺ៖<br />
+            </>
+        ),
+          options: [
+            <InlineMath math="\frac{y²}{9} - \frac{x²}{16} = 1"/>, 
+            <InlineMath math="\frac{x²}{9} - \frac{y²}{16} = 1"/>,
+            <InlineMath math="\frac{y²}{16} - \frac{x²}{9} = 1"/>, 
+            <InlineMath math="\frac{x²}{16} - \frac{y²}{9} = 1"/>,
+          ],
           correctAnswer: 0
         },
         {
           id: "3",
-          question: "អាស៊ីមតូតនៃអុីពែបូល x²/4 - y²/9 = 1 គឺ៖",
-          options: ["y = ±(3/2)x", "y = ±(2/3)x", "y = ±2x", "y = ±3x"],
+          question: (
+            <>
+              អាស៊ីមតូតនៃអុីពែបូល <InlineMath math=" \frac {x^2}{4} - \frac {y^2}{9} = 1"/>  គឺ៖"
+            </>
+          ),
+          options: [
+            <InlineMath math="y = ±\frac {3}{2}x"/>,
+            <InlineMath math="y = ±\frac {2}{3}x"/>,
+            <InlineMath math="y = ±2x"/>,
+            <InlineMath math="y = ±3x"/>,
+          ],
           correctAnswer: 0
         }
       ]

@@ -247,7 +247,11 @@ const Ellipse = () => {
       questions: [
         {
           id: "1",
-          question: "ចំណុចកណ្តាលនៃអេលីប \\frac {(x-2)^2}{16} + \\frac {(y+1)^2}{9} = 1 គឺ៖",
+          question: (
+            <>
+              ចំណុចកណ្តាលនៃអេលីប <InlineMath math='\frac {(x-2)^2}{16} + \frac {(y+1)^2}{9} = 1' /> គឺ៖
+            </>
+          ),
           options: [
             "(2, -1)",
             "(-2, 1)",
@@ -258,7 +262,11 @@ const Ellipse = () => {
         },
         {
           id: "2",
-          question: "ប្រសិនបើអេលីបមានកំពូលនៅ (\pm 5, 0) និងកំពូលតូចនៅ (0, \pm 3) សមីការរបស់វាគឺ៖",
+          question: ( 
+            <>
+              ប្រសិនបើអេលីបមានកំពូលនៅ <InlineMath math='(\pm 5, 0)' /> និងកំពូលតូចនៅ <InlineMath math='(0, \pm 3)' /> សមីការរបស់វាគឺ៖
+            </>
+          ),
           options: [
             "\\frac{x^2}{25} + \\frac{y^2}{9} = 1",
             "\\frac{x^2}{9} + \\frac{y^2}{25} = 1",
@@ -269,12 +277,16 @@ const Ellipse = () => {
         },
         {
           id: "3",
-          question: "កំណុំនៃអេលីប \\frac{x^2}{9} + \\frac{y^2}{25} = 1 គឺ៖",
+          question: (
+            <>
+              កំណុំនៃអេលីប <InlineMath math='\frac{x^2}{9} + \frac{y^2}{25} = 1' /> គឺ៖
+            </>
+          ),
           options: [
-            "(0, \pm 4)",
-            "(\pm 4, 0)",
-            "(0, \pm 2)",
-            "(\pm 2, 0)"
+            <InlineMath math='(0, \pm 4)'/>,
+            <InlineMath math='(\pm 4, 0)'/>,
+            <InlineMath math='(0, \pm 2)'/>,
+            <InlineMath math='\pm 2, 0'/>,
           ],
           correctAnswer: 0
         }
