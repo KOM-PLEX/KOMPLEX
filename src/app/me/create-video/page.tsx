@@ -8,8 +8,8 @@ import {
 } from 'lucide-react';
 import Sidebar from '@/components/pages/me/Sidebar';
 import ExerciseCreationBox from '@/components/pages/docs/common/box/ExerciseCreationBox';
-import VideoUpload from '@/components/pages/create-video/VideoUpload';
-import Description from '@/components/pages/create-video/Description';
+import VideoUpload from '@/components/pages/me/create-video/VideoUpload';
+import Description from '@/components/pages/me/create-video/Description';
 import { ExerciseQuestion } from '@/types/docs/topic';
 import Link from 'next/link';
 import { uploadFile } from '@/services/upload';
