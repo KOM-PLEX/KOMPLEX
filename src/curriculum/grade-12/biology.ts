@@ -30,6 +30,7 @@ import NoneSpine from "@/components/pages/docs/grade-12/biology/nervous/NoneSpin
 import Spine from "@/components/pages/docs/grade-12/biology/nervous/Spine";
 import Role from "@/components/pages/docs/grade-12/biology/nervous/Role";
 import Neuron from "@/components/pages/docs/grade-12/biology/nervous/Neuron";
+import CentralNervous from "@/components/pages/docs/grade-12/biology/nervous/CentralNervous";
 
 export const biology: Content = {
   subject: "biology",
@@ -135,12 +136,17 @@ export const biology: Content = {
           component: Neuron,
         },
         {
-          title: "មជ្ឈមណ្ឌលប្រសាទ",
+          title: "ខួរក្បាល",
           englishTitle: "central-nervous-system",
+          component: CentralNervous,
+        },
+        {
+          title: "ខួរធំ",
+          englishTitle: "brain",
           component: ComingSoon,
         },
         {
-          title: "ខួរក្បាល",
+          title: "ខួរតូច",
           englishTitle: "brain",
           component: ComingSoon,
         },
