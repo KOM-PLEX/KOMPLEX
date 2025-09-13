@@ -91,7 +91,7 @@ export default function DocHeader({
     return (
         <>
             {/* Desktop Subject Header */}
-            <div className="hidden md:block fixed w-full top-14.5 z-40 bg-white/95 backdrop-blur-md border-b border-indigo-500/10">
+            <div className="hidden md:block fixed w-full top-14 z-40 bg-white/95 backdrop-blur-md border-b border-indigo-500/10">
                 <div className="max-w-full mx-auto px-5 py-2">
                     <div className="flex items-center justify-between gap-5">
                         <div className="flex items-center gap-4">
