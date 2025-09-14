@@ -13,18 +13,13 @@ import {
     Clock,
     Calendar,
     History,
-    Bookmark,
-    ThumbsUp,
 } from 'lucide-react';
 import { getUserVideos } from '@/services/me/videos';
 import { VideoPost } from '@/types/content/videos';
-import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 import ContentError from '@/components/common/ContentError';
 import MeSkeleton from '@/components/pages/me/MeSkeleton';
 import VideoHistoryComponent from '@/components/pages/me/videos/VideoHistory';
 import { useAuth } from '@/hooks/useAuth';
-
-
 
 export default function MyVideos() {
     return (

@@ -237,7 +237,7 @@ export default function VideoDetailPage() {
 
                 {activeTab === 'comments' && (
                     <div>
-                        <Comments type='video' parentId={videoId} isReadOnly={true} />
+                        <Comments type='video' parentId={videoId} isReadOnly={false} />
                     </div>
                 )}
             </div>

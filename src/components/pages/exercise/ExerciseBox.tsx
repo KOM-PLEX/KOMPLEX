@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 import { Question } from "@/types/content/exercises";
 
 export interface ExerciseBoxProps {
@@ -99,7 +100,9 @@ export default function ExerciseBox({
 
             {/* Question */}
             <div className={`mb-6 transition-all duration-200 ${isAnswering ? 'opacity-60 scale-[0.98]' : 'opacity-100 scale-100'}`}>
-                <h4 className="text-gray-800 font-semibold text-lg mb-4">{currentQuestion.title}</h4>
+                <div className="text-gray-800 font-semibold text-lg mb-4">
+                    <MarkDownRenderer content={currentQuestion.title} />
+                </div>
 
                 {/* Image if available */}
                 {currentQuestion.imageUrl && (
@@ -135,11 +138,13 @@ export default function ExerciseBox({
                                                 : "border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed"
                                     }`}
                             >
-                                <div className="flex items-center gap-3">
-                                    <span className="text-lg font-semibold">
+                                <div className="flex items-start gap-3">
+                                    <span className="text-lg font-semibold mt-1">
                                         {String.fromCharCode(0x1780 + index)} {/* Khmer letters: ក, ខ, គ, ឃ */}
                                     </span>
-                                    <span>{choice.text}</span>
+                                    <div className="flex-1">
+                                        <MarkDownRenderer content={choice.text} />
+                                    </div>
                                 </div>
                             </button>
                         );

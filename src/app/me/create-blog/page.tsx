@@ -167,7 +167,7 @@ export default function CreateBlog() {
                 <div className="max-w-7xl mx-auto p-5">
                     {/* Header */}
                     <div className="mb-6">
-                        <Link href="/my-content/blogs" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
+                        <Link href="/me/blogs" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
                             <ArrowLeft className="w-4 h-4" />
                             ត្រឡប់ទៅប្លុក
                         </Link>
