@@ -138,7 +138,7 @@ export default function BlogPost() {
                                         alt={blogPost.username}
                                         className="w-10 h-10 rounded-full object-cover border-2 border-indigo-500"
                                         onError={(e) => {
-                                            e.currentTarget.style.display = 'none';
+                                            e.currentTarget.src='/image-error.png'
                                             e.currentTarget.nextElementSibling?.classList.remove('hidden');
                                         }}
                                     />

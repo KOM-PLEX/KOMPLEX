@@ -5,6 +5,7 @@ import { Save, Upload, Trash, Play } from 'lucide-react';
 import type { VideoPost, ExerciseQuestion as ApiExerciseQuestion } from '@/types/content/videos';
 import { ExerciseQuestion } from '@/types/docs/topic';
 import ExerciseCreationBox from '@/components/pages/docs/common/box/ExerciseCreationBox';
+import BlogEditor from '@/components/common/Editor';
 import { updateVideo } from '@/services/me/videos';
 import { uploadFile } from '@/services/upload';
 import { getVideoById } from '@/services/feed/videos';
@@ -425,12 +426,17 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                     <label className="block text-sm font-medium mb-3 text-gray-700">
                         មាតិកា
                     </label>
-                    <textarea
+                    <BlogEditor
                         value={formData.description}
-                        onChange={(e) => handleInputChange('description', e.target.value)}
-                        placeholder="សរសេរមាតិកាវីដេអូរបស់អ្នក..."
-                        className="w-full p-4 rounded-lg bg-white border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none transition-colors duration-200"
-                        rows={8}
+                        onChange={(value) => handleInputChange('description', value)}
+                        height="300px"
+                        toolbarOptions={[
+                            ["heading", "bold", "italic"],
+                            ["ul"],
+                            ["table", "link"],
+                        ]}
+                        showMathButton={true}
+                        compact={false}
                     />
                 </div>
 

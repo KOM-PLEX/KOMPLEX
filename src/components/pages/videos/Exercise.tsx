@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { BookOpen, CheckCircle, XCircle, ChevronLeft, ChevronRight } from 'lucide-react';
-import ContentError from '@/components/common/ContentError';
+import MarkDownRenderer from '@/components/helper/MarkDownRenderer';
 import type { VideoExercise } from '@/types/content/videos';
 
 interface ExerciseProps {
@@ -54,7 +54,7 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
 
             {/* Content */}
             <div className="p-6">
-               
+
 
                 {/* Questions */}
                 <div className="space-y-6">
@@ -64,9 +64,10 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
 
                         return (
                             <div key={question.id} className="border border-gray-200 rounded-lg p-4">
-                                <h4 className="font-medium text-gray-900 mb-3">
-                                    {questionIndex + 1}. {question.title}
-                                </h4>
+                                <div className="font-medium text-gray-900 mb-3">
+                                    <span className="inline-block mr-2">{questionIndex + 1}.</span>
+                                    <MarkDownRenderer content={question.title} />
+                                </div>
 
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
                                     {question.choices.map((choice) => {
@@ -106,7 +107,9 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
                                                     onChange={() => handleAnswerSelect(question.id, choice.id)}
                                                     className="w-4 h-4 text-indigo-600"
                                                 />
-                                                <span className={textStyle}>{choice.text}</span>
+                                                <div className={textStyle}>
+                                                    <MarkDownRenderer content={choice.text} />
+                                                </div>
                                                 {hasAnswered && isCorrect && (
                                                     <CheckCircle className="w-4 h-4 text-green-500 ml-auto" />
                                                 )}

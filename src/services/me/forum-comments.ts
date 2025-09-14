@@ -10,7 +10,7 @@ export const createForumComment = async (
     const response = await api.post(`/me/forum-comments/${forumId}`, {
       description,
     });
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.error("Error creating forum comment:", error);
     throw new Error("Failed to create forum comment");

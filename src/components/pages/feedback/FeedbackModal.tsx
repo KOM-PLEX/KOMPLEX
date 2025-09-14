@@ -5,6 +5,7 @@ import axios from 'axios';
 import { X, Loader2, ChevronDown, Check, MessageCircle } from 'lucide-react';
 import { Listbox, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import api from '@/config/axios';
 
 type FeedbackTypeOption =
     | 'bug'
@@ -64,7 +65,7 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
                 content: content,
             }
 
-            await axios.post("http://localhost:6969/feedback", body);
+            await api.post("/me/feedback", body);
 
             onClose();
         } catch (error) {

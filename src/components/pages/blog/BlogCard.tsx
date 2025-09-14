@@ -13,7 +13,7 @@ export default function BlogCard({ post }: BlogCardProps) {
     <Link href={`/blogs/${post.id}`} key={post.id} className="relative aspect-[16/8] w-full rounded-2xl overflow-hidden border border-indigo-500/10 transition-all duration-300 cursor-pointer  ">
       {/* Background Image */}
       <img
-        src={post.media[0]?.url}
+        src={post.media[0]?.url || '/image-error.png'}
         alt={post.title}
         className="absolute inset-0 w-full h-full object-cover"
         onError={(e) => {

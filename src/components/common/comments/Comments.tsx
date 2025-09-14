@@ -84,7 +84,27 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
             }
 
             // Optimistically add the new comment to the list
-            setComments(prev => [...prev, newCommentData] as ForumComment[] | VideoComment[]);
+            // Ensure the comment has required fields before adding
+            const commentWithDefaults = {
+                ...newCommentData,
+                id: newCommentData.id || Date.now(), // Fallback ID if missing
+                createdAt: newCommentData.createdAt || new Date().toISOString(),
+                userId: newCommentData.userId || (user?.id || 0),
+                username: newCommentData.username || (user?.username || 'Unknown'),
+                profileImage: newCommentData.profileImage || '',
+                isLiked: newCommentData.isLiked || false,
+                media: newCommentData.media || [],
+                description: newCommentData.description || newComment
+            };
+
+            setComments(prev => {
+                // Check if comment already exists to prevent duplicates
+                const exists = prev.some(c => c.id === commentWithDefaults.id);
+                if (exists) {
+                    return prev;
+                }
+                return [...prev, commentWithDefaults] as ForumComment[] | VideoComment[];
+            });
 
             // Clear the comment input
             setNewComment('');
@@ -118,7 +138,7 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
     const CommentSkeleton = () => (
         <div className="mb-4">
             <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse"></div>
+                <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse border-2 border-indigo-500/20"></div>
                 <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                         <div className="w-20 h-4 bg-gray-200 rounded animate-pulse"></div>
@@ -242,7 +262,7 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
                 <div className="space-y-4">
                     {comments.map((comment, index) => (
                         <CommentComponent
-                            key={comment.id || index}
+                            key={`${type}-${comment.id || `temp-${index}`}-${comment.createdAt || Date.now()}`}
                             comment={comment as ForumComment | VideoComment}
                             commentType={type}
                             isReadOnly={isReadOnly}
