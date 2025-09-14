@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, Fragment } from "react";
 import dynamic from "next/dynamic";
 import { Dialog, Transition } from '@headlessui/react';
-import { Calculator, Plus } from "lucide-react";
+import { Calculator, CalculatorIcon, Plus } from "lucide-react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "mathlive/fonts.css";
 
@@ -98,12 +98,22 @@ interface BlogEditorProps {
     onChange?: (value: string) => void;
     placeholder?: string;
     height?: string;
+    toolbarOptions?: string[][]; // Custom toolbar configuration
+    showMathButton?: boolean; // Whether to show the math equation button
+    compact?: boolean; // Compact mode - removes logo and positions math button absolutely
 }
 
 export default function BlogEditor({
     value = "",
     onChange,
-    height = "400px"
+    height = "400px",
+    toolbarOptions = [
+        ["heading", "bold", "italic"],
+        ["ul"],
+        ["table", "link"],
+    ],
+    showMathButton = true,
+    compact = false
 }: BlogEditorProps) {
     const editorRef = useRef<{ getInstance: () => { getMarkdown: () => string; insertText: (text: string) => void } }>(null);
     const [showMath, setShowMath] = useState(false);
@@ -187,47 +197,59 @@ export default function BlogEditor({
     return (
         <div className="w-full">
             {/* Custom Toolbar */}
-            <div className="flex items-center justify-between gap-2 p-3 bg-gray-50 border-b border-gray-200 rounded-t-xl">
-                <div className="flex items-center justify-center gap-0">
-                    <span className="text-2xl font-extrabold tracking-tight text-indigo-500">KOM</span>
-                    <span className="text-2xl font-extrabold tracking-tight text-black">PLEX</span>
-                    <span className="text-sm text-gray-500 ml-2 font-bold">EDITOR</span>
+            {!compact && (
+                <div className="flex items-center justify-between gap-2 p-3 bg-gray-50 border-b border-gray-200 rounded-t-xl">
+                    <div className="flex items-center justify-center gap-0">
+                        <span className="text-2xl font-extrabold tracking-tight text-indigo-500">KOM</span>
+                        <span className="text-2xl font-extrabold tracking-tight text-black">PLEX</span>
+                        <span className="text-sm text-gray-500 ml-2 font-bold">EDITOR</span>
+                    </div>
+                    {showMathButton && (
+                        <button
+                            onClick={() => setShowMath(true)}
+                            className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500 text-white text-sm font-medium rounded-md hover:bg-indigo-600 transition-colors duration-200"
+                        >
+                            <Calculator className="w-4 h-4" />
+                            បញ្ចូលសមីការ
+                        </button>
+                    )}
                 </div>
-                <button
-                    onClick={() => setShowMath(true)}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500 text-white text-sm font-medium rounded-md hover:bg-indigo-600 transition-colors duration-200"
-                >
-                    <Calculator className="w-4 h-4" />
-                    បញ្ចូលសមីការ
-                </button>
-            </div>
+            )}
 
-            <Editor
-                initialValue={value}
-                previewStyle="vertical"
-                height={height}
-                initialEditType="wysiwyg"
-                useCommandShortcut={true}
-                useDefaultHTMLSanitizer={true}
-                ref={editorRef}
-                onChange={handleEditorChange}
-                toolbarItems={[
-                    ["heading", "bold", "italic"],
-                    // ["hr", "quote"],
-                    ["ul"],
-                    ["table", "link",],
-                ]}
-                hooks={{
-                    addImageBlobHook: (blob: Blob, callback: (url: string) => void) => {
-                        // Handle image uploads if needed
-                        const reader = new FileReader();
-                        reader.onload = () => {
-                            callback(reader.result as string);
-                        };
-                        reader.readAsDataURL(blob);
-                    }
-                }}
-            />
+            <div className="relative">
+                <Editor
+                    initialValue={value}
+                    previewStyle="vertical"
+                    height={height}
+                    initialEditType="wysiwyg"
+                    useCommandShortcut={true}
+                    useDefaultHTMLSanitizer={true}
+                    ref={editorRef}
+                    onChange={handleEditorChange}
+                    toolbarItems={toolbarOptions}
+                    hooks={{
+                        addImageBlobHook: (blob: Blob, callback: (url: string) => void) => {
+                            // Handle image uploads if needed
+                            const reader = new FileReader();
+                            reader.onload = () => {
+                                callback(reader.result as string);
+                            };
+                            reader.readAsDataURL(blob);
+                        }
+                    }}
+                />
+
+                {/* Compact Math Button */}
+                {compact && showMathButton && (
+                    <button
+                        onClick={() => setShowMath(true)}
+                        className="absolute top-2 right-2 w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center hover:bg-indigo-600 transition-colors duration-200 shadow-lg z-10"
+                        title="បញ្ចូលសមីការ"
+                    >
+                        <CalculatorIcon className="w-4 h-4" />
+                    </button>
+                )}
+            </div>
 
             {/* Math Dialog */}
             <Transition appear show={showMath} as={Fragment}>

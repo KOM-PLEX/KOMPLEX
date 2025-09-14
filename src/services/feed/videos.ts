@@ -45,3 +45,21 @@ export const getVideoExercises = async (
     throw new Error("Failed to fetch video exercises");
   }
 };
+
+// Get recommended videos based on current video
+export const getRecommendedVideos = async (
+  userId: number,
+  videoId: number,
+  limit: number = 5,
+  offset: number = 0
+): Promise<VideoPost[]> => {
+  try {
+    const response = await api.get<{ data: VideoPost[] }>(
+      `/feed/videos/${videoId}/recommended?limit=${limit}&offset=${offset}`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Error fetching recommended videos:", error);
+    throw new Error("Failed to fetch recommended videos");
+  }
+};

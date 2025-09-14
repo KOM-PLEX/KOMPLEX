@@ -7,6 +7,7 @@ import {
     BookOpen,
 } from "lucide-react";
 import { ExerciseQuestion } from "@/types/docs/topic";
+import BlogEditor from "@/components/common/Editor";
 
 export interface ExerciseCreationBoxProps {
     questions: ExerciseQuestion[];
@@ -153,12 +154,15 @@ export default function ExerciseCreationBox({
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
                                         សំណួរ
                                     </label>
-                                    <textarea
+                                    <BlogEditor
                                         value={typeof question.question === 'string' ? question.question : ''}
-                                        onChange={(e) => updateQuestion(question.id, 'question', e.target.value)}
-                                        placeholder="វាយបញ្ចូលសំណួររបស់អ្នក..."
-                                        rows={3}
-                                        className="w-full bg-white px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+                                        onChange={(value) => updateQuestion(question.id, 'question', value)}
+                                        height="200px"
+                                        toolbarOptions={[
+                                            ["bold"],
+                                        ]}
+                                        showMathButton={true}
+                                        compact={true}
                                     />
                                 </div>
 
@@ -178,32 +182,37 @@ export default function ExerciseCreationBox({
                                         </button>
                                     </div>
 
-                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                                    <div className="grid grid-cols-1 gap-4">
                                         {question.options.map((option, optionIndex) => (
-                                            <div key={optionIndex} className="flex items-center gap-3">
+                                            <div key={optionIndex} className="flex items-start gap-3">
                                                 <input
                                                     type="radio"
                                                     name={`correct-${question.id}`}
                                                     checked={question.correctAnswer === optionIndex}
                                                     onChange={() => updateQuestion(question.id, 'correctAnswer', optionIndex)}
-                                                    className="text-indigo-600 bg-white focus:ring-indigo-500 w-5 h-5"
+                                                    className="text-indigo-600 bg-white focus:ring-indigo-500 w-5 h-5 mt-3 flex-shrink-0"
                                                 />
-                                                <input
-                                                    type="text"
-                                                    placeholder={`ជម្រើស ${optionIndex + 1}...`}
-                                                    value={typeof option === 'string' ? option : ''}
-                                                    onChange={(e) => {
-                                                        const newOptions = question.options.map((opt, idx) =>
-                                                            idx === optionIndex ? e.target.value : opt
-                                                        );
-                                                        updateQuestion(question.id, 'options', newOptions as string[]);
-                                                    }}
-                                                    className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white"
-                                                />
+                                                <div className="flex-1">
+                                                    <BlogEditor
+                                                        value={typeof option === 'string' ? option : ''}
+                                                        onChange={(value) => {
+                                                            const newOptions = question.options.map((opt, idx) =>
+                                                                idx === optionIndex ? value : opt
+                                                            );
+                                                            updateQuestion(question.id, 'options', newOptions as string[]);
+                                                        }}
+                                                        height="150px"
+                                                        toolbarOptions={[
+                                                            ["bold"],
+                                                        ]}
+                                                        showMathButton={true}
+                                                        compact={true}
+                                                    />
+                                                </div>
                                                 <button
                                                     onClick={() => removeOption(question.id, optionIndex)}
                                                     disabled={question.options.length <= 1}
-                                                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-3 flex-shrink-0"
                                                 >
                                                     <Trash2 size={16} />
                                                 </button>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Play, MessageSquare, BookOpen } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import Comments from '@/components/common/comments/Comments';
@@ -9,21 +9,28 @@ import VideoCard from '@/components/pages/videos/VideoCard';
 import VideoSkeleton from '@/components/pages/videos/VideoSkeleton';
 import ContentError from '@/components/common/ContentError';
 import type { VideoPost } from '@/types/content/videos';
-import { getAllVideos } from '@/services/feed/videos';
+import { getAllVideos, getRecommendedVideos } from '@/services/feed/videos';
 import { toggleVideoLike, toggleVideoSave } from '@/services/me/videos';
 import { getVideoById } from '@/services/feed/videos';
 import VideoDescription from '@/components/pages/videos/VideoDescription';
 import { useAuth } from '@/hooks/useAuth';
 
 
-// API function to fetch all videos for recommendations
-const fetchAllVideos = async (): Promise<VideoPost[]> => {
+// API function to fetch recommended videos
+const fetchRecommendedVideos = async (userId: number, videoId: number, limit: number = 5): Promise<VideoPost[]> => {
     try {
-        const { data } = await getAllVideos();
+        const  data  = await getRecommendedVideos(userId, videoId, limit, 0);
         return data;
     } catch (error) {
-        console.error('Error fetching videos:', error);
-        return [];
+        console.error('Error fetching recommended videos:', error);
+        // Fallback to fetching all videos and filtering
+        try {
+            const { data } = await getAllVideos();
+            return data.filter(v => v.id !== videoId).slice(0, limit);
+        } catch (fallbackError) {
+            console.error('Error in fallback video fetch:', fallbackError);
+            return [];
+        }
     }
 };
 
@@ -49,6 +56,29 @@ export default function VideoDetailPage() {
 
     const { user, openLoginModal } = useAuth();
 
+    // Function to refresh recommendations when user changes
+    const refreshRecommendations = useCallback(async () => {
+        if (video) {
+            try {
+                setVideosLoading(true);
+                const userId = user?.id || 0;
+                const recommendedVideosData = await fetchRecommendedVideos(userId, video.id, 5);
+                setRecommendedVideos(recommendedVideosData);
+            } catch (error) {
+                console.error('Error refreshing recommendations:', error);
+            } finally {
+                setVideosLoading(false);
+            }
+        }
+    }, [video, user?.id]);
+
+    // Refresh recommendations when user changes
+    useEffect(() => {
+        if (video) {
+            refreshRecommendations();
+        }
+    }, [video, refreshRecommendations]);
+
     useEffect(() => {
         const loadAllData = async () => {
             if (!videoId || isNaN(videoId)) {
@@ -61,24 +91,21 @@ export default function VideoDetailPage() {
             setError(null);
 
             try {
-                // Fetch all data in parallel
-                const [videoData, allVideos] = await Promise.all([
-                    fetchVideoById(videoId),
-                    fetchAllVideos()
-                ]);
+                // Fetch video data first
+                const videoData = await fetchVideoById(videoId);
 
                 // Set video data
                 if (videoData) {
                     setVideo(videoData);
+
+                    // Fetch recommended videos based on current video
+                    // Use user ID if available, otherwise use 0 for anonymous users
+                    const userId = user?.id || 0;
+                    const recommendedVideosData = await fetchRecommendedVideos(userId, videoId, 5);
+                    setRecommendedVideos(recommendedVideosData);
                 } else {
                     setError('វីដេអូរកមិនឃើញ');
                 }
-
-                // Set recommended videos (filter out current video and limit to 5)
-                const filteredVideos = allVideos
-                    .filter(v => v.id !== videoId)
-                    .slice(0, 5);
-                setRecommendedVideos(filteredVideos);
 
             } catch (error) {
                 console.error('Failed to load data:', error);
@@ -90,7 +117,7 @@ export default function VideoDetailPage() {
         };
 
         loadAllData();
-    }, [videoId]);
+    }, [videoId, user]);
 
     const handleLike = async (videoId: number, isLiked: boolean, video: VideoPost) => {
         try {

@@ -207,7 +207,7 @@ function MyVideosContent() {
                                         <span className="hidden lg:block">វីដេអូរបស់ខ្ញុំ</span>
                                     </span>
                                 </Link>
-                                <Link
+                                {/* <Link
                                     href="/me/videos?tab=likedVideos"
                                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'likedVideos'
                                         ? 'bg-indigo-600 text-white'
@@ -230,7 +230,7 @@ function MyVideosContent() {
                                         <Bookmark className="w-4 h-4" />
                                         <span className="hidden lg:block">វីដេអូដែលរក្សាទុក</span>
                                     </span>
-                                </Link>
+                                </Link> */}
                                 <Link
                                     href="/me/videos?tab=videoHistory"
                                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'videoHistory'
@@ -308,7 +308,10 @@ function MyVideosContent() {
                                                         {video.title || 'Untitled Video'}
                                                     </h3>
                                                     <div className="text-sm text-gray-600 mb-3 line-clamp-2">
-                                                        <MarkDownRenderer content={video.description || 'No description available'} />
+                                                        {/* <MarkDownRenderer content={video.description || 'No description available'} /> */}
+                                                        <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                                                            {video.description || 'No description available'}
+                                                        </p>
                                                     </div>
 
                                                     {/* Stats */}
