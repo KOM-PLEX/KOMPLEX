@@ -84,7 +84,27 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
             }
 
             // Optimistically add the new comment to the list
-            setComments(prev => [...prev, newCommentData] as ForumComment[] | VideoComment[]);
+            // Ensure the comment has required fields before adding
+            const commentWithDefaults = {
+                ...newCommentData,
+                id: newCommentData.id || Date.now(), // Fallback ID if missing
+                createdAt: newCommentData.createdAt || new Date().toISOString(),
+                userId: newCommentData.userId || (user?.id || 0),
+                username: newCommentData.username || (user?.username || 'Unknown'),
+                profileImage: newCommentData.profileImage || '',
+                isLiked: newCommentData.isLiked || false,
+                media: newCommentData.media || [],
+                description: newCommentData.description || newComment
+            };
+
+            setComments(prev => {
+                // Check if comment already exists to prevent duplicates
+                const exists = prev.some(c => c.id === commentWithDefaults.id);
+                if (exists) {
+                    return prev;
+                }
+                return [...prev, commentWithDefaults] as ForumComment[] | VideoComment[];
+            });
 
             // Clear the comment input
             setNewComment('');
@@ -242,7 +262,7 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
                 <div className="space-y-4">
                     {comments.map((comment, index) => (
                         <CommentComponent
-                            key={comment.id || index}
+                            key={`${type}-${comment.id || `temp-${index}`}-${comment.createdAt || Date.now()}`}
                             comment={comment as ForumComment | VideoComment}
                             commentType={type}
                             isReadOnly={isReadOnly}

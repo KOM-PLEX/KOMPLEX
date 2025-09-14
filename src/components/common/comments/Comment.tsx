@@ -229,9 +229,9 @@ export default function CommentComponent({
                             {repliesError}
                         </div>
                     ) : replies.length > 0 ? (
-                        replies.map((reply) => (
+                        replies.map((reply, index) => (
                             <ReplyComponent
-                                key={reply.id}
+                                key={`${commentType}-reply-${reply.id || `temp-${index}`}-${reply.createdAt || Date.now()}`}
                                 reply={reply as ForumReply | VideoReply}
                                 commentId={comment.id}
                                 onSubmitReply={handleSubmitReply}
