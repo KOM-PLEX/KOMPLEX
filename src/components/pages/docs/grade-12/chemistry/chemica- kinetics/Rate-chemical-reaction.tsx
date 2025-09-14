@@ -77,13 +77,13 @@ const ThirdTopic: TopicContent = {
 
           {/* Show this image only on tablet (md) and above */}
           <div className='hidden md:block'>
-            <img src="/chemistry/Pic27.png" alt="" />   
+            <img src="/chemistry/pic27.png" alt="" />   
           </div>
 
           {/* Show these two images only on mobile (below md) */}
           <div className='flex flex-col gap-2 md:hidden'>
-            <img src="/chemistry/Pic25.png" alt="" />   
-            <img src="/chemistry/Pic26.png" alt="" />             
+            <img src="/chemistry/pic25.png" alt="" />   
+            <img src="/chemistry/pic26.png" alt="" />             
           </div>
         </div>
     ],
@@ -400,13 +400,13 @@ const ThirdTeenthTopicContent: TopicContent = {
         <>
 
             <div className='hidden md:block w-130'>
-                <img src="/chemistry/Pic30.png" alt="" />   
+                <img src="/chemistry/pic30.png" alt="" />   
             </div>
 
           {/* Show these two images only on mobile (below md) */}
           <div className='flex flex-col gap-2 md:hidden'>
-            <img src="/chemistry/Pic28.png" alt="" />    
-            <img src="/chemistry/Pic29.png" alt="" />           
+            <img src="/chemistry/pic28.png" alt="" />    
+            <img src="/chemistry/pic29.png" alt="" />           
           </div> 
                          
         </>

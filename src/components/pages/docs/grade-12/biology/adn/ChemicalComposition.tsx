@@ -32,7 +32,7 @@ const FirstTopicContent: TopicContent = {
   imageExplanation: [
         {
             title: "ការពិសោធន៏របស់គ្រីភីត",
-            src: "/docs/grade-12/biology/adn/Kripit.jpg",
+            src: "/docs/grade-12/biology/adn/kripit.jpg",
             imageAlt: "",
             explanation: [
                 "លោកគ្រីភីត សម្លាប់បាក់តេរី S ដោយកម្ដៅ ហើយយកទៅលាយជាមួយបាក់តេរី R ។ បន្ទាប់មកគាត់យកល្បាយនោះចាក់ក្នុងខ្លួនសត្វកណ្តុរ ។ កណ្តុរនោះបានស្លាប់ដោយសារជំងឺរលាកសួត ហើយក្នុងឈាមសត្វកណ្តុរដែលស្លាប់មានបាក់តេរីមានជីវិត។",
