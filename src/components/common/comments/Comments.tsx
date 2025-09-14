@@ -118,7 +118,7 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
     const CommentSkeleton = () => (
         <div className="mb-4">
             <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse"></div>
+                <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse border-2 border-indigo-500/20"></div>
                 <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                         <div className="w-20 h-4 bg-gray-200 rounded animate-pulse"></div>

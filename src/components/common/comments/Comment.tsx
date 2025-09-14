@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ThumbsUp, MessageCircle, Send } from 'lucide-react';
+import Link from 'next/link';
 import { ForumComment, ForumReply } from '@/types/content/forums';
 import { getTimeAgo } from '@/utils/formater';
 import ReplyComponent from './Reply';
@@ -81,9 +82,9 @@ export default function CommentComponent({
 
         try {
             if (commentType === 'forum') {
-                await toggleForumCommentLike(comment.id, !wasLiked);
+                await toggleForumCommentLike(comment.id, wasLiked);
             } else {
-                await toggleVideoCommentLike(comment.id, !wasLiked);
+                await toggleVideoCommentLike(comment.id, wasLiked);
             }
         } catch (error) {
             console.error('Error toggling comment like:', error);
@@ -129,12 +130,27 @@ export default function CommentComponent({
     return (
         <div className="mb-4">
             <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
-                    {comment.username.charAt(0)}
-                </div>
+                <Link href={`/users/${comment.userId}`} className="flex items-start gap-3 hover:opacity-80 transition-opacity">
+                    {comment.profileImage ? (
+                        <img
+                            src={comment.profileImage}
+                            alt={comment.username}
+                            className="w-8 h-8 rounded-full object-cover border-2 border-indigo-500"
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                            }}
+                        />
+                    ) : null}
+                    <div className={`w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm ${comment.profileImage ? 'hidden' : ''}`}>
+                        {comment.username.charAt(0)}
+                    </div>
+                </Link>
                 <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                        <span className="font-semibold text-gray-900 text-sm">{comment.username}</span>
+                        <Link href={`/users/${comment.userId}`} className="font-semibold text-gray-900 text-sm hover:underline transition-colors">
+                            {comment.username}
+                        </Link>
                         <span className="text-gray-500 text-xs">{getTimeAgo(comment.createdAt)}</span>
                     </div>
                     <div className="text-gray-700 text-sm leading-relaxed mb-2">{comment.description}</div>

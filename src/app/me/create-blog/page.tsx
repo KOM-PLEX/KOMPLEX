@@ -133,7 +133,8 @@ export default function CreateBlog() {
     };
 
     const isFormValid = () => {
-        const hasContent = bodyText.trim() && bodyText.replace(/<[^>]*>/g, '').trim();
+        const tempBodyText = bodyText;
+        const hasContent = tempBodyText.trim() && tempBodyText.replace(/<[^>]*>/g, '').trim();
         return title.trim() && hasContent && !error;
     };
 

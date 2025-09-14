@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Send, ThumbsUp } from 'lucide-react';
+import Link from 'next/link';
 import { ForumReply } from "@/types/content/forums";
 import { getTimeAgo } from '@/utils/formater';
 import { createForumReply } from '@/services/me/forum-replies';
@@ -83,12 +84,27 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
     return (
         <div className="ml-8 mb-3">
             <div className="flex gap-3">
-                <div className="w-7 h-7 rounded-full bg-gray-500 flex items-center justify-center text-white font-semibold text-xs">
-                    {reply.username?.charAt(0)}
-                </div>
+                <Link href={`/users/${reply.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    {reply.profileImage ? (
+                        <img
+                            src={reply.profileImage}
+                            alt={reply.username?.toString() || 'User'}
+                            className="w-7 h-7 rounded-full object-cover border-2 border-indigo-500"
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                            }}
+                        />
+                    ) : null}
+                    <div className={`w-7 h-7 rounded-full bg-gray-500 flex items-center justify-center text-white font-semibold text-xs ${reply.profileImage ? 'hidden' : ''}`}>
+                        {reply.username?.charAt(0)}
+                    </div>
+                </Link>
                 <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                        <span className="font-semibold text-gray-900 text-sm">{reply.username?.toString()}</span>
+                        <Link href={`/users/${reply.userId}`} className="font-semibold text-gray-900 text-sm hover:underline transition-colors">
+                            {reply.username?.toString()}
+                        </Link>
                         <span className="text-gray-500 text-xs">{getTimeAgo(reply.createdAt)}</span>
                     </div>
                     <div className="text-gray-700 text-sm leading-relaxed mb-2">{reply.description}</div>
