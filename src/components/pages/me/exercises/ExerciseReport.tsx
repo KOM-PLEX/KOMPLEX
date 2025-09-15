@@ -225,18 +225,16 @@ export default function ExerciseReportComponent() {
                                                         onClick={() => openModal(topic)}
                                                         className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-4 cursor-pointer hover:shadow-lg hover:border-indigo-200 transition-all duration-200 group"
                                                     >
-                                                        <div className="flex items-center justify-between mb-3">
-                                                            <div className='flex items-center gap-2'>
-                                                                <div className="flex items-center gap-2 p-2 rounded-lg bg-indigo-100 text-indigo-600 group-hover:bg-indigo-200 transition-colors">
-                                                                    <Target className="w-4 h-4" />
-                                                                </div>
-                                                                <h4 className="font-semibold text-gray-900 text-base group-hover:text-indigo-600 transition-colors">
-                                                                    {topic.name}
-                                                                </h4>
+                                                        <div className="flex items-center gap-2 mb-3">
+                                                            <div className="flex items-center gap-2 p-2 rounded-lg bg-indigo-100 text-indigo-600 group-hover:bg-indigo-200 transition-colors">
+                                                                <Target className="w-4 h-4" />
                                                             </div>
+                                                            <h4 className="font-semibold text-gray-900 text-base group-hover:text-indigo-600 transition-colors">
+                                                                {topic.name}
+                                                            </h4>
                                                         </div>
 
-                                                        <div className="space-y-2">
+                                                        <div className="space-y-3">
                                                             <div className="flex items-center justify-between text-xs">
                                                                 <span className="text-gray-600 flex items-center gap-1">
                                                                     <BarChart3 className="w-3 h-3" />
@@ -245,36 +243,26 @@ export default function ExerciseReportComponent() {
                                                                 <span className="font-medium text-gray-900">{topic.attempts || 0} ដង</span>
                                                             </div>
 
-                                                            {topic.userProgress ? (
-                                                                <div className="flex justify-between rounded-full text-xs font-medium">
+                                                            <div>
+                                                                <div className="flex items-center justify-between text-xs mb-1">
                                                                     <span className="text-gray-600 flex items-center gap-1">
                                                                         <BarChart3 className="w-3 h-3" />
                                                                         ពិន្ទុខ្ពស់បំផុត
                                                                     </span>
-                                                                    {topic.userProgress}%
-                                                                </div>
-                                                            ) : (
-                                                                <div className="flex justify-between rounded-full text-xs font-medium">
-                                                                    <span className="text-gray-600 flex items-center gap-1">
-                                                                        <BarChart3 className="w-3 h-3" />
-                                                                        ពិន្ទុខ្ពស់បំផុត
+                                                                    <span className="font-medium text-gray-900">
+                                                                        {typeof topic.userProgress === 'number' ? `${topic.userProgress}%` : 'មិនមាន'}
                                                                     </span>
-                                                                    <span className="font-medium text-gray-900">មិនមានរបាយការណ៍</span>
                                                                 </div>
-                                                            )}
-
-                                                            <div className="flex items-center justify-between text-xs">
-                                                                <span className="text-gray-600 flex items-center gap-1">
-                                                                    <TrendingUp className="w-3 h-3" />
-                                                                    ចំនួនសំណួរ
-                                                                </span>
-                                                                <span className="font-medium text-gray-900">{topic.questionCount} សំណួរ</span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="mt-3 pt-3 border-t border-gray-100">
-                                                            <div className="text-xs text-indigo-600 font-medium group-hover:text-indigo-700 transition-colors">
-                                                                ចុចដើម្បីមើលរបាយការណ៍លម្អិត
+                                                                <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
+                                                                    <div
+                                                                        className="bg-indigo-500 h-2 rounded-full transition-all"
+                                                                        style={{
+                                                                            width: typeof topic.userProgress === 'number'
+                                                                                ? `${Math.max(0, Math.min(100, topic.userProgress))}%`
+                                                                                : '0%'
+                                                                        }}
+                                                                    ></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

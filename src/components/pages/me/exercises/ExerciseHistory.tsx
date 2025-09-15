@@ -14,8 +14,8 @@ export default function ExerciseHistoryComponent() {
         // Fetch history data
         const fetchHistory = async () => {
             try {
-                const historyResponse = await api.get<ExerciseHistory[]>('/me/exercises/history');
-                setHistory(historyResponse.data);
+                const historyResponse = await api.get<{ data: ExerciseHistory[] }>('/me/exercises/history');
+                setHistory(historyResponse.data.data);
             } catch (error) {
                 console.error('Error fetching exercise history:', error);
             }

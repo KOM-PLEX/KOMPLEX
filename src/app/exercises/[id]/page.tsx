@@ -340,6 +340,7 @@ export default function LessonPage() {
                             setCurrentSection(0);
                             setCurrentQuestionIndex(0);
                         }}
+                        isLoading={isSubmitting}
                     />
                 </div>
             </div>
