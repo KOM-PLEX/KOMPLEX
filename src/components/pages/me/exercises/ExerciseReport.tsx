@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Target, TrendingUp, BarChart3, ChevronDown } from 'lucide-react';
+import { Target, BarChart3, ChevronDown } from 'lucide-react';
 import ReportViewer from './ReportViewer';
 import { ExerciseWithAttempts } from '@/types/user-content/exercise';
 import { Listbox, Transition } from '@headlessui/react';
@@ -219,54 +219,72 @@ export default function ExerciseReportComponent() {
                                         {/* Topics Grid */}
                                         <div className="p-4">
                                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                                {subject.topics.map((topic) => (
-                                                    <div
-                                                        key={topic.id}
-                                                        onClick={() => openModal(topic)}
-                                                        className="bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-4 cursor-pointer hover:shadow-lg hover:border-indigo-200 transition-all duration-200 group"
-                                                    >
-                                                        <div className="flex items-center gap-2 mb-3">
-                                                            <div className="flex items-center gap-2 p-2 rounded-lg bg-indigo-100 text-indigo-600 group-hover:bg-indigo-200 transition-colors">
-                                                                <Target className="w-4 h-4" />
-                                                            </div>
-                                                            <h4 className="font-semibold text-gray-900 text-base group-hover:text-indigo-600 transition-colors">
-                                                                {topic.name}
-                                                            </h4>
-                                                        </div>
+                                                {subject.topics.map((topic) => {
+                                                    const isDisabled = (topic.attempts || 0) <= 1;
 
-                                                        <div className="space-y-3">
-                                                            <div className="flex items-center justify-between text-xs">
-                                                                <span className="text-gray-600 flex items-center gap-1">
-                                                                    <BarChart3 className="w-3 h-3" />
-                                                                    ព្យាយាម
-                                                                </span>
-                                                                <span className="font-medium text-gray-900">{topic.attempts || 0} ដង</span>
+                                                    return (
+                                                        <div
+                                                            key={topic.id}
+                                                            onClick={isDisabled ? undefined : () => openModal(topic)}
+                                                            className={`relative bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-4 transition-all duration-200 group ${isDisabled
+                                                                ? 'opacity-50 cursor-not-allowed'
+                                                                : 'cursor-pointer hover:shadow-lg hover:border-indigo-200'
+                                                                }`}
+                                                        >
+                                                            <div className="flex items-center gap-2 mb-3">
+                                                                <div className="flex items-center gap-2 p-2 rounded-lg bg-indigo-100 text-indigo-600 group-hover:bg-indigo-200 transition-colors">
+                                                                    <Target className="w-4 h-4" />
+                                                                </div>
+                                                                <h4 className={`font-semibold text-base transition-colors ${isDisabled
+                                                                    ? 'text-gray-500'
+                                                                    : 'text-gray-900 group-hover:text-indigo-600'
+                                                                    }`}>
+                                                                    {topic.name}
+                                                                </h4>
                                                             </div>
 
-                                                            <div>
-                                                                <div className="flex items-center justify-between text-xs mb-1">
+                                                            <div className="space-y-3">
+                                                                <div className="flex items-center justify-between text-xs">
                                                                     <span className="text-gray-600 flex items-center gap-1">
                                                                         <BarChart3 className="w-3 h-3" />
-                                                                        ពិន្ទុខ្ពស់បំផុត
+                                                                        ព្យាយាម
                                                                     </span>
-                                                                    <span className="font-medium text-gray-900">
-                                                                        {typeof topic.userProgress === 'number' ? `${topic.userProgress}%` : 'មិនមាន'}
-                                                                    </span>
+                                                                    <span className="font-medium text-gray-900">{topic.attempts || 0} ដង</span>
                                                                 </div>
-                                                                <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
-                                                                    <div
-                                                                        className="bg-indigo-500 h-2 rounded-full transition-all"
-                                                                        style={{
-                                                                            width: typeof topic.userProgress === 'number'
-                                                                                ? `${Math.max(0, Math.min(100, topic.userProgress))}%`
-                                                                                : '0%'
-                                                                        }}
-                                                                    ></div>
+
+                                                                <div>
+                                                                    <div className="flex items-center justify-between text-xs mb-1">
+                                                                        <span className="text-gray-600 flex items-center gap-1">
+                                                                            <BarChart3 className="w-3 h-3" />
+                                                                            ពិន្ទុខ្ពស់បំផុត
+                                                                        </span>
+                                                                        <span className="font-medium text-gray-900">
+                                                                            {typeof topic.userProgress === 'number' ? `${topic.userProgress}%` : 'មិនមាន'}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
+                                                                        <div
+                                                                            className="bg-indigo-500 h-2 rounded-full transition-all"
+                                                                            style={{
+                                                                                width: typeof topic.userProgress === 'number'
+                                                                                    ? `${Math.max(0, Math.min(100, topic.userProgress))}%`
+                                                                                    : '0%'
+                                                                            }}
+                                                                        ></div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
+
+                                                            {isDisabled && (
+                                                                <div className="absolute inset-0 bg-gray-100 bg-opacity-50 rounded-xl flex items-center justify-center">
+                                                                    <span className="text-xs font-medium text-gray-600 bg-white px-2 py-1 rounded-full shadow-sm">
+                                                                        ត្រូវព្យាយាមយ៉ាងហោចណាស់ ២ ដង
+                                                                    </span>
+                                                                </div>
+                                                            )}
                                                         </div>
-                                                    </div>
-                                                ))}
+                                                    );
+                                                })}
                                             </div>
                                         </div>
                                     </div>
