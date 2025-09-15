@@ -35,7 +35,6 @@ export default function Sidebar({ onSearch }: SidebarProps) {
         <div className="flex items-center gap-3">
           <div className="flex-1">
             <input
-              disabled
               type="text"
               placeholder="ស្វែងរកប្លុក..."
               className="w-full py-2 px-3 border border-indigo-500/20 rounded-lg text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
@@ -116,7 +115,6 @@ export default function Sidebar({ onSearch }: SidebarProps) {
           </label>
           <input
             type="text"
-            disabled
             id="search-input"
             className="w-full py-3 px-4 border border-indigo-500/20 rounded-xl text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
             placeholder="ស្វែងរកប្លុក..."

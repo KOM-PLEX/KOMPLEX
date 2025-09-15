@@ -12,7 +12,7 @@ export const searchVideos = async (
       offset,
     },
   });
-  return response.data.data;
+  return { data: response.data.data, isMatch: response.data.isMatch };
 };
 
 // export const searchVideosService = async (
