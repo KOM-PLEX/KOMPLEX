@@ -67,6 +67,8 @@ import Spine from "@/components/pages/docs/grade-12/biology/nervous/Spine";
 import Role from "@/components/pages/docs/grade-12/biology/nervous/Role";
 import Neuron from "@/components/pages/docs/grade-12/biology/nervous/Neuron";
 import CentralNervous from "@/components/pages/docs/grade-12/biology/nervous/CentralNervous";
+import ADNFormulars from "@/components/pages/docs/grade-12/biology/adn/ADNFormulars";
+import QuestionAnswer from "@/components/pages/docs/grade-12/biology/adn/QuestionAnswer";
 
 export const biology: Content = {
   subject: "biology",
@@ -390,14 +392,19 @@ export const biology: Content = {
           component: MolecularForm,
         },
         {
-          title: "បរិមាណ ADN ក្នុងកោសិកា",
+          title: "ស្វ័យដំឡើងទ្វេ ADN",
           englishTitle: "quantity-of-dna-in-cell",
           component: DnaQuantity,
         },
         {
-          title: "ស្វ័យដំឡើងទ្វេ ADN",
+          title: "រូបមន្តសង្ខេប",
+          englishTitle: "summary-of-dna-replication",
+          component: ADNFormulars,
+        },
+        {
+          title: "សំណួរ & លំហាត់",
           englishTitle: "dna-self-replication",
-          component: ComingSoon,
+          component: QuestionAnswer,
         },
       ],
     },
@@ -578,3 +585,4 @@ export const biology: Content = {
     },
   ],
 };
+

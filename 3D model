@@ -1,0 +1,261 @@
+[33mcommit 5fc20dc9826d8d0a3304ef09c5fda450de9268e5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mphysics[m[33m)[m
+Author: ouk-vatana <vatana.ouk.109233120@acestudent.org>
+Date:   Sun Sep 7 12:52:58 2025 +0700
+
+    3D model
+
+[33mcommit e7f69ab3e64d5b4af3d3487659d43419f2fb3b48[m
+Author: ouk-vatana <vatana.ouk.109233120@acestudent.org>
+Date:   Sun Sep 7 12:46:22 2025 +0700
+
+    3D_model
+
+[33mcommit d2beb9b96959341380a3b2bae29cfe1256f8c341[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: ec4042f cce1b8a
+Author: Chanraksa Ory <123465277+RaksaOC@users.noreply.github.com>
+Date:   Tue Aug 26 10:10:18 2025 +0700
+
+    Merge pull request #26 from RaksaOC/dev-frontend
+    
+    feat: conic, vector lesson
+
+[33mcommit cce1b8a2019e79b7b5400e7b24a3268abda15211[m[33m ([m[1;31morigin/dev-frontend[m[33m)[m
+Merge: a52287c 0f09124
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Tue Aug 26 09:55:34 2025 +0700
+
+    merged with conic vector
+
+[33mcommit 0f09124551366662e1f69465ef7e02627acd8298[m[33m ([m[1;31morigin/conic-vector[m[33m)[m
+Author: Hak_Kimly <kimly.hak@student.cadt.edu.kh>
+Date:   Mon Aug 25 20:49:26 2025 +0700
+
+    update vector and conic
+
+[33mcommit a52287c3c3702412079690e490007b2c98dbdd4c[m
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Thu Aug 21 17:47:23 2025 +0700
+
+    changed landing page hero section
+
+[33mcommit ec4042fe9ab758dc3b1ca62ffa325a1f934e9ab3[m[33m ([m[1;31morigin/physic[m[33m)[m
+Merge: 5206462 89283b5
+Author: Chanraksa Ory <123465277+RaksaOC@users.noreply.github.com>
+Date:   Wed Aug 20 17:12:44 2025 +0700
+
+    Merge pull request #25 from RaksaOC/dev-frontend
+    
+    improved landing page
+
+[33mcommit 89283b56caca88a1b8fdce12910df27199f6d6e6[m[33m ([m[1;31morigin/feat/landing-page[m[33m)[m
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Wed Aug 20 17:06:33 2025 +0700
+
+    improved landing page
+
+[33mcommit 52064627237c70ec3d0c3db4967ac14288e3a7ea[m
+Merge: cdbc8ff 5609a17
+Author: Chanraksa Ory <123465277+RaksaOC@users.noreply.github.com>
+Date:   Tue Aug 19 11:57:47 2025 +0700
+
+    Merge pull request #24 from RaksaOC/dev-frontend
+    
+    feat: derivative, integral
+
+[33mcommit 5609a17cb0f7ef5f20e814b27a418bb028ced1b6[m[33m ([m[1;32mdev-frontend[m[33m)[m
+Merge: bc85341 cdbc8ff
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Tue Aug 19 11:57:33 2025 +0700
+
+    fixed merge error
+
+[33mcommit bc85341961caaed2209ed39c1827a0e9a75bbe23[m
+Merge: 7a02469 4498989
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Tue Aug 19 11:47:22 2025 +0700
+
+    merged with derive and integral
+
+[33mcommit 4498989cd03f985a1f0dfe764a8112889fcdee88[m[33m ([m[1;31morigin/derivative[m[33m)[m
+Author: Nei tong <Hengneitong.keo@student.cadt.edu.kh>
+Date:   Tue Aug 19 10:35:04 2025 +0700
+
+    Done on Practice component
+
+[33mcommit 43892b6345b4a11397d5bb5edbd69b7f68ed94a5[m
+Author: Nei tong <Hengneitong.keo@student.cadt.edu.kh>
+Date:   Tue Aug 19 10:31:57 2025 +0700
+
+    Done on Derivative and Integral
+
+[33mcommit cdbc8ff3966d067fe12284d0deee676b18989dc6[m
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Mon Aug 18 20:07:13 2025 +0700
+
+    fixed error
+
+[33mcommit fb8c1ff980a7b679fc401fd2fb613e489b8ea5cf[m
+Merge: 5b26ff0 7a02469
+Author: Chanraksa Ory <123465277+RaksaOC@users.noreply.github.com>
+Date:   Mon Aug 18 20:03:27 2025 +0700
+
+    Merge pull request #23 from RaksaOC/dev2
+    
+    feat: More lessons
+
+[33mcommit 7a024692d07d8fad0a55d1d6efaa8119d2567bae[m
+Merge: d7d0aca f62d7ca
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Mon Aug 18 20:01:04 2025 +0700
+
+    Merge branch 'Probab' of https://github.com/RaksaOC/KOMPLEX into dev2
+
+[33mcommit d7d0acad56b226925c4c0a4106d7050b7fc5e845[m
+Merge: 91479f1 4c72b3c
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Mon Aug 18 20:00:39 2025 +0700
+
+    merged with conic vector
+
+[33mcommit 91479f13fccdcdc2e67d71483dbc1253b9fd91bc[m
+Merge: c43bfd4 7633ecb
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Mon Aug 18 19:46:14 2025 +0700
+
+    Merge branch 'complex-limit' of https://github.com/RaksaOC/KOMPLEX into dev2
+
+[33mcommit c43bfd4ce8930c4e080a8e710dccad9a973e8e46[m
+Merge: 5b26ff0 10c5c5b
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Mon Aug 18 19:45:17 2025 +0700
+
+    merged with limit
+
+[33mcommit 7633ecb1a27d93b991caed6bae0ee1bb2ffb62ee[m[33m ([m[1;31morigin/complex-limit[m[33m, [m[1;32mcomplex-limit[m[33m)[m
+Author: ouk-vatana <vatana.ouk.109233120@acestudent.org>
+Date:   Mon Aug 18 15:06:36 2025 +0700
+
+    changed responsive
+
+[33mcommit 10c5c5b396fc671c77a6eb2161796fd068758edb[m
+Merge: d409fb2 cf5381a
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Mon Aug 18 13:04:51 2025 +0700
+
+    Merge remote-tracking branch 'origin/dev2' into complex-limit
+
+[33mcommit f62d7ca830f8b327de616fbe659fb55a96f1a4c1[m[33m ([m[1;32mProbab[m[33m)[m
+Author: RaFat <manrafat2006@gmail.com>
+Date:   Mon Aug 18 13:04:18 2025 +0700
+
+    update chemistry lesson
+
+[33mcommit 4c72b3c90ac26d43bfd563a189777c0a507c9976[m
+Author: Hak_Kimly <kimly.hak@student.cadt.edu.kh>
+Date:   Mon Aug 18 13:01:36 2025 +0700
+
+    almost done
+
+[33mcommit d409fb20f37300bdc1201d87bebbf461ce43a28a[m[33m ([m[1;32mrescue[m[33m)[m
+Author: ouk-vatana <vatana.ouk.109233120@acestudent.org>
+Date:   Mon Aug 18 11:54:12 2025 +0700
+
+    full-complex and limit
+
+[33mcommit 5b26ff027bf8ec3b41b0b948b5a5dfd00e644b21[m
+Merge: bb9d37b b68aff3
+Author: Chanraksa Ory <123465277+RaksaOC@users.noreply.github.com>
+Date:   Sat Aug 16 11:22:37 2025 +0700
+
+    Merge pull request #22 from RaksaOC/biology
+    
+    types of gymsosperms lesson
+
+[33mcommit b68aff3567ca6c543931c15cdf988fff2a66658f[m
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Sat Aug 16 11:22:06 2025 +0700
+
+    fixed error
+
+[33mcommit 5262b0404dd036104df10622fdf3b5703dcf4d6f[m
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Sat Aug 16 11:13:40 2025 +0700
+
+    gymnosperm types topic
+
+[33mcommit bb9d37bedd8bea5547c81c3f96c4ea93788b1287[m
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Fri Aug 15 21:34:53 2025 +0700
+
+    block backend related features
+
+[33mcommit 154c6bd65b67eecdda48819d0548d1609127da3b[m
+Merge: a6e6c52 49ef4de
+Author: Chanraksa Ory <123465277+RaksaOC@users.noreply.github.com>
+Date:   Thu Aug 14 15:13:23 2025 +0700
+
+    Merge pull request #21 from RaksaOC/Probab
+    
+    Probab
+
+[33mcommit 49ef4ded06c99d691205b87de85a992aeda3ea67[m
+Merge: 941e9f6 a6e6c52
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Thu Aug 14 15:12:41 2025 +0700
+
+    merged with main
+
+[33mcommit 941e9f64c815221a3f11690ab904e2c6475c0070[m
+Author: RaFat <manrafat2006@gmail.com>
+Date:   Thu Aug 14 14:37:49 2025 +0700
+
+    created sidebar chemistry
+
+[33mcommit 051296d6eacece6683e7358e20ddae2fc9fbfe2d[m
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Thu Aug 14 13:28:13 2025 +0700
+
+    feat: docheader hide on scroll (mobile)
+
+[33mcommit 57f5cce9ecfc59ac35fbaebb3a1fb1e335663b19[m
+Author: RaFat <manrafat2006@gmail.com>
+Date:   Thu Aug 14 11:34:21 2025 +0700
+
+    create sidebar physic
+
+[33mcommit a6e6c5280bbed682b735da31e482243dc4521f2c[m
+Merge: dc168bd bf897ee
+Author: Chanraksa Ory <123465277+RaksaOC@users.noreply.github.com>
+Date:   Thu Aug 14 11:03:59 2025 +0700
+
+    Merge pull request #20 from RaksaOC/biology
+    
+    Biology sidebar and other grades subjects sidebar
+
+[33mcommit bf897ee224ea513d1b0c6c884b9eae20b0cdcb9c[m
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Thu Aug 14 11:01:34 2025 +0700
+
+    finished sidebar of all high school grades
+
+[33mcommit 28cb8c7fed248a8cfc7674c1ffcdea4e34e10bcd[m
+Merge: 82bde77 3d139ed
+Author: RaFat <manrafat2006@gmail.com>
+Date:   Thu Aug 14 00:53:52 2025 +0700
+
+    finish probab and diff
+
+[33mcommit cf5381a37b003f071ecaded7a5b7bb59837ed18d[m[33m ([m[1;31morigin/dev2[m[33m)[m
+Author: Chanraksa Ory <OCraksa@gmail.com>
+Date:   Tue Aug 12 21:08:04 2025 +0700
+
+    feat: create-video page
+
+[33mcommit 9fbae9ba18f0b665179688c618771a9f2ee1365f[m
+Merge: 58d264b 3d139ed
+Author: Hak_Kimly <kimly.hak@student.cadt.edu.kh>
+Date:   Tue Aug 12 13:40:02 2025 +0700
+
+    merged with dev2 for refactored types
+
+[33mcommit 58d264b5e33dc0905aa00e6

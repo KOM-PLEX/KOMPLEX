@@ -39,7 +39,7 @@ const FirstTopicContent: TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
              <p>ពិសោធន៍៖ គេដាក់ <span className='text-[13px]'><InlineMath math="CaCO_{3}" /></span> ទំហំល្មមចំនួន 20g , ដុំ <span className='text-[13px]'><InlineMath math="CaCO_{3}" /></span> តូចៗ20g និងម្សៅ <span className='text-[13px]'><InlineMath math="CaCO_{3}" /></span> 20g ទៅក្នុងសូលុយស្យុង  <span className='text-[13px]'><InlineMath math="HCl" /></span> ក្នុងកែវបីផ្សេងគ្នារៀង ដែលកែវនីមួយៗមានកំហាប់ 1M មាឌ 200mL ។</p>
-            <img className='w-130' src="/chemistry/Pic20.png" alt="" />                                       
+            <img className='w-130' src="/chemistry/pic20.png" alt="" />                                       
              <p>សង្កេត៖ ប្រតិកម្មដោយប្រេីម្សៅ <span className='text-[13px]'><InlineMath math="CaCO_{3}" /></span> ជាមួយ <span className='text-[13px]'><InlineMath math="HCl" /></span> លឿនជាងប្រេីដុំតូចៗ និងលឿនជាដុំធំតាមរៀង ។</p>
              <p>សន្និដ្ឋាន៖ ល្បឿនប្រិតកម្មអាស្រ័យលើទំហំភាគល្អិត។ ទំហំភាគល្អិតនៃអង្គធាតុប្រតិករ កាន់តែតូច ល្បឿនប្រតិកម្មកាន់តែលឿន។</p>
             <p>បកស្រាយ៖ កាលណាទំហំភាគល្អិតកាន់តែតូច នាំឲ្យមានការទង្គិចប្រសិទ្ធ រវាងអង្គធាតុប្រតិករកាន់តែច្រើនជាហេតុធ្វើឲ្យល្បឿនប្រតិកម្មកាន់តែលឿន។</p>
@@ -72,7 +72,7 @@ const SecondTopicContent: TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
              <p>ពិសោធន៍៖ រៀបចំកែវបីដាក់សូលុយស្យុង KI ដែលមានកំហាប់ខុសគ្នាៗ ដោយមានបន្ថែមសូលុយស្យុង <span className='text-[13px]'><InlineMath math="H_{2}SO_{4}" /></span> បន្តិច ។​ បន្ទាប់មកចាក់ <span className='text-[13px]'><InlineMath math="H_{2}O_{2}" /></span> ក្នុងបរិមាណស្មេីគ្នា កំហាប់ស្មេីគ្នាចូលក្នុងកែវទាំងបីក្នុងពេលតែមួយ ។</p>
-            <img className='w-100' src="/chemistry/Pic21.png" alt="" />                                                    
+            <img className='w-100' src="/chemistry/pic21.png" alt="" />                                                    
              <p>សង្កេត៖ កែវដែលមានកំហាប់ <span className='text-[13px]'><InlineMath math="KI" /></span> ខាប់ខ្លាំង <span className='text-[13px]'><InlineMath math="(I^{-})" /></span> នោះការឡេីងពណ៌ក្រហមត្នោតនៃ <span className='text-[13px]'><InlineMath math="I_{2}" /></span> លឿនជាងកែវដែលមានកំហាប់ <span className='text-[13px]'><InlineMath math="KI" /></span> រាវ ឬ <span className='text-[13px]'><InlineMath math="(I^{-})" /></span> តិច ។</p>
              <p>សន្និដ្ឋាន៖ ល្បឿនកំណអង្គធាតុកកើត ឬល្បឿនបំបាត់អង្គធាតុប្រតិករ កើនកាលណាកំហាប់អង្គធាតុប្រតិករកើនឡើង។</p>
             <p>បំណកស្រាយ៖ កំហាប់អង្គធាតុប្រតិករកើន នាំឲ្យមានទង្គិចប្រសិទ្ធច្រើន ដូចនេះល្បឿនបំបាត់ឬល្បឿនកំណក៏កើនឡើងដែរ។</p>
@@ -138,7 +138,7 @@ const FourthTopicContent: TopicContent = {
              <p>ពិសោធន៍៖ បំពង់សាកពីរ A និង B ដាក់សូលុយស្យុង <span className='text-[13px]'><InlineMath math="I^{-}" /></span> ប្រហែល <span className='text-[13px]'><InlineMath math="\frac{1}{4}" /></span>នៃបំពង់សាកដោយមាន
               លាយសូលុយស្យុង <span className='text-[13px]'><InlineMath math="H_{2}SO_{4}" /></span> បន្តិច។ បន្ទាប់មក យកបំពង់សាក A ដាក់ត្រាំក្នុង ទឹកកក
               និងបំពង់សាក B ត្រាំក្នុងទឹកក្តៅ។ ចាក់សូលុយស្យុង <span className='text-[13px]'><InlineMath math="H_{2}SO_{4}" /></span> ប្រហែល <span className='text-[13px]'><InlineMath math="\frac{1}{4}" /></span> ដែរ ទៅក្នុង បំពង់សាកទាំងពីរខាងលើក្នុងពេលដំណាលគ្នា។</p>
-              <img className='w-100' src="/chemistry/Pic22.png" alt="" />                                                    
+              <img className='w-100' src="/chemistry/pic22.png" alt="" />                                                    
               <p>សង្កេត៖ ចូរកំណត់កម្លាំងអន្តរម៉ូលេគុលនិងសម្ព័ន្ធអ៊ីដ្រូសែ នៃគូក្នុងសមាសធាតុខាងក្រោម៖</p>
               <p>បកស្រាយ៖ នៅពេលសីតុណ្ហភាពកើន ភាគល្អិត (ម៉ូលេគុល អាតូម ឬអីយ៉ុង) ធ្វើចលនាកាន់តែលឿន នាំឲ្យមានទង្គិចប្រសិទ្ធកាន់តែច្រើន។ដូចនេះ ល្បឿននៃប្រតិកម្មកាន់តែលឿនដែរ។</p>
         </div>,
@@ -180,7 +180,7 @@ const SixthTopicContent: TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
             <p>ពិសោធន៍៖ គេមានបំពង់សាកពីរ A និង B ដែលមានមានដាក់ <InlineMath math="H_{2}O_{2}" /> ប្រហែល <InlineMath math="\frac{1}{4} " /> នៃបំពង់សាកនោះ ។ គេពុំឃេីញមានបាតុភូតអ្វីកេីតឡេីងទេ ។ ប៉ុន្តែប្រសិនបេីគេបន្ថែមបរិមាណនៃ <InlineMath math="MnO_{2} " /> ចូលក្នុងបំពង់សាក A ។</p>
-              <img className='w-100' src="/chemistry/Pic23.png" alt="" />                                                     
+              <img className='w-100' src="/chemistry/pic23.png" alt="" />                                                     
             <p>សង្កេត៖ វត្តមាន <InlineMath math="MnO_{2} " /> ក្នុងបំពង់សាក​ A គេឃេីញមានពពុះឧស្ម័នកេីតឡេីង និងអាចធ្វេីរងេីកភ្លេីងធូបឆេះច្រាល ។ ចំណេកបំពង់សាក B ដែលគ្មានវត្តមាន <InlineMath math="MnO_{2} " /> គេគ្មានឃេីញបាតុភូតអ្វីកេីតឡេីងទេ​ ។</p>
             <p>សន្និដ្ឋាន៖ <InlineMath math="MnO_{2} " /> ជាកាតាលីករ ។ </p>   
             <p>បកស្រាយ៖ វត្តមាន <InlineMath math="MnO_{2} " /> ក្នុងបំពង់សាក​ A បានជួយបំបែកឧស្ម័នអុកសុីសែន និងទឹកដោយ <InlineMath math="MnO_{2} " /> រក្សាបរិមាណនៅដដែល ។ </p>   
@@ -270,19 +270,19 @@ const EighthTopicContent: TopicContent = {
               <>
                 <div className='flex flex-col items-start gap-5 text-[13px]'>
                   <div className='h-50 w-50 '>
-                    <img src="/chemistry/Pic14.png" alt="" />                                                  
+                    <img src="/chemistry/pic14.png" alt="" />                                                  
                   </div>
                   <p className='font-bold text-[15px]'>ដំណាក់កាលទី ១</p>
                   <div className='sm:w-80'>
-                    <img src="/chemistry/Pic13.png" alt="" />                          
+                    <img src="/chemistry/pic13.png" alt="" />                          
                   </div>
                   <p className='font-bold text-[15px]'>ដំណាក់កាលទី ២</p>
                   <div className='sm:w-80'>
-                      <img src="/chemistry/Pic16.png" alt="" />   
+                      <img src="/chemistry/pic16.png" alt="" />   
                   </div>
                   <p className='font-bold text-[15px]'>យក ១ + ២ យេីងបាន</p>
                   <div className='sm:w-80'>
-                      <img src="/chemistry/Pic17.png" alt="" />   
+                      <img src="/chemistry/pic17.png" alt="" />   
                   </div>
                   <p>ដូចនេះអុីយ៉ុង <InlineMath math="Fe^{2+}"/> ចូលរួមប្រតិកម្ម តែក្រោយប្រតិកម្មចប់ វាកកេីតឡេីងវិញដដែល ។</p>
 
@@ -317,7 +317,7 @@ const NinethTopicContent: TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
             <p>រេដុកម្មអុីយ៉ុងពែម៉ង់កាណាត <InlineMath math="MnO_{4}^{-} "/> ដោយអាសុីតអុកសាលិច <InlineMath math="H_{2}C_{2}O_{4}"/>។</p>
-            <img className='w-130' src="/chemistry/Pic24.png" alt="" />   
+            <img className='w-130' src="/chemistry/pic24.png" alt="" />   
             <p>អុីយ៉ុង <InlineMath math="Mn^{2+} "/> មានតួនាទីជាកាតាលីករក្នុងប្រតិកម្ម ។</p>
           
         </div>,
