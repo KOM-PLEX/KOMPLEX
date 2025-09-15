@@ -361,7 +361,7 @@ const EighthTopicContent: TopicContent = {
       </>
     ),
   },
-
+}
 
 const NinethTopicContent: TopicContent = {
   definition: {
