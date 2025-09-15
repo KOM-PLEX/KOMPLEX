@@ -20,6 +20,12 @@ export default function Sidebar({ onSearch }: SidebarProps) {
         onSearch?.(query);
     };
 
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleSearch(e.currentTarget.value);
+        }
+    };
+
     return (
         <>
             {/* Mobile/Tablet Secondary Bar */}
@@ -28,10 +34,12 @@ export default function Sidebar({ onSearch }: SidebarProps) {
                     <div className="flex-1">
                         <input
                             type="text"
+                            disabled
                             placeholder="ស្វែងរកការពិភាក្សា..."
                             className="w-full py-2 px-3 border border-indigo-500/20 rounded-lg text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
                             value={searchTerm}
-                            onChange={(e) => handleSearch(e.target.value)}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyPress={handleKeyPress}
                         />
                     </div>
                     <Link href={"/me/create-forum"} className="bg-indigo-600 text-white py-2 px-4 rounded-lg border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
@@ -60,11 +68,13 @@ export default function Sidebar({ onSearch }: SidebarProps) {
                     </label>
                     <input
                         type="text"
+                        disabled
                         id="search-input"
                         className="w-full py-3 px-4 border border-indigo-500/20 rounded-xl text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
                         placeholder="ស្វែងរកការពិភាក្សា..."
                         value={searchTerm}
-                        onChange={(e) => handleSearch(e.target.value)}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyPress={handleKeyPress}
                     />
                 </div>
 
