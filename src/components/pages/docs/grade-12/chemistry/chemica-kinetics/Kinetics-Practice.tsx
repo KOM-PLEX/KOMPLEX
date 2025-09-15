@@ -184,16 +184,16 @@ const Acid_base_practice = () => {
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
           <p>ក. សមីការតុល្យការនៃប្រតិកម្មគូរេដុក</p>
-          <img className="w-70 h-60" src="/chemistry/Pic37.png" alt="" />
+          <img className="w-70 h-60" src="/chemistry/pic37.png" alt="" />
           <p>ខ. គេអាចប្រេីអុីយ៉ុង <InlineMath math="Fe^{3+}" />  ធ្វេីជាកាតាលីករនៃប្រតិកម្មបាន ព្រោះតម្លៃប៉ូតង់ស្យែលស្តង់ដារនៃគូ <InlineMath math="Fe^{3+}/ Fe^{2+} = 0.77 V " /> ស្ថិតនៅចន្លោះប៉ូតង់ស្យែលស្តង់ដារនៃគូរេដុកទាំងពីរនៃសមីការ ។</p>
           <p>គ. សមីការបញ្ជាក់ដែលមានការចូលរួមពីកាតាលីករ ​<InlineMath math="Fe^{3+}" /></p>
-          <img className="w-70 h-44" src="/chemistry/Pic38.png" alt="" />
+          <img className="w-70 h-44" src="/chemistry/pic38.png" alt="" />
           <p className="font-bold text-[15px]">ដំណាក់កាលទី ១</p>
-          <img className="w-90 h-40" src="/chemistry/Pic39.png" alt="" />
+          <img className="w-90 h-40" src="/chemistry/pic39.png" alt="" />
           <p className="font-bold text-[15px]">ដំណាក់កាលទី ២</p>
-          <img className="w-90 h-40" src="/chemistry/Pic40.png" alt="" />
+          <img className="w-90 h-40" src="/chemistry/pic40.png" alt="" />
           <p className="font-bold text-[15px]">បូកសមីការ (1) និង (2) គេបានសមីការតុល្យការឌីស្មួតកម្ម ​<InlineMath math="H_{2}O_{2}" /></p>
-          <img className="w-90 h-40" src="/chemistry/Pic41.png" alt="" />
+          <img className="w-90 h-40" src="/chemistry/pic41.png" alt="" />
         </div>,
       ]
     },
@@ -214,7 +214,7 @@ const Acid_base_practice = () => {
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
           <p className="font-bold">ក. សមីការប្រតិកម្មគូរេដុក</p>
-          <img className="w-80 h-50" src="/chemistry/Pic43.png" alt="" />
+          <img className="w-80 h-50" src="/chemistry/pic43.png" alt="" />
           <p className="font-bold">ខ. ទាញរកល្បឿនកំណ <InlineMath math="O_{2}" /></p>
           <p>បម្រាប់ <InlineMath math="V(Mn^{2+})" /> = <InlineMath math="2 \times 10^{-5} M" /></p>
           <p>តាមសមីការ <InlineMath math="n(O_{2}) = \frac{5}{2} \cdot n(Mn^{2+})" /></p>
@@ -242,9 +242,9 @@ const Acid_base_practice = () => {
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
           <p className="font-bold">ក. សមីការប្រតិកម្មគូរេដុក</p>
-          <img className="w-60 h-30" src="/chemistry/Pic45.png" alt="" />
-          <img className="w-80 h-40" src="/chemistry/Pic46.png" alt="" />
-          <img className="w-80 h-40" src="/chemistry/Pic47.png" alt="" />
+            <img className="w-60 h-30" src="/chemistry/pic45.png" alt="" />
+          <img className="w-80 h-40" src="/chemistry/pic46.png" alt="" />
+          <img className="w-80 h-40" src="/chemistry/pic47.png" alt="" />
           <p>គ. ប្រតិកម្ម (ខ) ជាប្រតិកម្មឌីស្មូតកម្ម ព្រោះអឺយ៉ុង <InlineMath math="S_{2}O_{3}^{2-}" /> ជាអង្គធាតុប្រតិករហើយអាចដើរតួជារេដុករផង និងជាអុកស៊ីតករផង។</p>
           <p>ឃ. បកស្រាយកត្តាពីរយ៉ាងដើម្បីបង្កើនល្បឿនប្រតិកម្មរវាង <InlineMath math="CaCO_{3} " /> ជាមួយសូលុយស្យុង HCl (aq) ក្នុងករណីកំហាប់ HCl ថេរ សមីការៈ </p>
           <InlineMath math="CaCO_{3} + 2HCl \rightarrow CaCl_{2} + H_{2}O + CO_{2}" />
