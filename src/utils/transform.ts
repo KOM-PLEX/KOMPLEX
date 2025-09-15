@@ -123,5 +123,8 @@ export const transformBackendDataToSections = (
     }
   );
 
-  return sections;
+  // SOMEHOW REVERSING IT WORK 
+  // ! TOCHANGE
+
+  return sections.reverse();
 };

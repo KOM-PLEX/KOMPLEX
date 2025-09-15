@@ -14,6 +14,7 @@ import { ExerciseDashboard } from '@/types/user-content/exercise';
 import ExerciseHistoryComponent from '@/components/pages/me/exercises/ExerciseHistory';
 import ExerciseReportComponent from '@/components/pages/me/exercises/ExerciseReport';
 import { useAuth } from '@/hooks/useAuth';
+import api from '@/config/axios';
 
 export default function MyExercises() {
     const { user, loading: authLoading } = useAuth();
@@ -37,8 +38,8 @@ export default function MyExercises() {
                     setIsLoading(true);
 
                     // Fetch dashboard data
-                    const dashboardResponse = await axios.get<ExerciseDashboard>('http://localhost:6969/api/me/exercises/dashboard');
-                    setDashboard(dashboardResponse.data);
+                    const dashboardResponse = await api.get<{ data: ExerciseDashboard }>('/me/exercises/dashboard');
+                    setDashboard(dashboardResponse.data.data);
 
                 } catch (error) {
                     console.error('Error fetching exercise data:', error);
