@@ -67,6 +67,12 @@ import Spine from "@/components/pages/docs/grade-12/biology/nervous/Spine";
 import Role from "@/components/pages/docs/grade-12/biology/nervous/Role";
 import Neuron from "@/components/pages/docs/grade-12/biology/nervous/Neuron";
 import CentralNervous from "@/components/pages/docs/grade-12/biology/nervous/CentralNervous";
+import BigBrain from "@/components/pages/docs/grade-12/biology/nervous/BigBrain";
+import SmallBrain from "@/components/pages/docs/grade-12/biology/nervous/SmallBrain";
+import Medicine from "@/components/pages/docs/grade-12/biology/nervous/Medicine";
+import PeripheralNervous from "@/components/pages/docs/grade-12/biology/nervous/PeripheralNervous";
+import Back from "@/components/pages/docs/grade-12/biology/nervous/Back";
+
 
 export const biology: Content = {
   subject: "biology",
@@ -179,27 +185,27 @@ export const biology: Content = {
         {
           title: "ខួរធំ",
           englishTitle: "brain",
-          component: ComingSoon,
+          component: BigBrain,
         },
         {
           title: "ខួរតូច",
-          englishTitle: "brain",
-          component: ComingSoon,
+          englishTitle: "smallbrain",
+          component: SmallBrain,
         },
         {
           title: "ខួរឆ្អឹងខ្នង",
           englishTitle: "spinal-cord",
-          component: ComingSoon,
+          component: Back,
         },
         {
           title: "បរិមណ្ឌលប្រសាទ",
           englishTitle: "peripheral-nervous-system",
-          component: ComingSoon,
+          component: PeripheralNervous,
         },
         {
           title: "ថ្នាំនិងប្រព័ន្ធប្រសាទ",
           englishTitle: "nervous-system-and-drugs",
-          component: ComingSoon,
+          component: Medicine,
         },
       ],
     },

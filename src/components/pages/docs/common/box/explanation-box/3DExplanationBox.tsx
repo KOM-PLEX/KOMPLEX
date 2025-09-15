@@ -24,7 +24,7 @@ export const ThreeDExplanationBox = ({
     scale = 0.7,
     target = [0, 0, 0],
     canvasBackground,
-    canvasBackgroundColor = 'black',
+    canvasBackgroundColor = 'grey',
     threeDText,
     twoDText,
     height = 400,

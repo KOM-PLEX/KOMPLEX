@@ -88,7 +88,7 @@ export default function Neuron() {
                                 <div><ThreeDExplanationBox 
                                 title="ណឺរ៉ូនឯកប៉ូល"
                                 scale={0.2}
-                                target={[0,0,0]}
+                                target={[0,1,0]}
                                 src="/docs/grade-12/biology/gymnosperms/ekpol.glb"
                                 explanation = {<div>
                                     <h3 className="font-semibold text-blue-800 mb-3">និយមន័យ:</h3>
@@ -108,7 +108,7 @@ export default function Neuron() {
                                 <div><ThreeDExplanationBox 
                                 title="ណឺរ៉ូនទ្វេរប៉ូល"
                                 scale={0.2}
-                                target={[0,0,0]}
+                                target={[0,1,0]}
                                 src="/docs/grade-12/biology/gymnosperms/tvepol.glb"
                                 explanation = {     
                                     <div>
@@ -129,7 +129,7 @@ export default function Neuron() {
                                 <div><ThreeDExplanationBox 
                                 title="ណឺរ៉ូនពហុប៉ូល"
                                 scale={0.2}
-                                target={[0,0,0]}
+                                target={[0,1,0]}
                                 src="/docs/grade-12/biology/gymnosperms/multi.glb"
                                 explanation = {     
                                     <div>
