@@ -21,13 +21,16 @@ interface PracticeCardProps {
 }
 
 export default function PracticeCard({ topic, subjectColors }: PracticeCardProps) {
-    return (
-        <Link
-            href={`/exercises/${topic.id}`}
-            className={`${subjectColors.bg} border-2 ${subjectColors.border} rounded-xl lg:p-6 p-4 hover:shadow-md transition-all hover:scale-101 group`}
-        >
+    const isDisabled = topic.questionCount <= 1;
+
+    const CardContent = () => (
+        <div className={`${subjectColors.bg} border-2 ${subjectColors.border} rounded-xl lg:p-6 p-4 transition-all group ${isDisabled
+            ? ' cursor-not-allowed'
+            : 'hover:shadow-md hover:scale-101'
+            }`}>
             <div className="mb-4">
-                <h4 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors mb-2">
+                <h4 className={`text-lg font-semibold transition-colors mb-2 ${isDisabled ? 'text-gray-500' : 'text-gray-900 group-hover:text-indigo-600'
+                    }`}>
                     {topic.name}
                 </h4>
                 <div className="flex items-center gap-2 text-sm text-gray-600 mb-3">
@@ -67,6 +70,21 @@ export default function PracticeCard({ topic, subjectColors }: PracticeCardProps
                     </div>
                 )}
             </div>
+        </div>
+    );
+
+    return isDisabled ? (
+        <div className="relative">
+            <CardContent />
+            <div className="absolute inset-0 bg-gray-400/50  rounded-xl flex items-center justify-center">
+                <span className=" font-medium text-gray-600 bg-white px-2 py-1 rounded-full shadow-sm">
+                    នឹងមកជូននូវឆាប់នេះ
+                </span>
+            </div>
+        </div>
+    ) : (
+        <Link href={`/exercises/${topic.id}`}>
+            <CardContent />
         </Link>
     );
 }
