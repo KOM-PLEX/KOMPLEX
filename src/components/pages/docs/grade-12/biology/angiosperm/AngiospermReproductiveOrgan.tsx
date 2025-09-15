@@ -15,8 +15,8 @@ export default function AngiospermReproductiveOrgan() {
                         <div className="grid grid-cols-1 gap-4">
                             <ThreeDExplanationBox
                                 title="រចនាសម្ព័ន្ធនៃផ្ការុក្ខជាតិអង់ស្យូស្ពៃម"
-                                scale={8}
-                                target={[0, 0, 0]}
+                                scale={1.5}
+                                target={[0, 0.5, 0]}
                                 canvasBackground="white"
                                 src="/docs/grade-12/biology/gymnosperms/anatomy_of_a_flower.glb"
                                 explanation={

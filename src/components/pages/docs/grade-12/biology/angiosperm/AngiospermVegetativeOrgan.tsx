@@ -108,8 +108,8 @@ export default function AngiospermVegetativeOrgan() {
                         <div className="grid grid-cols-1 gap-4">
                             <ThreeDExplanationBox
                                 title="រូបផ្គុំនៃស្លឹករុក្ខជាតិ"
-                                scale={10}
-                                target={[0, 0, 0]}
+                                scale={4}
+                                target={[0, 1, 0]}
                                 canvasBackground = 'white'
                                 src="/docs/grade-12/biology/gymnosperms/ANATOMY.glb"
                                 explanation={
