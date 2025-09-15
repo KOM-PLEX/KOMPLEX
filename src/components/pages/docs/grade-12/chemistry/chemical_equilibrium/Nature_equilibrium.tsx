@@ -45,28 +45,6 @@ const FirstTopicContent: TopicContent = {
       </>
     ),
   },
-
-  example: {
-    question: [
-      <div className="flex flex-col items-start gap-3" key="q1">
-
-      </div>,
-    ],
-    steps: [
-
-
-    ],
-    answer: (
-      <div>
-
-      </div>
-    )
-  },
-  exercise: {
-    questions: [
-
-    ]
-  },
 }
 
 
@@ -102,28 +80,6 @@ const SecondTopicContent : TopicContent = {
         </ul>
       </>
     ),
-  },
-
-  example: {
-    question: [
-        <div className="flex flex-col items-start gap-3" key="q1">
-           
-        </div>,
-    ],
-    steps: [
-        
-         
-    ],
-    answer:(
-            <div>
-                
-            </div> 
-        )
-  },
-  exercise: {
-    questions: [
-        
-    ]
   },
 }
 
