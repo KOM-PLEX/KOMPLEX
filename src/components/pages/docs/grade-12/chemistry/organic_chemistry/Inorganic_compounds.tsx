@@ -317,7 +317,9 @@ const EighthTopicContent: TopicContent = {
           src: "/chemistry/Benzaldehyde.svg.png",
           imageAlt: "",
           explanation: [
-             
+              "ជាអាល់ដេអុីតដែលមានវង់សែនជាមូលដ្ឋាន។",
+              "ប្រើក្នុងការផលិតថ្នាំ និងសារធាតុបង្កើតក្លិន។",
+              "ជាផ្នែកសំខាន់ក្នុងឧស្សាហកម្មគីមីអាហារ។",
           ],
       },
       {
@@ -325,7 +327,9 @@ const EighthTopicContent: TopicContent = {
           src: "/chemistry/Benzoic_acid.svg",
           imageAlt: "",
           explanation: [
-             
+              "ជាការីបុកស៊ីលអាស៊ីតមានវង់ប៉ែន។",
+              "ប្រើជាអ្នកថែរក្សាអាហារ (food preservative)។",
+              "មានសម្បត្តិប្រឆាំងមេរោគ។",
           ],
       },
       {
@@ -333,7 +337,8 @@ const EighthTopicContent: TopicContent = {
           src: "/chemistry/Toluene.svg.png",
           imageAlt: "",
           explanation: [
-             
+            "ប្រើជាអ្នករលាយ (solvent) ក្នុងឧស្សាហកម្ម។",
+            "អាចបម្លែងទៅជាសារធាតុគីមីផ្សេងៗបាន។",
           ],
       },
       {
@@ -341,7 +346,8 @@ const EighthTopicContent: TopicContent = {
           src: "/chemistry/Benzyl_chloride.png",
           imageAlt: "",
           explanation: [
-             
+            "ប្រើក្នុងការផលិតបង់សុីលអាល់កហុល។",
+            "មានប្រតិកម្មខ្លាំងជាមួយ nucleophile។",
           ],
       },
       {
@@ -349,7 +355,9 @@ const EighthTopicContent: TopicContent = {
           src: "/chemistry/acidPtalec.png",
           imageAlt: "",
           explanation: [
-             
+             "មានឈ្មោះពេញថា អាសុីតផថាលិច (Phthalic acid)។",
+              "ប្រើក្នុងការផលិតពណ៌ និងប្លាស្ទិក។",
+              "ជាសារធាតុគីមីសំខាន់ក្នុងឧស្សាហកម្ម។",
           ],
       },
     ]
@@ -407,7 +415,8 @@ const NinethTopicContent: TopicContent = {
           src: "/chemistry/ChlorobenzoicAcid.png",
           imageAlt: "",
           explanation: [
-             
+             "ជាអាសុីតបង់សូអុិចដែលមានក្លរភ្ជាប់នៅទីតាំង p។",
+              "ប្រើក្នុងសមាសធាតុគីមី និងសារធាតុថ្នាំ។",
           ],
       },
       {
@@ -415,7 +424,8 @@ const NinethTopicContent: TopicContent = {
           src: "/chemistry/P-xylene.svg.png",
           imageAlt: "",
           explanation: [
-             
+             "ប្រើជាអ្នករលាយ (solvent) និងក្នុងផលិតផលប្លាស្ទិក។",
+            "ជាផ្នែកសំខាន់ក្នុងសមាសធាតុ PET (polyethylene terephthalate)។",
           ],
       },
       {
@@ -423,7 +433,8 @@ const NinethTopicContent: TopicContent = {
           src: "/chemistry/acidTereptalec.png",
           imageAlt: "",
           explanation: [
-             
+             "ប្រើក្នុងផលិតផលប្លាស្ទិក និងសេរ៉ាមិច។",
+            "ជាសារធាតុគីមីសំខាន់សម្រាប់ផលិត PET bottles និង fibers។",
           ],
       },
       

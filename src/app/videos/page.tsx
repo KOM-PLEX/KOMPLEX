@@ -69,6 +69,12 @@ export default function VideoPage() {
         }
     };
 
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleSearch(e.currentTarget.value);
+        }
+    };
+
     useEffect(() => {
         fetchVideos();
     }, [])
@@ -99,10 +105,12 @@ export default function VideoPage() {
                             <div className="flex-1 relative max-w-[700px]">
                                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                                 <input
+                                    disabled
                                     type="text"
                                     placeholder="ស្វែងរកវីដេអូ..."
                                     value={searchQuery}
-                                    onChange={(e) => handleSearch(e.target.value)}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    onKeyPress={handleKeyPress}
                                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                 />
                             </div>
@@ -137,10 +145,12 @@ export default function VideoPage() {
                             <div className="flex-1 relative max-w-[700px]">
                                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                                 <input
+                                    disabled
                                     type="text"
                                     placeholder="ស្វែងរកវីដេអូ..."
                                     value={searchQuery}
-                                    onChange={(e) => handleSearch(e.target.value)}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    onKeyPress={handleKeyPress}
                                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                 />
                             </div>

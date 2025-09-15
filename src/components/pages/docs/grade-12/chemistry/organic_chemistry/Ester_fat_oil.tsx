@@ -454,7 +454,6 @@ const ThirdTeenthTopicContent: TopicContent = {
             <li>សាប៊ូ ជាល្បាយអំបិលសូដ្យូម ឬប៉ូតាស្យូមនៃអាសុីតកាបុកសុីលិចដែលមានខ្សែកាបូនយ៉ាងវែង(មានកាបូនពី ១២ ទៅ​១៨) គ្មានខ្នែង ។ អំបិលប៉ូតាស្យូមបង្កេីតបានសាប៊ូទន់ជាងអំបិលសូដ្យូម ។</li>
           </div>
           <div>
-            FORMULAR and Reang
           </div>
           <div>
             <li>អុីដ្រូភីល ឬលីប៉ូផូប គឺជាផ្នែកក្បាលរបស់សាប៊ូ <span className='text-[13px]'><InlineMath math="(-COO^{\prime})" /></span>  មានលក្ខណះចំណូលទឹក មិនចំណូលខ្លាញ់ និងប្រេងទេ ។</li>
@@ -472,12 +471,22 @@ const ThirdTeenthTopicContent: TopicContent = {
               <InlineMath math="2R-COO^{\prime} + Ca^{2+} \rightarrow (R-COO)_{2}Ca" />
               <InlineMath math="2R-COO^{\prime} + Mg^{2+} \rightarrow (R-COO)_{2}Mg" />
             </div>
-
           </div>
         </ul>
       </>
     ),
   },
+  imageExplanation: [
+    {
+      title: "ទម្រង់ និងរាងរបស់សាប៊ូ",
+      src: "/chemistry/pic52.png",
+      imageAlt: "ទម្រង់ និងរាងរបស់សាប៊ូ",
+      explanation: [
+        "អុីដ្រូភីល ឬលីប៉ូផូប គឺជាផ្នែកក្បាលរបស់សាប៊ូ មានលក្ខណះចំណូលទឹក មិនចំណូលខ្លាញ់ និងប្រេងទេ ។",
+        "អុីដ្រូផូប ឬលីប៉ូភីល គឺជាខ្សែកាបូន ផ្នែកកន្ទុយរបស់សាប៊ូ មានទំនោរចូលចិត្តខ្លាញ់និងប្រេង មិនចំណូលទឹកទេ ។"
+      ],
+    },   
+  ]
 }
 
 const FourthTeenTopicContent: TopicContent = {
@@ -656,6 +665,11 @@ const Ester_fat_oil = () => {
         {ThirdTeenthTopicContent.tip && (
           <TipBox title={ThirdTeenthTopicContent.tip.title} content={ThirdTeenthTopicContent.tip.content} />
         )}
+        {ThirdTeenthTopicContent.imageExplanation &&
+          Array.isArray(ThirdTeenthTopicContent.imageExplanation) &&
+          ThirdTeenthTopicContent.imageExplanation.map((image: ImageBoxProps, index: number) => (
+            <ImageBox key={index} title={image.title} src={image.src} imageAlt={image.imageAlt} explanation={image.explanation} />
+          ))}
       </div>
       <div>
         {FourthTeenTopicContent.definition && (
