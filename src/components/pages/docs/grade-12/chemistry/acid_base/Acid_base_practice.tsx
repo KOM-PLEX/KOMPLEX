@@ -5,6 +5,7 @@ import SummaryBox from "../../../common/box/SummaryBox";
 import { BookAIcon} from "lucide-react";
 import { PracticeExercise, SummarySection } from "@/types/docs/topic";
 
+
 const Acid_base_practice = () => {
 
 
@@ -59,10 +60,10 @@ const Acid_base_practice = () => {
       description: "សំណួរទី ១",
       problemType: "First Exercise",
       problems: [
-            <p key={"p1"}>តេីមានវិធីប៉ុន្មានយ៉ាងសម្រាប់វាស់ pH របស់សូលុយស្យុង ?</p>,
-            <p key={"p2"}>ដូចម្តេចហៅថា ស្វ័យអុីយ៉ុងកម្មនៃទឹក ?</p>,
-            <p key={"p3"}>តេីគេប្រេី pH សម្រាប់វាស់អ្វី ? ឲនិយមន័យ pH ។</p>,
-            <p key={"p4"}>ដូចម្តេចហៅថា សូលុយស្យុងណឺត ? វាមាន PH ស្មេីប៉ុន្មាន ?</p>
+            <p>តេីមានវិធីប៉ុន្មានយ៉ាងសម្រាប់វាស់ pH របស់សូលុយស្យុង ?</p>,
+            <p>ដូចម្តេចហៅថា ស្វ័យអុីយ៉ុងកម្មនៃទឹក ?</p>,
+            <p>តេីគេប្រេី pH សម្រាប់វាស់អ្វី ? ឲនិយមន័យ pH ។</p>,
+            <p>ដូចម្តេចហៅថា សូលុយស្យុងណឺត ? វាមាន PH ស្មេីប៉ុន្មាន ?</p>
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
@@ -85,8 +86,8 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ២",
       problemType: "Second Exercise",
       problems: [
-        <span className='text-[13px]' key={"p1"}>ចូរកំណត់សមាសធាតុនីមួយៗជាអាសុីត បាស ឬមិនមែន ។ <InlineMath math="HCl , NaCl , Ca(OH)_{2} , NH_{4}Cl , CH_{4} , H_{2}CO_{3} , CaCO_{3} , NaOH" /> </span>,
-        <span className='text-[13px]' key={"p2"}>ចូរកំណត់សមាសធាតុនីមួយៗជាម៉ូណូប្រទិច ឌីប្រូទិច និងទ្រីប្រូទិច ។ <InlineMath math="HCl , HClO_{4} , H_{2}SO_{4} , H_{2}SO_{3} , CH_{3}COOH , HNO_{3} , H_{3}PO_{2} , H_{3}PO_{4}" /> </span>
+        <span className='text-[13px]'>ចូរកំណត់សមាសធាតុនីមួយៗជាអាសុីត បាស ឬមិនមែន ។ <InlineMath math="HCl , NaCl , Ca(OH)_{2} , NH_{4}Cl , CH_{4} , H_{2}CO_{3} , CaCO_{3} , NaOH" /> </span>,
+        <span className='text-[13px]'>ចូរកំណត់សមាសធាតុនីមួយៗជាម៉ូណូប្រទិច ឌីប្រូទិច និងទ្រីប្រូទិច ។ <InlineMath math="HCl , HClO_{4} , H_{2}SO_{4} , H_{2}SO_{3} , CH_{3}COOH , HNO_{3} , H_{3}PO_{2} , H_{3}PO_{4}" /> </span>
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[12px] gap-2">
@@ -125,11 +126,11 @@ const Acid_base_practice = () => {
       description: "សរសេររូបមន្តបាសឆ្លាស់របស់អាសុីត",
       problemType: "Third Exercise",
       problems: [
-        <span key={"p1"} className='text-[13px]'><InlineMath math="HNO_{2}" /></span>,
-        <span key={"p2"} className='text-[13px]'><InlineMath math="H_{2}SO_{4}" /></span>,
-        <span key={"p3"} className='text-[13px]'><InlineMath math="H_{2}S" /></span>,
-        <span key={"p4"} className='text-[13px]'><InlineMath math="HCN" /></span>,
-        <span key={"p5"} className='text-[13px]'><InlineMath math="HCOOH" /></span>,
+        <span className='text-[13px]'><InlineMath math="HNO_{2}" /></span>,
+        <span className='text-[13px]'><InlineMath math="H_{2}SO_{4}" /></span>,
+        <span className='text-[13px]'><InlineMath math="H_{2}S" /></span>,
+        <span className='text-[13px]'><InlineMath math="HCN" /></span>,
+        <span className='text-[13px]'><InlineMath math="HCOOH" /></span>,
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px]">
@@ -159,9 +160,9 @@ const Acid_base_practice = () => {
       description: "បញ្ជាក់ពីគូអាសុីត បាសឆ្លាស់",
       problemType: "Fourth Exercise",
       problems: [
-        <span key={"p1"} className='text-[13px]'><InlineMath math="CH_{3}COO^{-} + HCN \rightleftharpoons CH_{3}COOH + CN^{-}" /></span>,
-        <span key={"p2"} className='text-[13px]'><InlineMath math="HCO_{3}^{-} + HCO_{3}^{-} \rightleftharpoons H_{2}CO_{3} + CO_{3}^{2-}" /></span>,
-        <span key={"p3"} className='text-[13px]'><InlineMath math="H_{2}SO_{4} + SO_{3}^{2-} \rightleftharpoons HSO_{4}^{-} + HSO_{3}^{-}" /></span>,
+        <span className='text-[13px]'><InlineMath math="CH_{3}COO^{-} + HCN \rightleftharpoons CH_{3}COOH + CN^{-}" /></span>,
+        <span className='text-[13px]'><InlineMath math="HCO_{3}^{-} + HCO_{3}^{-} \rightleftharpoons H_{2}CO_{3} + CO_{3}^{2-}" /></span>,
+        <span className='text-[13px]'><InlineMath math="H_{2}SO_{4} + SO_{3}^{2-} \rightleftharpoons HSO_{4}^{-} + HSO_{3}^{-}" /></span>,
       ],
       answers: [
         <div key="a1" className="flex flex-col items-start text-[13px] gap-3">
@@ -186,14 +187,14 @@ const Acid_base_practice = () => {
     description: "សរសេររូបមន្តអាសុីតឆ្លាស់របស់អាសុីត",
     problemType: "Fifth Exercise",
     problems: [
-      <span key={"p1"} className='text-[13px]'><InlineMath math="HS^{-}" /></span>,
-      <span key={"p2"} className='text-[13px]'><InlineMath math="HCO_{3}^{-}" /></span>,
-      <span key={"p3"} className='text-[13px]'><InlineMath math="CO_{3}^{2-}" /></span>,
-      <span key={"p4"} className='text-[13px]'><InlineMath math="H_{2}PO_{4}^{-}" /></span>,
-      <span key={"p5"} className='text-[13px]'><InlineMath math="HPO_{4}^{2-}" /></span>,
-      <span key={"p6"} className='text-[13px]'><InlineMath math="HSO_{4}^{-}" /></span>,
-      <span key={"p7"} className='text-[13px]'><InlineMath math="SO_{4}^{2-}" /></span>,
-      <span key={"p8"} className='text-[13px]'><InlineMath math="SO_{3}^{2-}" /></span>,
+      <span className='text-[13px]'><InlineMath math="HS^{-}" /></span>,
+      <span className='text-[13px]'><InlineMath math="HCO_{3}^{-}" /></span>,
+      <span className='text-[13px]'><InlineMath math="CO_{3}^{2-}" /></span>,
+      <span className='text-[13px]'><InlineMath math="H_{2}PO_{4}^{-}" /></span>,
+      <span className='text-[13px]'><InlineMath math="HPO_{4}^{2-}" /></span>,
+      <span className='text-[13px]'><InlineMath math="HSO_{4}^{-}" /></span>,
+      <span className='text-[13px]'><InlineMath math="SO_{4}^{2-}" /></span>,
+      <span className='text-[13px]'><InlineMath math="SO_{3}^{2-}" /></span>,
     ],
     answers: [
       <div key="a1" className="flex flex-col items-start text-[13px]">
@@ -235,10 +236,10 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ៦",
       problemType: "Sixth Exercise",
       problems: [
-        <div key={"p1"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
           <p>គណនាកំហាប់អុីយ៉ុងអុីដ្រូញ៉ូមរបស់សូលុយស្យុងមួយ ដែលមានកំហាប់អុីយ៉ុងអុីដ្រុកសុីត <InlineMath math="2.8 \cdot 10^{-9} M" /> ។</p>
         </div>,
-        <div key={"p2"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
           <p>សូលុយស្យុងមួយមាន pH ស្មេីនឹង 1.50 ។ គណនាកំហាប់របស់អុីយ៉ុង <InlineMath math="[H_{3}O^{+}]" /> និង <InlineMath math="[OH^{-}]" /> ។</p>
       </div>
       ],
@@ -271,7 +272,7 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ៧",
       problemType: "Seventh Exercise",
       problems: [
-        <div key={"p1"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
             <p>គេដាក់ស័ង្កសីឲមានប្រតិកម្មជាមួយសូលុយស្យុង <InlineMath math="H_{2}SO_{4}" /> ចំនួន 100mL នៅកំហាប់ 6M ។ គណនា:</p>
             <p>ក. ម៉ាសស័ង្កសីស៊ុលផាតដែលទទួលបាន</p>
             <p>ខ. មាឌឧស្ម័នអុីដ្រូសែនដែលភាយចេញពីប្រតិកម្មនៅសីតុណ្ហភាព STP ។</p>
@@ -315,7 +316,7 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ៨",
       problemType: "Eighth Exercise",
       problems: [
-        <div key={"p1"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
             <p>សំបកខ្យងមួយផ្សំពី <InlineMath math="CaCO_{3}" /> មានប្រតិកម្មជាមួយសូលុយស្យុង HCl គេទទួលបាន 1500mL ឧស្ម័ន​ <InlineMath math="CO_{2}" /> នៅសីតុណ្ហភាព STP រួមទាំង <InlineMath math="CaCl_{2}" /> និងទឹក ។ គណនា:</p>
             <p>ក. បរិមាណ <InlineMath math="CaCO_{3}" /> ចូលរួមប្រតិកម្ម</p>
             <p>ខ. មាឌសូលុយស្យុង HCl នៅ 2M ដែលប្រេីក្នុងប្រតិកម្ម</p>
@@ -354,7 +355,7 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ៩",
       problemType: "Ninth Exercise",
       problems: [
-        <div key={"p1"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
             <p>សូលុយស្យុងអាសុីត HCl មួយមានកំហាប់ <InlineMath math="4.5 \cdot 10^{-3} M" /> ។ គណនាកំហាប់របស់អុីយ៉ុង <InlineMath math="[H_{3}O^{+}]" /> និង <InlineMath math="[OH^{-}]" /> ។ ចូរគណនា :</p>
             <p>ក. កំហាប់អុីយ៉ុង <InlineMath math="[H_{3}O^{+}]" /></p>
             <p>ខ. កំហាប់អុីយ៉ុង <InlineMath math="[OH^{-}]" /></p>
@@ -388,7 +389,7 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ១០",
       problemType: "Tenth Exercise",
       problems: [
-        <div key={"p1"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
             <p>ត្រីទឹកសាបអាចរស់បាន នៅក្នុងទឹកដែលមាន pH = 6.5 ទៅ 7.5 ។ អាងចិញ្ចឹមត្រីមួយមាន ទឹកសុទ្ធ 100L (pH = 7.0) ។ គេបានច្រលំចាក់អាសុីតក្លរីឌ្រិច (HCl = 1 mol/L) ចំនួន 10ml ទៅក្នុងអាងនោះ ។</p>
             <p>ក. គណនាកំហាប់អុីយ៉ុងក្លរួ និងអុីយ៉ុងអុីដ្រូញ៉ូម ក្នុងអាង</p>
             <p>ខ. គណនា pH នៃទឹកក្នុងអាងចិញ្ចឹមត្រី ។ តេីត្រីអាចរស់ក្នុងមជ្ឈដ្ឋាននេះបានទេ ?</p>
@@ -424,7 +425,7 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ១១",
       problemType: "Eleventh Exercise",
       problems: [
-        <div key={"p1"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
           <p>
             គេបន្ថែមសូ. <InlineMath math="Pb(NO_{3})_{2}" /> លេីសទៅក្នុង 500mL សូ.{" "}
             <InlineMath math="H_{2}SO_{4}" /> គេទទួលបានកករ 3.03g ។
@@ -499,7 +500,7 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ១២",
       problemType: "Twelfth Exercise",
       problems: [
-        <div key={"p1"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
           <p>
             គេមានសូ.អាសុីត HA ដែលមានកំហាប់ Ca ។ គេដឹងថា pH នៃសូ.អាសុីត នេះមានតម្លៃស្មេី2 ។​
             បេីគេយកសូ.អាសុីត HA ចំនួន Va = 20mL ទៅធ្វេីអត្រាកម្មជាមួយសូ.ស៊ូតនៅសមមួល
@@ -545,7 +546,7 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ១៣",
       problemType: "Thirteenth Exercise",
       problems: [
-        <div key={"p1"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
             <p>ក្នុងទីពីសោធន៍អត្រាកម្មនៃ 20,4mL សូ.អាស៊ីតក្លរីឌ្រីចនៅកំហាប់ 0,883M ធ្វើប្រតិកម្ម បន្សាបជាមួយ <InlineMath math="Ba(OH)_{2}" /> មាឌ 19,3mL ។ គណនាកំហាប់សូ. <InlineMath math="Ba(OH)_{2}" /> និងគណនា pH។ គេរំលាយអ៊ីដ្រូសែនក្លរួ 0,56L ក្នុងទឹកបិទគេទទួលបានសូលុយស្យុងអាស៊ីតក្លរីឌ្រីច 500 mL (មាឌឧស្ម័នវាស់ក្នុងលក្ខខណ្ឌធម្មតា <InlineMath math="V_m = 22,4 L.mol^{-1}" />)។</p>
             <p>1. សរសេរសមីការតុល្យការប្រតិកម្មអ៊ីដ្រូសែនក្លរួ និង ទឹក ។</p>
             <p>2. តើសូលុយស្យុងអាស៊ីតក្លរីឌ្រីចមាន pH ប៉ុន្មាន ។</p>
@@ -593,7 +594,7 @@ const Acid_base_practice = () => {
       description: "លំហាត់ទី ១៤",
       problemType: "Fourteenth Exercise",
       problems: [
-        <div key={"p1"} className="flex flex-col items-start text-[13px] gap-3">
+        <div className="flex flex-col items-start text-[13px] gap-3">
             <p>ដើម្បីបានសមមូលអាស៊ីត បាសគេត្រូវបន្តក់សូ.ប៉ូតាស្យូមអ៊ីស្រុកស៊ីត16 mLនៅកំហាប់ <InlineMath math="Cb = 4 \cdot 10^{-2} mol.L^{-1}" /> ទៅក្នុងសូ.អាស៊ីតក្លរីឌ្រីច 20mL នៅកំហាប់ Ca ។</p>
             <p>ក. សរសេរសមីការតាងប្រតិកម្ម ។</p>
             <p>ខ. រកកំហាប់ Ca នៃសូ.អាស៊ីតក្លរីឌ្រីច ។</p>

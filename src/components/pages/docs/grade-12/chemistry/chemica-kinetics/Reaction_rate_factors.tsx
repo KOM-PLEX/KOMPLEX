@@ -180,7 +180,7 @@ const SixthTopicContent: TopicContent = {
     question: [
         <div className="flex flex-col items-start gap-3" key="q1">
             <p>ពិសោធន៍៖ គេមានបំពង់សាកពីរ A និង B ដែលមានមានដាក់ <InlineMath math="H_{2}O_{2}" /> ប្រហែល <InlineMath math="\frac{1}{4} " /> នៃបំពង់សាកនោះ ។ គេពុំឃេីញមានបាតុភូតអ្វីកេីតឡេីងទេ ។ ប៉ុន្តែប្រសិនបេីគេបន្ថែមបរិមាណនៃ <InlineMath math="MnO_{2} " /> ចូលក្នុងបំពង់សាក A ។</p>
-              <img className='w-100' src="/chemistry/pic23.png" alt="" />                                                     
+            <img className='w-100' src="/chemistry/pic23.png" alt="" />                                                     
             <p>សង្កេត៖ វត្តមាន <InlineMath math="MnO_{2} " /> ក្នុងបំពង់សាក​ A គេឃេីញមានពពុះឧស្ម័នកេីតឡេីង និងអាចធ្វេីរងេីកភ្លេីងធូបឆេះច្រាល ។ ចំណេកបំពង់សាក B ដែលគ្មានវត្តមាន <InlineMath math="MnO_{2} " /> គេគ្មានឃេីញបាតុភូតអ្វីកេីតឡេីងទេ​ ។</p>
             <p>សន្និដ្ឋាន៖ <InlineMath math="MnO_{2} " /> ជាកាតាលីករ ។ </p>   
             <p>បកស្រាយ៖ វត្តមាន <InlineMath math="MnO_{2} " /> ក្នុងបំពង់សាក​ A បានជួយបំបែកឧស្ម័នអុកសុីសែន និងទឹកដោយ <InlineMath math="MnO_{2} " /> រក្សាបរិមាណនៅដដែល ។ </p>   
@@ -270,19 +270,19 @@ const EighthTopicContent: TopicContent = {
               <>
                 <div className='flex flex-col items-start gap-5 text-[13px]'>
                   <div className='h-50 w-50 '>
-                    <img src="/chemistry/pic14.png" alt="" />                                                  
+                    <img src="/chemistry/pic48.png" alt="" />                                                  
                   </div>
                   <p className='font-bold text-[15px]'>ដំណាក់កាលទី ១</p>
                   <div className='sm:w-80'>
-                    <img src="/chemistry/pic13.png" alt="" />                          
+                    <img src="/chemistry/pic49.png" alt="" />                          
                   </div>
                   <p className='font-bold text-[15px]'>ដំណាក់កាលទី ២</p>
                   <div className='sm:w-80'>
-                      <img src="/chemistry/pic16.png" alt="" />   
+                      <img src="/chemistry/pic50.png" alt="" />   
                   </div>
                   <p className='font-bold text-[15px]'>យក ១ + ២ យេីងបាន</p>
                   <div className='sm:w-80'>
-                      <img src="/chemistry/pic17.png" alt="" />   
+                      <img src="/chemistry/pic51.png" alt="" />   
                   </div>
                   <p>ដូចនេះអុីយ៉ុង <InlineMath math="Fe^{2+}"/> ចូលរួមប្រតិកម្ម តែក្រោយប្រតិកម្មចប់ វាកកេីតឡេីងវិញដដែល ។</p>
 
