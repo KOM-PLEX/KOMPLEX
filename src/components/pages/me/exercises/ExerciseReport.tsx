@@ -220,7 +220,7 @@ export default function ExerciseReportComponent() {
                                         <div className="p-4">
                                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                                 {subject.topics.map((topic) => {
-                                                    const isDisabled = (topic.attempts || 0) <= 1;
+                                                    const isDisabled = (topic.questionCount || 0) <= 1;
 
                                                     return (
                                                         <div
