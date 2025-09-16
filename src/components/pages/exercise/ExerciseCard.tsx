@@ -1,6 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 import { Target, Clock } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 interface Topic {
     id: string;
@@ -21,7 +22,17 @@ interface PracticeCardProps {
 }
 
 export default function PracticeCard({ topic, subjectColors }: PracticeCardProps) {
+    const { user, openLoginModal } = useAuth();
+    const router = useRouter();
     const isDisabled = topic.questionCount <= 1;
+
+    const handleCardClick = () => {
+        if (!user) {
+            openLoginModal();
+        } else {
+            router.push(`/exercises/${topic.id}`);
+        }
+    };
 
     const CardContent = () => (
         <div className={`${subjectColors.bg} border-2 ${subjectColors.border} rounded-xl lg:p-6 p-4 transition-all group ${isDisabled
@@ -83,8 +94,8 @@ export default function PracticeCard({ topic, subjectColors }: PracticeCardProps
             </div>
         </div>
     ) : (
-        <Link href={`/exercises/${topic.id}`}>
+        <div onClick={handleCardClick} className="cursor-pointer">
             <CardContent />
-        </Link>
+        </div>
     );
 }

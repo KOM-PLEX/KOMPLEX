@@ -37,11 +37,11 @@ export default function CreateVideoPage() {
     // Prompt auth modal if not authenticated (no redirect)
     const hasPromptedRef = React.useRef(false);
     useEffect(() => {
-        if (!authLoading && !user && !hasPromptedRef.current) {
-            openLoginModal();
+        if (!user) {
+            router.push("/auth");
             hasPromptedRef.current = true;
         }
-    }, [user, authLoading, openLoginModal]);
+    }, []);
 
     const [formData, setFormData] = useState<VideoFormData>({
         title: '',

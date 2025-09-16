@@ -28,11 +28,11 @@ export default function CreateForum() {
     // Prompt auth modal if not authenticated (no redirect)
     const hasPromptedRef = useRef(false);
     useEffect(() => {
-        if (!authLoading && !user && !hasPromptedRef.current) {
-            openLoginModal();
+        if ( !user ) {
+            router.push("/auth");
             hasPromptedRef.current = true;
         }
-    }, [user, authLoading, openLoginModal]);
+    }, []);
 
     const suggestedForumTypes = ['បទពិសោធន៍', 'វិធីសាស្ត្ររៀន', 'រឿងរ៉ាវ', 'គន្លឹះ'];
     const suggestedTopics = ['គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];

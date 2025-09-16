@@ -8,8 +8,10 @@ import { createBlog } from '@/services/me/blogs';
 import Sidebar from '@/components/pages/me/Sidebar';
 import { useAuth } from '@/hooks/useAuth';
 import BlogEditor from '@/components/common/Editor';
+import { useRouter } from 'next/navigation';
 
 export default function CreateBlog() {
+    const router = useRouter();
     const { user, loading: authLoading, openLoginModal } = useAuth();
     const [title, setTitle] = useState('');
     const [bodyText, setBodyText] = useState('');
@@ -26,11 +28,11 @@ export default function CreateBlog() {
     // Prompt auth modal if not authenticated (no redirect)
     const hasPromptedRef = useRef(false);
     useEffect(() => {
-        if (!authLoading && !user && !hasPromptedRef.current) {
-            openLoginModal();
+        if (!user) {
+            router.push("/auth");
             hasPromptedRef.current = true;
         }
-    }, [user, authLoading, openLoginModal]);
+    }, []);
 
     const suggestedBlogTypes = ['បទពិសោធន៍', 'វិធីសាស្ត្ររៀន', 'រឿងរ៉ាវ', 'គន្លឹះ'];
     const suggestedTopics = ['គណិតវិទ្យា', 'រូបវិទ្យា', 'គីមីវិទ្យា', 'ជីវវិទ្យា', 'អូឡាំពិច'];
