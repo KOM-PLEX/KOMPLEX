@@ -219,7 +219,7 @@ export default function AIChat() {
 
     useEffect(() => {
         if (!user) openLoginModal();
-    }, [user, openLoginModal]);
+    }, []);
 
     // Cleanup all timeouts and intervals on unmount
     useEffect(() => {

@@ -47,7 +47,7 @@ export default function Medicine() {
                                     </div>
                                     
                                     <div className="bg-white p-4 rounded-lg border-l-4 border-red-300">
-                                        <h4 className="font-semibold text-red-700 mb-2">ជំងឺផាកឃីនសុន (Parkinson's Disease)</h4>
+                                        <h4 className="font-semibold text-red-700 mb-2">ជំងឺផាកឃីនសុន (Parkinson&apos;s Disease)</h4>
                                         <div className="space-y-1">
                                             <p className="text-sm text-gray-600"><strong>មូលហេតុ:</strong> ការបាត់បង់ណឺរ៉ូនដូប៉ាមីន</p>
                                             <p className="text-sm text-gray-600"><strong>សញ្ញា:</strong> ការញ័រ ចលនាយឺត</p>
@@ -56,7 +56,7 @@ export default function Medicine() {
                                     </div>
                                     
                                     <div className="bg-white p-4 rounded-lg border-l-4 border-red-300">
-                                        <h4 className="font-semibold text-red-700 mb-2">ជំងឺភ្លេចភ្លាំង (Alzheimer's Disease)</h4>
+                                        <h4 className="font-semibold text-red-700 mb-2">ជំងឺភ្លេចភ្លាំង (Alzheimer&apos;s Disease)</h4>
                                         <div className="space-y-1">
                                             <p className="text-sm text-gray-600"><strong>មូលហេតុ:</strong> ការបាក់ណឺរ៉ូន</p>
                                             <p className="text-sm text-gray-600"><strong>សញ្ញា:</strong> ការភ្លេច ការច្រំដែល</p>
@@ -321,7 +321,7 @@ export default function Medicine() {
                                     <span className="text-red-600 mt-1">🚨</span>
                                     <div>
                                         <strong>ជំងឺសំខាន់ៗ</strong>
-                                        <p className="text-sm text-gray-600">Stroke, Epilepsy, Parkinson's, Alzheimer's</p>
+                                        <p className="text-sm text-gray-600">Stroke, Epilepsy, Parkinsons, Alzheimer&apos;s</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-3">
