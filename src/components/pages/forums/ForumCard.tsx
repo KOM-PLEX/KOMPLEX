@@ -56,6 +56,10 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
     };
     const handleUpvote = async (e: React.MouseEvent) => {
         e.stopPropagation();
+        if (!user) {
+            openLoginModal();
+            return;
+        }
         try {
             // Update UI optimistically
             if (upvoted) {
