@@ -5,8 +5,9 @@ import { Target, BarChart3, ChevronDown } from 'lucide-react';
 import ReportViewer from './ReportViewer';
 import { ExerciseWithAttempts } from '@/types/user-content/exercise';
 import { Listbox, Transition } from '@headlessui/react';
-import { getExercisesByGrade } from '@core-services/feed/exercises';
+import { meExerciseService } from '@/services/index';
 import { Subject } from '@/types/content/exercises';
+import { Exercise } from '@/types/content/exercises';
 import {
     transformBackendDataToSubjects,
     getSubjectColorVariants,
@@ -49,8 +50,8 @@ export default function ExerciseReportComponent() {
         try {
             setIsLoading(true);
             setError(null);
-            const data = await getExercisesByGrade(selectedGrade.name);
-            const transformedSubjects = transformBackendDataToSubjects(data);
+            const data = await meExerciseService.getExercisesWithAttempts(selectedGrade.name);
+            const transformedSubjects = transformBackendDataToSubjects(data as unknown as Exercise);
             if (transformedSubjects.length > 0) {
                 setSubjects(transformedSubjects);
             } else {

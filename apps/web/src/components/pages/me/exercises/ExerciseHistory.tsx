@@ -5,7 +5,7 @@ import { Plus, Target } from 'lucide-react';
 import { ExerciseHistory } from '@/types/user-content/exercise';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import api from '@core-configs/axios';
+import api from '@/configs/axios';
 
 export default function ExerciseHistoryComponent() {
     const [history, setHistory] = useState<ExerciseHistory[]>([]);

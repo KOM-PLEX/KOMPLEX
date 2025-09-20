@@ -3,10 +3,7 @@ import { Send, ThumbsUp } from 'lucide-react';
 import Link from 'next/link';
 import { ForumReply } from "@/types/content/forums";
 import { getTimeAgo } from '@core-utils/formater';
-import { createForumReply } from '@core-services/me/forum-replies';
-import { toggleForumReplyLike } from '@core-services/me/forum-replies';
-import { createVideoReply } from '@core-services/me/video-replies';
-import { toggleVideoReplyLike } from '@core-services/me/video-replies';
+import { meForumReplyService, meVideoReplyService } from '@/services/index';
 import { VideoReply } from '@/types/content/videos';
 import { useAuth } from "@hooks/useAuth";
 
@@ -45,9 +42,9 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
 
         try {
             if (replyType === 'forum') {
-                await toggleForumReplyLike(reply.id, wasLiked);
+                await meForumReplyService.toggleForumReplyLike(reply.id, wasLiked);
             } else {
-                await toggleVideoReplyLike(reply.id, wasLiked);
+                await meVideoReplyService.toggleVideoReplyLike(reply.id, wasLiked);
             }
         } catch (error) {
             console.error('Error toggling reply like:', error);
@@ -68,9 +65,9 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
             try {
                 const fullReply = `@${reply.username?.toString()} ${replyText.trim()}`;
                 if (replyType === 'forum') {
-                    await createForumReply(commentId, fullReply as string);
+                    await meForumReplyService.createForumReply(commentId, fullReply as string);
                 } else {
-                    await createVideoReply(commentId, fullReply as string);
+                    await meVideoReplyService.createVideoReply(commentId, fullReply as string);
                 }
                 onSubmitReply(commentId, fullReply); // Use parent comment ID instead of reply.id
                 setReplyText('');

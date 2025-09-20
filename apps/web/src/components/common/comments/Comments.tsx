@@ -5,10 +5,7 @@ import { ForumComment } from '@/types/content/forums';
 import { VideoComment } from '@/types/content/videos';
 import CommentComponent from './Comment';
 import ContentError from '@components/common/ContentError';
-import { getVideoComments } from '@core-services/feed/video-comments';
-import { createForumComment } from '@core-services/me/forum-comments';
-import { createVideoComment } from '@core-services/me/video-comments';
-import { getForumComments } from '@core-services/feed/forum-comments';
+import { feedVideoCommentService, meForumCommentService, meVideoCommentService, feedForumCommentService } from '@/services/index';
 import { useAuth } from '@hooks/useAuth';
 
 interface CommentProps {
@@ -39,9 +36,9 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
 
                 let fetchedComments: ForumComment[] | VideoComment[];
                 if (type === 'video') {
-                    fetchedComments = await getVideoComments(parentId.toString());
+                    fetchedComments = await feedVideoCommentService.getVideoComments(parentId.toString());
                 } else {
-                    fetchedComments = await getForumComments(parentId.toString());
+                    fetchedComments = await feedForumCommentService.getForumComments(parentId.toString());
                 }
 
                 setComments(fetchedComments);
@@ -78,9 +75,9 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
             let newCommentData: ForumComment | VideoComment;
 
             if (type === 'video') {
-                newCommentData = await createVideoComment(parentId, newComment);
+                newCommentData = await meVideoCommentService.createVideoComment(parentId, newComment);
             } else {
-                newCommentData = await createForumComment(parentId, newComment);
+                newCommentData = await meForumCommentService.createForumComment(parentId, newComment);
             }
 
             // Optimistically add the new comment to the list

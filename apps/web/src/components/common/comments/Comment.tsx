@@ -5,12 +5,7 @@ import { ForumComment, ForumReply } from '@/types/content/forums';
 import { getTimeAgo } from '@core-utils/formater';
 import ReplyComponent from './Reply';
 import { VideoComment, VideoReply } from '@/types/content/videos';
-import { createForumReply } from '@core-services/me/forum-replies';
-import { toggleForumCommentLike } from '@core-services/me/forum-comments';
-import { toggleVideoCommentLike } from '@core-services/me/video-comments';
-import { getForumReplies } from '@core-services/feed/forum-replies';
-import { getVideoReplies } from '@core-services/feed/video-replies';
-import { createVideoReply } from '@core-services/me/video-replies';
+import { meForumCommentService, meVideoCommentService, meForumReplyService, meVideoReplyService, feedVideoReplyService, feedForumReplyService } from '@/services/index';
 import { useAuth } from '@hooks/useAuth';
 
 interface CommentComponentProps {
@@ -50,9 +45,9 @@ export default function CommentComponent({
 
             let fetchedReplies: ForumReply[] | VideoReply[] = [];
             if (commentType === 'video') {
-                fetchedReplies = await getVideoReplies(comment.id);
+                fetchedReplies = await feedVideoReplyService.getVideoReplies(comment.id);
             } else {
-                fetchedReplies = await getForumReplies(comment.id);
+                fetchedReplies = await feedForumReplyService.getForumReplies(comment.id);
             }
 
             setReplies(fetchedReplies);
@@ -82,9 +77,9 @@ export default function CommentComponent({
 
         try {
             if (commentType === 'forum') {
-                await toggleForumCommentLike(comment.id, wasLiked);
+                await meForumCommentService.toggleForumCommentLike(comment.id, wasLiked);
             } else {
-                await toggleVideoCommentLike(comment.id, wasLiked);
+                await meVideoCommentService.toggleVideoCommentLike(comment.id, wasLiked);
             }
         } catch (error) {
             console.error('Error toggling comment like:', error);
@@ -103,9 +98,9 @@ export default function CommentComponent({
                 return;
             }
             if (commentType === 'forum') {
-                await createForumReply(replyToId, description);
+                await meForumReplyService.createForumReply(replyToId, description);
             } else {
-                await createVideoReply(replyToId, description);
+                await meVideoReplyService.createVideoReply(replyToId, description);
             }
 
             // Refresh replies after posting

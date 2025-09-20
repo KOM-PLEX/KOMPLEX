@@ -10,8 +10,7 @@ import EditBlog from '@components/pages/me/blogs/EditBlog';
 import ContentError from '@components/common/ContentError';
 import DeleteConfirm from '@components/common/DeleteConfirm';
 import { Blog } from '@/types/content/blogs';
-import { getBlogById } from '@core-services/feed/blogs';
-import { deleteBlog } from '@core-services/me/blogs';
+import { feedBlogService, meBlogService } from '@/services/index';
 import { BlogPostSkeleton } from '@components/pages/blog/BlogPostSkeleton';
 import { useAuth } from '@hooks/useAuth';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
@@ -40,7 +39,7 @@ export default function BlogPost() {
         try {
             setIsLoading(true);
             setError(null);
-            const data = await getBlogById(id);
+            const data = await feedBlogService.getBlogById(id);
             setBlogPost(data);
         } catch (error) {
             console.error('Error fetching blog:', error);
@@ -63,7 +62,7 @@ export default function BlogPost() {
 
     const handleDeleteConfirm = async () => {
         try {
-            await deleteBlog(id);
+            await meBlogService.deleteBlog(id);
             router.push('/me/blogs');
         } catch (error) {
             console.error('Error deleting blog:', error);

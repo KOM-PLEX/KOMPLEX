@@ -9,8 +9,7 @@ import Comments from '@components/common/comments/Comments';
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { ForumPost } from '@/types/content/forums';
-import { getForumById } from '@core-services/feed/forums';
-import { toggleForumLike } from '@core-services/me/forums';
+import { feedForumService, meForumService } from '@/services/index';
 import { useAuth } from '@hooks/useAuth';
 
 export default function ForumDiscussion() {
@@ -28,7 +27,7 @@ export default function ForumDiscussion() {
             setLoading(true);
             setError(null);
 
-            const postData = await getForumById(id);
+            const postData = await feedForumService.getForumById(id);
             setPost(postData);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -48,7 +47,7 @@ export default function ForumDiscussion() {
                 openLoginModal();
                 return;
             }
-            await toggleForumLike(postId.toString(), isLiked);
+            await meForumService.toggleForumLike(postId.toString(), isLiked);
             setPost(prev => prev ? { ...prev, likeCount: isLiked ? prev.likeCount - 1 : prev.likeCount + 1, isLiked: !isLiked } : null);
         } catch (error) {
             console.error('Error liking post:', error);

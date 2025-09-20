@@ -11,7 +11,7 @@ import {
     TrendingUp
 } from 'lucide-react';
 import { formatToKhmerDate } from '@core-utils/formater';
-import api from '@core-configs/axios';
+import api from '@/configs/axios';
 import { useAuth } from '@hooks/useAuth';
 import MeSkeleton from '@components/pages/me/MeSkeleton';
 

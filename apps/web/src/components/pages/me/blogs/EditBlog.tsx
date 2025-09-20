@@ -5,8 +5,7 @@ import { ArrowLeft, Book, Trash, Plus, Save, Eye } from 'lucide-react';
 import Link from 'next/link';
 import { Blog } from '@/types/content/blogs';
 import { Media } from '@/types/content/media';
-import { updateBlog } from '@core-services/me/blogs';
-import { getBlogById } from '@core-services/feed/blogs';
+import { meBlogService, feedBlogService } from '@/services/index';
 import BlogEditor from '@components/common/Editor';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
 
@@ -157,10 +156,10 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                 formData.append('photosToRemove', photosPayload);
             }
 
-            await updateBlog(blog.id.toString(), formData);
+            await meBlogService.updateBlog(blog.id.toString(), formData);
 
             // Fetch updated blog data
-            const updatedResponse = await getBlogById(blog.id.toString());
+            const updatedResponse = await feedBlogService.getBlogById(blog.id.toString());
             onSave(updatedResponse);
 
             // Reset edit form states

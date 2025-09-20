@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Play, Clock, Calendar, Trash2, History, AlertCircle, CheckCircle } from 'lucide-react';
-import { getUserVideoHistory, deleteVideoFromHistory } from '@core-services/me/video-history';
+import { meVideoHistoryService } from '@/services/index';
 import Sidebar from '@components/pages/me/Sidebar';
 import type { VideoHistory } from '@/types/content/videos';
 import { useAuth } from '@hooks/useAuth';
@@ -33,7 +33,7 @@ export default function VideoHistory() {
                 try {
                     setLoading(true);
                     setError(null);
-                    const history = await getUserVideoHistory();
+                    const history = await meVideoHistoryService.getUserVideoHistory();
                     setVideoHistory(history);
                 } catch (err) {
                     console.error('Error fetching video history:', err);
@@ -65,7 +65,7 @@ export default function VideoHistory() {
 
         try {
             setDeletingId(historyId);
-            await deleteVideoFromHistory(historyId.toString());
+            await meVideoHistoryService.deleteVideoFromHistory(historyId.toString());
             setVideoHistory(prev => prev.filter(item => item.id !== historyId));
             setSuccessMessage('លុបចេញពីប្រវត្តិបានជោគជ័យ');
             setTimeout(() => setSuccessMessage(null), 3000);
@@ -86,7 +86,7 @@ export default function VideoHistory() {
 
         try {
             const deletePromises = Array.from(selectedItems).map(id =>
-                deleteVideoFromHistory(id.toString())
+                meVideoHistoryService.deleteVideoFromHistory(id.toString())
             );
             await Promise.all(deletePromises);
             setVideoHistory(prev => prev.filter(item => !selectedItems.has(item.id)));

@@ -3,8 +3,7 @@
 import BlogCard from "@components/pages/blog/BlogCard";
 import { useEffect, useState } from "react";
 import { Blog } from "@/types/content/blogs";
-import { getAllBlogs } from "@core-services/feed/blogs";
-import { searchBlogs } from "@core-services/feed/search/blogs";
+import { feedBlogService, feedSearchBlogService } from "@/services/index";
 import BlogsSkeleton from "@components/pages/blog/BlogsSkeleton";
 import BlogError from "@components/common/ContentError";
 import Sidebar from "@components/pages/blog/Sidebar";
@@ -23,7 +22,7 @@ export default function BlogPage() {
 		try {
 			setIsLoading(true);
 			setError(null);
-			const data = await getAllBlogs();
+			const data = await feedBlogService.getAllBlogs();
 			if (data.blogs.length === 0) {
 				setError("រកមិនឃើញប្លុក");
 			} else {
@@ -48,7 +47,7 @@ export default function BlogPage() {
 		try {
 			setIsSearching(true);
 			setError(null);
-			const searchResults = await searchBlogs(query, 50, 0);
+			const searchResults = await feedSearchBlogService.searchBlogs(query, 50, 0);
 
 			if (searchResults.data.length === 0) {
 				setError("រកមិនឃើញប្លុក");

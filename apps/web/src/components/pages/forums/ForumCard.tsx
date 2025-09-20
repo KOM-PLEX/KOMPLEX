@@ -8,8 +8,7 @@ import { Menu, Transition } from '@headlessui/react';
 import Carousel from '@components/common/Carousel';
 import { ForumPost } from '@/types/content/forums';
 import { Media } from '@/types/content/media';
-import { toggleForumLike } from '@core-services/me/forums';
-import { followUser, unfollowUser } from '@core-services/me/follow';
+import { meForumService, meFollowService } from '@/services/index';
 import { useAuth } from '@hooks/useAuth';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
 
@@ -70,7 +69,7 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
             setUpvoted(!upvoted);
 
             // Call the service
-            await toggleForumLike(post.id.toString(), upvoted);
+            await meForumService.toggleForumLike(post.id.toString(), upvoted);
 
             // Call parent callback if provided
             if (onLikeClick) {
@@ -124,10 +123,10 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
             setIsFollowLoading(true);
 
             if (isFollowing) {
-                await unfollowUser(post.userId);
+                await meFollowService.unfollowUser(post.userId);
                 setIsFollowing(false);
             } else {
-                await followUser(post.userId);
+                await meFollowService.followUser(post.userId);
                 setIsFollowing(true);
             }
         } catch (error) {

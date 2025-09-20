@@ -10,8 +10,7 @@ import DeleteConfirm from '@components/common/DeleteConfirm';
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ForumPost } from '@/types/content/forums';
-import { getForumById } from '@core-services/feed/forums';
-import { deleteForum } from '@core-services/me/forums';
+import { feedForumService, meForumService } from '@/services/index';
 import Sidebar from '@components/pages/me/Sidebar';
 import { useAuth } from '@hooks/useAuth';
 
@@ -40,7 +39,7 @@ export default function MyForumDetail() {
                 try {
                     setLoading(true);
                     setError(null);
-                    const forumPost = await getForumById(id);
+                    const forumPost = await feedForumService.getForumById(id);
                     setPost(forumPost);
                 } catch (err) {
                     console.error('Error fetching forum post:', err);
@@ -65,7 +64,7 @@ export default function MyForumDetail() {
 
     const handleDeleteConfirm = async () => {
         try {
-            await deleteForum(id);
+            await meForumService.deleteForum(id);
             router.push('/me/forums');
         } catch (error) {
             console.error('Error deleting forum:', error);

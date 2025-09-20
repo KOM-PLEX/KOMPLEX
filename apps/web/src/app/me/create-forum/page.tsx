@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, MessageCircle, Trash, Tag, X, Plus } from 'lucide-react';
 import Sidebar from '@components/pages/me/Sidebar';
-import { createForum } from '@core-services/me/forums';
+import { meForumService } from '@/services/index';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useAuth } from '@hooks/useAuth';
@@ -180,7 +180,7 @@ export default function CreateForum() {
             }
 
             // Create forum using the service - backend handles file uploads
-            await createForum(formData);
+            await meForumService.createForum(formData);
 
             setSuccess(true);
 

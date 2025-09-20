@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Eye } from 'lucide-react';
 import ContentError from '@components/common/ContentError';
 import BlogSkeleton from '@components/pages/blog/BlogsSkeleton';
-import { getUserBlogs } from '@core-services/user/blogs';
+import { userBlogService } from '@/services/index';
 
 
 interface Blog {
@@ -32,7 +32,7 @@ export default function Blogs({ userId }: BlogsProps) {
             try {
                 setIsLoading(true);
                 setError(null);
-                const data = await getUserBlogs(userId);
+                const data = await userBlogService.getUserBlogs(userId);
                 setBlogs(data);
             } catch (error) {
                 console.error('Error fetching user blogs:', error);

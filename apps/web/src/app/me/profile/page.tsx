@@ -2,7 +2,7 @@
 
 import Sidebar from '@components/pages/me/Sidebar';
 import ContentError from '@components/common/ContentError';
-import { getCurrentUser } from '@core-services/auth';
+import { authService } from '@/services/index';
 import { User } from '@/types/auth';
 import Link from 'next/link';
 import { Mail, Calendar, Phone, User as UserIcon, AtSign, ShieldCheck, ShieldAlert, UserCircle, Settings } from 'lucide-react';
@@ -31,7 +31,7 @@ export default function ProfilePage() {
                 try {
                     setLoading(true);
                     setError(null);
-                    const userData = await getCurrentUser();
+                    const userData = await authService.getCurrentUser();
                     setUser(userData);
                 } catch (error) {
                     console.error('Error fetching profile:', error);

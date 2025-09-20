@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Trash, Edit, Eye, Clock, MessageSquare, BookOpen } from 'lucide-react';
-import { getVideoById } from '@core-services/feed/videos';
-import { deleteVideo, updateVideo } from '@core-services/me/videos';
+import { feedVideoService, meVideoService } from '@/services/index';
 import Sidebar from '@components/pages/me/Sidebar';
 import Comments from '@components/common/comments/Comments';
 import EditVideo from '@components/pages/me/videos/EditVideo';
@@ -95,7 +94,7 @@ export default function VideoPost() {
                 try {
                     setIsLoading(true);
                     setError(null);
-                    const video = await getVideoById(id);
+                    const video = await feedVideoService.getVideoById(id);
                     setVideoPost(video);
                 } catch (error) {
                     console.error('Error fetching video:', error);
@@ -115,7 +114,7 @@ export default function VideoPost() {
 
     const handleDeleteConfirm = async () => {
         try {
-            await deleteVideo(id);
+            await meVideoService.deleteVideo(id);
             router.push('/me/videos');
         } catch (error) {
             console.error('Error deleting video:', error);
@@ -125,7 +124,7 @@ export default function VideoPost() {
 
     const handleSave = async (updatedVideo: VideoPost) => {
         try {
-            await updateVideo(id, {
+            await meVideoService.updateVideo(id, {
                 title: updatedVideo.title,
                 description: updatedVideo.description,
             });

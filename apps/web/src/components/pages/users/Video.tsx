@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Play, Eye, ThumbsUp, Clock } from 'lucide-react';
 import ContentError from '@components/common/ContentError';
-import { getUserVideos } from '@core-services/user/videos';
+import { userVideoService } from '@/services/index';
 
 
 interface Video {
@@ -40,7 +40,7 @@ export default function Video({ userId }: VideoProps) {
             try {
                 setIsLoading(true);
                 setError(null);
-                const data = await getUserVideos(userId);
+                const data = await userVideoService.getUserVideos(userId);
                 setVideos(data);
             } catch (error) {
                 console.error('Error fetching user videos:', error);

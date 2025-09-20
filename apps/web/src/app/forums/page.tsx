@@ -5,9 +5,7 @@ import ForumSkeleton from "@components/pages/forums/ForumSkeleton";
 import ContentError from "@components/common/ContentError";
 import { useState, useEffect } from "react";
 import { ForumPost } from "@/types/content/forums";
-import { getAllForums } from "@core-services/feed/forums";
-import { searchForums } from "@core-services/feed/search/forums";
-import { toggleForumLike } from "@core-services/me/forums";
+import { feedForumService, feedSearchForumService, meForumService } from "@/services/index";
 import Sidebar from "@components/pages/forums/Sidebar";
 
 export default function Forum() {
@@ -21,7 +19,7 @@ export default function Forum() {
 		try {
 			setLoading(true);
 			setError(null);
-			const { forums } = await getAllForums();
+			const { forums } = await feedForumService.getAllForums();
 			if (forums.length > 0) {
 				setForumPosts(forums);
 			} else {
@@ -47,7 +45,7 @@ export default function Forum() {
 		try {
 			setIsSearching(true);
 			setError(null);
-			const searchResults = await searchForums(query, 50, 0);
+			const searchResults = await feedSearchForumService.searchForums(query, 50, 0);
 
 			if (searchResults.data.length === 0) {
 				setError("រកមិនឃើញអត្ថបទ");
@@ -69,7 +67,7 @@ export default function Forum() {
 
 	const handleLikeClick = async (postId: number, isLiked: boolean) => {
 		try {
-			await toggleForumLike(postId.toString(), isLiked);
+			await meForumService.toggleForumLike(postId.toString(), isLiked);
 			setForumPosts((prev) =>
 				prev.map((post) =>
 					post.id === postId

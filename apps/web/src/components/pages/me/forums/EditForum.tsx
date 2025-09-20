@@ -4,8 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Save, X, Eye } from 'lucide-react';
 import { ForumPost } from '@/types/content/forums';
 import { Media } from '@/types/content/media';
-import { updateForum } from '@core-services/me/forums';
-import { getForumById } from '@core-services/feed/forums';
+import { meForumService, feedForumService } from '@/services/index';
 import { useRouter } from 'next/navigation';
 import BlogEditor from '@components/common/Editor';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
@@ -123,8 +122,8 @@ export default function EditForum({ forum, onCancel }: EditForumProps) {
                 const photosPayload = JSON.stringify(removedImages.map((url) => ({ url })));
                 formData.append('photosToRemove', photosPayload);
             }
-            await updateForum(forum.id.toString(), formData);
-            const updatedForum = await getForumById(forum.id.toString());
+            await meForumService.updateForum(forum.id.toString(), formData);
+            const updatedForum = await feedForumService.getForumById(forum.id.toString());
             router.push(`/me/forums/${forum.id}`);
 
             // Update the forum state with the new data

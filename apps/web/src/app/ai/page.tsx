@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Send, Bot, ChevronUp, Copy, Check, RefreshCw, Square, ChevronDown } from 'lucide-react';
 import { Listbox, Transition } from '@headlessui/react';
-import { callAiAndWriteToHistory, getAiHistory } from '@core-services/me/ai';
+import { meAiService } from '@/services/index';
 import MarkdownRenderer from '@components/helper/MarkDownRenderer';
 import { useAuth } from '@hooks/useAuth';
 import { Message, AIHistoryItem } from '@/types/content/ai';
@@ -198,7 +198,7 @@ export default function AIChat() {
                 setIsLoadingMore(true);
             }
 
-            const response = await getAiHistory(page, 20);
+            const response = await meAiService.getAiHistory(page, 20);
             const historyMessages = convertHistoryToMessages(response.data);
 
             if (append) {
@@ -301,7 +301,7 @@ export default function AIChat() {
         setError(null); // Clear any previous errors
 
         try {
-            const response = await callAiAndWriteToHistory(currentInput, selectedLanguage.id);
+            const response = await meAiService.callAiAndWriteToHistory(currentInput, selectedLanguage.id);
             setIsLoading(false);
             setIsRequestInProgress(false);
 
@@ -416,7 +416,7 @@ export default function AIChat() {
         setError(null);
 
         try {
-            const response = await callAiAndWriteToHistory(messages[messages.length - 1].content, selectedLanguage.id);
+            const response = await meAiService.callAiAndWriteToHistory(messages[messages.length - 1].content, selectedLanguage.id);
             setIsLoading(false);
             setIsRequestInProgress(false);
 

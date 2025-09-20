@@ -6,9 +6,7 @@ import type { VideoPost, ExerciseQuestion as ApiExerciseQuestion } from '@/types
 import { ExerciseQuestion } from '@/types/docs/topic';
 import ExerciseCreationBox from '@components/pages/docs/common/box/ExerciseCreationBox';
 import BlogEditor from '@components/common/Editor';
-import { updateVideo } from '@core-services/me/videos';
-import { uploadFile } from '@core-services/upload';
-import { getVideoById } from '@core-services/feed/videos';
+import { meVideoService, uploadService, feedVideoService } from '@/services/index';
 
 interface EditVideoProps {
     video: VideoPost;
@@ -205,7 +203,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
             // If new video is selected, upload it
             if (selectedVideo) {
                 setUploadProgress(20);
-                videoKey = await uploadFile(selectedVideo);
+                videoKey = await uploadService.uploadFile(selectedVideo);
                 setUploadProgress(40);
             }
 
@@ -218,7 +216,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                     type: 'image/jpeg'
                 });
 
-                thumbnailKey = await uploadFile(thumbnailFile);
+                thumbnailKey = await uploadService.uploadFile(thumbnailFile);
                 setUploadProgress(80);
             }
 
@@ -254,12 +252,12 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                 updatePayload.questions = convertExercisesToBackendFormat(formData.exercises);
             }
 
-            await updateVideo(video.id.toString(), updatePayload);
+            await meVideoService.updateVideo(video.id.toString(), updatePayload);
 
             setUploadProgress(100);
 
             // Fetch updated video data
-            const updatedVideo = await getVideoById(video.id.toString());
+            const updatedVideo = await feedVideoService.getVideoById(video.id.toString());
             onSave(updatedVideo);
 
             // Reset edit form states

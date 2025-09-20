@@ -1,7 +1,6 @@
 'use client';
 
 import { Eye, EyeOff, Mail, Lock, Phone, Calendar, Upload } from 'lucide-react';
-import Link from 'next/link';
 import { getValidationError, validatePasswordConfirmation } from '@core-utils/validator';
 
 interface SignupFormProps {

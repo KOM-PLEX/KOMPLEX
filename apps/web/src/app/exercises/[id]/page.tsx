@@ -8,8 +8,7 @@ import PracticeInfo from "@components/pages/exercise/ExerciseInfo";
 import PracticeResult from "@components/pages/exercise/ExerciseResult";
 import ContentError from "@components/common/ContentError";
 import { ExerciseWithQuestions, ExerciseSection } from "@/types/content/exercises";
-import { getExerciseById } from "@core-services/feed/exercises";
-import { submitExercise as submitExerciseService } from "@core-services/me/exercises";
+import { feedExerciseService, meExerciseService } from "@/services/index";
 import { transformBackendDataToSections } from "@core-utils/transform";
 import { useAuth } from "@hooks/useAuth";
 
@@ -45,7 +44,7 @@ export default function LessonPage() {
                     return;
                 }
                 // Use the lesson param as the exercise ID
-                const data = await getExerciseById(id as string);
+                const data = await feedExerciseService.getExerciseById(id as string);
                 setExerciseData(data);
 
                 // Transform backend data to exam sections
@@ -180,7 +179,7 @@ export default function LessonPage() {
 
             console.log('Submitting exercise:', submissionData);
 
-            await submitExerciseService(id as string, submissionData);
+            await meExerciseService.submitExercise(id as string, submissionData);
 
             console.log('Exercise submitted successfully');
         } catch (error) {

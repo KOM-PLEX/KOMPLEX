@@ -13,7 +13,7 @@ import {
     MessageCircle,
 } from 'lucide-react';
 import { ForumPost } from '@/types/content/forums';
-import { getUserForums } from '@core-services/me/forums';
+import { meForumService } from '@/services/index';
 import ForumCard from '@components/pages/me/forums/ForumCard';
 import MeSkeleton from '@components/pages/me/MeSkeleton';
 import { useAuth } from '@hooks/useAuth';
@@ -38,7 +38,7 @@ export default function MyForums() {
                 try {
                     setIsLoading(true);
                     setError(null);
-                    const forums = await getUserForums();
+                    const forums = await meForumService.getUserForums();
                     setForumPosts(forums);
                 } catch (error) {
                     console.error('Error fetching forums:', error);

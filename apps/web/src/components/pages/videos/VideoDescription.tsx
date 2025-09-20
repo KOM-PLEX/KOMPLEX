@@ -5,7 +5,7 @@ import { ThumbsUp, Share, Bookmark, Check, LinkIcon, UserPlus, UserCheck } from 
 import { Menu, Transition } from '@headlessui/react';
 import { VideoPost } from '@/types/content/videos';
 import Link from 'next/link';
-import { followUser, unfollowUser } from '@core-services/me/follow';
+import { meFollowService } from '@/services/index';
 import { useAuth } from '@hooks/useAuth';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
 
@@ -49,10 +49,10 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
             setIsFollowLoading(true);
 
             if (isFollowing) {
-                await unfollowUser(video.userId);
+                await meFollowService.unfollowUser(video.userId);
                 setIsFollowing(false);
             } else {
-                await followUser(video.userId);
+                await meFollowService.followUser(video.userId);
                 setIsFollowing(true);
             }
         } catch (error) {

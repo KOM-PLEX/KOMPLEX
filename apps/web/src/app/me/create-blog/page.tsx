@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft, Book, Trash, Plus, Tag, X } from 'lucide-react';
-import { createBlog } from '@core-services/me/blogs';
+import { meBlogService } from '@/services/index';
 import Sidebar from '@components/pages/me/Sidebar';
 import { useAuth } from '@hooks/useAuth';
 import BlogEditor from '@components/common/Editor';
@@ -66,7 +66,7 @@ export default function CreateBlog() {
             formData.append('topic', topics.length > 0 ? topics[0] : 'biology');
 
             // Make the actual API call with markdown content
-            await createBlog(formData);
+            await meBlogService.createBlog(formData);
 
             setSuccess(true);
 

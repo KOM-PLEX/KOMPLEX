@@ -9,9 +9,7 @@ import VideoCard from '@components/pages/videos/VideoCard';
 import VideoSkeleton from '@components/pages/videos/VideoSkeleton';
 import ContentError from '@components/common/ContentError';
 import type { VideoPost } from '@/types/content/videos';
-import { getAllVideos, getRecommendedVideos } from '@core-services/feed/videos';
-import { toggleVideoLike, toggleVideoSave } from '@core-services/me/videos';
-import { getVideoById } from '@core-services/feed/videos';
+import { feedVideoService, meVideoService } from '@/services/index';
 import VideoDescription from '@components/pages/videos/VideoDescription';
 import { useAuth } from '@hooks/useAuth';
 
@@ -19,13 +17,13 @@ import { useAuth } from '@hooks/useAuth';
 // API function to fetch recommended videos
 const fetchRecommendedVideos = async (userId: number, videoId: number, limit: number = 5): Promise<VideoPost[]> => {
     try {
-        const data = await getRecommendedVideos(userId, videoId, limit, 0);
+        const data = await feedVideoService.getRecommendedVideos(userId, videoId, limit, 0);
         return data;
     } catch (error) {
         console.error('Error fetching recommended videos:', error);
         // Fallback to fetching all videos and filtering
         try {
-            const { data } = await getAllVideos();
+            const { data } = await feedVideoService.getAllVideos();
             return data.filter(v => v.id !== videoId).slice(0, limit);
         } catch (fallbackError) {
             console.error('Error in fallback video fetch:', fallbackError);
@@ -37,7 +35,7 @@ const fetchRecommendedVideos = async (userId: number, videoId: number, limit: nu
 // API function to fetch video by ID
 const fetchVideoById = async (id: number): Promise<VideoPost | null> => {
     try {
-        return await getVideoById(id.toString());
+        return await feedVideoService.getVideoById(id.toString());
     } catch (error) {
         console.error('Error fetching video:', error);
         return null;
@@ -125,7 +123,7 @@ export default function VideoDetailPage() {
                 openLoginModal();
                 return;
             }
-            await toggleVideoLike(videoId.toString(), isLiked);
+            await meVideoService.toggleVideoLike(videoId.toString(), isLiked);
             setVideo({ ...video!, isLiked: !isLiked, likeCount: isLiked ? video.likeCount - 1 : video.likeCount + 1 });
         } catch (error) {
             console.error('Error liking video:', error);
@@ -138,7 +136,7 @@ export default function VideoDetailPage() {
                 openLoginModal();
                 return;
             }
-            await toggleVideoSave(videoId.toString(), isSaved);
+            await meVideoService.toggleVideoSave(videoId.toString(), isSaved);
             setVideo({ ...video!, isSave: !isSaved });
         } catch (error) {
             console.error('Error saving video:', error);

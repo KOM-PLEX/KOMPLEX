@@ -5,7 +5,7 @@ import axios from 'axios';
 import { X, Loader2, ChevronDown, Check, MessageCircle } from 'lucide-react';
 import { Listbox, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
-import api from '@core-configs/axios';
+import api from '@/configs/axios';
 
 type FeedbackTypeOption =
     | 'bug'

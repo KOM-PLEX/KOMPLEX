@@ -12,8 +12,7 @@ import VideoUpload from '@components/pages/me/create-video/VideoUpload';
 import Description from '@components/pages/me/create-video/Description';
 import { ExerciseQuestion } from '@/types/docs/topic';
 import Link from 'next/link';
-import { uploadFile } from '@core-services/upload';
-import { createVideo } from '@core-services/me/videos';
+import { uploadService, meVideoService } from '@/services/index';
 import { useAuth } from '@hooks/useAuth';
 
 interface VideoFormData {
@@ -161,7 +160,7 @@ export default function CreateVideoPage() {
 
             // Step 1: Upload video file
             setUploadProgress(20);
-            const videoKey = await uploadFile(videoFile);
+            const videoKey = await uploadService.uploadFile(videoFile);
 
             // Step 2: Upload thumbnail
             setUploadProgress(50);
@@ -170,12 +169,12 @@ export default function CreateVideoPage() {
                 type: 'image/jpeg'
             });
 
-            const thumbnailKey = await uploadFile(thumbnailFile);
+            const thumbnailKey = await uploadService.uploadFile(thumbnailFile);
 
             setUploadProgress(80);
 
             // Step 3: Create video record using the service
-            const createdVideo = await createVideo({
+            const createdVideo = await meVideoService.createVideo({
                 videoKey, // The service expects videoUrl but we're passing the key
                 title: formData.title,
                 description: formData.description,

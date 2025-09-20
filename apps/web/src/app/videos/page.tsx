@@ -8,8 +8,7 @@ import VideoCardSkeleton from "@components/pages/videos/VideoCardSkeleton";
 import Sidebar from "@components/pages/videos/Sidebar";
 import ContentError from "@components/common/ContentError";
 import { VideoPost } from "@/types/content/videos";
-import { getAllVideos } from "@core-services/feed/videos";
-import { searchVideos } from "@core-services/feed/search/videos";
+import { feedVideoService, feedSearchVideoService } from "@/services/index";
 
 export default function VideoPage() {
 	const [searchQuery, setSearchQuery] = useState<string>("");
@@ -26,7 +25,7 @@ export default function VideoPage() {
 		try {
 			setLoading(true);
 			setError(null);
-			const { data } = await getAllVideos();
+			const { data } = await feedVideoService.getAllVideos();
 			if (data.length > 0) {
 				setVideos(data);
 			} else {
@@ -52,7 +51,7 @@ export default function VideoPage() {
 		try {
 			setIsSearching(true);
 			setError(null);
-			const searchResults = await searchVideos(query, 50, 0);
+			const searchResults = await feedSearchVideoService.searchVideos(query, 50, 0);
 
 			if (searchResults.data.length === 0) {
 				setError("រកមិនឃើញវីដេអូ");

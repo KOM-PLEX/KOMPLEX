@@ -7,7 +7,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import PracticeCard from '@components/pages/exercise/ExerciseCard';
 import ContentError from '@components/common/ContentError';
 import { Subject } from '@/types/content/exercises';
-import { getExercisesByGrade } from '@core-services/feed/exercises';
+import { feedExerciseService } from '@/services/index';
 import {
     transformBackendDataToSubjects,
     getSubjectColorVariants,
@@ -47,7 +47,7 @@ export default function PracticePage() {
         try {
             setLoading(true);
             setError(null);
-            const data = await getExercisesByGrade(selectedGrade.name);
+            const data = await feedExerciseService.getExercisesByGrade(selectedGrade.name);
             const transformedSubjects = transformBackendDataToSubjects(data);
             if (transformedSubjects.length > 0) {
                 setSubjects(transformedSubjects);

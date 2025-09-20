@@ -1,55 +1,52 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, type FirebaseApp } from "firebase/app";
 import {
   getAnalytics,
   isSupported as isAnalyticsSupported,
+  type Analytics,
 } from "firebase/analytics";
 import {
   getAuth,
   GoogleAuthProvider,
   OAuthProvider,
   GithubAuthProvider,
+  type Auth,
 } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBQJfSMb1JjyIkFmGdPTrql1aE302O6BSM",
-  authDomain: "komplex-a9ff5.firebaseapp.com",
-  projectId: "komplex-a9ff5",
-  storageBucket: "komplex-a9ff5.firebasestorage.app",
-  messagingSenderId: "711155458274",
-  appId: "1:711155458274:web:f3a907bed5b9d661db3ebb",
-  measurementId: "G-NRP2WJGHQQ",
+export type FirebaseConfig = {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+  measurementId?: string;
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const createFirebase = (config: FirebaseConfig) => {
+  const app: FirebaseApp = initializeApp(config);
 
-// Initialize Analytics (guard for non-browser environments)
-let analytics: ReturnType<typeof getAnalytics> | undefined;
-if (typeof window !== "undefined") {
-  // getAnalytics throws if not supported (e.g., SSR); check support first
-  isAnalyticsSupported().then((supported) => {
-    if (supported) {
-      analytics = getAnalytics(app);
-    }
-  });
-}
+  // Analytics (browser-only, safe-guarded)
+  let analytics: Analytics | undefined;
+  if (typeof window !== "undefined") {
+    isAnalyticsSupported().then((supported) => {
+      if (supported) {
+        analytics = getAnalytics(app);
+      }
+    });
+  }
 
-// Initialize Auth and providers
-const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
-const microsoftProvider = new OAuthProvider("microsoft.com");
+  // Auth and providers
+  const auth: Auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+  const microsoftProvider = new OAuthProvider("microsoft.com");
 
-export {
-  app,
-  analytics,
-  auth,
-  googleProvider,
-  githubProvider,
-  microsoftProvider,
+  return {
+    app,
+    analytics,
+    auth,
+    googleProvider,
+    githubProvider,
+    microsoftProvider,
+  };
 };

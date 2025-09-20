@@ -4,10 +4,9 @@ import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { auth, googleProvider, microsoftProvider, githubProvider } from '@core-configs/firebase';
+import { auth, googleProvider, microsoftProvider, githubProvider } from '@/configs/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { getCurrentUser, signup, socialLogin } from '@core-services/auth';
-import { uploadFile } from '@core-services/upload';
+import { authService, uploadService } from '@/services/index';
 import {
     validateLoginForm,
     validateSignupForm,
@@ -100,7 +99,7 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
         try {
             const result = await signInWithEmailAndPassword(auth, loginIdentifier, loginPassword);
             await result.user.getIdToken(true);
-            const userData = await getCurrentUser();
+            const userData = await authService.getCurrentUser();
             localStorage.setItem('user', JSON.stringify(userData));
             closeAndReset();
             router.push('/');
@@ -124,7 +123,7 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
             let imageKey = '';
             if (signupData.profileImage) {
                 try {
-                    imageKey = await uploadFile(signupData.profileImage);
+                    imageKey = await uploadService.uploadFile(signupData.profileImage);
                 } catch (uploadErr) {
                     console.error('Upload error:', uploadErr);
                     setFormError('បញ្ហាក្នុងការបង្ហោះរូបភាព');
@@ -134,7 +133,7 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
             }
 
             const result = await createUserWithEmailAndPassword(auth, signupData.email, signupData.password);
-            const userData = await signup({
+            const userData = await authService.signup({
                 email: signupData.email,
                 username: signupData.username,
                 uid: result.user.uid,
@@ -163,7 +162,7 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
         try {
             const provider = providerKey === 'google' ? googleProvider : providerKey === 'github' ? githubProvider : microsoftProvider;
             const result = await signInWithPopup(auth, provider);
-            const userData = await socialLogin({
+            const userData = await authService.socialLogin({
                 provider: providerKey,
                 email: result.user.email || '',
                 username: result.user.displayName || '',

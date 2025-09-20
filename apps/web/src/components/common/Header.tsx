@@ -7,7 +7,7 @@ import { Menu as HeadlessMenu, Transition } from '@headlessui/react';
 import FeedbackModal from '../pages/feedback/FeedbackModal';
 import { useAuth } from '@hooks/useAuth';
 import { signOut } from 'firebase/auth';
-import { auth } from '@core-configs/firebase';
+import { auth } from '@/configs/firebase';
 import { useState } from 'react';
 
 const navLinks = [

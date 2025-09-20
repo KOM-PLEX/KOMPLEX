@@ -7,8 +7,7 @@ import { Eye, Plus, Book } from 'lucide-react';
 import Sidebar from '@components/pages/me/Sidebar';
 import ContentError from '@components/common/ContentError';
 import { Blog } from '@/types/content/blogs';
-import { getUserBlogs } from '@core-services/me/blogs';
-import BlogSkeleton from '@components/pages/blog/BlogsSkeleton';
+import { meBlogService } from '@/services/index';
 import MeSkeleton from '@components/pages/me/MeSkeleton';
 import { useAuth } from '@hooks/useAuth';
 
@@ -30,7 +29,7 @@ export default function MyBlogs() {
         try {
             setIsLoading(true);
             setError(null);
-            const data = await getUserBlogs();
+            const data = await meBlogService.getUserBlogs();
             if (data.blogs && data.blogs.length > 0) {
                 setBlogPosts(data.blogs);
             } else {

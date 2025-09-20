@@ -5,7 +5,7 @@ import { ExerciseReport } from '@/types/user-content/exercise';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import api from '@core-configs/axios';
+import api from '@/configs/axios';
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Eye, ThumbsUp, MessageCircle, Calendar } from 'lucide-react';
 import ContentError from '@components/common/ContentError';
-import { getUserForums } from '@core-services/user/forums';
+import { userForumService } from '@/services/index';
 import Carousel from '@components/common/Carousel';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
 
@@ -35,7 +35,7 @@ export default function Forums({ userId }: ForumsProps) {
             try {
                 setIsLoading(true);
                 setError(null);
-                const data = await getUserForums(userId);
+                const data = await userForumService.getUserForums(userId);
                 setForums(data);
             } catch (error) {
                 console.error('Error fetching user forums:', error);

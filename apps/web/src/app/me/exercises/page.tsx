@@ -6,15 +6,13 @@ import Sidebar from '@components/pages/me/Sidebar';
 import {
     BookOpen,
     CheckCircle,
-    Clock,
     BarChart3
 } from 'lucide-react';
-import axios from 'axios';
 import { ExerciseDashboard } from '@/types/user-content/exercise';
 import ExerciseHistoryComponent from '@components/pages/me/exercises/ExerciseHistory';
 import ExerciseReportComponent from '@components/pages/me/exercises/ExerciseReport';
 import { useAuth } from '@hooks/useAuth';
-import api from '@core-configs/axios';
+import api from '@/configs/axios';
 
 export default function MyExercises() {
     const { user, loading: authLoading } = useAuth();

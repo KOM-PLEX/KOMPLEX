@@ -7,9 +7,10 @@ import ContentError from '@components/common/ContentError';
 import Blogs from '@components/pages/users/Blogs';
 import VideoTab from '@components/pages/users/Video';
 import Forums from '@components/pages/users/Forums';
-import { getUserProfile, User } from '@core-services/user/profile';
+import { userProfileService } from '@/services/index';
+import { User } from '@core-types/content/profile';
 import { useAuth } from '@hooks/useAuth';
-import { followUser, unfollowUser } from '@core-services/me/follow';
+import { meFollowService } from '@/services/index';
 
 
 const tabs = [
@@ -33,7 +34,7 @@ export default function UserProfilePage() {
             try {
                 setIsLoading(true);
                 setError(null);
-                const userData = await getUserProfile(userId);
+                const userData = await userProfileService.getUserProfile(userId);
                 setUser(userData);
             } catch (error) {
                 console.error('Error fetching user:', error);
@@ -64,9 +65,9 @@ export default function UserProfilePage() {
             setIsFollowLoading(true);
 
             if (user.isFollowing) {
-                await unfollowUser(Number(userId));
+                await meFollowService.unfollowUser(Number(userId));
             } else {
-                await followUser(Number(userId));
+                await meFollowService.followUser(Number(userId));
             }
 
             setUser(prev => prev ? {

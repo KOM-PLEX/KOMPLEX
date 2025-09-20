@@ -43,3 +43,6 @@ next-env.d.ts
 DOCS_ARCHITECTURE_SUMMARY.pdf
 
 .idea/
+
+.next
+out

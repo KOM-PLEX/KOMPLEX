@@ -1,18 +1,22 @@
-import api from "../../../config/axios";
+import type { AxiosInstance } from "axios";
 
-export const searchVideos = async (
-  query: string,
-  limit: number = 10,
-  offset: number = 0
-) => {
-  const response = await api.get(`/search/videos`, {
-    params: {
-      query,
-      limit,
-      offset,
+export const createFeedSearchVideoService = (api: AxiosInstance) => {
+  return {
+    searchVideos: async (
+      query: string,
+      limit: number = 10,
+      offset: number = 0
+    ) => {
+      const response = await api.get(`/search/videos`, {
+        params: {
+          query,
+          limit,
+          offset,
+        },
+      });
+      return { data: response.data.data, isMatch: response.data.isMatch };
     },
-  });
-  return { data: response.data.data, isMatch: response.data.isMatch };
+  };
 };
 
 // export const searchVideosService = async (

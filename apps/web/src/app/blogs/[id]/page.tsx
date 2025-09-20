@@ -6,14 +6,11 @@ import { ArrowLeft, Bookmark, UserPlus, UserCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Carousel from '@components/common/Carousel';
 import { Blog } from '@/types/content/blogs';
-import { getBlogById } from '@core-services/feed/blogs';
-import { toggleBlogSave } from '@core-services/me/blogs';
+import { feedBlogService, meBlogService, meFollowService } from '@/services/index';
 import { BlogPostSkeleton } from '@components/pages/blog/BlogPostSkeleton';
 import ContentError from '@components/common/ContentError';
 import { useAuth } from '@hooks/useAuth';
-import { followUser, unfollowUser } from '@core-services/me/follow';
 import MarkdownRenderer from '@components/helper/MarkDownRenderer';
-
 export default function BlogPost() {
     const params = useParams();
     const id = params.id as string;
@@ -34,7 +31,7 @@ export default function BlogPost() {
             try {
                 setIsLoading(true);
                 setError(null);
-                const data = await getBlogById(id);
+                const data = await feedBlogService.getBlogById(id);
                 setIsSaved(data.isSaved);
                 setIsFollowing(data.isFollowing);
                 setBlogPost(data);
@@ -57,7 +54,7 @@ export default function BlogPost() {
                 openLoginModal();
                 return;
             }
-            await toggleBlogSave(id, isSaved);
+            await meBlogService.toggleBlogSave(id, isSaved);
             setIsSaved(!isSaved);
         } catch (err) {
             console.error('Error bookmarking blog post:', err);
@@ -80,10 +77,10 @@ export default function BlogPost() {
             setIsFollowLoading(true);
 
             if (isFollowing) {
-                await unfollowUser(blogPost!.userId);
+                await meFollowService.unfollowUser(blogPost!.userId);
                 setIsFollowing(false);
             } else {
-                await followUser(blogPost!.userId);
+                await meFollowService.followUser(blogPost!.userId);
                 setIsFollowing(true);
             }
         } catch (error) {
