@@ -15,7 +15,7 @@ import {
     History,
 } from 'lucide-react';
 import { getUserVideos } from '@core-services/me/videos';
-import { VideoPost } from '@core-types/content/videos';
+import { VideoPost } from '@/types/content/videos';
 import ContentError from '@components/common/ContentError';
 import MeSkeleton from '@components/pages/me/MeSkeleton';
 import VideoHistoryComponent from '@components/pages/me/videos/VideoHistory';

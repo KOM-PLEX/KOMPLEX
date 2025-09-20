@@ -3,7 +3,7 @@
 import Sidebar from '@components/pages/me/Sidebar';
 import ContentError from '@components/common/ContentError';
 import { getCurrentUser } from '@core-services/auth';
-import { User } from '@core-types/auth';
+import { User } from '@/types/auth';
 import Link from 'next/link';
 import { Mail, Calendar, Phone, User as UserIcon, AtSign, ShieldCheck, ShieldAlert, UserCircle, Settings } from 'lucide-react';
 import { useState } from 'react';

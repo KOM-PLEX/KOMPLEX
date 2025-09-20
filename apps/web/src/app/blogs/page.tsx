@@ -2,7 +2,7 @@
 
 import BlogCard from "@components/pages/blog/BlogCard";
 import { useEffect, useState } from "react";
-import { Blog } from "@core-types/content/blogs";
+import { Blog } from "@/types/content/blogs";
 import { getAllBlogs } from "@core-services/feed/blogs";
 import { searchBlogs } from "@core-services/feed/search/blogs";
 import BlogsSkeleton from "@components/pages/blog/BlogsSkeleton";

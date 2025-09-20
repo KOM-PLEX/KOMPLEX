@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ForumComment } from '@core-types/content/forums';
-import { VideoComment } from '@core-types/content/videos';
+import { ForumComment } from '@/types/content/forums';
+import { VideoComment } from '@/types/content/videos';
 import CommentComponent from './Comment';
 import ContentError from '@components/common/ContentError';
 import { getVideoComments } from '@core-services/feed/video-comments';

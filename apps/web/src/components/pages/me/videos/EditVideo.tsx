@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Save, Upload, Trash, Play } from 'lucide-react';
-import type { VideoPost, ExerciseQuestion as ApiExerciseQuestion } from '@core-types/content/videos';
-import { ExerciseQuestion } from '@core-types/docs/topic';
+import type { VideoPost, ExerciseQuestion as ApiExerciseQuestion } from '@/types/content/videos';
+import { ExerciseQuestion } from '@/types/docs/topic';
 import ExerciseCreationBox from '@components/pages/docs/common/box/ExerciseCreationBox';
 import BlogEditor from '@components/common/Editor';
 import { updateVideo } from '@core-services/me/videos';

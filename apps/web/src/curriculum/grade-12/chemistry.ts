@@ -1,4 +1,4 @@
-import { Content } from "@core-types/docs/curriculum";
+import { Content } from "@/types/docs/curriculum";
 import { FlaskConical } from "lucide-react";
 import RateChemicalReaction from "@components/pages/docs/grade-12/chemistry/chemica-kinetics/Rate-chemical-reaction";
 import Reaction_rate_factors from "@components/pages/docs/grade-12/chemistry/chemica-kinetics/Reaction_rate_factors";

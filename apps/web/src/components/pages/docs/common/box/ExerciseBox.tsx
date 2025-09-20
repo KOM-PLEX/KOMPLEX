@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookAIcon } from "lucide-react";
-import { ExerciseQuestion } from "@core-types/docs/topic";
+import { ExerciseQuestion } from "@/types/docs/topic";
 import { InlineMath } from "react-katex";
 
 export interface ExerciseBoxProps {

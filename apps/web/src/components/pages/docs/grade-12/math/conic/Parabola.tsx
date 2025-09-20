@@ -5,7 +5,7 @@ import ExerciseBox from "../../../common/box/ExerciseBox";
 import HintBox from "../../../common/box/HintBox";
 import WarningBox from "../../../common/box/WarningBox";
 import GraphBox from "../../../common/box/GraphBox";
-import { TopicContent } from "@core-types/docs/topic";
+import { TopicContent } from "@/types/docs/topic";
 import 'katex/dist/katex.min.css';
 import { BlockMath, InlineMath } from "react-katex";
 import { div } from "three/tsl";

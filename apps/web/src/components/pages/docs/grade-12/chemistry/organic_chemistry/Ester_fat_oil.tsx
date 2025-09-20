@@ -2,7 +2,7 @@ import React from 'react'
 
 import DefinitionBox from "../../../common/box/DefinitionBox"
 import TipBox from "../../../common/box/TipBox"
-import { TopicContent } from "@core-types/docs/topic"
+import { TopicContent } from "@/types/docs/topic"
 import { InlineMath } from "react-katex"
 import 'katex/dist/katex.min.css'
 import ExampleBox from "../../../common/box/ExampleBox"

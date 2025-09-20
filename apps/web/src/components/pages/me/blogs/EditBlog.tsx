@@ -3,8 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Book, Trash, Plus, Save, Eye } from 'lucide-react';
 import Link from 'next/link';
-import { Blog } from '@core-types/content/blogs';
-import { Media } from '@core-types/content/media';
+import { Blog } from '@/types/content/blogs';
+import { Media } from '@/types/content/media';
 import { updateBlog } from '@core-services/me/blogs';
 import { getBlogById } from '@core-services/feed/blogs';
 import BlogEditor from '@components/common/Editor';

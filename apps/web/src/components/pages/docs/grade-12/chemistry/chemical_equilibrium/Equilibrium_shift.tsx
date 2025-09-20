@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { TopicContent } from "@core-types/docs/topic"
+import { TopicContent } from "@/types/docs/topic"
 import { InlineMath } from "react-katex"
 import 'katex/dist/katex.min.css'
 import { div } from "three/tsl"

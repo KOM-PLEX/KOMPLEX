@@ -1,4 +1,4 @@
-import { TopicContent } from "@core-types/docs/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { ThreeDExplanationBox, ThreeDExplanationBoxProps } from "../../../common/box/explanation-box/3DExplanationBox";
 
 const TOPIC_CONTENT: TopicContent = {

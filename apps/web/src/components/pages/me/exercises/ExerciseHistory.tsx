@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Plus, Target } from 'lucide-react';
-import { ExerciseHistory } from '@core-types/user-content/exercise';
+import { ExerciseHistory } from '@/types/user-content/exercise';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import api from '@core-configs/axios';

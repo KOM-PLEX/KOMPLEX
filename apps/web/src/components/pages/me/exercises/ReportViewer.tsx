@@ -1,7 +1,7 @@
 'use client';
 
 import { X, BookOpen, Calculator, Award } from 'lucide-react';
-import { ExerciseReport } from '@core-types/user-content/exercise';
+import { ExerciseReport } from '@/types/user-content/exercise';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';

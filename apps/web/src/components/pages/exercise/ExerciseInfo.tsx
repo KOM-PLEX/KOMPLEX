@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Trophy } from 'lucide-react';
-import { ExerciseSection } from '@core-types/content/exercises';
+import { ExerciseSection } from '@/types/content/exercises';
 
 interface PracticeInfoProps {
     examTitle: string;

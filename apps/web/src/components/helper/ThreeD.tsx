@@ -4,7 +4,7 @@ import React, { Suspense, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useGLTF, OrbitControls, Text, Html } from '@react-three/drei';
 import { Object3D, Mesh } from 'three';
-import { ThreeDProps, ThreeDTextItem, TwoDTextItem } from '@core-types/docs/threeD';
+import { ThreeDProps, ThreeDTextItem, TwoDTextItem } from '@/types/docs/threeD';
 
 
 // Model component for GLB files

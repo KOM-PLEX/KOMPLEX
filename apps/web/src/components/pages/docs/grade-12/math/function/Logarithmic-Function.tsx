@@ -2,7 +2,7 @@ import DefinitionBox from "../../../common/box/DefinitionBox";
 import ExampleBox from "../../../common/box/ExampleBox";
 import TipBox from "../../../common/box/TipBox";
 import HintBox from "../../../common/box/HintBox";
-import { TopicContent } from "@core-types/docs/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { InlineMath } from "react-katex";
 import { GraphExplanationBox } from "../../../common/box/explanation-box/GraphExplanationBox";
 

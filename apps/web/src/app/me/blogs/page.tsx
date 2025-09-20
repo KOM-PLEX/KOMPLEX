@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Eye, Plus, Book } from 'lucide-react';
 import Sidebar from '@components/pages/me/Sidebar';
 import ContentError from '@components/common/ContentError';
-import { Blog } from '@core-types/content/blogs';
+import { Blog } from '@/types/content/blogs';
 import { getUserBlogs } from '@core-services/me/blogs';
 import BlogSkeleton from '@components/pages/blog/BlogsSkeleton';
 import MeSkeleton from '@components/pages/me/MeSkeleton';

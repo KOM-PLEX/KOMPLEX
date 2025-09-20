@@ -9,7 +9,7 @@ import ContentError from '@components/common/ContentError';
 import DeleteConfirm from '@components/common/DeleteConfirm';
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { ForumPost } from '@core-types/content/forums';
+import { ForumPost } from '@/types/content/forums';
 import { getForumById } from '@core-services/feed/forums';
 import { deleteForum } from '@core-services/me/forums';
 import Sidebar from '@components/pages/me/Sidebar';

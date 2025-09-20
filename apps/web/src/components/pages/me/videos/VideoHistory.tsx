@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Play, Clock, Calendar, Trash2, History, AlertCircle, CheckCircle } from 'lucide-react';
 import { getUserVideoHistory, deleteVideoFromHistory } from '@core-services/me/video-history';
-import type { VideoHistory } from '@core-types/content/videos';
+import type { VideoHistory } from '@/types/content/videos';
 
 interface VideoHistoryProps {
     onError?: (error: string) => void;

@@ -1,4 +1,4 @@
-import { TopicContent } from "@core-types/docs/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 import TipBox from "../../../common/box/TipBox";
 import ExampleBox from "../../../common/box/ExampleBox";

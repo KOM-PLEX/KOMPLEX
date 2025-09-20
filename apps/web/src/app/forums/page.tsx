@@ -4,7 +4,7 @@ import ForumCard from "@components/pages/forums/ForumCard";
 import ForumSkeleton from "@components/pages/forums/ForumSkeleton";
 import ContentError from "@components/common/ContentError";
 import { useState, useEffect } from "react";
-import { ForumPost } from "@core-types/content/forums";
+import { ForumPost } from "@/types/content/forums";
 import { getAllForums } from "@core-services/feed/forums";
 import { searchForums } from "@core-services/feed/search/forums";
 import { toggleForumLike } from "@core-services/me/forums";

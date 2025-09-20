@@ -8,7 +8,7 @@ import ContentError from '@components/common/ContentError';
 import Comments from '@components/common/comments/Comments';
 import { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
-import { ForumPost } from '@core-types/content/forums';
+import { ForumPost } from '@/types/content/forums';
 import { getForumById } from '@core-services/feed/forums';
 import { toggleForumLike } from '@core-services/me/forums';
 import { useAuth } from '@hooks/useAuth';

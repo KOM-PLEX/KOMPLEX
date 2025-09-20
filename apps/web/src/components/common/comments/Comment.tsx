@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { ThumbsUp, MessageCircle, Send } from 'lucide-react';
 import Link from 'next/link';
-import { ForumComment, ForumReply } from '@core-types/content/forums';
+import { ForumComment, ForumReply } from '@/types/content/forums';
 import { getTimeAgo } from '@core-utils/formater';
 import ReplyComponent from './Reply';
-import { VideoComment, VideoReply } from '@core-types/content/videos';
+import { VideoComment, VideoReply } from '@/types/content/videos';
 import { createForumReply } from '@core-services/me/forum-replies';
 import { toggleForumCommentLike } from '@core-services/me/forum-comments';
 import { toggleVideoCommentLike } from '@core-services/me/video-comments';

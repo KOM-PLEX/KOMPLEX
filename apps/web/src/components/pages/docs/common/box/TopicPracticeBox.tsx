@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { PracticeExercise } from '@core-types/docs/topic';
+import { PracticeExercise } from '@/types/docs/topic';
 
 
 

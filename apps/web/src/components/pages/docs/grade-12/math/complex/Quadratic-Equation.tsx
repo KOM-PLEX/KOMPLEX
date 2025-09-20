@@ -1,5 +1,5 @@
 import React from 'react'
-import { TopicContent } from '@core-types/docs/topic'
+import { TopicContent } from '@/types/docs/topic'
 import DefinitionBox from '../../../common/box/DefinitionBox'
 import WarningBox from '../../../common/box/WarningBox'
 import ExampleBox from '../../../common/box/ExampleBox'

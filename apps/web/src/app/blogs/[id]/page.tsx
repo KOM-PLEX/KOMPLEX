@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, Bookmark, UserPlus, UserCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Carousel from '@components/common/Carousel';
-import { Blog } from '@core-types/content/blogs';
+import { Blog } from '@/types/content/blogs';
 import { getBlogById } from '@core-services/feed/blogs';
 import { toggleBlogSave } from '@core-services/me/blogs';
 import { BlogPostSkeleton } from '@components/pages/blog/BlogPostSkeleton';

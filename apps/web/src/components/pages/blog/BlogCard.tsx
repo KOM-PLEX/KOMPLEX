@@ -1,6 +1,6 @@
 'use client';
 
-import { Blog } from "@core-types/content/blogs";
+import { Blog } from "@/types/content/blogs";
 import { Eye } from "lucide-react";
 import Link from "next/link";
 

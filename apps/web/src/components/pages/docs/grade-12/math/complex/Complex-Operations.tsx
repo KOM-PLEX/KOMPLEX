@@ -1,5 +1,5 @@
 import React from 'react'
-import { TopicContent } from '@core-types/docs/topic'
+import { TopicContent } from '@/types/docs/topic'
 import DefinitionBox from '../../../common/box/DefinitionBox'
 import TipBox from '../../../common/box/TipBox'
 import { BlockMath, InlineMath } from 'react-katex';

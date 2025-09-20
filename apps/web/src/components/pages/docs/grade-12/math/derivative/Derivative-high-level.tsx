@@ -4,7 +4,7 @@ import TipBox from "../../../common/box/TipBox";
 import ExerciseBox from "../../../common/box/ExerciseBox";
 import HintBox from "../../../common/box/HintBox";
 import WarningBox from "../../../common/box/WarningBox";
-import { TopicContent } from "@core-types/docs/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { BlockMath, InlineMath } from "react-katex";
 
 // --- Helper: left-aligned, scrollable KaTeX line (great on mobile) ---

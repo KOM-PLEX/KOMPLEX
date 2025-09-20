@@ -1,4 +1,4 @@
-import { Step } from '@core-types/docs/topic';
+import { Step } from '@/types/docs/topic';
 import { Search } from 'lucide-react';
 
 export interface ExampleBoxProps {

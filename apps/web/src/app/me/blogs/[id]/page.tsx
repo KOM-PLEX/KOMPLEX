@@ -9,7 +9,7 @@ import Carousel from '@components/common/Carousel';
 import EditBlog from '@components/pages/me/blogs/EditBlog';
 import ContentError from '@components/common/ContentError';
 import DeleteConfirm from '@components/common/DeleteConfirm';
-import { Blog } from '@core-types/content/blogs';
+import { Blog } from '@/types/content/blogs';
 import { getBlogById } from '@core-services/feed/blogs';
 import { deleteBlog } from '@core-services/me/blogs';
 import { BlogPostSkeleton } from '@components/pages/blog/BlogPostSkeleton';

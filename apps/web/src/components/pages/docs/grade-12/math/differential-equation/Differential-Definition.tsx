@@ -1,7 +1,7 @@
 import DefinitionBox from "../../../common/box/DefinitionBox"
 import TipBox from "../../../common/box/TipBox"
 import HintBox from "../../../common/box/HintBox"
-import { TopicContent } from "@core-types/docs/topic"
+import { TopicContent } from "@/types/docs/topic"
 import { BlockMath, InlineMath } from "react-katex"
 import 'katex/dist/katex.min.css'
 import WarningBox from "../../../common/box/WarningBox"

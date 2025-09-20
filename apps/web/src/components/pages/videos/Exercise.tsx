@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { BookOpen, CheckCircle, XCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
-import type { VideoExercise } from '@core-types/content/videos';
+import type { VideoExercise } from '@/types/content/videos';
 
 interface ExerciseProps {
     exercises?: VideoExercise[];

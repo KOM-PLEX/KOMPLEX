@@ -6,7 +6,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { callAiAndWriteToHistory, getAiHistory } from '@core-services/me/ai';
 import MarkdownRenderer from '@components/helper/MarkDownRenderer';
 import { useAuth } from '@hooks/useAuth';
-import { Message, AIHistoryItem } from '@core-types/content/ai';
+import { Message, AIHistoryItem } from '@/types/content/ai';
 
 const languages = [
     { id: 'khmer', name: 'ភាសាខ្មែរ', acronym: 'KH' },

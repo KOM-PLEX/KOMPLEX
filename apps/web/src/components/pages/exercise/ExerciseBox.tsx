@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
-import { Question } from "@core-types/content/exercises";
+import { Question } from "@/types/content/exercises";
 
 export interface ExerciseBoxProps {
     questions: Question[];

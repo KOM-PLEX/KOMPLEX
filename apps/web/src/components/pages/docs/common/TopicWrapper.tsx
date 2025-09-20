@@ -33,9 +33,9 @@ export default function TopicWrapper({ title, children, prev, next }: TopicWrapp
                     transform: 'scale(2)',
                     transformOrigin: 'top left',
                     padding: '10px',
-                    margin: '10px',
-                    width: contentRef.current.offsetWidth + 10 + 'px',
-                    height: contentRef.current.offsetHeight + 10 + 'px'
+                    margin: '20px',
+                    width: contentRef.current.offsetWidth + 20 + 'px',
+                    height: contentRef.current.offsetHeight + 20 + 'px'
                 }
             });
 

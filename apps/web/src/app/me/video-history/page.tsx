@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { Play, Clock, Calendar, Trash2, History, AlertCircle, CheckCircle } from 'lucide-react';
 import { getUserVideoHistory, deleteVideoFromHistory } from '@core-services/me/video-history';
 import Sidebar from '@components/pages/me/Sidebar';
-import type { VideoHistory } from '@core-types/content/videos';
+import type { VideoHistory } from '@/types/content/videos';
 import { useAuth } from '@hooks/useAuth';
 
 export default function VideoHistory() {

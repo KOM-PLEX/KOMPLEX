@@ -1,4 +1,4 @@
-import { Content } from "@core-types/docs/curriculum";
+import { Content } from "@/types/docs/curriculum";
 import {
   Calculator,
   TrendingUp,

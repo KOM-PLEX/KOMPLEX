@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { Target, BarChart3, ChevronDown } from 'lucide-react';
 import ReportViewer from './ReportViewer';
-import { ExerciseWithAttempts } from '@core-types/user-content/exercise';
+import { ExerciseWithAttempts } from '@/types/user-content/exercise';
 import { Listbox, Transition } from '@headlessui/react';
 import { getExercisesByGrade } from '@core-services/feed/exercises';
-import { Subject } from '@core-types/content/exercises';
+import { Subject } from '@/types/content/exercises';
 import {
     transformBackendDataToSubjects,
     getSubjectColorVariants,

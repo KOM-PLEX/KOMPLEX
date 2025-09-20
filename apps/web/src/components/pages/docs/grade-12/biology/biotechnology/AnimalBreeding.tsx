@@ -1,4 +1,4 @@
-import { TopicContent } from "@core-types/docs/topic";
+import { TopicContent } from "@/types/docs/topic";
 import DefinitionBox from "@components/pages/docs/common/box/DefinitionBox";
 import TipBox from "@components/pages/docs/common/box/TipBox";
 import ExampleBox from "@components/pages/docs/common/box/ExampleBox";

@@ -7,7 +7,7 @@ import ExerciseBox from "@components/pages/exercise/ExerciseBox";
 import PracticeInfo from "@components/pages/exercise/ExerciseInfo";
 import PracticeResult from "@components/pages/exercise/ExerciseResult";
 import ContentError from "@components/common/ContentError";
-import { ExerciseWithQuestions, ExerciseSection } from "@core-types/content/exercises";
+import { ExerciseWithQuestions, ExerciseSection } from "@/types/content/exercises";
 import { getExerciseById } from "@core-services/feed/exercises";
 import { submitExercise as submitExerciseService } from "@core-services/me/exercises";
 import { transformBackendDataToSections } from "@core-utils/transform";

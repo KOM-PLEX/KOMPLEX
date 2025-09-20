@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Send, ThumbsUp } from 'lucide-react';
 import Link from 'next/link';
-import { ForumReply } from "@core-types/content/forums";
+import { ForumReply } from "@/types/content/forums";
 import { getTimeAgo } from '@core-utils/formater';
 import { createForumReply } from '@core-services/me/forum-replies';
 import { toggleForumReplyLike } from '@core-services/me/forum-replies';
 import { createVideoReply } from '@core-services/me/video-replies';
 import { toggleVideoReplyLike } from '@core-services/me/video-replies';
-import { VideoReply } from '@core-types/content/videos';
+import { VideoReply } from '@/types/content/videos';
 import { useAuth } from "@hooks/useAuth";
 
 

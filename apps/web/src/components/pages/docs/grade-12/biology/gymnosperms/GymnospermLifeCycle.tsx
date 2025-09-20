@@ -1,4 +1,4 @@
-import { TopicContent } from "@core-types/docs/topic";
+import { TopicContent } from "@/types/docs/topic";
 
 import { ImageBox, ImageBoxProps } from "../../../common/box/explanation-box/ImageExplanationBox";
 const TOPIC_CONTENT: TopicContent = {

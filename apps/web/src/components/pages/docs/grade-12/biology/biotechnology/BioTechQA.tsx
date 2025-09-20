@@ -1,6 +1,6 @@
 import TopicPracticeBox from "../../../common/box/TopicPracticeBox";
 import 'katex/dist/katex.min.css';
-import { PracticeExercise } from "@core-types/docs/topic";
+import { PracticeExercise } from "@/types/docs/topic";
 
 
 const BioTechQA = () => {

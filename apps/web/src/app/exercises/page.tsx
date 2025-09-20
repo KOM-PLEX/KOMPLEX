@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Listbox, Transition } from '@headlessui/react';
 import PracticeCard from '@components/pages/exercise/ExerciseCard';
 import ContentError from '@components/common/ContentError';
-import { Subject } from '@core-types/content/exercises';
+import { Subject } from '@/types/content/exercises';
 import { getExercisesByGrade } from '@core-services/feed/exercises';
 import {
     transformBackendDataToSubjects,

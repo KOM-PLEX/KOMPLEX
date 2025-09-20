@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { ThumbsUp, Share, Bookmark, Check, LinkIcon, UserPlus, UserCheck } from 'lucide-react';
 import { Menu, Transition } from '@headlessui/react';
-import { VideoPost } from '@core-types/content/videos';
+import { VideoPost } from '@/types/content/videos';
 import Link from 'next/link';
 import { followUser, unfollowUser } from '@core-services/me/follow';
 import { useAuth } from '@hooks/useAuth';

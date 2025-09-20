@@ -1,4 +1,4 @@
-import { TopicContent } from "@core-types/docs/topic";
+import { TopicContent } from "@/types/docs/topic";
 import { InlineMath } from "react-katex";
 
 const STUDY_METHODS: TopicContent = {

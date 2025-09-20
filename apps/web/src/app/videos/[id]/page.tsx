@@ -8,7 +8,7 @@ import Exercise from '@components/pages/videos/Exercise';
 import VideoCard from '@components/pages/videos/VideoCard';
 import VideoSkeleton from '@components/pages/videos/VideoSkeleton';
 import ContentError from '@components/common/ContentError';
-import type { VideoPost } from '@core-types/content/videos';
+import type { VideoPost } from '@/types/content/videos';
 import { getAllVideos, getRecommendedVideos } from '@core-services/feed/videos';
 import { toggleVideoLike, toggleVideoSave } from '@core-services/me/videos';
 import { getVideoById } from '@core-services/feed/videos';
