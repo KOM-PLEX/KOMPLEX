@@ -10,6 +10,7 @@
 
 # next.js
 /.next/
+/*/.next/
 /out/
 
 # production
@@ -45,4 +46,6 @@ DOCS_ARCHITECTURE_SUMMARY.pdf
 .idea/
 
 .next
+/*/.next
+**/.next
 out
