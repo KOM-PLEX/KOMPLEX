@@ -23,6 +23,7 @@
     "kekule": "^1.0.3",
     "lucide-react": "^0.536.0",
     "mathlive": "^0.107.0",
+    "nativewind": "^4.2.1",
     "next": "15.4.5",
     "parse5": "^8.0.0",
     "pdfjs-dist": "^5.4.54",
@@ -31,6 +32,8 @@
     "react-dom": "19.1.0",
     "react-katex": "^3.1.0",
     "react-markdown": "^10.1.0",
+    "react-native-reanimated": "~3.17.5",
+    "react-native-worklets": "^0.5.1",
     "react-pdf-viewer": "^0.1.0",
     "react-quill-new": "^3.6.0",
     "reactflow": "^11.11.4",
@@ -44,7 +47,6 @@
     "vfile-location": "^5.0.3"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/desmos": "^1.11.0",
@@ -55,6 +57,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
-    "tailwindcss": "^4"
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2"
   }
 }

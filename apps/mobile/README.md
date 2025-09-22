@@ -1,8 +1,8 @@
-# Welcome to your Expo app 👋
+# KOMPLEX Mobile App 📱
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The mobile application for KOMPLEX - an educational platform for learning and discovery.
 
-## Get started
+## Getting Started
 
 1. Install dependencies
 
@@ -10,41 +10,44 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
+2. Start the development server
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Development
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+This project uses:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- [Expo](https://expo.dev) for cross-platform development
+- [Expo Router](https://docs.expo.dev/router/introduction/) for file-based routing
+- TypeScript for type safety
 
-## Get a fresh project
+### Project Structure
 
-When you're ready, run:
+```
+app/
+├── (tabs)/          # Tab navigation screens
+│   ├── index.tsx    # Home screen
+│   ├── explore.tsx  # Explore screen
+│   └── _layout.tsx  # Tab layout configuration
+├── modal.tsx        # Modal screen
+└── _layout.tsx      # Root layout
 
-```bash
-npm run reset-project
+components/
+├── themed-*.tsx     # Themed components
+└── ui/              # UI components
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Building for Production
 
-## Learn more
+- **Android**: `npx expo build:android`
+- **iOS**: `npx expo build:ios`
+- **Web**: `npx expo build:web`
 
-To learn more about developing your project with Expo, look at the following resources:
+## Learn More
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [Expo Documentation](https://docs.expo.dev/)
+- [React Native Documentation](https://reactnative.dev/)
+- [Expo Router](https://docs.expo.dev/router/introduction/)
