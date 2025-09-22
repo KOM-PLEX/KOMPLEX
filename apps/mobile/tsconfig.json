@@ -1,17 +1,80 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
     "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "plugins": [
+      {
+        "name": "expo"
+      }
+    ],
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "nativewind/*": ["../../node_modules/nativewind/*"],
+      "@components/*": [
+        "./components/*"
+      ],
+      "@services/*": [
+        "./services/*"
+      ],
+      "@types/*": [
+        "./types/*"
+      ],
+      "@hooks/*": [
+        "./hooks/*"
+      ],
+      "@config/*": [
+        "./config/*"
+      ],
+      "@utils/*": [
+        "./utils/*"
+      ],
+      "@core-services/*": [
+        "../../packages/services/*"
+      ],
+      "@core-types/*": [
+        "../../packages/types/*"
+      ],
+      "@core-hooks/*": [
+        "../../packages/hooks/*"
+      ],
+      "@core-configs/*": [
+        "../../packages/config/*"
+      ],
+      "@core-utils/*": [
+        "../../packages/utils/*"
       ]
     }
   },
+  "types": [
+    "nativewind/types"
+  ],
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "extends": "expo/tsconfig.base"
 }
