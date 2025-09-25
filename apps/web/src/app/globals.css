@@ -28,11 +28,10 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva, Verdana,
-    sans-serif;
+  font-family:
+    "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 500;
   line-height: 1.6;
-  
 }
 
 /* English text styling - use Inter for better English rendering */
@@ -58,8 +57,8 @@ h5,
 h6,
 span,
 div {
-  font-family: "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva, Verdana,
-    sans-serif;
+  font-family:
+    "Noto Sans Khmer", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 button {
