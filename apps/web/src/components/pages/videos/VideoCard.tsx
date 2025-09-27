@@ -46,20 +46,20 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
         return (
             <Link href={`/videos/${video.id}`} className="block group overflow-hidden">
                 <div
-                    className="flex gap-3 hover:bg-gray-50 p-2 rounded-lg transition-colors flex-wrap items-center cursor-pointer overflow-hidden"
+                    className="flex gap-3 hover:bg-gray-50 p-2 rounded-3xl transition-colors flex-wrap items-center cursor-pointer overflow-hidden"
                     onMouseEnter={handleCardHover}
                     onMouseLeave={handleCardLeave}
                 >
                     <div className="relative w-32 h-36 flex-1 overflow-hidden">
                         <video
                             poster={video.thumbnailUrl}
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-cover rounded-3xl"
                             muted
                             preload="metadata"
                         >
                             <source src={video.videoUrl} type="video/mp4" />
                         </video>
-                        <div className="absolute bottom-1 right-1 bg-black/50 text-white text-xs px-1 py-0.5 rounded">
+                        <div className="absolute bottom-1 right-1 bg-black/50 text-white text-xs px-1 py-0.5 rounded-3xl">
                             {formatDuration(video.duration)}
                         </div>
                     </div>
@@ -88,7 +88,7 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
         return (
             <div className="block group cursor-pointer" onClick={onClick}>
                 <div
-                    className=" rounded-2xl  backdrop-blur-sm  transition-all duration-300 transform overflow-hidden cursor-pointer"
+                    className=" lg:rounded-3xl lg:bg-white lg:border lg:border-gray-200  backdrop-blur-sm  transition-all duration-300 transform overflow-hidden cursor-pointer"
                     onMouseEnter={handleCardHover}
                     onMouseLeave={handleCardLeave}
                 >
@@ -151,10 +151,10 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
             onMouseEnter={handleCardHover}
             onMouseLeave={handleCardLeave}
         >
-            <div className=" rounded-2xl bg-white border border-gray-200  backdrop-blur-sm  transition-all duration-300 transform overflow-hidden">
+            <div className=" lg:rounded-3xl lg:bg-white lg:border lg:border-gray-200  backdrop-blur-sm  transition-all duration-300 transform overflow-hidden">
                 <div className="relative overflow-hidden">
                     <video
-                        className="w-full aspect-video object-cover rounded-t-2xl z-10 group-hover:scale-105 transition-all duration-300"
+                        className="w-full aspect-video object-cover lg:rounded-t-3xl lg:rounded-b-none rounded-3xl z-10 group-hover:scale-105 transition-all duration-300 overflow-hidden"
                         poster={video.thumbnailUrl}
                         muted
                         preload="metadata"
@@ -162,7 +162,7 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
                         <source src={video.videoUrl} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
-                    <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded-xl">
+                    <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded-3xl">
                         {formatDuration(video.duration)}
                     </div>
                 </div>
@@ -178,14 +178,14 @@ export default function VideoCard({ video, variant = 'default', onClick }: Video
                                 <img
                                     src={video.profileImage}
                                     alt={video.username}
-                                    className="w-8 h-8 rounded-full object-cover border border-indigo-600"
+                                    className="w-8 h-8 rounded-full object-cover border-2 border-indigo-600"
                                     onError={(e) => {
                                         e.currentTarget.style.display = 'none';
                                         e.currentTarget.nextElementSibling?.classList.remove('hidden');
                                     }}
                                 />
                             ) : null}
-                            <div className={`rounded-full p-1 bg-indigo-50 border border-indigo-600 ${video.profileImage ? 'hidden' : ''}`}>
+                            <div className={`rounded-full p-1 bg-indigo-50 border-2  border-indigo-600 ${video.profileImage ? 'hidden' : ''}`}>
                                 <User size={16} />
                             </div>
                             <span className="hover:underline">{video.username}</span>

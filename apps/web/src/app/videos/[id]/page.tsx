@@ -163,7 +163,7 @@ export default function VideoDetailPage() {
     }
 
     const renderVideoPlayer = () => (
-        <div className="bg-black rounded-2xl overflow-hidden shadow-lg">
+        <div className="bg-black rounded-3xl overflow-hidden shadow-lg">
             <video
                 className="w-full aspect-video"
                 controls
@@ -183,7 +183,7 @@ export default function VideoDetailPage() {
     const renderDesktopTabs = () => (
         <div className="hidden lg:block">
             {/* Tab Navigation */}
-            <div className="bg-white rounded-2xl shadow-sm mb-4">
+            <div className="lg:bg-white lg:rounded-3xl lg:shadow-sm mb-4">
                 <div className="flex">
                     <button
                         onClick={() => setActiveTab('related')}
@@ -213,7 +213,7 @@ export default function VideoDetailPage() {
             </div>
 
             {/* Tab Content */}
-            <div className="bg-white rounded-2xl shadow-sm">
+            <div className="lg:bg-white lg:rounded-3xl lg:shadow-sm">
                 {activeTab === 'related' && (
                     <div className="p-6">
                         {videosLoading ? (
@@ -245,7 +245,7 @@ export default function VideoDetailPage() {
     const renderMobileTabs = () => (
         <div className="lg:hidden mt-8">
             {/* Mobile Tab Navigation */}
-            <div className="bg-white rounded-2xl shadow-sm mb-4">
+            <div className="lg:bg-white lg:rounded-3xl lg:shadow-sm mb-4">
                 <div className="flex">
                     <button
                         onClick={() => setActiveTab('exercise')}
@@ -294,7 +294,7 @@ export default function VideoDetailPage() {
                 <Comments type='video' parentId={videoId} isReadOnly={true} />
             )}
             {activeTab === 'related' && (
-                <div className="bg-white rounded-2xl p-4 shadow-sm">
+                <div className="lg:bg-white lg:rounded-3xl lg:p-4 lg:shadow-sm">
                     <h3 className="font-semibold text-gray-900 mb-4 text-lg">វីដេអូដទៃទៀត</h3>
                     {videosLoading ? (
                         <div className="text-center py-8">

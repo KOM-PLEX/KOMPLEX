@@ -82,7 +82,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
     return (
         <div
-            className={`relative group bg-black rounded-lg overflow-hidden ${className}`}
+            className={`relative group bg-black rounded-3xl overflow-hidden ${className}`}
             onClick={togglePlay}
             onMouseEnter={() => setShowButton(true)}
             onMouseLeave={() => {

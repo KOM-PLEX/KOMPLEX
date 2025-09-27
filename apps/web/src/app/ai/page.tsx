@@ -7,6 +7,7 @@ import { meAiService } from '@/services/index';
 import MarkdownRenderer from '@components/helper/MarkDownRenderer';
 import { useAuth } from '@hooks/useAuth';
 import { Message, AIHistoryItem } from '@/types/content/ai';
+import { useRouter } from 'next/navigation';
 
 const languages = [
     { id: 'khmer', name: 'ភាសាខ្មែរ', acronym: 'KH' },
@@ -161,9 +162,16 @@ export default function AIChat() {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const debounceRef = useRef<NodeJS.Timeout | null>(null);
     const chatContainerRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
-    const { user, openLoginModal } = useAuth();
+    const { user, loading } = useAuth();
 
+    useEffect(() => {
+        // Only redirect if auth is done loading and user is null
+        if (!loading && !user) {
+            router.push('/auth');
+        }
+    }, [user, loading, router]);
 
     const convertHistoryToMessages = (historyItems: AIHistoryItem[]): Message[] => {
         const messages: Message[] = [];
@@ -214,12 +222,11 @@ export default function AIChat() {
         } finally {
             setIsLoadingHistory(false);
             setIsLoadingMore(false);
+            setError('មានបញ្ហាក្នុងការផ្ទុកប្រវត្តិសន្ទនា។ សូមព្យាយាមម្តងទៀត។');
         }
     }, [user]);
 
-    useEffect(() => {
-        if (!user) openLoginModal();
-    }, []);
+
 
     // Cleanup all timeouts and intervals on unmount
     useEffect(() => {
@@ -236,12 +243,12 @@ export default function AIChat() {
         };
     }, []);
 
-    // Load AI history on component mount
+    // Load AI history on component mount - only when auth is ready and user exists
     useEffect(() => {
-        if (user) {
+        if (!loading && user) {
             loadHistory();
         }
-    }, [user, loadHistory]);
+    }, [user, loading, loadHistory]);
 
     const loadMoreHistory = () => {
         if (hasMoreHistory && !isLoadingMore) {
@@ -280,8 +287,8 @@ export default function AIChat() {
 
     // Manage input disabled state
     useEffect(() => {
-        setIsInputDisabled(isLoading || isStreaming || isRequestInProgress);
-    }, [isLoading, isStreaming, isRequestInProgress]);
+        setIsInputDisabled(loading || isLoading || isStreaming || isRequestInProgress);
+    }, [loading, isLoading, isStreaming, isRequestInProgress]);
 
     const handleSendMessage = async () => {
         if (!inputMessage.trim()) return;
@@ -471,91 +478,92 @@ export default function AIChat() {
                 ref={chatContainerRef}
                 className="overflow-y-auto p-4 space-y-4 max-w-4xl mx-auto w-full scrollbar-hide"
             >
-                {isLoadingHistory ? (
-                    // Chat skeleton while loading history
+                {loading || isLoadingHistory ? (
+                    // Loading auth state
                     <ChatSkeleton />
-                ) : messages.length === 0 ? (
-                    // Welcome screen
-                    <div className="flex flex-col items-center justify-center h-full">
-                        <div className="text-center max-w-2xl">
-                            <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <Bot className="w-10 h-10 text-indigo-600" />
-                            </div>
-                            <h2 className="text-2xl font-semibold text-gray-900 mb-4">ស្វាគមន៍!</h2>
-                            <p className="text-gray-600 mb-8">ខ្ញុំឈ្មោះតារា ជា AI ជំនួយការរៀន។ តើអ្នកចង់សួរអ្វីអំពីអ្វីដែរ?</p>
-                        </div>
-                    </div>
-                ) : (
-                    // Messages
-                    <>
-                        {/* History Controls */}
-                        <div className="flex justify-center gap-2 py-4">
-                            {hasMoreHistory && (
-                                <button
-                                    onClick={loadMoreHistory}
-                                    disabled={isLoadingMore}
-                                    className="px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                                >
-                                    {isLoadingMore ? (
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
-                                            កំពុងទាញយកប្រវត្តិសន្ទនា...
-                                        </div>
-                                    ) : (
-                                        'ទាញយកប្រវត្តិសន្ទនាបន្ថែម'
-                                    )}
-                                </button>
-                            )}
-                        </div>
-
-                        {messages.map((message) => (
-                            <MessageItem
-                                key={message.id}
-                                message={message}
-                                onCopyMessage={handleCopyMessage}
-                                copiedMessageId={copiedMessageId}
-                            />
-                        ))}
-
-                        {isLoading && (
-                            <div className="w-full h-96">
-                                <div className="flex items-center gap-2">
-                                    <div className="flex space-x-1">
-                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                                    </div>
-                                    <span className="text-sm text-gray-500">កំពុងគិត...</span>
+                )
+                    : messages.length === 0 ? (
+                        // Welcome screen
+                        <div className="flex flex-col items-center justify-center h-full">
+                            <div className="text-center max-w-2xl">
+                                <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <Bot className="w-10 h-10 text-indigo-600" />
                                 </div>
+                                <h2 className="text-2xl font-semibold text-gray-900 mb-4">ស្វាគមន៍!</h2>
+                                <p className="text-gray-600 mb-8">ខ្ញុំឈ្មោះតារា ជា AI ជំនួយការរៀន។ តើអ្នកចង់សួរអ្វីអំពីអ្វីដែរ?</p>
                             </div>
-                        )}
-
-                        {isStreaming && (
-                            <div className="w-full">
-                                <div className="relative">
-                                    <MarkdownRenderer content={streamingMessage} />
-                                </div>
+                        </div>
+                    ) : (
+                        // Messages
+                        <>
+                            {/* History Controls */}
+                            <div className="flex justify-center gap-2 py-4">
+                                {hasMoreHistory && (
+                                    <button
+                                        onClick={loadMoreHistory}
+                                        disabled={isLoadingMore}
+                                        className="px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {isLoadingMore ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full animate-spin"></div>
+                                                កំពុងទាញយកប្រវត្តិសន្ទនា...
+                                            </div>
+                                        ) : (
+                                            'ទាញយកប្រវត្តិសន្ទនាបន្ថែម'
+                                        )}
+                                    </button>
+                                )}
                             </div>
-                        )}
 
-                        {error && (
-                            <div className="w-full">
-                                <div className="bg-red-50 border border-red-200 rounded-2xl p-4">
+                            {messages.map((message) => (
+                                <MessageItem
+                                    key={message.id}
+                                    message={message}
+                                    onCopyMessage={handleCopyMessage}
+                                    copiedMessageId={copiedMessageId}
+                                />
+                            ))}
+
+                            {isLoading && (
+                                <div className="w-full h-96">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                                        <span className="text-sm text-red-700">{error}</span>
-                                        <button
-                                            onClick={handleTryAgain}
-                                            className="ml-auto text-red-500 hover:text-red-700 transition-colors"
-                                        >
-                                            <RefreshCw className="w-4 h-4" />
-                                        </button>
+                                        <div className="flex space-x-1">
+                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                        </div>
+                                        <span className="text-sm text-gray-500">កំពុងគិត...</span>
                                     </div>
                                 </div>
-                            </div>
-                        )}
-                    </>
-                )}
+                            )}
+
+                            {isStreaming && (
+                                <div className="w-full">
+                                    <div className="relative">
+                                        <MarkdownRenderer content={streamingMessage} />
+                                    </div>
+                                </div>
+                            )}
+
+                            {error && (
+                                <div className="w-full">
+                                    <div className="bg-red-50 border border-red-200 rounded-2xl p-4">
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                                            <span className="text-sm text-red-700">{error}</span>
+                                            <button
+                                                onClick={handleTryAgain}
+                                                className="ml-auto text-red-500 hover:text-red-700 transition-colors"
+                                            >
+                                                <RefreshCw className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </>
+                    )}
                 <div ref={messagesEndRef} />
             </div>
 

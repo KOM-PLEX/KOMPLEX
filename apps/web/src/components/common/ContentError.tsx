@@ -29,7 +29,7 @@ export default function ContentError({ type, message }: ContentErrorProps) {
            
             <button
                 onClick={handleRetry}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-medium transition-colors"
             >
                 <RefreshCw className="w-4 h-4" />
                 ព្យាយាមម្តងទៀត

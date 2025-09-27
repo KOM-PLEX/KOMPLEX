@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import { UserPlus, UserCheck, BookOpen, Video, MessageSquare } from 'lucide-react';
 import ContentError from '@components/common/ContentError';
 import Blogs from '@components/pages/users/Blogs';
-import VideoTab from '@components/pages/users/Video';
+import VideoTab from '@/components/pages/users/Videos';
 import Forums from '@components/pages/users/Forums';
 import { userProfileService } from '@/services/index';
 import { User } from '@core-types/content/profile';

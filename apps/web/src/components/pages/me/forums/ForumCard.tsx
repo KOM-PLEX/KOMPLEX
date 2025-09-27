@@ -47,7 +47,7 @@ export default function ForumCard({ post, isFromMePage }: ForumCardProps) {
     }
 
     return (
-        <div className={`bg-white rounded-2xl p-6  border border-indigo-500/10 transition-all duration-300  ${isFromMePage ? 'cursor-pointer' : 'cursor-default'}`} onClick={handleCardClick}>
+        <div className={`lg:bg-white lg:rounded-3xl lg:p-6 lg:border lg:border-indigo-500/10 transition-all duration-300  ${isFromMePage ? 'cursor-pointer' : 'cursor-default'}`} onClick={handleCardClick}>
             <div className="flex items-center gap-3 mb-4">
                 <div className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                     {post.profileImage ? (

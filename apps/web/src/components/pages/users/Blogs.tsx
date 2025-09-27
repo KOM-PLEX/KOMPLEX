@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Eye } from 'lucide-react';
 import ContentError from '@components/common/ContentError';
-import BlogSkeleton from '@components/pages/blog/BlogsSkeleton';
+import BlogSkeleton from '@/components/pages/blogs/BlogsSkeleton';
 import { userBlogService } from '@/services/index';
 
 
@@ -93,7 +93,7 @@ export default function Blogs({ userId }: BlogsProps) {
                         href={`/blogs/${blog.id}`}
                         className="group block"
                     >
-                        <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">
+                        <div className="relative aspect-[16/9] w-full rounded-3xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">
                             {/* Background Image */}
                             <img
                                 src={blog.media[0]?.url}

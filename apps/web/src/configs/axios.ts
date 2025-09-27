@@ -7,7 +7,4 @@ const getFirebaseToken = async () => {
   return await firebase.auth.currentUser.getIdToken();
 };
 
-export default createApi(
-  process.env.NEXT_PUBLIC_API_URL!,
-  getFirebaseToken
-);
+export default createApi(process.env.NEXT_PUBLIC_API_URL!, getFirebaseToken);

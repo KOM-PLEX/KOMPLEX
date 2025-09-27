@@ -4,6 +4,22 @@
     "apps/*",
     "packages/*"
   ],
+  "scripts": {
+    "dev": "pnpm run dev:web & pnpm run dev:mobile",
+    "dev:web": "pnpm --filter web dev",
+    "dev:mobile": "pnpm --filter mobile start",
+    "build": "pnpm --filter web build",
+    "build:web": "pnpm --filter web build",
+    "start:web": "pnpm --filter web start",
+    "start:mobile": "pnpm --filter mobile start",
+    "android": "pnpm --filter mobile android",
+    "ios": "pnpm --filter mobile ios",
+    "web:mobile": "pnpm --filter mobile web",
+    "lint": "pnpm --filter web lint && pnpm --filter mobile lint",
+    "lint:web": "pnpm --filter web lint",
+    "lint:mobile": "pnpm --filter mobile lint",
+    "install:all": "pnpm install"
+  },
   "dependencies": {
     "@headlessui/react": "^2.2.7",
     "@react-pdf/renderer": "^4.3.0",

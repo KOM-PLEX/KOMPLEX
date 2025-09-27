@@ -55,7 +55,7 @@ export default function Forums({ userId }: ForumsProps) {
                 <div className="space-y-4">
                     {[...Array(3)].map((_, index) => (
                         <div key={index} className="animate-pulse">
-                            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
+                            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
                                     <div className="flex-1">
@@ -111,7 +111,7 @@ export default function Forums({ userId }: ForumsProps) {
                         href={`/forums/${forum.id}`}
                         className="block group"
                     >
-                        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 transition-all duration-300 hover:shadow-lg hover:border-indigo-300 group-hover:-translate-y-0.5">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200 transition-all duration-300 hover:shadow-lg hover:border-indigo-300 group-hover:-translate-y-0.5">
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
                                     {forum.username.charAt(0)}

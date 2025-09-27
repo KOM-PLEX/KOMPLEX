@@ -155,13 +155,13 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
     );
 
     return (
-        <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10">
+        <div className="lg:bg-white lg:rounded-3xl lg:p-6 lg:shadow-lg lg:shadow-indigo-500/10 lg:border lg:border-indigo-500/10">
             <h1 className='text-gray-900 font-bold mb-6'>ការឆ្លើយតប</h1>
 
             {/* Error Message */}
             {error && (
                 <div className="mb-6">
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <div className="bg-red-50 border border-red-200 rounded-full p-4">
                         <div className="flex items-center">
                             <div className="flex-shrink-0">
                                 <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
@@ -185,16 +185,15 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
                             // Inactive state - clickable placeholder
                             <div
                                 onClick={handleInputClick}
-                                className="w-full p-4 border border-gray-300 rounded-xl cursor-text hover:border-indigo-400 hover:bg-gray-50 transition-all duration-200"
+                                className="w-full p-4 border border-gray-300 rounded-full cursor-text  "
                             >
                                 <div className="flex items-center justify-between">
                                     <span className="text-gray-500 text-sm">ចូលរួមការសន្ទនា...</span>
-                                    <div className="text-gray-400 text-xs">Aa</div>
                                 </div>
                             </div>
                         ) : (
                             // Active state - textarea with buttons
-                            <div className="w-full border border-gray-300 rounded-xl overflow-hidden">
+                            <div className="w-full border border-gray-300 rounded-3xl overflow-hidden">
                                 <div className="relative">
                                     <textarea
                                         value={newComment}
@@ -207,14 +206,14 @@ export default function Comments({ type, parentId, focusInput = false, isReadOnl
                                     <div className="absolute bottom-3 right-3 flex items-center gap-2">
                                         <button
                                             onClick={handleCancel}
-                                            className="px-3 py-1.5 text-sm bg-gray-50 rounded-lg text-gray-600 hover:text-gray-800 transition-colors duration-200"
+                                            className="px-3 py-1.5 text-sm bg-gray-50 rounded-full text-gray-600 hover:text-gray-800 transition-colors duration-200"
                                         >
-                                            Cancel
+                                            បោះបង់
                                         </button>
                                         <button
                                             onClick={handleSubmitComment}
                                             disabled={!newComment.trim() || isSubmitting}
-                                            className="px-4 py-1.5 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                                            className="px-4 py-1.5 bg-indigo-600 text-white text-sm rounded-full hover:bg-indigo-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                                         >
                                             {isSubmitting ? (
                                                 <>

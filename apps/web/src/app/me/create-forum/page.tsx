@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useAuth } from '@hooks/useAuth';
 import BlogEditor from '@components/common/Editor';
+import { BackButton } from '@/components/common/BackButton';
 
 export default function CreateForum() {
     const { user, loading: authLoading, openLoginModal } = useAuth();
@@ -211,13 +212,10 @@ export default function CreateForum() {
 
             {/* Main Content */}
             <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                <div className="max-w-7xl mx-auto p-5">
+                <div className="mx-auto p-5">
                     {/* Header */}
-                    <div className="mb-6">
-                        <Link href="/me/forums" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
-                            <ArrowLeft className="w-4 h-4" />
-                            ត្រឡប់ទៅវេទិកា
-                        </Link>
+                    <div className="sticky top-20 mb-6">
+                        <BackButton href="/me/forums" />
                     </div>
 
                     {/* Create Post Form */}
@@ -237,7 +235,7 @@ export default function CreateForum() {
                                 value={title}
                                 onChange={handleTitleChange}
                                 placeholder="សរសេរចំណងជើងការឆ្លើយតបរបស់អ្នក..."
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                                 maxLength={300}
                             />
                             <div className="flex justify-between items-center mt-2">
@@ -261,7 +259,7 @@ export default function CreateForum() {
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រភេទវេទិកា
                                         </label>
-                                        <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
+                                        <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-full focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
                                             <Tag size={18} className="text-gray-400" />
                                             <input
                                                 type="text"
@@ -306,7 +304,7 @@ export default function CreateForum() {
                                             {forumTypes.map((type, index) => (
                                                 <span
                                                     key={index}
-                                                    className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-100 text-indigo-700 rounded-lg border border-indigo-200"
+                                                    className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-100 text-indigo-700 rounded-full border border-indigo-200"
                                                 >
                                                     {type}
                                                     <button
@@ -334,7 +332,7 @@ export default function CreateForum() {
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រធានបទ
                                         </label>
-                                        <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
+                                        <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-full focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
                                             <Tag size={18} className="text-gray-400" />
                                             <input
                                                 type="text"
@@ -379,7 +377,7 @@ export default function CreateForum() {
                                             {topics.map((topic, index) => (
                                                 <span
                                                     key={index}
-                                                    className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-100 text-indigo-700 rounded-lg border border-indigo-200"
+                                                    className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-100 text-indigo-700 rounded-full border border-indigo-200"
                                                 >
                                                     {topic}
                                                     <button
@@ -412,7 +410,7 @@ export default function CreateForum() {
                             {/* 2x2 Grid for Images */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 {imagePreviews.map((preview, index) => (
-                                    <div key={index} className="relative aspect-video rounded-lg overflow-hidden border border-gray-200">
+                                    <div key={index} className="relative aspect-video rounded-3xl overflow-hidden border border-gray-200">
                                         <Image
                                             src={preview}
                                             alt={`Preview ${index + 1}`}
@@ -432,7 +430,7 @@ export default function CreateForum() {
                                 {imagePreviews.length < 4 && (
                                     <div
                                         onClick={handleImageClick}
-                                        className="aspect-video border-2 border-dashed rounded-lg flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
+                                        className="aspect-video border-2 border-dashed rounded-3xl flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
                                     >
                                         <Plus className="w-6 h-6 mb-2 text-gray-500" />
                                         <p className="text-xs text-gray-500 text-center">អូសរូបឬ</p>
@@ -502,7 +500,7 @@ export default function CreateForum() {
                             <button
                                 onClick={handleSubmit}
                                 disabled={!isFormValid() || isSubmitting}
-                                className={`px-6 py-2 rounded-lg transition-all duration-200 font-medium ${isFormValid() && !isSubmitting
+                                className={`px-6 py-2 rounded-full transition-all duration-200 font-medium ${isFormValid() && !isSubmitting
                                     ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
                                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                     }`}
@@ -530,7 +528,7 @@ export default function CreateForum() {
                             <div className="mt-4 flex justify-center">
                                 <button
                                     onClick={handleSubmit}
-                                    className="flex items-center gap-2 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
+                                    className="flex items-center gap-2 px-6 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors duration-200"
                                 >
                                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />

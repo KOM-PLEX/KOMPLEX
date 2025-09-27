@@ -35,7 +35,7 @@ export default function PracticeCard({ topic, subjectColors }: PracticeCardProps
     };
 
     const CardContent = () => (
-        <div className={`${subjectColors.bg} border-2 ${subjectColors.border} rounded-xl lg:p-6 p-4 transition-all group ${isDisabled
+        <div className={`${subjectColors.bg} border-2 ${subjectColors.border} rounded-3xl lg:p-6 p-4 transition-all group ${isDisabled
             ? ' cursor-not-allowed'
             : 'hover:shadow-md hover:scale-101'
             }`}>
@@ -87,8 +87,8 @@ export default function PracticeCard({ topic, subjectColors }: PracticeCardProps
     return isDisabled ? (
         <div className="relative">
             <CardContent />
-            <div className="absolute inset-0 bg-gray-400/50  rounded-xl flex items-center justify-center">
-                <span className=" font-medium text-gray-600 bg-white px-2 py-1 rounded-full shadow-sm">
+            <div className="absolute inset-0 bg-gray-400/50  rounded-3xl flex items-center justify-center">
+                <span className=" font-medium text-gray-600 bg-indigo-50 border border-indigo-500 px-3 py-5 rounded-full shadow-sm">
                     នឹងមកជូននូវឆាប់នេះ
                 </span>
             </div>

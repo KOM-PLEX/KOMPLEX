@@ -323,7 +323,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
     };
 
     return (
-        <div className="bg-white rounded-2xl shadow-sm p-8">
+        <div className="bg-white rounded-3xl shadow-sm p-8">
             <div className="space-y-8">
                 {/* Title Input */}
                 <div>
@@ -335,7 +335,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                         value={formData.title}
                         onChange={(e) => handleInputChange('title', e.target.value)}
                         placeholder="សរសេរចំណងជើងវីដេអូរបស់អ្នក..."
-                        className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
+                        className="w-full px-4 py-3 bg-white rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
                     />
                 </div>
 
@@ -346,7 +346,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                     </label>
 
                     {/* Current Video Display */}
-                    <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                    <div className="mb-6 p-4 bg-gray-50 rounded-3xl">
                         <div className="flex items-center gap-3 mb-4">
                             <Play className="w-5 h-5 text-indigo-600" />
                             <span className="font-medium text-gray-900">វីដេអូបច្ចុប្បន្ន</span>
@@ -355,7 +355,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                             <video
                                 src={video.videoUrl}
                                 poster={video.thumbnailUrl}
-                                className="w-full aspect-video object-cover rounded-lg"
+                                className="w-full aspect-video object-cover rounded-3xl"
                                 controls
                             />
                             <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded">
@@ -368,7 +368,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                     </div>
 
                     {/* New Video Upload */}
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-indigo-400 transition-colors duration-200">
+                    <div className="border-2 border-dashed border-gray-300 rounded-3xl p-8 text-center hover:border-indigo-400 transition-colors duration-200">
                         {!selectedVideo ? (
                             <div>
                                 <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
@@ -376,7 +376,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                                 <p className="text-sm text-gray-500 mb-4">
                                     គាំទ្រទម្រង់ MP4, MOV, AVI • ទំហំអតិបរមា 100MB
                                 </p>
-                                <label className="cursor-pointer inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200">
+                                <label className="cursor-pointer inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-3xl hover:bg-indigo-700 transition-colors duration-200">
                                     <Upload className="w-4 h-4 mr-2" />
                                     ជ្រើសរើសវីដេអូ
                                     <input
@@ -392,7 +392,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                                 <div className="relative mb-4">
                                     <video
                                         src={videoPreview || ''}
-                                        className="w-full aspect-video object-cover rounded-lg"
+                                        className="w-full aspect-video object-cover rounded-3xl"
                                         controls
                                     />
                                     <button
@@ -413,7 +413,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                     </div>
 
                     {error && (
-                        <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                        <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-full">
                             <p className="text-red-600 text-sm">{error}</p>
                         </div>
                     )}
@@ -427,7 +427,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                     <BlogEditor
                         value={formData.description}
                         onChange={(value) => handleInputChange('description', value)}
-                        height="300px"
+                        height="500px"
                         toolbarOptions={[
                             ["heading", "bold", "italic"],
                             ["ul"],
@@ -452,7 +452,7 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
 
                 {/* Upload Progress */}
                 {isSaving && (
-                    <div className="p-6 bg-gray-50 rounded-lg">
+                    <div className="p-6 bg-gray-50 rounded-full">
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-sm font-medium text-gray-700">កំពុងរក្សាទុក...</span>
                             <span className="text-sm text-gray-500 font-medium">{uploadProgress}%</span>
@@ -473,14 +473,14 @@ export default function EditVideo({ video, onSave, onCancel }: EditVideoProps) {
                             resetEditForm();
                             onCancel();
                         }}
-                        className="px-6 py-2 bg-gray-500 text-white rounded-lg transition-colors duration-200 hover:bg-gray-600 font-medium"
+                        className="px-6 py-2 bg-gray-500 text-white rounded-full transition-colors duration-200 hover:bg-gray-600 font-medium"
                     >
                         បោះបង់
                     </button>
                     <button
                         onClick={handleSave}
                         disabled={!isFormValid() || isSaving}
-                        className="px-6 py-2 bg-indigo-500 text-white rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium flex items-center gap-2"
+                        className="px-6 py-2 bg-indigo-500 text-white rounded-full transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium flex items-center gap-2"
                     >
                         {isSaving ? (
                             <>

@@ -1,12 +1,12 @@
 "use client";
 
-import BlogCard from "@components/pages/blog/BlogCard";
+import BlogCard from "@/components/pages/blogs/BlogCard";
 import { useEffect, useState } from "react";
 import { Blog } from "@/types/content/blogs";
 import { feedBlogService, feedSearchBlogService } from "@/services/index";
-import BlogsSkeleton from "@components/pages/blog/BlogsSkeleton";
+import BlogsSkeleton from "@/components/pages/blogs/BlogsSkeleton";
 import BlogError from "@components/common/ContentError";
-import Sidebar from "@components/pages/blog/Sidebar";
+import Sidebar from "@/components/pages/blogs/Sidebar";
 
 // ! TO CHANGE TOPIC AND TYPE FILTERING
 

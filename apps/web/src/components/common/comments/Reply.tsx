@@ -111,14 +111,14 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
                                 <button
                                     onClick={handleReplyLike}
                                     disabled={isLiking}
-                                    className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${replyUpvoted ? 'text-indigo-600' : 'text-gray-500'}`}
+                                    className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded-full hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${replyUpvoted ? 'text-indigo-600' : 'text-gray-500'}`}
                                 >
                                     <ThumbsUp className={`w-3 h-3 ${replyUpvoted ? 'fill-indigo-600' : ''}`} />
                                     <span>{typeof likeCount === 'number' ? likeCount : 0}</span>
                                 </button>
                                 <button
                                     onClick={() => setIsReplying(!isReplying)}
-                                    className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200"
+                                    className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200 rounded-full"
                                 >
                                     ឆ្លើយតប
                                 </button>
@@ -143,20 +143,20 @@ export default function ReplyComponent({ reply, commentId, onSubmitReply, replyT
                                 value={replyText}
                                 onChange={(e) => setReplyText(e.target.value)}
                                 placeholder="សរសេរការឆ្លើយតប..."
-                                className="flex-1 pl-20 pr-3 py-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500"
+                                className="flex-1 pl-20 pr-3 py-3 text-sm border border-gray-200 rounded-full focus:outline-none focus:border-indigo-500"
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
                                         handleSubmitReply();
                                     }
                                 }}
                             />
-                            <div className="absolute left-2 top-2 bg-indigo-50  px-2 py-2 rounded">
+                            <div className="absolute left-2 top-2 bg-indigo-50  px-2 py-2 rounded-full">
                                 <p className="text-black text-xs ">@{reply.username?.toString()}</p>
                             </div>
                             <button
                                 onClick={handleSubmitReply}
                                 disabled={!replyText.trim()}
-                                className="px-3 py-1 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="px-3 py-1 text-sm text-white bg-indigo-600 rounded-full hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <Send />
                             </button>

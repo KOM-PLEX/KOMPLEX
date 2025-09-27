@@ -143,8 +143,8 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
     }
 
     return (
-        <div className={`bg-white rounded-2xl p-6  border border-indigo-500/10 transition-all duration-300   ${isFromBasePage ? 'cursor-pointer' : ''}`} onClick={handleCardClick}>
-            <div className="flex items-center gap-3 mb-4">
+        <div className={`lg:bg-white lg:rounded-3xl lg:p-6 py-6 lg:border lg:border-indigo-500/10 overflow-hidden   ${isFromBasePage ? 'cursor-pointer border-b border-indigo-500/10' : ''}`} onClick={handleCardClick}>
+            <div className="flex items-center gap-6 mb-4">
                 <Link href={`/users/${post.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                     {post.profileImage ? (
                         <img
@@ -175,7 +175,7 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
                     <button
                         onClick={handleFollow}
                         disabled={isFollowLoading}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${isFollowing
+                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${isFollowing
                             ? 'bg-indigo-100 text-indigo-700 border border-indigo-200 hover:bg-indigo-200'
                             : 'bg-indigo-600 text-white hover:bg-indigo-700'
                             } ${isFollowLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -209,20 +209,20 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
                 <Carousel media={getImageUrls(post.media).map(url => ({ url, type: 'image' }))} />
             )}
 
-            <div className="flex items-center gap-5 pt-4 border-t border-indigo-500/10">
+            <div className="flex items-center gap-5 pt-4 ">
                 <button
                     onClick={handleUpvote}
-                    className={`flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60 ${upvoted ? 'text-indigo-600 bg-indigo-50/80' : ''}`}
+                    className={`flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-full border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60 ${upvoted ? 'text-indigo-600 ' : ''}`}
                 >
                     <ThumbsUp className={`w-4 h-4 ${upvoted ? 'fill-indigo-600' : ''}`} /> <span className="font-semibold text-gray-500">{upvoteCount}</span>
                 </button>
                 {
                     isFromBasePage ? (
-                        <Link href={`/forum/${post.id}`} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
+                        <Link href={`/forum/${post.id}`} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-full border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
                             <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប </span>
                         </Link>
                     ) : (
-                        <button onClick={handleCommentClick} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
+                        <button onClick={handleCommentClick} className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-full border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60">
                             <MessageCircle className="w-4 h-4" /> <span className="text-gray-500">ឆ្លើយតប </span>
                         </button>
                     )
@@ -231,7 +231,7 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
                 <Menu as="div" className="relative">
                     <Menu.Button
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-lg border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60 focus:outline-none"
+                        className="flex items-center gap-1.5 text-indigo-500 text-sm font-medium cursor-pointer transition-all duration-200 py-1.5 px-3 rounded-full border-none bg-none hover:text-indigo-600 hover:bg-indigo-50/60 focus:outline-none"
                     >
                         <Share className="w-4 h-4" />
                         <span className="text-gray-500">ចែករំលែក</span>
@@ -245,12 +245,12 @@ export default function ForumCard({ isFromBasePage, post, onCommentClick, onLike
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
                     >
-                        <Menu.Items className="absolute left-0  w-48 bg-white rounded-lg border border-gray-200 shadow-lg z-50 focus:outline-none">
+                        <Menu.Items className="absolute left-0  w-48 bg-white rounded-3xl p-2 border border-gray-200 shadow-lg z-50 focus:outline-none">
                             <Menu.Item>
                                 {({ active }) => (
                                     <button
                                         onClick={handleCopyLink}
-                                        className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
+                                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-full text-sm transition-colors ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
                                             }`}
                                     >
                                         {copied ? (

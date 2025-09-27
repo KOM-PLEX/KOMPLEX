@@ -1,7 +1,6 @@
 'use client';
 
-import Link from 'next/link';
-import { ArrowLeft, Edit, Trash, Eye } from 'lucide-react';
+import { Edit, Trash, Eye } from 'lucide-react';
 import ForumCard from '@components/pages/me/forums/ForumCard';
 import Comments from '@components/common/comments/Comments';
 import EditForum from '@components/pages/me/forums/EditForum';
@@ -13,6 +12,7 @@ import { ForumPost } from '@/types/content/forums';
 import { feedForumService, meForumService } from '@/services/index';
 import Sidebar from '@components/pages/me/Sidebar';
 import { useAuth } from '@hooks/useAuth';
+import { BackButton } from '@/components/common/BackButton';
 
 export default function MyForumDetail() {
     const { user, loading: authLoading } = useAuth();
@@ -82,9 +82,9 @@ export default function MyForumDetail() {
             <div className="flex min-h-screen transition-colors duration-200 bg-gray-50">
                 <Sidebar />
                 <div className="flex-1 lg:ml-64 pt-32 lg:pt-16">
-                    <div className="max-w-7xl mx-auto p-5">
+                    <div className="mx-auto p-5">
                         {/* Loading Skeleton */}
-                        <div className="mb-6">
+                        <div className="mb-6 relative">
                             <div className="w-32 h-6 bg-gray-200 rounded animate-pulse"></div>
                         </div>
                         <div className="bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 animate-pulse">
@@ -118,12 +118,9 @@ export default function MyForumDetail() {
             <div className="flex min-h-screen transition-colors duration-200 bg-gray-50">
                 <Sidebar />
                 <div className="flex-1 ml-64 pt-20">
-                    <div className="max-w-7xl mx-auto p-5">
-                        <div className="mb-6">
-                            <Link href="/me/forums" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
-                                <ArrowLeft className="w-4 h-4" />
-                                ត្រឡប់ទៅវេទិការបស់ខ្ញុំ
-                            </Link>
+                    <div className=" mx-auto p-5">
+                        <BackButton href='/me/forums' />
+                        <div className="mb-6 relative">
                         </div>
                         <ContentError
                             type="error"
@@ -141,26 +138,23 @@ export default function MyForumDetail() {
             <Sidebar />
 
             {/* Main Content */}
-            <div className="flex-1 lg:ml-64 pt-32 lg:pt-16">
-                <div className="max-w-7xl mx-auto p-5">
+            <div className="flex-1 lg:ml-64 pt-32 lg:pt-0">
+                <div className="mx-auto p-5">
                     {/* Header with Back Button and Actions */}
-                    <div className="mb-6 flex items-center justify-between">
-                        <Link href="/me/forums" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
-                            <ArrowLeft className="w-4 h-4" />
-                            ត្រឡប់ទៅវេទិការបស់ខ្ញុំ
-                        </Link>
+                    <div className='sticky top-20'><BackButton href='/me/forums' /></div>
+                    <div className="mb-6 flex items-center justify-end">
                         {!isEditMode && (
                             <div className='flex gap-2 items-center'>
                                 <button
                                     onClick={handleDeleteClick}
-                                    className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
+                                    className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors font-medium"
                                 >
                                     <Trash className="w-4 h-4" />
                                     លុប
                                 </button>
                                 <button
                                     onClick={() => setIsEditMode(true)}
-                                    className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                                    className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors font-medium"
                                 >
                                     <Edit className="w-4 h-4" />
                                     កែប្រែ
@@ -170,7 +164,7 @@ export default function MyForumDetail() {
                         {isEditMode && (
                             <button
                                 onClick={handleCancel}
-                                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
+                                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-full hover:bg-gray-700 transition-colors font-medium"
                             >
                                 <Eye className="w-4 h-4" />
                                 មើល

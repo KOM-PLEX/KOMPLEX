@@ -8,6 +8,7 @@ import { Media } from '@/types/content/media';
 import { meBlogService, feedBlogService } from '@/services/index';
 import BlogEditor from '@components/common/Editor';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
+import { BackButton } from '@/components/common/BackButton';
 
 interface EditBlogProps {
     blog: Blog;
@@ -194,19 +195,16 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
     };
 
     return (
-        <div className="max-w-7xl mx-auto p-5">
+        <div className=" mx-auto p-5">
             {/* Header */}
-            <div className="mb-6 flex items-center justify-between">
-                <Link href="/me/blogs" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
-                    <ArrowLeft className="w-4 h-4" />
-                    ត្រឡប់ទៅប្លុករបស់ខ្ញុំ
-                </Link>
+                <BackButton href="/me/blogs" />
+            <div className="mb-6 flex items-center justify-end">
                 <button
                     onClick={() => {
                         resetEditForm();
                         onCancel();
                     }}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-full hover:bg-gray-700 transition-colors font-medium"
                 >
                     <Eye className="w-4 h-4" />
                     មើល
@@ -214,7 +212,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
             </div>
 
             {/* Edit Post Form */}
-            <div className="rounded-2xl shadow-lg p-6 transition-colors duration-200 bg-white border border-gray-200">
+            <div className="lg:rounded-3xl lg:shadow-lg lg:p-6 lg:transition-colors lg:duration-200 lg:bg-white lg:border lg:border-gray-200">
                 {/* Header */}
                 <div className="mb-6">
                     <h1 className="text-2xl font-bold mb-2 flex items-center gap-2 text-gray-700">
@@ -233,7 +231,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                         value={title}
                         onChange={handleTitleChange}
                         placeholder="សរសេរចំណងជើងអត្ថបទរបស់អ្នក..."
-                        className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
+                        className="w-full px-4 py-3 bg-white rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
                         maxLength={300}
                     />
                     <div className="flex justify-between items-center mt-2">
@@ -257,7 +255,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     ប្រភេទប្លុក
                                 </label>
-                                <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
+                                <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-full focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
                                     <Tag size={18} className="text-gray-400" />
                                     <input
                                         type="text"
@@ -302,7 +300,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                                     {blogTypes.map((type, index) => (
                                         <span
                                             key={index}
-                                            className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-100 text-indigo-700 rounded-lg border border-indigo-200"
+                                            className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-100 text-indigo-700 rounded-full border border-indigo-200"
                                         >
                                             {type}
                                             <button
@@ -330,7 +328,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     ប្រធានបទ
                                 </label>
-                                <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
+                                <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-full focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
                                     <Tag size={18} className="text-gray-400" />
                                     <input
                                         type="text"
@@ -375,7 +373,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                                     {topics.map((topic, index) => (
                                         <span
                                             key={index}
-                                            className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-100 text-indigo-700 rounded-lg border border-indigo-200"
+                                            className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-100 text-indigo-700 rounded-full border border-indigo-200"
                                         >
                                             {topic}
                                             <button
@@ -409,7 +407,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                     {/* 2x2 Grid for Images */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         {imagePreviews.map((preview, index) => (
-                            <div key={index} className="relative aspect-video rounded-lg overflow-hidden border border-gray-200">
+                            <div key={index} className="relative aspect-video rounded-3xl overflow-hidden border border-gray-200">
                                 <img
                                     src={preview}
                                     alt={`Preview ${index + 1}`}
@@ -428,7 +426,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                         {imagePreviews.length < 4 && (
                             <div
                                 onClick={handleImageClick}
-                                className="aspect-video border-2 border-dashed rounded-lg flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
+                                className="aspect-video border-2 border-dashed rounded-3xl flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
                             >
                                 <Plus className="w-6 h-6 mb-2 text-gray-500" />
                                 <p className="text-xs text-gray-500 text-center">អូសរូបឬ</p>
@@ -454,7 +452,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                         <button
                             type="button"
                             onClick={() => setShowPreview(!showPreview)}
-                            className="flex items-center gap-2 px-3 py-1.5 text-sm bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors"
+                            className="flex items-center gap-2 px-3 py-1.5 text-sm bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100 transition-colors"
                         >
                             <Eye className="w-4 h-4" />
                             {showPreview ? 'កែប្រែ' : 'មើលជាមុន'}
@@ -468,7 +466,7 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                             height="400px"
                         />
                     ) : (
-                        <div className="border border-gray-200 rounded-lg p-4 bg-white min-h-[400px]">
+                        <div className="border border-gray-200 rounded-3xl p-4 bg-white min-h-[400px]">
                             <div className="prose prose-lg max-w-none">
                                 <MarkDownRenderer content={bodyText} />
                             </div>
@@ -483,14 +481,14 @@ export default function EditBlog({ blog, onSave, onCancel }: EditBlogProps) {
                             resetEditForm();
                             onCancel();
                         }}
-                        className="px-6 py-2 bg-gray-500 text-white rounded-lg transition-colors duration-200 hover:bg-gray-600 font-medium"
+                        className="px-6 py-2 bg-gray-500 text-white rounded-full transition-colors duration-200 hover:bg-gray-600 font-medium"
                     >
                         បោះបង់
                     </button>
                     <button
                         onClick={handleSave}
                         disabled={!title.trim() || !bodyText.trim() || isSaving}
-                        className="px-6 py-2 bg-indigo-500 text-white rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium flex items-center gap-2"
+                        className="px-6 py-2 bg-indigo-500 text-white rounded-full transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium flex items-center gap-2"
                     >
                         {isSaving ? (
                             <>

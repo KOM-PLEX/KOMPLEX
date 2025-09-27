@@ -75,13 +75,10 @@ export default function SignUp({
                             type="file"
                             accept="image/*"
                             onChange={handleProfileImageChange}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer bg-white"
                             disabled={isSubmitting}
                         />
                     </div>
-                    {signupData.profileImage && (
-                        <p className="text-green-600 text-xs mt-1 text-center">រូបផ្ទាល់ខ្លួនត្រូវបានជ្រើសរើស</p>
-                    )}
                 </div>
 
                 {/* Username, First Name, Last Name */}
@@ -94,7 +91,7 @@ export default function SignUp({
                             type="text"
                             value={signupData.username}
                             onChange={(e) => setSignupData(prev => ({ ...prev, username: e.target.value }))}
-                            className="w-full px-4 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                            className="w-full px-4 py-3 border border-indigo-500/20 rounded-full bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                             placeholder="បញ្ចូលឈ្មោះអ្នកប្រើប្រាស់"
                             disabled={isSubmitting}
                         />
@@ -112,7 +109,7 @@ export default function SignUp({
                                 type="text"
                                 value={signupData.firstName}
                                 onChange={(e) => setSignupData(prev => ({ ...prev, firstName: e.target.value }))}
-                                className="w-full px-4 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                                className="w-full px-4 py-3 border border-indigo-500/20 rounded-full bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                                 placeholder="ឈ្មោះ"
                                 disabled={isSubmitting}
                             />
@@ -125,7 +122,7 @@ export default function SignUp({
                                 type="text"
                                 value={signupData.lastName}
                                 onChange={(e) => setSignupData(prev => ({ ...prev, lastName: e.target.value }))}
-                                className="w-full px-4 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                                className="w-full px-4 py-3 border border-indigo-500/20 rounded-full bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                                 placeholder="នាមត្រកូល"
                                 disabled={isSubmitting}
                             />
@@ -145,7 +142,7 @@ export default function SignUp({
                         type="email"
                         value={signupData.email}
                         onChange={(e) => setSignupData(prev => ({ ...prev, email: e.target.value }))}
-                        className="w-full pl-10 pr-4 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                        className="w-full pl-10 pr-4 py-3 border border-indigo-500/20 rounded-full bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                         placeholder="បញ្ចូលអ៊ីមែលរបស់អ្នក"
                         disabled={isSubmitting}
                     />
@@ -167,7 +164,7 @@ export default function SignUp({
                             type={showPassword ? 'text' : 'password'}
                             value={signupData.password}
                             onChange={(e) => setSignupData(prev => ({ ...prev, password: e.target.value }))}
-                            className="w-full pl-10 pr-12 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                            className="w-full pl-10 pr-12 py-3 border border-indigo-500/20 rounded-full bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                             placeholder="បង្កើតពាក្យសម្ងាត់"
                             disabled={isSubmitting}
                         />
@@ -194,7 +191,7 @@ export default function SignUp({
                             type={showConfirmPassword ? 'text' : 'password'}
                             value={signupData.confirmPassword}
                             onChange={(e) => setSignupData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                            className="w-full pl-10 pr-12 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                            className="w-full pl-10 pr-12 py-3 border border-indigo-500/20 rounded-full bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                             placeholder="បញ្ជាក់ពាក្យសម្ងាត់ម្តងទៀត"
                             disabled={isSubmitting}
                         />
@@ -225,7 +222,7 @@ export default function SignUp({
                             type="date"
                             value={signupData.dateOfBirth}
                             onChange={(e) => setSignupData(prev => ({ ...prev, dateOfBirth: e.target.value }))}
-                            className="w-full pl-10 pr-4 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                            className="w-full pl-10 pr-4 py-3 border border-indigo-500/20 rounded-full bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                             disabled={isSubmitting}
                         />
                         {signupData.dateOfBirth && getValidationError('dateOfBirth', signupData.dateOfBirth) && (
@@ -243,7 +240,7 @@ export default function SignUp({
                             type="tel"
                             value={signupData.phone}
                             onChange={(e) => setSignupData(prev => ({ ...prev, phone: e.target.value }))}
-                            className="w-full pl-10 pr-4 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                            className="w-full pl-10 pr-4 py-3 border border-indigo-500/20 rounded-full bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                             placeholder="លេខទូរស័ព្ទ"
                             disabled={isSubmitting}
                         />
@@ -273,7 +270,7 @@ export default function SignUp({
             <button
                 type="submit"
                 disabled={!isSignupValid() || isSubmitting}
-                className="w-full bg-indigo-600 text-white py-3 px-4 rounded-xl font-semibold hover:bg-indigo-500 transition-colors duration-300 shadow-lg shadow-indigo-500/30 border border-white/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-indigo-600 text-white py-3 px-4 rounded-full font-semibold hover:bg-indigo-500 transition-colors duration-300 shadow-lg shadow-indigo-500/30 border border-white/20 disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 {isSubmitting ? 'កំពុងចុះឈ្មោះ...' : 'ចុះឈ្មោះ'}
             </button>

@@ -76,25 +76,25 @@ export default function MyBlogs() {
 
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ប្លុកសរុប</p>
                                     <p className="text-2xl font-bold text-gray-900">{blogPosts.length}</p>
                                 </div>
-                                <div className="p-3 bg-indigo-100 rounded-lg">
+                                <div className="p-3 bg-indigo-100 rounded-full">
                                     <Book className="w-6 h-6 text-indigo-600" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ទស្សនាសរុប</p>
                                     <p className="text-2xl font-bold text-blue-600">{blogPosts.reduce((acc, post) => acc + post.viewCount, 0).toLocaleString()}</p>
                                 </div>
-                                <div className="p-3 bg-blue-100 rounded-lg">
+                                <div className="p-3 bg-blue-100 rounded-full">
                                     <Eye className="w-6 h-6 text-blue-600" />
                                 </div>
                             </div>
@@ -102,13 +102,13 @@ export default function MyBlogs() {
                     </div>
 
                     {/* Blog Posts List */}
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+                    <div className="bg-white rounded-3xl shadow-sm border border-gray-200">
                         <div className="p-6 border-b border-gray-200">
                             <div className="flex items-center justify-between">
                                 <h2 className="text-lg font-semibold text-gray-900">ប្លុក</h2>
                                 <Link
                                     href="/me/create-blog"
-                                    className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
+                                    className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-medium transition-colors"
                                 >
                                     <Plus className="w-4 h-4" />
                                     បង្កើតប្លុកថ្មី
@@ -124,7 +124,7 @@ export default function MyBlogs() {
                             ) : blogPosts.length > 0 ? (
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {blogPosts.map((post) => (
-                                        <Link key={post.id} href={`/me/blogs/${post.id}`} className="relative h-72 rounded-2xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">
+                                        <Link key={post.id} href={`/me/blogs/${post.id}`} className="relative h-72 rounded-3xl overflow-hidden shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 cursor-pointer hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1">
                                             {/* Background Image */}
                                             <img
                                                 src={post.media && post.media.length > 0 ? post.media[0].url : '/image-error.png'}

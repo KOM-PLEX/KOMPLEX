@@ -9,8 +9,23 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
+  const getTimeAgo = (dateString: string): string => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.floor(diffHours / 24);
+
+    if (diffDays > 0) {
+      return `មុន ${diffDays} ថ្ងៃ`;
+    } else if (diffHours > 0) {
+      return `មុន ${diffHours} ម៉ោង`;
+    } else {
+      return 'ថ្មីៗនេះ';
+    }
+  };
   return (
-    <Link href={`/blogs/${post.id}`} key={post.id} className="relative aspect-[16/8] w-full rounded-2xl overflow-hidden border border-indigo-500/10 transition-all duration-300 cursor-pointer  ">
+    <Link href={`/blogs/${post.id}`} key={post.id} className="relative aspect-[16/10] w-full rounded-3xl overflow-hidden border border-indigo-500/10 transition-all duration-300 cursor-pointer  ">
       {/* Background Image */}
       <img
         src={post.media[0]?.url || '/image-error.png'}
@@ -26,26 +41,26 @@ export default function BlogCard({ post }: BlogCardProps) {
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-end p-5 text-white">
-        <div className="flex items-center gap-4 mb-3 text-xs opacity-90">
+        <div className="flex items-center gap-2 mb-3 text-xs opacity-90">
           <Link href={`/users/${post.userId}`} className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
             {post.profileImage ? (
               <img
                 src={post.profileImage}
                 alt={post.username}
-                className="w-4.5 h-4.5 rounded-full object-cover border border-white/30"
+                className="w-6 h-6 rounded-full object-cover border border-white/30 border-2 border-indigo-500"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                   e.currentTarget.nextElementSibling?.classList.remove('hidden');
                 }}
               />
             ) : null}
-            <div className={`w-4.5 h-4.5 rounded-full bg-indigo-600 backdrop-blur-sm flex items-center justify-center text-white font-semibold text-xs border border-white/30 ${post.profileImage ? 'hidden' : ''}`}>
+            <div className={`w-6 h-6 rounded-full bg-indigo-600 backdrop-blur-sm flex items-center justify-center text-white font-semibold text-xs border border-white/30 ${post.profileImage ? 'hidden' : ''}`}>
               {post.username.charAt(0)}
             </div>
-            <span className="hover:underline">{post.username}</span>
+            <span className="font-semibold text-white hover:underline">{post.username}</span>
           </Link>
           |
-          <span>{new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+          <span>{getTimeAgo(post.createdAt)}</span>
         </div>
 
         <div className="text-lg font-bold mb-2 leading-relaxed drop-shadow-sm">

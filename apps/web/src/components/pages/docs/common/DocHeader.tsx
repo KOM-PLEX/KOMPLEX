@@ -102,7 +102,7 @@ export default function DocHeader({
                                     <Link
                                         key={subject.subject}
                                         href={`/docs/${currentGrade}/${subject.subject}/${subject.lessons[0].lesson}/${subject.lessons[0].topics[0].englishTitle}`}
-                                        className={`flex items-center gap-2 px-4 py-2 rounded-2xl transition-all duration-300 font-medium text-sm ${isActive
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 font-medium text-sm ${isActive
                                             ? 'text-indigo-600 bg-indigo-50/90 border border-indigo-500/20 shadow-sm'
                                             : 'text-gray-600 bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90'
                                             }`}
@@ -114,19 +114,23 @@ export default function DocHeader({
                             })}
                         </div>
                         {/* Grade select for desktop */}
-                        <div className="hidden lg:flex items-center bg-indigo-50/50 p-2 gap-4 rounded-lg">
+                        <div className="hidden lg:flex items-center bg-indigo-50/50 p-1 gap-4 rounded-full">
                             {grades.map((grade) => {
                                 const isActive = currentGrade === grade.value;
                                 return (
                                     <button
                                         key={grade.value}
                                         onClick={() => handleChangeGrade(grade.value)}
-                                        className={`flex items-center gap-2 p-2 rounded-lg text-sm font-medium cursor-pointer transition-all duration-300 backdrop-blur-sm ${isActive
+                                        className={`flex items-center gap-2 p-2 rounded-full text-sm font-medium cursor-pointer transition-all duration-300 backdrop-blur-sm ${isActive
                                             ? 'text-indigo-600 bg-indigo-100/80 border border-indigo-500/30 shadow-sm'
                                             : 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/80 hover:border-indigo-500/20 border border-transparent'
                                             }`}
+                                        // Add focus:outline-none
+                                        tabIndex={0}
+                                        // Optionally, you can add type="button" for clarity
+                                        type="button"
                                     >
-                                        <span>{grade.label}</span>
+                                        <span className="focus:outline-none">{grade.label}</span>
                                     </button>
                                 );
                             })}
@@ -140,7 +144,7 @@ export default function DocHeader({
                                 }
                             }}>
                                 <div className="relative">
-                                    <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-xl px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 flex items-center justify-between  min-w-[120px]">
+                                    <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-full px-4 py-2 text-sm font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none  flex items-center justify-between  min-w-[120px] focus:outline-none">
                                         <span>{currentGradeData?.label}</span>
                                         <ChevronDown size={16} className="text-gray-500" />
                                     </Listbox.Button>
@@ -152,7 +156,7 @@ export default function DocHeader({
                                         leaveFrom="transform scale-100 opacity-100"
                                         leaveTo="transform scale-95 opacity-0"
                                     >
-                                        <Listbox.Options className="absolute right-0 mt-2 w-48 bg-white rounded-xl border border-indigo-500/20 shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-auto">
+                                        <Listbox.Options className="absolute right-0 mt-2 w-48 bg-white rounded-full border border-indigo-500/20 shadow-lg backdrop-blur-sm z-50 max-h-60 overflow-auto">
                                             {grades.map((grade) => (
                                                 <Listbox.Option
                                                     key={grade.value}
@@ -192,7 +196,7 @@ export default function DocHeader({
                                     <Link
                                         key={subject.subject}
                                         href={`/docs/${currentGrade}/${subject.subject}/${subject.lessons[0].lesson}/${subject.lessons[0].topics[0].englishTitle}`}
-                                        className={`flex items-center gap-2 px-3 py-2 rounded-2xl transition-all duration-300 font-medium text-xs whitespace-nowrap flex-shrink-0 ${isActive
+                                        className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300 font-medium text-xs whitespace-nowrap flex-shrink-0 ${isActive
                                             ? 'text-indigo-600 bg-indigo-50/90 border border-indigo-500/20 shadow-sm'
                                             : 'text-gray-600 bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90'
                                             }`}
@@ -211,7 +215,7 @@ export default function DocHeader({
                             }
                         }}>
                             <div className="relative">
-                                <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-xl px-2 py-2 text-xs font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 flex items-center justify-between  max-w-[80px] min-w-[60px]">
+                                <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-full px-2 py-2 text-xs font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm  focus:outline-none  flex items-center justify-between  max-w-[80px] min-w-[60px] focus:outline-none">
                                     <span className="truncate">{currentGradeData?.label}</span>
                                     <ChevronDown size={14} className="text-gray-500 flex-shrink-0" />
                                 </Listbox.Button>
@@ -229,7 +233,7 @@ export default function DocHeader({
                                                 key={grade.value}
                                                 value={grade}
                                                 className={({ active }) =>
-                                                    `relative cursor-pointer select-none py-2 px-2 text-xs rounded-xl ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
+                                                    `relative cursor-pointer select-none py-2 px-2 text-xs rounded-full ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
                                                     }`
                                                 }
                                             >
@@ -261,7 +265,7 @@ export default function DocHeader({
                             }
                         }}>
                             <div className="relative">
-                                <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-xl px-2 py-2 text-xs font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 flex items-center justify-between  max-w-[80px] min-w-[60px]">
+                                <Listbox.Button className="bg-white/95 border border-indigo-500/20 rounded-full px-2 py-2 text-xs font-medium text-gray-700 cursor-pointer transition-all duration-300 backdrop-blur-sm  focus:outline-none  flex items-center justify-between  max-w-[80px] min-w-[60px] focus:outline-none">
                                     <span className="truncate">{currentLessonData?.title}</span>
                                     <ChevronDown size={14} className="text-gray-500 flex-shrink-0" />
                                 </Listbox.Button>
@@ -279,7 +283,7 @@ export default function DocHeader({
                                                 key={lesson.lesson}
                                                 value={lesson}
                                                 className={({ active }) =>
-                                                    `relative cursor-pointer select-none py-2 px-2 text-xs rounded-xl ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
+                                                    `relative cursor-pointer select-none py-2 px-2 text-xs rounded-full ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
                                                     }`
                                                 }
                                             >
@@ -304,7 +308,7 @@ export default function DocHeader({
                                     <Link
                                         key={topic.englishTitle}
                                         href={`/docs/${currentGrade}/${currentSubject}/${currentLesson}/${topic.englishTitle}`}
-                                        className={`flex items-center gap-2 px-3 py-2 rounded-2xl transition-all duration-300 font-medium text-xs whitespace-nowrap flex-shrink-0 ${isActive
+                                        className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300 font-medium text-xs whitespace-nowrap flex-shrink-0 ${isActive
                                             ? 'text-indigo-600 bg-indigo-50/90 border border-indigo-500/20 shadow-sm'
                                             : 'text-gray-600 bg-white/80 backdrop-blur-sm border border-indigo-500/10 hover:text-indigo-600 hover:bg-indigo-50/90'
                                             }`}

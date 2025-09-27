@@ -8,7 +8,7 @@ export default function VideoCardSkeleton({ count = 6 }: VideoCardSkeletonProps)
     return (
         <>
             {[...Array(count)].map((_, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div key={index} className="bg-white rounded-3xl shadow-sm overflow-hidden">
                     {/* Video Thumbnail Skeleton */}
                     <div className="relative aspect-video bg-gray-200 animate-pulse">
                         <div className="absolute inset-0 flex items-center justify-center">
@@ -17,7 +17,7 @@ export default function VideoCardSkeleton({ count = 6 }: VideoCardSkeletonProps)
                             </div>
                         </div>
                         {/* Duration badge skeleton */}
-                        <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 rounded px-1.5 py-0.5">
+                        <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 rounded-3xl     px-1.5 py-0.5">
                             <div className="w-8 h-3 bg-gray-300 rounded animate-pulse"></div>
                         </div>
                     </div>

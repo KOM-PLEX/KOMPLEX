@@ -2,11 +2,14 @@
 
 import { BookOpen, Bot, MessageSquare, FileText, Video, Code, Edit } from "lucide-react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const FEATURES = [
     {
         icon: BookOpen,
         title: "មេរៀន",
+        href: "/docs",
         description:
             "សិក្សានិងស្រាវជ្រាវ ដោយមានមេរៀនងាយយល់ និងរូបភាពច្បាស់លាស់",
         color: "indigo",
@@ -17,6 +20,7 @@ const FEATURES = [
     {
         icon: MessageSquare,
         title: "ការពិភាក្សា",
+        href: "/forums",
         description:
             "ចែករំលែកចំណេះដឹង សួរសំណួរ និងពិភាក្សាជាមួយសិស្សដទៃទៀត",
         color: "green",
@@ -27,6 +31,7 @@ const FEATURES = [
     {
         icon: FileText,
         title: "អត្ថបទ",
+        href: "/blogs",
         description:
             "អានអត្ថបទ ទទួលបានបទពិសោធន៍ និងគន្លឹះសិក្សាពីសិស្ស និងគ្រូផ្សេងទៀត",
         color: "purple",
@@ -37,6 +42,7 @@ const FEATURES = [
     {
         icon: Edit,
         title: "លំហាត់អនុវត្តន៍",
+        href: "/exercises",
         description:
             "អនុវត្តលំហាត់ដើម្បីបង្កើនជំនាញ ដោះស្រាយបញ្ហា និងទទួលបានរបាយការណ៍ជាក់លាក់",
         color: "orange",
@@ -47,6 +53,7 @@ const FEATURES = [
     {
         icon: Video,
         title: "វីដេអូ",
+        href: "/videos",
         description:
             "មើលវីដេអូសិក្សា ដែលពន្យល់អំពីគោលគំនិតសំខាន់ៗ",
         color: "red",
@@ -57,6 +64,7 @@ const FEATURES = [
     {
         icon: Bot,
         title: "តារា AI",
+        href: "/ai",
         description:
             "ប្រើប្រាស់ តារា AI ជាអ្នកជួយសិក្សា ដោះស្រាយបញ្ហា និងផ្តល់ការណែនាំឆាប់រហ័ស",
         color: "blue", // swapped with forum
@@ -79,10 +87,10 @@ export default function Features() {
                     className="text-center mb-15"
                 >
                     <h2 className="text-4xl font-extrabold text-gray-900 mb-4">មុខងារសំខាន់ៗ</h2>
-                    
+
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
                     {FEATURES.map((feature, index) => {
                         const Icon = feature.icon;
                         return (
@@ -92,22 +100,24 @@ export default function Features() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className={`${feature.bgColor} ${feature.borderColor} border-2 rounded-2xl p-8 shadow-lg transition-all duration-300 backdrop-blur-sm hover:scale-105`}
+                                className={`${feature.bgColor} ${feature.borderColor} border-2 rounded-3xl lg:p-8 p-4 shadow-lg transition-all duration-300 backdrop-blur-sm hover:scale-105 cursor-pointer`}
                             >
-                                <motion.div
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                                    whileHover={{ rotate: 360 }}
-                                    className={`w-20 h-20 ${feature.bgColor} ${feature.borderColor} border-2 rounded-full flex items-center justify-center mx-auto mb-5`}
-                                >
-                                    <Icon size={32} className={feature.iconColor} />
-                                </motion.div>
-                                <h3 className="text-2xl font-bold text-center text-gray-900 mb-3">{feature.title}</h3>
-                                <p className="text-gray-600 leading-relaxed text-center">
-                                    {feature.description}
-                                </p>
+                                <Link href={feature.href}>
+                                    <motion.div
+                                        initial={{ scale: 0 }}
+                                        whileInView={{ scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                                        whileHover={{ rotate: 360 }}
+                                        className={`w-20 h-20 ${feature.bgColor} ${feature.borderColor} border-2 rounded-full flex items-center justify-center mx-auto mb-5`}
+                                    >
+                                        <Icon size={32} className={feature.iconColor} />
+                                    </motion.div>
+                                    <h3 className="lg:text-2xl text-xl font-bold text-center text-gray-900 mb-3">{feature.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed text-center text-sm lg:text-base">
+                                        {feature.description}
+                                    </p>
+                                </Link>
                             </motion.div>
                         );
                     })}

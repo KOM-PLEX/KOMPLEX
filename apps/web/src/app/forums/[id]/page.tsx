@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ChevronLeft } from 'lucide-react';
 import ForumCard from '@components/pages/forums/ForumCard';
 import ForumSkeleton from '@components/pages/forums/ForumSkeleton';
 import ContentError from '@components/common/ContentError';
@@ -11,6 +11,7 @@ import { useParams } from 'next/navigation';
 import { ForumPost } from '@/types/content/forums';
 import { feedForumService, meForumService } from '@/services/index';
 import { useAuth } from '@hooks/useAuth';
+import { BackButton } from '@components/common/BackButton';
 
 export default function ForumDiscussion() {
     const params = useParams();
@@ -93,17 +94,16 @@ export default function ForumDiscussion() {
             <div className="max-w-7xl mx-auto p-5 pt-20">
 
                 {/* Back Button */}
-                <div className="mb-6">
-                    <Link href="/forums" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
-                        <ArrowLeft className="w-4 h-4" />
-                        ត្រឡប់ទៅវេទិកា
-                    </Link>
-                </div>
+
+                <BackButton href="/forums" />
+
 
                 {/* Main Post */}
                 <div className="mb-6">
                     <ForumCard post={post} isFromBasePage={false} onCommentClick={handleCommentToggle} onLikeClick={() => handleLikeClick(post.id, post.isLiked)} />
                 </div>
+
+                <div className='w-full h-0.5 bg-gray-200 mb-6'></div>
 
                 <Comments type='forum' parentId={post.id} focusInput={isCommentInputActive} onClose={handleCommentClose} />
             </div>

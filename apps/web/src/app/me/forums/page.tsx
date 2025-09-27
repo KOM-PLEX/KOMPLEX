@@ -108,49 +108,49 @@ export default function MyForums() {
 
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">អត្ថបទសរុប</p>
                                     <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
                                 </div>
-                                <div className="p-3 bg-indigo-100 rounded-lg">
+                                <div className="p-3 bg-indigo-100 rounded-full">
                                     <MessageSquare className="w-6 h-6 text-indigo-600" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ទស្សនាសរុប</p>
                                     <p className="text-2xl font-bold text-blue-600">{stats.totalViews.toLocaleString()}</p>
                                 </div>
-                                <div className="p-3 bg-blue-100 rounded-lg">
+                                <div className="p-3 bg-blue-100 rounded-full">
                                     <Eye className="w-6 h-6 text-blue-600" />
                                 </div>
                             </div>
                         </div>
 
-                        {/* <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        {/* <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ចម្លើយសរុប</p>
                                     <p className="text-2xl font-bold text-green-600">{stats.totalComments}</p>
                                 </div>
-                                <div className="p-3 bg-green-100 rounded-lg">
+                                <div className="p-3 bg-green-100 rounded-full">
                                     <MessageCircle className="w-6 h-6 text-green-600" />
                                 </div>
                             </div>
                         </div> */}
 
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ចូលចិត្តសរុប</p>
                                     <p className="text-2xl font-bold text-indigo-600">{stats.totalLikes}</p>
                                 </div>
-                                <div className="p-3 bg-indigo-100 rounded-lg">
+                                <div className="p-3 bg-indigo-100 rounded-full">
                                     <Heart className="w-6 h-6 text-indigo-600" />
                                 </div>
                             </div>
@@ -164,7 +164,7 @@ export default function MyForums() {
                                 <button
                                     key={filter}
                                     onClick={() => setSelectedFilter(filter)}
-                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedFilter === filter
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedFilter === filter
                                         ? 'bg-indigo-600 text-white'
                                         : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                                         }`}
@@ -178,13 +178,13 @@ export default function MyForums() {
                     </div> */}
 
                     {/* Forum Posts List */}
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+                    <div className="bg-white rounded-3xl shadow-sm border border-gray-200">
                         <div className="p-6 border-b border-gray-200">
                             <div className="flex items-center justify-between">
                                 <h2 className="text-lg font-semibold text-gray-900">អត្ថបទវេទិកា</h2>
                                 <Link
                                     href="/me/create-forum"
-                                    className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
+                                    className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-medium transition-colors"
                                 >
                                     <Plus className="w-4 h-4" />
                                     បង្កើតអត្ថបទថ្មី

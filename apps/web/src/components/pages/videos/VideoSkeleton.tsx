@@ -9,7 +9,7 @@ export default function VideoSkeleton() {
                     {/* Left Column - Video Player and Info */}
                     <div className="space-y-4">
                         {/* Video Player Skeleton */}
-                        <div className="bg-gray-200 rounded-2xl overflow-hidden shadow-lg">
+                        <div className="bg-gray-200 rounded-3xl overflow-hidden shadow-lg">
                             <div className="w-full aspect-video bg-gray-300 animate-pulse flex items-center justify-center">
                                 <div className="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center">
                                     <div className="w-6 h-6 bg-gray-500 rounded-sm"></div>
@@ -18,7 +18,7 @@ export default function VideoSkeleton() {
                         </div>
 
                         {/* Video Info Skeleton */}
-                        <div className="bg-white rounded-2xl shadow-sm p-6">
+                        <div className="bg-white rounded-3xl shadow-sm p-6">
                             <div className="flex items-center gap-4 justify-between">
                                 <div className="flex-1">
                                     <div className="h-8 bg-gray-200 rounded-lg animate-pulse mb-3 w-3/4"></div>
@@ -44,7 +44,7 @@ export default function VideoSkeleton() {
 
                         {/* Exercise Section - Under Video for Desktop */}
                         <div className="hidden lg:block">
-                            <div className="bg-white rounded-2xl shadow-sm p-6">
+                            <div className="bg-white rounded-3xl shadow-sm p-6">
                                 <div className="space-y-4">
                                     <div className="h-6 bg-gray-200 rounded animate-pulse w-32"></div>
                                     <div className="space-y-3">
@@ -64,7 +64,7 @@ export default function VideoSkeleton() {
                     <div className="self-start h-fit lg:top-6">
                         {/* Desktop Tabs Skeleton */}
                         <div className="hidden lg:block">
-                            <div className="bg-white rounded-2xl shadow-sm mb-4">
+                            <div className="bg-white rounded-3xl shadow-sm mb-4">
                                 <div className="flex">
                                     <div className="flex-1 px-4 py-3">
                                         <div className="h-4 bg-gray-200 rounded animate-pulse w-24 mx-auto"></div>
@@ -75,7 +75,7 @@ export default function VideoSkeleton() {
                                 </div>
                             </div>
 
-                            <div className="bg-white rounded-2xl shadow-sm">
+                            <div className="bg-white rounded-3xl shadow-sm">
                                 <div className="p-6">
                                     <div className="space-y-4">
                                         {/* Recommended Videos Skeleton */}
@@ -99,7 +99,7 @@ export default function VideoSkeleton() {
                 {/* Mobile Tab System Skeleton */}
                 <div className="lg:hidden mt-8">
                     {/* Mobile Tab Navigation Skeleton */}
-                    <div className="bg-white rounded-2xl shadow-sm mb-4">
+                    <div className="bg-white rounded-3xl shadow-sm mb-4">
                         <div className="flex">
                             <div className="flex-1 px-4 py-3">
                                 <div className="h-4 bg-gray-200 rounded animate-pulse w-16 mx-auto"></div>
@@ -114,7 +114,7 @@ export default function VideoSkeleton() {
                     </div>
 
                     {/* Mobile Tab Content Skeleton */}
-                    <div className="bg-white rounded-2xl shadow-sm p-6">
+                    <div className="bg-white rounded-3xl shadow-sm p-6">
                         <div className="space-y-4">
                             <div className="h-6 bg-gray-200 rounded animate-pulse w-32"></div>
                             <div className="space-y-3">

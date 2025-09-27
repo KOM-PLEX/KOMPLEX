@@ -40,7 +40,7 @@ export default function LogIn({
                         type="text"
                         value={loginIdentifier}
                         onChange={(e) => setLoginIdentifier(e.target.value)}
-                        className="w-full pl-10 pr-4 py-3 border border-indigo-500/20 rounded-xl bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                        className="w-full pl-10 pr-4 py-3 border border-indigo-500/20 rounded-full bg-white backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                         placeholder="បញ្ចូលអ៊ីមែល ឬ ឈ្មោះអ្នកប្រើប្រាស់"
                         disabled={isSubmitting}
                     />
@@ -57,7 +57,7 @@ export default function LogIn({
                         type={showPassword ? 'text' : 'password'}
                         value={loginPassword}
                         onChange={(e) => setLoginPassword(e.target.value)}
-                        className="w-full pl-10 pr-12 py-3 border border-indigo-500/20 rounded-xl bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
+                        className="w-full pl-10 pr-12 py-3 border border-indigo-500/20 rounded-full bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500/40 transition-all duration-300"
                         placeholder="បញ្ចូលពាក្យសម្ងាត់"
                         disabled={isSubmitting}
                     />
@@ -73,7 +73,7 @@ export default function LogIn({
             </div>
 
             {errorMessage && (
-                <div className="w-full rounded-lg border border-red-200 bg-red-50 text-red-700 text-sm p-3">
+                <div className="w-full rounded-3xl border border-red-200 bg-red-50 text-red-700 text-sm p-3">
                     {errorMessage}
                 </div>
             )}
@@ -94,7 +94,7 @@ export default function LogIn({
             <button
                 type="submit"
                 disabled={!isLoginValid() || isSubmitting}
-                className="w-full bg-indigo-600 text-white py-3 px-4 rounded-xl font-semibold hover:bg-indigo-500 transition-colors duration-300 shadow-lg shadow-indigo-500/30 border border-white/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-indigo-600 text-white py-3 px-4 rounded-full font-semibold hover:bg-indigo-500 transition-colors duration-300 shadow-lg shadow-indigo-500/30 border border-white/20 disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 {isSubmitting ? 'កំពុងចូល...' : 'ចូលទៅកាន់'}
             </button>

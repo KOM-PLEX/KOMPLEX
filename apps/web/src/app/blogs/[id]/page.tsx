@@ -7,10 +7,11 @@ import { useEffect, useState } from 'react';
 import Carousel from '@components/common/Carousel';
 import { Blog } from '@/types/content/blogs';
 import { feedBlogService, meBlogService, meFollowService } from '@/services/index';
-import { BlogPostSkeleton } from '@components/pages/blog/BlogPostSkeleton';
+import { BlogPostSkeleton } from '@/components/pages/blogs/BlogPostSkeleton';
 import ContentError from '@components/common/ContentError';
 import { useAuth } from '@hooks/useAuth';
 import MarkdownRenderer from '@components/helper/MarkDownRenderer';
+import { BackButton } from '@/components/common/BackButton';
 export default function BlogPost() {
     const params = useParams();
     const id = params.id as string;
@@ -108,17 +109,12 @@ export default function BlogPost() {
         <div className="min-h-screen bg-gray-50">
             <div className="max-w-7xl mx-auto p-5 pt-20">
                 {/* Back Button */}
-                <div className="mb-6">
-                    <Link href="/blogs" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
-                        <ArrowLeft className="w-4 h-4" />
-                        ត្រឡប់ទៅប្លុក
-                    </Link>
-                </div>
+                <BackButton href="/blogs" />
 
                 {/* Blog Post */}
-                <article className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
+                <article className="lg:bg-white lg:rounded-3xl lg:shadow-lg lg:shadow-indigo-500/10 lg:border lg:border-indigo-500/10 overflow-hidden">
                     {/* Header */}
-                    <div className="p-6 md:p-8">
+                    <div className="lg:p-6 ">
                         <div className='flex items-center justify-between gap-2'>
                             <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
                                 {blogPost.title}

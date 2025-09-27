@@ -138,49 +138,49 @@ function MyVideosContent() {
 
                     {/* Stats Cards - Only show for My Videos tab */}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">វីដេអូសរុប</p>
                                     <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
                                 </div>
-                                <div className="p-3 bg-indigo-100 rounded-lg">
+                                <div className="p-3 bg-indigo-100 rounded-full">
                                     <Video className="w-6 h-6 text-indigo-600" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ទស្សនាសរុប</p>
                                     <p className="text-2xl font-bold text-blue-600">{stats.totalViews.toLocaleString()}</p>
                                 </div>
-                                <div className="p-3 bg-blue-100 rounded-lg">
+                                <div className="p-3 bg-blue-100 rounded-full">
                                     <Eye className="w-6 h-6 text-blue-600" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ចូលចិត្តសរុប</p>
                                     <p className="text-2xl font-bold text-green-600">{stats.totalLikes}</p>
                                 </div>
-                                <div className="p-3 bg-green-100 rounded-lg">
+                                <div className="p-3 bg-green-100 rounded-full">
                                     <Heart className="w-6 h-6 text-green-600" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ពេលវេលាសរុប</p>
                                     <p className="text-2xl font-bold text-purple-600">{Math.floor(stats.totalDuration / 60)} នាទី</p>
                                 </div>
-                                <div className="p-3 bg-purple-100 rounded-lg">
+                                <div className="p-3 bg-purple-100 rounded-full">
                                     <Clock className="w-6 h-6 text-purple-600" />
                                 </div>
                             </div>
@@ -192,7 +192,7 @@ function MyVideosContent() {
                             <nav className="flex gap-2 whitespace-nowrap">
                                 <Link
                                     href="/me/videos?tab=myVideos"
-                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'myVideos' || activeTab === null
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeTab === 'myVideos' || activeTab === null
                                         ? 'bg-indigo-600 text-white'
                                         : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                         }`}
@@ -204,7 +204,7 @@ function MyVideosContent() {
                                 </Link>
                                 {/* <Link
                                     href="/me/videos?tab=likedVideos"
-                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'likedVideos'
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeTab === 'likedVideos'
                                         ? 'bg-indigo-600 text-white'
                                         : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                         }`}
@@ -216,7 +216,7 @@ function MyVideosContent() {
                                 </Link>
                                 <Link
                                     href="/me/videos?tab=savedVideos"
-                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'savedVideos'
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeTab === 'savedVideos'
                                         ? 'bg-indigo-600 text-white'
                                         : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                         }`}
@@ -228,7 +228,7 @@ function MyVideosContent() {
                                 </Link> */}
                                 <Link
                                     href="/me/videos?tab=videoHistory"
-                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${activeTab === 'videoHistory'
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeTab === 'videoHistory'
                                         ? 'bg-indigo-600 text-white'
                                         : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                         }`}
@@ -244,13 +244,13 @@ function MyVideosContent() {
 
                     {/* Tab Content */}
                     {activeTab === 'myVideos' && (
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl shadow-sm border border-gray-200">
                             <div className="p-6 border-b border-gray-200">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-lg font-semibold text-gray-900">វីដេអូ</h2>
                                     <Link
                                         href="/me/create-video"
-                                        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
+                                        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full font-medium transition-colors"
                                     >
                                         <Plus className="w-4 h-4" />
                                         បង្ហោះវីដេអូថ្មី
@@ -269,7 +269,7 @@ function MyVideosContent() {
                                             <Link
                                                 key={video.id}
                                                 href={`/me/videos/${video.id}`}
-                                                className="group bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-200 border border-gray-200 hover:border-indigo-300"
+                                                className="group bg-white rounded-3xl shadow-sm overflow-hidden hover:shadow-md transition-all duration-200 border border-gray-200 hover:border-indigo-300"
                                             >
                                                 {/* Thumbnail */}
                                                 <div className="relative">
@@ -343,7 +343,7 @@ function MyVideosContent() {
                     )}
 
                     {activeTab === 'likedVideos' && (
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl shadow-sm border border-gray-200">
                             <div className="p-6">
                                 <ContentError
                                     type="no-results"
@@ -354,7 +354,7 @@ function MyVideosContent() {
                     )}
 
                     {activeTab === 'savedVideos' && (
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl shadow-sm border border-gray-200">
                             <div className="p-6">
                                 <ContentError
                                     type="no-results"

@@ -188,7 +188,7 @@ export default function BlogEditor({
     // Show loading placeholder during hydration
     if (!isClient) {
         return (
-            <div style={{ height: height }} className="bg-gray-100 border border-gray-200 rounded-lg flex items-center justify-center">
+            <div style={{ height: height }} className="bg-gray-100 border border-gray-200 rounded-3xl flex items-center justify-center">
                 <div className="text-gray-500">កំពុងផ្ទុក...</div>
             </div>
         );
@@ -198,7 +198,7 @@ export default function BlogEditor({
         <div className="w-full">
             {/* Custom Toolbar */}
             {!compact && (
-                <div className="flex items-center justify-between gap-2 p-3 bg-gray-50 border-b border-gray-200 rounded-t-xl">
+                <div className="flex items-center justify-between gap-2 p-3 bg-gray-50 border-b border-gray-200 rounded-t-3xl">
                     <div className="flex items-center justify-center gap-0">
                         <span className="text-2xl font-extrabold tracking-tight text-indigo-500">KOM</span>
                         <span className="text-2xl font-extrabold tracking-tight text-black">PLEX</span>
@@ -207,7 +207,7 @@ export default function BlogEditor({
                     {showMathButton && (
                         <button
                             onClick={() => setShowMath(true)}
-                            className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500 text-white text-sm font-medium rounded-md hover:bg-indigo-600 transition-colors duration-200"
+                            className="flex items-center gap-2 px-3 py-1.5 bg-indigo-500 text-white text-sm font-medium rounded-3xl hover:bg-indigo-600 transition-colors duration-200"
                         >
                             <Calculator className="w-4 h-4" />
                             បញ្ចូលសមីការ
@@ -277,7 +277,7 @@ export default function BlogEditor({
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-3xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                                     <Dialog.Title
                                         as="h3"
                                         className="text-lg font-semibold text-gray-900 flex items-center gap-2 mb-4"
@@ -290,7 +290,7 @@ export default function BlogEditor({
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             សមីការ LaTeX
                                         </label>
-                                        <div className="border border-gray-300 rounded-lg p-3 bg-white">
+                                        <div className="border border-gray-300 rounded-3xl p-3 bg-white">
                                             {/* @ts-expect-error - MathLive is not typed */}
                                             <math-field
                                                 style={{
@@ -325,14 +325,14 @@ export default function BlogEditor({
                                     <div className="flex items-center justify-end space-x-3">
                                         <button
                                             type="button"
-                                            className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none transition-colors duration-200"
+                                            className="rounded-3xl border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none transition-colors duration-200"
                                             onClick={() => setShowMath(false)}
                                         >
                                             បោះបង់
                                         </button>
                                         <button
                                             type="button"
-                                            className="rounded-lg bg-indigo-600 border border-indigo-600 px-4 py-2 text-sm font-medium text-white focus:outline-none hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-2"
+                                            className="rounded-3xl bg-indigo-600 border border-indigo-600 px-4 py-2 text-sm font-medium text-white focus:outline-none hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-2"
                                             onClick={insertMath}
                                             disabled={!mathLatex.trim()}
                                         >

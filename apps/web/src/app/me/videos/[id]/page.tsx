@@ -14,19 +14,20 @@ import Exercise from '@components/pages/videos/Exercise';
 import type { VideoPost } from '@/types/content/videos';
 import { useAuth } from '@hooks/useAuth';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
+import { BackButton } from '@/components/common/BackButton';
 
 // Skeleton Loading Component for Display Mode
 function VideoPostSkeleton() {
     return (
         <div className="min-h-screen bg-gray-50">
-            <div className="max-w-7xl mx-auto p-5 pt-20">
+            <div className=" mx-auto p-5 ">
                 {/* Back Button Skeleton */}
                 <div className="mb-6">
                     <div className="w-32 h-6 bg-gray-200 rounded animate-pulse"></div>
                 </div>
 
                 {/* Video Post Skeleton */}
-                <article className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
+                <article className="bg-white rounded-3xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
                     <div className="p-6 md:p-8">
                         {/* Video Player Skeleton */}
                         <div className="w-full h-96 bg-gray-200 rounded-lg animate-pulse mb-6"></div>
@@ -178,12 +179,9 @@ export default function VideoPost() {
             <div className="flex min-h-screen transition-colors duration-200 bg-gray-50">
                 <Sidebar />
                 <div className="flex-1 ml-64 pt-20">
-                    <div className="max-w-7xl mx-auto p-5">
+                    <div className=" mx-auto p-5">
                         <div className="mb-6">
-                            <Link href="/me/videos" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium transition-colors duration-200">
-                                <ArrowLeft className="w-4 h-4" />
-                                ត្រឡប់ទៅវីដេអូរបស់ខ្ញុំ
-                            </Link>
+                            <BackButton href={"/me/videos"} />
                         </div>
                         <ContentError
                             type="error"
@@ -206,23 +204,22 @@ export default function VideoPost() {
                     {/* Main Content */}
                     <div className="flex-1 lg:ml-64 pt-32 lg:pt-16">
                         <div className=" mx-auto p-5">
+                            <div className="sticky top-20 ">
+                                <BackButton href={"/me/videos"} />
+                            </div>
                             {/* Header with Back Button and Edit Button */}
-                            <div className="mb-6 flex items-center justify-between">
-                                <Link href="/me/videos" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
-                                    <ArrowLeft className="w-4 h-4" />
-                                    ត្រឡប់ទៅវីដេអូរបស់ខ្ញុំ
-                                </Link>
+                            <div className="mb-6 flex items-center justify-end">
                                 <div className='flex gap-2 items-center'>
                                     <button
                                         onClick={handleDeleteClick}
-                                        className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
+                                        className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors font-medium"
                                     >
                                         <Trash className="w-4 h-4" />
                                         លុប
                                     </button>
                                     <button
                                         onClick={() => setIsEditMode(true)}
-                                        className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                                        className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors font-medium"
                                     >
                                         <Edit className="w-4 h-4" />
                                         កែប្រែ
@@ -235,7 +232,7 @@ export default function VideoPost() {
                                 {/* Left Column - Video Player and Info */}
                                 <div className="space-y-4">
                                     {/* Video Player */}
-                                    <div className="bg-black rounded-2xl overflow-hidden shadow-lg">
+                                    <div className="bg-black rounded-3xl overflow-hidden shadow-lg">
                                         <video
                                             className="w-full aspect-video"
                                             controls
@@ -251,7 +248,7 @@ export default function VideoPost() {
                                     </div>
 
                                     {/* Video Description */}
-                                    <div className="bg-white rounded-2xl shadow-sm p-6">
+                                    <div className="bg-white rounded-3xl shadow-sm p-6">
                                         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
                                             {videoPost.title}
                                         </h1>
@@ -313,7 +310,7 @@ export default function VideoPost() {
                                 {/* Right Column - Tabs */}
                                 <div className="self-start h-fit lg:top-6">
                                     {/* Tab Navigation */}
-                                    <div className="bg-white rounded-2xl shadow-sm mb-4">
+                                    <div className="bg-white rounded-3xl shadow-sm mb-4">
                                         <div className="flex">
                                             <button
                                                 onClick={() => setActiveTab('comments')}
@@ -343,7 +340,7 @@ export default function VideoPost() {
                                     </div>
 
                                     {/* Tab Content */}
-                                    <div className="bg-white rounded-2xl shadow-sm">
+                                    <div className="bg-white rounded-3xl shadow-sm">
                                         {activeTab === 'comments' && (
                                             <div>
                                                 <Comments
@@ -368,7 +365,7 @@ export default function VideoPost() {
                             {/* Mobile Tab System */}
                             <div className="lg:hidden mt-8">
                                 {/* Mobile Tab Navigation */}
-                                <div className="bg-white rounded-2xl shadow-sm mb-4">
+                                <div className="bg-white rounded-3xl shadow-sm mb-4">
                                     <div className="flex">
                                         <button
                                             onClick={() => setActiveTab('comments')}
@@ -399,7 +396,7 @@ export default function VideoPost() {
 
                                 {/* Mobile Tab Content */}
                                 {activeTab === 'comments' && (
-                                    <div className="bg-white rounded-2xl p-4 shadow-sm">
+                                    <div className="bg-white rounded-3xl p-4 shadow-sm">
                                         <Comments
                                             type='video'
                                             parentId={videoPost.id}
@@ -410,7 +407,7 @@ export default function VideoPost() {
                                     </div>
                                 )}
                                 {activeTab === 'exercise' && (
-                                    <div className="bg-white rounded-2xl p-4 shadow-sm">
+                                    <div className="bg-white rounded-3xl p-4 shadow-sm">
                                         <Exercise exercises={videoPost.exercises || []} />
                                     </div>
                                 )}
@@ -439,18 +436,14 @@ export default function VideoPost() {
                 <Sidebar />
 
                 {/* Main Content */}
-                <div className="flex-1 lg:ml-64 pt-32 lg:pt-16">
-                    <div className="max-w-7xl mx-auto p-5">
+                <div className="flex-1 lg:ml-64 pt-32 lg:pt-0">
+                    <div className=" mx-auto p-5">
+                        <div className="sticky top-20 ">
+                            <BackButton href={"/me/videos"} />
+                        </div>
                         {/* Header with Back Button */}
-                        <div className="mb-6 flex items-center justify-between">
-                            <Link
-                                href={`/me/videos`}
-                                className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700 hover:text-indigo-600"
-                            >
-                                <ArrowLeft className="w-4 h-4" />
-                                ត្រឡប់ទៅវីដេអូរបស់ខ្ញុំ
-                            </Link>
-                            <button className='bg-gray-500 text-white rounded-lg p-2 flex items-center gap-2' onClick={() => setIsEditMode(false)}><Eye className="w-4 h-4" />មើល</button>
+                        <div className="mb-6 flex items-center justify-end">
+                            <button className='bg-gray-500 text-white rounded-full p-2 flex items-center gap-2' onClick={() => setIsEditMode(false)}><Eye className="w-4 h-4" />មើល</button>
                         </div>
 
                         {/* Edit Video Component */}

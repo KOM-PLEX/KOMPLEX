@@ -183,7 +183,7 @@ export default function EditForum({ forum, onCancel }: EditForumProps) {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="សរសេរចំណងជើងវេទិការបស់អ្នក..."
-                        className="w-full px-4 py-3 bg-indigo-50 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
+                        className="w-full px-4 py-3 bg-indigo-50 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
                     />
                 </div>
 
@@ -204,7 +204,7 @@ export default function EditForum({ forum, onCancel }: EditForumProps) {
                     {/* 2x2 Grid for Images */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         {imagePreviews.map((preview, index) => (
-                            <div key={index} className="relative aspect-video rounded-lg overflow-hidden border border-gray-200">
+                            <div key={index} className="relative aspect-video rounded-3xl overflow-hidden border border-gray-200">
                                 <img
                                     src={preview}
                                     alt={`Preview ${index + 1}`}
@@ -223,7 +223,7 @@ export default function EditForum({ forum, onCancel }: EditForumProps) {
                         {imagePreviews.length < 4 && (
                             <div
                                 onClick={handleImageClick}
-                                className="aspect-video border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
+                                className="aspect-video border-2 border-dashed border-gray-300 rounded-3xl flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
                             >
                                 <div className="text-4xl text-gray-400 mb-2">+</div>
                                 <p className="text-xs text-gray-500 text-center">អូសរូបឬ</p>
@@ -263,7 +263,7 @@ export default function EditForum({ forum, onCancel }: EditForumProps) {
                             height="400px"
                         />
                     ) : (
-                        <div className="border border-gray-200 rounded-lg p-4 bg-white min-h-[400px]">
+                        <div className="border border-gray-200 rounded-3xl p-4 bg-white min-h-[400px]">
                             <div className="prose prose-lg max-w-none">
                                 <MarkDownRenderer content={description} />
                             </div>
@@ -278,14 +278,14 @@ export default function EditForum({ forum, onCancel }: EditForumProps) {
                             resetEditForm();
                             onCancel();
                         }}
-                        className="px-6 py-2 bg-gray-500 text-white rounded-lg transition-colors duration-200 hover:bg-gray-600 font-medium"
+                        className="px-6 py-2 bg-gray-500 text-white rounded-full transition-colors duration-200 hover:bg-gray-600 font-medium"
                     >
                         បោះបង់
                     </button>
                     <button
                         onClick={handleSave}
                         disabled={!title.trim() || !description.trim() || isSaving}
-                        className="px-6 py-2 bg-indigo-500 text-white rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium flex items-center gap-2"
+                        className="px-6 py-2 bg-indigo-500 text-white rounded-full transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium flex items-center gap-2"
                     >
                         {isSaving ? (
                             <>

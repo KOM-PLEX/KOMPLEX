@@ -3,13 +3,9 @@ export function BlogPostSkeleton() {
     return (
         <div className="min-h-screen bg-gray-50">
             <div className="max-w-7xl mx-auto p-5 pt-20">
-                {/* Back Button Skeleton */}
-                <div className="mb-6">
-                    <div className="w-32 h-6 bg-gray-200 rounded animate-pulse"></div>
-                </div>
 
                 {/* Blog Post Skeleton */}
-                <article className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
+                <article className="bg-white rounded-3xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
                     <div className="p-6 md:p-8">
                         {/* Title Skeleton */}
                         <div className="mb-2">

@@ -35,7 +35,7 @@ export default function RecommendedVideoCard({ video }: RecommendedVideoCardProp
     return (
         <Link href={`/video/${video.id}`} className="block group">
             <div
-                className="flex gap-3 hover:bg-gray-50 p-2 rounded-lg transition-colors cursor-pointer overflow-hidden"
+                className="flex gap-3 hover:bg-gray-50 p-2 rounded-3xl transition-colors cursor-pointer overflow-hidden"
                 onMouseEnter={handleCardHover}
                 onMouseLeave={handleCardLeave}
             >
@@ -43,14 +43,14 @@ export default function RecommendedVideoCard({ video }: RecommendedVideoCardProp
                 <div className="relative w-32 h-24 flex-shrink-0 overflow-hidden">
                     <video
                         poster={video.thumbnail}
-                        className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover rounded-3xl group-hover:scale-105 transition-transform duration-300"
                         muted
                         preload="metadata"
                     >
                         <source src="/test.mp4" type="video/mp4" />
                     </video>
                     {/* Duration Badge */}
-                    <div className="absolute bottom-1 right-1 bg-black/50 text-white text-xs px-1 py-0.5 rounded">
+                    <div className="absolute bottom-1 right-1 bg-black/50 text-white text-xs px-1 py-0.5 rounded-3xl">
                         {video.duration}
                     </div>
                     {/* Play Icon Overlay */}

@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { ArrowLeft, Trash, Edit } from 'lucide-react';
+import { Trash, Edit } from 'lucide-react';
 import Sidebar from '@components/pages/me/Sidebar';
 import Carousel from '@components/common/Carousel';
 import EditBlog from '@components/pages/me/blogs/EditBlog';
@@ -11,9 +10,10 @@ import ContentError from '@components/common/ContentError';
 import DeleteConfirm from '@components/common/DeleteConfirm';
 import { Blog } from '@/types/content/blogs';
 import { feedBlogService, meBlogService } from '@/services/index';
-import { BlogPostSkeleton } from '@components/pages/blog/BlogPostSkeleton';
+import { BlogPostSkeleton } from '@/components/pages/blogs/BlogPostSkeleton';
 import { useAuth } from '@hooks/useAuth';
 import MarkDownRenderer from '@components/helper/MarkDownRenderer';
+import { BackButton } from '@/components/common/BackButton';
 
 
 export default function BlogPost() {
@@ -102,11 +102,8 @@ export default function BlogPost() {
                 <Sidebar />
                 <div className="flex-1 lg:ml-64 pt-32 lg:pt-16">
                     <div className="max-w-7xl mx-auto p-5">
-                        <div className="mb-6">
-                            <Link href="/me/blogs" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
-                                <ArrowLeft className="w-4 h-4" />
-                                ត្រឡប់ទៅប្លុករបស់ខ្ញុំ
-                            </Link>
+                        <div className="mb-6 relative">
+                            <BackButton href='/me/blogs' />
                         </div>
                         <ContentError
                             type="error"
@@ -126,25 +123,22 @@ export default function BlogPost() {
                     <Sidebar />
 
                     {/* Main Content */}
-                    <div className="flex-1 lg:ml-64 pt-32 lg:pt-16">
-                        <div className="max-w-7xl mx-auto p-5">
+                    <div className="flex-1 lg:ml-64 pt-32 lg:pt-0">
+                        <div className=" mx-auto p-5">
                             {/* Header with Back Button and Edit Button */}
-                            <div className="mb-6 flex items-center justify-between">
-                                <Link href="/me/blogs" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
-                                    <ArrowLeft className="w-4 h-4" />
-                                    ត្រឡប់ទៅប្លុករបស់ខ្ញុំ
-                                </Link>
-                                <div className='flex gap-2 items-center'>
+                            <div className='sticky top-20'><BackButton href='/me/blogs' /></div>
+                            <div className="mb-6 flex items-center justify-end relative">
+                                <div className='flex gap-2 items-center '>
                                     <button
                                         onClick={handleDeleteClick}
-                                        className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
+                                        className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors font-medium"
                                     >
                                         <Trash className="w-4 h-4" />
                                         លុប
                                     </button>
                                     <button
                                         onClick={() => setIsEditMode(true)}
-                                        className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                                        className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors font-medium"
                                     >
                                         <Edit className="w-4 h-4" />
                                         កែប្រែ
@@ -153,9 +147,9 @@ export default function BlogPost() {
                             </div>
 
                             {/* Blog Post Display */}
-                            <article className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 overflow-hidden">
+                            <article className="lg:bg-white lg:rounded-3xl lg:shadow-lg lg:shadow-indigo-500/10 lg:border lg:border-indigo-500/10 overflow-hidden">
                                 {/* Header */}
-                                <div className="p-6 md:p-8">
+                                <div className="lg:p-6 ">
                                     <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
                                         {blogPost.title}
                                     </h1>

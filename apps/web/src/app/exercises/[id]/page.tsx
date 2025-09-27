@@ -3,9 +3,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { ArrowLeft, Clock, Flag } from "lucide-react";
 import { useParams } from "next/navigation";
-import ExerciseBox from "@components/pages/exercise/ExerciseBox";
-import PracticeInfo from "@components/pages/exercise/ExerciseInfo";
-import PracticeResult from "@components/pages/exercise/ExerciseResult";
+import ExerciseBox from "@/components/pages/exercises/ExerciseBox";
+import PracticeInfo from "@/components/pages/exercises/ExerciseInfo";
+import PracticeResult from "@/components/pages/exercises/ExerciseResult";
 import ContentError from "@components/common/ContentError";
 import { ExerciseWithQuestions, ExerciseSection } from "@/types/content/exercises";
 import { feedExerciseService, meExerciseService } from "@/services/index";
@@ -205,51 +205,51 @@ export default function LessonPage() {
     if (loading) {
         return (
             <div className="min-h-screen bg-gray-50 flex justify-center items-center pt-14">
-                <div className="max-w-7xl w-full mx-auto px-4 py-8">
-                    <div className="bg-white rounded-2xl shadow-lg p-6">
+                <div className="max-w-7xl w-full mx-auto px-5 py-8">
+                    <div className="bg-white rounded-3xl shadow-lg p-6">
                         {/* Header Skeleton */}
                         <div className="flex items-center justify-between mb-8">
                             <div className="flex items-center gap-4">
-                                <div className="h-8 bg-gray-200 rounded-lg w-64 animate-pulse"></div>
+                                <div className="h-8 bg-gray-200 rounded-3xl w-64 animate-pulse"></div>
                             </div>
                             <div className="flex items-center gap-4">
                                 <div className="h-6 bg-gray-200 rounded w-24 animate-pulse"></div>
-                                <div className="h-10 bg-gray-200 rounded-lg w-32 animate-pulse"></div>
+                                <div className="h-10 bg-gray-200 rounded-3xl w-32 animate-pulse"></div>
                             </div>
                         </div>
 
                         {/* Section Navigation Skeleton */}
                         <div className="flex gap-2 mb-6">
                             {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="h-10 bg-gray-200 rounded-lg w-24 animate-pulse"></div>
+                                <div key={i} className="h-10 bg-gray-200 rounded-3xl w-24 animate-pulse"></div>
                             ))}
                         </div>
 
                         {/* Exercise Box Skeleton */}
-                        <div className="bg-white/95 backdrop-blur-sm border-2 border-indigo-500/20 rounded-2xl p-6 my-6 shadow-lg shadow-indigo-500/15">
+                        <div className="bg-white/95 backdrop-blur-sm border-2 border-indigo-500/20 rounded-3xl p-6 my-6 shadow-lg shadow-indigo-500/15">
                             {/* Question Skeleton */}
                             <div className="mb-6">
-                                <div className="h-6 bg-gray-200 rounded-lg w-3/4 mb-4 animate-pulse"></div>
+                                <div className="h-6 bg-gray-200 rounded-3xl w-3/4 mb-4 animate-pulse"></div>
 
                                 {/* Choices Skeleton */}
                                 <div className="grid lg:grid-cols-2 gap-4 grid-cols-1">
                                     {[1, 2, 3, 4].map((j) => (
-                                        <div key={j} className="h-16 bg-gray-100 rounded-xl border-2 border-gray-200 animate-pulse"></div>
+                                        <div key={j} className="h-16 bg-gray-100 rounded-3xl border-2 border-gray-200 animate-pulse"></div>
                                     ))}
                                 </div>
                             </div>
 
                             {/* Navigation Skeleton */}
                             <div className="flex items-center justify-center gap-10 mt-6 pt-4 border-t border-indigo-500/20">
-                                <div className="h-10 bg-gray-200 rounded-xl w-20 animate-pulse"></div>
-                                <div className="h-10 bg-gray-200 rounded-xl w-20 animate-pulse"></div>
+                                <div className="h-10 bg-gray-200 rounded-3xl w-20 animate-pulse"></div>
+                                <div className="h-10 bg-gray-200 rounded-3xl w-20 animate-pulse"></div>
                             </div>
                         </div>
 
                         {/* Bottom Navigation Skeleton */}
                         <div className="flex items-center justify-between mt-6">
-                            <div className="h-12 bg-gray-200 rounded-xl w-32 animate-pulse"></div>
-                            <div className="h-12 bg-gray-200 rounded-xl w-32 animate-pulse"></div>
+                            <div className="h-12 bg-gray-200 rounded-3xl w-32 animate-pulse"></div>
+                            <div className="h-12 bg-gray-200 rounded-3xl w-32 animate-pulse"></div>
                         </div>
                     </div>
                 </div>
@@ -276,19 +276,19 @@ export default function LessonPage() {
             <div className="min-h-screen bg-gray-50 flex justify-center items-center pt-14 ">
                 <div className="max-w-7xl m-auto px-4 py-8 w-full">
                     {loading ? (
-                        <div className="bg-white rounded-2xl shadow-lg p-8">
+                        <div className="bg-white rounded-3xl shadow-lg p-8">
                             {/* Title Skeleton */}
                             <div className="text-center mb-8">
-                                <div className="h-10 bg-gray-200 rounded-lg w-96 mx-auto mb-4 animate-pulse"></div>
+                                <div className="h-10 bg-gray-200 rounded-3xl w-96 mx-auto mb-4 animate-pulse"></div>
                                 <div className="h-6 bg-gray-200 rounded w-64 mx-auto animate-pulse"></div>
                             </div>
 
                             {/* Sections Skeleton */}
                             <div className="space-y-6">
                                 {[1, 2, 3].map((i) => (
-                                    <div key={i} className="border border-gray-200 rounded-lg p-4">
+                                    <div key={i} className="border border-gray-200 rounded-3xl p-4">
                                         <div className="flex items-center gap-4 mb-4">
-                                            <div className="w-12 h-12 bg-gray-200 rounded-lg animate-pulse"></div>
+                                            <div className="w-12 h-12 bg-gray-200 rounded-3xl animate-pulse"></div>
                                             <div className="flex-1">
                                                 <div className="h-6 bg-gray-200 rounded w-48 mb-2 animate-pulse"></div>
                                                 <div className="h-4 bg-gray-200 rounded w-64 animate-pulse"></div>
@@ -301,7 +301,7 @@ export default function LessonPage() {
 
                             {/* Start Button Skeleton */}
                             <div className="text-center mt-8">
-                                <div className="h-12 bg-gray-200 rounded-lg w-48 mx-auto animate-pulse"></div>
+                                <div className="h-12 bg-gray-200 rounded-3xl w-48 mx-auto animate-pulse"></div>
                             </div>
                         </div>
                     ) : (
@@ -347,8 +347,8 @@ export default function LessonPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <div className="max-w-7xl w-full mx-auto px-4 py-8  bg-white rounded-2xl shadow-lg">
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center mx-5">
+            <div className="max-w-7xl w-full mx-auto px-4 py-8  bg-white rounded-3xl shadow-lg">
                 {/* Header with Timer */}
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-4">
@@ -366,12 +366,11 @@ export default function LessonPage() {
                                 <Clock size={20} className="text-indigo-600" />
                                 <span>{formatTime(timeRemaining)}</span>
                             </div>
-                            <p className="text-sm text-gray-500">ពេលវេលានៅសល់</p>
                         </div>
                         <button
                             onClick={completeExam}
                             disabled={isSubmitting}
-                            className="flex items-center gap-2 text-center bg-red-500/20 border border-red-500 text-red-600 px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center gap-2 text-center bg-red-500/20 border border-red-500 text-red-600 px-4 py-2 rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <Flag size={20} />
                             <span className="text-red-600 hidden lg:flex">
@@ -387,7 +386,7 @@ export default function LessonPage() {
                         <button
                             key={section.id}
                             onClick={() => handleSectionChange(index)}
-                            className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${index === currentSection
+                            className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${index === currentSection
                                 ? 'bg-indigo-600 text-white shadow-md'
                                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm'
                                 }`}
@@ -414,7 +413,7 @@ export default function LessonPage() {
                             handleSectionChange(prevSection);
                         }}
                         disabled={currentSection === 0}
-                        className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-md disabled:shadow-none"
+                        className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-full font-semibold transition-all duration-200 hover:shadow-md disabled:shadow-none"
                     >
                         <ArrowLeft size={20} />
                         ផ្នែកមុន
@@ -424,7 +423,7 @@ export default function LessonPage() {
                         <button
                             onClick={completeExam}
                             disabled={isSubmitting}
-                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-200 hover:shadow-md disabled:shadow-none"
+                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed text-white px-8 py-3 rounded-full font-semibold text-lg transition-all duration-200 hover:shadow-md disabled:shadow-none"
                         >
                             {isSubmitting ? 'កំពុងបញ្ជូន...' : 'បញ្ចប់វិញ្ញាសា'}
                         </button>
@@ -434,7 +433,7 @@ export default function LessonPage() {
                                 const nextSection = currentSection + 1;
                                 handleSectionChange(nextSection);
                             }}
-                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-md"
+                            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full font-semibold transition-all duration-200 hover:shadow-md"
                         >
                             ផ្នែកបន្ទាប់
                             <ArrowLeft size={20} className="rotate-180" />
