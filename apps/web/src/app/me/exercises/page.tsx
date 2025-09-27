@@ -95,37 +95,37 @@ export default function MyExercises() {
 
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">លំហាត់បានបញ្ចប់</p>
                                     <p className="text-2xl font-bold text-gray-900">{dashboard?.totalExercisesCompleted || 0}</p>
                                 </div>
-                                <div className="p-3 bg-indigo-100 rounded-lg">
+                                <div className="p-3 bg-indigo-100 rounded-full">
                                     <BookOpen className="w-6 h-6 text-indigo-600" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ចំនួនដងព្យាយាម</p>
                                     <p className="text-2xl font-bold text-green-600">{dashboard?.totalAttempts || 0}</p>
                                 </div>
-                                <div className="p-3 bg-green-100 rounded-lg">
+                                <div className="p-3 bg-green-100 rounded-full">
                                     <CheckCircle className="w-6 h-6 text-green-600" />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-medium text-gray-600">ពិន្ទុជាមធ្យម</p>
                                     <p className="text-2xl font-bold text-purple-600">{dashboard?.averageScore ? dashboard.averageScore.toFixed(1) : '0'}%</p>
                                 </div>
-                                <div className="p-3 bg-purple-100 rounded-lg">
+                                <div className="p-3 bg-purple-100 rounded-full">
                                     <BarChart3 className="w-6 h-6 text-purple-600" />
                                 </div>
                             </div>
@@ -137,7 +137,7 @@ export default function MyExercises() {
                         <div className="flex gap-2">
                             <button
                                 onClick={() => setActiveTab('history')}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ${activeTab === 'history'
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${activeTab === 'history'
                                     ? 'bg-indigo-600 text-white'
                                     : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                                     }`}
@@ -149,7 +149,7 @@ export default function MyExercises() {
                             </button>
                             <button
                                 onClick={() => setActiveTab('report')}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2 ${activeTab === 'report'
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-2 ${activeTab === 'report'
                                     ? 'bg-indigo-600 text-white'
                                     : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'
                                     }`}

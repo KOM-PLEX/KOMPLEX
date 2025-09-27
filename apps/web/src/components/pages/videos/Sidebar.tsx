@@ -82,7 +82,7 @@ export default function Sidebar({
                                     return;
                                 }
                                 router.push(item.href);
-                            }} key={item.href} className={`flex w-full items-center gap-3 px-3 py-2 text-gray-700  rounded-lg hover:bg-indigo-100 transition-colors ${item.disabled ? 'opacity-50 cursor-not-allowed user-select-none' : ''}`}>
+                            }} key={item.href} className={`flex w-full items-center gap-3 px-3 py-2 text-gray-700  rounded-3xl hover:bg-indigo-100 transition-colors ${item.disabled ? 'opacity-50 cursor-not-allowed user-select-none' : ''}`}>
                                 <item.icon size={20} className="text-indigo-600" />
                                 <span>{item.label}</span>
                             </button>

@@ -195,7 +195,7 @@ export default function CreateBlog() {
                                 value={title}
                                 onChange={handleTitleChange}
                                 placeholder="សរសេរចំណងជើងប្លុករបស់អ្នក..."
-                                className="w-full px-4 py-3 bg-white rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
+                                className="w-full px-4 py-3 bg-white rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200 border border-gray-200"
                                 maxLength={300}
                             />
                             <div className="flex justify-between items-center mt-2">
@@ -218,7 +218,7 @@ export default function CreateBlog() {
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រភេទប្លោក
                                         </label>
-                                        <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
+                                        <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-full focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
                                             <Tag size={18} className="text-gray-400" />
                                             <input
                                                 type="text"
@@ -295,7 +295,7 @@ export default function CreateBlog() {
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             ប្រធានបទ
                                         </label>
-                                        <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
+                                        <div className="flex items-center gap-2 p-3 border border-gray-300 rounded-full focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-transparent">
                                             <Tag size={18} className="text-gray-400" />
                                             <input
                                                 type="text"
@@ -378,7 +378,7 @@ export default function CreateBlog() {
                             {/* 2x2 Grid for Images */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 {imagePreviews.map((preview, index) => (
-                                    <div key={index} className="relative aspect-video rounded-lg overflow-hidden border border-gray-200">
+                                    <div key={index} className="relative aspect-video rounded-3xl overflow-hidden border border-gray-200">
                                         <Image
                                             src={preview}
                                             alt={`Preview ${index + 1}`}
@@ -398,7 +398,7 @@ export default function CreateBlog() {
                                 {imagePreviews.length < 4 && (
                                     <div
                                         onClick={handleImageClick}
-                                        className="aspect-video border-2 border-dashed rounded-lg flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
+                                        className="aspect-video border-2 border-dashed rounded-3xl flex flex-col items-center justify-center hover:border-indigo-400 transition-colors duration-200 cursor-pointer"
                                     >
                                         <Plus className="w-6 h-6 mb-2 text-gray-500" />
                                         <p className="text-xs text-gray-500 text-center">អូសរូបឬ</p>
@@ -422,7 +422,7 @@ export default function CreateBlog() {
                             </label>
 
                             {/* Blog Editor Component */}
-                            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                            <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden">
                                 <BlogEditor
                                     value={bodyText}
                                     onChange={handleEditorChange}

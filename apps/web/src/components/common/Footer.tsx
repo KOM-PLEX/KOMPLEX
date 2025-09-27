@@ -17,7 +17,7 @@ const ABOUT_LINKS = [
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-50 py-15 px-5">
+        <footer className="bg-white py-15 px-5">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-2  lg:grid-cols-4 gap-10">
                     <div>
@@ -62,7 +62,7 @@ export default function Footer() {
                         <p className="text-gray-900 leading-relaxed">
                             KOMPLEX គឺជាប្រភពបើកចំហ ដែលអាចរួមចំណែក និងពង្រីកមេរៀនបាន។ យើងជឿថាការអប់រំគួរតែឥតគិតថ្លៃ និងអាចចូលដំណើរការបានសម្រាប់គ្រប់គ្នា។
                         </p>
-                        <a href="https://github.com/RaksaOC/KOMPLEX.git" className="text-indigo-600 hover:text-indigo-700 transition-colors">Github Repository</a>
+                        <a href="https://github.com/KOMPLEX-KH" className="text-indigo-600 hover:text-indigo-700 transition-colors">Github Repository</a>
                     </div>
                 </div>
 

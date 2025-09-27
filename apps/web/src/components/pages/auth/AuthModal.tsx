@@ -223,7 +223,7 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-2 sm:scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl border border-indigo-600 bg-white backdrop-blur-xl p-6 shadow-xl shadow-indigo-500/10">
+                            <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-3xl border border-indigo-600 bg-white backdrop-blur-xl p-6 shadow-xl shadow-indigo-500/10">
                                 <div className="flex items-start justify-between">
                                     <Dialog.Title className="sr-only">Authentication</Dialog.Title>
                                     <Link href="/" className="flex items-center justify-center gap-2 mb-4">
@@ -236,10 +236,10 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
                                 </div>
 
                                 {/* Tabs */}
-                                <div className="flex bg-white rounded-xl p-1 mb-6 border border-indigo-600  mx-auto">
+                                <div className="flex bg-white rounded-3xl p-1 mb-6 border border-indigo-600  mx-auto">
                                     <button
                                         onClick={() => setActiveTab('login')}
-                                        className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all hover:bg-gray-50 duration-300 ${activeTab === 'login'
+                                        className={`flex-1 py-3 px-4 rounded-3xl text-sm font-medium transition-all hover:bg-gray-50 duration-300 ${activeTab === 'login'
                                             ? 'bg-white text-indigo-600 shadow-sm border border-indigo-600'
                                             : 'text-black hover:text-indigo-600'
                                             }`}
@@ -248,7 +248,7 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
                                     </button>
                                     <button
                                         onClick={() => setActiveTab('signup')}
-                                        className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all hover:bg-gray-50 duration-300 ${activeTab === 'signup'
+                                        className={`flex-1 py-3 px-4 rounded-3xl text-sm font-medium transition-all hover:bg-gray-50 duration-300 ${activeTab === 'signup'
                                             ? 'bg-white text-indigo-600 shadow-sm border border-indigo-600'
                                             : 'text-black hover:text-indigo-600'
                                             }`}
@@ -302,7 +302,7 @@ export default function AuthModal({ open, onClose }: AuthModalProps) {
                                         <button
                                             key={index}
                                             onClick={() => handleSocialLogin(platform.provider)}
-                                            className="flex-1 bg-white border border-indigo-500/20 text-gray-700 py-3 px-4 rounded-xl font-medium hover:bg-gray-50 transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="flex-1 bg-white border border-indigo-500/20 text-gray-700 py-3 px-4 rounded-3xl font-medium hover:bg-gray-50 transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                             disabled={isSubmitting}
                                         >
                                             {platform.icon}

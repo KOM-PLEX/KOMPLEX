@@ -45,7 +45,7 @@ export default function VideoUpload({ videoFile, videoPreview, onVideoSelect, on
     };
 
     return (
-        <div className="lg:bg-white bg-gray-50 rounded-2xl lg:shadow-sm lg:p-6">
+        <div className="lg:bg-white bg-gray-50 rounded-3xl lg:shadow-sm lg:p-6">
             <div className="hidden lg:flex items-center justify-between mb-6 pb-4 ">
                 <div className="text-indigo-600 font-semibold text-xl flex gap-3 items-center">
                     <Upload className="text-indigo-600" />
@@ -55,7 +55,7 @@ export default function VideoUpload({ videoFile, videoPreview, onVideoSelect, on
 
             {!videoFile ? (
                 <div
-                    className={`border-2 border-dashed rounded-xl p-12 text-center transition-colors ${isDragging
+                    className={`border-2 border-dashed rounded-3xl p-12 text-center transition-colors ${isDragging
                         ? 'border-indigo-500 bg-indigo-50'
                         : 'border-gray-300 hover:border-gray-400'
                         }`}
@@ -79,7 +79,7 @@ export default function VideoUpload({ videoFile, videoPreview, onVideoSelect, on
                     />
                     <label
                         htmlFor="video-upload"
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors cursor-pointer text-lg font-medium"
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors cursor-pointer text-lg font-medium"
                     >
                         <Upload size={24} />
                         ជ្រើសរើសវីដេអូ
@@ -89,7 +89,7 @@ export default function VideoUpload({ videoFile, videoPreview, onVideoSelect, on
                 <div className="space-y-6">
                     <div className="relative">
                         <video
-                            className="w-full aspect-video rounded-lg bg-black"
+                            className="w-full aspect-video rounded-3xl bg-black"
                             controls
                             src={videoPreview}
                         />
@@ -100,7 +100,7 @@ export default function VideoUpload({ videoFile, videoPreview, onVideoSelect, on
                             <X size={20} />
                         </button>
                     </div>
-                    <div className="text-base text-gray-600 bg-gray-50 p-4 rounded-lg">
+                    <div className="text-base text-gray-600 bg-gray-50 p-4 rounded-3xl">
                         <p className="font-medium">ឯកសារ: {videoFile.name}</p>
                         <p>ទំហំ: {(videoFile.size / (1024 * 1024)).toFixed(2)} MB</p>
                     </div>

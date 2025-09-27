@@ -155,7 +155,7 @@ export default function CommentComponent({
                                 <button
                                     onClick={handleCommentLike}
                                     disabled={isLiking}
-                                    className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${commentUpvoted ? 'text-indigo-600' : 'text-gray-500'
+                                    className={`flex items-center gap-1 text-xs font-medium transition-all duration-200 py-1 px-2 rounded-full hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed ${commentUpvoted ? 'text-indigo-600' : 'text-gray-500'
                                         }`}
                                 >
                                     <ThumbsUp className={`w-3 h-3 ${commentUpvoted ? 'fill-indigo-600' : ''}`} />
@@ -163,7 +163,7 @@ export default function CommentComponent({
                                 </button>
                                 <button
                                     onClick={() => setIsReplying(!isReplying)}
-                                    className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200"
+                                    className="text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200 rounded-full"
                                 >
                                     ឆ្លើយតប
                                 </button>
@@ -177,7 +177,7 @@ export default function CommentComponent({
                         <button
                             onClick={fetchReplies}
                             disabled={isLoadingReplies}
-                            className="flex items-center gap-1 text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200 disabled:opacity-50"
+                            className="flex items-center gap-1 text-xs text-gray-500 hover:text-indigo-600 transition-colors duration-200 disabled:opacity-50 rounded-full"
                         >
                             <MessageCircle className="w-3 h-3" />
                             {isLoadingReplies ? 'កំពុងដំណើរការ...' :
@@ -195,7 +195,7 @@ export default function CommentComponent({
                                         value={replyText}
                                         onChange={(e) => setReplyText(e.target.value)}
                                         placeholder="សរសេរការឆ្លើយតប..."
-                                        className="flex-1 px-3 py-3 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-indigo-500"
+                                        className="flex-1 px-3 py-3 text-sm border border-gray-200 rounded-full focus:outline-none focus:border-indigo-500"
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') {
                                                 handleSubmitDirectReply();
@@ -205,7 +205,7 @@ export default function CommentComponent({
                                     <button
                                         onClick={handleSubmitDirectReply}
                                         disabled={!replyText.trim()}
-                                        className="px-3 py-1 text-sm text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="p-3  text-sm text-white bg-indigo-600 rounded-full hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         <Send></Send>
                                     </button>
@@ -235,8 +235,8 @@ export default function CommentComponent({
                             />
                         ))
                     ) : (
-                        <div className="text-gray-500 text-sm p-2">
-                            មិនមានការឆ្លើយតបទេ។
+                        <div className="text-gray-400 text-sm p-2 ml-10">
+                            មិនមានការឆ្លើយតប
                         </div>
                     )}
                 </div>

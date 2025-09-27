@@ -23,7 +23,7 @@ export default function SummaryBox({
                 return (
                     <div
                         key={section.key ?? index}
-                        className="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm"
+                        className="bg-white p-4 rounded-3xl border border-indigo-100 shadow-sm"
                     >
                         <h4 className="font-semibold text-indigo-800 mb-3 flex items-center gap-2">
                             {SectionIcon ? (

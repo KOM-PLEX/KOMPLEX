@@ -13,6 +13,7 @@ import {
 import { getErrorMessage, isFirebaseAuthError } from '@core-utils/firebaseError';
 import LogIn from '@components/pages/auth/LogIn';
 import SignUp from '@components/pages/auth/SignUp';
+import { Logo } from '@/components/common/Logo';
 
 export default function AuthPage() {
     const router = useRouter();
@@ -176,15 +177,11 @@ export default function AuthPage() {
         <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
             <div className="w-full max-w-3xl relative z-10 pt-16">
                 {/* Auth Container */}
-                <div className="bg-indigo-500/10 backdrop-blur-sm border border-indigo-600 rounded-2xl shadow-xl shadow-indigo-500/10 p-6">
+                <div className="bg-indigo-500/10 backdrop-blur-sm border border-indigo-600 rounded-3xl shadow-xl shadow-indigo-500/10 p-6">
                     {/* Logo and Slogan */}
                     <div className="text-center mb-8">
                         <Link href="/" className="flex items-center justify-center gap-2 mb-4">
-                            <img src="/logo.png" alt="" className='w-8 h-8' />
-                            <div>
-                                <span className="text-4xl font-extrabold tracking-tight text-indigo-600">KOM</span>
-                                <span className="text-4xl font-extrabold tracking-tight text-black">PLEX</span>
-                            </div>
+                            <Logo size='lg'/>
                         </Link>
                         {/* <p className="text-gray-700 text-xl font-medium mb-2">
                             ប្រព័ន្ធសិក្សា សម្រាប់សិស្សកម្ពុជា
@@ -195,10 +192,10 @@ export default function AuthPage() {
                     </div>
 
                     {/* Tab Navigation */}
-                    <div className="flex bg-white rounded-xl p-1 mb-6 border border-indigo-600  mx-auto">
+                    <div className="flex bg-white rounded-full p-1 mb-6 border border-indigo-600  mx-auto">
                         <button
                             onClick={() => setActiveTab('login')}
-                            className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all hover:bg-gray-50 duration-300 ${activeTab === 'login'
+                            className={`flex-1 py-3 px-4 rounded-full text-sm font-medium transition-all hover:bg-gray-50 duration-300 ${activeTab === 'login'
                                 ? 'bg-white text-indigo-600 shadow-sm border border-indigo-600'
                                 : 'text-black hover:text-indigo-600'
                                 }`}
@@ -207,7 +204,7 @@ export default function AuthPage() {
                         </button>
                         <button
                             onClick={() => setActiveTab('signup')}
-                            className={`flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all hover:bg-gray-50 duration-300 ${activeTab === 'signup'
+                            className={`flex-1 py-3 px-4 rounded-full text-sm font-medium transition-all hover:bg-gray-50 duration-300 ${activeTab === 'signup'
                                 ? 'bg-white text-indigo-600 shadow-sm border border-indigo-600'
                                 : 'text-black hover:text-indigo-600'
                                 }`}
@@ -262,7 +259,7 @@ export default function AuthPage() {
                             <button
                                 key={index}
                                 onClick={() => handleSocialLogin(platform.provider as 'google' | 'github' | 'microsoft')}
-                                className="flex-1 bg-white border border-indigo-500/20 text-gray-700 py-3 px-4 rounded-xl font-medium hover:bg-gray-50 transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="flex-1 bg-white border border-indigo-500/20 text-gray-700 py-3 px-4 rounded-full font-medium hover:bg-gray-50 transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                 disabled={isSubmitting}
                             >
                                 {platform.icon}

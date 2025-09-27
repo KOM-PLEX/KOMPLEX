@@ -99,8 +99,8 @@ export default function Sidebar({
                                     <button
                                         data-lesson={lessonData.lesson}
                                         onClick={(e) => toggleLesson(e, lessonData.lesson)}
-                                        className={`w-full flex items-center justify-between p-4 rounded-xl ${isActive
-                                            ? 'bg-indigo-50 text-indigo-600 border-l-4 border-indigo-600 shadow-lg shadow-indigo-500/15'
+                                        className={`w-full flex items-center justify-between p-4 rounded-full shadow-lg shadow-indigo-500/15 ${isActive
+                                            ? 'bg-indigo-50 text-indigo-600 border-l-4 border-indigo-500 '
                                             : 'bg-gray-50 hover:bg-gray-100 text-gray-700'
                                             }`}
                                     >
@@ -111,15 +111,15 @@ export default function Sidebar({
                                             </span>
                                         </div>
                                         {isExpanded ? (
-                                            <ChevronDown size={18} className={isActive ? 'text-indigo-600' : 'text-gray-500'} />
+                                            <ChevronDown size={18} className={isActive ? 'text-indigo-500' : 'text-gray-500'} />
                                         ) : (
-                                            <ChevronRight size={18} className={isActive ? 'text-indigo-600' : 'text-gray-500'} />
+                                            <ChevronRight size={18} className={isActive ? 'text-indigo-500' : 'text-gray-500'} />
                                         )}
                                     </button>
 
                                     {/* Topics */}
                                     {isExpanded && (
-                                        <div className="ml-4 space-y-1">
+                                        <div className="ml-4 space-y-2">
                                             {lessonData.topics.map((topicData, index) => {
                                                 const isTopicActive = currentTopic === topicData.englishTitle && lessonData.lesson === currentLesson;
                                                 return (
@@ -127,9 +127,9 @@ export default function Sidebar({
                                                         key={index}
                                                         href={`/docs/${currentGrade}/${currentSubject}/${lessonData.lesson}/${topicData.englishTitle}`}
                                                         onClick={handleLinkClick}
-                                                        className={`block px-4 py-3 rounded-lg text-sm font-medium ${isTopicActive
+                                                        className={`block px-4 py-3 rounded-full text-sm font-medium ${isTopicActive
                                                             ? 'text-indigo-600 bg-indigo-50/80 font-semibold'
-                                                            : 'text-gray-600 hover:text-indigo-600 hover:bg-indigo-50/60'
+                                                            : 'text-gray-600 hover:text-indigo-500 hover:bg-indigo-50/60'
                                                             }`}
                                                     >
                                                         {topicData.title}

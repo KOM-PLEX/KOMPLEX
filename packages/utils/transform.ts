@@ -33,10 +33,10 @@ export const getSubjectIcon = (
 // Get subject color based on subject name
 export const getSubjectColor = (subjectName: string): string => {
   const colorMap: { [key: string]: string } = {
-    គណិតវិទ្យា: "bg-blue-500",
-    រូបវិទ្យា: "bg-purple-500",
-    គីមីវិទ្យា: "bg-green-500",
-    ជីវវិទ្យា: "bg-emerald-500",
+    "គណិតវិទ្យា": "bg-blue-500",
+    "រូបវិទ្យា": "bg-purple-500",
+    "គីមីវិទ្យា": "bg-green-500",
+    "ជីវវិទ្យា": "bg-red-500",
   };
   return colorMap[subjectName] || "bg-gray-500";
 };

@@ -41,7 +41,7 @@ export const createMeExerciseService = (api: AxiosInstance) => {
     ): Promise<ExerciseWithAttempts[]> => {
       try {
         const response = await api.get<ExerciseWithAttempts[]>(
-          `/me/exercises/?grade=${grade}`
+          `/feed/exercises/?grade=${grade}`
         );
         return response.data;
       } catch (error) {

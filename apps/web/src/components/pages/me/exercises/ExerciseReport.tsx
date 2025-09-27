@@ -16,18 +16,18 @@ import {
 
 // Grade options
 const grades = [
-    {
-        id: 'grade-9',
-        name: 'ថ្នាក់ទី៩',
-    },
-    {
-        id: 'grade-10',
-        name: 'ថ្នាក់ទី១០',
-    },
-    {
-        id: 'grade-11',
-        name: 'ថ្នាក់ទី១១',
-    },
+    // {
+    //     id: 'grade-9',
+    //     name: 'ថ្នាក់ទី៩',
+    // },
+    // {
+    //     id: 'grade-10',
+    //     name: 'ថ្នាក់ទី១០',
+    // },
+    // {
+    //     id: 'grade-11',
+    //     name: 'ថ្នាក់ទី១១',
+    // },
     {
         id: 'grade-12',
         name: 'ថ្នាក់ទី១២',
@@ -114,7 +114,7 @@ export default function ExerciseReportComponent() {
 
     if (isLoading) {
         return (
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+            <div className="bg-white rounded-3xl shadow-sm border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
                     <h2 className="text-lg font-semibold text-gray-900">របាយការណ៍លំហាត់</h2>
                 </div>
@@ -122,7 +122,7 @@ export default function ExerciseReportComponent() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[...Array(6)].map((_, i) => (
                             <div key={i} className="animate-pulse">
-                                <div className="h-32 bg-gray-200 rounded-xl"></div>
+                                <div className="h-32 bg-gray-200 rounded-3xl"></div>
                             </div>
                         ))}
                     </div>
@@ -135,7 +135,7 @@ export default function ExerciseReportComponent() {
 
     return (
         <>
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+            <div className="bg-white rounded-3xl shadow-sm border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
                     <div className="flex items-center justify-between">
                         <div>
@@ -146,7 +146,7 @@ export default function ExerciseReportComponent() {
                         {/* Grade Dropdown */}
                         <div className="relative">
                             <Listbox value={selectedGrade} onChange={(value) => setSelectedGrade(value)}>
-                                <Listbox.Button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all">
+                                <Listbox.Button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-full hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all">
                                     <span className="text-sm font-medium text-gray-700">{currentGrade?.name}</span>
                                     <ChevronDown size={16} className="text-gray-500 transition-transform ui-open:rotate-180" />
                                 </Listbox.Button>
@@ -159,7 +159,7 @@ export default function ExerciseReportComponent() {
                                     leaveFrom="transform scale-100 opacity-100"
                                     leaveTo="transform scale-95 opacity-0"
                                 >
-                                    <Listbox.Options className="absolute right-0 mt-2 w-48 bg-white rounded-lg border border-gray-200 shadow-lg z-50">
+                                    <Listbox.Options className="absolute right-0 mt-2 w-48 bg-white rounded-3xl border border-gray-200 shadow-lg z-50">
                                         {grades.map((grade) => (
                                             <Listbox.Option
                                                 key={grade.id}
@@ -203,11 +203,11 @@ export default function ExerciseReportComponent() {
                             {subjects.map((subject) => {
                                 const subjectColors = getSubjectColorVariants(subject.color);
                                 return (
-                                    <div key={subject.id} className="border border-gray-200 rounded-xl overflow-hidden">
+                                    <div key={subject.id} className="">
                                         {/* Subject Header */}
-                                        <div className="bg-gray-50 p-4 border-b border-gray-200">
+                                        <div className="">
                                             <div className="flex items-center gap-4">
-                                                <div className={`w-12 h-12 ${subject.color} rounded-xl flex items-center justify-center text-white`}>
+                                                <div className={`w-12 h-12 ${subject.color} rounded-3xl flex items-center justify-center text-white`}>
                                                     {React.createElement(getSubjectIcon(subject.name), { className: "w-8 h-8" })}
                                                 </div>
                                                 <div>
@@ -218,7 +218,7 @@ export default function ExerciseReportComponent() {
                                         </div>
 
                                         {/* Topics Grid */}
-                                        <div className="p-4">
+                                        <div className="py-4">
                                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                                 {subject.topics.map((topic) => {
                                                     const isDisabled = (topic.questionCount || 0) <= 1;
@@ -227,13 +227,13 @@ export default function ExerciseReportComponent() {
                                                         <div
                                                             key={topic.id}
                                                             onClick={isDisabled ? undefined : () => openModal(topic)}
-                                                            className={`relative bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-4 transition-all duration-200 group ${isDisabled
+                                                            className={`relative bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-3xl p-4 transition-all duration-200 group ${isDisabled
                                                                 ? 'opacity-50 cursor-not-allowed'
                                                                 : 'cursor-pointer hover:shadow-lg hover:border-indigo-200'
                                                                 }`}
                                                         >
                                                             <div className="flex items-center gap-2 mb-3">
-                                                                <div className="flex items-center gap-2 p-2 rounded-lg bg-indigo-100 text-indigo-600 group-hover:bg-indigo-200 transition-colors">
+                                                                <div className="flex items-center gap-2 p-2 rounded-full bg-indigo-100 text-indigo-600 group-hover:bg-indigo-200 transition-colors">
                                                                     <Target className="w-4 h-4" />
                                                                 </div>
                                                                 <h4 className={`font-semibold text-base transition-colors ${isDisabled
@@ -277,9 +277,9 @@ export default function ExerciseReportComponent() {
                                                             </div>
 
                                                             {isDisabled && (
-                                                                <div className="absolute inset-0 bg-gray-100 bg-opacity-50 rounded-xl flex items-center justify-center">
+                                                                <div className="absolute inset-0 bg-gray-100/50 rounded-3xl flex items-center justify-center">
                                                                     <span className="text-xs font-medium text-gray-600 bg-white px-2 py-1 rounded-full shadow-sm">
-                                                                        ត្រូវព្យាយាមយ៉ាងហោចណាស់ ២ ដង
+                                                                        មិនមានទិន្នន័យ
                                                                     </span>
                                                                 </div>
                                                             )}

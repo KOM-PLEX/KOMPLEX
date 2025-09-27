@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { History, Settings, Search, ChevronDown, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
 import { Listbox, Transition } from '@headlessui/react';
-import PracticeCard from '@components/pages/exercise/ExerciseCard';
+import PracticeCard from '@/components/pages/exercises/ExerciseCard';
 import ContentError from '@components/common/ContentError';
 import { Subject } from '@/types/content/exercises';
 import { feedExerciseService } from '@/services/index';
@@ -78,17 +78,14 @@ export default function PracticePage() {
                     <div className="flex items-center justify-between mb-8">
                         <div className='pr-2'>
                             <h1 className="lg:text-3xl text-2xl font-bold text-gray-900 mb-2">
-                                លំហាត់សម្រាប់ {currentGrade?.name}
+                                លំហាត់អនុវត្តន៍សម្រាប់ {currentGrade?.name}
                             </h1>
-                            <p className="text-gray-600 text-sm">
-                                ជ្រើសរើសវិញ្ញាបន្នដើម្បីចាប់ផ្តើមអនុវត្តន៍
-                            </p>
                         </div>
 
                         {/* Grade Dropdown */}
                         <div className="relative">
                             <Listbox value={selectedGrade} onChange={(value) => setSelectedGrade(value)}>
-                                <Listbox.Button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all">
+                                <Listbox.Button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-full  focus:outline-none  transition-all">
                                     <span className="text-sm font-medium text-gray-700">{currentGrade?.name}</span>
                                     <ChevronDown size={16} className="text-gray-500 transition-transform ui-open:rotate-180" />
                                 </Listbox.Button>
@@ -101,7 +98,7 @@ export default function PracticePage() {
                                     leaveFrom="transform scale-100 opacity-100"
                                     leaveTo="transform scale-95 opacity-0"
                                 >
-                                    <Listbox.Options className="absolute right-0 mt-2 w-48 bg-white rounded-lg border border-gray-200 shadow-lg z-50">
+                                    <Listbox.Options className="absolute right-0 mt-2 w-48 bg-white rounded-3xl border border-gray-200 shadow-lg z-50">
                                         {grades.map((grade) => (
                                             <Listbox.Option
                                                 key={grade.id}
@@ -129,19 +126,19 @@ export default function PracticePage() {
                         <div className="space-y-6">
                             {/* Subject Skeleton */}
                             {[1, 2, 3].map((i) => (
-                                <div key={i} className="lg:bg-white bg-gray-50 lg:rounded-2xl lg:shadow-sm lg:p-6">
+                                <div key={i} className="bg-gray-50 lg:rounded-3xl ">
                                     {/* Subject Header Skeleton */}
                                     <div className="flex items-center gap-4 mb-6">
                                         <div className="w-16 h-16 bg-gray-200 rounded-xl animate-pulse"></div>
                                         <div className="flex-1">
-                                            <div className="h-8 bg-gray-200 rounded-lg w-48 animate-pulse mb-2"></div>
+                                            <div className="h-8 bg-gray-200 rounded-full w-48 animate-pulse mb-2"></div>
                                         </div>
                                     </div>
 
                                     {/* Topics Grid Skeleton */}
                                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
                                         {[1, 2, 3, 4, 5, 6].map((j) => (
-                                            <div key={j} className="bg-gray-100 rounded-xl p-4 animate-pulse">
+                                            <div key={j} className="bg-gray-100 rounded-3xl p-4 animate-pulse">
                                                 <div className="h-6 bg-gray-200 rounded w-3/4 mb-3"></div>
                                                 <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
                                                 <div className="h-4 bg-gray-200 rounded w-2/3"></div>
@@ -170,10 +167,10 @@ export default function PracticePage() {
                                 subjects.map((subject) => {
                                     const subjectColors = getSubjectColorVariants(subject.color);
                                     return (
-                                        <div key={subject.id} className="lg:bg-white bg-gray-50 lg:rounded-2xl lg:shadow-sm lg:p-6">
+                                        <div key={subject.id} className=" bg-gray-50 lg:rounded-3xl my-4">
                                             {/* Subject Header */}
                                             <div className="flex items-center gap-4 mb-6">
-                                                <div className={`w-16 h-16 ${subject.color} rounded-xl flex items-center justify-center text-white`}>
+                                                <div className={`w-16 h-16 ${subject.color} rounded-full flex items-center justify-center text-white`}>
                                                     {React.createElement(getSubjectIcon(subject.name), { className: "w-8 h-8" })}
                                                 </div>
                                                 <div>

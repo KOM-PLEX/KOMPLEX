@@ -36,13 +36,13 @@ export default function Sidebar({ onSearch }: SidebarProps) {
                             type="text"
                             
                             placeholder="ស្វែងរកការពិភាក្សា..."
-                            className="w-full py-2 px-3 border border-indigo-500/20 rounded-lg text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
+                            className="w-full py-2 px-3 border border-indigo-500/20 rounded-3xl text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             onKeyPress={handleKeyPress}
                         />
                     </div>
-                    <Link href={"/me/create-forum"} className="bg-indigo-600 text-white py-2 px-4 rounded-lg border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
+                    <Link href={"/me/create-forum"} className="bg-indigo-600 text-white py-2 px-4 rounded-full border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
                         <Plus className="w-4 h-4" />
                     </Link>
                 </div>
@@ -50,13 +50,13 @@ export default function Sidebar({ onSearch }: SidebarProps) {
 
 
             {/* Desktop Sidebar */}
-            <div className="hidden lg:block w-70 bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 h-fit sticky top-20">
+            <div className="hidden lg:block w-70 bg-white rounded-3xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 h-fit sticky top-20">
                 <div className="mb-6">
                     <h1 className="text-2xl font-extrabold mb-2 text-indigo-600">ពិភាក្សា</h1>
                     <p className="text-gray-500 text-sm">ចែករំលែកចំណេះដឹង និងសួរសំណួររបស់អ្នក</p>
                 </div>
 
-                <Link href={"/me/create-forum"} className="bg-indigo-600 text-white py-3 px-5 rounded-xl border-none font-semibold text-sm transition-all duration-300 shadow-lg shadow-indigo-500/30 mb-6 flex items-center justify-center gap-2 w-full hover:bg-indigo-700">
+                <Link href={"/me/create-forum"} className="bg-indigo-600 text-white py-3 px-5 rounded-full border-none font-semibold text-sm transition-all duration-300 shadow-lg shadow-indigo-500/30 mb-6 flex items-center justify-center gap-2 w-full hover:bg-indigo-700">
                     <Plus className='w-4 h-4'></Plus>
                     បង្កើតការពិភាក្សាថ្មី
                 </Link>
@@ -70,7 +70,7 @@ export default function Sidebar({ onSearch }: SidebarProps) {
                         type="text"
                         
                         id="search-input"
-                        className="w-full py-3 px-4 border border-indigo-500/20 rounded-xl text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
+                        className="w-full py-3 px-4 border border-indigo-500/20 rounded-3xl text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
                         placeholder="ស្វែងរកការពិភាក្សា..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -84,7 +84,7 @@ export default function Sidebar({ onSearch }: SidebarProps) {
                         {subjects.map((subject) => (
                             <div
                                 key={subject}
-                                className="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-gray-400 cursor-not-allowed"
+                                className="flex items-center gap-2 py-2 px-3 rounded-full text-sm text-gray-400 cursor-not-allowed"
                             >
                                 {subject}
                             </div>
@@ -98,7 +98,7 @@ export default function Sidebar({ onSearch }: SidebarProps) {
                         {types.map((type) => (
                             <div
                                 key={type}
-                                className="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-gray-400 cursor-not-allowed"
+                                className="flex items-center gap-2 py-2 px-3 rounded-full text-sm text-gray-400 cursor-not-allowed"
                             >
                                 {type}
                             </div>

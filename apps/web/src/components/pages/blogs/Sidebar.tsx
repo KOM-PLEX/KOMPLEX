@@ -1,6 +1,6 @@
 'use client';
 
-import { Plus } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -31,13 +31,13 @@ export default function Sidebar({ onSearch }: SidebarProps) {
   return (
     <>
       {/* Mobile/Tablet Secondary Bar */}
-      <div className="lg:hidden fixed top-14 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-indigo-500/10 px-4 py-3">
+      <div className="lg:hidden fixed top-14 left-0 right-0 z-40 bg-white/95  border-b border-indigo-500/10 px-4 py-3">
         <div className="flex items-center gap-3">
           <div className="flex-1">
             <input
               type="text"
-              placeholder="ស្វែងរកប្លុក..."
-              className="w-full py-2 px-3 border border-indigo-500/20 rounded-lg text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
+              placeholder="ស្វែងរកអត្ថបទ..."
+              className="w-full py-2 px-3 border border-indigo-500/20 rounded-full text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyPress={handleKeyPress}
@@ -49,7 +49,7 @@ export default function Sidebar({ onSearch }: SidebarProps) {
           >
             <Filter className="w-4 h-4" />
           </button> */}
-          <Link href={"/me/create-blog"} className="bg-indigo-600 text-white py-2 px-4 rounded-lg border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
+          <Link href={"/me/create-blog"} className="bg-indigo-600 text-white py-2 px-4 rounded-full border-none text-sm cursor-pointer transition-all duration-300 hover:bg-indigo-700 flex items-center gap-2">
             <Plus className="w-4 h-4" />
           </Link>
         </div>
@@ -99,25 +99,25 @@ export default function Sidebar({ onSearch }: SidebarProps) {
       )} */}
 
       {/* Desktop Sidebar */}
-      <div className="hidden lg:block w-70 bg-white rounded-2xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 h-fit sticky top-20">
+      <div className="hidden lg:block w-70 bg-white rounded-3xl p-6 shadow-lg shadow-indigo-500/10 border border-indigo-500/10 h-fit sticky top-20">
         <div className="mb-6">
-          <h1 className="text-2xl font-extrabold mb-2 text-indigo-600">ប្លុក</h1>
+          <h1 className="text-2xl font-extrabold mb-2 text-indigo-600">អត្ថបទ</h1>
           <p className="text-gray-500 text-sm">រឿងរ៉ាវ និងបទពិសោធន៍របស់សិស្ស</p>
         </div>
 
-        <Link href={`/me/create-blog`} className="bg-indigo-600 text-white py-3 px-5 rounded-xl border-none font-semibold text-sm transition-all duration-300 shadow-lg shadow-indigo-500/30 mb-6 flex items-center justify-center gap-2 w-full hover:bg-indigo-700">
-          <Plus className="w-4 h-4" /> សរសេរប្លុកថ្មី
+        <Link href={`/me/create-blog`} className="bg-indigo-600 text-white py-3 px-5 rounded-full border-none font-semibold text-sm transition-all duration-300 shadow-lg shadow-indigo-500/30 mb-6 flex items-center justify-center gap-2 w-full hover:bg-indigo-700">
+          <Plus className="w-4 h-4" /> សរសេរអត្ថបទថ្មី
         </Link>
 
         <div className="mb-6">
-          <label htmlFor="search-input" className="block font-semibold text-gray-900 mb-2 text-sm">
-            ស្វែងរក
+          <label htmlFor="search-input" className="block font-semibold text-gray-900 mb-2 text-sm flex items-center gap-2">
+            <Search className="w-4 h-4" />ស្វែងរក
           </label>
           <input
             type="text"
             id="search-input"
-            className="w-full py-3 px-4 border border-indigo-500/20 rounded-xl text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
-            placeholder="ស្វែងរកប្លុក..."
+            className="w-full py-3 px-4 border border-indigo-500/20 rounded-full text-sm bg-white/80 transition-all duration-300 focus:outline-none focus:border-indigo-600 focus:shadow-lg focus:shadow-indigo-500/10"
+            placeholder="ស្វែងរកអត្ថបទ..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={handleKeyPress}
@@ -132,7 +132,7 @@ export default function Sidebar({ onSearch }: SidebarProps) {
             {subjects.map((subject) => (
               <div
                 key={subject}
-                className="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-gray-400 cursor-not-allowed"
+                className="flex items-center gap-2 py-2 px-3 rounded-full text-sm text-gray-400 cursor-not-allowed"
               >
                 {subject}
               </div>
@@ -146,7 +146,7 @@ export default function Sidebar({ onSearch }: SidebarProps) {
             {categories.map((category) => (
               <div
                 key={category}
-                className="flex items-center gap-2 py-2 px-3 rounded-lg text-sm text-gray-400 cursor-not-allowed"
+                className="flex items-center gap-2 py-2 px-3 rounded-full text-sm text-gray-400 cursor-not-allowed"
               >
                 {category}
               </div>

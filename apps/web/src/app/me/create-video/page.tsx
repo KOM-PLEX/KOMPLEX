@@ -14,6 +14,7 @@ import { ExerciseQuestion } from '@/types/docs/topic';
 import Link from 'next/link';
 import { uploadService, meVideoService } from '@/services/index';
 import { useAuth } from '@hooks/useAuth';
+import { BackButton } from '@/components/common/BackButton';
 
 interface VideoFormData {
     title: string;
@@ -251,13 +252,8 @@ export default function CreateVideoPage() {
             <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
                 {/* Content */}
                 <div className="p-6">
-                    {/* Header with Back Button */}
-                    <div className="mb-6 flex items-center justify-between">
-                        <Link href="/me/videos" className="inline-flex items-center gap-2 font-medium transition-colors duration-200 text-gray-700">
-                            <ArrowLeft className="w-4 h-4" />
-                            ត្រឡប់ទៅវីដេអូរបស់ខ្ញុំ
-                        </Link>
-                    </div>
+                    <BackButton href='/me/videos' />
+                    
 
                     {/* Video Upload Component */}
                     <VideoUpload

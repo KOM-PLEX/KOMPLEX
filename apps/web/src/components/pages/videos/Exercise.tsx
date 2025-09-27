@@ -43,9 +43,9 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
     const currentExercise = exercises[currentExerciseIndex];
 
     return (
-        <div className="bg-white rounded-2xl shadow-sm">
+        <div className="lg:bg-white lg:rounded-3xl lg:shadow-sm">
             {/* Header */}
-            <div className="p-6 border-b border-gray-200">
+            <div className="lg:p-6 lg:border-b lg:border-gray-200 lg:block hidden">
                 <div className="flex items-center gap-3">
                     <BookOpen className="w-6 h-6 text-indigo-600" />
                     <h2 className="text-xl font-bold text-gray-900">លំហាត់</h2>
@@ -53,7 +53,7 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
             </div>
 
             {/* Content */}
-            <div className="p-6">
+            <div className="lg:p-6">
 
 
                 {/* Questions */}
@@ -63,9 +63,8 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
                         const hasAnswered = userAnswer !== undefined;
 
                         return (
-                            <div key={question.id} className="border border-gray-200 rounded-lg p-4">
+                            <div key={question.id} className="border border-gray-200 rounded-3xl p-4">
                                 <div className="font-medium text-gray-900 mb-3">
-                                    <span className="inline-block mr-2">{questionIndex + 1}.</span>
                                     <MarkDownRenderer content={question.title} />
                                 </div>
 
@@ -97,24 +96,25 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
                                         return (
                                             <label
                                                 key={choice.id}
-                                                className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${choiceStyle}`}
+                                                className={`flex items-center gap-3 px-3 py-2 rounded-full border cursor-pointer transition-colors ${choiceStyle}`}
                                             >
-                                                <input
-                                                    type="radio"
-                                                    name={`question-${question.id}`}
-                                                    value={choice.id}
-                                                    checked={isSelected}
-                                                    onChange={() => handleAnswerSelect(question.id, choice.id)}
-                                                    className="w-4 h-4 text-indigo-600"
-                                                />
+                                                <div
+                                                    onClick={() => handleAnswerSelect(question.id, choice.id)}
+
+
+
+                                                    className="w-4 h-4 text-indigo-600 mt-1"
+                                                >
+                                                    {isSelected && <CheckCircle className="w-4 h-4 text-indigo-600 ml-auto" />}
+                                                </div>
                                                 <div className={textStyle}>
                                                     <MarkDownRenderer content={choice.text} />
                                                 </div>
                                                 {hasAnswered && isCorrect && (
-                                                    <CheckCircle className="w-4 h-4 text-green-500 ml-auto" />
+                                                    <CheckCircle className="w-4 h-4 text-green-500 ml-auto mt-1" />
                                                 )}
                                                 {hasAnswered && isWrong && (
-                                                    <XCircle className="w-4 h-4 text-red-500 ml-auto" />
+                                                    <XCircle className="w-4 h-4 text-red-500 ml-auto mt-1" />
                                                 )}
                                             </label>
                                         );
@@ -126,11 +126,11 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
                 </div>
 
                 {/* Navigation */}
-                <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-200">
+                <div className="flex justify-between items-center lg:mt-8 pt-6 lg:border-t lg:border-gray-200">
                     <button
                         onClick={() => setCurrentExerciseIndex(Math.max(0, currentExerciseIndex - 1))}
                         disabled={currentExerciseIndex === 0}
-                        className="flex items-center gap-2 px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex items-center gap-2 px-4 py-2 text-gray-600 border border-gray-300 rounded-3xl hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         <ChevronLeft className="w-4 h-4" />
                         មុន
@@ -143,7 +143,7 @@ export default function Exercise({ exercises: exercisesProp }: ExerciseProps) {
                     <button
                         onClick={() => setCurrentExerciseIndex(Math.min(exercises.length - 1, currentExerciseIndex + 1))}
                         disabled={currentExerciseIndex === exercises.length - 1}
-                        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         បន្ត
                         <ChevronRight className="w-4 h-4" />

@@ -105,7 +105,7 @@ export default function Video({ userId }: VideoProps) {
                         href={`/videos/${video.id}`}
                         className="group block"
                     >
-                        <div className="bg-white rounded-2xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1 overflow-hidden">
+                        <div className="bg-white rounded-3xl shadow-lg shadow-indigo-500/10 border border-indigo-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/15 hover:-translate-y-1 overflow-hidden">
                             {/* Video Thumbnail */}
                             <div className="relative aspect-video">
                                 <img
@@ -125,7 +125,7 @@ export default function Video({ userId }: VideoProps) {
                                 </div>
 
                                 {/* Duration Badge */}
-                                <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                                <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
                                     <Clock className="w-3 h-3" />
                                     {formatDuration(video.duration)}
                                 </div>

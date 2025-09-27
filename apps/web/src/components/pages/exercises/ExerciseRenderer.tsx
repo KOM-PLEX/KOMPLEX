@@ -80,7 +80,7 @@ export default function ExerciseRenderer({
     }
 
     return (
-        <div className="bg-white rounded-2xl shadow-sm">
+        <div className="bg-white rounded-3xl shadow-sm">
             {/* Header */}
             <div className="p-6 border-b border-gray-200">
                 <div className="flex items-center justify-between">
@@ -108,7 +108,7 @@ export default function ExerciseRenderer({
                             <img
                                 src={currentQuestion.imageUrl}
                                 alt="Question illustration"
-                                className="max-w-full h-auto rounded-lg border border-gray-200"
+                                className="max-w-full h-auto rounded-3xl border border-gray-200"
                             />
                         </div>
                     )}
@@ -145,7 +145,7 @@ export default function ExerciseRenderer({
                         return (
                             <label
                                 key={choice.id}
-                                className={`flex items-start gap-3 p-4 rounded-lg border cursor-pointer transition-colors ${choiceStyle} ${isReadOnly ? 'cursor-default' : 'hover:shadow-sm'
+                                className={`flex items-start gap-3 p-4 rounded-3xl border cursor-pointer transition-colors ${choiceStyle} ${isReadOnly ? 'cursor-default' : 'hover:shadow-sm'
                                     }`}
                             >
                                 <input
@@ -177,7 +177,7 @@ export default function ExerciseRenderer({
                         <button
                             onClick={handlePreviousQuestion}
                             disabled={currentQuestionIndex === 0}
-                            className="flex items-center gap-2 px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 text-gray-600 border border-gray-300 rounded-3xl hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                         >
                             <ChevronLeft className="w-4 h-4" />
                             មុន
@@ -206,7 +206,7 @@ export default function ExerciseRenderer({
                         <button
                             onClick={handleNextQuestion}
                             disabled={currentQuestionIndex === questions.length - 1}
-                            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-3xl hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                         >
                             បន្ត
                             <ChevronRight className="w-4 h-4" />

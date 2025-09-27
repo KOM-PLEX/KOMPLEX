@@ -51,7 +51,7 @@ export default function ProfilePage() {
             <div className="flex min-h-screen bg-gray-50">
                 <Sidebar />
                 <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                    <div className="max-w-7xl mx-auto p-6">
+                    <div className=" mx-auto p-6">
                         {/* Header Skeleton */}
                         <div className="mb-8">
                             <div className="h-8 bg-gray-200 rounded w-2/3 sm:w-1/2 md:w-1/3 animate-pulse"></div>
@@ -104,7 +104,7 @@ export default function ProfilePage() {
             <div className="flex min-h-screen bg-gray-50">
                 <Sidebar />
                 <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                    <div className="max-w-7xl mx-auto p-6">
+                    <div className=" mx-auto p-6">
                         <div className="mb-8">
                             <div className="flex items-center gap-3 mb-2">
                                 <UserCircle className="w-8 h-8 text-indigo-600" />
@@ -132,7 +132,7 @@ export default function ProfilePage() {
                             </div>
                             <p className="text-gray-600">ព័ត៌មានផ្ទាល់ខ្លួននិងការកំណត់</p>
                         </div>
-                        <div className="bg-white border border-gray-200 rounded-2xl p-12 text-center">
+                        <div className="bg-white border border-gray-200 rounded-3xl p-12 text-center">
                             <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
                                 <UserCircle className="w-8 h-8 text-gray-400" />
                             </div>
@@ -155,7 +155,7 @@ export default function ProfilePage() {
         <div className="flex min-h-screen bg-gray-50">
             <Sidebar />
             <div className="flex-1 lg:ml-64 pt-32 lg:pt-20">
-                <div className="max-w-7xl mx-auto p-6">
+                <div className=" mx-auto p-6">  
                     {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-3 mb-2">
@@ -166,7 +166,7 @@ export default function ProfilePage() {
                     </div>
 
                     {/* Profile Card */}
-                    <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                    <div className="bg-white border border-gray-200 rounded-3xl p-6 shadow-sm">
                         <div className="flex items-start justify-between gap-4 mb-6">
                             <div className="flex items-center gap-4">
                                 {user.profileImage ? (
@@ -210,7 +210,7 @@ export default function ProfilePage() {
                         <div className="h-px bg-gray-200 mb-6"></div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-white hover:to-indigo-50 transition-all duration-200 rounded-xl p-4 border border-gray-200 hover:border-indigo-200 hover:shadow-md">
+                            <div className="bg-white transition-all duration-200 rounded-full p-4 border border-gray-200 hover:border-indigo-200 ">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2 rounded-lg bg-indigo-100 text-indigo-600">
                                         <AtSign size={16} />
@@ -222,7 +222,7 @@ export default function ProfilePage() {
                                 </div>
                             </div>
 
-                            <div className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-white hover:to-indigo-50 transition-all duration-200 rounded-xl p-4 border border-gray-200 hover:border-indigo-200 hover:shadow-md">
+                            <div className="bg-white transition-all duration-200 rounded-full p-4 border border-gray-200 hover:border-indigo-200 ">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2 rounded-lg bg-indigo-100 text-indigo-600">
                                         <UserIcon size={16} />
@@ -234,7 +234,7 @@ export default function ProfilePage() {
                                 </div>
                             </div>
 
-                            <div className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-white hover:to-indigo-50 transition-all duration-200 rounded-xl p-4 border border-gray-200 hover:border-indigo-200 hover:shadow-md">
+                            <div className="bg-white transition-all duration-200 rounded-full p-4 border border-gray-200 hover:border-indigo-200 ">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2 rounded-lg bg-indigo-100 text-indigo-600">
                                         <UserIcon size={16} />
@@ -246,7 +246,7 @@ export default function ProfilePage() {
                                 </div>
                             </div>
 
-                            <div className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-white hover:to-indigo-50 transition-all duration-200 rounded-xl p-4 border border-gray-200 hover:border-indigo-200 hover:shadow-md">
+                            <div className="bg-white transition-all duration-200 rounded-full p-4 border border-gray-200 hover:border-indigo-200 ">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2 rounded-lg bg-indigo-100 text-indigo-600">
                                         <Calendar size={16} />
@@ -258,7 +258,7 @@ export default function ProfilePage() {
                                 </div>
                             </div>
 
-                            <div className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-white hover:to-indigo-50 transition-all duration-200 rounded-xl p-4 border border-gray-200 hover:border-indigo-200 hover:shadow-md">
+                            <div className="bg-white transition-all duration-200 rounded-full p-4 border border-gray-200 hover:border-indigo-200 ">
                                 <div className="flex items-center gap-3">
                                     <div className="p-2 rounded-lg bg-indigo-100 text-indigo-600">
                                         <Phone size={16} />
@@ -270,7 +270,7 @@ export default function ProfilePage() {
                                 </div>
                             </div>
 
-                            <div className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-white hover:to-indigo-50 transition-all duration-200 rounded-xl p-4 border border-gray-200 hover:border-indigo-200 hover:shadow-md">
+                            <div className="bg-white transition-all duration-200 rounded-full p-4 border border-gray-200 hover:border-indigo-200 ">
                                 <div className="flex items-center gap-3">
                                     <div className={`p-2 rounded-lg ${user.isVerified ? 'bg-green-100 text-green-600' : 'bg-amber-100 text-amber-600'}`}>
                                         {user.isVerified ? <ShieldCheck size={16} /> : <ShieldAlert size={16} />}

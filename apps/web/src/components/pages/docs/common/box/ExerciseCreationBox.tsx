@@ -96,7 +96,7 @@ export default function ExerciseCreationBox({
     };
 
     return (
-        <div className="lg:bg-white bg-gray-50 rounded-2xl lg:shadow-sm lg:p-6">
+        <div className="lg:bg-white bg-gray-50 rounded-3xl lg:shadow-sm lg:p-6">
             {/* Header */}
             <div className="flex items-center justify-between mb-6 pb-4 ">
                 <div className="text-indigo-600 font-semibold text-xl flex gap-3 items-center">
@@ -123,7 +123,7 @@ export default function ExerciseCreationBox({
                     questions.map((question, questionIndex) => (
                         <div
                             key={question.id}
-                            className={`border border-indigo-500 bg-indigo-50/20 rounded-xl p-6 transition-all duration-300 `}
+                            className={`border border-indigo-500 bg-indigo-50/20 rounded-3xl p-6 transition-all duration-300 `}
                         >
                             {/* Question Header */}
                             <div className="flex items-center justify-between mb-4">
@@ -139,7 +139,7 @@ export default function ExerciseCreationBox({
                                 <div className="flex items-center gap-2">
                                     <button
                                         onClick={() => removeQuestion(question.id)}
-                                        className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                        className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-3xl transition-colors"
                                         title="លុប"
                                     >
                                         <Trash2 size={16} />
@@ -175,7 +175,7 @@ export default function ExerciseCreationBox({
                                         <button
                                             onClick={() => addOption(question.id)}
                                             disabled={question.options.length >= 6}
-                                            className="flex items-center gap-2 px-3 py-1 text-sm bg-indigo-100 text-indigo-700 rounded-lg hover:bg-indigo-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="flex items-center gap-2 px-3 py-1 text-sm bg-indigo-100 text-indigo-700 rounded-3xl hover:bg-indigo-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             <Plus size={14} />
                                             បន្ថែមជម្រើស
@@ -212,7 +212,7 @@ export default function ExerciseCreationBox({
                                                 <button
                                                     onClick={() => removeOption(question.id, optionIndex)}
                                                     disabled={question.options.length <= 1}
-                                                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-3 flex-shrink-0"
+                                                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-3xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-3 flex-shrink-0"
                                                 >
                                                     <Trash2 size={16} />
                                                 </button>
@@ -245,7 +245,7 @@ export default function ExerciseCreationBox({
                             <div className="flex items-center gap-3">
                                 <button
                                     onClick={addQuestion}
-                                    className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg transition-colors font-medium"
+                                    className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-3xl transition-colors font-medium"
                                 >
                                     <Plus size={18} />
                                     បន្ថែមសំណួរ

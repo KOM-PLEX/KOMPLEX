@@ -45,7 +45,7 @@ export const ThreeD: React.FC<ThreeDProps> = ({
 
     return (
         <div
-            className={`w-full rounded-xl overflow-hidden border border-indigo-200 ${className}`}
+            className={`w-full rounded-3xl overflow-hidden border border-indigo-200 ${className}`}
             style={{ height: `${height}px` }}
         >
             {customContent ? (

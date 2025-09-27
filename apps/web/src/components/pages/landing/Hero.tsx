@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { Play, ArrowRight, Calculator, Atom, Dna, FlaskConical } from "lucide-react";
 import { motion } from "framer-motion";
+import { Logo } from "@/components/common/Logo";
 
 export default function Hero() {
     return (
-        <section className="mt-15 pt-50 pb-50 px-5 bg-indigo-600 text-white text-center relative ">
+        <section className="mt-13 pt-40 pb-40 px-5 bg-indigo-600 text-white text-center relative">
 
             {/* 3D Image Placeholders */}
             <div className="absolute inset-0 overflow-hidden">
@@ -75,11 +76,19 @@ export default function Hero() {
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-5xl md:text-8xl font-extrabold mb-5 leading-tight"
+                >
+                    <Logo size="xl" variant="light" />
+                </motion.div>
                 <motion.h1
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-5xl md:text-7xl font-extrabold mb-5 leading-tight"
+                    className="text-5xl md:text-8xl font-extrabold mb-5 leading-tight"
                 >
                     ប្រព័ន្ធសិក្សា សម្រាប់សិស្សកម្ពុជា
                 </motion.h1>
@@ -87,7 +96,7 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-2xl md:text-4xl font-extrabold mb-5 leading-tight"
+                    className="text-4xl md:text-7xl font-extrabold mb-5 leading-tight"
                 >
                     បង្កើតឡើងដោយសិស្សកម្ពុជា
                 </motion.h1>
@@ -107,14 +116,14 @@ export default function Hero() {
                 >
                     <Link
                         href="/docs"
-                        className="bg-white text-indigo-600 px-8 py-4 rounded-2xl no-underline font-semibold text-base transition-all duration-300 hover:bg-gray-100 flex items-center gap-2"
+                        className="bg-white text-indigo-600 px-8 py-4 rounded-full no-underline font-semibold text-base transition-all duration-300 hover:bg-gray-100 flex items-center gap-2"
                     >
                         <Play size={20} />
                         ចាប់ផ្តើមរៀន
                     </Link>
                     <a
                         href="#features"
-                        className="bg-transparent text-white px-8 py-4 rounded-2xl no-underline font-semibold text-base transition-all duration-300 border-2 border-white hover:bg-white/10 flex items-center gap-2"
+                        className="bg-transparent text-white px-8 py-4 rounded-full no-underline font-semibold text-base transition-all duration-300 border-2 border-white hover:bg-white/10 flex items-center gap-2"
                     >
                         <ArrowRight size={20} />
                         ស្វែងយល់បន្ថែម

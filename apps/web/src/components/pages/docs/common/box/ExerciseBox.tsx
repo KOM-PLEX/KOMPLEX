@@ -44,7 +44,7 @@ export default function ExerciseBox({ questions }: ExerciseBoxProps) {
 	};
 
 	return (
-		<div className="bg-white/95 backdrop-blur-sm border-2 border-indigo-500/20 rounded-2xl p-6 my-6 shadow-lg shadow-indigo-500/15">
+		<div className="bg-white/95 backdrop-blur-sm border-2 border-indigo-500/20 rounded-3xl p-6 my-6 shadow-lg shadow-indigo-500/15">
 			{/* Header */}
 			<div className="flex items-center justify-between mb-6 pb-4 border-b border-indigo-500/20">
 				<div className="text-indigo-600 font-semibold text-lg flex gap-2 items-center">
@@ -74,7 +74,7 @@ export default function ExerciseBox({ questions }: ExerciseBoxProps) {
 								key={index}
 								onClick={() => handleAnswerSelect(index)}
 								disabled={showResult}
-								className={`w-full text-left p-4 rounded-xl border-2 border-gray-200 transition-all duration-300 font-medium ${isSelected && !showResult
+								className={`w-full text-left p-4 rounded-full border-2 border-gray-200 transition-all duration-300 font-medium ${isSelected && !showResult
 									? "border-indigo-500 bg-indigo-50/80 text-indigo-700"
 									: !showResult
 										? "border-gray-200 hover:border-indigo-300 hover:bg-indigo-50/40 text-gray-700"
@@ -117,7 +117,7 @@ export default function ExerciseBox({ questions }: ExerciseBoxProps) {
 				<button
 					onClick={prevQuestion}
 					disabled={currentQuestionIndex === 0}
-					className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 disabled:bg-gray-50 disabled:text-gray-400 text-white px-4 py-2 rounded-xl transition-all duration-300"
+					className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 disabled:bg-gray-50 disabled:text-gray-400 text-white px-4 py-2 rounded-3xl transition-all duration-300"
 				>
 					<ChevronLeft size={18} />
 					មុន
@@ -138,7 +138,7 @@ export default function ExerciseBox({ questions }: ExerciseBoxProps) {
 				<button
 					onClick={nextQuestion}
 					disabled={currentQuestionIndex === questions.length - 1}
-					className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 disabled:bg-gray-50 disabled:text-gray-400 text-white px-4 py-2 rounded-xl transition-all duration-300"
+					className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 disabled:bg-gray-50 disabled:text-gray-400 text-white px-4 py-2 rounded-3xl transition-all duration-300"
 				>
 					បន្ទាប់
 					<ChevronRight size={18} />

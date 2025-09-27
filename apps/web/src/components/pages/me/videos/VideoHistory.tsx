@@ -119,7 +119,7 @@ export default function VideoHistoryComponent({ onError }: VideoHistoryProps) {
                 <div className="space-y-4">
                     {[...Array(3)].map((_, i) => (
                         <div key={i} className="flex items-center gap-4 p-4 border border-gray-200 rounded-xl animate-pulse">
-                            <div className="w-24 h-16 bg-gray-200 rounded-lg"></div>
+                            <div className="w-24 h-16 bg-gray-200 rounded-3xl"></div>
                             <div className="flex-1">
                                 <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
                                 <div className="h-3 bg-gray-200 rounded w-1/2"></div>
@@ -136,14 +136,14 @@ export default function VideoHistoryComponent({ onError }: VideoHistoryProps) {
         return (
             <div className="bg-white rounded-2xl shadow-sm p-6">
                 <div className="text-center py-12">
-                    <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 rounded-3xl bg-red-100 flex items-center justify-center mx-auto mb-4">
                         <AlertCircle className="w-8 h-8 text-red-600" />
                     </div>
                     <h2 className="text-xl font-semibold text-gray-900 mb-2">មានបញ្ហាក្នុងការផ្ទុក</h2>
                     <p className="text-gray-600 mb-6">{error}</p>
                     <button
                         onClick={() => window.location.reload()}
-                        className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                        className="px-6 py-3 bg-indigo-600 text-white rounded-3xl hover:bg-indigo-700 transition-colors font-medium"
                     >
                         ព្យាយាមម្តងទៀត
                     </button>
@@ -156,14 +156,14 @@ export default function VideoHistoryComponent({ onError }: VideoHistoryProps) {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200">
             {videoHistory.length === 0 ? (
                 <div className="p-12 text-center">
-                    <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 rounded-3xl bg-gray-100 flex items-center justify-center mx-auto mb-4">
                         <History className="w-8 h-8 text-gray-400" />
                     </div>
                     <h3 className="text-lg font-medium text-gray-900 mb-2">គ្មានប្រវត្តិវីដេអូ</h3>
                     <p className="text-gray-500 mb-6">អ្នកមិនទាន់មានប្រវត្តិវីដេអូណាមួយនៅឡើយទេ។</p>
                     <Link
                         href="/video"
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-3xl hover:bg-indigo-700 transition-colors font-medium"
                     >
                         <Play size={16} />
                         មើលវីដេអូ
@@ -174,7 +174,7 @@ export default function VideoHistoryComponent({ onError }: VideoHistoryProps) {
                     {/* Success Message */}
                     {successMessage && (
                         <div className="mb-6">
-                            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <div className="bg-green-50 border border-green-200 rounded-3xl p-4">
                                 <div className="flex items-center">
                                     <CheckCircle className="h-5 w-5 text-green-400 mr-3" />
                                     <p className="text-sm text-green-800">{successMessage}</p>
@@ -186,7 +186,7 @@ export default function VideoHistoryComponent({ onError }: VideoHistoryProps) {
                     {/* Error Message */}
                     {error && (
                         <div className="mb-6">
-                            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <div className="bg-red-50 border border-red-200 rounded-3xl p-4">
                                 <div className="flex items-center">
                                     <AlertCircle className="h-5 w-5 text-red-400 mr-3" />
                                     <p className="text-sm text-red-800">{error}</p>
@@ -217,7 +217,7 @@ export default function VideoHistoryComponent({ onError }: VideoHistoryProps) {
                         {selectedItems.size > 0 && (
                             <button
                                 onClick={handleBulkDelete}
-                                className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium"
+                                className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-3xl hover:bg-red-700 transition-colors font-medium"
                             >
                                 <Trash2 size={16} />
                                 លុប {selectedItems.size} វីដេអូ
@@ -245,7 +245,7 @@ export default function VideoHistoryComponent({ onError }: VideoHistoryProps) {
                                 {/* Thumbnail */}
                                 <div className="relative flex-shrink-0">
                                     <Link href={`/video/${item.videoId}`}>
-                                        <div className="relative w-24 h-16 rounded-lg overflow-hidden group">
+                                        <div className="relative w-24 h-16 rounded-3xl overflow-hidden group">
                                             <Image
                                                 src={item.thumbnailUrl}
                                                 alt={item.title}
@@ -253,7 +253,7 @@ export default function VideoHistoryComponent({ onError }: VideoHistoryProps) {
                                                 height={64}
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                                             />
-                                            <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 rounded-lg flex items-center justify-center transition-all duration-200">
+                                            <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 rounded-3xl flex items-center justify-center transition-all duration-200">
                                                 <Play size={20} className="text-white" />
                                             </div>
                                         </div>
@@ -285,11 +285,11 @@ export default function VideoHistoryComponent({ onError }: VideoHistoryProps) {
                                             handleDeleteHistory(item.id);
                                         }}
                                         disabled={deletingId === item.id}
-                                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="p-2 text-red-600 hover:bg-red-50 rounded-3xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                         title="លុបចេញពីប្រវត្តិ"
                                     >
                                         {deletingId === item.id ? (
-                                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-red-600"></div>
+                                            <div className="animate-spin rounded-3xl h-4 w-4 border-b-2 border-red-600"></div>
                                         ) : (
                                             <Trash2 size={18} />
                                         )}

@@ -92,7 +92,7 @@ export default function VideoPage() {
 						<div className="flex justify-center items-center gap-2">
 							<button
 								onClick={() => setSidebarOpen(true)}
-								className="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+								className="lg:hidden  text-gray-600 "
 							>
 								<Menu size={20} />
 							</button>
@@ -110,7 +110,7 @@ export default function VideoPage() {
 									autoComplete="off"
 									autoCorrect="off"
 									spellCheck={false}
-									className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+									className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
 								/>
 							</div>
 						</div>
@@ -134,7 +134,7 @@ export default function VideoPage() {
 						<div className="flex justify-center items-center gap-2">
 							<button
 								onClick={() => setSidebarOpen(true)}
-								className="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+								className="lg:hidden  text-gray-600 "
 							>
 								<Menu size={20} />
 							</button>
@@ -152,7 +152,7 @@ export default function VideoPage() {
 									autoComplete="off"
 									autoCorrect="off"
 									spellCheck={false}
-									className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+									className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
 								/>
 							</div>
 						</div>
@@ -177,7 +177,7 @@ export default function VideoPage() {
 						{/* Mobile Menu Button */}
 						<button
 							onClick={() => setSidebarOpen(true)}
-							className="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+							className="lg:hidden  text-gray-600 "
 						>
 							<Menu size={20} />
 						</button>
@@ -196,7 +196,7 @@ export default function VideoPage() {
 								autoComplete="off"
 								autoCorrect="off"
 								spellCheck={false}
-								className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+								className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
 							/>
 						</div>
 					</div>

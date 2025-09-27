@@ -96,7 +96,7 @@ export default function ExerciseBox({
     }, [currentQuestionIndex, currentQuestion.id, sectionAnswers]);
 
     return (
-        <div className="bg-white/95 backdrop-blur-sm border-2 border-indigo-500/20 rounded-2xl p-6 my-6 shadow-lg shadow-indigo-500/15">
+        <div className="bg-white/95 backdrop-blur-sm border-2 border-indigo-500/20 rounded-3xl p-6 my-6 shadow-lg shadow-indigo-500/15">
 
             {/* Question */}
             <div className={`mb-6 transition-all duration-200 ${isAnswering ? 'opacity-60 scale-[0.98]' : 'opacity-100 scale-100'}`}>
@@ -127,7 +127,7 @@ export default function ExerciseBox({
                                 key={choice.id}
                                 onClick={() => handleAnswerSelect(choice.id)}
                                 disabled={isAnswered}
-                                className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 font-medium transform hover:scale-[1.02] active:scale-[0.98] ${isSelected && isAnswering
+                                className={`w-full text-left px-5 py-3 rounded-full border-2 transition-all duration-200 font-medium transform hover:scale-[1.02] active:scale-[0.98] ${isSelected && isAnswering
                                     ? "border-indigo-600 bg-indigo-100 text-indigo-800 shadow-lg scale-[1.02] ring-2 ring-indigo-200"
                                     : isSelected && !isAnswered
                                         ? "border-indigo-500 bg-indigo-50 text-indigo-700 shadow-md"
@@ -138,11 +138,11 @@ export default function ExerciseBox({
                                                 : "border-gray-200 bg-gray-50 text-gray-500 cursor-not-allowed"
                                     }`}
                             >
-                                <div className="flex items-start gap-3">
+                                <div className="flex items-center gap-3">
                                     <span className="text-lg font-semibold mt-1">
                                         {String.fromCharCode(0x1780 + index)} {/* Khmer letters: ក, ខ, គ, ឃ */}
                                     </span>
-                                    <div className="flex-1">
+                                    <div className="flex-1 text-xl">
                                         <MarkDownRenderer content={choice.text} />
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@ export default function ExerciseBox({
                 <button
                     onClick={prevQuestion}
                     disabled={currentQuestionIndex === 0}
-                    className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 disabled:bg-gray-100 disabled:text-gray-400 text-white px-4 py-2 rounded-xl transition-all duration-200 hover:shadow-md disabled:shadow-none transform hover:scale-105 active:scale-95"
+                    className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 disabled:bg-gray-100 disabled:text-gray-400 text-white px-4 py-2 rounded-full transition-all duration-200 hover:shadow-md disabled:shadow-none transform hover:scale-105 active:scale-95"
                 >
                     <ChevronLeft size={18} />
                 </button>
@@ -169,7 +169,7 @@ export default function ExerciseBox({
                 <button
                     onClick={nextQuestion}
                     disabled={currentQuestionIndex === questions.length - 1}
-                    className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 disabled:bg-gray-100 disabled:text-gray-400 text-white px-4 py-2 rounded-xl transition-all duration-200 hover:shadow-md disabled:shadow-none transform hover:scale-105 active:scale-95"
+                    className="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 disabled:bg-gray-100 disabled:text-gray-400 text-white px-4 py-2 rounded-full transition-all duration-200 hover:shadow-md disabled:shadow-none transform hover:scale-105 active:scale-95"
                 >
                     <ChevronRight size={18} />
                 </button>

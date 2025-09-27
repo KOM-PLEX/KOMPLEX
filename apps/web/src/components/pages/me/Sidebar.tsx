@@ -88,12 +88,12 @@ export default function Sidebar() {
                                     <Link
                                         key={item.href}
                                         href={item.href}
-                                        className={`group flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${active
+                                        className={`group flex items-center gap-3 px-3 py-3 rounded-3xl text-sm font-medium transition-all duration-200 ${active
                                             ? 'text-indigo-600 bg-indigo-50 border border-indigo-500 shadow-sm'
                                             : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50 border border-transparent hover:border-gray-300'
                                             }`}
                                     >
-                                        <div className={`p-2 rounded-lg transition-colors duration-200 ${active
+                                        <div className={`p-2 rounded-3xl transition-colors duration-200 ${active
                                             ? 'bg-indigo-100 text-indigo-600'
                                             : 'bg-gray-100 text-gray-600 group-hover:bg-indigo-100 group-hover:text-indigo-600'
                                             }`}>
@@ -121,12 +121,12 @@ export default function Sidebar() {
                                     key={item.href}
                                     href={item.href}
                                     data-active={active ? 'true' : 'false'}
-                                    className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 min-w-[70px] ${active
+                                    className={`flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2 rounded-3xl text-xs font-medium transition-all duration-200 min-w-[70px] ${active
                                         ? 'text-indigo-600 bg-indigo-50 border border-indigo-500'
                                         : 'text-gray-700 hover:text-black hover:bg-gray-50 border border-transparent hover:border-gray-300'
                                         }`}
                                 >
-                                    <div className={`p-1.5 rounded-md transition-colors duration-200 ${active
+                                    <div className={`p-1.5 rounded-3xl transition-colors duration-200 ${active
                                         ? 'bg-indigo-100 text-indigo-600'
                                         : 'bg-gray-100 text-gray-600 group-hover:bg-indigo-100 group-hover:text-indigo-600'
                                         }`}>

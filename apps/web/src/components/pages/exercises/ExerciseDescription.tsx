@@ -21,7 +21,7 @@ export default function ExerciseDescription({
     isStarting = false
 }: ExerciseDescriptionProps) {
     return (
-        <div className="bg-white rounded-2xl shadow-sm">
+        <div className="bg-white rounded-3xl shadow-sm">
             {/* Header */}
             <div className="p-6 border-b border-gray-200">
                 <div className="flex items-center gap-3">
@@ -42,7 +42,7 @@ export default function ExerciseDescription({
 
                 {/* Exercise Details */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div className="bg-indigo-50 rounded-lg p-4">
+                    <div className="bg-indigo-50 rounded-3xl p-4">
                         <div className="flex items-center gap-2 mb-2">
                             <Target className="w-5 h-5 text-indigo-600" />
                             <span className="text-sm font-medium text-indigo-600">ចំនួនសំណួរ</span>
@@ -50,7 +50,7 @@ export default function ExerciseDescription({
                         <p className="text-2xl font-bold text-gray-900">{exercise.questions.length}</p>
                     </div>
 
-                    <div className="bg-green-50 rounded-lg p-4">
+                    <div className="bg-green-50 rounded-3xl p-4">
                         <div className="flex items-center gap-2 mb-2">
                             <Clock className="w-5 h-5 text-green-600" />
                             <span className="text-sm font-medium text-green-600">ពេលវេលា</span>
@@ -59,7 +59,7 @@ export default function ExerciseDescription({
                         <p className="text-sm text-gray-600">នាទី</p>
                     </div>
 
-                    <div className="bg-blue-50 rounded-lg p-4">
+                    <div className="bg-blue-50 rounded-3xl p-4">
                         <div className="flex items-center gap-2 mb-2">
                             <BookOpen className="w-5 h-5 text-blue-600" />
                             <span className="text-sm font-medium text-blue-600">មុខវិជ្ជា</span>
@@ -67,7 +67,7 @@ export default function ExerciseDescription({
                         <p className="text-lg font-bold text-gray-900">{exercise.subject}</p>
                     </div>
 
-                    <div className="bg-purple-50 rounded-lg p-4">
+                    <div className="bg-purple-50 rounded-3xl p-4">
                         <div className="flex items-center gap-2 mb-2">
                             <User className="w-5 h-5 text-purple-600" />
                             <span className="text-sm font-medium text-purple-600">ថ្នាក់</span>
@@ -77,7 +77,7 @@ export default function ExerciseDescription({
                 </div>
 
                 {/* Topic Information */}
-                <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                <div className="bg-gray-50 rounded-3xl p-4 mb-6">
                     <h4 className="text-sm font-medium text-gray-600 mb-2">ប្រធានបទ</h4>
                     <p className="text-lg font-semibold text-gray-900">{exercise.topic}</p>
                 </div>
@@ -88,7 +88,7 @@ export default function ExerciseDescription({
                         <button
                             onClick={onStartExercise}
                             disabled={isStarting}
-                            className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors disabled:cursor-not-allowed"
+                            className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white px-8 py-3 rounded-3xl font-semibold text-lg transition-colors disabled:cursor-not-allowed"
                         >
                             {isStarting ? 'កំពុងរៀបចំ...' : startButtonText}
                         </button>

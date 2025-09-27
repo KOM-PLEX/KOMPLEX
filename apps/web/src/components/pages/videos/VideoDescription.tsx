@@ -95,14 +95,14 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
     const displayText = showFullDescription ? video.description : video.description.slice(0, charLimit);
 
     return (
-        <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm my-6">
+        <div className="lg:bg-white lg:rounded-3xl lg:p-4 lg:shadow-sm  mt-6 lg:my-6">
             {/* Video Title */}
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 line-clamp-2 leading-tight">
                 {video.title}
             </h1>
 
             {/* Channel Info and Actions */}
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+            <div className="flex lg:flex-row flex-wrap lg:items-center justify-between gap-4 mb-6">
                 {/* Channel Info */}
                 <div className="flex items-center gap-3">
                     <Link href={`/users/${video.userId}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
@@ -111,6 +111,7 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
                                 src={video.profileImage}
                                 alt={video.username}
                                 className="w-10 h-10 rounded-full object-cover border-2 border-indigo-500"
+
                                 onError={(e) => {
                                     e.currentTarget.style.display = 'none';
                                     e.currentTarget.nextElementSibling?.classList.remove('hidden');
@@ -131,7 +132,7 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
                     <button
                         onClick={handleFollow}
                         disabled={isFollowLoading}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-colors flex-shrink-0 ${isFollowing
+                        className={`flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-colors flex-shrink-0 ${isFollowing
                             ? 'bg-indigo-100 text-indigo-700 border border-indigo-200 hover:bg-indigo-200'
                             : 'bg-indigo-600 text-white hover:bg-indigo-700'
                             } ${isFollowLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -156,8 +157,8 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
                 <div className="flex items-center gap-2 flex-wrap">
                     <button
                         onClick={() => onLike(video.id, video.isLiked, video)}
-                        className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg transition-colors ${video.isLiked
-                            ? 'text-indigo-600 bg-indigo-50'
+                        className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full transition-colors ${video.isLiked
+                            ? 'text-indigo-600 '
                             : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
                             }`}
                     >
@@ -165,8 +166,20 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
                         <span className="text-xs sm:text-sm font-medium">{formatViewCount(video.likeCount)}</span>
                     </button>
 
+
+
+                    <button
+                        onClick={() => onBookmark(video.id, video.isSave, video)}
+                        className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full transition-colors ${video.isSave
+                            ? 'text-indigo-600 '
+                            : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
+                            }`}
+                    >
+                        <Bookmark size={18} className={`${video.isSave ? 'fill-indigo-600' : ''}`} />
+                        <span className="text-xs sm:text-sm font-medium">រក្សាទុក</span>
+                    </button>
                     <Menu as="div" className="relative">
-                        <Menu.Button className="flex items-center gap-2 px-3 sm:px-4 py-2 text-gray-700 rounded-lg hover:text-indigo-600 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <Menu.Button className="flex items-center gap-2 px-3 sm:px-4 py-2 text-gray-700 rounded-full hover:text-indigo-600 hover:bg-gray-50 transition-colors focus:outline-none">
                             <Share size={18} />
                             <span className="text-xs sm:text-sm font-medium">ចែករំលែក</span>
                         </Menu.Button>
@@ -179,12 +192,12 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
                             leaveFrom="transform scale-100 opacity-100"
                             leaveTo="transform scale-95 opacity-0"
                         >
-                            <Menu.Items className="absolute right-0 mt-2 w-48 bg-white rounded-lg border border-gray-200 shadow-lg z-50 focus:outline-none">
+                            <Menu.Items className="absolute right-0 mt-2 p-2 w-48 bg-white rounded-3xl border border-gray-200 shadow-lg z-50 focus:outline-none">
                                 <Menu.Item>
                                     {({ active }) => (
                                         <button
                                             onClick={handleCopyLink}
-                                            className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
+                                            className={`w-full flex items-center rounded-full gap-3 px-4 py-3 text-sm transition-colors ${active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700'
                                                 }`}
                                         >
                                             {copied ? (
@@ -204,23 +217,11 @@ export default function VideoDescription({ video, onLike, onBookmark }: VideoDes
                             </Menu.Items>
                         </Transition>
                     </Menu>
-
-                    <button
-                        onClick={() => onBookmark(video.id, video.isSave, video)}
-                        className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg transition-colors ${video.isSave
-                            ? 'text-indigo-600 bg-indigo-50'
-                            : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50'
-                            }`}
-                    >
-                        <Bookmark size={18} className={`${video.isSave ? 'fill-indigo-600' : ''}`} />
-                        <span className="text-xs sm:text-sm font-medium">រក្សាទុក</span>
-                    </button>
-
                 </div>
             </div>
 
             {/* Description with Stats */}
-            <div className="bg-gray-50 rounded-xl p-4">
+            <div className="lg:bg-gray-50 lg:rounded-xl lg:p-4">
                 {/* Stats in description */}
                 <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
                     <span className="font-medium">{formatViewCount(video.viewCount)} views</span>

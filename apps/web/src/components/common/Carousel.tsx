@@ -110,14 +110,14 @@ export default function Carousel({
 
     if (!media || media.length === 0) {
         return (
-            <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+            <div className="w-full h-64 bg-gray-200 rounded-3xl flex items-center justify-center">
                 <p className="text-gray-500">No media available</p>
             </div>
         );
     }
 
     return (
-        <div className="relative w-full overflow-hidden rounded-lg">
+        <div className="relative w-full overflow-hidden rounded-3xl">
             {/* Carousel Container */}
             <div className="relative w-full h-full">
                 {/* Media Container */}
@@ -186,14 +186,14 @@ export default function Carousel({
                 <>
                     <button
                         onClick={goToPrevious}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 flex items-center justify-center transition-all duration-200 hover:scale-110 z-10 rounded-r-lg"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/30 hover:bg-black/50 flex items-center justify-center transition-all duration-200 hover:scale-105 z-10 rounded-r-full"
                         aria-label="Previous slide"
                     >
                         <ChevronLeft className="w-5 h-5 text-white" />
                     </button>
                     <button
                         onClick={goToNext}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 flex items-center justify-center transition-all duration-200 hover:scale-110 z-10 rounded-l-lg"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/30 hover:bg-black/50 flex items-center justify-center transition-all duration-200 hover:scale-105 z-10 rounded-l-full"
                         aria-label="Next slide"
                     >
                         <ChevronRight className="w-5 h-5 text-white" />

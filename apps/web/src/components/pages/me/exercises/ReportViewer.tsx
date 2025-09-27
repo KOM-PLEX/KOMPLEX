@@ -43,34 +43,34 @@ export default function ReportViewer({ id, isOpen, onClose }: ReportViewerProps)
     const LoadingSkeleton = () => (
         <div className="p-6">
             <div className="flex items-center justify-between mb-6">
-                <div className="h-7 w-48 bg-gray-200 rounded-lg animate-pulse"></div>
-                <div className="h-8 w-8 bg-gray-200 rounded-lg animate-pulse"></div>
+                <div className="h-7 w-48 bg-gray-200 rounded-full animate-pulse"></div>
+                <div className="h-8 w-8 bg-gray-200 rounded-full animate-pulse"></div>
             </div>
 
             {/* Summary Stats Skeleton */}
             <div className="grid grid-cols-3 gap-4 mb-6">
                 {[...Array(3)].map((_, i) => (
-                    <div key={i} className="text-center p-4 bg-gray-50 rounded-lg animate-pulse">
-                        <div className="h-8 w-16 bg-gray-200 rounded-lg mx-auto mb-2"></div>
-                        <div className="h-4 w-24 bg-gray-200 rounded-lg mx-auto"></div>
+                    <div key={i} className="text-center p-4 bg-gray-50 rounded-full animate-pulse">
+                        <div className="h-8 w-16 bg-gray-200 rounded-full mx-auto mb-2"></div>
+                        <div className="h-4 w-24 bg-gray-200 rounded-full mx-auto"></div>
                     </div>
                 ))}
             </div>
 
             {/* Attempts List Skeleton */}
             <div>
-                <div className="h-6 w-40 bg-gray-200 rounded-lg mb-4 animate-pulse"></div>
+                <div className="h-6 w-40 bg-gray-200 rounded-3xl mb-4 animate-pulse"></div>
                 <div className="space-y-4">
                     {[...Array(3)].map((_, i) => (
-                        <div key={i} className="border border-gray-200 rounded-lg overflow-hidden">
+                        <div key={i} className="border border-gray-200 rounded-3xl overflow-hidden">
                             {/* Attempt Header Skeleton */}
                             <div className="bg-gray-50 p-4 border-b border-gray-200">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-4">
                                         <div className="w-8 h-8 bg-gray-200 rounded-full animate-pulse"></div>
                                         <div className="space-y-2">
-                                            <div className="h-4 w-24 bg-gray-200 rounded-lg"></div>
-                                            <div className="h-3 w-16 bg-gray-200 rounded-lg"></div>
+                                            <div className="h-4 w-24 bg-gray-200 rounded-full"></div>
+                                            <div className="h-3 w-16 bg-gray-200 rounded-full"></div>
                                         </div>
                                     </div>
                                     <div className="h-6 w-16 bg-gray-200 rounded-full"></div>
@@ -79,17 +79,17 @@ export default function ReportViewer({ id, isOpen, onClose }: ReportViewerProps)
 
                             {/* Section Scores Skeleton */}
                             <div className="p-4">
-                                <div className="h-5 w-32 bg-gray-200 rounded-lg mb-3"></div>
+                                <div className="h-5 w-32 bg-gray-200 rounded-3xl mb-3"></div>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                     {[...Array(3)].map((_, j) => (
-                                        <div key={j} className="bg-gray-50 rounded-lg p-3">
+                                        <div key={j} className="bg-gray-50 rounded-3xl p-3">
                                             <div className="flex items-center justify-between mb-2">
-                                                <div className="h-4 w-24 bg-gray-200 rounded-lg"></div>
+                                                <div className="h-4 w-24 bg-gray-200 rounded-full"></div>
                                                 <div className="h-4 w-12 bg-gray-200 rounded-full"></div>
                                             </div>
                                             <div className="flex items-center justify-between">
-                                                <div className="h-3 w-20 bg-gray-200 rounded-lg"></div>
-                                                <div className="h-3 w-16 bg-gray-200 rounded-lg"></div>
+                                                <div className="h-3 w-20 bg-gray-200 rounded-full"></div>
+                                                <div className="h-3 w-16 bg-gray-200 rounded-full"></div>
                                             </div>
                                         </div>
                                     ))}
@@ -135,7 +135,7 @@ export default function ReportViewer({ id, isOpen, onClose }: ReportViewerProps)
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-3xl bg-white text-left align-middle shadow-xl transition-all">
                                 {/* Header */}
                                 <div className="p-6 border-b border-gray-200">
                                     <div className="flex items-center justify-between">
@@ -143,12 +143,12 @@ export default function ReportViewer({ id, isOpen, onClose }: ReportViewerProps)
                                             របាយការណ៍លំហាត់
                                         </Dialog.Title>
                                         <div className='flex items-center gap-2'>
-                                            <Link href={`/exercise/${id}`} className='px-4 py-2 hover:bg-indigo-400 hover:text-white bg-indigo-500 rounded-lg transition-colors flex items-center gap-2'>
+                                            <Link href={`/exercise/${id}`} className='px-4 py-2 hover:bg-indigo-400 hover:text-white bg-indigo-500 rounded-full transition-colors flex items-center gap-2'>
                                                 <p className='text-sm font-medium text-white'>ធ្វើលំហាត់</p>
                                             </Link>
                                             <button
                                                 onClick={onClose}
-                                                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                                             >
                                                 <X className="w-5 h-5 text-gray-500" />
                                             </button>
@@ -167,7 +167,7 @@ export default function ReportViewer({ id, isOpen, onClose }: ReportViewerProps)
                                                     <X className="w-8 h-8" />
                                                 </div>
                                                 <div className="text-center text-gray-500">របាយការណ៍លំហាត់មិនមាន</div>
-                                                <Link href={`/exercise/${id}`} className='px-4 py-2 hover:bg-indigo-400 hover:text-white bg-indigo-500 rounded-lg transition-colors flex items-center gap-2'>
+                                                <Link href={`/exercise/${id}`} className='px-4 py-2 hover:bg-indigo-400 hover:text-white bg-indigo-500 rounded-full transition-colors flex items-center gap-2'>
                                                     <p className='text-sm font-medium text-white'>ធ្វើលំហាត់</p>
                                                 </Link>
                                             </div>
@@ -176,15 +176,15 @@ export default function ReportViewer({ id, isOpen, onClose }: ReportViewerProps)
                                         <div className="p-6">
                                             {/* Summary Stats */}
                                             <div className="grid grid-cols-3 gap-4 mb-6">
-                                                <div className="text-center p-4 bg-indigo-50 rounded-lg">
+                                                <div className="text-center p-4 bg-indigo-50 rounded-full">
                                                     <div className="text-2xl font-bold text-indigo-600">{report.numberOfAttempts}</div>
                                                     <div className="text-sm text-gray-600">ចំនួនដងព្យាយាម</div>
                                                 </div>
-                                                <div className="text-center p-4 bg-green-50 rounded-lg">
+                                                <div className="text-center p-4 bg-green-50 rounded-full">
                                                     <div className="text-2xl font-bold text-green-600">{report.maxScore}%</div>
                                                     <div className="text-sm text-gray-600">ពិន្ទុខ្ពស់បំផុត</div>
                                                 </div>
-                                                <div className="text-center p-4 bg-blue-50 rounded-lg">
+                                                <div className="text-center p-4 bg-blue-50 rounded-full">
                                                     <div className="text-2xl font-bold text-blue-600">{parseFloat(report.averageScore).toFixed(1)}%</div>
                                                     <div className="text-sm text-gray-600">ពិន្ទុជាមធ្យម</div>
                                                 </div>
@@ -202,7 +202,7 @@ export default function ReportViewer({ id, isOpen, onClose }: ReportViewerProps)
                                                         const overallScore = attempt.sectionScores.reduce((sum, section) => sum + section.score, 0) / attempt.sectionScores.length;
 
                                                         return (
-                                                            <div key={attempt.exerciseHistoryId} className="border border-gray-200 rounded-lg overflow-hidden">
+                                                            <div key={attempt.exerciseHistoryId} className="border border-gray-200 rounded-3xl overflow-hidden">
                                                                 {/* Attempt Header */}
                                                                 <div className="bg-gray-50 px-4 py-2 border-b border-gray-200">
                                                                     <div className="flex items-center justify-between">
@@ -226,7 +226,7 @@ export default function ReportViewer({ id, isOpen, onClose }: ReportViewerProps)
                                                                 <div className="p-4">
                                                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                                                         {attempt.sectionScores.map((section, sectionIndex) => (
-                                                                            <div key={sectionIndex} className="bg-gray-50 rounded-lg p-3">
+                                                                            <div key={sectionIndex} className="bg-gray-50 rounded-full p-3">
                                                                                 <div className="flex items-center justify-between mb-2">
                                                                                     <span className="text-xs font-bold text-gray-700">{section.section}</span>
                                                                                     <div className={`px-2 py-1 rounded-full text-xs font-medium ${getScoreColor(section.score)}`}>
